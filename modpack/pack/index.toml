@@ -526,11 +526,6 @@ hash = "93d6c8bfa1555260d0ade1fc73c2edd05ecc02787be8e7eff3d34f0cf2e25372"
 preserve = true
 
 [[files]]
-file = "options-profiles/1 - Leve/sodium-options.json"
-hash = "871a74d8773694f53f798dac5e248934333b0cd666290cf87f86b6ff7d43e0d3"
-preserve = true
-
-[[files]]
 file = "options-profiles/2 - Equilibrado/configuration.json"
 hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
@@ -543,11 +538,6 @@ preserve = true
 [[files]]
 file = "options-profiles/2 - Equilibrado/options.txt"
 hash = "6541f8e152cae32b1147f928d536271a1e6d2cd011e88835400fbda385b02e1c"
-preserve = true
-
-[[files]]
-file = "options-profiles/2 - Equilibrado/sodium-options.json"
-hash = "8401638139414ca9da0aff13990282b3559e7cf94abf3b3aeb167ffd401f2002"
 preserve = true
 
 [[files]]
@@ -566,11 +556,6 @@ hash = "9bea101c5846cb3bb64f64dcd4167ec45730759636a51211f909f4a2297ba454"
 preserve = true
 
 [[files]]
-file = "options-profiles/3 - Bonito/sodium-options.json"
-hash = "a556d6af015d41389f86d30718f1658204055ea5a30e13630bf279ad0ec25fb3"
-preserve = true
-
-[[files]]
 file = "options-profiles/4 - Ultra/configuration.json"
 hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
@@ -583,9 +568,4 @@ preserve = true
 [[files]]
 file = "options-profiles/4 - Ultra/options.txt"
 hash = "0a3f771c8ba541a3a004bf9ae83f716166bb927900b9ae8051dc015b95a120c3"
-preserve = true
-
-[[files]]
-file = "options-profiles/4 - Ultra/sodium-options.json"
-hash = "a556d6af015d41389f86d30718f1658204055ea5a30e13630bf279ad0ec25fb3"
 preserve = true

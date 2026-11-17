@@ -77,3 +77,4 @@ Lista completa com versões e links: seção **Mods** do [README](../README.md).
 | 2026-11-17 | 2026.11.17.11 | + aventura: 5 dimensões/renovações, cavernas e minérios, mobs, chefes e masmorras. Servidor testado. |
 | 2026-11-17 | 2026.11.17.12 | + QoL de servidor e 4 shaders; IPN trocado por Inventory Essentials; jogar liga os pacotes de recursos do pack em quem já tinha options.txt. |
 | 2026-11-17 | 2026.11.17.13 | Perfis de gráfico, otimização do jogo e do servidor (flags do Aikar, distâncias, Noisium, Chunky, spark). |
+| 2026-11-17 | 2026.11.17.14 | Perfis sem `sodium-options.json`: o Options Profiles 1.4.2 usa uma API que o Sodium 0.8 removeu e o jogo fechava ao aplicar o perfil. |
