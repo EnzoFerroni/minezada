@@ -1,0 +1,8 @@
+name = "Wyrmroost"
+filename = "wyrmroost-1.4.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/8dYAmpGw/versions/8cPyix5L/wyrmroost-1.4.1.jar"
+hash-format = "sha1"
+hash = "3234b28f03e1b43101a0539a0774e9cb5c828de4"

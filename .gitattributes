@@ -1,0 +1,9 @@
+* text=auto
+*.sh text eol=lf
+*.command text eol=lf
+*.env text eol=lf
+*.bat text eol=crlf
+*.mrpack binary
+*.zip binary
+# Hashes do packwiz sao calculados sobre os bytes exatos: git nao pode converter fim de linha.
+modpack/pack/** -text

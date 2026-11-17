@@ -1,0 +1,44 @@
+# Lista do pack: "slug-do-modrinth | descrição". Linha com "## " vira categoria em docs/mods.md.
+# Depois de editar: powershell -ExecutionPolicy Bypass -File scripts\montar-pack.ps1
+# Dependências obrigatórias entram sozinhas.
+
+## Aprender e guias
+create | Engrenagens, esteiras, moinhos e máquinas que automatizam fazendas e fábricas. Segure W com o mouse em cima de qualquer item do Create para ver um tutorial animado de como ele funciona.
+jei | Mostra a receita de qualquer item. No inventário, passe o mouse num item e aperte R para ver como fazer ou U para ver onde ele é usado.
+jade | Olhe para um bloco ou mob e aparece no topo da tela o que ele é, de qual mod vem e informações úteis (vida, progresso de crescimento, conteúdo).
+appleskin | Mostra na barra de fome quanto cada comida vai encher e a saturação, para saber o que vale a pena comer.
+better-advancements | Tela de conquistas (tecla L) mais clara. Serve de guia do que fazer a seguir.
+
+## Baús e armazenamento
+sophisticated-storage | Baús, barris e caixas que ganham upgrades: viram maiores (ferro, ouro, diamante, netherite) sem tirar os itens, organizam sozinhos, filtram e puxam itens.
+sophisticated-backpacks | Mochilas com upgrades: coletam itens do chão, organizam, alimentam você e podem ficar maiores.
+toms-storage | Liga todos os baús da base num terminal: uma tela só com busca para achar e pegar qualquer item.
+
+## Ferramentas
+just-hammers | Martelos que quebram uma área 3x3 de uma vez. Ótimos para cavar túneis e minas.
+advanced-netherite | Ferramentas e armaduras ainda melhores que netherite, feitas com materiais do jogo. Progressão no estilo vanilla.
+veinminer | Agachado, quebre um minério ou tronco e o veio ou a árvore inteira vem junto.
+
+## Dragões
+wyrmroost | Dragões de vários tipos pelo mundo. Pegue um ovo, choque, crie o filhote como pet e, quando ele crescer, monte e saia voando.
+
+## Dimensões
+aether | Uma dimensão no céu, com ilhas flutuantes, mobs, chefes e itens novos. Portal: moldura de glowstone e um balde de água dentro.
+
+## Mundo e facilidade
+waystones | Pedras de teleporte: ative nas suas bases e em vilas e viaje entre elas.
+xaeros-minimap | Minimapa no canto da tela, com marcadores (waypoints) e marcação de onde você morreu.
+xaeros-world-map | Mapa do mundo inteiro que você já explorou. Tecla M.
+corpse | Ao morrer, seus itens ficam guardados num corpo no lugar da morte, sem sumir.
+farmers-delight | Culinária: plantações, panela, tábua de corte e dezenas de comidas novas.
+mouse-tweaks | Arraste o mouse com o botão apertado para mover vários itens de uma vez.
+inventory-profiles-next | Botão para organizar inventário e baús automaticamente.
+
+## Desempenho
+sodium | Deixa o jogo muito mais leve e com mais FPS.
+lithium | Otimiza a lógica do jogo e do servidor, menos lag.
+ferrite-core | Faz o jogo usar menos memória RAM.
+modernfix | O jogo abre mais rápido e usa menos memória.
+entityculling | Não desenha mobs e baús escondidos atrás de paredes.
+immediatelyfast | Acelera a interface, textos e mapas.
+iris | Shaders opcionais (vêm desligados). Ative em Opções → Vídeo → Shader Packs.
