@@ -301,10 +301,10 @@ wl, ops = ler("whitelist.json"), ler("ops.json")
 mundo = os.path.join(pasta, "world")
 # UUID oficial ja conhecido (whitelist/ops) evita consultar a Mojang a cada start.
 oficiais = {e["name"].lower(): e["uuid"] for e in wl + ops if e["uuid"] != offline(e["name"])}
+FALHA = object()  # a Mojang nao respondeu: nao mexe nas entradas deste nick neste start
 def oficial(nome):
     if nome.lower() in oficiais:
         return oficiais[nome.lower()]
-    falhou = False
     # Dois enderecos da Mojang: rede compartilhada (faculdade) costuma levar 429 em um deles.
     for url in ("https://api.mojang.com/users/profiles/minecraft/",
                 "https://api.minecraftservices.com/minecraft/profile/lookup/name/"):
@@ -313,16 +313,14 @@ def oficial(nome):
         except urllib.error.HTTPError as e:
             if e.code == 404:  # nick sem conta original
                 return None
-            falhou = True
         except Exception:
-            falhou = True
-    if falhou:
-        print(f"AVISO: a Mojang nao respondeu sobre {nome}. Se ele tem original, nao entra ate o proximo start"
-              f" (ou: whitelist add {nome} no console).")
-    return None
+            pass
+    print(f"AVISO: a Mojang nao respondeu sobre {nome}; whitelist dele fica como estava ate o proximo start.")
+    return FALHA
 if not os.path.exists(lista):
     with open(lista, "w") as f:
         f.write("# Um nick por linha, igual ao do jogo (maiusculas contam); 'op' depois tambem da admin.\n"
+                "# 'sem-original' depois: joga sem Minecraft original com um nick que existe como conta original.\n"
                 "# O servidor libera todos ao iniciar: depois de editar, reinicie. Nao use whitelist add no console.\nEnzobullet op\n")
         f.writelines(e["name"] + "\n" for e in wl if e["name"].lower() != "enzobullet")
 for linha in open(lista, encoding="utf-8-sig"):
@@ -333,25 +331,31 @@ for linha in open(lista, encoding="utf-8-sig"):
     if not re.fullmatch(r"[A-Za-z0-9_]{1,16}", nome):  # nick valido do Java
         print(f"AVISO: nick invalido em jogadores.txt: {nome}")
         continue
-    op = "op" in [x.lower() for x in partes[1:]]
-    # MixAuth: quem tem original entra com o UUID oficial; sem original, com o offline. Libera os dois.
-    ids = [offline(nome)]
-    on = oficial(nome)
+    flags = [x.lower() for x in partes[1:]]
+    op, off = "op" in flags, offline(nome)
+    on = None if "sem-original" in flags else oficial(nome)
+    if on is FALHA:
+        continue
     if on:
-        ids.append(on)
+        # Nick com original: so o UUID oficial. O offline liberado deixaria qualquer um sem original
+        # entrar com esse nick (o MixAuth so pede senha) e herdar op e progresso.
+        for nome_arq, dados in (("whitelist", wl), ("ops", ops)):
+            if any(e["uuid"] == off for e in dados):
+                dados[:] = [e for e in dados if e["uuid"] != off]
+                print(f"UUID offline de {nome} tirado de {nome_arq} (ele tem original).")
         # Progresso de antes (UUID offline) copiado para o oficial, so se o oficial ainda nao tem nada.
         for sub, ext in (("playerdata", ".dat"), ("advancements", ".json"), ("stats", ".json")):
-            de, para = (os.path.join(mundo, sub, u + ext) for u in (ids[0], on))
+            de, para = (os.path.join(mundo, sub, u + ext) for u in (off, on))
             if os.path.exists(de) and not os.path.exists(para):
                 shutil.copy2(de, para)
                 print(f"Progresso de {nome} copiado para o UUID oficial: {sub}/{on}{ext}")
-    for u in ids:
-        if u not in {e["uuid"] for e in wl}:
-            wl.append({"uuid": u, "name": nome})
-            print(f"Liberado na whitelist: {nome} ({u})")
-        if op and u not in {e["uuid"] for e in ops}:
-            ops.append({"uuid": u, "name": nome, "level": 4, "bypassesPlayerLimit": False})
-            print(f"Admin (op): {nome} ({u})")
+    u = on or off
+    if u not in {e["uuid"] for e in wl}:
+        wl.append({"uuid": u, "name": nome})
+        print(f"Liberado na whitelist: {nome} ({'original' if on else 'sem original'})")
+    if op and u not in {e["uuid"] for e in ops}:
+        ops.append({"uuid": u, "name": nome, "level": 4, "bypassesPlayerLimit": False})
+        print(f"Admin (op): {nome}")
 for nome, dados in (("whitelist.json", wl), ("ops.json", ops)):
     with open(os.path.join(pasta, nome), "w") as f:
         json.dump(dados, f, indent=2)

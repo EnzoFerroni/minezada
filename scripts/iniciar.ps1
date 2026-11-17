@@ -60,7 +60,7 @@ if ((Test-Path (Join-Path $root '.git')) -and (Get-Command git -ErrorAction Sile
 $driveUrl = 'https://drive.google.com/drive/folders/1Kw45U0B-b906dnDsUH8bLy9nDg7HfWzh'
 
 # Libera na whitelist os nicks de jogadores.txt (um por linha; "op" depois do nick tambem da admin).
-# MixAuth: quem tem original entra com o UUID oficial e quem nao tem com o offline, entao libera os dois.
+# MixAuth: quem tem original entra com o UUID oficial (so ele e liberado); sem original, com o offline.
 # Sem o arquivo, cria com o dono e quem ja esta liberado. So adiciona; tirar alguem e no console.
 function Sincronizar-Whitelist($lista, $pasta) {
     # (o ForEach achata: no PS 5.1 o ConvertFrom-Json devolve a lista inteira como um item so)
@@ -76,6 +76,7 @@ function Sincronizar-Whitelist($lista, $pasta) {
     # UUID oficial ja conhecido (whitelist/ops) evita consultar a Mojang a cada start.
     $oficiais = @{}
     foreach ($e in $wl + $ops) { if ($e.uuid -ne (& $offline $e.name)) { $oficiais[$e.name.ToLower()] = $e.uuid } }
+    # Devolve o UUID oficial, $null (nick sem original) ou 'FALHA' (Mojang nao respondeu: nao mexe neste start).
     $oficial = { param($n)
         if ($oficiais.ContainsKey($n.ToLower())) { return $oficiais[$n.ToLower()] }
         # Dois enderecos da Mojang: rede compartilhada (faculdade) costuma levar 429 em um deles.
@@ -88,11 +89,12 @@ function Sincronizar-Whitelist($lista, $pasta) {
                 if ($_.Exception.Response -and [int]$_.Exception.Response.StatusCode -eq 404) { return $null }  # nick sem conta original
             }
         }
-        Write-Warning "A Mojang nao respondeu sobre $n. Se ele tem original, nao entra ate o proximo start (ou: whitelist add $n no console)."
-        $null
+        Write-Warning "A Mojang nao respondeu sobre $n; whitelist dele fica como estava ate o proximo start."
+        'FALHA'
     }
     if (-not (Test-Path $lista)) {
         $linhas = @("# Um nick por linha, igual ao do jogo (maiusculas contam); 'op' depois tambem da admin.",
+            "# 'sem-original' depois: joga sem Minecraft original com um nick que existe como conta original.",
             '# O servidor libera todos ao iniciar: depois de editar, reinicie. Nao use whitelist add no console.', 'Enzobullet op') + @($wl | Where-Object { $_.name -ne 'Enzobullet' } | ForEach-Object { $_.name })
         [IO.File]::WriteAllLines($lista, [string[]]$linhas)
     }
@@ -102,23 +104,27 @@ function Sincronizar-Whitelist($lista, $pasta) {
         if (-not $partes) { continue }
         $nome = $partes[0]
         if ($nome -notmatch '^[A-Za-z0-9_]{1,16}$') { Write-Warning "Nick invalido em jogadores.txt: $nome"; continue }
-        $op = @($partes | Select-Object -Skip 1) -contains 'op'
-        $ids = @(& $offline $nome)
-        $on = & $oficial $nome
+        $flags = @($partes | Select-Object -Skip 1)
+        $op = $flags -contains 'op'
+        $off = & $offline $nome
+        $on = if ($flags -contains 'sem-original') { $null } else { & $oficial $nome }
+        if ($on -eq 'FALHA') { continue }
         if ($on) {
-            $ids += $on
+            # Nick com original: so o UUID oficial. O offline liberado deixaria qualquer um sem original
+            # entrar com esse nick (o MixAuth so pede senha) e herdar op e progresso.
+            if ($wl | Where-Object { $_.uuid -eq $off }) { $wl = @($wl | Where-Object { $_.uuid -ne $off }); Write-Host "UUID offline de $nome tirado da whitelist (ele tem original)." }
+            if ($ops | Where-Object { $_.uuid -eq $off }) { $ops = @($ops | Where-Object { $_.uuid -ne $off }); Write-Host "UUID offline de $nome tirado dos ops (ele tem original)." }
             # Progresso de antes (UUID offline) copiado para o oficial, so se o oficial ainda nao tem nada.
             foreach ($a in 'playerdata\{0}.dat', 'advancements\{0}.json', 'stats\{0}.json') {
-                $de = Join-Path $mundo ($a -f $ids[0]); $para = Join-Path $mundo ($a -f $on)
+                $de = Join-Path $mundo ($a -f $off); $para = Join-Path $mundo ($a -f $on)
                 if ((Test-Path $de) -and -not (Test-Path $para)) {
                     Copy-Item $de $para; Write-Host "Progresso de $nome copiado para o UUID oficial: $($a -f $on)"
                 }
             }
         }
-        foreach ($u in $ids) {
-            if (-not ($wl | Where-Object { $_.uuid -eq $u })) { $wl += [pscustomobject]@{ uuid = $u; name = $nome }; Write-Host "Liberado na whitelist: $nome ($u)" }
-            if ($op -and -not ($ops | Where-Object { $_.uuid -eq $u })) { $ops += [pscustomobject]@{ uuid = $u; name = $nome; level = 4; bypassesPlayerLimit = $false }; Write-Host "Admin (op): $nome ($u)" }
-        }
+        $u = if ($on) { $on } else { $off }
+        if (-not ($wl | Where-Object { $_.uuid -eq $u })) { $wl += [pscustomobject]@{ uuid = $u; name = $nome }; Write-Host "Liberado na whitelist: $nome ($(if ($on) { 'original' } else { 'sem original' }))" }
+        if ($op -and -not ($ops | Where-Object { $_.uuid -eq $u })) { $ops += [pscustomobject]@{ uuid = $u; name = $nome; level = 4; bypassesPlayerLimit = $false }; Write-Host "Admin (op): $nome" }
     }
     [IO.File]::WriteAllText((Join-Path $pasta 'whitelist.json'), (ConvertTo-Json -InputObject @($wl) -Depth 3))
     [IO.File]::WriteAllText((Join-Path $pasta 'ops.json'), (ConvertTo-Json -InputObject @($ops) -Depth 3))
