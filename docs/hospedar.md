@@ -34,10 +34,12 @@ trava é liberada. Fechar a janela não envia o mundo.
 3. Reinicie o servidor (`stop` e abrir de novo). O start libera todos da lista, em qualquer host.
 4. Quem tem original entra direto. Quem não tem roda `/register senha senha` na hora.
 
-**Use o `jogadores.txt`, não `whitelist add` nem `op` no console.** Cada nick precisa de dois UUIDs: o
-oficial (quem entra com original) e o offline (quem entra sem). O start libera os dois e, na
-primeira vez, copia o progresso do UUID offline para o oficial. O console só grava um deles. Tirar
-alguém continua sendo no console (`whitelist remove Nick`) e na lista.
+**Use o `jogadores.txt`, não `whitelist add` nem `op` no console.** O start pergunta à Mojang se o nick
+tem conta original. Se tiver, libera só o UUID oficial (e copia o progresso antigo do UUID offline para
+ele). Se não tiver, libera o UUID offline, e a pessoa usa senha. Amigo sem original com um nick que
+por acaso existe como conta de outra pessoa: escreva `Nick sem-original`. Se a Mojang não responder,
+o nick fica como estava até o próximo start. Tirar alguém continua sendo no console
+(`whitelist remove Nick`) e na lista.
 
 **Login (MixAuth).** O servidor aceita Minecraft não original (`online-mode=false`), então o nick
 sozinho não prova quem é a pessoa. O MixAuth resolve assim:
@@ -51,9 +53,22 @@ sozinho não prova quem é a pessoa. O MixAuth resolve assim:
   renascer e logar (o SimpleLogin, usado antes, travava nessa hora).
 
 O nick em `jogadores.txt` tem de ser igual ao do jogo, com as maiúsculas, porque o UUID offline sai
-dele. Nick sem original que existe como conta original de outra pessoa: o UUID oficial dele também é
-liberado. Risco pequeno, porque o dono da conta precisaria saber o endereço. Configuração em
+dele. Senha mínima de 6 caracteres; 5 erros bloqueiam o nick por 5 minutos. Configuração em
 `server-config/config/mixauth-server.toml`.
+
+**Segurança, em resumo.**
+- Quem tem original só entra com a conta verificada pela Mojang. Nunca libere o UUID offline de um
+  nick com original: o MixAuth só pede senha a quem chega como offline, e qualquer um poderia
+  registrar uma senha e entrar com aquele nick (e com o op dele). O start já cuida disso.
+- O repositório é público e o comando de jogar e o de hospedar rodam direto dele no PC de todos:
+  **mantenha a verificação em duas etapas ligada no GitHub** e não dê acesso de escrita a ninguém.
+- A pasta `minezada` do Drive guarda o mundo, o token do DuckDNS (`duckdns.txt`) e o segredo do
+  túnel (`playit.txt`). Compartilhe só com quem hospeda; quem tem o token pode apontar o endereço
+  para outro lugar. Vazou? Gere token novo no site do DuckDNS e troque o `duckdns.txt`.
+- Downloads com checksum: launcher sem original (versão fixa), playit e mrpack-install. Os mods vêm
+  do Modrinth com hash conferido pelo packwiz.
+- O servidor só abre a porta do jogo (25565 e a 443 do roteador, fechadas no `stop`). RCON e query
+  ficam desligados.
 
 **Skins.** Sem conta verificada a Mojang não manda a skin, então o SkinRestorer busca pelo nick ao
 entrar pela primeira vez: Mojang e, se ela bloquear (`429` em rede compartilhada, como a de

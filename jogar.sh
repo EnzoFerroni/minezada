@@ -4,7 +4,11 @@
 set -euo pipefail
 zip_url="https://github.com/EnzoFerroni/minezada/raw/main/modpack/minezada-prism.zip"
 # Fork do Prism que aceita conta offline sem conta Microsoft (o Prism oficial abre em modo Demo).
+# Versao fixa com SHA-256: e mantido por uma pessoa so, entao so roda o binario conferido. Atualizar:
+# trocar a versao e o sha256 (campo "digest" do arquivo na API de releases do GitHub).
 fork_repo="Diegiwg/PrismLauncher-Cracked"
+fork_url="https://github.com/$fork_repo/releases/download/11.1.1/PrismLauncher-macOS-11.1.1.zip"
+fork_sha="f99e61328f1c9ed07788badc0e67277481309a0a2b97b8583bba4f89143aeb6c"
 
 # 0. Conta. Launcher ja instalado responde sozinho (reparar nao pergunta de novo). stdin e o
 # proprio script (curl | bash), por isso a resposta vem do terminal.
@@ -19,13 +23,14 @@ else
   case "$resp" in [nN]*) original=0 ;; *) original=1 ;; esac
 fi
 
-# Baixa o Prism do repo $1 (releases do GitHub) para a pasta $2.
+# Baixa o zip do Prism ($1) para a pasta $2; com $3, so instala se o SHA-256 bater.
 baixar_prism_mac() {
-  local url tmp
-  url="$(curl -fsSL "https://api.github.com/repos/$1/releases/latest" \
-    | grep -o 'https://[^"]*PrismLauncher-macOS-[0-9.]*\.zip' | head -n 1)"
+  local tmp
   tmp="$(mktemp -d)"
-  curl -fsSL "$url" -o "$tmp/prism.zip"
+  curl -fsSL "$1" -o "$tmp/prism.zip"
+  if [ -n "${3:-}" ] && [ "$(shasum -a 256 "$tmp/prism.zip" | awk '{print $1}')" != "$3" ]; then
+    rm -rf "$tmp"; echo "ERRO: o launcher baixado nao confere (checksum). Avise o Enzo."; exit 1
+  fi
   mkdir -p "$2"
   rm -rf "$2/Prism Launcher.app"
   ditto -x -k "$tmp/prism.zip" "$2"
@@ -41,13 +46,15 @@ if [ "$(uname -s)" = "Darwin" ]; then
     for d in "/Applications/Prism Launcher.app" "$HOME/Applications/Prism Launcher.app"; do [ -d "$d" ] && app="$d"; done
     if [ -z "$app" ]; then
       echo "Instalando o Prism Launcher..."
-      baixar_prism_mac PrismLauncher/PrismLauncher "$HOME/Applications"
+      url="$(curl -fsSL https://api.github.com/repos/PrismLauncher/PrismLauncher/releases/latest \
+        | grep -o 'https://[^"]*PrismLauncher-macOS-[0-9.]*\.zip' | head -n 1)"
+      baixar_prism_mac "$url" "$HOME/Applications"
       app="$HOME/Applications/Prism Launcher.app"
     fi
   else
-    # Baixado a cada vez: rodar o comando de novo atualiza o launcher.
+    # Baixado a cada vez (versao fixa): rodar o comando de novo repara o launcher.
     echo "Instalando o launcher para conta offline..."
-    baixar_prism_mac "$fork_repo" "$HOME/Applications/Minezada"
+    baixar_prism_mac "$fork_url" "$HOME/Applications/Minezada" "$fork_sha"
     app="$HOME/Applications/Minezada/Prism Launcher.app"
   fi
   # Contents/MacOS tambem tem a pasta jars: o executavel certo vem do Info.plist.

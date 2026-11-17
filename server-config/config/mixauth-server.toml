@@ -10,7 +10,7 @@ trusted_login_window_hours = 168
 login_timeout_minutes = 5
 prompt_interval_seconds = 5
 bcrypt_cost = 12
-min_password_length = 4
+min_password_length = 6
 max_password_length = 72
 password_blacklist_path = "mixauth/password_blacklist.txt"
 

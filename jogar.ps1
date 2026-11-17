@@ -6,7 +6,11 @@ $zipUrl = 'https://github.com/EnzoFerroni/minezada/raw/main/modpack/minezada-pri
 $dados = "$env:APPDATA\PrismLauncher"
 $locais = "$env:LOCALAPPDATA\Programs\PrismLauncher\prismlauncher.exe", "$env:ProgramFiles\PrismLauncher\prismlauncher.exe"
 # Fork do Prism que aceita conta offline sem conta Microsoft (o Prism oficial abre em modo Demo).
+# Versao fixa com SHA-256: e mantido por uma pessoa so, entao so roda o binario conferido. Atualizar:
+# trocar a versao e o sha256 (campo "digest" do arquivo na API de releases do GitHub).
 $forkRepo = 'Diegiwg/PrismLauncher-Cracked'
+$forkUrl = "https://github.com/$forkRepo/releases/download/11.1.1/PrismLauncher-Windows-MSVC-11.1.1.zip"
+$forkSha = '38c00b10f62be0049e1715d25738003f92a33045707b4112296a844a210b7e3a'
 $forkDir = "$env:LOCALAPPDATA\Programs\Minezada Launcher"
 
 # 0. Conta. Launcher ja instalado responde sozinho (reparar nao pergunta de novo).
@@ -26,14 +30,14 @@ if ($original) {
     }
 }
 else {
-    # Baixado a cada vez: rodar o comando de novo atualiza o launcher. Zip MSVC sem "Portable"
-    # guarda os dados em %APPDATA%\PrismLauncher, como o oficial.
+    # Baixado a cada vez (versao fixa): rodar o comando de novo repara o launcher. Zip MSVC sem
+    # "Portable" guarda os dados em %APPDATA%\PrismLauncher, como o oficial.
     Write-Host 'Instalando o launcher para conta offline...'
-    $rel = Invoke-RestMethod "https://api.github.com/repos/$forkRepo/releases/latest"
-    $asset = $rel.assets | Where-Object { $_.name -match '^PrismLauncher-Windows-MSVC-[\d.]+\.zip$' } | Select-Object -First 1
-    if (-not $asset) { throw "Launcher nao encontrado. Baixe em https://github.com/$forkRepo/releases/latest e rode de novo." }
     $forkZip = Join-Path $env:TEMP "minezada-launcher-$PID.zip"
-    Invoke-WebRequest $asset.browser_download_url -OutFile $forkZip
+    Invoke-WebRequest $forkUrl -OutFile $forkZip
+    if ((Get-FileHash $forkZip -Algorithm SHA256).Hash -ne $forkSha) {
+        Remove-Item $forkZip; throw 'O launcher baixado nao confere (checksum). Avise o Enzo.'
+    }
     Expand-Archive $forkZip $forkDir -Force
     Remove-Item $forkZip
     $prism = "$forkDir\prismlauncher.exe"
