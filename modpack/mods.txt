@@ -69,6 +69,23 @@ ambientsounds | Sons de ambiente: vento, pássaros, grilos, água, cavernas.
 ## Shaders (vêm desligados)
 complementary-reimagined | Shader bonito e leve, funciona no Mac. Ligue em Opções → Vídeo → Shader Packs.
 makeup-ultra-fast-shaders | Shader bem leve para computadores mais fracos.
+bsl-shaders | Clássico e equilibrado: bonito sem pesar muito.
+sildurs-vibrant-shaders | Cores vivas e céu bonito; tem versões leves e pesadas dentro.
+solas-shader | Visual suave e realista, bom em PCs médios.
+photon-shader | O mais bonito da lista, para PCs e Macs fortes.
+
+## Qualidade de vida
+controlling | Busca nas teclas: em Opções → Controles, digite o nome da ação ou aperte a tecla para achar o que ela faz.
+natures-compass | Bússola que encontra qualquer bioma (ótimo com os biomas novos do Terralith).
+explorers-compass | Bússola que encontra estruturas (vilas, templos, masmorras dos mods).
+ping-wheel | Segure a roda do mouse para marcar um lugar ou item para os amigos verem.
+carry-on | Pegue baús e animais no colo (Shift + botão direito com as mãos vazias) e leve para outro lugar.
+clumps | Junta as bolinhas de XP em uma só: menos lag.
+pick-up-notifier | Mostra no canto da tela os itens que você pegou.
+chat-heads | Mostra a cabeça do jogador ao lado das mensagens do chat.
+comforts | Saco de dormir e rede: dormir sem mudar o ponto de renascimento.
+trade-cycling | Botão para trocar as ofertas de um aldeão que ainda não negociou.
+easy-anvils | Bigorna sem o limite de "Caro demais" e com nomes coloridos.
 
 ## Mundo e facilidade
 waystones | Pedras de teleporte: ative nas suas bases e em vilas e viaje entre elas.
@@ -77,7 +94,7 @@ xaeros-world-map | Mapa do mundo inteiro que você já explorou. Tecla M.
 corpse | Ao morrer, seus itens ficam guardados num corpo no lugar da morte, sem sumir.
 farmers-delight | Culinária: plantações, panela, tábua de corte e dezenas de comidas novas.
 mouse-tweaks | Arraste o mouse com o botão apertado para mover vários itens de uma vez.
-inventory-profiles-next | Botão para organizar inventário e baús automaticamente.
+inventory-essentials | Organizar inventário e baús (botão do meio do mouse) e mover itens rápido com Shift.
 
 ## Desempenho
 sodium | Deixa o jogo muito mais leve e com mais FPS.

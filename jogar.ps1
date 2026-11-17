@@ -36,6 +36,17 @@ New-Item -ItemType Directory -Force "$inst\.minecraft" | Out-Null
 Copy-Item "$tmp\x\instance.cfg", "$tmp\x\mmc-pack.json" $inst -Force
 Copy-Item "$tmp\x\.minecraft\packwiz-installer-bootstrap.jar" "$inst\.minecraft" -Force
 foreach ($f in 'servers.dat', 'options.txt') { if (-not (Test-Path "$inst\.minecraft\$f")) { Copy-Item "$tmp\x\.minecraft\$f" "$inst\.minecraft" } }
+# Liga os pacotes de recursos do pack em quem ja tinha options.txt, mantendo os que o jogador ligou.
+$opt = "$inst\.minecraft\options.txt"
+# (o ForEach achata: no PS 5.1 o ConvertFrom-Json devolve a lista inteira como um item so)
+$doPack = @((Get-Content "$tmp\x\.minecraft\options.txt" | Where-Object { $_ -like 'resourcePacks:*' }) -replace '^resourcePacks:', '' | ConvertFrom-Json | ForEach-Object { $_ })
+$linhas = @(Get-Content $opt)
+$atual = $linhas | Where-Object { $_ -like 'resourcePacks:*' } | Select-Object -First 1
+$lista = if ($atual) { @(($atual -replace '^resourcePacks:', '') | ConvertFrom-Json | ForEach-Object { $_ }) } else { @('vanilla') }
+$lista += @($doPack | Where-Object { $_ -notin $lista })
+$nova = 'resourcePacks:' + (ConvertTo-Json -InputObject @($lista) -Compress)
+$linhas = if ($atual) { $linhas | ForEach-Object { if ($_ -like 'resourcePacks:*') { $nova } else { $_ } } } else { $linhas + $nova }
+[IO.File]::WriteAllLines($opt, [string[]]$linhas, (New-Object Text.UTF8Encoding $false))
 Remove-Item -Recurse -Force $tmp
 
 # 4. Atalho na Area de Trabalho que abre direto o jogo.

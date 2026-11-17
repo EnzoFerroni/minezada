@@ -9,7 +9,7 @@
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.11` · 79 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.12` · 94 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
 
 ## Aprender e guias
 
@@ -369,6 +369,122 @@ Shader bem leve para computadores mais fracos.
 
 <sub>Versão `9.6` · só no jogo de cada um, não no servidor</sub>
 
+### <img src="https://cdn.modrinth.com/data/Q1vvjJYV/2a611a3cb434fb52fb81fa5dace13c5d8b67e55d_96.webp" width="28" align="center"> [BSL Shaders](https://modrinth.com/mod/bsl-shaders)
+
+Clássico e equilibrado: bonito sem pesar muito.
+
+<img src="https://cdn.modrinth.com/data/Q1vvjJYV/images/40b899ae09647c98722d67bb2288f790ae28b4fc_350.webp" width="480">
+
+<sub>Versão `10.1.8` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/z8EjLYqN/ced1ec11046d063d8ff681769061db8f5a29134f_96.webp" width="28" align="center"> [Sildur's Vibrant Shaders](https://modrinth.com/mod/sildurs-vibrant-shaders)
+
+Cores vivas e céu bonito; tem versões leves e pesadas dentro.
+
+<img src="https://cdn.modrinth.com/data/z8EjLYqN/images/f805e5d32d4941eb33c4273cc908f70fca2753d5_350.webp" width="480">
+
+<sub>Versão `2.02` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/EpQFjzrQ/e3efc6ba7a63f9e1cf473a794d0224a6daf243c7_96.webp" width="28" align="center"> [Solas Shader](https://modrinth.com/mod/solas-shader)
+
+Visual suave e realista, bom em PCs médios.
+
+<img src="https://cdn.modrinth.com/data/EpQFjzrQ/images/b87a4f77d7858c6b8fb9ecc40301f9d189a52c44_350.webp" width="480">
+
+<sub>Versão `3.9` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/lLqFfGNs/39cb5f12e7dcc68d6cb666f225fcb2b801dd70fb_96.webp" width="28" align="center"> [Photon Shaders](https://modrinth.com/mod/photon-shader)
+
+O mais bonito da lista, para PCs e Macs fortes.
+
+<img src="https://cdn.modrinth.com/data/lLqFfGNs/images/a7205115d731077733ab5cdcc639e5531f2dee12_350.webp" width="480">
+
+<sub>Versão `v1.4` · só no jogo de cada um, não no servidor</sub>
+
+## Qualidade de vida
+
+### <img src="https://cdn.modrinth.com/data/xv94TkTM/bdb6feb3d04ca37da4ed5aa73fef062a39d8b3e5_96.webp" width="28" align="center"> [Controlling](https://modrinth.com/mod/controlling)
+
+Busca nas teclas: em Opções → Controles, digite o nome da ação ou aperte a tecla para achar o que ela faz.
+
+<sub>Versão `19.0.5` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/fPetb5Kh/95e4110a4cf600843c4ba9d545cc1b60e2c00eaa.png" width="28" align="center"> [Nature's Compass](https://modrinth.com/mod/natures-compass)
+
+Bússola que encontra qualquer bioma (ótimo com os biomas novos do Terralith).
+
+<img src="https://cdn.modrinth.com/data/fPetb5Kh/images/b02df817817d8414f331cedaeb3f1d5ac2726bf2_350.webp" width="480">
+
+<sub>Versão `1.21.1-3.4.0-neoforge`</sub>
+
+### <img src="https://cdn.modrinth.com/data/RV1qfVQ8/8f36254e98a4caa95684fcf4dbe72c2264c98cfc.png" width="28" align="center"> [Explorer's Compass](https://modrinth.com/mod/explorers-compass)
+
+Bússola que encontra estruturas (vilas, templos, masmorras dos mods).
+
+<img src="https://cdn.modrinth.com/data/RV1qfVQ8/images/b55e4284984fd0cfb4190a0d9d1e0e302bdb85e9_350.webp" width="480">
+
+<sub>Versão `1.21.1-3.4.0-neoforge`</sub>
+
+### <img src="https://cdn.modrinth.com/data/QQXAdCzh/6d15088ddd1e07abcba1a2e796d1f9c7a3138b1d_96.webp" width="28" align="center"> [Ping Wheel](https://modrinth.com/mod/ping-wheel)
+
+Segure a roda do mouse para marcar um lugar ou item para os amigos verem.
+
+<img src="https://cdn.modrinth.com/data/QQXAdCzh/images/159a5c71986885492fd910ba5baaa5d02e80cf8b_350.webp" width="480">
+
+<sub>Versão `1.12.2`</sub>
+
+### <img src="https://cdn.modrinth.com/data/joEfVgkn/d7750a532cd45c9020bf4d07f304191de6e98c19_96.webp" width="28" align="center"> [Carry On](https://modrinth.com/mod/carry-on)
+
+Pegue baús e animais no colo (Shift + botão direito com as mãos vazias) e leve para outro lugar.
+
+<img src="https://cdn.modrinth.com/data/joEfVgkn/images/3268c845f023a98e8dc95249cac16396c70b5413_350.webp" width="480">
+
+<sub>Versão `2.2.6`</sub>
+
+### <img src="https://cdn.modrinth.com/data/Wnxd13zP/6a965bb7974c3e759a53a1c89c35de4acd4cf86a_96.webp" width="28" align="center"> [Clumps](https://modrinth.com/mod/clumps)
+
+Junta as bolinhas de XP em uma só: menos lag.
+
+<sub>Versão `19.0.0.1`</sub>
+
+### <img src="https://cdn.modrinth.com/data/ZX66K16c/769d7c843339981c1f8e5eec5ff983294a3671fb_96.webp" width="28" align="center"> [Pick Up Notifier](https://modrinth.com/mod/pick-up-notifier)
+
+Mostra no canto da tela os itens que você pegou.
+
+<img src="https://cdn.modrinth.com/data/ZX66K16c/images/7255bbbbc0cd49bf041b9d0c35a1df8e4ef6c7d6_350.webp" width="480">
+
+<sub>Versão `v21.1.1-1.21.1-NeoForge`</sub>
+
+### <img src="https://cdn.modrinth.com/data/Wb5oqrBJ/icon.png" width="28" align="center"> [Chat Heads](https://modrinth.com/mod/chat-heads)
+
+Mostra a cabeça do jogador ao lado das mensagens do chat.
+
+<img src="https://cdn.modrinth.com/data/Wb5oqrBJ/images/ed15c6b729d0611ae8bdb9ee8ef85994c6cb8e38_350.webp" width="480">
+
+<sub>Versão `0.15.7` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/SaCpeal4/ed4840f0c9a30e04ad88413bd82cd762dd6ec95d.png" width="28" align="center"> [Comforts](https://modrinth.com/mod/comforts)
+
+Saco de dormir e rede: dormir sem mudar o ponto de renascimento.
+
+<img src="https://cdn.modrinth.com/data/SaCpeal4/images/a9837c941a4ea462ea017de1d8e14902f67a020e_350.webp" width="480">
+
+<sub>Versão `9.0.5+1.21.1`</sub>
+
+### <img src="https://cdn.modrinth.com/data/qpPoAL6m/91dcbfba1d821a7a9248ec8191359d842332cc97.png" width="28" align="center"> [Trade Cycling](https://modrinth.com/mod/trade-cycling)
+
+Botão para trocar as ofertas de um aldeão que ainda não negociou.
+
+<sub>Versão `neoforge-1.21.1-1.0.23`</sub>
+
+### <img src="https://cdn.modrinth.com/data/OZBR5JT5/6d18be3377180e9afe80da0551934b29bdd2bacb_96.webp" width="28" align="center"> [Easy Anvils](https://modrinth.com/mod/easy-anvils)
+
+Bigorna sem o limite de "Caro demais" e com nomes coloridos.
+
+<img src="https://cdn.modrinth.com/data/OZBR5JT5/images/68f12010b33c621d09bcbac72fbf31c0222c4793_350.webp" width="480">
+
+<sub>Versão `v21.1.0-1.21.1-NeoForge`</sub>
+
 ## Mundo e facilidade
 
 ### <img src="https://cdn.modrinth.com/data/LOpKHB2A/d56c030a875582aff5bab477ddcfec317a1610f0_96.webp" width="28" align="center"> [Waystones](https://modrinth.com/mod/waystones)
@@ -411,11 +527,11 @@ Arraste o mouse com o botão apertado para mover vários itens de uma vez.
 
 <sub>Versão `1.21-2.26.1-neoforge` · só no jogo de cada um, não no servidor</sub>
 
-### <img src="https://cdn.modrinth.com/data/O7RBXm3n/04cdecd37b4c7409f70d36fcdc85722ebf14aab8_96.webp" width="28" align="center"> [Inventory Profiles Next](https://modrinth.com/mod/inventory-profiles-next)
+### <img src="https://cdn.modrinth.com/data/Boon8xwi/12b8c77a7db7ebe5a41caf3e0a185bfce6397e3a_96.webp" width="28" align="center"> [Inventory Essentials](https://modrinth.com/mod/inventory-essentials)
 
-Botão para organizar inventário e baús automaticamente.
+Organizar inventário e baús (botão do meio do mouse) e mover itens rápido com Shift.
 
-<sub>Versão `neoforge-1.21.1-2.2.5` · só no jogo de cada um, não no servidor</sub>
+<sub>Versão `21.1.20+neoforge-1.21.1`</sub>
 
 ## Desempenho
 
@@ -471,5 +587,5 @@ Shaders opcionais (vêm desligados). Ative em Opções → Vídeo → Shader Pac
 
 ## Dependências (entram sozinhas)
 
-[Balm](https://modrinth.com/mod/balm) · [Cloth Config API](https://modrinth.com/mod/cloth-config) · [Common Storage Lib](https://modrinth.com/mod/common-storage-lib) · [CreativeCore](https://modrinth.com/mod/creativecore) · [Cristel Lib](https://modrinth.com/mod/cristel-lib) · [Curios API](https://modrinth.com/mod/curios) · [[ETF] Entity Texture Features](https://modrinth.com/mod/entitytexturefeatures) · [Fragmentum](https://modrinth.com/mod/fragmentum) · [Geckolib](https://modrinth.com/mod/geckolib) · [Kotlin for Forge](https://modrinth.com/mod/kotlin-for-forge) · [KotlinLangForge](https://modrinth.com/mod/kotlin-lang-forge) · [libIPN](https://modrinth.com/mod/libipn) · [Lionfish-API](https://modrinth.com/mod/lionfish-api) · [Lithostitched](https://modrinth.com/mod/lithostitched) · [MezzConfig](https://modrinth.com/mod/mezzconfig) · [Moonlight Lib](https://modrinth.com/mod/moonlight) · [oωo (owo-lib)](https://modrinth.com/mod/owo-lib) · [Resourceful Config](https://modrinth.com/mod/resourceful-config) · [Resourceful Lib](https://modrinth.com/mod/resourceful-lib) · [Sophisticated Core](https://modrinth.com/mod/sophisticated-core) · [YUNG's API](https://modrinth.com/mod/yungs-api)
+[Balm](https://modrinth.com/mod/balm) · [Cloth Config API](https://modrinth.com/mod/cloth-config) · [Common Storage Lib](https://modrinth.com/mod/common-storage-lib) · [CreativeCore](https://modrinth.com/mod/creativecore) · [Cristel Lib](https://modrinth.com/mod/cristel-lib) · [Curios API](https://modrinth.com/mod/curios) · [[ETF] Entity Texture Features](https://modrinth.com/mod/entitytexturefeatures) · [Fragmentum](https://modrinth.com/mod/fragmentum) · [Geckolib](https://modrinth.com/mod/geckolib) · [KotlinLangForge](https://modrinth.com/mod/kotlin-lang-forge) · [Lionfish-API](https://modrinth.com/mod/lionfish-api) · [Lithostitched](https://modrinth.com/mod/lithostitched) · [MezzConfig](https://modrinth.com/mod/mezzconfig) · [Moonlight Lib](https://modrinth.com/mod/moonlight) · [oωo (owo-lib)](https://modrinth.com/mod/owo-lib) · [Puzzles Lib](https://modrinth.com/mod/puzzles-lib) · [Resourceful Config](https://modrinth.com/mod/resourceful-config) · [Resourceful Lib](https://modrinth.com/mod/resourceful-lib) · [Searchables](https://modrinth.com/mod/searchables) · [Sophisticated Core](https://modrinth.com/mod/sophisticated-core) · [YUNG's API](https://modrinth.com/mod/yungs-api)
 <!-- mods:fim -->

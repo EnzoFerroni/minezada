@@ -47,6 +47,14 @@ mkdir -p "$tmp/x" "$inst/.minecraft"
 cp "$tmp/x/instance.cfg" "$tmp/x/mmc-pack.json" "$inst/"
 cp "$tmp/x/.minecraft/packwiz-installer-bootstrap.jar" "$inst/.minecraft/"
 for f in servers.dat options.txt; do [ -f "$inst/.minecraft/$f" ] || cp "$tmp/x/.minecraft/$f" "$inst/.minecraft/"; done
+# Liga os pacotes de recursos do pack em quem ja tinha options.txt, mantendo os que o jogador ligou.
+# shortcut: nomes de pacote com espaco, & ou | quebram este trecho; trocar por parser de JSON se aparecer um.
+opt="$inst/.minecraft/options.txt"
+want="$(sed -n 's/^resourcePacks:\[\(.*\)\]$/\1/p' "$tmp/x/.minecraft/options.txt" | tr ',' '\n')"
+have="$(sed -n 's/^resourcePacks:\[\(.*\)\]$/\1/p' "$opt")"
+[ -n "$have" ] || have='"vanilla"'
+for p in $want; do case ",$have," in *",$p,"*) ;; *) have="$have,$p" ;; esac; done
+if grep -q '^resourcePacks:' "$opt"; then sed -i.bak "s|^resourcePacks:.*|resourcePacks:[$have]|" "$opt" && rm -f "$opt.bak"; else echo "resourcePacks:[$have]" >> "$opt"; fi
 rm -rf "$tmp"
 
 # 4. Atalho na Mesa (Mac) que abre direto o jogo.

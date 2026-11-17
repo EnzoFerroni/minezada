@@ -1,0 +1,8 @@
+name = "Sildur's Vibrant Shaders"
+filename = "Sildur's Vibrant Shaders v2.02 Extreme.zip"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/z8EjLYqN/versions/J4RlzpKF/Sildur%27s%20Vibrant%20Shaders%20v2.02%20Extreme.zip"
+hash-format = "sha1"
+hash = "2362f4dd27178879c30374c8f33965999bc350c8"
