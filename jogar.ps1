@@ -34,10 +34,12 @@ Expand-Archive "$tmp\pack.zip" "$tmp\x" -Force
 New-Item -ItemType Directory -Force "$inst\.minecraft" | Out-Null
 # shortcut: instance.cfg e sobrescrito (zera tempo de jogo do Prism); trocar por merge se incomodar.
 Copy-Item "$tmp\x\instance.cfg", "$tmp\x\mmc-pack.json" $inst -Force
-# Memoria do jogo: 6 GB com 24 GB+ de RAM; senao fica a do zip (4 GB evita o aviso do Prism em 16 GB).
-# 23: o Windows reporta um pouco menos que o total instalado.
-if ((Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB -ge 23) {
-    (Get-Content "$inst\instance.cfg") -replace '^MaxMemAlloc=.*', 'MaxMemAlloc=6144' | Set-Content "$inst\instance.cfg" -Encoding ascii
+# Memoria do jogo: 6 GB com 24 GB+ de RAM, 3 GB abaixo de 12 GB; senao fica a do zip (4 GB evita o
+# aviso do Prism em 16 GB). Limites 23/11: o Windows reporta um pouco menos que o instalado.
+$gb = (Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB
+$mem = if ($gb -ge 23) { 6144 } elseif ($gb -lt 11) { 3072 } else { $null }
+if ($mem) {
+    (Get-Content "$inst\instance.cfg") -replace '^MaxMemAlloc=.*', "MaxMemAlloc=$mem" | Set-Content "$inst\instance.cfg" -Encoding ascii
 }
 Copy-Item "$tmp\x\.minecraft\packwiz-installer-bootstrap.jar" "$inst\.minecraft" -Force
 foreach ($f in 'servers.dat', 'options.txt') { if (-not (Test-Path "$inst\.minecraft\$f")) { Copy-Item "$tmp\x\.minecraft\$f" "$inst\.minecraft" } }
