@@ -15,10 +15,6 @@ $porta = 25565
 $eu = $env:COMPUTERNAME
 $envFile = Join-Path $root 'config.env'
 
-function Atualizar-Path {
-    $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
-}
-
 # Abre (ou fecha) a porta no roteador por UPnP falando SOAP direto com ele. Nao usa o HNetCfg.NATUPnP
 # do Windows porque ele nao funciona com a rede em perfil "Publica". Falha: vale o redirecionamento manual.
 function Porta-UPnP([bool]$abrir) {
@@ -59,31 +55,88 @@ if ((Test-Path (Join-Path $root '.git')) -and (Get-Command git -ErrorAction Sile
     if ($LASTEXITCODE) { Write-Warning 'git pull falhou; seguindo com a versao local.' }
 }
 
+# Link da pasta minezada no Drive: quem nao tem acesso ve o botao "Solicitar acesso".
+$driveUrl = 'https://drive.google.com/drive/shared-with-me'
+
+function Achar-Drive {
+    Get-PSDrive -PSProvider FileSystem |
+        ForEach-Object { "$($_.Root)Meu Drive\minezada"; "$($_.Root)My Drive\minezada" } |
+        Where-Object { Test-Path $_ } | Select-Object -First 1
+}
+
+# Instala o Google Drive, abre o login e a pasta, e espera ela aparecer. Devolve o caminho ou $null.
+function Configurar-Drive {
+    Write-Host ''
+    Write-Host "Recomendado: Google Drive com a pasta 'minezada'. Ele guarda o mundo compartilhado, entao"
+    Write-Host 'qualquer pessoa pode hospedar e continuar de onde a outra parou. Sem ele o mundo fica so aqui.'
+    $r = Read-Host 'Configurar o Google Drive agora? [S/n]'
+    if ($r -match '^[nN]') { Add-Content $envFile 'SEM_DRIVE=1'; return $null }
+    $app = "$env:ProgramFiles\Google\Drive File Stream\launch.bat"
+    if (-not (Test-Path $app)) {
+        Write-Host 'Instalando o Google Drive...'
+        winget install -e --id Google.GoogleDrive --silent --accept-source-agreements --accept-package-agreements
+    }
+    if (Test-Path $app) { Start-Process $app }
+    Start-Process $driveUrl
+    Write-Host ''
+    Write-Host '1. Entre com a sua conta Google no Google Drive que abriu.'
+    Write-Host "2. No navegador, abra a pasta 'minezada' e clique em 'Adicionar atalho ao Drive' > 'Meu Drive'."
+    Write-Host "   Sem acesso? Clique em 'Solicitar acesso' e avise o Enzo."
+    Write-Host 'Esperando a pasta aparecer neste PC (Enter para pular e jogar com o mundo so aqui)...'
+    while ($true) {
+        $d = Achar-Drive
+        if ($d) { return $d }
+        for ($i = 0; $i -lt 10; $i++) {
+            if ([Console]::KeyAvailable -and [Console]::ReadKey($true).Key -eq 'Enter') {
+                Write-Host 'Pulado: na proxima vez o script pergunta de novo.'
+                return $null
+            }
+            Start-Sleep -Milliseconds 500
+        }
+    }
+}
+
 # 2. config.env na primeira vez, com o que der para detectar.
 if (-not (Test-Path $envFile)) {
     Write-Host 'Primeira vez nesta maquina: criando config.env.'
     $gb = [math]::Round((Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB)
     $ram = if ($gb -ge 24) { '8G' } else { '6G' }
-    $sync = Get-PSDrive -PSProvider FileSystem |
-        ForEach-Object { "$($_.Root)Meu Drive\minezada"; "$($_.Root)My Drive\minezada" } |
-        Where-Object { Test-Path $_ } | Select-Object -First 1
-    if ($sync) { Write-Host "Pasta do Google Drive encontrada: $sync" }
-    else { Write-Host 'Pasta minezada do Google Drive nao encontrada: o mundo fica so nesta maquina (ver docs/requisitos.md).' }
     $token = Read-Host 'Token do DuckDNS (peca ao dono do repo; Enter para pular)'
-    Set-Content $envFile -Encoding ascii @("RAM=$ram", "SYNC_DIR=`"$sync`"", 'JAVA=java', "DUCKDNS_TOKEN=$token")
+    Set-Content $envFile -Encoding ascii @("RAM=$ram", 'SYNC_DIR=""', 'JAVA=java', "DUCKDNS_TOKEN=$token")
 }
 
-$cfg = @{ RAM = '6G'; SYNC_DIR = ''; JAVA = 'java'; DUCKDNS_DOMAIN = 'minezada-mc'; DUCKDNS_TOKEN = '' }
+$cfg = @{ RAM = '6G'; SYNC_DIR = ''; JAVA = 'java'; DUCKDNS_DOMAIN = 'minezada-mc'; DUCKDNS_TOKEN = ''; SEM_DRIVE = '' }
 foreach ($l in Get-Content $envFile) {
     if ($l -match '^\s*([A-Z_]+)\s*=\s*(.*?)\s*$') { $cfg[$matches[1]] = $matches[2].Trim('"') }
 }
 
-# 3. Java.
-if (-not (Get-Command $cfg.JAVA -ErrorAction SilentlyContinue)) {
-    Write-Host 'Instalando Java 25...'
-    winget install --id EclipseAdoptium.Temurin.25.JDK -e --silent --accept-source-agreements --accept-package-agreements
-    Atualizar-Path
-    if (-not (Get-Command $cfg.JAVA -ErrorAction SilentlyContinue)) { throw 'Java nao instalado. Veja docs/requisitos.md' }
+# Pasta do Drive: acha sozinho; faltou, oferece instalar e configurar ("n" nao pergunta mais).
+if (-not $cfg.SYNC_DIR) {
+    $achado = Achar-Drive
+    if (-not $achado -and $cfg.SEM_DRIVE -ne '1') { $achado = Configurar-Drive }
+    if ($achado) {
+        Write-Host "Pasta do Google Drive: $achado"
+        $cfg.SYNC_DIR = $achado
+        Set-Content $envFile -Encoding ascii (@(Get-Content $envFile | Where-Object { $_ -notmatch '^\s*SYNC_DIR\s*=' }) + "SYNC_DIR=`"$achado`"")
+    }
+}
+
+# 3. Java 21+ (NeoForge 1.21.1). Um Java 8/17 antigo no PATH tambem conta como faltando.
+function Java-Ok($j) {
+    $ErrorActionPreference = 'Continue'  # o java -version escreve no stderr; com 'Stop' o PS 5.1 aborta
+    if (-not (Get-Command $j -ErrorAction SilentlyContinue)) { return $false }
+    $v = (& $j -version 2>&1 | Out-String)
+    return ([regex]::Match($v, 'version "(\d+)').Groups[1].Value -as [int]) -ge 21
+}
+if (-not (Java-Ok $cfg.JAVA)) {
+    $temurin = { Get-ChildItem "$env:ProgramFiles\Eclipse Adoptium\jdk-25*\bin\java.exe" -ErrorAction SilentlyContinue | Select-Object -Last 1 }
+    if (-not (& $temurin)) {
+        Write-Host 'Instalando Java 25...'
+        winget install --id EclipseAdoptium.Temurin.25.JDK -e --silent --accept-source-agreements --accept-package-agreements
+    }
+    $j = & $temurin
+    if (-not ($j -and (Java-Ok $j.FullName))) { throw 'Java nao instalado. Veja docs/requisitos.md' }
+    $cfg.JAVA = $j.FullName
 }
 
 # 4. Pack -> servidor.
