@@ -7,3 +7,4 @@
 *.zip binary
 # Hashes do packwiz sao calculados sobre os bytes exatos: git nao pode converter fim de linha.
 modpack/pack/** -text
+modpack/arquivos/** -text

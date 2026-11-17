@@ -28,6 +28,10 @@ trava é liberada. Fechar a janela não envia o mundo.
 
 Whitelist ligada. No console: `whitelist add Nome` e `op Nome`.
 
+**Mundo novo? Pré-gere o terreno** para ninguém travar explorando (Terralith e as estruturas pesam na geração). No console, uma vez: `chunky radius 1500` e `chunky start`. Leva um tempo; dá para jogar enquanto roda. `chunky pause` / `chunky continue` controlam.
+
+Servidor lento? `spark profiler start`, espere 1 minuto e `spark profiler stop`: ele gera um link mostrando o que está pesando.
+
 ## Trocar de host
 
 - Espere o Drive sincronizar antes de iniciar em outra máquina.
