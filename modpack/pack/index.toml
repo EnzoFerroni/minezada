@@ -306,6 +306,11 @@ hash = "679ffe6f46613105179edbe7b0b96f5d1fbdd4d4c07187e3caa922e77d00975f"
 metafile = true
 
 [[files]]
+file = "mods/skinrestorer.pw.toml"
+hash = "7130772974f1b27e3638182e59cd09773f1fa9a1348d570016a08663260664e2"
+metafile = true
+
+[[files]]
 file = "mods/waystones.pw.toml"
 hash = "426ed3dd46017944747f0601f8832d6f7d7b84aa6efbcb1d0b2ba7cc574b5156"
 metafile = true

@@ -1,11 +1,11 @@
 name = "Minezada"
-version = "2026.11.17.16"
+version = "2026.11.17.17"
 pack-format = "packwiz:1.1.0"
 
 [index]
 file = "index.toml"
 hash-format = "sha256"
-hash = "cba027779470e88ee9f45f6d6855f4168e0913bfee1e12db6822c833dadaf11f"
+hash = "40063308fcdf04d1c5db3f614f81e7a118dcb5c2dac69fd6641141c932797edc"
 
 [versions]
 minecraft = "1.21.1"
