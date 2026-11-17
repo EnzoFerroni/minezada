@@ -24,11 +24,20 @@ sozinhos. Algo quebrou? Rode o comando de novo.
 
 ## Hospedar
 
-```sh
-git clone https://github.com/EnzoFerroni/minezada
+**Windows** (PowerShell)
+
+```powershell
+irm https://raw.githubusercontent.com/EnzoFerroni/minezada/main/hospedar.ps1 | iex
 ```
 
-Abra `iniciar.bat` (Windows) ou `iniciar.command` (Mac). Para desligar, digite `stop`.
+**Mac** (Terminal)
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/hospedar.sh | bash
+```
+
+Ele baixa tudo, cria o atalho **Hospedar Minezada** na Área de Trabalho e sobe o servidor. Para
+desligar, digite `stop` (é isso que devolve o mundo para o Drive).
 
 ## Mais
 
