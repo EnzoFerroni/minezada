@@ -20,7 +20,9 @@ function Get-Api($path) {
     @([Text.Encoding]::UTF8.GetString($r.RawContentStream.ToArray()) | ConvertFrom-Json) | ForEach-Object { $_ }
 }
 
-$filtro = 'loaders=' + [uri]::EscapeDataString("[`"$loader`"]") + '&game_versions=' + [uri]::EscapeDataString("[`"$mc`"]")
+$filtroMc = 'game_versions=' + [uri]::EscapeDataString("[`"$mc`"]")
+$filtro = 'loaders=' + [uri]::EscapeDataString("[`"$loader`"]") + "&$filtroMc"
+$pastas = @{ mod = 'mods'; resourcepack = 'resourcepacks'; shader = 'shaderpacks' }
 $linhas = Get-Content (Join-Path $root 'modpack\mods.txt') -Encoding UTF8
 $pedidos = foreach ($l in $linhas) { if ($l -match '^\s*([a-z0-9_-]+)\s*\|') { $matches[1] } }
 
@@ -32,14 +34,17 @@ while ($fila.Count) {
     $p = Get-Api "project/$id"
     if ($vistos[$p.id]) { continue }
     $vistos[$p.id] = $true
-    $vs = Get-Api "project/$($p.id)/version?$filtro"
+    $pasta = $pastas[$p.project_type]
+    if (-not $pasta) { throw "$($p.slug): tipo $($p.project_type) nao suportado" }
+    # Pacotes de recursos e shaders nao tem loader NeoForge: filtra so pela versao do jogo.
+    $vs = Get-Api "project/$($p.id)/version?$(if ($p.project_type -eq 'mod') { $filtro } else { $filtroMc })"
     $v = ($vs | Where-Object version_type -eq 'release' | Select-Object -First 1)
     if (-not $v) { $v = $vs | Select-Object -First 1 }
     if (-not $v) { throw "$($p.slug): sem versao para $loader $mc" }
     $f = $v.files | Where-Object primary | Select-Object -First 1
     if (-not $f) { $f = $v.files[0] }
     $files += [ordered]@{
-        path      = "mods/$($f.filename)"
+        path      = "$pasta/$($f.filename)"
         hashes    = [ordered]@{ sha1 = $f.hashes.sha1; sha512 = $f.hashes.sha512 }
         env       = [ordered]@{
             client = if ($p.client_side -eq 'unsupported') { 'unsupported' } else { 'required' }
@@ -51,7 +56,7 @@ while ($fila.Count) {
     $foto = ($p.gallery | Sort-Object { -not $_.featured } | Select-Object -First 1).url  # imagem destacada da galeria do Modrinth
     $info[$p.slug] = [pscustomobject]@{ titulo = $p.title; versao = $v.version_number; servidor = $p.server_side -ne 'unsupported'; icone = $p.icon_url; foto = $foto }
     $lado = if ($p.server_side -eq 'unsupported') { 'client' } elseif ($p.client_side -eq 'unsupported') { 'server' } else { 'both' }
-    $pwMods += [pscustomobject]@{ slug = $p.slug; titulo = $p.title; arquivo = $f.filename; url = $f.url; sha1 = $f.hashes.sha1; lado = $lado }
+    $pwMods += [pscustomobject]@{ slug = $p.slug; titulo = $p.title; arquivo = $f.filename; url = $f.url; sha1 = $f.hashes.sha1; lado = $lado; pasta = $pasta }
     foreach ($d in $v.dependencies | Where-Object { $_.dependency_type -eq 'required' -and $_.project_id }) { $fila.Enqueue($d.project_id) }
     Write-Host ('{0,-30} {1}' -f $p.slug, $v.version_number)
 }
@@ -83,10 +88,10 @@ function Sha256($caminho) { (Get-FileHash $caminho -Algorithm SHA256).Hash.ToLow
 function Toml($s) { '"' + $s.Replace('\', '\\').Replace('"', '\"') + '"' }
 $pw = Join-Path $root 'modpack\pack'
 if (Test-Path $pw) { Remove-Item -Recurse -Force $pw }
-New-Item -ItemType Directory -Force (Join-Path $pw 'mods') | Out-Null
+$pastas.Values | ForEach-Object { New-Item -ItemType Directory -Force (Join-Path $pw $_) | Out-Null }
 $idx = "hash-format = `"sha256`"`n"
 foreach ($m in $pwMods) {
-    $rel = "mods/$($m.slug).pw.toml"
+    $rel = "$($m.pasta)/$($m.slug).pw.toml"  # o packwiz instala o arquivo na pasta do metafile
     Escrever (Join-Path $pw $rel) "name = $(Toml $m.titulo)`nfilename = $(Toml $m.arquivo)`nside = `"$($m.lado)`"`n`n[download]`nurl = $(Toml $m.url)`nhash-format = `"sha1`"`nhash = `"$($m.sha1)`"`n"
     $idx += "`n[[files]]`nfile = `"$rel`"`nhash = `"$(Sha256 (Join-Path $pw $rel))`"`nmetafile = true`n"
 }
@@ -114,7 +119,9 @@ $ms.WriteByte(8); NbtStr $ms 'ip'; NbtStr $ms $servidor
 $ms.WriteByte(0); $ms.WriteByte(0)                                                               # fim do servidor e da raiz
 [IO.File]::WriteAllBytes((Join-Path $inst '.minecraft\servers.dat'), $ms.ToArray())
 # Opcoes iniciais (o jogo completa o resto); o jogar so copia se o jogador ainda nao tiver.
-Escrever (Join-Path $inst '.minecraft\options.txt') "lang:pt_br`nrenderDistance:10`nsimulationDistance:8`n"
+# Pacotes de recursos do pack ja vem ligados (os ultimos da lista tem prioridade).
+$rp = ($pwMods | Where-Object pasta -eq 'resourcepacks' | ForEach-Object { ",`"file/$($_.arquivo)`"" }) -join ''
+Escrever (Join-Path $inst '.minecraft\options.txt') "lang:pt_br`nrenderDistance:10`nsimulationDistance:8`nresourcePacks:[`"vanilla`",`"mod_resources`"$rp]`n"
 Escrever (Join-Path $inst 'mmc-pack.json') "{`"formatVersion`":1,`"components`":[{`"uid`":`"net.minecraft`",`"version`":`"$mc`",`"important`":true},{`"uid`":`"net.neoforged`",`"version`":`"$neo`"}]}`n"
 $zipPrism = Join-Path $root 'modpack\minezada-prism.zip'
 if (Test-Path $zipPrism) { Remove-Item $zipPrism }
