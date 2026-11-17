@@ -78,11 +78,18 @@ function Sincronizar-Whitelist($lista, $pasta) {
     foreach ($e in $wl + $ops) { if ($e.uuid -ne (& $offline $e.name)) { $oficiais[$e.name.ToLower()] = $e.uuid } }
     $oficial = { param($n)
         if ($oficiais.ContainsKey($n.ToLower())) { return $oficiais[$n.ToLower()] }
-        try {
-            $x = (Invoke-RestMethod "https://api.mojang.com/users/profiles/minecraft/$n" -TimeoutSec 5).id
-            if ($x) { "$($x.Substring(0,8))-$($x.Substring(8,4))-$($x.Substring(12,4))-$($x.Substring(16,4))-$($x.Substring(20))" }
+        # Dois enderecos da Mojang: rede compartilhada (faculdade) costuma levar 429 em um deles.
+        foreach ($url in 'https://api.mojang.com/users/profiles/minecraft/', 'https://api.minecraftservices.com/minecraft/profile/lookup/name/') {
+            try {
+                $x = (Invoke-RestMethod "$url$n" -TimeoutSec 5).id
+                if ($x) { return "$($x.Substring(0,8))-$($x.Substring(8,4))-$($x.Substring(12,4))-$($x.Substring(16,4))-$($x.Substring(20))" }
+            }
+            catch {
+                if ($_.Exception.Response -and [int]$_.Exception.Response.StatusCode -eq 404) { return $null }  # nick sem conta original
+            }
         }
-        catch { $null }  # 404 = nick sem conta original; rede/limite = tenta no proximo start
+        Write-Warning "A Mojang nao respondeu sobre $n. Se ele tem original, nao entra ate o proximo start (ou: whitelist add $n no console)."
+        $null
     }
     if (-not (Test-Path $lista)) {
         $linhas = @("# Um nick por linha, igual ao do jogo (maiusculas contam); 'op' depois tambem da admin.",

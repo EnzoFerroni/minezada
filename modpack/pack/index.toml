@@ -979,3 +979,7 @@ preserve = true
 file = "options-profiles/Mac 6 - Shader Realista/options.txt"
 hash = "3fab21045a173a19818e20b890254de1691892959933176c09bce51cd1a9c8d1"
 preserve = true
+
+[[files]]
+file = "servers.dat"
+hash = "4ff0a2ffb1a6c593cfa14ec367366a71fa97b5428bb5d5527ee2d63875f45a62"

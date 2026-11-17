@@ -63,8 +63,13 @@ braço fino). A configuração fica em `server-config/config/skinrestorer/config
 
 **Jogador em rede que bloqueia (faculdade).** Algumas redes só deixam sair pelas portas 80 e 443. Com UPnP o
 script abre também a 443 do roteador apontando para o servidor, e o jogo já traz a entrada
-**Minezada (rede da faculdade)** (`minezada-mc.duckdns.org:443`). Quem já tinha o jogo adiciona essa
-entrada à mão. Se o roteador do host já usa a 443, só a 25565 abre.
+**Minezada (rede da faculdade)** (`minezada-mc.duckdns.org:443`). Se o roteador do host já usa a 443, só
+a 25565 abre.
+
+**Lista de servidores do jogo.** Vem pronta e se atualiza a cada abertura (packwiz): Minezada,
+Minezada (rede da faculdade), Minezada (túnel playit) e Minezada (neste computador, para quem joga na
+máquina do host). Servidor adicionado à mão some na próxima abertura. Mudou o endereço do playit?
+Troque `$tunel` em `scripts/montar-pack.ps1` e gere o pack.
 
 **Host em rede que bloqueia (faculdade, laboratório).** Sem UPnP o script liga o túnel playit.gg: quem
 está fora, ou na mesma rede se ela isola os computadores, entra pelo endereço de
