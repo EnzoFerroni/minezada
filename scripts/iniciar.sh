@@ -23,9 +23,9 @@ main() {
   if [ ! -f "$root/config.env" ]; then
     echo "Primeira vez nesta maquina: criando config.env."
     bytes="$(sysctl -n hw.memsize 2>/dev/null || awk '/MemTotal/{print $2*1024}' /proc/meminfo)"
-    if [ $((bytes / 1073741824)) -ge 24 ]; then ram=8G; else ram=6G; fi
-    read -rp "Token do DuckDNS (peca ao dono do repo; Enter para pular): " token
-    printf 'RAM=%s\nSYNC_DIR=""\nJAVA=java\nDUCKDNS_TOKEN=%s\n' "$ram" "$token" > "$root/config.env"
+    gb=$((bytes / 1073741824))
+    if [ $gb -ge 24 ]; then ram=8G; elif [ $gb -ge 12 ]; then ram=6G; else ram=4G; fi
+    printf 'RAM=%s\nSYNC_DIR=""\nJAVA=java\nDUCKDNS_TOKEN=\n' "$ram" > "$root/config.env"
   fi
 
   RAM=6G; SYNC_DIR=""; JAVA=java; DUCKDNS_DOMAIN=minezada-mc; DUCKDNS_TOKEN=""; SEM_DRIVE=""
@@ -39,6 +39,16 @@ main() {
       echo "Pasta do Google Drive: $SYNC_DIR"
       { grep -v '^SYNC_DIR=' "$root/config.env" || true; echo "SYNC_DIR=\"$SYNC_DIR\""; } > "$root/config.env.tmp"
       mv -f "$root/config.env.tmp" "$root/config.env"
+    fi
+  fi
+
+  # Token do DuckDNS mora na pasta do Drive (fora do git): quem tem o token no config.env grava la,
+  # e os outros hosts pegam de la sem precisar perguntar a ninguem.
+  if [ -n "$SYNC_DIR" ] && [ -d "$SYNC_DIR" ]; then
+    if [ -n "$DUCKDNS_TOKEN" ]; then
+      [ -f "$SYNC_DIR/duckdns.txt" ] || echo "$DUCKDNS_TOKEN" > "$SYNC_DIR/duckdns.txt"
+    elif [ -f "$SYNC_DIR/duckdns.txt" ]; then
+      DUCKDNS_TOKEN="$(tr -d '[:space:]' < "$SYNC_DIR/duckdns.txt")"
     fi
   fi
 
@@ -103,12 +113,11 @@ main() {
     fi
   fi
 
-  # 6. Rede: porta (UPnP via miniupnpc) e endereco.
-  if ! command -v upnpc >/dev/null && command -v brew >/dev/null; then brew install miniupnpc >/dev/null 2>&1 || true; fi
+  # 6. Rede: porta (UPnP) e endereco.
   # IP da placa da rota padrao (en0 nem sempre e a que vai para a internet).
   ifc="$(route -n get default 2>/dev/null | awk '/interface:/{print $2}')"
   ip="$(ipconfig getifaddr "${ifc:-en0}" 2>/dev/null || hostname -I 2>/dev/null | awk '{print $1}')"
-  if command -v upnpc >/dev/null && upnpc -e minezada -a "$ip" $porta $porta TCP >/dev/null 2>&1; then
+  if porta_upnp abrir "$ip" $porta; then
     echo "Porta $porta aberta via UPnP."
   else
     echo "UPnP indisponivel: vale o redirecionamento manual do roteador (docs/requisitos.md)."
@@ -135,7 +144,7 @@ main() {
   trap - INT
 
   [ -n "$ddns_pid" ] && kill "$ddns_pid" 2>/dev/null || true
-  command -v upnpc >/dev/null && upnpc -d $porta TCP >/dev/null 2>&1 || true
+  porta_upnp fechar "$ip" $porta || true
 
   if [ -n "$SYNC_DIR" ]; then
     echo "Enviando mundo para a pasta sincronizada..."
@@ -157,6 +166,46 @@ main() {
 }
 
 die() { echo "ERRO: $*" >&2; exit 1; }
+
+# Abre (ou fecha) a porta no roteador por UPnP, falando SSDP/SOAP direto com ele (mesmo jeito do
+# iniciar.ps1), sem miniupnpc nem Homebrew. Uso: porta_upnp abrir|fechar IP PORTA
+porta_upnp() {
+  # Sem as ferramentas de linha de comando, o python3 do macOS abre um dialogo de instalacao.
+  if [ "$(uname -s)" = "Darwin" ] && ! xcode-select -p >/dev/null 2>&1; then return 1; fi
+  command -v python3 >/dev/null || return 1
+  python3 - "$@" >/dev/null 2>&1 <<'PY'
+import re, socket, sys, urllib.request
+from urllib.parse import urljoin
+abrir, ip, porta = sys.argv[1] == "abrir", sys.argv[2], sys.argv[3]
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.bind((ip, 0))  # sai pela placa da internet, nao por VPN
+s.settimeout(3)
+s.sendto(b'M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMAN: "ssdp:discover"\r\nMX: 2\r\n'
+         b'ST: urn:schemas-upnp-org:device:InternetGatewayDevice:1\r\n\r\n', ("239.255.255.250", 1900))
+loc = re.search(r"(?im)^location:\s*(\S+)", s.recv(4096).decode(errors="ignore")).group(1)
+xml = urllib.request.urlopen(loc, timeout=5).read().decode(errors="ignore")
+acao = "AddPortMapping" if abrir else "DeletePortMapping"
+campos = f"<NewRemoteHost></NewRemoteHost><NewExternalPort>{porta}</NewExternalPort><NewProtocol>TCP</NewProtocol>"
+if abrir:
+    campos += (f"<NewInternalPort>{porta}</NewInternalPort><NewInternalClient>{ip}</NewInternalClient>"
+               "<NewEnabled>1</NewEnabled><NewPortMappingDescription>minezada</NewPortMappingDescription>"
+               "<NewLeaseDuration>0</NewLeaseDuration>")
+servicos = re.findall(r"<serviceType>(urn:schemas-upnp-org:service:WAN(?:IP|PPP)Connection:\d)</serviceType>"
+                      r".*?<controlURL>([^<]+)</controlURL>", xml, re.S)
+for tipo, ctrl in servicos:  # roteador pode anunciar WANIP e WANPPP; so um aceita
+    corpo = (f'<?xml version="1.0"?><s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" '
+             f's:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><s:Body>'
+             f'<u:{acao} xmlns:u="{tipo}">{campos}</u:{acao}></s:Body></s:Envelope>')
+    req = urllib.request.Request(urljoin(loc, ctrl), corpo.encode(),
+                                 {"Content-Type": 'text/xml; charset="utf-8"', "SOAPAction": f'"{tipo}#{acao}"'})
+    try:
+        urllib.request.urlopen(req, timeout=5)
+        sys.exit(0)
+    except Exception:
+        pass
+sys.exit(1)
+PY
+}
 
 # Link da pasta minezada no Drive: quem nao tem acesso ve o botao "Solicitar acesso".
 drive_url="https://drive.google.com/drive/shared-with-me"

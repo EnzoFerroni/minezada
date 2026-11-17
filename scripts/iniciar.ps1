@@ -100,9 +100,8 @@ function Configurar-Drive {
 if (-not (Test-Path $envFile)) {
     Write-Host 'Primeira vez nesta maquina: criando config.env.'
     $gb = [math]::Round((Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB)
-    $ram = if ($gb -ge 24) { '8G' } else { '6G' }
-    $token = Read-Host 'Token do DuckDNS (peca ao dono do repo; Enter para pular)'
-    Set-Content $envFile -Encoding ascii @("RAM=$ram", 'SYNC_DIR=""', 'JAVA=java', "DUCKDNS_TOKEN=$token")
+    $ram = if ($gb -ge 24) { '8G' } elseif ($gb -ge 12) { '6G' } else { '4G' }
+    Set-Content $envFile -Encoding ascii @("RAM=$ram", 'SYNC_DIR=""', 'JAVA=java', 'DUCKDNS_TOKEN=')
 }
 
 $cfg = @{ RAM = '6G'; SYNC_DIR = ''; JAVA = 'java'; DUCKDNS_DOMAIN = 'minezada-mc'; DUCKDNS_TOKEN = ''; SEM_DRIVE = '' }
@@ -119,6 +118,16 @@ if (-not $cfg.SYNC_DIR) {
         $cfg.SYNC_DIR = $achado
         Set-Content $envFile -Encoding ascii (@(Get-Content $envFile | Where-Object { $_ -notmatch '^\s*SYNC_DIR\s*=' }) + "SYNC_DIR=`"$achado`"")
     }
+}
+
+# Token do DuckDNS mora na pasta do Drive (fora do git): quem tem o token no config.env grava la,
+# e os outros hosts pegam de la sem precisar perguntar a ninguem.
+if ($cfg.SYNC_DIR -and (Test-Path $cfg.SYNC_DIR)) {
+    $tokenArq = Join-Path $cfg.SYNC_DIR 'duckdns.txt'
+    if ($cfg.DUCKDNS_TOKEN) {
+        if (-not (Test-Path $tokenArq)) { Set-Content $tokenArq -Encoding ascii $cfg.DUCKDNS_TOKEN }
+    }
+    elseif (Test-Path $tokenArq) { $cfg.DUCKDNS_TOKEN = (Get-Content $tokenArq -Raw).Trim() }
 }
 
 # 3. Java 21+ (NeoForge 1.21.1). Um Java 8/17 antigo no PATH tambem conta como faltando.
