@@ -36,3 +36,4 @@ Abra `iniciar.bat` (Windows) ou `iniciar.command` (Mac). Para desligar, digite `
 - [Hospedar](docs/hospedar.md): como o servidor funciona, trocar de host, mudar o pack
 - [Requisitos](docs/requisitos.md): o que instalar, Google Drive e rede
 - [Decisões](docs/decisoes.md): por que cada versão e mod foi escolhido
+- [Planos](docs/planos.md): o que vem a seguir (livro de missões, mais mods)
