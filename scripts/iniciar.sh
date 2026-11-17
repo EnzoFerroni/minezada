@@ -10,6 +10,7 @@ main() {
   server="$root/server"
   tools="$root/tools"
   porta=25565
+  porta_alt=443
   eu="$(hostname -s)"
   forcar=0; [ "${1:-}" = "--forcar" ] && forcar=1
   shopt -s nullglob
@@ -133,6 +134,8 @@ main() {
   tunel_pid=""
   if porta_upnp abrir "$ip" $porta; then
     echo "Porta $porta aberta via UPnP."
+    # Redes de faculdade/empresa costumam liberar so 80/443 de saida: a 443 do roteador tambem leva ao servidor.
+    porta_upnp abrir "$ip" $porta $porta_alt && echo "Porta $porta_alt tambem aberta (para quem esta em rede que bloqueia a $porta)."
   else
     echo "Esta rede nao deixou abrir a porta $porta (UPnP indisponivel)."
     iniciar_tunel
@@ -184,6 +187,7 @@ while True:
 
   kill $ddns_pid $lan_pid $tunel_pid 2>/dev/null || true
   porta_upnp fechar "$ip" $porta || true
+  porta_upnp fechar "$ip" $porta $porta_alt || true
 
   if [ -n "$SYNC_DIR" ]; then
     echo "Enviando mundo para a pasta sincronizada..."
@@ -207,7 +211,7 @@ while True:
 die() { echo "ERRO: $*" >&2; exit 1; }
 
 # Abre (ou fecha) a porta no roteador por UPnP, falando SSDP/SOAP direto com ele (mesmo jeito do
-# iniciar.ps1), sem miniupnpc nem Homebrew. Uso: porta_upnp abrir|fechar IP PORTA
+# iniciar.ps1), sem miniupnpc nem Homebrew. Uso: porta_upnp abrir|fechar IP PORTA [PORTA_EXTERNA]
 porta_upnp() {
   # Sem as ferramentas de linha de comando, o python3 do macOS abre um dialogo de instalacao.
   if [ "$(uname -s)" = "Darwin" ] && ! xcode-select -p >/dev/null 2>&1; then return 1; fi
@@ -216,6 +220,7 @@ porta_upnp() {
 import re, socket, sys, urllib.request
 from urllib.parse import urljoin
 abrir, ip, porta = sys.argv[1] == "abrir", sys.argv[2], sys.argv[3]
+externa = sys.argv[4] if len(sys.argv) > 4 else porta
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.bind((ip, 0))  # sai pela placa da internet, nao por VPN
 s.settimeout(3)
@@ -224,10 +229,10 @@ s.sendto(b'M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMAN: "ssdp:disco
 loc = re.search(r"(?im)^location:\s*(\S+)", s.recv(4096).decode(errors="ignore")).group(1)
 xml = urllib.request.urlopen(loc, timeout=5).read().decode(errors="ignore")
 acao = "AddPortMapping" if abrir else "DeletePortMapping"
-campos = f"<NewRemoteHost></NewRemoteHost><NewExternalPort>{porta}</NewExternalPort><NewProtocol>TCP</NewProtocol>"
+campos = f"<NewRemoteHost></NewRemoteHost><NewExternalPort>{externa}</NewExternalPort><NewProtocol>TCP</NewProtocol>"
 if abrir:
     campos += (f"<NewInternalPort>{porta}</NewInternalPort><NewInternalClient>{ip}</NewInternalClient>"
-               "<NewEnabled>1</NewEnabled><NewPortMappingDescription>minezada</NewPortMappingDescription>"
+               "<NewEnabled>1</NewEnabled><NewPortMappingDescription>minezada {externa}</NewPortMappingDescription>"
                "<NewLeaseDuration>0</NewLeaseDuration>")
 servicos = re.findall(r"<serviceType>(urn:schemas-upnp-org:service:WAN(?:IP|PPP)Connection:\d)</serviceType>"
                       r".*?<controlURL>([^<]+)</controlURL>", xml, re.S)
@@ -285,7 +290,7 @@ sincronizar_whitelist() {
   if [ "$(uname -s)" = "Darwin" ] && ! xcode-select -p >/dev/null 2>&1; then return 0; fi
   command -v python3 >/dev/null || return 0
   python3 - "$@" <<'PY' || echo "AVISO: falha ao atualizar a whitelist." >&2
-import hashlib, json, os, re, sys, uuid
+import hashlib, json, os, re, shutil, sys, urllib.request, uuid
 lista, pasta = sys.argv[1], sys.argv[2]
 def offline(nome):  # mesmo UUID que o servidor da ao nick sem conta Microsoft (maiusculas contam)
     return str(uuid.UUID(bytes=hashlib.md5(b"OfflinePlayer:" + nome.encode()).digest(), version=3))
@@ -293,46 +298,49 @@ def ler(nome):
     arq = os.path.join(pasta, nome)
     return json.load(open(arq)) if os.path.exists(arq) else []
 wl, ops = ler("whitelist.json"), ler("ops.json")
-# Entradas com UUID da Mojang (de quando era online-mode=true) viram offline e levam o progresso junto.
 mundo = os.path.join(pasta, "world")
-for e in wl + ops:
-    novo = offline(e["name"])
-    if e["uuid"] == novo:
-        continue
-    for sub, ext in (("playerdata", ".dat"), ("playerdata", ".dat_old"),
-                     ("advancements", ".json"), ("stats", ".json")):
-        de, para = (os.path.join(mundo, sub, u + ext) for u in (e["uuid"], novo))
-        if os.path.exists(de) and not os.path.exists(para):
-            os.rename(de, para)
-            print(f"Progresso de {e['name']} levado para o UUID offline: {sub}/{novo}{ext}")
-    e["uuid"] = novo
+# UUID oficial ja conhecido (whitelist/ops) evita consultar a Mojang a cada start.
+oficiais = {e["name"].lower(): e["uuid"] for e in wl + ops if e["uuid"] != offline(e["name"])}
+def oficial(nome):
+    if nome.lower() in oficiais:
+        return oficiais[nome.lower()]
+    try:
+        r = urllib.request.urlopen("https://api.mojang.com/users/profiles/minecraft/" + nome, timeout=5)
+        return str(uuid.UUID(json.load(r)["id"])) if r.status == 200 else None
+    except Exception:  # 404 = nick sem conta original; rede/limite = tenta no proximo start
+        return None
 if not os.path.exists(lista):
     with open(lista, "w") as f:
         f.write("# Um nick por linha, igual ao do jogo (maiusculas contam); 'op' depois tambem da admin.\n"
                 "# O servidor libera todos ao iniciar: depois de editar, reinicie. Nao use whitelist add no console.\nEnzobullet op\n")
         f.writelines(e["name"] + "\n" for e in wl if e["name"].lower() != "enzobullet")
-conhecidos = {e["name"].lower(): e for e in wl + ops}
 for linha in open(lista, encoding="utf-8-sig"):
     partes = linha.split("#")[0].split()
     if not partes:
         continue
-    if not re.fullmatch(r"[A-Za-z0-9_]{1,16}", partes[0]):  # nick valido do Java
-        print(f"AVISO: nick invalido em jogadores.txt: {partes[0]}")
+    nome = partes[0]
+    if not re.fullmatch(r"[A-Za-z0-9_]{1,16}", nome):  # nick valido do Java
+        print(f"AVISO: nick invalido em jogadores.txt: {nome}")
         continue
-    k, op = partes[0].lower(), "op" in [x.lower() for x in partes[1:]]
-    falta_wl = k not in {e["name"].lower() for e in wl}
-    falta_op = op and k not in {e["name"].lower() for e in ops}
-    if not (falta_wl or falta_op):
-        continue
-    if k not in conhecidos:
-        conhecidos[k] = {"uuid": offline(partes[0]), "name": partes[0]}
-    e = conhecidos[k]
-    if falta_wl:
-        wl.append({"uuid": e["uuid"], "name": e["name"]})
-        print(f"Liberado na whitelist: {e['name']}")
-    if falta_op:
-        ops.append({"uuid": e["uuid"], "name": e["name"], "level": 4, "bypassesPlayerLimit": False})
-        print(f"Admin (op): {e['name']}")
+    op = "op" in [x.lower() for x in partes[1:]]
+    # MixAuth: quem tem original entra com o UUID oficial; sem original, com o offline. Libera os dois.
+    ids = [offline(nome)]
+    on = oficial(nome)
+    if on:
+        ids.append(on)
+        # Progresso de antes (UUID offline) copiado para o oficial, so se o oficial ainda nao tem nada.
+        for sub, ext in (("playerdata", ".dat"), ("advancements", ".json"), ("stats", ".json")):
+            de, para = (os.path.join(mundo, sub, u + ext) for u in (ids[0], on))
+            if os.path.exists(de) and not os.path.exists(para):
+                shutil.copy2(de, para)
+                print(f"Progresso de {nome} copiado para o UUID oficial: {sub}/{on}{ext}")
+    for u in ids:
+        if u not in {e["uuid"] for e in wl}:
+            wl.append({"uuid": u, "name": nome})
+            print(f"Liberado na whitelist: {nome} ({u})")
+        if op and u not in {e["uuid"] for e in ops}:
+            ops.append({"uuid": u, "name": nome, "level": 4, "bypassesPlayerLimit": False})
+            print(f"Admin (op): {nome} ({u})")
 for nome, dados in (("whitelist.json", wl), ("ops.json", ops)):
     with open(os.path.join(pasta, nome), "w") as f:
         json.dump(dados, f, indent=2)

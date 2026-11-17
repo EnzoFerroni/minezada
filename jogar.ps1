@@ -9,8 +9,10 @@ $locais = "$env:LOCALAPPDATA\Programs\PrismLauncher\prismlauncher.exe", "$env:Pr
 $forkRepo = 'Diegiwg/PrismLauncher-Cracked'
 $forkDir = "$env:LOCALAPPDATA\Programs\Minezada Launcher"
 
-# 0. Conta
-$original = (Read-Host 'Voce tem Minecraft original (conta Microsoft)? [s/n]') -notmatch '^\s*n'
+# 0. Conta. Launcher ja instalado responde sozinho (reparar nao pergunta de novo).
+if (Test-Path "$forkDir\prismlauncher.exe") { $original = $false }
+elseif ($locais | Where-Object { Test-Path $_ }) { $original = $true }
+else { $original = (Read-Host 'Voce tem Minecraft original (conta Microsoft)? [s/n]') -notmatch '^\s*n' }
 
 # 1. Launcher: Prism oficial com conta original; senao o fork, numa pasta separada para nao
 # trocar o Prism de quem ja tem. Os dois usam a mesma pasta de dados.
@@ -66,13 +68,15 @@ if ($mem) {
 Copy-Item "$tmp\x\.minecraft\packwiz-installer-bootstrap.jar" "$inst\.minecraft" -Force
 foreach ($f in 'servers.dat', 'options.txt') { if (-not (Test-Path "$inst\.minecraft\$f")) { Copy-Item "$tmp\x\.minecraft\$f" "$inst\.minecraft" } }
 # Liga os pacotes de recursos do pack em quem ja tinha options.txt, mantendo os que o jogador ligou.
+# -Encoding UTF8: o PS 5.1 le como ANSI e estragaria nomes com acento ou § (ex: Low On Fire).
 $opt = "$inst\.minecraft\options.txt"
 # (o ForEach achata: no PS 5.1 o ConvertFrom-Json devolve a lista inteira como um item so)
-$doPack = @((Get-Content "$tmp\x\.minecraft\options.txt" | Where-Object { $_ -like 'resourcePacks:*' }) -replace '^resourcePacks:', '' | ConvertFrom-Json | ForEach-Object { $_ })
-$linhas = @(Get-Content $opt)
+$doPack = @((Get-Content "$tmp\x\.minecraft\options.txt" -Encoding UTF8 | Where-Object { $_ -like 'resourcePacks:*' }) -replace '^resourcePacks:', '' | ConvertFrom-Json | ForEach-Object { $_ })
+$linhas = @(Get-Content $opt -Encoding UTF8)
 $atual = $linhas | Where-Object { $_ -like 'resourcePacks:*' } | Select-Object -First 1
 $lista = if ($atual) { @(($atual -replace '^resourcePacks:', '') | ConvertFrom-Json | ForEach-Object { $_ }) } else { @('vanilla') }
-$lista += @($doPack | Where-Object { $_ -notin $lista })
+# Pacotes do jogador na ordem dele e os do pack por cima, na ordem do pack; "vanilla" fica na base.
+$lista = @($lista | Where-Object { $_ -eq 'vanilla' -or $_ -cnotin $doPack }) + @($doPack | Where-Object { $_ -ne 'vanilla' })
 $nova = 'resourcePacks:' + (ConvertTo-Json -InputObject @($lista) -Compress)
 $linhas = if ($atual) { $linhas | ForEach-Object { if ($_ -like 'resourcePacks:*') { $nova } else { $_ } } } else { $linhas + $nova }
 [IO.File]::WriteAllLines($opt, [string[]]$linhas, (New-Object Text.UTF8Encoding $false))

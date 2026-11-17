@@ -6,12 +6,14 @@
 - **Tutorial do Create:** segure `W` com o mouse em cima de um item do Create.
 - **Mapa:** `M`. Minimapa e marcadores ficam no canto da tela.
 - **Morreu?** Volte ao local: seus itens estão num corpo.
-- **Gráficos:** Opções → **Perfis**: do 1 - Minimo (PC fraco) ao 7 - Ultra Shader, 8 - FPS Maximo (FPS destravado) e 9 - Bateria (notebook fora da tomada). Ajustou algo? Salve por cima do perfil.
+- **Gráficos:** Opções → **Perfis**. Mac: use os **Mac 1** a **Mac 7** (do 8 GB ao shader realista, mais bateria). PC: do 1 - Minimo ao 7 - Ultra Shader, 8 - FPS Maximo e 9 - Bateria; os **PC -** usam shaders que não rodam no Mac. Os **Shader -** servem para experimentar cada shader. Aplicar um perfil troca distância de renderização, qualidade e shader na hora. **Não use Salvar nem Criar perfil**: o mod copia a configuração do Sodium e o jogo fecha ao aplicar esse perfil. Ajuste fino fica em Opções → Vídeo.
+- **Distant Horizons (ver longe):** é opcional. Na primeira abertura aparece uma janela para marcar. No Mac, com ele instalado os shaders não abrem: escolha um ou outro. Mudou de ideia? Apague `packwiz.json` na pasta do jogo e a janela aparece de novo.
+- **Na faculdade:** se o Minezada não conectar, entre no **Minezada (rede da faculdade)** da lista (porta 443).
 - **Minerar o veio inteiro:** segure `'` (apóstrofo) e quebre o minério ou tronco.
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.18` · 105 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.19` · 123 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
 
 ## Aprender e guias
 
@@ -361,19 +363,133 @@ Sons de ambiente: vento, pássaros, grilos, água, cavernas.
 
 <sub>Versão `6.3.11` · só no jogo de cada um, não no servidor</sub>
 
-## Shaders (vêm desligados)
+### <img src="https://cdn.modrinth.com/data/uCdwusMi/e716cda9bb568b5373ff76e363fb4c6d7278fba6_96.webp" width="28" align="center"> [Distant Horizons](https://modrinth.com/mod/distanthorizons)
+
+Enxerga muito mais longe (montanhas no horizonte) desenhando o terreno distante em versão simplificada e leve. No servidor mostra os lugares por onde você já passou. **Opcional**: na primeira abertura aparece uma janela para marcar. No PC funciona junto com Complementary, BSL, Sildur's, Photon e Bliss; **no Mac, com ele instalado os shaders não abrem** (limite de texturas do Mac), então escolha um ou outro.
+
+<img src="https://cdn.modrinth.com/data/uCdwusMi/images/fd8a1d3aad9b543bc07967478e7f9e269764c4ac_350.webp" width="480">
+
+<sub>Versão `3.3.3-1.21.1` · só no jogo de cada um, não no servidor</sub>
+
+## Pacotes de recursos (todos vêm ligados; desligue em Opções → Pacotes de recursos)
+
+### <img src="https://cdn.modrinth.com/data/YAVTU8mK/2e83da75469cdec6d4558023cba611443b105c9e_96.webp" width="28" align="center"> [Fresh Animations: Extensions](https://modrinth.com/mod/fresh-animations-extensions)
+
+Extensões oficiais do Fresh Animations: mais animações em mobs e jogadores.
+
+<img src="https://cdn.modrinth.com/data/YAVTU8mK/images/5a1d78039b6f64ac429f24e6d98f133ae998764e_350.webp" width="480">
+
+<sub>Versão `1.10.1` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/RRxvWKNC/06a7e7691a6da41798c255108a8563d7ffea171d.png" width="28" align="center"> [Low On Fire](https://modrinth.com/mod/low-on-fire)
+
+Fogo menor na tela quando você pega fogo, para enxergar o que está fazendo.
+
+<img src="https://cdn.modrinth.com/data/RRxvWKNC/images/67e073e6149cfb9dd46c7a53cf9b8a995f774595_350.webp" width="480">
+
+<sub>Versão `26.3` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/uvpymuxq/fe1a61998ae57dc6ad1a4bb028334c3c3925d22f_96.webp" width="28" align="center"> [Motschen's Better Leaves](https://modrinth.com/mod/better-leaves)
+
+Folhas mais cheias e fofas nas árvores, inclusive as dos mods. Pesa um pouco em Macs de 8 GB.
+
+<img src="https://cdn.modrinth.com/data/uvpymuxq/images/769f109a7d5a753ea93c8520bbaaace9f3059ea2_350.webp" width="480">
+
+<sub>Versão `9.6` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/dspVZXKP/5de0774f423d220fcd4e635b91f2bdfcb8a2b910.png" width="28" align="center"> [Fast Better Grass](https://modrinth.com/mod/fast-better-grass)
+
+Grama cobre também a lateral dos blocos: campos mais bonitos, sem custo de FPS.
+
+<img src="https://cdn.modrinth.com/data/dspVZXKP/images/44b46fae71c21058a904311d99f63d4881d24b1c_350.webp" width="480">
+
+<sub>Versão `26.2` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/ti9KkMHm/3d335c25a18ca44c7c2dd449eab25a7de82016eb.gif" width="28" align="center"> [Simple Grass Flowers](https://modrinth.com/mod/simple-grass-flowers)
+
+Florzinhas na grama, no micélio e no podzol.
+
+<img src="https://cdn.modrinth.com/data/ti9KkMHm/images/6c063c00e2af4f4689b3d48ee3b45d88aaa8f5aa_350.webp" width="480">
+
+<sub>Versão `2.0.0` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/PgpTtNoI/335dc6f3a177c15b6baa06b8e8211705b1d32a50_96.webp" width="28" align="center"> [3D crops Revamped](https://modrinth.com/mod/3d-crops)
+
+Plantações (trigo, cenoura, batata) em 3D.
+
+<img src="https://cdn.modrinth.com/data/PgpTtNoI/images/44f2dba2396242183afacaa95356a4ac7887cc16_350.webp" width="480">
+
+<sub>Versão `3` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/PGGrfcvL/4ebbf6b953f8589cb27665a21d1f3c4e6d3fe1ca_96.webp" width="28" align="center"> [Better Lanterns](https://modrinth.com/mod/better-lanterns)
+
+Lanternas e correntes com modelos mais detalhados.
+
+<img src="https://cdn.modrinth.com/data/PGGrfcvL/images/44a3d8e75a253801ac61a5f37d2feb1e00e0aefb_350.webp" width="480">
+
+<sub>Versão `1.2+1.21` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/g4bSYbrU/30e1c67a699f5b334f8814f78e34d168fb173862_96.webp" width="28" align="center"> [Cubic Sun & Moon](https://modrinth.com/mod/cubic-sun-moon)
+
+Sol e lua em 3D, com fases da lua de verdade.
+
+<img src="https://cdn.modrinth.com/data/g4bSYbrU/images/60a70d9d2efc665ed5cde1d0c464c0e698648aea_350.webp" width="480">
+
+<sub>Versão `1.8.5` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/BcyGAwlg/2eb60785bd944562843b2cddd3cb57bae1f72108_96.webp" width="28" align="center"> [Fresh Waystones Texture](https://modrinth.com/mod/fresh-waystones-texture)
+
+Waystones com visual novo, no estilo do jogo.
+
+<img src="https://cdn.modrinth.com/data/BcyGAwlg/images/6f38065b87b6f5e30d3d8c2dce78c055cca190d3.webp" width="480">
+
+<sub>Versão `3.4` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/CZrLuVQo/4ae626dba10d5bcc73f9a7b0a50c22e572075b6b.png" width="28" align="center"> [Low Shield](https://modrinth.com/mod/low-shield-pack)
+
+Escudo mais baixo na tela: enxerga melhor enquanto defende.
+
+<img src="https://cdn.modrinth.com/data/CZrLuVQo/images/d5c7c07ef008e0a82f5786a17eb45ca30a1d5f3e_350.webp" width="480">
+
+<sub>Versão `3.0.0` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/6SLU7tS5/f90001e4ebed860e7ae913f34c85d745f516a89b.png" width="28" align="center"> [Default Dark Mode](https://modrinth.com/mod/default-dark-mode)
+
+Menus e inventários escuros, inclusive os de vários mods.
+
+<img src="https://cdn.modrinth.com/data/6SLU7tS5/images/72dad114b1d88964780d933d83e31e382c37cc48_350.webp" width="480">
+
+<sub>Versão `2025.5.0-1.20.2` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/w0TnApzs/e8403d1fb2f55321ae74402c1e8c90a3a5670856.png" width="28" align="center"> [Faithful 32x](https://modrinth.com/mod/faithful-32x)
+
+Texturas com o dobro de detalhe, mantendo o visual do Minecraft. Pesa um pouco mais.
+
+<img src="https://cdn.modrinth.com/data/w0TnApzs/images/8326664336340fe1919056f86d8d6009d06ad2e8_350.webp" width="480">
+
+<sub>Versão `1.21.1-june-2026` · só no jogo de cada um, não no servidor</sub>
+
+## Shaders (vêm desligados; ligue pelos perfis ou em Opções → Vídeo → Shader Packs)
 
 ### <img src="https://cdn.modrinth.com/data/HVnmMxH1/79cb7c8123bbc54945305b2ebad6b8881efdf5f8_96.webp" width="28" align="center"> [Complementary Shaders - Reimagined](https://modrinth.com/mod/complementary-reimagined)
 
-Shader bonito e leve, funciona no Mac. Ligue em Opções → Vídeo → Shader Packs.
+Bonito e leve, o mais testado no Mac. Perfis 5, 6 e Mac 5.
 
 <img src="https://cdn.modrinth.com/data/HVnmMxH1/images/111e76bfa966c68b3581a93f7322588e642ce4db_350.webp" width="480">
 
 <sub>Versão `r5.9.3` · só no jogo de cada um, não no servidor</sub>
 
+### <img src="https://cdn.modrinth.com/data/R6NEzAwj/c85ce4049aac76360d2cd24fd9a7003de01ef312_96.webp" width="28" align="center"> [Complementary Shaders - Unbound](https://modrinth.com/mod/complementary-unbound)
+
+Versão mais realista do Complementary (luz e céu mais cinematográficos). Perfis 7 - Ultra Shader e Mac 6.
+
+<img src="https://cdn.modrinth.com/data/R6NEzAwj/images/a5a420ab1668bcfe47a76a812eede7056c45fe31_350.webp" width="480">
+
+<sub>Versão `r5.9.3` · só no jogo de cada um, não no servidor</sub>
+
 ### <img src="https://cdn.modrinth.com/data/izsIPI7a/a08432baa86b8ffd58c08f4b3a001ef976ff764d_96.webp" width="28" align="center"> [MakeUp - Ultra Fast](https://modrinth.com/mod/makeup-ultra-fast-shaders)
 
-Shader bem leve para computadores mais fracos.
+Bem leve, para computadores fracos e Macs de 8 GB. Perfil Mac 4.
 
 <img src="https://cdn.modrinth.com/data/izsIPI7a/images/97776ad4f19f734243dbb301feaf81c327bae96b_350.webp" width="480">
 
@@ -381,7 +497,7 @@ Shader bem leve para computadores mais fracos.
 
 ### <img src="https://cdn.modrinth.com/data/Q1vvjJYV/2a611a3cb434fb52fb81fa5dace13c5d8b67e55d_96.webp" width="28" align="center"> [BSL Shaders](https://modrinth.com/mod/bsl-shaders)
 
-Clássico e equilibrado: bonito sem pesar muito.
+Clássico e equilibrado: bonito sem pesar muito. Perfil Shader - BSL.
 
 <img src="https://cdn.modrinth.com/data/Q1vvjJYV/images/40b899ae09647c98722d67bb2288f790ae28b4fc_350.webp" width="480">
 
@@ -389,27 +505,59 @@ Clássico e equilibrado: bonito sem pesar muito.
 
 ### <img src="https://cdn.modrinth.com/data/z8EjLYqN/ced1ec11046d063d8ff681769061db8f5a29134f_96.webp" width="28" align="center"> [Sildur's Vibrant Shaders](https://modrinth.com/mod/sildurs-vibrant-shaders)
 
-Cores vivas e céu bonito; tem versões leves e pesadas dentro.
+Cores vivas e céu bonito; versão Extreme, para Macs Pro/Max e PCs bons. Perfil Shader - Sildurs Vibrant.
 
 <img src="https://cdn.modrinth.com/data/z8EjLYqN/images/f805e5d32d4941eb33c4273cc908f70fca2753d5_350.webp" width="480">
 
 <sub>Versão `2.02` · só no jogo de cada um, não no servidor</sub>
 
+### <img src="https://cdn.modrinth.com/data/LMIZZNxZ/5d09a380b6da014dcbca683879cdfb4a94603cf8_96.webp" width="28" align="center"> [Super Duper Vanilla](https://modrinth.com/mod/super-duper-vanilla)
+
+Parece o Minecraft normal, só que mais bonito; leve e feito também para Mac. Perfil Shader - Super Duper Vanilla.
+
+<img src="https://cdn.modrinth.com/data/LMIZZNxZ/images/a1b45a0d10ff893cb4247979ced0ff0b9ce182a9_350.webp" width="480">
+
+<sub>Versão `1.3.8` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/UaS8ROxa/85f373314addaf840d9c8667c797da6e0f7e7034_96.webp" width="28" align="center"> [Miniature Shader](https://modrinth.com/mod/miniature-shader)
+
+Estilo suave e colorido, levíssimo. Roda em qualquer Mac. Perfil Shader - Miniature.
+
+<img src="https://cdn.modrinth.com/data/UaS8ROxa/images/47126cd6cc7ab7083c14fce162d185aa7e9953f4_350.webp" width="480">
+
+<sub>Versão `2.19` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/lLqFfGNs/39cb5f12e7dcc68d6cb666f225fcb2b801dd70fb_96.webp" width="28" align="center"> [Photon Shaders](https://modrinth.com/mod/photon-shader)
+
+O mais bonito da lista, para PCs fortes. **Só PC: não roda no Mac.** Perfil PC - Photon.
+
+<img src="https://cdn.modrinth.com/data/lLqFfGNs/images/a7205115d731077733ab5cdcc639e5531f2dee12_350.webp" width="480">
+
+<sub>Versão `v1.4` · só no jogo de cada um, não no servidor</sub>
+
 ### <img src="https://cdn.modrinth.com/data/EpQFjzrQ/e3efc6ba7a63f9e1cf473a794d0224a6daf243c7_96.webp" width="28" align="center"> [Solas Shader](https://modrinth.com/mod/solas-shader)
 
-Visual suave e realista, bom em PCs médios.
+Visual suave e realista, para PCs médios. **Só PC: não roda no Mac.** Perfil PC - Solas.
 
 <img src="https://cdn.modrinth.com/data/EpQFjzrQ/images/b87a4f77d7858c6b8fb9ecc40301f9d189a52c44_350.webp" width="480">
 
 <sub>Versão `3.9` · só no jogo de cada um, não no servidor</sub>
 
-### <img src="https://cdn.modrinth.com/data/lLqFfGNs/39cb5f12e7dcc68d6cb666f225fcb2b801dd70fb_96.webp" width="28" align="center"> [Photon Shaders](https://modrinth.com/mod/photon-shader)
+### <img src="https://cdn.modrinth.com/data/ZvMtQlho/90145c971ea24387775108fc86c89bed9bd2c8f1_96.webp" width="28" align="center"> [Bliss Shaders](https://modrinth.com/mod/bliss-shader)
 
-O mais bonito da lista, para PCs e Macs fortes.
+Céu e nuvens impressionantes, para PCs fortes. **Só PC: no Mac funciona mal.** Perfil PC - Bliss.
 
-<img src="https://cdn.modrinth.com/data/lLqFfGNs/images/a7205115d731077733ab5cdcc639e5531f2dee12_350.webp" width="480">
+<img src="https://cdn.modrinth.com/data/ZvMtQlho/images/7ceb3b0fcd9ccdbd5fc4bdc80ba7ee766509c69f_350.webp" width="480">
 
-<sub>Versão `v1.4` · só no jogo de cada um, não no servidor</sub>
+<sub>Versão `2.1.2` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/kmwfVOoi/fc89eadad417dd376b14c3b31e1a2b87acaca034_96.webp" width="28" align="center"> [Rethinking Voxels](https://modrinth.com/mod/rethinking-voxels)
+
+Luz colorida de verdade (tochas, lava), para PCs fortes; ainda em beta. **Só PC: não roda no Mac.** Perfil PC - Rethinking Voxels.
+
+<img src="https://cdn.modrinth.com/data/kmwfVOoi/images/c2de214a7981a9b0235b46209507eb9c0b225ddc_350.webp" width="480">
+
+<sub>Versão `r0.1-beta9` · só no jogo de cada um, não no servidor</sub>
 
 ## Qualidade de vida
 
@@ -495,11 +643,11 @@ Bigorna sem o limite de "Caro demais" e com nomes coloridos.
 
 <sub>Versão `v21.1.0-1.21.1-NeoForge`</sub>
 
-### <img src="https://cdn.modrinth.com/data/Gh3tnMca/35e032a7b47a1ec92c838cf0cb3a19143311e169.jpeg" width="28" align="center"> [Simple Login](https://modrinth.com/mod/simple-login)
+### <img src="https://cdn.modrinth.com/data/GzSiVPHb/81a7ae2116a3b5dfb3a8216ace2d0259862a597d_96.webp" width="28" align="center"> [MixAuth](https://modrinth.com/mod/mixauth)
 
-Senha no servidor: na primeira vez digite /register senha senha, depois /login senha. Protege seu nick.
+Login no servidor. Com Minecraft original você entra direto (a Mojang confirma a conta) e com a sua skin. Sem original: na primeira vez /register senha senha, depois /login senha; no mesmo IP fica logado por 7 dias. Protege seu nick.
 
-<sub>Versão `1.17.0`</sub>
+<sub>Versão `1.3.3`</sub>
 
 ### <img src="https://cdn.modrinth.com/data/ghrZDhGW/f5bc55cd7b07f988b5f28d7d3f0a4c8e9f480bc1_96.webp" width="28" align="center"> [Skin Restorer](https://modrinth.com/mod/skinrestorer)
 
@@ -559,7 +707,7 @@ Organizar inventário e baús (botão do meio do mouse) e mover itens rápido co
 
 ### <img src="https://cdn.modrinth.com/data/DnyS3EEW/e3e04a5d1a4cd98a9288fc1e9a3ea6ca3371e8d6.png" width="28" align="center"> [Options Profiles](https://modrinth.com/mod/options-profiles)
 
-Perfis de gráfico prontos em Opções → Perfis: de 1 - Minimo a 7 - Ultra Shader, mais 8 - FPS Maximo e 9 - Bateria. Ajuste e salve por cima do seu.
+Perfis de gráfico prontos em Opções → Perfis: de 1 - Minimo a 7 - Ultra Shader, 8 - FPS Maximo, 9 - Bateria, Mac 1 a Mac 7 (Apple Silicon) e um perfil para experimentar cada shader. Ajuste e salve por cima do seu.
 
 <img src="https://cdn.modrinth.com/data/DnyS3EEW/images/71b7b1a5907926f9fe28b018d2b0fb4f81b3b17a_350.webp" width="480">
 

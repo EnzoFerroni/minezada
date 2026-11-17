@@ -13,6 +13,7 @@ O que falta fazer, em ordem, e lições aprendidas para mexer no projeto sem que
    desde o início, apagar `mundo.tar.gz` no Drive e `server/world` (os backups ficam).
 3. **Convidar os jogadores**: mandar o comando de jogar (README) e liberar cada nick no
    `jogadores.txt` do Drive + restart (não `whitelist add`, ver [hospedar.md](hospedar.md)). Quem
+   já tinha senha do SimpleLogin registra de novo (senhas não migram). Quem
    for hospedar recebe a pasta `minezada` do Drive e o token do DuckDNS por mensagem privada.
 4. **Testar o caminho sem original** nos dois sistemas: responder `n`, conferir que o fork abre a
    instância, pede o nick e entra no servidor.
@@ -62,7 +63,8 @@ Iron's Spells (complexo para iniciantes), Eternal Starlight (dimensão nova, men
 
 ## Checklist para mudar o pack
 
-1. Editar `modpack/mods.txt` (ou `scripts/perfis.ps1` para perfis) e rodar `scripts\montar-pack.ps1`.
+1. Editar `modpack/mods.txt` (ou `scripts/perfis.ps1` para perfis) e rodar `scripts/montar-pack.ps1`
+   (no Mac `pwsh scripts/montar-pack.ps1`; shader novo: montar, `perfis.ps1`, montar de novo).
 2. Conferir na saída se não entrou `connector` / `forgified-fabric-api` (mod Fabric disfarçado).
 3. Testar o **servidor** (`iniciar` numa cópia com mundo novo) até aparecer `Done`.
 4. Testar o **jogo**: push, esperar o link raw do GitHub atualizar (até 5 min de cache), abrir o
@@ -81,18 +83,28 @@ Iron's Spells (complexo para iniciantes), Eternal Starlight (dimensão nova, men
   packwiz usa o link normal, então testar só depois disso.
 - **Renomear perfis** deixa os perfis antigos misturados no jogo de quem já tinha (arquivos com
   `preserve` não são apagados). Evitar renomear; se precisar, avisar para apagar os antigos.
-- **Options Profiles + Sodium 0.8**: não colocar `sodium-options.json` nos perfis (o jogo fecha).
+- **Options Profiles 1.4.2**: só `options.txt` e `iris.properties` nos perfis. `sodium-options.json`,
+  `sodium-extra-options.json` e `DistantHorizons.toml` fecham o jogo (APIs removidas no Sodium 0.8,
+  Sodium Extra 0.9, DH 3; conferido com `javap`). Do Iris ele só aplica shader e liga/desliga.
+  Salvar/Criar perfil no jogo copia essas configs e quebra o perfil.
+- **Mod de servidor no cliente** pode quebrar outro mod: Chunky no jogo + Distant Horizons = crash ao
+  entrar no mundo. Ferramentas de servidor vão em `$soServidor`.
+- **Shader no Mac**: conferir o zip (`#version` acima de 410 ou compute obrigatório não roda) e
+  testar sem o Distant Horizons: só de estar instalado ele estoura as 16 texturas do Mac.
+- **Rede de faculdade** testada libera só TCP 80/443 de saída: 25565 e playit ficam bloqueados.
 - **Tela de HTML ao entrar no servidor**: é a verificação de conta da Mojang falhando (limite de
   logins seguidos ou instabilidade). Esperar alguns minutos ou refazer o login no Prism.
 - **PowerShell 5.1**: arrays JSON vêm como um item só (achatar com `ForEach-Object`), `-eq`
   ignora maiúsculas (usar `-ceq`), zip grava `\` (montar à mão com `/`), `.ps1` com acento
   precisa de BOM, `H` é apelido de `Get-History`.
 
-- **`whitelist add` em modo offline** grava o UUID da Mojang quando o nick existe como conta
-  original, e a pessoa fica barrada. Liberar sempre pelo `jogadores.txt` + restart.
+- **Whitelist com MixAuth**: quem tem original entra com o UUID oficial e quem não tem com o
+  offline. O `jogadores.txt` + restart libera os dois; `whitelist add` grava só um.
+- **SimpleLogin travava quem voltava morto**: ele bloqueia o pacote de renascer antes do login e a
+  tela de morte não tem chat. Mod de login novo: conferir se o respawn passa antes do login.
 - **Mojang em rede compartilhada** (laboratório) responde `429` na consulta de skin assinada
   (`sessionserver ... ?unsigned=false`); a sem assinatura passa. Por isso a reserva do SkinRestorer.
-- **Mod sem lado no Modrinth** (`unknown`, ex: SimpleLogin) entra nos dois lados; mod só de servidor
+- **Mod sem lado no Modrinth** (`unknown`, ex: o antigo SimpleLogin) entra nos dois lados; mod só de servidor
   vai em `$soServidor` no `montar-pack.ps1`, senão pede login até no singleplayer.
 
 ## Ideias para melhorar no futuro

@@ -1,6 +1,6 @@
 ﻿# Gera modpack/minezada.mrpack, modpack/pack (packwiz), o zip do Prism e a lista do README a partir de modpack/mods.txt, resolvendo versoes e
 # dependencias obrigatorias no Modrinth para o loader e a versao do jogo abaixo.
-# Uso: powershell -ExecutionPolicy Bypass -File scripts\montar-pack.ps1 [-Versao 1.0.0]
+# Uso: powershell -ExecutionPolicy Bypass -File scripts/montar-pack.ps1 (Mac: pwsh scripts/montar-pack.ps1) [-Versao 1.0.0]
 param([string]$Versao = (Get-Date -Format 'yyyy.MM.dd'))
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
@@ -23,9 +23,21 @@ function Get-Api($path) {
 $filtroMc = 'game_versions=' + [uri]::EscapeDataString("[`"$mc`"]")
 $filtro = 'loaders=' + [uri]::EscapeDataString("[`"$loader`"]") + "&$filtroMc"
 $pastas = @{ mod = 'mods'; resourcepack = 'resourcepacks'; shader = 'shaderpacks' }
-# Lado "unknown" no Modrinth mas so de servidor: no cliente o login pediria senha ate no singleplayer.
-$soServidor = @('simple-login')
-$linhas = Get-Content (Join-Path $root 'modpack\mods.txt') -Encoding UTF8
+# So de servidor mesmo que o Modrinth aceite no cliente: o Chunky no jogo faz o Distant Horizons chamar a
+# API dele sem servidor rodando (crash ao entrar no mundo).
+$soServidor = @('chunky')
+# Opcional no servidor pelo Modrinth, mas fica so no jogo: no servidor o Distant Horizons geraria terreno
+# distante para todos (pesado com Terralith/Tectonic num PC de casa).
+$soCliente = @('distanthorizons')
+# Opcionais: o packwiz mostra uma janela na primeira abertura para cada um marcar (vem desmarcado). O Iris
+# reserva as texturas do Distant Horizons so por ele estar instalado, e no Mac (16 texturas) o shader nao abre.
+$opcionais = @{ 'distanthorizons' = 'Ver muito mais longe (montanhas no horizonte). No Mac os shaders param de funcionar com ele instalado: escolha um ou outro. No PC funciona junto com shader.' }
+# Pacotes de recursos que ja vem ligados, nesta ordem (o ultimo tem prioridade: Faithful embaixo como base,
+# Fresh Animations em cima para os mobs). O jogar liga os desta lista ate em quem ja tinha options.txt.
+$rpLigados = @('faithful-32x', 'default-dark-mode', 'fast-better-grass', 'simple-grass-flowers', 'better-leaves',
+    '3d-crops', 'better-lanterns', 'cubic-sun-moon', 'fresh-waystones-texture', 'low-shield-pack', 'low-on-fire',
+    'fresh-animations', 'fresh-animations-extensions')
+$linhas = Get-Content (Join-Path $root 'modpack/mods.txt') -Encoding UTF8
 $pedidos = foreach ($l in $linhas) { if ($l -match '^\s*([a-z0-9_-]+)\s*\|') { $matches[1] } }
 
 $vistos = @{}; $projs = [ordered]@{}; $files = @(); $info = @{}; $pwMods = @()
@@ -48,7 +60,7 @@ while ($fila.Count) {
     $deps = @($v.dependencies | Where-Object { $_.dependency_type -eq 'required' -and $_.project_id } | ForEach-Object project_id)
     $deps | ForEach-Object { $fila.Enqueue($_) }
     $projs[$p.id] = [pscustomobject]@{ p = $p; v = $v; f = $f; pasta = $pasta; deps = $deps
-        cliente = $p.client_side -ne 'unsupported' -and $p.slug -notin $soServidor; servidor = $p.server_side -ne 'unsupported' }
+        cliente = $p.client_side -ne 'unsupported' -and $p.slug -notin $soServidor; servidor = $p.server_side -ne 'unsupported' -and $p.slug -notin $soCliente }
     Write-Host ('{0,-30} {1}' -f $p.slug, $v.version_number)
 }
 
@@ -70,7 +82,7 @@ foreach ($x in $projs.Values) {
     $files += [ordered]@{
         path      = "$($x.pasta)/$($f.filename)"
         hashes    = [ordered]@{ sha1 = $f.hashes.sha1; sha512 = $f.hashes.sha512 }
-        env       = [ordered]@{ client = $(if ($x.cliente) { 'required' } else { 'unsupported' }); server = $(if ($x.servidor) { 'required' } else { 'unsupported' }) }
+        env       = [ordered]@{ client = $(if (-not $x.cliente) { 'unsupported' } elseif ($opcionais[$p.slug]) { 'optional' } else { 'required' }); server = $(if ($x.servidor) { 'required' } else { 'unsupported' }) }
         downloads = @($f.url)
         fileSize  = $f.size
     }
@@ -96,27 +108,28 @@ $tmp = Join-Path ([IO.Path]::GetTempPath()) "minezada-pack-$PID"
 New-Item -ItemType Directory -Force $tmp | Out-Null
 [IO.File]::WriteAllText((Join-Path $tmp 'modrinth.index.json'), ($index | ConvertTo-Json -Depth 8), (New-Object Text.UTF8Encoding $false))
 Get-ChildItem (Join-Path $root 'modpack') -Filter *.mrpack | Remove-Item
-$saida = Join-Path $root 'modpack\minezada.mrpack'
-Compress-Archive (Join-Path $tmp 'modrinth.index.json') "$tmp\pack.zip" -Force
-Move-Item "$tmp\pack.zip" $saida
+$saida = Join-Path $root 'modpack/minezada.mrpack'
+Compress-Archive (Join-Path $tmp 'modrinth.index.json') "$tmp/pack.zip" -Force
+Move-Item "$tmp/pack.zip" $saida
 
 # Formato packwiz em modpack/pack: o Prism le pelo link raw do GitHub a cada abertura e sincroniza os mods.
 $utf8 = New-Object Text.UTF8Encoding $false
 function Escrever($caminho, $texto) { [IO.File]::WriteAllText($caminho, $texto.Replace("`r`n", "`n"), $utf8) }
 function Sha256($caminho) { (Get-FileHash $caminho -Algorithm SHA256).Hash.ToLower() }
 function Toml($s) { '"' + $s.Replace('\', '\\').Replace('"', '\"') + '"' }
-$pw = Join-Path $root 'modpack\pack'
+$pw = Join-Path $root 'modpack/pack'
 if (Test-Path $pw) { Remove-Item -Recurse -Force $pw }
 $pastas.Values | ForEach-Object { New-Item -ItemType Directory -Force (Join-Path $pw $_) | Out-Null }
 $idx = "hash-format = `"sha256`"`n"
 foreach ($m in $pwMods) {
     $rel = "$($m.pasta)/$($m.slug).pw.toml"  # o packwiz instala o arquivo na pasta do metafile
-    Escrever (Join-Path $pw $rel) "name = $(Toml $m.titulo)`nfilename = $(Toml $m.arquivo)`nside = `"$($m.lado)`"`n`n[download]`nurl = $(Toml $m.url)`nhash-format = `"sha1`"`nhash = `"$($m.sha1)`"`n"
+    $opc = if ($opcionais[$m.slug]) { "`n[option]`noptional = true`ndefault = false`ndescription = $(Toml $opcionais[$m.slug])`n" } else { '' }
+    Escrever (Join-Path $pw $rel) "name = $(Toml $m.titulo)`nfilename = $(Toml $m.arquivo)`nside = `"$($m.lado)`"`n`n[download]`nurl = $(Toml $m.url)`nhash-format = `"sha1`"`nhash = `"$($m.sha1)`"`n$opc"
     $idx += "`n[[files]]`nfile = `"$rel`"`nhash = `"$(Sha256 (Join-Path $pw $rel))`"`nmetafile = true`n"
 }
 # Arquivos soltos (perfis de grafico etc) de modpack/arquivos vao para o jogo de cada um.
 # preserve = so cria se nao existir: quem recalibrar um perfil nao perde o ajuste na proxima abertura.
-$soltos = Join-Path $root 'modpack\arquivos'
+$soltos = Join-Path $root 'modpack/arquivos'
 if (Test-Path $soltos) {
     foreach ($a in Get-ChildItem $soltos -Recurse -File) {
         $rel = $a.FullName.Substring($soltos.Length + 1).Replace('\', '/')
@@ -131,7 +144,7 @@ Escrever (Join-Path $pw 'pack.toml') "name = `"Minezada`"`nversion = `"$Versao`"
 
 # Instancia do Prism: arrastar o zip no Prism e jogar. O pre-launch roda o packwiz, que baixa/atualiza os mods.
 # shortcut: a versao do NeoForge fica fixa na instancia; se o pack trocar de NeoForge, os jogadores reimportam o zip.
-$boot = Join-Path $root 'tools\packwiz-installer-bootstrap.jar'
+$boot = Join-Path $root 'tools/packwiz-installer-bootstrap.jar'
 if (-not (Test-Path $boot)) {
     New-Item -ItemType Directory -Force (Split-Path $boot) | Out-Null
     Invoke-WebRequest 'https://github.com/packwiz/packwiz-installer-bootstrap/releases/download/v0.0.3/packwiz-installer-bootstrap.jar' -OutFile $boot
@@ -140,21 +153,27 @@ $inst = Join-Path $tmp 'prism'
 New-Item -ItemType Directory -Force (Join-Path $inst '.minecraft') | Out-Null
 Copy-Item $boot (Join-Path $inst '.minecraft')
 Escrever (Join-Path $inst 'instance.cfg') "[General]`nInstanceType=OneSix`nname=Minezada`nOverrideCommands=true`nPreLaunchCommand=`"`$INST_JAVA`" -jar packwiz-installer-bootstrap.jar $packUrl`nOverrideMemory=true`nMinMemAlloc=1024`nMaxMemAlloc=4096`nJoinServerOnLaunch=true`nJoinServerOnLaunchAddress=$servidor`n"
-# servers.dat (NBT sem compressao) com o servidor ja na lista do Multiplayer.
+# servers.dat (NBT sem compressao) com o servidor ja na lista do Multiplayer. A entrada da porta 443 e
+# para redes (faculdade, empresa) que so liberam 80/443 de saida; o host abre as duas por UPnP.
 function NbtStr($ms, $s) { $b = [Text.Encoding]::UTF8.GetBytes($s); $ms.WriteByte($b.Length -shr 8); $ms.WriteByte($b.Length -band 255); $ms.Write($b, 0, $b.Length) }
+$entradas = @(@('Minezada', $servidor), @('Minezada (rede da faculdade)', "${servidor}:443"))
 $ms = New-Object IO.MemoryStream
 $ms.WriteByte(10); NbtStr $ms ''                                                                 # compound raiz
-$ms.WriteByte(9); NbtStr $ms 'servers'; $ms.WriteByte(10); $ms.Write([byte[]](0, 0, 0, 1), 0, 4)  # lista com 1 compound
-$ms.WriteByte(8); NbtStr $ms 'name'; NbtStr $ms 'Minezada'
-$ms.WriteByte(8); NbtStr $ms 'ip'; NbtStr $ms $servidor
-$ms.WriteByte(0); $ms.WriteByte(0)                                                               # fim do servidor e da raiz
-[IO.File]::WriteAllBytes((Join-Path $inst '.minecraft\servers.dat'), $ms.ToArray())
+$ms.WriteByte(9); NbtStr $ms 'servers'; $ms.WriteByte(10); $ms.Write([byte[]](0, 0, 0, $entradas.Count), 0, 4)  # lista de compounds
+foreach ($e in $entradas) {
+    $ms.WriteByte(8); NbtStr $ms 'name'; NbtStr $ms $e[0]
+    $ms.WriteByte(8); NbtStr $ms 'ip'; NbtStr $ms $e[1]
+    $ms.WriteByte(0)                                                                             # fim do servidor
+}
+$ms.WriteByte(0)                                                                                 # fim da raiz
+[IO.File]::WriteAllBytes((Join-Path $inst '.minecraft/servers.dat'), $ms.ToArray())
 # Opcoes iniciais (o jogo completa o resto); o jogar so copia se o jogador ainda nao tiver.
-# Pacotes de recursos do pack ja vem ligados (os ultimos da lista tem prioridade).
-$rp = ($pwMods | Where-Object pasta -eq 'resourcepacks' | ForEach-Object { ",`"file/$($_.arquivo)`"" }) -join ''
-Escrever (Join-Path $inst '.minecraft\options.txt') "lang:pt_br`nrenderDistance:10`nsimulationDistance:8`nresourcePacks:[`"vanilla`"$rp]`n"
+# Pacotes de $rpLigados ja vem ligados. As quatro ultimas opcoes pulam as telas de primeira abertura:
+# acessibilidade, tutorial de movimento e avisos de multiplayer.
+$rp = ($rpLigados | ForEach-Object { $s = $_; $m = $pwMods | Where-Object slug -eq $s; if (-not $m) { throw "Pacote ligado $s nao esta no pack" }; ",`"file/$($m.arquivo)`"" }) -join ''
+Escrever (Join-Path $inst '.minecraft/options.txt') "lang:pt_br`nrenderDistance:10`nsimulationDistance:8`nresourcePacks:[`"vanilla`"$rp]`nonboardAccessibility:false`ntutorialStep:none`njoinedFirstServer:true`nskipMultiplayerWarning:true`n"
 Escrever (Join-Path $inst 'mmc-pack.json') "{`"formatVersion`":1,`"components`":[{`"uid`":`"net.minecraft`",`"version`":`"$mc`",`"important`":true},{`"uid`":`"net.neoforged`",`"version`":`"$neo`"}]}`n"
-$zipPrism = Join-Path $root 'modpack\minezada-prism.zip'
+$zipPrism = Join-Path $root 'modpack/minezada-prism.zip'
 if (Test-Path $zipPrism) { Remove-Item $zipPrism }
 # Zip montado a mao: no PS 5.1 tanto Compress-Archive quanto ZipFile gravam "\" e o Prism no Mac nao entende.
 Add-Type -AssemblyName System.IO.Compression, System.IO.Compression.FileSystem
@@ -179,7 +198,7 @@ foreach ($l in $linhas) {
 }
 $extras = $info.Keys | Where-Object { $_ -notin $pedidos } | Sort-Object
 if ($extras) { $md += '', '## Dependências (entram sozinhas)', '', (($extras | ForEach-Object { "[$($info[$_].titulo)](https://modrinth.com/mod/$_)" }) -join ' · ') }
-$doc = Join-Path $root 'docs\mods.md'
+$doc = Join-Path $root 'docs/mods.md'
 $txt = [IO.File]::ReadAllText($doc)
 if ($txt -notmatch '<!-- mods:inicio -->') { throw 'docs/mods.md sem os marcadores <!-- mods:inicio --> / <!-- mods:fim -->' }
 $novo = [regex]::Replace($txt, '(?s)(<!-- mods:inicio -->).*?(<!-- mods:fim -->)', { param($m) "$($m.Groups[1].Value)`n$($md -join "`n")`n$($m.Groups[2].Value)" })

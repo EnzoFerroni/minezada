@@ -6,10 +6,18 @@ zip_url="https://github.com/EnzoFerroni/minezada/raw/main/modpack/minezada-prism
 # Fork do Prism que aceita conta offline sem conta Microsoft (o Prism oficial abre em modo Demo).
 fork_repo="Diegiwg/PrismLauncher-Cracked"
 
-# 0. Conta. stdin e o proprio script (curl | bash), por isso a resposta vem do terminal.
-printf 'Voce tem Minecraft original (conta Microsoft)? [s/n] '
-read -r resp </dev/tty || resp=s
-case "$resp" in [nN]*) original=0 ;; *) original=1 ;; esac
+# 0. Conta. Launcher ja instalado responde sozinho (reparar nao pergunta de novo). stdin e o
+# proprio script (curl | bash), por isso a resposta vem do terminal.
+if [ -d "$HOME/Applications/Minezada/Prism Launcher.app" ]; then
+  original=0
+elif [ -d "/Applications/Prism Launcher.app" ] || [ -d "$HOME/Applications/Prism Launcher.app" ] \
+  || command -v prismlauncher >/dev/null; then
+  original=1
+else
+  printf 'Voce tem Minecraft original (conta Microsoft)? [s/n] '
+  read -r resp </dev/tty || resp=s
+  case "$resp" in [nN]*) original=0 ;; *) original=1 ;; esac
+fi
 
 # Baixa o Prism do repo $1 (releases do GitHub) para a pasta $2.
 baixar_prism_mac() {
@@ -81,13 +89,33 @@ fi
 cp "$tmp/x/.minecraft/packwiz-installer-bootstrap.jar" "$inst/.minecraft/"
 for f in servers.dat options.txt; do [ -f "$inst/.minecraft/$f" ] || cp "$tmp/x/.minecraft/$f" "$inst/.minecraft/"; done
 # Liga os pacotes de recursos do pack em quem ja tinha options.txt, mantendo os que o jogador ligou.
-# shortcut: nomes de pacote com espaco, & ou | quebram este trecho; trocar por parser de JSON se aparecer um.
+# shortcut: nomes de pacote com virgula quebram este trecho; trocar por parser de JSON se aparecer um.
 opt="$inst/.minecraft/options.txt"
 want="$(sed -n 's/^resourcePacks:\[\(.*\)\]$/\1/p' "$tmp/x/.minecraft/options.txt" | tr ',' '\n')"
 have="$(sed -n 's/^resourcePacks:\[\(.*\)\]$/\1/p' "$opt")"
 [ -n "$have" ] || have='"vanilla"'
-for p in $want; do case ",$have," in *",$p,"*) ;; *) have="$have,$p" ;; esac; done
-if grep -q '^resourcePacks:' "$opt"; then sed -i.bak "s|^resourcePacks:.*|resourcePacks:[$have]|" "$opt" && rm -f "$opt.bak"; else echo "resourcePacks:[$have]" >> "$opt"; fi
+# Mantem os pacotes do jogador na ordem dele e poe os do pack por cima, na ordem do pack (Fresh
+# Animations precisa ficar acima do Faithful). "vanilla" fica onde estava, na base.
+wcsv=",$(printf '%s' "$want" | tr '\n' ','),"
+nova=""
+while IFS= read -r p; do
+  [ -n "$p" ] || continue
+  case "$wcsv" in *",$p,"*) [ "$p" = '"vanilla"' ] && nova="$nova,$p" ;; *) nova="$nova,$p" ;; esac
+done <<EOF
+$(printf '%s' "$have" | tr ',' '\n')
+EOF
+while IFS= read -r p; do
+  [ -n "$p" ] && [ "$p" != '"vanilla"' ] && nova="$nova,$p"
+done <<EOF
+$want
+EOF
+have="${nova#,}"
+# awk com ENVIRON: o nome do pacote vai literal (sed trataria & e | como especiais).
+if grep -q '^resourcePacks:' "$opt"; then
+  RP="resourcePacks:[$have]" awk '/^resourcePacks:/ { print ENVIRON["RP"]; next } { print }' "$opt" > "$opt.tmp" && mv "$opt.tmp" "$opt"
+else
+  echo "resourcePacks:[$have]" >> "$opt"
+fi
 rm -rf "$tmp"
 
 # 4. Atalho na Mesa (Mac) que abre direto o jogo.

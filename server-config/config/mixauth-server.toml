@@ -1,0 +1,24 @@
+# MixAuth (login). Copiado para server/config/ a cada start: edite aqui, nao em server/config/.
+[database]
+path = "mixauth/mixauth"
+
+[offline_login]
+max_login_attempts = 5
+temporary_block_minutes = 5
+# Mesmo nick + mesmo IP entra sem senha durante 7 dias.
+trusted_login_window_hours = 168
+login_timeout_minutes = 5
+prompt_interval_seconds = 5
+bcrypt_cost = 12
+min_password_length = 4
+max_password_length = 72
+password_blacklist_path = "mixauth/password_blacklist.txt"
+
+[online_validation]
+connect_timeout_seconds = 10
+request_timeout_seconds = 10
+pending_handshake_ttl_seconds = 120
+
+[localization]
+default_language = "pt_br"
+auto_detect_player_language = true
