@@ -2,17 +2,14 @@
 
 ## Primeira vez numa máquina
 
-Peça a pasta `minezada` do Google Drive para quem já hospeda (ver [requisitos](requisitos.md)).
-
-```sh
-git clone https://github.com/EnzoFerroni/minezada
-```
-
-Windows sem Git: `winget install -e --id Git.Git` antes.
+Rode o comando de hospedar do [README](../README.md). Ele instala o Git (Windows) ou as ferramentas
+de linha de comando da Apple (Mac), baixa o repo em `Minezada-servidor` na pasta do usuário e cria o
+atalho **Hospedar Minezada**. Na primeira vez ele oferece configurar o Google Drive: clique em
+"Solicitar acesso" na pasta e avise o dono.
 
 ## Rodar
 
-Duplo clique em `iniciar.bat` (Windows) ou `iniciar.command` (Mac). O script:
+Clique em **Hospedar Minezada** (ou `iniciar.bat` / `iniciar.command` na pasta do repo). O script:
 
 1. Atualiza o repo (`git pull`)
 2. Na primeira vez: cria `config.env` (RAM, pasta do Drive, token do DuckDNS) e pergunta do EULA
