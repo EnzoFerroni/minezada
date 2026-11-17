@@ -134,9 +134,33 @@ main() {
     # Reaponta o nome para este host e repete a cada 5 min caso o IP mude durante a sessao.
     ( while true; do curl -fsS "$url" >/dev/null 2>&1 || true; sleep 300; done ) &
     ddns_pid=$!
-    trap 'kill $ddns_pid 2>/dev/null || true' EXIT
     echo "Endereco do servidor: ${DUCKDNS_DOMAIN}.duckdns.org"
   fi
+
+  # Anuncia o servidor na rede local como o "Abrir para LAN" do jogo: quem esta na mesma rede ve
+  # "Minezada" sozinho em Multijogador, sem digitar IP.
+  lan_pid=""
+  if [ "$(uname -s)" != "Darwin" ] || xcode-select -p >/dev/null 2>&1; then
+    if command -v python3 >/dev/null; then
+      python3 -c '
+import socket, sys, time
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 1)
+try:
+    s.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_IF, socket.inet_aton(sys.argv[1]))
+except OSError:
+    pass
+msg = ("[MOTD]Minezada[/MOTD][AD]" + sys.argv[2] + "[/AD]").encode()
+while True:
+    try:
+        s.sendto(msg, ("224.0.2.60", 4445))
+    except OSError:
+        pass
+    time.sleep(1.5)' "${ip:-0.0.0.0}" "$porta" >/dev/null 2>&1 &
+      lan_pid=$!
+    fi
+  fi
+  trap 'kill $ddns_pid $lan_pid 2>/dev/null || true' EXIT
 
   echo "Iniciando servidor com $RAM de RAM. Digite 'stop' para desligar e salvar."
   # caffeinate impede o Mac de dormir enquanto o servidor roda. String sem aspas de proposito:
@@ -148,7 +172,7 @@ main() {
   (cd "$server" && $cafe "$JAVA" "-Xms$RAM" "-Xmx$RAM" $flags "@libraries/net/neoforged/neoforge/$neo/unix_args.txt" nogui) || true
   trap - INT
 
-  [ -n "$ddns_pid" ] && kill "$ddns_pid" 2>/dev/null || true
+  kill $ddns_pid $lan_pid 2>/dev/null || true
   porta_upnp fechar "$ip" $porta || true
 
   if [ -n "$SYNC_DIR" ]; then

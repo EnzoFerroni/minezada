@@ -272,6 +272,15 @@ if ($cfg.DUCKDNS_TOKEN) {
     Write-Host "Endereco do servidor: $($cfg.DUCKDNS_DOMAIN).duckdns.org"
 }
 
+# Anuncia o servidor na rede local como o "Abrir para LAN" do jogo: quem esta na mesma rede ve
+# "Minezada" sozinho em Multijogador, sem digitar IP.
+$lan = Start-Job -ArgumentList $porta {
+    param($p)
+    $u = New-Object Net.Sockets.UdpClient
+    $m = [Text.Encoding]::UTF8.GetBytes("[MOTD]Minezada[/MOTD][AD]$p[/AD]")
+    while ($true) { try { [void]$u.Send($m, $m.Length, '224.0.2.60', 4445) } catch {}; Start-Sleep -Milliseconds 1500 }
+}
+
 # Impede o Windows de suspender enquanto o servidor roda (tela pode apagar).
 Add-Type -Name Energia -Namespace Minezada -MemberDefinition '[DllImport("kernel32.dll")] public static extern uint SetThreadExecutionState(uint f);'
 [void][Minezada.Energia]::SetThreadExecutionState(2147483649)  # 0x80000001 = ES_CONTINUOUS | ES_SYSTEM_REQUIRED (hex vira negativo no PS 5.1)
@@ -287,6 +296,7 @@ finally {
     Pop-Location
     [void][Minezada.Energia]::SetThreadExecutionState(2147483648)  # 0x80000000 = volta ao normal
     if ($ddns) { Stop-Job $ddns; Remove-Job $ddns }
+    Stop-Job $lan; Remove-Job $lan
     [void](Porta-UPnP $false)
     if ($sync) {
         Write-Host 'Enviando mundo para a pasta sincronizada...'

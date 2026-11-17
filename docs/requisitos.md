@@ -55,8 +55,10 @@ host com `DUCKDNS_TOKEN` no `config.env` grava o arquivo lá, e os outros hosts 
 
 Teste: com o servidor no ar, um celular no 4G (Wi-Fi desligado) consegue conectar.
 
-Na mesma casa do host o endereço público pode não funcionar (roteador sem NAT loopback, como o da
-operadora): entre por `localhost` na máquina do host ou pelo IP local que o `iniciar` mostra.
+Na mesma rede do host (casa, laboratório) o servidor aparece sozinho em **Multijogador**, na parte
+de LAN: o `iniciar` anuncia ele como o "Abrir para LAN" do jogo. O endereço público pode não
+funcionar ali (roteador sem NAT loopback, como o da operadora). Se a rede bloquear o anúncio (Wi-Fi com
+isolamento entre aparelhos), use `localhost` na máquina do host ou o IP local que o `iniciar` mostra.
 
 **CGNAT** (IP WAN do roteador ≠ IP de https://api.ipify.org): abrir porta não funciona. Saída:
 [playit.gg](https://playit.gg) (túnel). No plano grátis o túnel fica fora do Brasil (relatos de
