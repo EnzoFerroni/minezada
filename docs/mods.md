@@ -9,7 +9,7 @@
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.266 · pack `2026.11.17.7` · 34 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.8` · 60 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
 
 ## Aprender e guias
 
@@ -113,6 +113,164 @@ Uma dimensão no céu, com ilhas flutuantes, mobs, chefes e itens novos. Portal:
 
 <sub>Versão `1.21.1-1.5.10-neoforge`</sub>
 
+## Biomas e terreno
+
+### <img src="https://cdn.modrinth.com/data/8oi3bsk5/1959d924a1088944bbf07a06ba523726112d7e7a_96.webp" width="28" align="center"> [Terralith](https://modrinth.com/mod/terralith)
+
+Quase 100 biomas novos no estilo vanilla: desfiladeiros, ilhas, florestas de cerejeira gigantes, cavernas novas.
+
+<img src="https://cdn.modrinth.com/data/8oi3bsk5/images/c4168f5d280c85e0e3d050bb8f3bc776fd0762d4_350.webp" width="480">
+
+<sub>Versão `2.6.2`</sub>
+
+### <img src="https://cdn.modrinth.com/data/lWDHr9jE/d8b3413f797479dcc0d8764756613e449a358a2e_96.webp" width="28" align="center"> [Tectonic](https://modrinth.com/mod/tectonic)
+
+Terreno mais bonito e variado: montanhas altas, vales, rios largos e litoral mais natural.
+
+<img src="https://cdn.modrinth.com/data/lWDHr9jE/images/f58d0d6af34191ac2fc45e13d080f64696ea11ba_350.webp" width="480">
+
+<sub>Versão `3.0.28-neoforge-21.1`</sub>
+
+## Estruturas
+
+### <img src="https://cdn.modrinth.com/data/o1C1Dkj5/9b54b2d932a5a5b6565c93814935c04902f3179b_96.webp" width="28" align="center"> [YUNG's Better Dungeons](https://modrinth.com/mod/yungs-better-dungeons)
+
+Masmorras reformuladas: maiores, com armadilhas e tesouros melhores.
+
+<img src="https://cdn.modrinth.com/data/o1C1Dkj5/images/1a3ee86e7269bd3703d8ece03cf897b70d2188df_350.webp" width="480">
+
+<sub>Versão `1.21.1-NeoForge-5.1.4`</sub>
+
+### <img src="https://cdn.modrinth.com/data/HjmxVlSr/4e41ef8344db48b8368cd3d6f35844c8a619f446_96.webp" width="28" align="center"> [YUNG's Better Mineshafts](https://modrinth.com/mod/yungs-better-mineshafts)
+
+Minas abandonadas que mudam conforme o bioma, com trilhos, elevadores e baús.
+
+<img src="https://cdn.modrinth.com/data/HjmxVlSr/images/c7e1ce6a2349020210f1bfdff1782fc70b4b01d3_350.webp" width="480">
+
+<sub>Versão `1.21.1-NeoForge-5.1.1`</sub>
+
+### <img src="https://cdn.modrinth.com/data/kidLKymU/bfb3cac4ca4d7d891fbbcb34a1d61eaa1d6f3e9a_96.webp" width="28" align="center"> [YUNG's Better Strongholds](https://modrinth.com/mod/yungs-better-strongholds)
+
+Fortaleza do End maior e mais perigosa, com bibliotecas e salas novas.
+
+<img src="https://cdn.modrinth.com/data/kidLKymU/images/8c0bd0448a8e3ebf0abb741b225e19dd46b82dad_350.webp" width="480">
+
+<sub>Versão `1.21.1-NeoForge-5.1.3`</sub>
+
+### <img src="https://cdn.modrinth.com/data/3dT9sgt4/05c04c64ab9e5bf523701fa7bc0ac54adec25337_96.webp" width="28" align="center"> [YUNG's Better Ocean Monuments](https://modrinth.com/mod/yungs-better-ocean-monuments)
+
+Monumentos do oceano mais detalhados e com mais salas.
+
+<img src="https://cdn.modrinth.com/data/3dT9sgt4/images/f4cd2bbe82593190c58cb124d1b4d386d6184251_350.webp" width="480">
+
+<sub>Versão `1.21.1-NeoForge-4.1.2`</sub>
+
+### <img src="https://cdn.modrinth.com/data/XNlO7sBv/32fc82949e922ad9281ac9a8fe965afc04261848_96.webp" width="28" align="center"> [YUNG's Better Desert Temples](https://modrinth.com/mod/yungs-better-desert-temples)
+
+Templos do deserto com labirintos, armadilhas e uma câmara do tesouro.
+
+<img src="https://cdn.modrinth.com/data/XNlO7sBv/images/ecb046381f193016de03b7b988367e99f6f7dd32_350.webp" width="480">
+
+<sub>Versão `1.21.1-NeoForge-4.1.5`</sub>
+
+### <img src="https://cdn.modrinth.com/data/z9Ve58Ih/a142b7d112fe6812592de7db2d2badb1398100a7_96.webp" width="28" align="center"> [YUNG's Better Jungle Temples](https://modrinth.com/mod/yungs-better-jungle-temples)
+
+Templos da selva maiores, com quebra-cabeças.
+
+<img src="https://cdn.modrinth.com/data/z9Ve58Ih/images/a117c045615cda0771d7fa6729be69528c6c6150_350.webp" width="480">
+
+<sub>Versão `1.21.1-NeoForge-3.1.2`</sub>
+
+### <img src="https://cdn.modrinth.com/data/t5FRdP87/20d3e930ec0a010723df61df091160104294e0b0_96.webp" width="28" align="center"> [YUNG's Better Witch Huts](https://modrinth.com/mod/yungs-better-witch-huts)
+
+Cabanas de bruxa novas para cada tipo de pântano.
+
+<img src="https://cdn.modrinth.com/data/t5FRdP87/images/6dfeaa2a57220ea22a7c03bc850582ef3bc649c1_350.webp" width="480">
+
+<sub>Versão `1.21.1-NeoForge-4.1.1`</sub>
+
+### <img src="https://cdn.modrinth.com/data/Z2mXHnxP/3c88dd70c00b5e47addd9fdeba53a7c96076088d_96.webp" width="28" align="center"> [YUNG's Better Nether Fortresses](https://modrinth.com/mod/yungs-better-nether-fortresses)
+
+Fortalezas do Nether reformuladas, mais bonitas e com mais loot.
+
+<img src="https://cdn.modrinth.com/data/Z2mXHnxP/images/40817bd0e6fcbc93590e29d808ecd2a3b3d55fe1_350.webp" width="480">
+
+<sub>Versão `1.21.1-NeoForge-3.1.5`</sub>
+
+### <img src="https://cdn.modrinth.com/data/DjLobEOy/f7f552ec019c9ad8b777c9ab5eecbb95da8707a0_96.webp" width="28" align="center"> [Towns and Towers](https://modrinth.com/mod/towns-and-towers)
+
+Vilas novas por bioma, torres de saqueadores e navios pelo mundo.
+
+<img src="https://cdn.modrinth.com/data/DjLobEOy/images/0e4c729894ecbced522d04057c8b60af22d28b96_350.webp" width="480">
+
+<sub>Versão `1.13.11`</sub>
+
+### <img src="https://cdn.modrinth.com/data/HSfsxuTo/e036a417f857abd937326db5c131296ad88bad5b_96.webp" width="28" align="center"> [Explorify](https://modrinth.com/mod/explorify)
+
+Estruturas pequenas espalhadas pelo mundo (ruínas, acampamentos, poços) para dar vontade de explorar.
+
+<img src="https://cdn.modrinth.com/data/HSfsxuTo/images/ca1549848b1aa4ecfdd8c2d750c7b25a762f6131_350.webp" width="480">
+
+<sub>Versão `v1.6.6`</sub>
+
+## Visual e ambiente
+
+### <img src="https://cdn.modrinth.com/data/50dA9Sha/3132c10e9e3c73fde9799720fd3da5561071708c_96.webp" width="28" align="center"> [Fresh Animations](https://modrinth.com/mod/fresh-animations)
+
+Pacote de recursos (já vem ligado): mobs com animações muito mais vivas, piscando e se mexendo.
+
+<img src="https://cdn.modrinth.com/data/50dA9Sha/images/26e5c0a8a65d421b1111e2c68880f1d657fdc920_350.webp" width="480">
+
+<sub>Versão `1.11.2` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/4I1XuqiY/6e5bbd0d06b1741bfdab6c0cfab6de8fdaf0064c_96.webp" width="28" align="center"> [[EMF] Entity Model Features](https://modrinth.com/mod/entity-model-features)
+
+Necessário para o Fresh Animations funcionar.
+
+<img src="https://cdn.modrinth.com/data/4I1XuqiY/images/ba682dbb4d4ff5df8900987e6d8e86f4997fc119_350.webp" width="480">
+
+<sub>Versão `3.3.12-neoforge-1.21` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/zV5r3pPn/ff7010d4ec0275609866c8b0f603b25e25949c08_96.webp" width="28" align="center"> [3D Skin Layers](https://modrinth.com/mod/3dskinlayers)
+
+As camadas da skin (jaqueta, chapéu) aparecem em 3D.
+
+<img src="https://cdn.modrinth.com/data/zV5r3pPn/images/5fedc9267a2e550c4e8f2e6a53b31b4286e728cb_350.webp" width="480">
+
+<sub>Versão `1.11.4` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/fM515JnW/9a8eca9c055ec1dd753a7209210fcb22a2d40ff7_96.webp" width="28" align="center"> [AmbientSounds](https://modrinth.com/mod/ambientsounds)
+
+Sons de ambiente: vento, pássaros, grilos, água, cavernas.
+
+<sub>Versão `6.3.11` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/PxQSWIcD/a5ab5515213391934e18baaf487c87e4b24ebfa3_96.webp" width="28" align="center"> [Sodium Dynamic Lights](https://modrinth.com/mod/sodium-dynamic-lights)
+
+Tocha ou lanterna na mão ilumina ao redor enquanto você anda.
+
+<img src="https://cdn.modrinth.com/data/PxQSWIcD/images/bf198f89bf08b1e43a67d8da3038c5b32c8f7ce3_350.webp" width="480">
+
+<sub>Versão `neoforge-1.21.1-1.0.10` · só no jogo de cada um, não no servidor</sub>
+
+## Shaders (vêm desligados)
+
+### <img src="https://cdn.modrinth.com/data/HVnmMxH1/79cb7c8123bbc54945305b2ebad6b8881efdf5f8_96.webp" width="28" align="center"> [Complementary Shaders - Reimagined](https://modrinth.com/mod/complementary-reimagined)
+
+Shader bonito e leve, funciona no Mac. Ligue em Opções → Vídeo → Shader Packs.
+
+<img src="https://cdn.modrinth.com/data/HVnmMxH1/images/111e76bfa966c68b3581a93f7322588e642ce4db_350.webp" width="480">
+
+<sub>Versão `r5.9.3` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/izsIPI7a/a08432baa86b8ffd58c08f4b3a001ef976ff764d_96.webp" width="28" align="center"> [MakeUp - Ultra Fast](https://modrinth.com/mod/makeup-ultra-fast-shaders)
+
+Shader bem leve para computadores mais fracos.
+
+<img src="https://cdn.modrinth.com/data/izsIPI7a/images/97776ad4f19f734243dbb301feaf81c327bae96b_350.webp" width="480">
+
+<sub>Versão `9.6` · só no jogo de cada um, não no servidor</sub>
+
 ## Mundo e facilidade
 
 ### <img src="https://cdn.modrinth.com/data/LOpKHB2A/d56c030a875582aff5bab477ddcfec317a1610f0_96.webp" width="28" align="center"> [Waystones](https://modrinth.com/mod/waystones)
@@ -215,5 +373,5 @@ Shaders opcionais (vêm desligados). Ative em Opções → Vídeo → Shader Pac
 
 ## Dependências (entram sozinhas)
 
-[Balm](https://modrinth.com/mod/balm) · [Kotlin for Forge](https://modrinth.com/mod/kotlin-for-forge) · [KotlinLangForge](https://modrinth.com/mod/kotlin-lang-forge) · [libIPN](https://modrinth.com/mod/libipn) · [MezzConfig](https://modrinth.com/mod/mezzconfig) · [oωo (owo-lib)](https://modrinth.com/mod/owo-lib) · [Sophisticated Core](https://modrinth.com/mod/sophisticated-core)
+[Balm](https://modrinth.com/mod/balm) · [Cloth Config API](https://modrinth.com/mod/cloth-config) · [CreativeCore](https://modrinth.com/mod/creativecore) · [Cristel Lib](https://modrinth.com/mod/cristel-lib) · [[ETF] Entity Texture Features](https://modrinth.com/mod/entitytexturefeatures) · [Kotlin for Forge](https://modrinth.com/mod/kotlin-for-forge) · [KotlinLangForge](https://modrinth.com/mod/kotlin-lang-forge) · [libIPN](https://modrinth.com/mod/libipn) · [Lithostitched](https://modrinth.com/mod/lithostitched) · [MezzConfig](https://modrinth.com/mod/mezzconfig) · [oωo (owo-lib)](https://modrinth.com/mod/owo-lib) · [Sodium Options API](https://modrinth.com/mod/sodium-options-api) · [Sophisticated Core](https://modrinth.com/mod/sophisticated-core) · [YUNG's API](https://modrinth.com/mod/yungs-api)
 <!-- mods:fim -->

@@ -25,6 +25,33 @@ wyrmroost | Dragões de vários tipos pelo mundo. Pegue um ovo, choque, crie o f
 ## Dimensões
 aether | Uma dimensão no céu, com ilhas flutuantes, mobs, chefes e itens novos. Portal: moldura de glowstone e um balde de água dentro.
 
+## Biomas e terreno
+terralith | Quase 100 biomas novos no estilo vanilla: desfiladeiros, ilhas, florestas de cerejeira gigantes, cavernas novas.
+tectonic | Terreno mais bonito e variado: montanhas altas, vales, rios largos e litoral mais natural.
+
+## Estruturas
+yungs-better-dungeons | Masmorras reformuladas: maiores, com armadilhas e tesouros melhores.
+yungs-better-mineshafts | Minas abandonadas que mudam conforme o bioma, com trilhos, elevadores e baús.
+yungs-better-strongholds | Fortaleza do End maior e mais perigosa, com bibliotecas e salas novas.
+yungs-better-ocean-monuments | Monumentos do oceano mais detalhados e com mais salas.
+yungs-better-desert-temples | Templos do deserto com labirintos, armadilhas e uma câmara do tesouro.
+yungs-better-jungle-temples | Templos da selva maiores, com quebra-cabeças.
+yungs-better-witch-huts | Cabanas de bruxa novas para cada tipo de pântano.
+yungs-better-nether-fortresses | Fortalezas do Nether reformuladas, mais bonitas e com mais loot.
+towns-and-towers | Vilas novas por bioma, torres de saqueadores e navios pelo mundo.
+explorify | Estruturas pequenas espalhadas pelo mundo (ruínas, acampamentos, poços) para dar vontade de explorar.
+
+## Visual e ambiente
+fresh-animations | Pacote de recursos (já vem ligado): mobs com animações muito mais vivas, piscando e se mexendo.
+entity-model-features | Necessário para o Fresh Animations funcionar.
+3dskinlayers | As camadas da skin (jaqueta, chapéu) aparecem em 3D.
+ambientsounds | Sons de ambiente: vento, pássaros, grilos, água, cavernas.
+sodium-dynamic-lights | Tocha ou lanterna na mão ilumina ao redor enquanto você anda.
+
+## Shaders (vêm desligados)
+complementary-reimagined | Shader bonito e leve, funciona no Mac. Ligue em Opções → Vídeo → Shader Packs.
+makeup-ultra-fast-shaders | Shader bem leve para computadores mais fracos.
+
 ## Mundo e facilidade
 waystones | Pedras de teleporte: ative nas suas bases e em vilas e viaje entre elas.
 xaeros-minimap | Minimapa no canto da tela, com marcadores (waypoints) e marcação de onde você morreu.

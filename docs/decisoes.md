@@ -31,7 +31,10 @@ dragão para domar, criar como pet e voar, mods que deixam o jogo mais leve e f�
 | Dragão pet que voa | Wyrmroost (choca ovo, cria, cresce, monta e voa) | Cobblemon (Pokémon fugia do estilo do pack), Ice and Fire e Dragon Mounts (sem versão NeoForge 1.21.1), Tiny Dragons (não voa) |
 | Upgrade de baú | Sophisticated Storage já faz: itens de upgrade de tier (madeira → ferro → ouro → diamante → netherite) aplicados no baú sem tirar os itens | Iron Chests (redundante) |
 | Dimensões novas | The Aether | Twilight Forest (só no CurseForge, e o `.mrpack` só baixa do Modrinth), Blue Skies e Deeper and Darker (sem versão NeoForge 1.21.1), Bumblezone (disponível; fica como opção) |
-| Facilidade | Waystones, Xaero's Minimap/World Map, Corpse, Mouse Tweaks, Inventory Profiles Next, Farmer's Delight | Gravestone (Corpse é mais simples) |
+| Biomas e terreno | Terralith + Tectonic (vanilla+, roda só no servidor) | Biomes O' Plenty e Oh The Biomes We've Gone (mais pesados e fogem do visual vanilla) |
+| Estruturas | Série YUNG's, Towns and Towers, Explorify (só no servidor) | Repurposed Structures (muita coisa, pesa na geração) |
+| Visual e ambiente | Fresh Animations (ligado por padrão) + EMF/ETF, 3D Skin Layers, Ambient Sounds, Sodium Dynamic Lights | Continuity (no NeoForge exige o Sinytra Connector, instável), Falling Leaves (port NeoForge pouco usado) |
+| Shaders | Complementary Reimagined e MakeUp Ultra Fast, instalados e desligados | Ligados por padrão (pesam em Mac e PC fraco) || Facilidade | Waystones, Xaero's Minimap/World Map, Corpse, Mouse Tweaks, Inventory Profiles Next, Farmer's Delight | Gravestone (Corpse é mais simples) |
 | Desempenho | Sodium, Lithium, FerriteCore, ModernFix, EntityCulling, ImmediatelyFast, Iris (shaders opcionais) | - |
 
 Lista completa com versões e links: seção **Mods** do [README](../README.md).
@@ -67,3 +70,4 @@ Lista completa com versões e links: seção **Mods** do [README](../README.md).
 | 2026-11-17 | 2026.11.17.5 | Comando de jogar instala sem diálogo, pré-configura o Prism (pt-BR, Java automático), cria atalho e abre o jogo; checksum do mrpack-install. |
 | 2026-11-17 | 2026.11.17.6 | NeoForge escolhido pelo meta do Prism (21.1.266): o 21.1.267 ainda não estava lá e a instância não abria. |
 | 2026-11-17 | 2026.11.17.7 | Memória do jogo 4 GB (6 GB disparava o aviso de pouca RAM do Prism em máquinas de 16 GB). |
+| 2026-11-17 | 2026.11.17.8 | + Terralith, Tectonic, estruturas (YUNG's, Towns and Towers, Explorify), Fresh Animations, 3D Skin Layers, Ambient Sounds, luz dinâmica e shaders desligados. Mundo novo. Servidor testado. |

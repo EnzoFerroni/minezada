@@ -66,6 +66,101 @@ hash = "ee0793ec5d025f9101737934684bd5a16ca64843f460df7053b05c9a5f8830cb"
 metafile = true
 
 [[files]]
+file = "mods/terralith.pw.toml"
+hash = "4cb370b7ea368c9bdce93e2fb80e2009506020aef7c279151759bbf01085af0f"
+metafile = true
+
+[[files]]
+file = "mods/tectonic.pw.toml"
+hash = "34de2c30e648e8df3fe23f1436c3c936c43ab769851af6bc0727d03fe6fcd71d"
+metafile = true
+
+[[files]]
+file = "mods/yungs-better-dungeons.pw.toml"
+hash = "1528ef0f771341b825b7446c59b30d3512e814153bcdcb7261c727e47ec50265"
+metafile = true
+
+[[files]]
+file = "mods/yungs-better-mineshafts.pw.toml"
+hash = "66fed5777e486a31c44135a3a03cfe5dd4cc9ea5bd059407feaa1ae702c9ec3a"
+metafile = true
+
+[[files]]
+file = "mods/yungs-better-strongholds.pw.toml"
+hash = "5ad7738f061dd46660eb7e4ebbcafc84630a4bed770f5f690c222716fecd4778"
+metafile = true
+
+[[files]]
+file = "mods/yungs-better-ocean-monuments.pw.toml"
+hash = "8dec66fc0b007e7c8d779bc87caddb6564bdce37151ebd290c00d734cbabe594"
+metafile = true
+
+[[files]]
+file = "mods/yungs-better-desert-temples.pw.toml"
+hash = "3c28d94d9a0db2bf0d22a552fc4d2abd13752e7cd0000e5ccd1f49ef41db673e"
+metafile = true
+
+[[files]]
+file = "mods/yungs-better-jungle-temples.pw.toml"
+hash = "8467a2937ba8a904f780e43d4601402e986dc8deb7619edd9e22783c80d3fb24"
+metafile = true
+
+[[files]]
+file = "mods/yungs-better-witch-huts.pw.toml"
+hash = "ded6262ae68c764f3cd5bbc02321f17deb93b2b366bb503d7fb1d9597c079fa4"
+metafile = true
+
+[[files]]
+file = "mods/yungs-better-nether-fortresses.pw.toml"
+hash = "e133c94fbceec277e8d7465120aae1c4656448b4eb19f073947fb074cc8f8f3f"
+metafile = true
+
+[[files]]
+file = "mods/towns-and-towers.pw.toml"
+hash = "dac27ad541fbf3e31151cca6f10746c7248f8242641f02e423be62a4678c9172"
+metafile = true
+
+[[files]]
+file = "mods/explorify.pw.toml"
+hash = "dce5bcf1cd03b38505ad36b6e1654d3f356699cd6844ab45b272ebefb7c12cb0"
+metafile = true
+
+[[files]]
+file = "resourcepacks/fresh-animations.pw.toml"
+hash = "1ec95661499ec770d57c07d7d8cd0cf3db54b121ef6a1a728c1fa6f9618660e3"
+metafile = true
+
+[[files]]
+file = "mods/entity-model-features.pw.toml"
+hash = "91f488500c91e89953b71b53a750ae34bce1cf49d8e9580297f29bda41581bbf"
+metafile = true
+
+[[files]]
+file = "mods/3dskinlayers.pw.toml"
+hash = "c578d5b94dac801e6821d223d938aa8811dd2d0c447172a4fc0cb56228f4e4f1"
+metafile = true
+
+[[files]]
+file = "mods/ambientsounds.pw.toml"
+hash = "0c5f0bcdc0bf32e2d81c9fabe8645a73cdb58bd0d54764d605bde09c25b5383b"
+metafile = true
+
+[[files]]
+file = "mods/sodium-dynamic-lights.pw.toml"
+hash = "660291181480b64e5a68b4b472a8bcaaf7ada27ef01c883c22eb21b9c94d4564"
+metafile = true
+
+[[files]]
+file = "shaderpacks/complementary-reimagined.pw.toml"
+hash = "cde29e11964d8e7226791a5a6d29ff853d02e4579a9cd835b04b5da6ba3ff942"
+metafile = true
+
+[[files]]
+file = "shaderpacks/makeup-ultra-fast-shaders.pw.toml"
+hash = "18490a30ec3bd1b4017df5903cc01739b7080d18642491ae204d04a1e5a44356"
+metafile = true
+
+[[files]]
 file = "mods/waystones.pw.toml"
 hash = "426ed3dd46017944747f0601f8832d6f7d7b84aa6efbcb1d0b2ba7cc574b5156"
 metafile = true
@@ -156,6 +251,36 @@ hash = "0d76c01b16356f56f1b543efe1e3fec448868cea02dfc6d2a0698834e787a36f"
 metafile = true
 
 [[files]]
+file = "mods/lithostitched.pw.toml"
+hash = "c6c5ef0b4194e805eefcb3805f9d45167ef13bebefb5ede2215f8fb2caa7b16a"
+metafile = true
+
+[[files]]
+file = "mods/yungs-api.pw.toml"
+hash = "b305ea7f916e38fa6f2df94f2a032ba20552eb0ddae1fd10a31a1344e50fd8ff"
+metafile = true
+
+[[files]]
+file = "mods/cristel-lib.pw.toml"
+hash = "6cc162fb00a9c1b742c55963086994ee327099dbaea65bc0d33851c8c8c083a7"
+metafile = true
+
+[[files]]
+file = "mods/entitytexturefeatures.pw.toml"
+hash = "b4e34326d5e45c1286dbbd5dd815ecbd6bef5dce4a3be4814db431a21d12b517"
+metafile = true
+
+[[files]]
+file = "mods/creativecore.pw.toml"
+hash = "79d91006767e6c59f8e25f2d78dcdf3c1092e07a05de254b5cc653c9954bed3b"
+metafile = true
+
+[[files]]
+file = "mods/sodium-options-api.pw.toml"
+hash = "b7ba5b4b5ac6f521df09fa76a1181ba9fde0e15766f6ed5601f50e17b59d873f"
+metafile = true
+
+[[files]]
 file = "mods/balm.pw.toml"
 hash = "88215cb6e2dd2f9457d7424e0239c945ea61efa3fe25becc52c1ca04441f2037"
 metafile = true
@@ -168,4 +293,9 @@ metafile = true
 [[files]]
 file = "mods/libipn.pw.toml"
 hash = "27abe179f7e606bb1e1b572826de12262d6e7a3c7a89c24fdd27fd88171537d1"
+metafile = true
+
+[[files]]
+file = "mods/cloth-config.pw.toml"
+hash = "ae112eb85ca8343d2f2c1829427d84e73a1c4020fb5c71341039580cfae63ba9"
 metafile = true
