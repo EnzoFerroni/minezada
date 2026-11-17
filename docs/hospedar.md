@@ -17,7 +17,9 @@ Duplo clique em `iniciar.bat` (Windows) ou `iniciar.command` (Mac). O script:
 1. Atualiza o repo (`git pull`)
 2. Na primeira vez: cria `config.env` (RAM, pasta do Drive, token do DuckDNS) e pergunta do EULA
 3. Instala o Java se faltar
-4. Instala/atualiza servidor, NeoForge e mods ([mrpack-install](https://github.com/nothub/mrpack-install))
+4. Instala/atualiza servidor, NeoForge e mods: no Windows com o
+   [mrpack-install](https://github.com/nothub/mrpack-install); no Mac com o instalador do NeoForge e o
+   packwiz (o mrpack-install falha no DNS de roteadores como o da operadora)
 5. Baixa o mundo do Drive e trava para ninguém mais hospedar junto
 6. Libera o firewall, abre a porta no roteador (UPnP) e aponta `minezada-mc.duckdns.org` para
    esta máquina
