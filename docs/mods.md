@@ -9,7 +9,7 @@
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.4` · 34 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.5` · 34 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
 
 ## Aprender e guias
 

@@ -4,7 +4,7 @@
 
 ## Jogar
 
-Precisa do Minecraft Java original. Rode uma vez:
+Precisa do Minecraft Java original. Rode o comando:
 
 **Windows** (PowerShell)
 
@@ -18,8 +18,9 @@ irm https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.ps1 | iex
 curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.sh | bash
 ```
 
-No Prism: confirme a importação, entre com a conta Microsoft e abra **Minezada**. O jogo entra
-direto no servidor e os mods se atualizam sozinhos.
+Ele instala tudo e abre o jogo. Na primeira vez entre com a conta Microsoft. Depois é só clicar
+em **Minezada** na Área de Trabalho: o jogo entra direto no servidor e os mods se atualizam
+sozinhos. Algo quebrou? Rode o comando de novo.
 
 ## Hospedar
 

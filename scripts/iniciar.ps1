@@ -96,6 +96,10 @@ if (-not (Test-Path $exe)) {
     New-Item -ItemType Directory -Force $tools | Out-Null
     $zip = Join-Path $tools 'mrpack-install.zip'
     Invoke-WebRequest "https://github.com/nothub/mrpack-install/releases/download/v$mrpackVersion/mrpack-install_${mrpackVersion}_windows_amd64.zip" -OutFile $zip
+    # SHA-256 do checksums.txt oficial da release: so roda o binario se bater.
+    if ((Get-FileHash $zip -Algorithm SHA256).Hash -ne '91ceaf0843aa66dc2f001dc11d26d557871a507e67f4097306cad30da221e026') {
+        Remove-Item $zip; throw 'Checksum do mrpack-install nao confere (download corrompido ou adulterado).'
+    }
     Expand-Archive $zip $tools -Force
     Remove-Item $zip
 }
