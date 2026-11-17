@@ -1,0 +1,12 @@
+renderDistance:6
+simulationDistance:5
+graphicsMode:0
+ao:false
+particles:2
+entityShadows:false
+biomeBlendRadius:0
+mipmapLevels:0
+entityDistanceScaling:0.75
+renderClouds:"false"
+maxFps:60
+enableVsync:false

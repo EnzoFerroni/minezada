@@ -173,7 +173,9 @@ Add-Type -Name Energia -Namespace Minezada -MemberDefinition '[DllImport("kernel
 Push-Location $server
 try {
     Write-Host "Iniciando servidor com $($cfg.RAM) de RAM. Digite 'stop' para desligar e salvar."
-    & $cfg.JAVA "-Xms$($cfg.RAM)" "-Xmx$($cfg.RAM)" -jar server.jar nogui
+    # Flags do Aikar: coleta de lixo G1 ajustada para servidor de Minecraft (menos travadas).
+    $flags = '-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1' -split ' '
+    & $cfg.JAVA "-Xms$($cfg.RAM)" "-Xmx$($cfg.RAM)" @flags -jar server.jar nogui
 }
 finally {
     Pop-Location

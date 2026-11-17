@@ -34,9 +34,10 @@ dragão para domar, criar como pet e voar, mods que deixam o jogo mais leve e f�
 | Biomas e terreno | Terralith + Tectonic (vanilla+, roda só no servidor) | Biomes O' Plenty e Oh The Biomes We've Gone (mais pesados e fogem do visual vanilla) |
 | Estruturas | Série YUNG's, Towns and Towers, Explorify (só no servidor) | Repurposed Structures (muita coisa, pesa na geração) |
 | Visual e ambiente | Fresh Animations (ligado por padrão) + EMF/ETF, 3D Skin Layers, Ambient Sounds | Continuity (no NeoForge exige o Sinytra Connector, instável), Sodium Dynamic Lights (o Options API dele exige o Reese's, que se declara incompatível com ele), Falling Leaves (port NeoForge pouco usado) |
+| Perfis de gráfico | Options Profiles com 4 perfis prontos (Leve, Equilibrado, Bonito com Complementary, Ultra com Photon) em `modpack/arquivos/options-profiles`; aplicam só opções de vídeo e não são sobrescritos depois de recalibrados | Configurar só o `options.txt` inicial (não deixa trocar de perfil no jogo) |
 | Shaders | Complementary Reimagined, MakeUp Ultra Fast, BSL, Sildur's Vibrant, Solas e Photon, instalados e desligados | Ligados por padrão (pesam em Mac e PC fraco) || Aventura | Dimensões: Undergarden, Ad Astra, Bumblezone, Incendium (Nether), Nullscape (End). Cavernas: Galosphere, Spelunkery. Mobs: Naturalist, Mowzie's Mobs, Aquamirae. Chefes: L_Ender's Cataclysm, When Dungeons Arise, Artifacts | Alex's Mobs, Friends & Foes, Bosses of Mass Destruction (sem 1.21.1), Iron's Spells (complexo para iniciantes), Eternal Starlight (novo, menos testado) |
 | Facilidade | Waystones, Xaero's Minimap/World Map, Corpse, Mouse Tweaks, Inventory Essentials, Farmer's Delight; QoL de servidor: Controlling (busca de teclas), bússolas de bioma e estrutura, Ping Wheel, Carry On, Clumps, Pick Up Notifier, Chat Heads, Comforts, Trade Cycling, Easy Anvils | Gravestone (Corpse é mais simples), Inventory Profiles Next (setas roxas na hotbar), Simple Voice Chat (exige abrir outra porta UDP; os jogadores usam Discord) |
-| Desempenho | Sodium, Lithium, FerriteCore, ModernFix, EntityCulling, ImmediatelyFast, Iris (shaders opcionais) | - |
+| Desempenho | Sodium, Lithium, FerriteCore, ModernFix, EntityCulling, ImmediatelyFast, Iris, Sodium Extra, More Culling, Dynamic FPS; servidor: Noisium, Chunky (pré-geração), spark (medição), flags do Aikar, view 8 / simulação 6, sync-chunk-writes=false | C2ME e ServerCore (só Fabric), Krypton e FastQuit (sem 1.21.1) |
 
 Lista completa com versões e links: seção **Mods** do [README](../README.md).
 
@@ -75,3 +76,4 @@ Lista completa com versões e links: seção **Mods** do [README](../README.md).
 | 2026-11-17 | 2026.11.17.9 | Correção: dependência herda os lados de quem precisa dela (Lithostitched faltava no cliente). Sem luz dinâmica (conflito Sodium Options API × Reese's). |
 | 2026-11-17 | 2026.11.17.11 | + aventura: 5 dimensões/renovações, cavernas e minérios, mobs, chefes e masmorras. Servidor testado. |
 | 2026-11-17 | 2026.11.17.12 | + QoL de servidor e 4 shaders; IPN trocado por Inventory Essentials; jogar liga os pacotes de recursos do pack em quem já tinha options.txt. |
+| 2026-11-17 | 2026.11.17.13 | Perfis de gráfico, otimização do jogo e do servidor (flags do Aikar, distâncias, Noisium, Chunky, spark). |

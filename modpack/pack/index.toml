@@ -331,6 +331,41 @@ hash = "e355d6554d64161071d8479f1c1c26e62ea34fc63d94c61d22f7047bb087d59b"
 metafile = true
 
 [[files]]
+file = "mods/options-profiles.pw.toml"
+hash = "d4f0c44274734eeb8099acea0c6e7583e9b8b5821cc8247dc390e98b1c430a54"
+metafile = true
+
+[[files]]
+file = "mods/sodium-extra.pw.toml"
+hash = "78863f94a00b6d5317941266b33fcb6985e457f29430fc0e846e348f32e1ec30"
+metafile = true
+
+[[files]]
+file = "mods/dynamic-fps.pw.toml"
+hash = "54bd36ecf965dee3a068ffc1a55e5c8b82c2daa62be88f51e4f2c9f5945df3f0"
+metafile = true
+
+[[files]]
+file = "mods/moreculling.pw.toml"
+hash = "2958b29655a4a380b46ed7ee3464dd08a5f13af019826f455bc1d3d6dcb2bd1a"
+metafile = true
+
+[[files]]
+file = "mods/chunky.pw.toml"
+hash = "3985147b2ed2f35abec59b112be6d55333fcd327bad81d14be4aa2760040c94d"
+metafile = true
+
+[[files]]
+file = "mods/spark.pw.toml"
+hash = "aee86e6e6371b5bac7445ec7b5f13734f4f6f5a5672b6aaf213f5db8c8f231c7"
+metafile = true
+
+[[files]]
+file = "mods/noisium.pw.toml"
+hash = "c82228efff939d04a9fa69d6f9faf6f145d1be3df669f6b657de71d7c1b60abd"
+metafile = true
+
+[[files]]
 file = "mods/sodium.pw.toml"
 hash = "afb648b9cf0ba5f67a13da37cf53df7d910c36ec49fdd26087333a3f2682e898"
 metafile = true
@@ -466,6 +501,91 @@ hash = "88215cb6e2dd2f9457d7424e0239c945ea61efa3fe25becc52c1ca04441f2037"
 metafile = true
 
 [[files]]
+file = "mods/architectury-api.pw.toml"
+hash = "2b76ed836cd3f2de485c58cba896a68116427a56be02d6001e7d62a6daf92312"
+metafile = true
+
+[[files]]
 file = "mods/cloth-config.pw.toml"
 hash = "ae112eb85ca8343d2f2c1829427d84e73a1c4020fb5c71341039580cfae63ba9"
 metafile = true
+
+[[files]]
+file = "options-profiles/1 - Leve/configuration.json"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
+preserve = true
+
+[[files]]
+file = "options-profiles/1 - Leve/iris.properties"
+hash = "d2dd3eae24881aa06a06362f0063753326dd8a069085cb161207c45334aff117"
+preserve = true
+
+[[files]]
+file = "options-profiles/1 - Leve/options.txt"
+hash = "93d6c8bfa1555260d0ade1fc73c2edd05ecc02787be8e7eff3d34f0cf2e25372"
+preserve = true
+
+[[files]]
+file = "options-profiles/1 - Leve/sodium-options.json"
+hash = "871a74d8773694f53f798dac5e248934333b0cd666290cf87f86b6ff7d43e0d3"
+preserve = true
+
+[[files]]
+file = "options-profiles/2 - Equilibrado/configuration.json"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
+preserve = true
+
+[[files]]
+file = "options-profiles/2 - Equilibrado/iris.properties"
+hash = "d2dd3eae24881aa06a06362f0063753326dd8a069085cb161207c45334aff117"
+preserve = true
+
+[[files]]
+file = "options-profiles/2 - Equilibrado/options.txt"
+hash = "6541f8e152cae32b1147f928d536271a1e6d2cd011e88835400fbda385b02e1c"
+preserve = true
+
+[[files]]
+file = "options-profiles/2 - Equilibrado/sodium-options.json"
+hash = "8401638139414ca9da0aff13990282b3559e7cf94abf3b3aeb167ffd401f2002"
+preserve = true
+
+[[files]]
+file = "options-profiles/3 - Bonito/configuration.json"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
+preserve = true
+
+[[files]]
+file = "options-profiles/3 - Bonito/iris.properties"
+hash = "b6c1d7be904f770f0feb4b8bf991e24638640336a8fc24e1f89f26bafc8ea1e6"
+preserve = true
+
+[[files]]
+file = "options-profiles/3 - Bonito/options.txt"
+hash = "9bea101c5846cb3bb64f64dcd4167ec45730759636a51211f909f4a2297ba454"
+preserve = true
+
+[[files]]
+file = "options-profiles/3 - Bonito/sodium-options.json"
+hash = "a556d6af015d41389f86d30718f1658204055ea5a30e13630bf279ad0ec25fb3"
+preserve = true
+
+[[files]]
+file = "options-profiles/4 - Ultra/configuration.json"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
+preserve = true
+
+[[files]]
+file = "options-profiles/4 - Ultra/iris.properties"
+hash = "13a519650a47e736ab4dd42530d250660615cf3986d66573c04ffb5feea290d8"
+preserve = true
+
+[[files]]
+file = "options-profiles/4 - Ultra/options.txt"
+hash = "0a3f771c8ba541a3a004bf9ae83f716166bb927900b9ae8051dc015b95a120c3"
+preserve = true
+
+[[files]]
+file = "options-profiles/4 - Ultra/sodium-options.json"
+hash = "a556d6af015d41389f86d30718f1658204055ea5a30e13630bf279ad0ec25fb3"
+preserve = true
