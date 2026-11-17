@@ -30,6 +30,13 @@ por linha; `op` depois do nick também dá admin). O servidor libera todos no pr
 qualquer host. Com o servidor no ar, `whitelist add Nome` e `op Nome` no console valem na hora.
 Amigo sem acesso aparece no console como `You are not white-listed`, com o nick.
 
+**Modo offline com senha.** O servidor aceita Minecraft não original (`online-mode=false`), então o
+nick não prova quem é a pessoa: o SimpleLogin pede `/register` na primeira vez e `/login` depois.
+Peça para cada amigo entrar e registrar logo que for liberado, senão outro pode registrar o nick
+antes. Esqueceu a senha: `changepass Nick novasenha` no console. O nick em `jogadores.txt` tem de
+ser igual ao do jogo, com as maiúsculas, porque o UUID offline sai dele. Quem jogou antes da troca
+tem o progresso levado para o UUID novo no primeiro start.
+
 **Mundo novo? Pré-gere o terreno** para ninguém travar explorando (Terralith e as estruturas pesam na geração). No console, uma vez: `chunky radius 1500` e `chunky start`. Leva um tempo; dá para jogar enquanto roda. `chunky pause` / `chunky continue` controlam.
 
 Servidor lento? `spark profiler start`, espere 1 minuto e `spark profiler stop`: ele gera um link mostrando o que está pesando.

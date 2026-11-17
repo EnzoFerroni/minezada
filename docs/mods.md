@@ -11,7 +11,7 @@
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.15` · 102 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.16` · 104 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
 
 ## Aprender e guias
 
@@ -29,11 +29,19 @@ Mostra a receita de qualquer item. No inventário, passe o mouse num item e aper
 
 <sub>Versão `19.64.0.455`</sub>
 
+### <img src="https://cdn.modrinth.com/data/URxm65AM/4f570685f26f316bc6cf48c25a2014263407ab3e.png" width="28" align="center"> [Better Search](https://modrinth.com/mod/bettersearch)
+
+Pesquisa que entende erro de digitação e nome em inglês ou português (JEI, inventário criativo e comandos).
+
+<img src="https://cdn.modrinth.com/data/URxm65AM/images/e665855e250bbb769538d07a133ae06a08e16413_350.webp" width="480">
+
+<sub>Versão `1.6.4` · só no jogo de cada um, não no servidor</sub>
+
 ### <img src="https://cdn.modrinth.com/data/nvQzSEkH/b04217bc2b7dc524c4d12f81ff42cc1cefb9b0fc_96.webp" width="28" align="center"> [Jade 🔍](https://modrinth.com/mod/jade)
 
 Olhe para um bloco ou mob e aparece no topo da tela o que ele é, de qual mod vem e informações úteis (vida, progresso de crescimento, conteúdo).
 
-<img src="https://cdn.modrinth.com/data/nvQzSEkH/images/80e67bb1f4c38d64a1561a7080a663711507c4f8.png" width="480">
+<img src="https://cdn.modrinth.com/data/nvQzSEkH/images/4b47304960861088536652dfcc9dbf42ef59ce5e.png" width="480">
 
 <sub>Versão `15.10.6+neoforge`</sub>
 
@@ -47,7 +55,7 @@ Mostra na barra de fome quanto cada comida vai encher e a saturação, para sabe
 
 Tela de conquistas (tecla L) mais clara. Serve de guia do que fazer a seguir.
 
-<img src="https://cdn.modrinth.com/data/Q2OqKxDG/images/5480094d9c8cfc839ea336560c145b9ac03c0797_350.webp" width="480">
+<img src="https://cdn.modrinth.com/data/Q2OqKxDG/images/e7f7cd30464e7b5d9e42870876cb86405e8edfcf.png" width="480">
 
 <sub>Versão `0.4.3.21` · só no jogo de cada um, não no servidor</sub>
 
@@ -83,7 +91,7 @@ Martelos que quebram uma área 3x3 de uma vez. Ótimos para cavar túneis e mina
 
 Ferramentas e armaduras ainda melhores que netherite, feitas com materiais do jogo. Progressão no estilo vanilla.
 
-<img src="https://cdn.modrinth.com/data/CFX9ftUJ/images/550cd029b04a92f7a60a2baf7e9b54d672b762c9.png" width="480">
+<img src="https://cdn.modrinth.com/data/CFX9ftUJ/images/32cd959b4be527617d127db981ae0ea846662f36_350.webp" width="480">
 
 <sub>Versão `neoforge-2.3.1-mc1.21.1`</sub>
 
@@ -175,7 +183,7 @@ Mineração mais interessante: minérios em pedras variadas, pepitas e ferrament
 
 Dezenas de animais realistas (urso, cervo, leão, elefante, borboletas, cobras) pelo mundo.
 
-<img src="https://cdn.modrinth.com/data/F8BQNPWX/images/d2f4d2ab51e36c80ca120e406ecbfe46e12dd3bb_350.webp" width="480">
+<img src="https://cdn.modrinth.com/data/F8BQNPWX/images/d497ec6f4c79966582083d319aebf1c64330e315_350.webp" width="480">
 
 <sub>Versão `2.0.7+1.21.1-neoforge`</sub>
 
@@ -201,7 +209,7 @@ Aventura no oceano congelado: navios, mobs aquáticos, chefe e armaduras.
 
 Chefes épicos em estruturas próprias (Ignis, Leviathan, Ender Guardian) com armas lendárias.
 
-<img src="https://cdn.modrinth.com/data/46KJle7n/images/63b87fce129fd28949028341562282d7233a86b2_350.webp" width="480">
+<img src="https://cdn.modrinth.com/data/46KJle7n/images/04cc6a87394c250a764687524c40f07013ece1de_350.webp" width="480">
 
 <sub>Versão `3.33`</sub>
 
@@ -217,7 +225,7 @@ Masmorras e estruturas gigantes (castelos, navios voadores, torres) cheias de mo
 
 Itens mágicos achados em baús de estruturas: asas de pena, bota de velocidade, anel de fogo.
 
-<img src="https://cdn.modrinth.com/data/P0Mu4wcQ/images/df1eb4b96a52f82b5d41b7ebd665d6bf5c56ff18_350.webp" width="480">
+<img src="https://cdn.modrinth.com/data/P0Mu4wcQ/images/2a60a264a5e4eedee4a4632631d8e1c1a77f2deb_350.webp" width="480">
 
 <sub>Versão `13.2.5`</sub>
 
@@ -309,7 +317,7 @@ Fortalezas do Nether reformuladas, mais bonitas e com mais loot.
 
 Vilas novas por bioma, torres de saqueadores e navios pelo mundo.
 
-<img src="https://cdn.modrinth.com/data/DjLobEOy/images/0e4c729894ecbced522d04057c8b60af22d28b96_350.webp" width="480">
+<img src="https://cdn.modrinth.com/data/DjLobEOy/images/8ce9ac746afca0fd371ea95e39ade1b3e3aeb0a5_350.webp" width="480">
 
 <sub>Versão `1.13.11`</sub>
 
@@ -415,7 +423,7 @@ Busca nas teclas: em Opções → Controles, digite o nome da ação ou aperte a
 
 Bússola que encontra qualquer bioma (ótimo com os biomas novos do Terralith).
 
-<img src="https://cdn.modrinth.com/data/fPetb5Kh/images/b02df817817d8414f331cedaeb3f1d5ac2726bf2_350.webp" width="480">
+<img src="https://cdn.modrinth.com/data/fPetb5Kh/images/5040466f2a4552e12a317ee0030de06619b71c46_350.webp" width="480">
 
 <sub>Versão `1.21.1-3.4.0-neoforge`</sub>
 
@@ -423,7 +431,7 @@ Bússola que encontra qualquer bioma (ótimo com os biomas novos do Terralith).
 
 Bússola que encontra estruturas (vilas, templos, masmorras dos mods).
 
-<img src="https://cdn.modrinth.com/data/RV1qfVQ8/images/b55e4284984fd0cfb4190a0d9d1e0e302bdb85e9_350.webp" width="480">
+<img src="https://cdn.modrinth.com/data/RV1qfVQ8/images/4e701b15485b8739871047de1cf81f75920d3b7c_350.webp" width="480">
 
 <sub>Versão `1.21.1-3.4.0-neoforge`</sub>
 
@@ -439,7 +447,7 @@ Segure a roda do mouse para marcar um lugar ou item para os amigos verem.
 
 Pegue baús e animais no colo (Shift + botão direito com as mãos vazias) e leve para outro lugar.
 
-<img src="https://cdn.modrinth.com/data/joEfVgkn/images/3268c845f023a98e8dc95249cac16396c70b5413_350.webp" width="480">
+<img src="https://cdn.modrinth.com/data/joEfVgkn/images/f5680a9c61d2832a006a4deb368943da5447ca8f_350.webp" width="480">
 
 <sub>Versão `2.2.6`</sub>
 
@@ -461,7 +469,7 @@ Mostra no canto da tela os itens que você pegou.
 
 Mostra a cabeça do jogador ao lado das mensagens do chat.
 
-<img src="https://cdn.modrinth.com/data/Wb5oqrBJ/images/ed15c6b729d0611ae8bdb9ee8ef85994c6cb8e38_350.webp" width="480">
+<img src="https://cdn.modrinth.com/data/Wb5oqrBJ/images/fd0ce2a3eeff2bfb68e0cac9bcd5f116202e2427.png" width="480">
 
 <sub>Versão `0.15.7` · só no jogo de cada um, não no servidor</sub>
 
@@ -486,6 +494,12 @@ Bigorna sem o limite de "Caro demais" e com nomes coloridos.
 <img src="https://cdn.modrinth.com/data/OZBR5JT5/images/68f12010b33c621d09bcbac72fbf31c0222c4793_350.webp" width="480">
 
 <sub>Versão `v21.1.0-1.21.1-NeoForge`</sub>
+
+### <img src="https://cdn.modrinth.com/data/Gh3tnMca/35e032a7b47a1ec92c838cf0cb3a19143311e169.jpeg" width="28" align="center"> [Simple Login](https://modrinth.com/mod/simple-login)
+
+Senha no servidor: na primeira vez digite /register senha senha, depois /login senha. Protege seu nick.
+
+<sub>Versão `1.17.0`</sub>
 
 ## Mundo e facilidade
 
@@ -519,7 +533,7 @@ Ao morrer, seus itens ficam guardados num corpo no lugar da morte, sem sumir.
 
 Culinária: plantações, panela, tábua de corte e dezenas de comidas novas.
 
-<img src="https://cdn.modrinth.com/data/R2OftAxM/images/a5a80d8833b40a7cc5c2baa06ecc7960c819ac74_350.webp" width="480">
+<img src="https://cdn.modrinth.com/data/R2OftAxM/images/cae99b4488deda3ba6c3ad25fabbddd0dff154fc_350.webp" width="480">
 
 <sub>Versão `1.21.1-1.3.4`</sub>
 
@@ -555,7 +569,7 @@ Mais opções de vídeo (contador de FPS, neblina, animações) para calibrar o 
 
 Baixa o FPS quando o jogo está minimizado ou em segundo plano: menos calor e bateria.
 
-<img src="https://cdn.modrinth.com/data/LQ3K71Q1/images/e8cc9af2ed7fced3b342f82e94f65fdde63eca17.png" width="480">
+<img src="https://cdn.modrinth.com/data/LQ3K71Q1/images/c573174da856093809d5fba6a36539fcf986c40b.png" width="480">
 
 <sub>Versão `3.11.4` · só no jogo de cada um, não no servidor</sub>
 
@@ -591,7 +605,7 @@ Acelera a geração de terreno no servidor.
 
 Deixa o jogo muito mais leve e com mais FPS.
 
-<img src="https://cdn.modrinth.com/data/AANobbMI/images/56c4599efcb529a19aed0e118caad4178d7fd540.webp" width="480">
+<img src="https://cdn.modrinth.com/data/AANobbMI/images/d84313e6f57dc9e7896961dbd2dfc2689d482758_350.webp" width="480">
 
 <sub>Versão `mc1.21.1-0.8.13-neoforge` · só no jogo de cada um, não no servidor</sub>
 

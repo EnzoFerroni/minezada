@@ -1,0 +1,8 @@
+name = "Simple Login"
+filename = "SimpleLogin-Universal-NeoForge-1.17.0.jar"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/Gh3tnMca/versions/WFMZK8jK/SimpleLogin-Universal-NeoForge-1.17.0.jar"
+hash-format = "sha1"
+hash = "ec326e2a61053cdea7b92669cedd85821b48de85"

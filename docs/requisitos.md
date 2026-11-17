@@ -4,7 +4,8 @@ O `iniciar` instala Java e ferramentas sozinho. Este arquivo cobre o que ele nã
 
 ## Jogadores
 
-- **Minecraft Java Edition original** (conta Microsoft). Bedrock (celular/console) não entra.
+- **Minecraft Java Edition**, original ou não (o servidor roda com `online-mode=false` e senha pelo
+  SimpleLogin). Bedrock (celular/console) não entra.
 - Nada mais: o comando do [README](../README.md) instala o Prism Launcher, o Java e os mods.
 - Mac: M1 ou mais novo com 16 GB roda bem. O macOS só tem OpenGL 4.1, então alguns shaders não
   funcionam; mods de renderização Metal (Fabric) contornam isso.
