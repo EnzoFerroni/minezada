@@ -65,3 +65,4 @@ Lista completa com versões e links: seção **Mods** do [README](../README.md).
 | 2026-11-17 | 2026.11.17.3 | Endereço novo: `minezada-mc.duckdns.org`. |
 | 2026-11-17 | 2026.11.17.4 | Endereço `minezada-mc.duckdns.org`; docs mais enxutas. Vitrine de mods em `docs/mods.md`. |
 | 2026-11-17 | 2026.11.17.5 | Comando de jogar instala sem diálogo, pré-configura o Prism (pt-BR, Java automático), cria atalho e abre o jogo; checksum do mrpack-install. |
+| 2026-11-17 | 2026.11.17.6 | NeoForge escolhido pelo meta do Prism (21.1.266): o 21.1.267 ainda não estava lá e a instância não abria. |

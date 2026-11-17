@@ -56,7 +56,11 @@ while ($fila.Count) {
     Write-Host ('{0,-30} {1}' -f $p.slug, $v.version_number)
 }
 
-$neo = (Invoke-RestMethod "https://maven.neoforged.net/api/maven/latest/version/releases/net/neoforged/neoforge?filter=$($mc.Substring(2)).").version  # "21.1." (sem o ponto casa 21.11)
+# NeoForge mais novo que o Prism ja conhece: o meta dele atrasa algumas horas em relacao ao maven,
+# e uma versao que ainda nao esta la faz a instancia falhar ao abrir.
+$metaNeo = [Text.Encoding]::UTF8.GetString((Invoke-WebRequest 'https://meta.prismlauncher.org/v1/net.neoforged/index.json' -UseBasicParsing).RawContentStream.ToArray()) | ConvertFrom-Json
+$neo = ($metaNeo.versions | Where-Object { $_.version -like "$($mc.Substring(2)).*" } | Select-Object -First 1).version  # "21.1.*"
+if (-not $neo) { throw "Nenhum NeoForge para $mc no meta do Prism" }
 $index = [ordered]@{
     formatVersion = 1; game = 'minecraft'; versionId = $Versao; name = 'Minezada'
     summary = 'Vanilla melhorado: Create, baus, dragoes, Aether e guias'
