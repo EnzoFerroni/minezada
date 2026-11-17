@@ -3,29 +3,53 @@
 #   curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.sh | bash
 set -euo pipefail
 zip_url="https://github.com/EnzoFerroni/minezada/raw/main/modpack/minezada-prism.zip"
+# Fork do Prism que aceita conta offline sem conta Microsoft (o Prism oficial abre em modo Demo).
+fork_repo="Diegiwg/PrismLauncher-Cracked"
 
-# 1. Prism Launcher
+# 0. Conta. stdin e o proprio script (curl | bash), por isso a resposta vem do terminal.
+printf 'Voce tem Minecraft original (conta Microsoft)? [s/n] '
+read -r resp </dev/tty || resp=s
+case "$resp" in [nN]*) original=0 ;; *) original=1 ;; esac
+
+# Baixa o Prism do repo $1 (releases do GitHub) para a pasta $2.
+baixar_prism_mac() {
+  local url tmp
+  url="$(curl -fsSL "https://api.github.com/repos/$1/releases/latest" \
+    | grep -o 'https://[^"]*PrismLauncher-macOS-[0-9.]*\.zip' | head -n 1)"
+  tmp="$(mktemp -d)"
+  curl -fsSL "$url" -o "$tmp/prism.zip"
+  mkdir -p "$2"
+  rm -rf "$2/Prism Launcher.app"
+  ditto -x -k "$tmp/prism.zip" "$2"
+  rm -rf "$tmp"
+}
+
+# 1. Launcher: Prism oficial com conta original; senao o fork, numa pasta separada para nao
+# trocar o Prism de quem ja tem. Os dois usam a mesma pasta de dados.
 if [ "$(uname -s)" = "Darwin" ]; then
   dados="$HOME/Library/Application Support/PrismLauncher"
-  app=""
-  for d in "/Applications/Prism Launcher.app" "$HOME/Applications/Prism Launcher.app"; do [ -d "$d" ] && app="$d"; done
-  if [ -z "$app" ]; then
-    echo "Instalando o Prism Launcher..."
-    url="$(curl -fsSL https://api.github.com/repos/PrismLauncher/PrismLauncher/releases/latest \
-      | grep -o 'https://[^"]*PrismLauncher-macOS-[0-9.]*\.zip' | head -n 1)"
-    tmp="$(mktemp -d)"
-    curl -fsSL "$url" -o "$tmp/prism.zip"
-    mkdir -p "$HOME/Applications"
-    ditto -x -k "$tmp/prism.zip" "$HOME/Applications"
-    rm -rf "$tmp"
-    app="$HOME/Applications/Prism Launcher.app"
+  if [ $original = 1 ]; then
+    app=""
+    for d in "/Applications/Prism Launcher.app" "$HOME/Applications/Prism Launcher.app"; do [ -d "$d" ] && app="$d"; done
+    if [ -z "$app" ]; then
+      echo "Instalando o Prism Launcher..."
+      baixar_prism_mac PrismLauncher/PrismLauncher "$HOME/Applications"
+      app="$HOME/Applications/Prism Launcher.app"
+    fi
+  else
+    # Baixado a cada vez: rodar o comando de novo atualiza o launcher.
+    echo "Instalando o launcher para conta offline..."
+    baixar_prism_mac "$fork_repo" "$HOME/Applications/Minezada"
+    app="$HOME/Applications/Minezada/Prism Launcher.app"
   fi
   # Contents/MacOS tambem tem a pasta jars: o executavel certo vem do Info.plist.
   prism="$app/Contents/MacOS/$(/usr/libexec/PlistBuddy -c 'Print CFBundleExecutable' "$app/Contents/Info.plist")"
 else
   dados="$HOME/.local/share/PrismLauncher"
   prism="$(command -v prismlauncher || true)"
-  [ -n "$prism" ] || { echo "Instale o Prism Launcher (https://prismlauncher.org/download/) e rode de novo."; exit 1; }
+  site="https://prismlauncher.org/download/"
+  [ $original = 1 ] || site="https://github.com/$fork_repo/releases/latest"
+  [ -n "$prism" ] || { echo "Instale o launcher ($site) como prismlauncher e rode de novo."; exit 1; }
 fi
 
 # 2. Primeira vez: idioma, tema e Java automatico, para o assistente do Prism so pedir o login.
@@ -74,4 +98,9 @@ fi
 
 nohup "$prism" --launch Minezada >/dev/null 2>&1 &
 echo
-echo "Pronto! Na primeira vez entre com a conta Microsoft. Depois e so abrir 'Minezada' na Mesa."
+if [ $original = 1 ]; then
+  echo "Pronto! Na primeira vez entre com a conta Microsoft. Depois e so abrir 'Minezada' na Mesa."
+else
+  echo "Pronto! Na primeira vez o launcher pede um nome: use seu nick exatamente como esta na"
+  echo "whitelist (maiusculas contam). Depois e so abrir 'Minezada' na Mesa."
+fi

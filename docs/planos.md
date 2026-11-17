@@ -11,12 +11,14 @@ O que falta fazer, em ordem, e lições aprendidas para mexer no projeto sem que
    `chunky radius 1500` e `chunky start`. O mundo atual foi gerado antes dos mods de aventura;
    minérios, mobs e estruturas novas só aparecem em terreno ainda não explorado. Se preferir tudo
    desde o início, apagar `mundo.tar.gz` no Drive e `server/world` (os backups ficam).
-3. **Convidar os jogadores**: mandar o comando de jogar (README) e liberar cada nick no console
-   (`whitelist add Nick`). Quem for hospedar recebe a pasta `minezada` do Drive e o token do
-   DuckDNS por mensagem privada.
-4. **Primeiro teste com alguém de fora** entrando por `minezada-mc.duckdns.org` (dentro da casa do
+3. **Convidar os jogadores**: mandar o comando de jogar (README) e liberar cada nick no
+   `jogadores.txt` do Drive + restart (não `whitelist add`, ver [hospedar.md](hospedar.md)). Quem
+   for hospedar recebe a pasta `minezada` do Drive e o token do DuckDNS por mensagem privada.
+4. **Testar o caminho sem original** nos dois sistemas: responder `n`, conferir que o fork abre a
+   instância, pede o nick e entra no servidor.
+5. **Primeiro teste com alguém de fora** entrando por `minezada-mc.duckdns.org` (dentro da casa do
    host o roteador não tem NAT loopback: lá se usa `localhost` ou o IP local).
-5. **Livro de missões** (abaixo), depois que a lista de mods estabilizar.
+6. **Livro de missões** (abaixo), depois que a lista de mods estabilizar.
 
 ## Livro de missões (tutorial completo do pack)
 

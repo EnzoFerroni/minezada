@@ -5,14 +5,36 @@ $ProgressPreference = 'SilentlyContinue'
 $zipUrl = 'https://github.com/EnzoFerroni/minezada/raw/main/modpack/minezada-prism.zip'
 $dados = "$env:APPDATA\PrismLauncher"
 $locais = "$env:LOCALAPPDATA\Programs\PrismLauncher\prismlauncher.exe", "$env:ProgramFiles\PrismLauncher\prismlauncher.exe"
+# Fork do Prism que aceita conta offline sem conta Microsoft (o Prism oficial abre em modo Demo).
+$forkRepo = 'Diegiwg/PrismLauncher-Cracked'
+$forkDir = "$env:LOCALAPPDATA\Programs\Minezada Launcher"
 
-# 1. Prism Launcher
-$prism = $locais | Where-Object { Test-Path $_ } | Select-Object -First 1
-if (-not $prism) {
-    Write-Host 'Instalando o Prism Launcher...'
-    winget install -e --id PrismLauncher.PrismLauncher --accept-source-agreements --accept-package-agreements
+# 0. Conta
+$original = (Read-Host 'Voce tem Minecraft original (conta Microsoft)? [s/n]') -notmatch '^\s*n'
+
+# 1. Launcher: Prism oficial com conta original; senao o fork, numa pasta separada para nao
+# trocar o Prism de quem ja tem. Os dois usam a mesma pasta de dados.
+if ($original) {
     $prism = $locais | Where-Object { Test-Path $_ } | Select-Object -First 1
-    if (-not $prism) { throw 'Prism nao encontrado. Instale em https://prismlauncher.org/download/ e rode de novo.' }
+    if (-not $prism) {
+        Write-Host 'Instalando o Prism Launcher...'
+        winget install -e --id PrismLauncher.PrismLauncher --accept-source-agreements --accept-package-agreements
+        $prism = $locais | Where-Object { Test-Path $_ } | Select-Object -First 1
+        if (-not $prism) { throw 'Prism nao encontrado. Instale em https://prismlauncher.org/download/ e rode de novo.' }
+    }
+}
+else {
+    # Baixado a cada vez: rodar o comando de novo atualiza o launcher. Zip MSVC sem "Portable"
+    # guarda os dados em %APPDATA%\PrismLauncher, como o oficial.
+    Write-Host 'Instalando o launcher para conta offline...'
+    $rel = Invoke-RestMethod "https://api.github.com/repos/$forkRepo/releases/latest"
+    $asset = $rel.assets | Where-Object { $_.name -match '^PrismLauncher-Windows-MSVC-[\d.]+\.zip$' } | Select-Object -First 1
+    if (-not $asset) { throw "Launcher nao encontrado. Baixe em https://github.com/$forkRepo/releases/latest e rode de novo." }
+    $forkZip = Join-Path $env:TEMP "minezada-launcher-$PID.zip"
+    Invoke-WebRequest $asset.browser_download_url -OutFile $forkZip
+    Expand-Archive $forkZip $forkDir -Force
+    Remove-Item $forkZip
+    $prism = "$forkDir\prismlauncher.exe"
 }
 
 # 2. Primeira vez: idioma, tema e Java automatico, para o assistente do Prism so pedir o login.
@@ -61,4 +83,10 @@ $lnk = (New-Object -ComObject WScript.Shell).CreateShortcut("$([Environment]::Ge
 $lnk.TargetPath = $prism; $lnk.Arguments = '--launch Minezada'; $lnk.IconLocation = "$prism,0"; $lnk.Save()
 
 Start-Process $prism -ArgumentList '--launch', 'Minezada'
-Write-Host "`nPronto! Na primeira vez entre com a conta Microsoft. Depois e so clicar em 'Minezada' na Area de Trabalho."
+if ($original) {
+    Write-Host "`nPronto! Na primeira vez entre com a conta Microsoft. Depois e so clicar em 'Minezada' na Area de Trabalho."
+}
+else {
+    Write-Host "`nPronto! Na primeira vez o launcher pede um nome: use seu nick exatamente como esta na"
+    Write-Host "whitelist (maiusculas contam). Depois e so clicar em 'Minezada' na Area de Trabalho."
+}
