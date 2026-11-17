@@ -66,6 +66,71 @@ hash = "ee0793ec5d025f9101737934684bd5a16ca64843f460df7053b05c9a5f8830cb"
 metafile = true
 
 [[files]]
+file = "mods/the-undergarden.pw.toml"
+hash = "3a4ebaf841466ff1f94d2d22d7c34bb151b8477a7937c5e3aedae388748cdde9"
+metafile = true
+
+[[files]]
+file = "mods/ad-astra.pw.toml"
+hash = "626b3195cfdf95ca84345e19f97ad87f73b480862ce0967c98d135abdc31a282"
+metafile = true
+
+[[files]]
+file = "mods/the-bumblezone.pw.toml"
+hash = "6fe910ddbf333b263a3135c6a430b3205d00b6b7e77f0276d46888d0764de93e"
+metafile = true
+
+[[files]]
+file = "mods/incendium.pw.toml"
+hash = "9afc05e4e90e14dccb89d3cc34af2fb9b189ce86967fce980b07aa138240887d"
+metafile = true
+
+[[files]]
+file = "mods/nullscape.pw.toml"
+hash = "07e7b871ed4aeefbb72793dd94ac9cfb75001b78434dee69f8f02d960c640f85"
+metafile = true
+
+[[files]]
+file = "mods/galosphere.pw.toml"
+hash = "8f306bac30706424a069df4848d52c28354602cab531d99a8d928b10eba71186"
+metafile = true
+
+[[files]]
+file = "mods/spelunkery.pw.toml"
+hash = "5cb100cefb62996ab2ee5f324a60df3888ed5b562609f7d85631f5891716ad92"
+metafile = true
+
+[[files]]
+file = "mods/naturalist.pw.toml"
+hash = "8b300c2c005ef91e04e6394160bd2e5a4bdf7089017695b2c775c64f3372eb65"
+metafile = true
+
+[[files]]
+file = "mods/mowzies-mobs.pw.toml"
+hash = "a891657362a7bb3ca2eeec1549b4342c274a028a16aea0dc30e8c1dd255a7269"
+metafile = true
+
+[[files]]
+file = "mods/aquamirae.pw.toml"
+hash = "07e57c4bcd6676948c04ecdbbfa93da85424f156f8f11bf9a358756bd2d429c7"
+metafile = true
+
+[[files]]
+file = "mods/l_enders-cataclysm.pw.toml"
+hash = "8d073bc85a9e8d4879ed5c40a42eca45974847d8ea3851f0b4e10f99fc150495"
+metafile = true
+
+[[files]]
+file = "mods/when-dungeons-arise.pw.toml"
+hash = "4566ab11efbed5f7648c38e590f180e50dc5ad4244bf6e99bd69d9ca047bee84"
+metafile = true
+
+[[files]]
+file = "mods/artifacts.pw.toml"
+hash = "ba312d0e92fc59786dd7d4d08197ddda52ab10049450e5332610d262c8a4466c"
+metafile = true
+
+[[files]]
 file = "mods/terralith.pw.toml"
 hash = "4cb370b7ea368c9bdce93e2fb80e2009506020aef7c279151759bbf01085af0f"
 metafile = true
@@ -243,6 +308,46 @@ metafile = true
 [[files]]
 file = "mods/owo-lib.pw.toml"
 hash = "0d76c01b16356f56f1b543efe1e3fec448868cea02dfc6d2a0698834e787a36f"
+metafile = true
+
+[[files]]
+file = "mods/resourceful-lib.pw.toml"
+hash = "63129fbc993e777eb352ac1028ef959fa04264cfba9d3ad8c9cb93e631cee031"
+metafile = true
+
+[[files]]
+file = "mods/common-storage-lib.pw.toml"
+hash = "ca9c879eb5099bdbe64f687087a9563a288a3de78dbde289053acdb295a45e41"
+metafile = true
+
+[[files]]
+file = "mods/resourceful-config.pw.toml"
+hash = "9f447b390705da315b16a4aa2b9983114d67f8132836d88ac9c16bd9b9d8851f"
+metafile = true
+
+[[files]]
+file = "mods/moonlight.pw.toml"
+hash = "0e8c7caa250e1a3cfb10d2370278c15bae7abd3f6c5b2c07c2244361ff523cdc"
+metafile = true
+
+[[files]]
+file = "mods/geckolib.pw.toml"
+hash = "8c8d5b4010c780a5e09bfb575d05c61b86f3abfe3a85e16cc639204f367f7dd9"
+metafile = true
+
+[[files]]
+file = "mods/fragmentum.pw.toml"
+hash = "4433b33f668d46f316d95f1910559c8c6b52a755765ab562ea4c2a66eead2831"
+metafile = true
+
+[[files]]
+file = "mods/lionfish-api.pw.toml"
+hash = "8806d3c3f4c441bbb812ed949530aa603b0f6fb7605a9e40dbe068cdc05965f3"
+metafile = true
+
+[[files]]
+file = "mods/curios.pw.toml"
+hash = "d94382cd2d5d4f040ad6b170d8fb413e0989bc1302983572ddc6c2578bd0878a"
 metafile = true
 
 [[files]]
