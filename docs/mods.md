@@ -6,12 +6,12 @@
 - **Tutorial do Create:** segure `W` com o mouse em cima de um item do Create.
 - **Mapa:** `M`. Minimapa e marcadores ficam no canto da tela.
 - **Morreu?** Volte ao local: seus itens estão num corpo.
-- **Gráficos:** Opções → **Perfis**: escolha 1 - Leve, 2 - Equilibrado, 3 - Bonito ou 4 - Ultra. Ajustou algo? Salve por cima do perfil.
+- **Gráficos:** Opções → **Perfis**: do 1 - Minimo (PC fraco) ao 7 - Ultra Shader, 8 - FPS Maximo (FPS destravado) e 9 - Bateria (notebook fora da tomada). Ajustou algo? Salve por cima do perfil.
 - **Minerar o veio inteiro:** segure `'` (apóstrofo) e quebre o minério ou tronco.
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.14` · 102 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.15` · 102 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
 
 ## Aprender e guias
 
@@ -539,7 +539,7 @@ Organizar inventário e baús (botão do meio do mouse) e mover itens rápido co
 
 ### <img src="https://cdn.modrinth.com/data/DnyS3EEW/e3e04a5d1a4cd98a9288fc1e9a3ea6ca3371e8d6.png" width="28" align="center"> [Options Profiles](https://modrinth.com/mod/options-profiles)
 
-Perfis de gráfico prontos: Opções → Perfis → 1 - Leve, 2 - Equilibrado, 3 - Bonito, 4 - Ultra. Ajuste e salve por cima do seu.
+Perfis de gráfico prontos em Opções → Perfis: de 1 - Minimo a 7 - Ultra Shader, mais 8 - FPS Maximo e 9 - Bateria. Ajuste e salve por cima do seu.
 
 <img src="https://cdn.modrinth.com/data/DnyS3EEW/images/71b7b1a5907926f9fe28b018d2b0fb4f81b3b17a_350.webp" width="480">
 

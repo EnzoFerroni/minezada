@@ -97,7 +97,7 @@ mouse-tweaks | Arraste o mouse com o botão apertado para mover vários itens de
 inventory-essentials | Organizar inventário e baús (botão do meio do mouse) e mover itens rápido com Shift.
 
 ## Desempenho
-options-profiles | Perfis de gráfico prontos: Opções → Perfis → 1 - Leve, 2 - Equilibrado, 3 - Bonito, 4 - Ultra. Ajuste e salve por cima do seu.
+options-profiles | Perfis de gráfico prontos em Opções → Perfis: de 1 - Minimo a 7 - Ultra Shader, mais 8 - FPS Maximo e 9 - Bateria. Ajuste e salve por cima do seu.
 sodium-extra | Mais opções de vídeo (contador de FPS, neblina, animações) para calibrar o desempenho.
 dynamic-fps | Baixa o FPS quando o jogo está minimizado ou em segundo plano: menos calor e bateria.
 moreculling | Deixa de desenhar faces de blocos que você não vê (folhas, vidro): mais FPS.
