@@ -6,6 +6,7 @@
 - **Tutorial do Create:** segure `W` com o mouse em cima de um item do Create.
 - **Mapa:** `M`. Minimapa e marcadores ficam no canto da tela.
 - **Morreu?** Volte ao local: seus itens estão num corpo.
+- **Gráficos:** Opções → **Perfis**: escolha 1 - Leve, 2 - Equilibrado, 3 - Bonito ou 4 - Ultra. Ajustou algo? Salve por cima do perfil.
 - **Minerar o veio inteiro:** segure `'` (apóstrofo) e quebre o minério ou tronco.
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
