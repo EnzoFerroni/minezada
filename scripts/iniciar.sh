@@ -103,14 +103,22 @@ main() {
     if [ -n "$dono" ] && [ "$dono" != "$eu" ] && [ $forcar -eq 0 ]; then
       die "Servidor ja esta ativo em '$dono'. Se tiver certeza que nao esta, rode com --forcar."
     fi
-    # shortcut: a trava depende da nuvem ja ter sincronizado; dois hosts iniciando no mesmo minuto podem passar os dois.
-    echo "$eu" > "$lock"
     # Trava ja era desta maquina = ultima sessao caiu sem enviar; o mundo local e o mais novo.
     if [ "$dono" != "$eu" ] && [ -f "$estado" ]; then
       echo "Baixando mundo da pasta sincronizada..."
+      # Extrai a parte e confere antes de mexer no mundo local ou pegar a trava: um arquivo corrompido
+      # nao pode virar o mundo desta maquina (ele seria enviado por cima do bom no proximo stop).
+      novo="$server/.mundo-novo"; rm -rf "$novo"; mkdir -p "$novo"
+      if ! tar -xzf "$estado" -C "$novo" || [ ! -d "$novo/world" ]; then
+        rm -rf "$novo"
+        die "mundo.tar.gz corrompido. Copie o mais novo de $SYNC_DIR/backups por cima dele e rode de novo."
+      fi
       if [ -d "$server/world" ]; then rm -rf "$server/world.bak"; mv "$server/world" "$server/world.bak"; fi
-      tar -xzf "$estado" -C "$server"
+      for f in "$novo"/*; do rm -rf "${server:?}/$(basename "$f")"; mv "$f" "$server/"; done
+      rm -rf "$novo"
     fi
+    # shortcut: a trava depende da nuvem ja ter sincronizado; dois hosts iniciando no mesmo minuto podem passar os dois.
+    echo "$eu" > "$lock"
   fi
   # Whitelist e admins: lista na pasta do Drive (vale para todos os hosts) ou, sem Drive, no servidor.
   lista="$server/jogadores.txt"; [ -z "$SYNC_DIR" ] || lista="$SYNC_DIR/jogadores.txt"
