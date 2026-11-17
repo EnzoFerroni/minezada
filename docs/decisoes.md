@@ -4,7 +4,7 @@ Registro do que escolhemos e por quê, para lembrar no futuro o que estamos joga
 
 ## Objetivo do pack
 
-Vanilla melhorado para até 8 jogadores, a maioria iniciante e no Mac (M1+ com 16 GB).
+Vanilla melhorado para até 10 jogadores, a maioria iniciante e no Mac (M1+ com 16 GB).
 Pedidos: Create com tutorial, baús maiores e sistema de baú, ferramentas melhores,
 dragão para domar, criar como pet e voar, mods que deixam o jogo mais leve e fácil de aprender.
 
@@ -47,7 +47,7 @@ Lista completa com versões e links: seção **Mods** do [README](../README.md).
   [`scripts/montar-pack.ps1`](../scripts/montar-pack.ps1) pega no Modrinth a versão release mais
   nova de cada mod para NeoForge 1.21.1, adiciona dependências obrigatórias e gera o `.mrpack`.
 - Mods marcados "server unsupported" no Modrinth (Sodium, Iris, minimapa de cliente...) ficam só no
-  cliente; o mrpack-install pula eles no servidor.
+  cliente; o servidor pula eles (mrpack-install no Windows, packwiz `-s server` no Mac).
 
 ## Hospedagem e rede
 
@@ -57,7 +57,7 @@ Lista completa com versões e links: seção **Mods** do [README](../README.md).
 | Mundo entre hosts | Google Drive (`mundo.tar.gz` + trava `host.lock` + 5 backups) | GitHub (arquivo > 100 MB, histórico pesado), Git LFS (1 GB grátis), GitHub Releases (exige `gh` e login em cada host) |
 | Endereço fixo | DuckDNS `minezada-mc`, atualizado pelo host durante a sessão | DDNS do roteador (só DynDNS pago / No-IP com confirmação mensal) |
 | Porta | UPnP pelo próprio script (SOAP direto no roteador) | playit.gg (túnel grátis fora do Brasil, 300-400 ms), e4mc (feito para LAN) |
-| Instalar servidor | mrpack-install a cada start (idempotente) | baixar mods à mão |
+| Instalar servidor | A cada start (idempotente): mrpack-install no Windows; no Mac instalador do NeoForge + packwiz, porque o mrpack-install usa DNS próprio e falha com o DNS IPv6 quebrado de roteadores como o da Vivo | baixar mods à mão |
 | Instalar no jogador | Prism Launcher + `minezada-prism.zip`; packwiz no pre-launch sincroniza os mods a cada abertura pelo link raw do GitHub (por isso o repo é **público**) | Modrinth App (sem atualização automática; pack não listado passa por moderação), launcher oficial (não instala mods), repo público separado (mais coisa para manter) |
 
 ## Histórico do pack

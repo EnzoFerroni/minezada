@@ -5,7 +5,7 @@ O `iniciar` instala Java e ferramentas sozinho. Este arquivo cobre o que ele nã
 ## Jogadores
 
 - **Minecraft Java Edition original** (conta Microsoft). Bedrock (celular/console) não entra.
-- **Modrinth App** (Windows/Mac/Linux): https://modrinth.com/app — instala o Java do cliente sozinho.
+- Nada mais: o comando do [README](../README.md) instala o Prism Launcher, o Java e os mods.
 - Mac: M1 ou mais novo com 16 GB roda bem. O macOS só tem OpenGL 4.1, então alguns shaders não
   funcionam; mods de renderização Metal (Fabric) contornam isso.
 
@@ -14,16 +14,17 @@ O `iniciar` instala Java e ferramentas sozinho. Este arquivo cobre o que ele nã
 | Item | Mínimo | Quem resolve |
 |------|--------|--------------|
 | Git | qualquer | Windows: `winget install -e --id Git.Git`. Mac: pede para instalar no primeiro `git`. |
-| Java 25 | - | `iniciar` instala (Windows: winget; Mac: precisa do [Homebrew](https://brew.sh)). |
+| Java 21+ | - | `iniciar` instala o Java 25 se faltar ou for antigo (Windows: winget; Mac: baixa para `tools/`, sem Homebrew). |
 | RAM | 16 GB | Servidor usa 6-8 GB. Jogar e hospedar na mesma máquina aperta. |
 | Disco | SSD, ~10 GB | Mundo cresce com o tempo. |
 | Rede | cabo, upload ≥ 10 Mbps | Wi-Fi funciona, mas oscila mais. |
 | Repo | público | Só clonar; não precisa de conta no GitHub. |
 
-Pack em Minecraft 1.21.x reclamando de Java? `winget install EclipseAdoptium.Temurin.21.JDK` (ou
-`brew install --cask temurin@21`) e aponte `JAVA` no `config.env` para ele.
-
 ## Google Drive (para alternar host)
+
+Sem a pasta, o `iniciar` oferece fazer isso sozinho: instala o Google Drive, abre o login e a pasta
+no navegador e espera ela aparecer. Responder `n` grava `SEM_DRIVE=1` no `config.env` e não pergunta
+mais. Os passos manuais:
 
 1. Instale o Google Drive para desktop (https://www.google.com/drive/download/) e faça login.
 2. Dono: a pasta é `Meu Drive/minezada`. Compartilhe com quem vai hospedar (permissão de editor).
@@ -44,7 +45,7 @@ DuckDNS do dono: passe por mensagem privada, nunca no git. Se vazar: crie outro 
 **Porta 25565 TCP** precisa chegar no host. Duas formas:
 
 - **UPnP (automático):** se o roteador tiver UPnP ligado, o `iniciar` abre e fecha a porta sozinho
-  para a máquina que estiver hospedando (Mac usa `miniupnpc`, instalado via Homebrew). Ligar UPnP é
+  para a máquina que estiver hospedando (Mac usa `miniupnpc`, que só é instalado se tiver Homebrew). Ligar UPnP é
   uma troca de segurança: qualquer aparelho da rede pode abrir portas.
 - **Manual:** roteador → redirecionar porta `25565 TCP` para o IP local do host, com reserva de IP
   (DHCP) para ele não mudar. Trocou de host na mesma casa: troque o IP da regra.
