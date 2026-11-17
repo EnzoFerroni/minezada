@@ -112,6 +112,9 @@ main() {
       tar -xzf "$estado" -C "$server"
     fi
   fi
+  # Whitelist e admins: lista na pasta do Drive (vale para todos os hosts) ou, sem Drive, no servidor.
+  lista="$server/jogadores.txt"; [ -z "$SYNC_DIR" ] || lista="$SYNC_DIR/jogadores.txt"
+  sincronizar_whitelist "$lista" "$server"
 
   # 6. Rede: porta (UPnP) e endereco.
   # IP da placa da rota padrao (en0 nem sempre e a que vai para a internet).
@@ -208,7 +211,57 @@ PY
 }
 
 # Link da pasta minezada no Drive: quem nao tem acesso ve o botao "Solicitar acesso".
-drive_url="https://drive.google.com/drive/shared-with-me"
+drive_url="https://drive.google.com/drive/folders/1Kw45U0B-b906dnDsUH8bLy9nDg7HfWzh"
+
+# Libera na whitelist os nicks de jogadores.txt (um por linha; "op" depois do nick tambem da admin),
+# buscando o UUID na Mojang. Sem o arquivo, cria com o dono e quem ja esta liberado. So adiciona;
+# tirar alguem e no console. Uso: sincronizar_whitelist LISTA PASTA_DO_SERVIDOR
+sincronizar_whitelist() {
+  if [ "$(uname -s)" = "Darwin" ] && ! xcode-select -p >/dev/null 2>&1; then return 0; fi
+  command -v python3 >/dev/null || return 0
+  python3 - "$@" <<'PY' || echo "AVISO: falha ao atualizar a whitelist." >&2
+import json, os, sys, urllib.request
+lista, pasta = sys.argv[1], sys.argv[2]
+def ler(nome):
+    arq = os.path.join(pasta, nome)
+    return json.load(open(arq)) if os.path.exists(arq) else []
+wl, ops = ler("whitelist.json"), ler("ops.json")
+if not os.path.exists(lista):
+    with open(lista, "w") as f:
+        f.write("# Um nick do Minecraft Java por linha; 'op' depois do nick tambem da admin.\n"
+                "# O servidor libera todos ao iniciar.\nEnzobullet op\n")
+        f.writelines(e["name"] + "\n" for e in wl if e["name"].lower() != "enzobullet")
+conhecidos = {e["name"].lower(): e for e in wl + ops}
+for linha in open(lista, encoding="utf-8-sig"):
+    partes = linha.split("#")[0].split()
+    if not partes:
+        continue
+    k, op = partes[0].lower(), "op" in [x.lower() for x in partes[1:]]
+    falta_wl = k not in {e["name"].lower() for e in wl}
+    falta_op = op and k not in {e["name"].lower() for e in ops}
+    if not (falta_wl or falta_op):
+        continue
+    if k not in conhecidos:
+        try:
+            url = f"https://api.mojang.com/users/profiles/minecraft/{partes[0]}"
+            p = json.load(urllib.request.urlopen(url, timeout=10))
+        except Exception:
+            print(f"AVISO: nick nao encontrado na Mojang: {partes[0]}")
+            continue
+        u = p["id"]
+        conhecidos[k] = {"uuid": f"{u[:8]}-{u[8:12]}-{u[12:16]}-{u[16:20]}-{u[20:]}", "name": p["name"]}
+    e = conhecidos[k]
+    if falta_wl:
+        wl.append({"uuid": e["uuid"], "name": e["name"]})
+        print(f"Liberado na whitelist: {e['name']}")
+    if falta_op:
+        ops.append({"uuid": e["uuid"], "name": e["name"], "level": 4, "bypassesPlayerLimit": False})
+        print(f"Admin (op): {e['name']}")
+for nome, dados in (("whitelist.json", wl), ("ops.json", ops)):
+    with open(os.path.join(pasta, nome), "w") as f:
+        json.dump(dados, f, indent=2)
+PY
+}
 
 achar_drive() {
   local d
