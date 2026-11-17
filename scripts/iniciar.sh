@@ -120,6 +120,8 @@ main() {
   # IP da placa da rota padrao (en0 nem sempre e a que vai para a internet).
   ifc="$(route -n get default 2>/dev/null | awk '/interface:/{print $2}')"
   ip="$(ipconfig getifaddr "${ifc:-en0}" 2>/dev/null || hostname -I 2>/dev/null | awk '{print $1}')"
+  # Roteador sem NAT loopback (ex.: operadora) nao deixa quem esta na mesma casa entrar pelo endereco publico.
+  echo "Na mesma casa: entre por localhost (nesta maquina) ou $ip (outro computador)."
   if porta_upnp abrir "$ip" $porta; then
     echo "Porta $porta aberta via UPnP."
   else

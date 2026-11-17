@@ -254,6 +254,9 @@ if (-not (Get-NetFirewallRule -DisplayName 'minezin 25565' -ErrorAction Silently
     }
     catch { Write-Warning 'Firewall nao liberado: libere o Java quando o Windows perguntar.' }
 }
+# Roteador sem NAT loopback (ex.: operadora) nao deixa quem esta na mesma casa entrar pelo endereco publico.
+$ipLocal = try { (Find-NetRoute -RemoteIPAddress 8.8.8.8 | Where-Object IPAddress | Select-Object -First 1).IPAddress } catch { $null }
+Write-Host "Na mesma casa: entre por localhost (nesta maquina) ou $ipLocal (outro computador)."
 if (Porta-UPnP $true) { Write-Host "Porta $porta aberta via UPnP." }
 else { Write-Host 'UPnP indisponivel: vale o redirecionamento manual do roteador (docs/requisitos.md).' }
 
