@@ -60,9 +60,13 @@ de LAN: o `iniciar` anuncia ele como o "Abrir para LAN" do jogo. O endereço pú
 funcionar ali (roteador sem NAT loopback, como o da Vivo). Se a rede bloquear o anúncio (Wi-Fi com
 isolamento entre aparelhos), use `localhost` na máquina do host ou o IP local que o `iniciar` mostra.
 
-**CGNAT** (IP WAN do roteador ≠ IP de https://api.ipify.org): abrir porta não funciona. Saída:
-[playit.gg](https://playit.gg) (túnel). No plano grátis o túnel fica fora do Brasil (relatos de
-300-400 ms); o plano pago tem região América do Sul.
+**Rede que não deixa abrir porta** (faculdade, laboratório, 4G, CGNAT): o `iniciar` liga sozinho o
+túnel [playit.gg](https://playit.gg) e mostra o endereço, hoje `molecule-spindle.tun.ply.gg` (sem
+porta). O segredo do agente fica em `playit.txt` na pasta do Drive e o endereço em
+`playit-endereco.txt`, então qualquer host usa o mesmo túnel. Plano grátis: sem limite de uso, mas a
+rota não é garantida (Premium fixa a região em São Paulo). Em casa, com UPnP, a conexão segue direta.
+Perdeu o segredo? `playit claim generate`, `playit claim url <código>`, aprove no site e
+`playit claim exchange <código>`: a última linha da saída é o segredo novo.
 
 ## Dicas de rede
 

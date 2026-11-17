@@ -122,10 +122,12 @@ main() {
   ip="$(ipconfig getifaddr "${ifc:-en0}" 2>/dev/null || hostname -I 2>/dev/null | awk '{print $1}')"
   # Roteador sem NAT loopback (ex.: Vivo) nao deixa quem esta na mesma casa entrar pelo endereco publico.
   echo "Na mesma casa: entre por localhost (nesta maquina) ou $ip (outro computador)."
+  tunel_pid=""
   if porta_upnp abrir "$ip" $porta; then
     echo "Porta $porta aberta via UPnP."
   else
-    echo "UPnP indisponivel: vale o redirecionamento manual do roteador (docs/requisitos.md)."
+    echo "Esta rede nao deixou abrir a porta $porta (UPnP indisponivel)."
+    iniciar_tunel
   fi
 
   ddns_pid=""
@@ -160,7 +162,7 @@ while True:
       lan_pid=$!
     fi
   fi
-  trap 'kill $ddns_pid $lan_pid 2>/dev/null || true' EXIT
+  trap 'kill $ddns_pid $lan_pid $tunel_pid 2>/dev/null || true' EXIT
 
   echo "Iniciando servidor com $RAM de RAM. Digite 'stop' para desligar e salvar."
   # caffeinate impede o Mac de dormir enquanto o servidor roda. String sem aspas de proposito:
@@ -172,7 +174,7 @@ while True:
   (cd "$server" && $cafe "$JAVA" "-Xms$RAM" "-Xmx$RAM" $flags "@libraries/net/neoforged/neoforge/$neo/unix_args.txt" nogui) || true
   trap - INT
 
-  kill $ddns_pid $lan_pid 2>/dev/null || true
+  kill $ddns_pid $lan_pid $tunel_pid 2>/dev/null || true
   porta_upnp fechar "$ip" $porta || true
 
   if [ -n "$SYNC_DIR" ]; then
@@ -234,6 +236,35 @@ for tipo, ctrl in servicos:  # roteador pode anunciar WANIP e WANPPP; so um acei
         pass
 sys.exit(1)
 PY
+}
+
+# Tunel playit.gg para hospedar de redes que nao deixam abrir porta (faculdade, laboratorio, 4G).
+# O segredo do agente fica em playit.txt na pasta do Drive: todo host usa o mesmo tunel e endereco
+# (anotado em playit-endereco.txt). Preenche tunel_pid.
+iniciar_tunel() {
+  local seg="$SYNC_DIR/playit.txt" dir="$tools/playit" tgz
+  if [ -z "$SYNC_DIR" ] || [ ! -f "$seg" ]; then
+    echo "Sem tunel playit.gg (precisa da pasta do Drive): so quem esta nesta rede consegue entrar."
+    return 0
+  fi
+  if [ "$(uname -s)" != "Darwin" ]; then echo "Tunel playit.gg automatico so no Mac e no Windows."; return 0; fi
+  if [ ! -x "$dir/playitd" ]; then
+    echo "Baixando o playit.gg..."
+    mkdir -p "$dir"; tgz="$dir/playit.tar.gz"
+    curl -fsSL "https://github.com/playit-cloud/playit-agent/releases/download/v2.0.2/playit-macos-universal.tar.gz" -o "$tgz"
+    # SHA-256 publicado na release: so roda o binario se bater.
+    if [ "$(shasum -a 256 "$tgz" | awk '{print $1}')" != d3da262f8c58bfc13797a1bbf2e3fcc6d487e4e6832f54b35c00daeb59e1cce2 ]; then
+      rm -f "$tgz"; echo "AVISO: checksum do playit.gg nao confere; tunel nao ligado." >&2; return 0
+    fi
+    tar -xzf "$tgz" -C "$dir" --strip-components 1; rm -f "$tgz"
+  fi
+  # Socket em TMPDIR: o macOS limita o caminho de socket a ~104 caracteres.
+  mkdir -p "$server/logs"
+  "$dir/playitd" --secret-path "$seg" --socket-path "${TMPDIR:-/tmp}/minezada-playit.sock" \
+    -l "$server/logs/playit.log" >/dev/null 2>&1 &
+  tunel_pid=$!
+  echo "Tunel playit.gg ligado. Quem esta fora desta rede entra por:"
+  echo "  $(cat "$SYNC_DIR/playit-endereco.txt" 2>/dev/null || echo 'endereco do tunel no painel do playit.gg')"
 }
 
 # Link da pasta minezada no Drive: quem nao tem acesso ve o botao "Solicitar acesso".
