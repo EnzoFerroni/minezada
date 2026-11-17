@@ -12,6 +12,7 @@ $root = Split-Path $PSScriptRoot -Parent
 $api = 'https://api.modrinth.com/v2'
 $packUrl = 'https://raw.githubusercontent.com/EnzoFerroni/minezada/main/modpack/pack/pack.toml'
 $servidor = 'minezada-mc.duckdns.org'
+$tunel = 'molecule-spindle.tun.ply.gg'  # playit: endereco fixo do tunel (playit-endereco.txt no Drive)
 $h = @{ 'User-Agent' = 'minezada-modpack-builder/1.0' }
 
 # Le como UTF-8 (o PS 5.1 decodifica como Latin-1 e quebra emoji/acento) e achata arrays JSON.
@@ -139,6 +140,25 @@ if (Test-Path $soltos) {
         $idx += "`n[[files]]`nfile = $(Toml $rel)`nhash = `"$(Sha256 $dest)`"`npreserve = true`n"
     }
 }
+# servers.dat (NBT sem compressao): os enderecos do servidor ja na lista do Multiplayer. Vai pelo packwiz
+# sem preserve, entao todo mundo recebe a lista nova a cada abertura (servidor adicionado a mao some).
+# 443: redes (faculdade) que so liberam 80/443 de saida; o host abre as duas por UPnP. Playit: tunel
+# usado quando o host esta numa rede sem UPnP (endereco em playit-endereco.txt no Drive).
+function NbtStr($ms, $s) { $b = [Text.Encoding]::UTF8.GetBytes($s); $ms.WriteByte($b.Length -shr 8); $ms.WriteByte($b.Length -band 255); $ms.Write($b, 0, $b.Length) }
+$entradas = @(@('Minezada', $servidor), @('Minezada (rede da faculdade)', "${servidor}:443"),
+    @('Minezada (tunel playit)', $tunel), @('Minezada (neste computador)', 'localhost'))
+$ms = New-Object IO.MemoryStream
+$ms.WriteByte(10); NbtStr $ms ''                                                                 # compound raiz
+$ms.WriteByte(9); NbtStr $ms 'servers'; $ms.WriteByte(10); $ms.Write([byte[]](0, 0, 0, $entradas.Count), 0, 4)  # lista de compounds
+foreach ($e in $entradas) {
+    $ms.WriteByte(8); NbtStr $ms 'name'; NbtStr $ms $e[0]
+    $ms.WriteByte(8); NbtStr $ms 'ip'; NbtStr $ms $e[1]
+    $ms.WriteByte(0)                                                                             # fim do servidor
+}
+$ms.WriteByte(0)                                                                                 # fim da raiz
+$serversDat = $ms.ToArray()
+[IO.File]::WriteAllBytes((Join-Path $pw 'servers.dat'), $serversDat)
+$idx += "`n[[files]]`nfile = `"servers.dat`"`nhash = `"$(Sha256 (Join-Path $pw 'servers.dat'))`"`n"
 Escrever (Join-Path $pw 'index.toml') $idx
 Escrever (Join-Path $pw 'pack.toml') "name = `"Minezada`"`nversion = `"$Versao`"`npack-format = `"packwiz:1.1.0`"`n`n[index]`nfile = `"index.toml`"`nhash-format = `"sha256`"`nhash = `"$(Sha256 (Join-Path $pw 'index.toml'))`"`n`n[versions]`nminecraft = `"$mc`"`nneoforge = `"$neo`"`n"
 
@@ -153,20 +173,7 @@ $inst = Join-Path $tmp 'prism'
 New-Item -ItemType Directory -Force (Join-Path $inst '.minecraft') | Out-Null
 Copy-Item $boot (Join-Path $inst '.minecraft')
 Escrever (Join-Path $inst 'instance.cfg') "[General]`nInstanceType=OneSix`nname=Minezada`nOverrideCommands=true`nPreLaunchCommand=`"`$INST_JAVA`" -jar packwiz-installer-bootstrap.jar $packUrl`nOverrideMemory=true`nMinMemAlloc=1024`nMaxMemAlloc=4096`nJoinServerOnLaunch=true`nJoinServerOnLaunchAddress=$servidor`n"
-# servers.dat (NBT sem compressao) com o servidor ja na lista do Multiplayer. A entrada da porta 443 e
-# para redes (faculdade, empresa) que so liberam 80/443 de saida; o host abre as duas por UPnP.
-function NbtStr($ms, $s) { $b = [Text.Encoding]::UTF8.GetBytes($s); $ms.WriteByte($b.Length -shr 8); $ms.WriteByte($b.Length -band 255); $ms.Write($b, 0, $b.Length) }
-$entradas = @(@('Minezada', $servidor), @('Minezada (rede da faculdade)', "${servidor}:443"))
-$ms = New-Object IO.MemoryStream
-$ms.WriteByte(10); NbtStr $ms ''                                                                 # compound raiz
-$ms.WriteByte(9); NbtStr $ms 'servers'; $ms.WriteByte(10); $ms.Write([byte[]](0, 0, 0, $entradas.Count), 0, 4)  # lista de compounds
-foreach ($e in $entradas) {
-    $ms.WriteByte(8); NbtStr $ms 'name'; NbtStr $ms $e[0]
-    $ms.WriteByte(8); NbtStr $ms 'ip'; NbtStr $ms $e[1]
-    $ms.WriteByte(0)                                                                             # fim do servidor
-}
-$ms.WriteByte(0)                                                                                 # fim da raiz
-[IO.File]::WriteAllBytes((Join-Path $inst '.minecraft/servers.dat'), $ms.ToArray())
+[IO.File]::WriteAllBytes((Join-Path $inst '.minecraft/servers.dat'), $serversDat)
 # Opcoes iniciais (o jogo completa o resto); o jogar so copia se o jogador ainda nao tiver.
 # Pacotes de $rpLigados ja vem ligados. As quatro ultimas opcoes pulam as telas de primeira abertura:
 # acessibilidade, tutorial de movimento e avisos de multiplayer.

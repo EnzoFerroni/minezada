@@ -290,7 +290,7 @@ sincronizar_whitelist() {
   if [ "$(uname -s)" = "Darwin" ] && ! xcode-select -p >/dev/null 2>&1; then return 0; fi
   command -v python3 >/dev/null || return 0
   python3 - "$@" <<'PY' || echo "AVISO: falha ao atualizar a whitelist." >&2
-import hashlib, json, os, re, shutil, sys, urllib.request, uuid
+import hashlib, json, os, re, shutil, sys, urllib.error, urllib.request, uuid
 lista, pasta = sys.argv[1], sys.argv[2]
 def offline(nome):  # mesmo UUID que o servidor da ao nick sem conta Microsoft (maiusculas contam)
     return str(uuid.UUID(bytes=hashlib.md5(b"OfflinePlayer:" + nome.encode()).digest(), version=3))
@@ -304,11 +304,22 @@ oficiais = {e["name"].lower(): e["uuid"] for e in wl + ops if e["uuid"] != offli
 def oficial(nome):
     if nome.lower() in oficiais:
         return oficiais[nome.lower()]
-    try:
-        r = urllib.request.urlopen("https://api.mojang.com/users/profiles/minecraft/" + nome, timeout=5)
-        return str(uuid.UUID(json.load(r)["id"])) if r.status == 200 else None
-    except Exception:  # 404 = nick sem conta original; rede/limite = tenta no proximo start
-        return None
+    falhou = False
+    # Dois enderecos da Mojang: rede compartilhada (faculdade) costuma levar 429 em um deles.
+    for url in ("https://api.mojang.com/users/profiles/minecraft/",
+                "https://api.minecraftservices.com/minecraft/profile/lookup/name/"):
+        try:
+            return str(uuid.UUID(json.load(urllib.request.urlopen(url + nome, timeout=5))["id"]))
+        except urllib.error.HTTPError as e:
+            if e.code == 404:  # nick sem conta original
+                return None
+            falhou = True
+        except Exception:
+            falhou = True
+    if falhou:
+        print(f"AVISO: a Mojang nao respondeu sobre {nome}. Se ele tem original, nao entra ate o proximo start"
+              f" (ou: whitelist add {nome} no console).")
+    return None
 if not os.path.exists(lista):
     with open(lista, "w") as f:
         f.write("# Um nick por linha, igual ao do jogo (maiusculas contam); 'op' depois tambem da admin.\n"
