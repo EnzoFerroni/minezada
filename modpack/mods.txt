@@ -92,7 +92,7 @@ super-duper-vanilla | Parece o Minecraft normal, só que mais bonito; leve e fei
 miniature-shader | Estilo suave e colorido, levíssimo. Roda em qualquer Mac. Perfil Shader - Miniature.
 photon-shader | O mais bonito da lista, para PCs fortes. **Só PC: não roda no Mac.** Perfil PC - Photon.
 solas-shader | Visual suave e realista, para PCs médios. **Só PC: não roda no Mac.** Perfil PC - Solas.
-bliss-shader | Céu e nuvens impressionantes, para PCs fortes. **Só PC: no Mac funciona mal.** Perfil PC - Bliss.
+bliss-shader | Céu e nuvens impressionantes, para PCs fortes. No Mac abre (testado num M4), mas pode ter defeitos e pesa. Perfil PC - Bliss.
 rethinking-voxels | Luz colorida de verdade (tochas, lava), para PCs fortes; ainda em beta. **Só PC: não roda no Mac.** Perfil PC - Rethinking Voxels.
 
 ## Qualidade de vida

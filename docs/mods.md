@@ -545,7 +545,7 @@ Visual suave e realista, para PCs médios. **Só PC: não roda no Mac.** Perfil 
 
 ### <img src="https://cdn.modrinth.com/data/ZvMtQlho/90145c971ea24387775108fc86c89bed9bd2c8f1_96.webp" width="28" align="center"> [Bliss Shaders](https://modrinth.com/mod/bliss-shader)
 
-Céu e nuvens impressionantes, para PCs fortes. **Só PC: no Mac funciona mal.** Perfil PC - Bliss.
+Céu e nuvens impressionantes, para PCs fortes. No Mac abre (testado num M4), mas pode ter defeitos e pesa. Perfil PC - Bliss.
 
 <img src="https://cdn.modrinth.com/data/ZvMtQlho/images/7ceb3b0fcd9ccdbd5fc4bdc80ba7ee766509c69f_350.webp" width="480">
 
