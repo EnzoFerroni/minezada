@@ -228,7 +228,7 @@ if (-not ((Test-Path $eula) -and (Select-String -Quiet 'eula=true' $eula))) {
     if ($r -ne 's') { throw 'EULA nao aceito.' }
     Set-Content $eula 'eula=true'
 }
-Copy-Item (Join-Path $root 'server-config\*') $server -Force
+Copy-Item (Join-Path $root 'server-config\*') $server -Recurse -Force
 
 # 5. Mundo da pasta sincronizada, com trava para so um host por vez.
 $sync = $cfg.SYNC_DIR

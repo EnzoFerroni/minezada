@@ -28,6 +28,7 @@ outras, `/login suasenha`. Sem isso não dá para andar nem mexer em nada.
 **Sem Minecraft original:** use um launcher que aceite conta offline, importe o
 [`minezada.mrpack`](modpack/minezada.mrpack) e entre com o nick exatamente como está na whitelist
 (maiúsculas contam). Os mods não se atualizam sozinhos: baixe o `.mrpack` de novo quando mudar.
+Para ter skin: `/skin set web classic <link da imagem da skin>` (`slim` para braço fino).
 
 ## Hospedar
 

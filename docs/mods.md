@@ -11,7 +11,7 @@
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.17` · 105 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.18` · 105 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
 
 ## Aprender e guias
 
@@ -503,7 +503,7 @@ Senha no servidor: na primeira vez digite /register senha senha, depois /login s
 
 ### <img src="https://cdn.modrinth.com/data/ghrZDhGW/f5bc55cd7b07f988b5f28d7d3f0a4c8e9f480bc1_96.webp" width="28" align="center"> [Skin Restorer](https://modrinth.com/mod/skinrestorer)
 
-Mostra a skin de cada um no servidor (busca pelo nick na Mojang). Sem original: /skin set url <link da imagem>.
+Mostra a skin de cada um no servidor, mesmo em rede que bloqueia a Mojang. Trocar: /skin set nick SeuNick ou /skin set web classic <link da imagem>.
 
 <sub>Versão `2.11.1+1.21-neoforge`</sub>
 

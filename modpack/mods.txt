@@ -88,7 +88,7 @@ comforts | Saco de dormir e rede: dormir sem mudar o ponto de renascimento.
 trade-cycling | Botão para trocar as ofertas de um aldeão que ainda não negociou.
 easy-anvils | Bigorna sem o limite de "Caro demais" e com nomes coloridos.
 simple-login | Senha no servidor: na primeira vez digite /register senha senha, depois /login senha. Protege seu nick.
-skinrestorer | Mostra a skin de cada um no servidor (busca pelo nick na Mojang). Sem original: /skin set url <link da imagem>.
+skinrestorer | Mostra a skin de cada um no servidor, mesmo em rede que bloqueia a Mojang. Trocar: /skin set nick SeuNick ou /skin set web classic <link da imagem>.
 
 ## Mundo e facilidade
 waystones | Pedras de teleporte: ative nas suas bases e em vilas e viaje entre elas.
