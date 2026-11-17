@@ -38,14 +38,15 @@ O `iniciar` acha a pasta sozinho em `X:\Meu Drive\minezada` (Windows) ou
 
 ## Rede
 
-**Endereço fixo:** `minezada-mc.duckdns.org`. Quem inicia o servidor com `DUCKDNS_TOKEN` no
-`config.env` reaponta o nome para o próprio IP (no start e a cada 5 min). O token está na conta
-DuckDNS do dono: passe por mensagem privada, nunca no git. Se vazar: crie outro domínio no DuckDNS, troque o nome em `scripts/` e apague o antigo.
+**Endereço fixo:** `minezada-mc.duckdns.org`. Quem hospeda reaponta o nome para o próprio IP (no
+start e a cada 5 min). O token fica em `duckdns.txt` na pasta do Drive, nunca no git: o primeiro
+host com `DUCKDNS_TOKEN` no `config.env` grava o arquivo lá, e os outros hosts pegam de lá sozinhos. Se vazar: crie outro domínio no DuckDNS, troque o nome em `scripts/` e apague o antigo.
 
 **Porta 25565 TCP** precisa chegar no host. Duas formas:
 
 - **UPnP (automático):** se o roteador tiver UPnP ligado, o `iniciar` abre e fecha a porta sozinho
-  para a máquina que estiver hospedando (Mac usa `miniupnpc`, que só é instalado se tiver Homebrew). Ligar UPnP é
+  para a máquina que estiver hospedando (Windows e Mac falam direto com o roteador; no Mac usa o `python3` das ferramentas de linha de
+  comando, que o `git` já instala). Ligar UPnP é
   uma troca de segurança: qualquer aparelho da rede pode abrir portas.
 - **Manual:** roteador → redirecionar porta `25565 TCP` para o IP local do host, com reserva de IP
   (DHCP) para ele não mudar. Trocou de host na mesma casa: troque o IP da regra.
