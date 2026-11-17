@@ -56,7 +56,43 @@ if ((Test-Path (Join-Path $root '.git')) -and (Get-Command git -ErrorAction Sile
 }
 
 # Link da pasta minezada no Drive: quem nao tem acesso ve o botao "Solicitar acesso".
-$driveUrl = 'https://drive.google.com/drive/shared-with-me'
+$driveUrl = 'https://drive.google.com/drive/folders/1Kw45U0B-b906dnDsUH8bLy9nDg7HfWzh'
+
+# Libera na whitelist os nicks de jogadores.txt (um por linha; "op" depois do nick tambem da admin),
+# buscando o UUID na Mojang. Sem o arquivo, cria com o dono e quem ja esta liberado. So adiciona;
+# tirar alguem e no console.
+function Sincronizar-Whitelist($lista, $pasta) {
+    # (o ForEach achata: no PS 5.1 o ConvertFrom-Json devolve a lista inteira como um item so)
+    $ler = { param($n) $a = Join-Path $pasta $n; @(if (Test-Path $a) { Get-Content $a -Raw | ConvertFrom-Json | ForEach-Object { $_ } }) }
+    $wl = @(& $ler 'whitelist.json'); $ops = @(& $ler 'ops.json')
+    if (-not (Test-Path $lista)) {
+        $linhas = @("# Um nick do Minecraft Java por linha; 'op' depois do nick tambem da admin.",
+            '# O servidor libera todos ao iniciar.', 'Enzobullet op') + @($wl | Where-Object { $_.name -ne 'Enzobullet' } | ForEach-Object { $_.name })
+        [IO.File]::WriteAllLines($lista, [string[]]$linhas)
+    }
+    $conhecidos = @{}
+    foreach ($e in $wl + $ops) { $conhecidos[$e.name.ToLower()] = $e }
+    foreach ($l in Get-Content $lista) {
+        $partes = @(($l -split '#')[0].Trim() -split '\s+' | Where-Object { $_ })
+        if (-not $partes) { continue }
+        $k = $partes[0].ToLower()
+        $op = @($partes | Select-Object -Skip 1) -contains 'op'
+        $faltaWl = -not ($wl | Where-Object { $_.name.ToLower() -eq $k })
+        $faltaOp = $op -and -not ($ops | Where-Object { $_.name.ToLower() -eq $k })
+        if (-not ($faltaWl -or $faltaOp)) { continue }
+        if (-not $conhecidos.ContainsKey($k)) {
+            try { $p = Invoke-RestMethod "https://api.mojang.com/users/profiles/minecraft/$($partes[0])" } catch { $p = $null }
+            if (-not $p.id) { Write-Warning "Nick nao encontrado na Mojang: $($partes[0])"; continue }
+            $u = $p.id
+            $conhecidos[$k] = [pscustomobject]@{ uuid = "$($u.Substring(0,8))-$($u.Substring(8,4))-$($u.Substring(12,4))-$($u.Substring(16,4))-$($u.Substring(20))"; name = $p.name }
+        }
+        $e = $conhecidos[$k]
+        if ($faltaWl) { $wl += [pscustomobject]@{ uuid = $e.uuid; name = $e.name }; Write-Host "Liberado na whitelist: $($e.name)" }
+        if ($faltaOp) { $ops += [pscustomobject]@{ uuid = $e.uuid; name = $e.name; level = 4; bypassesPlayerLimit = $false }; Write-Host "Admin (op): $($e.name)" }
+    }
+    [IO.File]::WriteAllText((Join-Path $pasta 'whitelist.json'), (ConvertTo-Json -InputObject @($wl) -Depth 3))
+    [IO.File]::WriteAllText((Join-Path $pasta 'ops.json'), (ConvertTo-Json -InputObject @($ops) -Depth 3))
+}
 
 function Achar-Drive {
     Get-PSDrive -PSProvider FileSystem |
@@ -202,6 +238,10 @@ if ($sync) {
         if ($LASTEXITCODE) { throw 'Falha ao extrair o mundo.' }
     }
 }
+# Whitelist e admins: lista na pasta do Drive (vale para todos os hosts) ou, sem Drive, no servidor.
+$lista = if ($sync) { Join-Path $sync 'jogadores.txt' } else { Join-Path $server 'jogadores.txt' }
+try { Sincronizar-Whitelist $lista $server }
+catch { Write-Warning "Falha ao atualizar a whitelist: $_" }
 
 # 6. Rede: firewall, porta e endereco.
 # Regra por porta (nao por programa): o aviso do Windows so libera o perfil de rede atual e nao repete.
