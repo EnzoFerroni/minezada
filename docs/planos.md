@@ -93,5 +93,5 @@ Iron's Spells (complexo para iniciantes), Eternal Starlight (dimensão nova, men
 - **Changelog dentro do jogo** (ou no README) com o que mudou em cada versão do pack.
 - **Fixar as versões dos mods** (hoje o `montar-pack` pega a versão mais nova a cada geração);
   útil quando o pack estiver estável, para atualizar só quando quiser.
-- **Host dedicado** (VPS no Brasil) se o PC de casa virar gargalo ou a galera quiser servidor
+- **Host dedicado** (VPS no Brasil) se o PC de casa virar gargalo ou os jogadores quiserem servidor
   sempre ligado: o mesmo `iniciar.sh` roda em Linux.
