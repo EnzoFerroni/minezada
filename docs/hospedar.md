@@ -43,6 +43,7 @@ Servidor lento? `spark profiler start`, espere 1 minuto e `spark profiler stop`:
 
 1. Edite [`modpack/mods.txt`](../modpack/mods.txt): uma linha `slug-do-modrinth | descrição`.
 2. Rode `powershell -ExecutionPolicy Bypass -File scripts\montar-pack.ps1`.
+   Perfis de gráfico: edite a tabela em `scripts\perfis.ps1`, rode ele e depois o `montar-pack.ps1`.
 3. Anote no histórico de [decisoes.md](decisoes.md), commit e push.
 
 Os jogadores recebem ao abrir o jogo; o servidor, no próximo start. Se mudar a versão do NeoForge, cada
