@@ -1,9 +1,12 @@
-# Instala o Prism Launcher (se faltar) e importa o modpack da Minezada. Rode no PowerShell:
+# Instala/atualiza o Minezada e abre o jogo. Rode no PowerShell (serve para instalar, atualizar e reparar):
 #   irm https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.ps1 | iex
 $ErrorActionPreference = 'Stop'
-$zip = 'https://github.com/EnzoFerroni/minezada/raw/main/modpack/minezada-prism.zip'
+$ProgressPreference = 'SilentlyContinue'
+$zipUrl = 'https://github.com/EnzoFerroni/minezada/raw/main/modpack/minezada-prism.zip'
+$dados = "$env:APPDATA\PrismLauncher"
 $locais = "$env:LOCALAPPDATA\Programs\PrismLauncher\prismlauncher.exe", "$env:ProgramFiles\PrismLauncher\prismlauncher.exe"
 
+# 1. Prism Launcher
 $prism = $locais | Where-Object { Test-Path $_ } | Select-Object -First 1
 if (-not $prism) {
     Write-Host 'Instalando o Prism Launcher...'
@@ -12,12 +15,32 @@ if (-not $prism) {
     if (-not $prism) { throw 'Prism nao encontrado. Instale em https://prismlauncher.org/download/ e rode de novo.' }
 }
 
-Start-Process $prism -ArgumentList '--import', $zip
-Write-Host @'
+# 2. Primeira vez: idioma, tema e Java automatico, para o assistente do Prism so pedir o login.
+$cfg = Join-Path $dados 'prismlauncher.cfg'
+if (-not (Test-Path $cfg)) {
+    New-Item -ItemType Directory -Force $dados | Out-Null
+    Set-Content $cfg -Encoding ascii "[General]`nLanguage=pt_BR`nApplicationTheme=dark`nIconTheme=pe_colored`nAutomaticJavaDownload=true`nAutomaticJavaSwitch=true`nIgnoreJavaWizard=true"
+}
 
-No Prism:
-  1. Confirme a importacao do "Minezada" (OK).
-  2. Entre com a conta Microsoft (icone de conta, canto superior direito).
-  3. Clique duas vezes em "Minezada". Na primeira vez aceite baixar o Java.
-O jogo ja entra direto no servidor. Atualizacoes do pack sao automaticas.
-'@
+# 3. Instancia: extrai direto na pasta do Prism (sem dialogo). Preserva mundo, opcoes e servidores do jogador.
+$instDir = (Select-String '^InstanceDir=(.+)$' $cfg | Select-Object -First 1).Matches.Groups[1].Value
+if (-not $instDir) { $instDir = 'instances' }
+if (-not [IO.Path]::IsPathRooted($instDir)) { $instDir = Join-Path $dados $instDir }
+$inst = Join-Path $instDir 'Minezada'
+$tmp = Join-Path $env:TEMP "minezada-$PID"
+New-Item -ItemType Directory -Force $tmp | Out-Null
+Invoke-WebRequest $zipUrl -OutFile "$tmp\pack.zip"
+Expand-Archive "$tmp\pack.zip" "$tmp\x" -Force
+New-Item -ItemType Directory -Force "$inst\.minecraft" | Out-Null
+# shortcut: instance.cfg e sobrescrito (zera tempo de jogo do Prism); trocar por merge se incomodar.
+Copy-Item "$tmp\x\instance.cfg", "$tmp\x\mmc-pack.json" $inst -Force
+Copy-Item "$tmp\x\.minecraft\packwiz-installer-bootstrap.jar" "$inst\.minecraft" -Force
+foreach ($f in 'servers.dat', 'options.txt') { if (-not (Test-Path "$inst\.minecraft\$f")) { Copy-Item "$tmp\x\.minecraft\$f" "$inst\.minecraft" } }
+Remove-Item -Recurse -Force $tmp
+
+# 4. Atalho na Area de Trabalho que abre direto o jogo.
+$lnk = (New-Object -ComObject WScript.Shell).CreateShortcut("$([Environment]::GetFolderPath('Desktop'))\Minezada.lnk")
+$lnk.TargetPath = $prism; $lnk.Arguments = '--launch Minezada'; $lnk.IconLocation = "$prism,0"; $lnk.Save()
+
+Start-Process $prism -ArgumentList '--launch', 'Minezada'
+Write-Host "`nPronto! Na primeira vez entre com a conta Microsoft. Depois e so clicar em 'Minezada' na Area de Trabalho."

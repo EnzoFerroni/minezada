@@ -109,6 +109,8 @@ $ms.WriteByte(8); NbtStr $ms 'name'; NbtStr $ms 'Minezada'
 $ms.WriteByte(8); NbtStr $ms 'ip'; NbtStr $ms $servidor
 $ms.WriteByte(0); $ms.WriteByte(0)                                                               # fim do servidor e da raiz
 [IO.File]::WriteAllBytes((Join-Path $inst '.minecraft\servers.dat'), $ms.ToArray())
+# Opcoes iniciais (o jogo completa o resto); o jogar so copia se o jogador ainda nao tiver.
+Escrever (Join-Path $inst '.minecraft\options.txt') "lang:pt_br`nrenderDistance:10`nsimulationDistance:8`n"
 Escrever (Join-Path $inst 'mmc-pack.json') "{`"formatVersion`":1,`"components`":[{`"uid`":`"net.minecraft`",`"version`":`"$mc`",`"important`":true},{`"uid`":`"net.neoforged`",`"version`":`"$neo`"}]}`n"
 $zipPrism = Join-Path $root 'modpack\minezada-prism.zip'
 if (Test-Path $zipPrism) { Remove-Item $zipPrism }

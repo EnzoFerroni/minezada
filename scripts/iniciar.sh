@@ -54,10 +54,22 @@ main() {
   if [ ! -x "$exe" ]; then
     os="$(uname -s | tr '[:upper:]' '[:lower:]')"
     case "$(uname -m)" in x86_64|amd64) arch=amd64 ;; arm64|aarch64) arch=arm64 ;; *) die "Arquitetura nao suportada: $(uname -m)" ;; esac
+    # SHA-256 do checksums.txt oficial da release: so roda o binario se bater.
+    case "${os}_${arch}" in
+      darwin_arm64) sum=35f4fa5d28ab3f30601d432957fae7f9050a371d55e6f518813f87361a13b710 ;;
+      darwin_amd64) sum=2c1be13a4b0425bbf136dbb36dfd5058f6d97034fef06388b35a954c2d075eee ;;
+      linux_amd64)  sum=a254184c0a9e6965dd3766caf0ea4f74c011f7ce77c04120c25623069cf72b85 ;;
+      linux_arm64)  sum=68abf67220c3c514a0d20bd5062d2bf352467d90c2bd8bdafac46624079c2d0f ;;
+      *) die "Sistema nao suportado: ${os}_${arch}" ;;
+    esac
     echo "Baixando mrpack-install $mrpack_version..."
     mkdir -p "$tools"
-    curl -fsSL "https://github.com/nothub/mrpack-install/releases/download/v${mrpack_version}/mrpack-install_${mrpack_version}_${os}_${arch}.tar.gz" \
-      | tar -xz -C "$tools" mrpack-install
+    tgz="$tools/mrpack-install.tar.gz"
+    curl -fsSL "https://github.com/nothub/mrpack-install/releases/download/v${mrpack_version}/mrpack-install_${mrpack_version}_${os}_${arch}.tar.gz" -o "$tgz"
+    got="$( (shasum -a 256 "$tgz" 2>/dev/null || sha256sum "$tgz") | awk '{print $1}')"
+    [ "$got" = "$sum" ] || { rm -f "$tgz"; die "Checksum do mrpack-install nao confere (download corrompido ou adulterado)."; }
+    tar -xzf "$tgz" -C "$tools" mrpack-install
+    rm -f "$tgz"
   fi
 
   # Idempotente: sem mudanca no pack, nao faz nada.
