@@ -86,6 +86,13 @@ Iron's Spells (complexo para iniciantes), Eternal Starlight (dimensão nova, men
   ignora maiúsculas (usar `-ceq`), zip grava `\` (montar à mão com `/`), `.ps1` com acento
   precisa de BOM, `H` é apelido de `Get-History`.
 
+- **`whitelist add` em modo offline** grava o UUID da Mojang quando o nick existe como conta
+  original, e a pessoa fica barrada. Liberar sempre pelo `jogadores.txt` + restart.
+- **Mojang em rede compartilhada** (laboratório) responde `429` na consulta de skin assinada
+  (`sessionserver ... ?unsigned=false`); a sem assinatura passa. Por isso a reserva do SkinRestorer.
+- **Mod sem lado no Modrinth** (`unknown`, ex: SimpleLogin) entra nos dois lados; mod só de servidor
+  vai em `$soServidor` no `montar-pack.ps1`, senão pede login até no singleplayer.
+
 ## Ideias para melhorar no futuro
 
 - **GitHub Action** que roda o `montar-pack` e sobe um servidor de teste a cada push, para pegar

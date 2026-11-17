@@ -58,6 +58,8 @@ Lista completa com versões e links: seção **Mods** do [README](../README.md).
 | Endereço fixo | DuckDNS `minezada-mc`, atualizado pelo host durante a sessão | DDNS do roteador (só DynDNS pago / No-IP com confirmação mensal) |
 | Porta | UPnP pelo próprio script (SOAP direto no roteador) | playit.gg (túnel grátis fora do Brasil, 300-400 ms), e4mc (feito para LAN) |
 | Instalar servidor | A cada start (idempotente): mrpack-install no Windows; no Mac instalador do NeoForge + packwiz, porque o mrpack-install usa DNS próprio e falha com o DNS IPv6 quebrado de roteadores como o da operadora | baixar mods à mão |
+| Conta | `online-mode=false` + SimpleLogin (senha) para aceitar Minecraft não original; whitelist com UUID offline calculado pelo nick | `online-mode=true` (só original), offline sem login (qualquer um entra com o nick do admin) |
+| Skins no modo offline | SkinRestorer no servidor: Mojang, depois mc-heads + MineSkin; skin salva no mundo, sem buscar de novo ao entrar | CustomSkinLoader no cliente (anotado em planos.md para depois) |
 | Instalar no jogador | Prism Launcher + `minezada-prism.zip`; packwiz no pre-launch sincroniza os mods a cada abertura pelo link raw do GitHub (por isso o repo é **público**) | Modrinth App (sem atualização automática; pack não listado passa por moderação), launcher oficial (não instala mods), repo público separado (mais coisa para manter) |
 
 ## Histórico do pack
@@ -79,3 +81,6 @@ Lista completa com versões e links: seção **Mods** do [README](../README.md).
 | 2026-11-17 | 2026.11.17.13 | Perfis de gráfico, otimização do jogo e do servidor (flags do Aikar, distâncias, Noisium, Chunky, spark). |
 | 2026-11-17 | 2026.11.17.14 | Perfis sem `sodium-options.json`: o Options Profiles 1.4.2 usa uma API que o Sodium 0.8 removeu e o jogo fechava ao aplicar o perfil. |
 | 2026-11-17 | 2026.11.17.15 | 9 perfis de gráfico, gerados por `scripts/perfis.ps1`. |
+| 2026-11-17 | 2026.11.17.16 | Minecraft não original: `online-mode=false`, + SimpleLogin (só servidor), whitelist com UUID offline e progresso migrado. + Better Search. Servidor testado. |
+| 2026-11-17 | 2026.11.17.17 | + SkinRestorer (skins no modo offline). Servidor testado. |
+| 2026-11-17 | 2026.11.17.18 | SkinRestorer com reserva mc-heads + MineSkin quando a Mojang bloqueia; `server-config/` copia subpastas. |
