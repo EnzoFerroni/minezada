@@ -5,11 +5,12 @@ O `iniciar` instala Java e ferramentas sozinho. Este arquivo cobre o que ele nã
 ## Jogadores
 
 - **Minecraft Java Edition**, original ou não (o servidor roda com `online-mode=false` e senha pelo
-  SimpleLogin). Bedrock (celular/console) não entra.
+  MixAuth para quem não tem original). Bedrock (celular/console) não entra.
 - Nada mais: o comando do [README](../README.md) instala o launcher (Prism, ou o fork
   PrismLauncher-Cracked para quem não tem original), o Java e os mods.
-- Mac: M1 ou mais novo com 16 GB roda bem. O macOS só tem OpenGL 4.1, então alguns shaders não
-  funcionam; mods de renderização Metal (Fabric) contornam isso.
+- Mac: M1 ou mais novo com 16 GB roda bem; com 8 GB use o perfil Mac 1. O macOS só tem OpenGL 4.1:
+  os shaders dos perfis Mac e Shader funcionam, os PC - não. Com o Distant Horizons instalado (é
+  opcional) os shaders não cabem no limite de texturas do Mac: use um ou outro.
 
 ## Host
 
@@ -61,6 +62,9 @@ Na mesma rede do host (casa, laboratório) o servidor aparece sozinho em **Multi
 de LAN: o `iniciar` anuncia ele como o "Abrir para LAN" do jogo. O endereço público pode não
 funcionar ali (roteador sem NAT loopback, como o da Vivo). Se a rede bloquear o anúncio (Wi-Fi com
 isolamento entre aparelhos), use `localhost` na máquina do host ou o IP local que o `iniciar` mostra.
+
+**Jogar de rede que só libera 80/443** (faculdade testada): use a entrada **Minezada (rede da
+faculdade)**, porta 443. O túnel playit usa outra porta e também fica bloqueado nessas redes.
 
 **Rede que não deixa abrir porta** (faculdade, laboratório, 4G, CGNAT): o `iniciar` liga sozinho o
 túnel [playit.gg](https://playit.gg) e mostra o endereço, hoje `molecule-spindle.tun.ply.gg` (sem

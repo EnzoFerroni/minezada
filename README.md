@@ -22,9 +22,11 @@ Ele pergunta se você tem Minecraft original, instala tudo e abre o jogo. Na pri
 com a conta Microsoft ou, sem original, digite seu nick **exatamente como está na whitelist**
 (maiúsculas contam). Depois é só clicar em **Minezada** na Área de Trabalho: o jogo entra direto
 no servidor e os mods se atualizam sozinhos. Algo quebrou? Rode o comando de novo.
+Na faculdade não conecta? Entre em **Minezada (rede da faculdade)** na lista de servidores.
 
-**No servidor, todo mundo tem senha.** Na primeira vez digite `/register suasenha suasenha`; nas
-outras, `/login suasenha`. Sem isso não dá para andar nem mexer em nada.
+**Login no servidor.** Com Minecraft original você entra direto, sem senha. Sem original: na primeira
+vez digite `/register suasenha suasenha`; nas outras, `/login suasenha` (no mesmo Wi-Fi ele lembra de
+você por 7 dias). Sem isso não dá para andar nem mexer em nada.
 
 **Skin:** quem tem original já aparece com a sua. Para trocar:
 `/skin set web classic <link da imagem da skin>` (`slim` para braço fino).

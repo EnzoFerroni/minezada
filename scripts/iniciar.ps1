@@ -12,12 +12,13 @@ $tools = Join-Path $root 'tools'
 $tar = "$env:SystemRoot\System32\tar.exe"  # bsdtar do Windows; o tar do Git Bash quebra com caminhos C:\
 $mrpackVersion = '0.23.0'
 $porta = 25565
+$portaAlt = 443
 $eu = $env:COMPUTERNAME
 $envFile = Join-Path $root 'config.env'
 
 # Abre (ou fecha) a porta no roteador por UPnP falando SOAP direto com ele. Nao usa o HNetCfg.NATUPnP
 # do Windows porque ele nao funciona com a rede em perfil "Publica". Falha: vale o redirecionamento manual.
-function Porta-UPnP([bool]$abrir) {
+function Porta-UPnP([bool]$abrir, [int]$externa = $porta) {
     try {
         # IP da placa que vai pra internet; prender o socket nela evita a descoberta sair por VPN (Radmin etc).
         $ip = (Find-NetRoute -RemoteIPAddress 8.8.8.8 | Where-Object IPAddress | Select-Object -First 1).IPAddress
@@ -32,8 +33,8 @@ function Porta-UPnP([bool]$abrir) {
         # Alguns roteadores respondem application/octet-stream: le os bytes crus.
         $xml = [Text.Encoding]::UTF8.GetString((Invoke-WebRequest $loc -UseBasicParsing).RawContentStream.ToArray())
         $acao = if ($abrir) { 'AddPortMapping' } else { 'DeletePortMapping' }
-        $campos = "<NewRemoteHost></NewRemoteHost><NewExternalPort>$porta</NewExternalPort><NewProtocol>TCP</NewProtocol>"
-        if ($abrir) { $campos += "<NewInternalPort>$porta</NewInternalPort><NewInternalClient>$ip</NewInternalClient><NewEnabled>1</NewEnabled><NewPortMappingDescription>minezada</NewPortMappingDescription><NewLeaseDuration>0</NewLeaseDuration>" }
+        $campos = "<NewRemoteHost></NewRemoteHost><NewExternalPort>$externa</NewExternalPort><NewProtocol>TCP</NewProtocol>"
+        if ($abrir) { $campos += "<NewInternalPort>$porta</NewInternalPort><NewInternalClient>$ip</NewInternalClient><NewEnabled>1</NewEnabled><NewPortMappingDescription>minezada $externa</NewPortMappingDescription><NewLeaseDuration>0</NewLeaseDuration>" }
         $svcs = [regex]::Matches($xml, '<serviceType>(urn:schemas-upnp-org:service:WAN(?:IP|PPP)Connection:\d)</serviceType>.*?<controlURL>([^<]+)</controlURL>', 'Singleline')
         foreach ($s in $svcs) {
             $tipo = $s.Groups[1].Value
@@ -58,9 +59,9 @@ if ((Test-Path (Join-Path $root '.git')) -and (Get-Command git -ErrorAction Sile
 # Link da pasta minezada no Drive: quem nao tem acesso ve o botao "Solicitar acesso".
 $driveUrl = 'https://drive.google.com/drive/folders/1Kw45U0B-b906dnDsUH8bLy9nDg7HfWzh'
 
-# Libera na whitelist os nicks de jogadores.txt (um por linha; "op" depois do nick tambem da admin),
-# com o UUID offline do nick (online-mode=false). Sem o arquivo, cria com o dono e quem ja esta
-# liberado. So adiciona; tirar alguem e no console.
+# Libera na whitelist os nicks de jogadores.txt (um por linha; "op" depois do nick tambem da admin).
+# MixAuth: quem tem original entra com o UUID oficial e quem nao tem com o offline, entao libera os dois.
+# Sem o arquivo, cria com o dono e quem ja esta liberado. So adiciona; tirar alguem e no console.
 function Sincronizar-Whitelist($lista, $pasta) {
     # (o ForEach achata: no PS 5.1 o ConvertFrom-Json devolve a lista inteira como um item so)
     $ler = { param($n) $a = Join-Path $pasta $n; @(if (Test-Path $a) { Get-Content $a -Raw | ConvertFrom-Json | ForEach-Object { $_ } }) }
@@ -72,39 +73,45 @@ function Sincronizar-Whitelist($lista, $pasta) {
         $x = -join ($b | ForEach-Object { $_.ToString('x2') })
         "$($x.Substring(0,8))-$($x.Substring(8,4))-$($x.Substring(12,4))-$($x.Substring(16,4))-$($x.Substring(20))"
     }
-    # Entradas com UUID da Mojang (de quando era online-mode=true) viram offline e levam o progresso junto.
-    $mundo = Join-Path $pasta 'world'
-    foreach ($e in $wl + $ops) {
-        $novo = & $offline $e.name
-        if ($e.uuid -eq $novo) { continue }
-        foreach ($a in 'playerdata\{0}.dat', 'playerdata\{0}.dat_old', 'advancements\{0}.json', 'stats\{0}.json') {
-            $de = Join-Path $mundo ($a -f $e.uuid); $para = Join-Path $mundo ($a -f $novo)
-            if ((Test-Path $de) -and -not (Test-Path $para)) {
-                Move-Item $de $para; Write-Host "Progresso de $($e.name) levado para o UUID offline: $($a -f $novo)"
-            }
+    # UUID oficial ja conhecido (whitelist/ops) evita consultar a Mojang a cada start.
+    $oficiais = @{}
+    foreach ($e in $wl + $ops) { if ($e.uuid -ne (& $offline $e.name)) { $oficiais[$e.name.ToLower()] = $e.uuid } }
+    $oficial = { param($n)
+        if ($oficiais.ContainsKey($n.ToLower())) { return $oficiais[$n.ToLower()] }
+        try {
+            $x = (Invoke-RestMethod "https://api.mojang.com/users/profiles/minecraft/$n" -TimeoutSec 5).id
+            if ($x) { "$($x.Substring(0,8))-$($x.Substring(8,4))-$($x.Substring(12,4))-$($x.Substring(16,4))-$($x.Substring(20))" }
         }
-        $e.uuid = $novo
+        catch { $null }  # 404 = nick sem conta original; rede/limite = tenta no proximo start
     }
     if (-not (Test-Path $lista)) {
         $linhas = @("# Um nick por linha, igual ao do jogo (maiusculas contam); 'op' depois tambem da admin.",
             '# O servidor libera todos ao iniciar: depois de editar, reinicie. Nao use whitelist add no console.', 'Enzobullet op') + @($wl | Where-Object { $_.name -ne 'Enzobullet' } | ForEach-Object { $_.name })
         [IO.File]::WriteAllLines($lista, [string[]]$linhas)
     }
-    $conhecidos = @{}
-    foreach ($e in $wl + $ops) { $conhecidos[$e.name.ToLower()] = $e }
+    $mundo = Join-Path $pasta 'world'
     foreach ($l in Get-Content $lista) {
         $partes = @(($l -split '#')[0].Trim() -split '\s+' | Where-Object { $_ })
         if (-not $partes) { continue }
-        if ($partes[0] -notmatch '^[A-Za-z0-9_]{1,16}$') { Write-Warning "Nick invalido em jogadores.txt: $($partes[0])"; continue }
-        $k = $partes[0].ToLower()
+        $nome = $partes[0]
+        if ($nome -notmatch '^[A-Za-z0-9_]{1,16}$') { Write-Warning "Nick invalido em jogadores.txt: $nome"; continue }
         $op = @($partes | Select-Object -Skip 1) -contains 'op'
-        $faltaWl = -not ($wl | Where-Object { $_.name.ToLower() -eq $k })
-        $faltaOp = $op -and -not ($ops | Where-Object { $_.name.ToLower() -eq $k })
-        if (-not ($faltaWl -or $faltaOp)) { continue }
-        if (-not $conhecidos.ContainsKey($k)) { $conhecidos[$k] = [pscustomobject]@{ uuid = & $offline $partes[0]; name = $partes[0] } }
-        $e = $conhecidos[$k]
-        if ($faltaWl) { $wl += [pscustomobject]@{ uuid = $e.uuid; name = $e.name }; Write-Host "Liberado na whitelist: $($e.name)" }
-        if ($faltaOp) { $ops += [pscustomobject]@{ uuid = $e.uuid; name = $e.name; level = 4; bypassesPlayerLimit = $false }; Write-Host "Admin (op): $($e.name)" }
+        $ids = @(& $offline $nome)
+        $on = & $oficial $nome
+        if ($on) {
+            $ids += $on
+            # Progresso de antes (UUID offline) copiado para o oficial, so se o oficial ainda nao tem nada.
+            foreach ($a in 'playerdata\{0}.dat', 'advancements\{0}.json', 'stats\{0}.json') {
+                $de = Join-Path $mundo ($a -f $ids[0]); $para = Join-Path $mundo ($a -f $on)
+                if ((Test-Path $de) -and -not (Test-Path $para)) {
+                    Copy-Item $de $para; Write-Host "Progresso de $nome copiado para o UUID oficial: $($a -f $on)"
+                }
+            }
+        }
+        foreach ($u in $ids) {
+            if (-not ($wl | Where-Object { $_.uuid -eq $u })) { $wl += [pscustomobject]@{ uuid = $u; name = $nome }; Write-Host "Liberado na whitelist: $nome ($u)" }
+            if ($op -and -not ($ops | Where-Object { $_.uuid -eq $u })) { $ops += [pscustomobject]@{ uuid = $u; name = $nome; level = 4; bypassesPlayerLimit = $false }; Write-Host "Admin (op): $nome ($u)" }
+        }
     }
     [IO.File]::WriteAllText((Join-Path $pasta 'whitelist.json'), (ConvertTo-Json -InputObject @($wl) -Depth 3))
     [IO.File]::WriteAllText((Join-Path $pasta 'ops.json'), (ConvertTo-Json -InputObject @($ops) -Depth 3))
@@ -285,7 +292,11 @@ if (-not (Get-NetFirewallRule -DisplayName 'minezin 25565' -ErrorAction Silently
 # Roteador sem NAT loopback (ex.: Vivo) nao deixa quem esta na mesma casa entrar pelo endereco publico.
 $ipLocal = try { (Find-NetRoute -RemoteIPAddress 8.8.8.8 | Where-Object IPAddress | Select-Object -First 1).IPAddress } catch { $null }
 Write-Host "Na mesma casa: entre por localhost (nesta maquina) ou $ipLocal (outro computador)."
-if (Porta-UPnP $true) { Write-Host "Porta $porta aberta via UPnP." }
+if (Porta-UPnP $true) {
+    Write-Host "Porta $porta aberta via UPnP."
+    # Redes de faculdade/empresa costumam liberar so 80/443 de saida: a 443 do roteador tambem leva ao servidor.
+    if (Porta-UPnP $true $portaAlt) { Write-Host "Porta $portaAlt tambem aberta (para quem esta em rede que bloqueia a $porta)." }
+}
 else { Write-Host 'UPnP indisponivel: vale o redirecionamento manual do roteador (docs/requisitos.md).' }
 
 $ddns = $null
@@ -326,6 +337,7 @@ finally {
     if ($ddns) { Stop-Job $ddns; Remove-Job $ddns }
     Stop-Job $lan; Remove-Job $lan
     [void](Porta-UPnP $false)
+    [void](Porta-UPnP $false $portaAlt)
     if ($sync) {
         Write-Host 'Enviando mundo para a pasta sincronizada...'
         $itens = @('world', 'ops.json', 'whitelist.json', 'banned-players.json', 'banned-ips.json') |

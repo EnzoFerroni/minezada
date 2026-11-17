@@ -1,0 +1,8 @@
+name = "Fresh Waystones Texture"
+filename = "waystones_update_7.zip"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/BcyGAwlg/versions/p9SyNNXU/waystones_update_7.zip"
+hash-format = "sha1"
+hash = "fd21263fae8605aa3ec1364f08f2a91d826ba64c"
