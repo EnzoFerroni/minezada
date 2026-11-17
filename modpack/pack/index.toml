@@ -221,6 +221,81 @@ hash = "18490a30ec3bd1b4017df5903cc01739b7080d18642491ae204d04a1e5a44356"
 metafile = true
 
 [[files]]
+file = "shaderpacks/bsl-shaders.pw.toml"
+hash = "13fdad633e414bffe368aa8213536f40af0ef8f1fb27fd4e774b157909e6c8c2"
+metafile = true
+
+[[files]]
+file = "shaderpacks/sildurs-vibrant-shaders.pw.toml"
+hash = "1bad29ee569c3ff4c413066c71d59b72f1877ef8ab66257eb55c55e55030411e"
+metafile = true
+
+[[files]]
+file = "shaderpacks/solas-shader.pw.toml"
+hash = "362eee2b2129c5925313d0ea10f3776b4f6464697d2fded5918a1ed11ba12282"
+metafile = true
+
+[[files]]
+file = "shaderpacks/photon-shader.pw.toml"
+hash = "36563c265fc144d007b64cfb73191e67451d268d7b795aca9e8d0a55fda55d6f"
+metafile = true
+
+[[files]]
+file = "mods/controlling.pw.toml"
+hash = "aceff9106cdb6f4c20dc0cef4baf6ee9639423f78a52ae64370e367965ccc6ad"
+metafile = true
+
+[[files]]
+file = "mods/natures-compass.pw.toml"
+hash = "eeb3c1e0702309b366132244dd0475b9f612f9207686e8963433e6b784682104"
+metafile = true
+
+[[files]]
+file = "mods/explorers-compass.pw.toml"
+hash = "464977b7a56fd85443b15cf0f36e3fd42c0752c1e84eced6be691d14d36c762e"
+metafile = true
+
+[[files]]
+file = "mods/ping-wheel.pw.toml"
+hash = "1d529ffc3a155e666ed26f4b5196bb32e0df8b001e670982cb455e83b8c9f126"
+metafile = true
+
+[[files]]
+file = "mods/carry-on.pw.toml"
+hash = "9f6370195457b1c21332e9d8ead5f9e1bc7af70023302fdc2e6d30ceee4e8e36"
+metafile = true
+
+[[files]]
+file = "mods/clumps.pw.toml"
+hash = "ca09b8c7471058f98c687a93bcbcb1ab9687e92a0e91fcb34d6097d445b13efa"
+metafile = true
+
+[[files]]
+file = "mods/pick-up-notifier.pw.toml"
+hash = "2452dafc089f5f56a8cd71d6a1f12d5b4fa7893b1d8c79947f98271871cedb74"
+metafile = true
+
+[[files]]
+file = "mods/chat-heads.pw.toml"
+hash = "e2ef12a257b286a7d757d4c26aa26cd387f6121bc50db41718c4d0fc2da73a8d"
+metafile = true
+
+[[files]]
+file = "mods/comforts.pw.toml"
+hash = "b144fbfc967f79dfaee166ff3c0bb4cbaf48f08f450b92bccd9059f7b0025de5"
+metafile = true
+
+[[files]]
+file = "mods/trade-cycling.pw.toml"
+hash = "2352e484e28ebce0fa23b30d2b22f9b9ca67b2a6282448fb92c918fc0345bd7c"
+metafile = true
+
+[[files]]
+file = "mods/easy-anvils.pw.toml"
+hash = "9b825405ec04b3b440f657cb1f7ec28875643528f376a6071673792a33c77194"
+metafile = true
+
+[[files]]
 file = "mods/waystones.pw.toml"
 hash = "426ed3dd46017944747f0601f8832d6f7d7b84aa6efbcb1d0b2ba7cc574b5156"
 metafile = true
@@ -251,8 +326,8 @@ hash = "8f90fe0e4fcdc8503648a8d7fe955d3e5ebed6508b69c38d2f04f83dfb3e6c6f"
 metafile = true
 
 [[files]]
-file = "mods/inventory-profiles-next.pw.toml"
-hash = "b6c0535ffc567842a2b26dacebbe036c61618525f9b91d4c3801373606f43248"
+file = "mods/inventory-essentials.pw.toml"
+hash = "e355d6554d64161071d8479f1c1c26e62ea34fc63d94c61d22f7047bb087d59b"
 metafile = true
 
 [[files]]
@@ -376,18 +451,18 @@ hash = "79d91006767e6c59f8e25f2d78dcdf3c1092e07a05de254b5cc653c9954bed3b"
 metafile = true
 
 [[files]]
+file = "mods/searchables.pw.toml"
+hash = "265c2daf100fb680d82bb58edef2d0ea3d6013473e8713e7c7b93248d30c1ca0"
+metafile = true
+
+[[files]]
+file = "mods/puzzles-lib.pw.toml"
+hash = "ecf7d4e751ebdb6e41c5bcebe222cffff2ef272f67662cc1f975d8b6c3db9ecb"
+metafile = true
+
+[[files]]
 file = "mods/balm.pw.toml"
 hash = "88215cb6e2dd2f9457d7424e0239c945ea61efa3fe25becc52c1ca04441f2037"
-metafile = true
-
-[[files]]
-file = "mods/kotlin-for-forge.pw.toml"
-hash = "c5056f4d15ce00269bb0555bb68ae5ec766b9b02fe44b9d0518b837d2401021f"
-metafile = true
-
-[[files]]
-file = "mods/libipn.pw.toml"
-hash = "27abe179f7e606bb1e1b572826de12262d6e7a3c7a89c24fdd27fd88171537d1"
 metafile = true
 
 [[files]]
