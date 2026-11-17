@@ -34,6 +34,11 @@ Expand-Archive "$tmp\pack.zip" "$tmp\x" -Force
 New-Item -ItemType Directory -Force "$inst\.minecraft" | Out-Null
 # shortcut: instance.cfg e sobrescrito (zera tempo de jogo do Prism); trocar por merge se incomodar.
 Copy-Item "$tmp\x\instance.cfg", "$tmp\x\mmc-pack.json" $inst -Force
+# Memoria do jogo: 6 GB com 24 GB+ de RAM; senao fica a do zip (4 GB evita o aviso do Prism em 16 GB).
+# 23: o Windows reporta um pouco menos que o total instalado.
+if ((Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB -ge 23) {
+    (Get-Content "$inst\instance.cfg") -replace '^MaxMemAlloc=.*', 'MaxMemAlloc=6144' | Set-Content "$inst\instance.cfg" -Encoding ascii
+}
 Copy-Item "$tmp\x\.minecraft\packwiz-installer-bootstrap.jar" "$inst\.minecraft" -Force
 foreach ($f in 'servers.dat', 'options.txt') { if (-not (Test-Path "$inst\.minecraft\$f")) { Copy-Item "$tmp\x\.minecraft\$f" "$inst\.minecraft" } }
 # Liga os pacotes de recursos do pack em quem ja tinha options.txt, mantendo os que o jogador ligou.

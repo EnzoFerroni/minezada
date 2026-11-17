@@ -20,7 +20,8 @@ if [ "$(uname -s)" = "Darwin" ]; then
     rm -rf "$tmp"
     app="$HOME/Applications/Prism Launcher.app"
   fi
-  prism="$app/Contents/MacOS/$(ls "$app/Contents/MacOS" | head -n 1)"
+  # Contents/MacOS tambem tem a pasta jars: o executavel certo vem do Info.plist.
+  prism="$app/Contents/MacOS/$(/usr/libexec/PlistBuddy -c 'Print CFBundleExecutable' "$app/Contents/Info.plist")"
 else
   dados="$HOME/.local/share/PrismLauncher"
   prism="$(command -v prismlauncher || true)"
@@ -45,6 +46,11 @@ mkdir -p "$tmp/x" "$inst/.minecraft"
 (cd "$tmp/x" && unzip -q ../pack.zip)
 # shortcut: instance.cfg e sobrescrito (zera tempo de jogo do Prism); trocar por merge se incomodar.
 cp "$tmp/x/instance.cfg" "$tmp/x/mmc-pack.json" "$inst/"
+# Memoria do jogo: 6 GB com 24 GB+ de RAM; senao fica a do zip (4 GB evita o aviso do Prism em 16 GB).
+bytes="$(sysctl -n hw.memsize 2>/dev/null || awk '/MemTotal/{print $2*1024}' /proc/meminfo)"
+if [ $((bytes / 1073741824)) -ge 24 ]; then
+  sed -i.bak 's/^MaxMemAlloc=.*/MaxMemAlloc=6144/' "$inst/instance.cfg" && rm -f "$inst/instance.cfg.bak"
+fi
 cp "$tmp/x/.minecraft/packwiz-installer-bootstrap.jar" "$inst/.minecraft/"
 for f in servers.dat options.txt; do [ -f "$inst/.minecraft/$f" ] || cp "$tmp/x/.minecraft/$f" "$inst/.minecraft/"; done
 # Liga os pacotes de recursos do pack em quem ja tinha options.txt, mantendo os que o jogador ligou.
