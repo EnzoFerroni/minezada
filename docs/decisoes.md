@@ -33,7 +33,7 @@ dragão para domar, criar como pet e voar, mods que deixam o jogo mais leve e f�
 | Dimensões novas | The Aether | Twilight Forest (só no CurseForge, e o `.mrpack` só baixa do Modrinth), Blue Skies e Deeper and Darker (sem versão NeoForge 1.21.1), Bumblezone (disponível; fica como opção) |
 | Biomas e terreno | Terralith + Tectonic (vanilla+, roda só no servidor) | Biomes O' Plenty e Oh The Biomes We've Gone (mais pesados e fogem do visual vanilla) |
 | Estruturas | Série YUNG's, Towns and Towers, Explorify (só no servidor) | Repurposed Structures (muita coisa, pesa na geração) |
-| Visual e ambiente | Fresh Animations (ligado por padrão) + EMF/ETF, 3D Skin Layers, Ambient Sounds, Sodium Dynamic Lights | Continuity (no NeoForge exige o Sinytra Connector, instável), Falling Leaves (port NeoForge pouco usado) |
+| Visual e ambiente | Fresh Animations (ligado por padrão) + EMF/ETF, 3D Skin Layers, Ambient Sounds | Continuity (no NeoForge exige o Sinytra Connector, instável), Sodium Dynamic Lights (o Options API dele exige o Reese's, que se declara incompatível com ele), Falling Leaves (port NeoForge pouco usado) |
 | Shaders | Complementary Reimagined e MakeUp Ultra Fast, instalados e desligados | Ligados por padrão (pesam em Mac e PC fraco) || Facilidade | Waystones, Xaero's Minimap/World Map, Corpse, Mouse Tweaks, Inventory Profiles Next, Farmer's Delight | Gravestone (Corpse é mais simples) |
 | Desempenho | Sodium, Lithium, FerriteCore, ModernFix, EntityCulling, ImmediatelyFast, Iris (shaders opcionais) | - |
 
@@ -71,4 +71,4 @@ Lista completa com versões e links: seção **Mods** do [README](../README.md).
 | 2026-11-17 | 2026.11.17.6 | NeoForge escolhido pelo meta do Prism (21.1.266): o 21.1.267 ainda não estava lá e a instância não abria. |
 | 2026-11-17 | 2026.11.17.7 | Memória do jogo 4 GB (6 GB disparava o aviso de pouca RAM do Prism em máquinas de 16 GB). |
 | 2026-11-17 | 2026.11.17.8 | + Terralith, Tectonic, estruturas (YUNG's, Towns and Towers, Explorify), Fresh Animations, 3D Skin Layers, Ambient Sounds, luz dinâmica e shaders desligados. Mundo novo. Servidor testado. |
-| 2026-11-17 | 2026.11.17.9 | Correção: dependência herda os lados de quem precisa dela (Lithostitched faltava no cliente); + Reese's Sodium Options (exigido pela luz dinâmica). |
+| 2026-11-17 | 2026.11.17.9 | Correção: dependência herda os lados de quem precisa dela (Lithostitched faltava no cliente). Sem luz dinâmica (conflito Sodium Options API × Reese's). |
