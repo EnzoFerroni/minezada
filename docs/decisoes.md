@@ -63,4 +63,4 @@ Lista completa com versões e links: seção **Mods** do [README](../README.md).
 | 2026-11-17 | 2026.11.17.1 | + The Aether. Servidor testado. |
 | 2026-11-17 | 2026.11.17.2 | Projeto renomeado para Minezada: repo, instância, MOTD e pasta do Drive. |
 | 2026-11-17 | 2026.11.17.3 | Endereço novo: `minezada-mc.duckdns.org`. |
-| 2026-11-17 | 2026.11.17.4 | Endereço `minezada-mc.duckdns.org`; docs e servidor sem nomes de grupo ou pessoas. Vitrine de mods em `docs/mods.md`. |
+| 2026-11-17 | 2026.11.17.4 | Endereço `minezada-mc.duckdns.org`; docs mais enxutas. Vitrine de mods em `docs/mods.md`. |
