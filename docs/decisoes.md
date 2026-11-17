@@ -66,3 +66,4 @@ Lista completa com versões e links: seção **Mods** do [README](../README.md).
 | 2026-11-17 | 2026.11.17.4 | Endereço `minezada-mc.duckdns.org`; docs mais enxutas. Vitrine de mods em `docs/mods.md`. |
 | 2026-11-17 | 2026.11.17.5 | Comando de jogar instala sem diálogo, pré-configura o Prism (pt-BR, Java automático), cria atalho e abre o jogo; checksum do mrpack-install. |
 | 2026-11-17 | 2026.11.17.6 | NeoForge escolhido pelo meta do Prism (21.1.266): o 21.1.267 ainda não estava lá e a instância não abria. |
+| 2026-11-17 | 2026.11.17.7 | Memória do jogo 4 GB (6 GB disparava o aviso de pouca RAM do Prism em máquinas de 16 GB). |

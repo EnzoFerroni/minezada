@@ -103,7 +103,7 @@ if (-not (Test-Path $boot)) {
 $inst = Join-Path $tmp 'prism'
 New-Item -ItemType Directory -Force (Join-Path $inst '.minecraft') | Out-Null
 Copy-Item $boot (Join-Path $inst '.minecraft')
-Escrever (Join-Path $inst 'instance.cfg') "[General]`nInstanceType=OneSix`nname=Minezada`nOverrideCommands=true`nPreLaunchCommand=`"`$INST_JAVA`" -jar packwiz-installer-bootstrap.jar $packUrl`nOverrideMemory=true`nMinMemAlloc=2048`nMaxMemAlloc=6144`nJoinServerOnLaunch=true`nJoinServerOnLaunchAddress=$servidor`n"
+Escrever (Join-Path $inst 'instance.cfg') "[General]`nInstanceType=OneSix`nname=Minezada`nOverrideCommands=true`nPreLaunchCommand=`"`$INST_JAVA`" -jar packwiz-installer-bootstrap.jar $packUrl`nOverrideMemory=true`nMinMemAlloc=1024`nMaxMemAlloc=4096`nJoinServerOnLaunch=true`nJoinServerOnLaunchAddress=$servidor`n"
 # servers.dat (NBT sem compressao) com o servidor ja na lista do Multiplayer.
 function NbtStr($ms, $s) { $b = [Text.Encoding]::UTF8.GetBytes($s); $ms.WriteByte($b.Length -shr 8); $ms.WriteByte($b.Length -band 255); $ms.Write($b, 0, $b.Length) }
 $ms = New-Object IO.MemoryStream
