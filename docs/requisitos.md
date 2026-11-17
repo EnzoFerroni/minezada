@@ -39,7 +39,7 @@ O `iniciar` acha a pasta sozinho em `X:\Meu Drive\minezada` (Windows) ou
 
 **Endereço fixo:** `minezada-mc.duckdns.org`. Quem inicia o servidor com `DUCKDNS_TOKEN` no
 `config.env` reaponta o nome para o próprio IP (no start e a cada 5 min). O token está na conta
-DuckDNS do dono: passe por mensagem privada, nunca no git. Se vazar: "recreate token" no DuckDNS.
+DuckDNS do dono: passe por mensagem privada, nunca no git. Se vazar: crie outro domínio no DuckDNS, troque o nome em `scripts/` e apague o antigo.
 
 **Porta 25565 TCP** precisa chegar no host. Duas formas:
 
