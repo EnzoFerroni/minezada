@@ -59,14 +59,34 @@ if ((Test-Path (Join-Path $root '.git')) -and (Get-Command git -ErrorAction Sile
 $driveUrl = 'https://drive.google.com/drive/folders/1Kw45U0B-b906dnDsUH8bLy9nDg7HfWzh'
 
 # Libera na whitelist os nicks de jogadores.txt (um por linha; "op" depois do nick tambem da admin),
-# buscando o UUID na Mojang. Sem o arquivo, cria com o dono e quem ja esta liberado. So adiciona;
-# tirar alguem e no console.
+# com o UUID offline do nick (online-mode=false). Sem o arquivo, cria com o dono e quem ja esta
+# liberado. So adiciona; tirar alguem e no console.
 function Sincronizar-Whitelist($lista, $pasta) {
     # (o ForEach achata: no PS 5.1 o ConvertFrom-Json devolve a lista inteira como um item so)
     $ler = { param($n) $a = Join-Path $pasta $n; @(if (Test-Path $a) { Get-Content $a -Raw | ConvertFrom-Json | ForEach-Object { $_ } }) }
     $wl = @(& $ler 'whitelist.json'); $ops = @(& $ler 'ops.json')
+    # Mesmo UUID que o servidor da ao nick sem conta Microsoft (maiusculas contam).
+    $offline = { param($n)
+        $b = [Security.Cryptography.MD5]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes("OfflinePlayer:$n"))
+        $b[6] = ($b[6] -band 0x0f) -bor 0x30; $b[8] = ($b[8] -band 0x3f) -bor 0x80
+        $x = -join ($b | ForEach-Object { $_.ToString('x2') })
+        "$($x.Substring(0,8))-$($x.Substring(8,4))-$($x.Substring(12,4))-$($x.Substring(16,4))-$($x.Substring(20))"
+    }
+    # Entradas com UUID da Mojang (de quando era online-mode=true) viram offline e levam o progresso junto.
+    $mundo = Join-Path $pasta 'world'
+    foreach ($e in $wl + $ops) {
+        $novo = & $offline $e.name
+        if ($e.uuid -eq $novo) { continue }
+        foreach ($a in 'playerdata\{0}.dat', 'playerdata\{0}.dat_old', 'advancements\{0}.json', 'stats\{0}.json') {
+            $de = Join-Path $mundo ($a -f $e.uuid); $para = Join-Path $mundo ($a -f $novo)
+            if ((Test-Path $de) -and -not (Test-Path $para)) {
+                Move-Item $de $para; Write-Host "Progresso de $($e.name) levado para o UUID offline: $($a -f $novo)"
+            }
+        }
+        $e.uuid = $novo
+    }
     if (-not (Test-Path $lista)) {
-        $linhas = @("# Um nick do Minecraft Java por linha; 'op' depois do nick tambem da admin.",
+        $linhas = @("# Um nick por linha, igual ao do jogo (maiusculas contam); 'op' depois tambem da admin.",
             '# O servidor libera todos ao iniciar.', 'Enzobullet op') + @($wl | Where-Object { $_.name -ne 'Enzobullet' } | ForEach-Object { $_.name })
         [IO.File]::WriteAllLines($lista, [string[]]$linhas)
     }
@@ -81,12 +101,7 @@ function Sincronizar-Whitelist($lista, $pasta) {
         $faltaWl = -not ($wl | Where-Object { $_.name.ToLower() -eq $k })
         $faltaOp = $op -and -not ($ops | Where-Object { $_.name.ToLower() -eq $k })
         if (-not ($faltaWl -or $faltaOp)) { continue }
-        if (-not $conhecidos.ContainsKey($k)) {
-            try { $p = Invoke-RestMethod "https://api.mojang.com/users/profiles/minecraft/$($partes[0])" } catch { $p = $null }
-            if (-not $p.id) { Write-Warning "Nick nao encontrado na Mojang: $($partes[0])"; continue }
-            $u = $p.id
-            $conhecidos[$k] = [pscustomobject]@{ uuid = "$($u.Substring(0,8))-$($u.Substring(8,4))-$($u.Substring(12,4))-$($u.Substring(16,4))-$($u.Substring(20))"; name = $p.name }
-        }
+        if (-not $conhecidos.ContainsKey($k)) { $conhecidos[$k] = [pscustomobject]@{ uuid = & $offline $partes[0]; name = $partes[0] } }
         $e = $conhecidos[$k]
         if ($faltaWl) { $wl += [pscustomobject]@{ uuid = $e.uuid; name = $e.name }; Write-Host "Liberado na whitelist: $($e.name)" }
         if ($faltaOp) { $ops += [pscustomobject]@{ uuid = $e.uuid; name = $e.name; level = 4; bypassesPlayerLimit = $false }; Write-Host "Admin (op): $($e.name)" }

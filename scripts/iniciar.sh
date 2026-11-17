@@ -279,21 +279,36 @@ iniciar_tunel() {
 drive_url="https://drive.google.com/drive/folders/1Kw45U0B-b906dnDsUH8bLy9nDg7HfWzh"
 
 # Libera na whitelist os nicks de jogadores.txt (um por linha; "op" depois do nick tambem da admin),
-# buscando o UUID na Mojang. Sem o arquivo, cria com o dono e quem ja esta liberado. So adiciona;
-# tirar alguem e no console. Uso: sincronizar_whitelist LISTA PASTA_DO_SERVIDOR
+# com o UUID offline do nick (online-mode=false). Sem o arquivo, cria com o dono e quem ja esta
+# liberado. So adiciona; tirar alguem e no console. Uso: sincronizar_whitelist LISTA PASTA_DO_SERVIDOR
 sincronizar_whitelist() {
   if [ "$(uname -s)" = "Darwin" ] && ! xcode-select -p >/dev/null 2>&1; then return 0; fi
   command -v python3 >/dev/null || return 0
   python3 - "$@" <<'PY' || echo "AVISO: falha ao atualizar a whitelist." >&2
-import json, os, re, sys, urllib.request
+import hashlib, json, os, re, sys, uuid
 lista, pasta = sys.argv[1], sys.argv[2]
+def offline(nome):  # mesmo UUID que o servidor da ao nick sem conta Microsoft (maiusculas contam)
+    return str(uuid.UUID(bytes=hashlib.md5(b"OfflinePlayer:" + nome.encode()).digest(), version=3))
 def ler(nome):
     arq = os.path.join(pasta, nome)
     return json.load(open(arq)) if os.path.exists(arq) else []
 wl, ops = ler("whitelist.json"), ler("ops.json")
+# Entradas com UUID da Mojang (de quando era online-mode=true) viram offline e levam o progresso junto.
+mundo = os.path.join(pasta, "world")
+for e in wl + ops:
+    novo = offline(e["name"])
+    if e["uuid"] == novo:
+        continue
+    for sub, ext in (("playerdata", ".dat"), ("playerdata", ".dat_old"),
+                     ("advancements", ".json"), ("stats", ".json")):
+        de, para = (os.path.join(mundo, sub, u + ext) for u in (e["uuid"], novo))
+        if os.path.exists(de) and not os.path.exists(para):
+            os.rename(de, para)
+            print(f"Progresso de {e['name']} levado para o UUID offline: {sub}/{novo}{ext}")
+    e["uuid"] = novo
 if not os.path.exists(lista):
     with open(lista, "w") as f:
-        f.write("# Um nick do Minecraft Java por linha; 'op' depois do nick tambem da admin.\n"
+        f.write("# Um nick por linha, igual ao do jogo (maiusculas contam); 'op' depois tambem da admin.\n"
                 "# O servidor libera todos ao iniciar.\nEnzobullet op\n")
         f.writelines(e["name"] + "\n" for e in wl if e["name"].lower() != "enzobullet")
 conhecidos = {e["name"].lower(): e for e in wl + ops}
@@ -301,7 +316,7 @@ for linha in open(lista, encoding="utf-8-sig"):
     partes = linha.split("#")[0].split()
     if not partes:
         continue
-    if not re.fullmatch(r"[A-Za-z0-9_]{1,16}", partes[0]):  # nick valido do Java; nada estranho na URL
+    if not re.fullmatch(r"[A-Za-z0-9_]{1,16}", partes[0]):  # nick valido do Java
         print(f"AVISO: nick invalido em jogadores.txt: {partes[0]}")
         continue
     k, op = partes[0].lower(), "op" in [x.lower() for x in partes[1:]]
@@ -310,14 +325,7 @@ for linha in open(lista, encoding="utf-8-sig"):
     if not (falta_wl or falta_op):
         continue
     if k not in conhecidos:
-        try:
-            url = f"https://api.mojang.com/users/profiles/minecraft/{partes[0]}"
-            p = json.load(urllib.request.urlopen(url, timeout=10))
-        except Exception:
-            print(f"AVISO: nick nao encontrado na Mojang: {partes[0]}")
-            continue
-        u = p["id"]
-        conhecidos[k] = {"uuid": f"{u[:8]}-{u[8:12]}-{u[12:16]}-{u[16:20]}-{u[20:]}", "name": p["name"]}
+        conhecidos[k] = {"uuid": offline(partes[0]), "name": partes[0]}
     e = conhecidos[k]
     if falta_wl:
         wl.append({"uuid": e["uuid"], "name": e["name"]})

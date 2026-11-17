@@ -4,7 +4,7 @@
 
 ## Jogar
 
-Precisa do Minecraft Java original. Rode o comando:
+Com Minecraft Java original, rode o comando abaixo. Sem o original, veja o fim desta seção.
 
 **Windows** (PowerShell)
 
@@ -21,6 +21,13 @@ curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.sh 
 Ele instala tudo e abre o jogo. Na primeira vez entre com a conta Microsoft. Depois é só clicar
 em **Minezada** na Área de Trabalho: o jogo entra direto no servidor e os mods se atualizam
 sozinhos. Algo quebrou? Rode o comando de novo.
+
+**No servidor, todo mundo tem senha.** Na primeira vez digite `/register suasenha suasenha`; nas
+outras, `/login suasenha`. Sem isso não dá para andar nem mexer em nada.
+
+**Sem Minecraft original:** use um launcher que aceite conta offline, importe o
+[`minezada.mrpack`](modpack/minezada.mrpack) e entre com o nick exatamente como está na whitelist
+(maiúsculas contam). Os mods não se atualizam sozinhos: baixe o `.mrpack` de novo quando mudar.
 
 ## Hospedar
 

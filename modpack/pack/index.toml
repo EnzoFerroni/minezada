@@ -11,6 +11,11 @@ hash = "ca41c3edb55636055d18ed98c84805e8d3878399304f55f0e4b550c3b601f1d7"
 metafile = true
 
 [[files]]
+file = "mods/bettersearch.pw.toml"
+hash = "49f25a6dfce4910b7065cf38fb75f92a37c7e566db63f14d2158f380d946195c"
+metafile = true
+
+[[files]]
 file = "mods/jade.pw.toml"
 hash = "77f8b6bc4938d8565ac2d5cc234ac0768f22be595becc19675c8e57ee105e92a"
 metafile = true
@@ -296,6 +301,11 @@ hash = "9b825405ec04b3b440f657cb1f7ec28875643528f376a6071673792a33c77194"
 metafile = true
 
 [[files]]
+file = "mods/simple-login.pw.toml"
+hash = "679ffe6f46613105179edbe7b0b96f5d1fbdd4d4c07187e3caa922e77d00975f"
+metafile = true
+
+[[files]]
 file = "mods/waystones.pw.toml"
 hash = "426ed3dd46017944747f0601f8832d6f7d7b84aa6efbcb1d0b2ba7cc574b5156"
 metafile = true
@@ -511,21 +521,6 @@ hash = "ae112eb85ca8343d2f2c1829427d84e73a1c4020fb5c71341039580cfae63ba9"
 metafile = true
 
 [[files]]
-file = "options-profiles/1 - Minimo/configuration.json"
-hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
-preserve = true
-
-[[files]]
-file = "options-profiles/1 - Minimo/iris.properties"
-hash = "d2dd3eae24881aa06a06362f0063753326dd8a069085cb161207c45334aff117"
-preserve = true
-
-[[files]]
-file = "options-profiles/1 - Minimo/options.txt"
-hash = "39d7fb0738b2ab6b4ae495a6b53c54c078caeb0365ad8f3daf4e27be81bced4d"
-preserve = true
-
-[[files]]
 file = "options-profiles/2 - Leve/configuration.json"
 hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
@@ -541,33 +536,18 @@ hash = "93d6c8bfa1555260d0ade1fc73c2edd05ecc02787be8e7eff3d34f0cf2e25372"
 preserve = true
 
 [[files]]
-file = "options-profiles/3 - Equilibrado/configuration.json"
+file = "options-profiles/9 - Bateria/configuration.json"
 hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
-file = "options-profiles/3 - Equilibrado/iris.properties"
+file = "options-profiles/9 - Bateria/iris.properties"
 hash = "d2dd3eae24881aa06a06362f0063753326dd8a069085cb161207c45334aff117"
 preserve = true
 
 [[files]]
-file = "options-profiles/3 - Equilibrado/options.txt"
-hash = "6541f8e152cae32b1147f928d536271a1e6d2cd011e88835400fbda385b02e1c"
-preserve = true
-
-[[files]]
-file = "options-profiles/4 - Alto/configuration.json"
-hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
-preserve = true
-
-[[files]]
-file = "options-profiles/4 - Alto/iris.properties"
-hash = "d2dd3eae24881aa06a06362f0063753326dd8a069085cb161207c45334aff117"
-preserve = true
-
-[[files]]
-file = "options-profiles/4 - Alto/options.txt"
-hash = "23633d1278cb56025401f8418734a9053e4445f962f55f5aaba831c978b91cc9"
+file = "options-profiles/9 - Bateria/options.txt"
+hash = "23340cc111bfb7f350f9d7eea5089511fe09e8a2f60ec4edae2c1d8fcfabc345"
 preserve = true
 
 [[files]]
@@ -583,6 +563,51 @@ preserve = true
 [[files]]
 file = "options-profiles/5 - Bonito Shader/options.txt"
 hash = "9bea101c5846cb3bb64f64dcd4167ec45730759636a51211f909f4a2297ba454"
+preserve = true
+
+[[files]]
+file = "options-profiles/1 - Minimo/configuration.json"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
+preserve = true
+
+[[files]]
+file = "options-profiles/1 - Minimo/iris.properties"
+hash = "d2dd3eae24881aa06a06362f0063753326dd8a069085cb161207c45334aff117"
+preserve = true
+
+[[files]]
+file = "options-profiles/1 - Minimo/options.txt"
+hash = "39d7fb0738b2ab6b4ae495a6b53c54c078caeb0365ad8f3daf4e27be81bced4d"
+preserve = true
+
+[[files]]
+file = "options-profiles/8 - FPS Maximo/configuration.json"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
+preserve = true
+
+[[files]]
+file = "options-profiles/8 - FPS Maximo/iris.properties"
+hash = "d2dd3eae24881aa06a06362f0063753326dd8a069085cb161207c45334aff117"
+preserve = true
+
+[[files]]
+file = "options-profiles/8 - FPS Maximo/options.txt"
+hash = "2ebe3b743ed6fdc438defd12ad09fc04109ad6efb913115b986a14f33e32491c"
+preserve = true
+
+[[files]]
+file = "options-profiles/3 - Equilibrado/configuration.json"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
+preserve = true
+
+[[files]]
+file = "options-profiles/3 - Equilibrado/iris.properties"
+hash = "d2dd3eae24881aa06a06362f0063753326dd8a069085cb161207c45334aff117"
+preserve = true
+
+[[files]]
+file = "options-profiles/3 - Equilibrado/options.txt"
+hash = "6541f8e152cae32b1147f928d536271a1e6d2cd011e88835400fbda385b02e1c"
 preserve = true
 
 [[files]]
@@ -616,31 +641,16 @@ hash = "2a3f8146a6261757e4f1fc44e25b3482d28a54f11e2842f54fa88b0c762c8d2e"
 preserve = true
 
 [[files]]
-file = "options-profiles/8 - FPS Maximo/configuration.json"
+file = "options-profiles/4 - Alto/configuration.json"
 hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
-file = "options-profiles/8 - FPS Maximo/iris.properties"
+file = "options-profiles/4 - Alto/iris.properties"
 hash = "d2dd3eae24881aa06a06362f0063753326dd8a069085cb161207c45334aff117"
 preserve = true
 
 [[files]]
-file = "options-profiles/8 - FPS Maximo/options.txt"
-hash = "2ebe3b743ed6fdc438defd12ad09fc04109ad6efb913115b986a14f33e32491c"
-preserve = true
-
-[[files]]
-file = "options-profiles/9 - Bateria/configuration.json"
-hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
-preserve = true
-
-[[files]]
-file = "options-profiles/9 - Bateria/iris.properties"
-hash = "d2dd3eae24881aa06a06362f0063753326dd8a069085cb161207c45334aff117"
-preserve = true
-
-[[files]]
-file = "options-profiles/9 - Bateria/options.txt"
-hash = "23340cc111bfb7f350f9d7eea5089511fe09e8a2f60ec4edae2c1d8fcfabc345"
+file = "options-profiles/4 - Alto/options.txt"
+hash = "23633d1278cb56025401f8418734a9053e4445f962f55f5aaba831c978b91cc9"
 preserve = true

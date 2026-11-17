@@ -23,6 +23,8 @@ function Get-Api($path) {
 $filtroMc = 'game_versions=' + [uri]::EscapeDataString("[`"$mc`"]")
 $filtro = 'loaders=' + [uri]::EscapeDataString("[`"$loader`"]") + "&$filtroMc"
 $pastas = @{ mod = 'mods'; resourcepack = 'resourcepacks'; shader = 'shaderpacks' }
+# Lado "unknown" no Modrinth mas so de servidor: no cliente o login pediria senha ate no singleplayer.
+$soServidor = @('simple-login')
 $linhas = Get-Content (Join-Path $root 'modpack\mods.txt') -Encoding UTF8
 $pedidos = foreach ($l in $linhas) { if ($l -match '^\s*([a-z0-9_-]+)\s*\|') { $matches[1] } }
 
@@ -46,7 +48,7 @@ while ($fila.Count) {
     $deps = @($v.dependencies | Where-Object { $_.dependency_type -eq 'required' -and $_.project_id } | ForEach-Object project_id)
     $deps | ForEach-Object { $fila.Enqueue($_) }
     $projs[$p.id] = [pscustomobject]@{ p = $p; v = $v; f = $f; pasta = $pasta; deps = $deps
-        cliente = $p.client_side -ne 'unsupported'; servidor = $p.server_side -ne 'unsupported' }
+        cliente = $p.client_side -ne 'unsupported' -and $p.slug -notin $soServidor; servidor = $p.server_side -ne 'unsupported' }
     Write-Host ('{0,-30} {1}' -f $p.slug, $v.version_number)
 }
 

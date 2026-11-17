@@ -5,6 +5,7 @@
 ## Aprender e guias
 create | Engrenagens, esteiras, moinhos e máquinas que automatizam fazendas e fábricas. Segure W com o mouse em cima de qualquer item do Create para ver um tutorial animado de como ele funciona.
 jei | Mostra a receita de qualquer item. No inventário, passe o mouse num item e aperte R para ver como fazer ou U para ver onde ele é usado.
+bettersearch | Pesquisa que entende erro de digitação e nome em inglês ou português (JEI, inventário criativo e comandos).
 jade | Olhe para um bloco ou mob e aparece no topo da tela o que ele é, de qual mod vem e informações úteis (vida, progresso de crescimento, conteúdo).
 appleskin | Mostra na barra de fome quanto cada comida vai encher e a saturação, para saber o que vale a pena comer.
 better-advancements | Tela de conquistas (tecla L) mais clara. Serve de guia do que fazer a seguir.
@@ -86,6 +87,7 @@ chat-heads | Mostra a cabeça do jogador ao lado das mensagens do chat.
 comforts | Saco de dormir e rede: dormir sem mudar o ponto de renascimento.
 trade-cycling | Botão para trocar as ofertas de um aldeão que ainda não negociou.
 easy-anvils | Bigorna sem o limite de "Caro demais" e com nomes coloridos.
+simple-login | Senha no servidor: na primeira vez digite /register senha senha, depois /login senha. Protege seu nick.
 
 ## Mundo e facilidade
 waystones | Pedras de teleporte: ative nas suas bases e em vilas e viaje entre elas.

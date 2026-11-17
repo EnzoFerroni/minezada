@@ -1,0 +1,8 @@
+name = "Better Search"
+filename = "bettersearch-neoforge-1.21.1-1.6.4.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/URxm65AM/versions/pgGNoNZc/bettersearch-neoforge-1.21.1-1.6.4.jar"
+hash-format = "sha1"
+hash = "9fca31cfb41c132bca975f62ccea9135bce4834d"
