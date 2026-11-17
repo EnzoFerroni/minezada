@@ -220,7 +220,7 @@ sincronizar_whitelist() {
   if [ "$(uname -s)" = "Darwin" ] && ! xcode-select -p >/dev/null 2>&1; then return 0; fi
   command -v python3 >/dev/null || return 0
   python3 - "$@" <<'PY' || echo "AVISO: falha ao atualizar a whitelist." >&2
-import json, os, sys, urllib.request
+import json, os, re, sys, urllib.request
 lista, pasta = sys.argv[1], sys.argv[2]
 def ler(nome):
     arq = os.path.join(pasta, nome)
@@ -235,6 +235,9 @@ conhecidos = {e["name"].lower(): e for e in wl + ops}
 for linha in open(lista, encoding="utf-8-sig"):
     partes = linha.split("#")[0].split()
     if not partes:
+        continue
+    if not re.fullmatch(r"[A-Za-z0-9_]{1,16}", partes[0]):  # nick valido do Java; nada estranho na URL
+        print(f"AVISO: nick invalido em jogadores.txt: {partes[0]}")
         continue
     k, op = partes[0].lower(), "op" in [x.lower() for x in partes[1:]]
     falta_wl = k not in {e["name"].lower() for e in wl}
@@ -286,7 +289,12 @@ configurar_drive() {
     tmp="$(mktemp -d)"
     if curl -fsSL https://dl.google.com/drive-file-stream/GoogleDrive.dmg -o "$tmp/drive.dmg" \
       && hdiutil attach -nobrowse -quiet -mountpoint "$tmp/m" "$tmp/drive.dmg"; then
-      sudo installer -pkg "$tmp/m/GoogleDrive.pkg" -target / >/dev/null || echo "AVISO: instalacao do Google Drive falhou." >&2
+      # So instala com sudo se o pacote for assinado pela Google (Team ID EQHXZ8M8AV).
+      if pkgutil --check-signature "$tmp/m/GoogleDrive.pkg" | grep -q 'Developer ID Installer: Google LLC (EQHXZ8M8AV)'; then
+        sudo installer -pkg "$tmp/m/GoogleDrive.pkg" -target / >/dev/null || echo "AVISO: instalacao do Google Drive falhou." >&2
+      else
+        echo "AVISO: instalador do Google Drive sem a assinatura da Google; nao instalado." >&2
+      fi
       hdiutil detach -quiet "$tmp/m" || true
     else
       echo "AVISO: download do Google Drive falhou." >&2

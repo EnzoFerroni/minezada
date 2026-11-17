@@ -75,6 +75,7 @@ function Sincronizar-Whitelist($lista, $pasta) {
     foreach ($l in Get-Content $lista) {
         $partes = @(($l -split '#')[0].Trim() -split '\s+' | Where-Object { $_ })
         if (-not $partes) { continue }
+        if ($partes[0] -notmatch '^[A-Za-z0-9_]{1,16}$') { Write-Warning "Nick invalido em jogadores.txt: $($partes[0])"; continue }
         $k = $partes[0].ToLower()
         $op = @($partes | Select-Object -Skip 1) -contains 'op'
         $faltaWl = -not ($wl | Where-Object { $_.name.ToLower() -eq $k })
