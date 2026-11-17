@@ -61,6 +61,7 @@ Lista completa com versões e links: seção **Mods** do [README](../README.md).
 | Conta | `online-mode=false` + SimpleLogin (senha) para aceitar Minecraft não original; whitelist com UUID offline calculado pelo nick | `online-mode=true` (só original), offline sem login (qualquer um entra com o nick do admin) |
 | Skins no modo offline | SkinRestorer no servidor: Mojang, depois mc-heads + MineSkin; skin salva no mundo, sem buscar de novo ao entrar | CustomSkinLoader no cliente (anotado em planos.md para depois) |
 | Instalar no jogador | Prism Launcher + `minezada-prism.zip`; packwiz no pre-launch sincroniza os mods a cada abertura pelo link raw do GitHub (por isso o repo é **público**) | Modrinth App (sem atualização automática; pack não listado passa por moderação), launcher oficial (não instala mods), repo público separado (mais coisa para manter) |
+| Launcher sem original | O comando de jogar pergunta. Sem original instala o [PrismLauncher-Cracked](https://github.com/Diegiwg/PrismLauncher-Cracked) (fork do Prism sem exigir conta Microsoft; binários do GitHub Actions) em pasta própria (`~/Applications/Minezada`, `%LOCALAPPDATA%\Programs\Minezada Launcher`). Mesmo formato de instância e mesma pasta de dados do Prism: mesmo zip e atualização automática. Sem conta, ele pede o nick ao abrir. Baixado de novo a cada execução do comando | Prism oficial (conta offline sem Microsoft abre em modo Demo), Fjord Launcher (exige Microsoft também), HMCL (outro formato, sem packwiz), importar o `.mrpack` à mão (sem atualização), TLauncher (histórico de malware). Risco: fork mantido por uma pessoa só |
 
 ## Histórico do pack
 
@@ -84,3 +85,4 @@ Lista completa com versões e links: seção **Mods** do [README](../README.md).
 | 2026-11-17 | 2026.11.17.16 | Minecraft não original: `online-mode=false`, + SimpleLogin (só servidor), whitelist com UUID offline e progresso migrado. + Better Search. Servidor testado. |
 | 2026-11-17 | 2026.11.17.17 | + SkinRestorer (skins no modo offline). Servidor testado. |
 | 2026-11-17 | 2026.11.17.18 | SkinRestorer com reserva mc-heads + MineSkin quando a Mojang bloqueia; `server-config/` copia subpastas. |
+| 2026-11-17 | (pack igual) | Comando de jogar pergunta se tem original; sem original instala o PrismLauncher-Cracked e ganha atualização automática (pack igual). |
