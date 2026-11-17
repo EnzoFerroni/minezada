@@ -26,7 +26,7 @@ $pastas = @{ mod = 'mods'; resourcepack = 'resourcepacks'; shader = 'shaderpacks
 $linhas = Get-Content (Join-Path $root 'modpack\mods.txt') -Encoding UTF8
 $pedidos = foreach ($l in $linhas) { if ($l -match '^\s*([a-z0-9_-]+)\s*\|') { $matches[1] } }
 
-$vistos = @{}; $files = @(); $info = @{}; $pwMods = @()
+$vistos = @{}; $projs = [ordered]@{}; $files = @(); $info = @{}; $pwMods = @()
 $fila = New-Object System.Collections.Queue
 $pedidos | ForEach-Object { $fila.Enqueue($_) }
 while ($fila.Count) {
@@ -43,22 +43,39 @@ while ($fila.Count) {
     if (-not $v) { throw "$($p.slug): sem versao para $loader $mc" }
     $f = $v.files | Where-Object primary | Select-Object -First 1
     if (-not $f) { $f = $v.files[0] }
-    $files += [ordered]@{
-        path      = "$pasta/$($f.filename)"
-        hashes    = [ordered]@{ sha1 = $f.hashes.sha1; sha512 = $f.hashes.sha512 }
-        env       = [ordered]@{
-            client = if ($p.client_side -eq 'unsupported') { 'unsupported' } else { 'required' }
-            server = if ($p.server_side -eq 'unsupported') { 'unsupported' } else { 'required' }
+    $deps = @($v.dependencies | Where-Object { $_.dependency_type -eq 'required' -and $_.project_id } | ForEach-Object project_id)
+    $deps | ForEach-Object { $fila.Enqueue($_) }
+    $projs[$p.id] = [pscustomobject]@{ p = $p; v = $v; f = $f; pasta = $pasta; deps = $deps
+        cliente = $p.client_side -ne 'unsupported'; servidor = $p.server_side -ne 'unsupported' }
+    Write-Host ('{0,-30} {1}' -f $p.slug, $v.version_number)
+}
+
+# Dependencia vai para todo lado onde algum mod que precisa dela esta: o Modrinth marca algumas como
+# "so servidor" (ex: Lithostitched) mesmo quando o mod que depende delas tambem roda no cliente.
+do {
+    $mudou = $false
+    foreach ($x in $projs.Values) {
+        foreach ($d in $x.deps) {
+            $y = $projs[$d]
+            if ($x.cliente -and -not $y.cliente) { $y.cliente = $true; $mudou = $true }
+            if ($x.servidor -and -not $y.servidor) { $y.servidor = $true; $mudou = $true }
         }
+    }
+} while ($mudou)
+
+foreach ($x in $projs.Values) {
+    $p = $x.p; $v = $x.v; $f = $x.f
+    $files += [ordered]@{
+        path      = "$($x.pasta)/$($f.filename)"
+        hashes    = [ordered]@{ sha1 = $f.hashes.sha1; sha512 = $f.hashes.sha512 }
+        env       = [ordered]@{ client = $(if ($x.cliente) { 'required' } else { 'unsupported' }); server = $(if ($x.servidor) { 'required' } else { 'unsupported' }) }
         downloads = @($f.url)
         fileSize  = $f.size
     }
     $foto = ($p.gallery | Sort-Object { -not $_.featured } | Select-Object -First 1).url  # imagem destacada da galeria do Modrinth
-    $info[$p.slug] = [pscustomobject]@{ titulo = $p.title; versao = $v.version_number; servidor = $p.server_side -ne 'unsupported'; icone = $p.icon_url; foto = $foto }
-    $lado = if ($p.server_side -eq 'unsupported') { 'client' } elseif ($p.client_side -eq 'unsupported') { 'server' } else { 'both' }
-    $pwMods += [pscustomobject]@{ slug = $p.slug; titulo = $p.title; arquivo = $f.filename; url = $f.url; sha1 = $f.hashes.sha1; lado = $lado; pasta = $pasta }
-    foreach ($d in $v.dependencies | Where-Object { $_.dependency_type -eq 'required' -and $_.project_id }) { $fila.Enqueue($d.project_id) }
-    Write-Host ('{0,-30} {1}' -f $p.slug, $v.version_number)
+    $info[$p.slug] = [pscustomobject]@{ titulo = $p.title; versao = $v.version_number; servidor = $x.servidor; icone = $p.icon_url; foto = $foto }
+    $lado = if (-not $x.servidor) { 'client' } elseif (-not $x.cliente) { 'server' } else { 'both' }
+    $pwMods += [pscustomobject]@{ slug = $p.slug; titulo = $p.title; arquivo = $f.filename; url = $f.url; sha1 = $f.hashes.sha1; lado = $lado; pasta = $x.pasta }
 }
 
 # NeoForge mais novo que o Prism ja conhece: o meta dele atrasa algumas horas em relacao ao maven,
@@ -121,7 +138,7 @@ $ms.WriteByte(0); $ms.WriteByte(0)                                              
 # Opcoes iniciais (o jogo completa o resto); o jogar so copia se o jogador ainda nao tiver.
 # Pacotes de recursos do pack ja vem ligados (os ultimos da lista tem prioridade).
 $rp = ($pwMods | Where-Object pasta -eq 'resourcepacks' | ForEach-Object { ",`"file/$($_.arquivo)`"" }) -join ''
-Escrever (Join-Path $inst '.minecraft\options.txt') "lang:pt_br`nrenderDistance:10`nsimulationDistance:8`nresourcePacks:[`"vanilla`",`"mod_resources`"$rp]`n"
+Escrever (Join-Path $inst '.minecraft\options.txt') "lang:pt_br`nrenderDistance:10`nsimulationDistance:8`nresourcePacks:[`"vanilla`"$rp]`n"
 Escrever (Join-Path $inst 'mmc-pack.json') "{`"formatVersion`":1,`"components`":[{`"uid`":`"net.minecraft`",`"version`":`"$mc`",`"important`":true},{`"uid`":`"net.neoforged`",`"version`":`"$neo`"}]}`n"
 $zipPrism = Join-Path $root 'modpack\minezada-prism.zip'
 if (Test-Path $zipPrism) { Remove-Item $zipPrism }
