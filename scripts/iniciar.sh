@@ -92,7 +92,7 @@ main() {
     [ "$r" = "s" ] || die "EULA nao aceito."
     echo 'eula=true' > "$server/eula.txt"
   fi
-  cp "$root"/server-config/* "$server/"
+  cp -R "$root"/server-config/. "$server/"
 
   # 5. Mundo da pasta sincronizada, com trava para so um host por vez.
   if [ -n "$SYNC_DIR" ]; then
