@@ -95,3 +95,10 @@ Iron's Spells (complexo para iniciantes), Eternal Starlight (dimensão nova, men
   útil quando o pack estiver estável, para atualizar só quando quiser.
 - **Host dedicado** (VPS no Brasil) se o PC de casa virar gargalo ou os jogadores quiserem servidor
   sempre ligado: o mesmo `iniciar.sh` roda em Linux.
+- **Skins sem depender de limite (CustomSkinLoader)**: hoje o SkinRestorer (servidor) assina as
+  skins pela Mojang e, se ela bloquear (`429` em rede compartilhada, como no laboratório), pelo
+  MineSkin, que tem limite sem chave de API. O `customskinloader` (só cliente, tem NeoForge 1.21.1)
+  busca as skins em cada jogo pela consulta sem assinatura da Mojang, que não foi bloqueada, sem
+  MineSkin. Sem original: skin em pasta local ou conta Ely.by. Custo: entra no pack de todos; quem
+  não tiver o mod vê Steve. Dá para manter os dois (um cobre o outro). Alternativa menor: chave grátis
+  do MineSkin guardada no Drive (não no repo público), como o segredo do playit.
