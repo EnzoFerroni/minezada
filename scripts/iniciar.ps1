@@ -87,7 +87,7 @@ function Sincronizar-Whitelist($lista, $pasta) {
     }
     if (-not (Test-Path $lista)) {
         $linhas = @("# Um nick por linha, igual ao do jogo (maiusculas contam); 'op' depois tambem da admin.",
-            '# O servidor libera todos ao iniciar.', 'Enzobullet op') + @($wl | Where-Object { $_.name -ne 'Enzobullet' } | ForEach-Object { $_.name })
+            '# O servidor libera todos ao iniciar: depois de editar, reinicie. Nao use whitelist add no console.', 'Enzobullet op') + @($wl | Where-Object { $_.name -ne 'Enzobullet' } | ForEach-Object { $_.name })
         [IO.File]::WriteAllLines($lista, [string[]]$linhas)
     }
     $conhecidos = @{}

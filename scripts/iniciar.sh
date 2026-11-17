@@ -309,7 +309,7 @@ for e in wl + ops:
 if not os.path.exists(lista):
     with open(lista, "w") as f:
         f.write("# Um nick por linha, igual ao do jogo (maiusculas contam); 'op' depois tambem da admin.\n"
-                "# O servidor libera todos ao iniciar.\nEnzobullet op\n")
+                "# O servidor libera todos ao iniciar: depois de editar, reinicie. Nao use whitelist add no console.\nEnzobullet op\n")
         f.writelines(e["name"] + "\n" for e in wl if e["name"].lower() != "enzobullet")
 conhecidos = {e["name"].lower(): e for e in wl + ops}
 for linha in open(lista, encoding="utf-8-sig"):
