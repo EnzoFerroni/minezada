@@ -27,7 +27,9 @@ no navegador e espera ela aparecer. Responder `n` grava `SEM_DRIVE=1` no `config
 mais. Os passos manuais:
 
 1. Instale o Google Drive para desktop (https://www.google.com/drive/download/) e faça login.
-2. Dono: a pasta é `Meu Drive/minezada`. Compartilhe com quem vai hospedar (permissão de editor).
+2. Dono: a pasta é `Meu Drive/minezada`, com acesso **restrito** (ela guarda o mundo e o token do
+   DuckDNS). Quem vai hospedar abre o link pelo `iniciar`, clica em "Solicitar acesso" e o dono aprova
+   como editor. Só quem hospeda precisa: jogador não usa o Drive.
 3. Convidado: em drive.google.com → Compartilhados comigo → `minezada` → **Adicionar atalho ao Drive**
    (em "Meu Drive"). Sem o atalho a pasta não aparece no computador.
 4. Mac: botão direito na pasta → **Disponível off-line**.

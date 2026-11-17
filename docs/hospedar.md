@@ -28,7 +28,10 @@ Duplo clique em `iniciar.bat` (Windows) ou `iniciar.command` (Mac). O script:
 **Desligue sempre digitando `stop`.** Aí o mundo volta para o Drive (com backup dos 5 últimos) e a
 trava é liberada. Fechar a janela não envia o mundo.
 
-Whitelist ligada. No console: `whitelist add Nome` e `op Nome`.
+**Whitelist ligada.** Para liberar alguém, adicione o nick em `jogadores.txt` na pasta do Drive (um
+por linha; `op` depois do nick também dá admin). O servidor libera todos no próximo start, em
+qualquer host. Com o servidor no ar, `whitelist add Nome` e `op Nome` no console valem na hora.
+Amigo sem acesso aparece no console como `You are not white-listed`, com o nick.
 
 **Mundo novo? Pré-gere o terreno** para ninguém travar explorando (Terralith e as estruturas pesam na geração). No console, uma vez: `chunky radius 1500` e `chunky start`. Leva um tempo; dá para jogar enquanto roda. `chunky pause` / `chunky continue` controlam.
 
