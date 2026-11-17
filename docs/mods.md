@@ -9,7 +9,7 @@
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.10` · 58 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.11` · 79 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
 
 ## Aprender e guias
 
@@ -112,6 +112,112 @@ Uma dimensão no céu, com ilhas flutuantes, mobs, chefes e itens novos. Portal:
 <img src="https://cdn.modrinth.com/data/YhmgMVyu/images/6bcfa05c5228af0eaa3abb567cea8072720f2fc1_350.webp" width="480">
 
 <sub>Versão `1.21.1-1.5.10-neoforge`</sub>
+
+### <img src="https://cdn.modrinth.com/data/Ejfl5qDL/443e97da9d964660d4e7dca17fc8e28a8e9e667f_96.webp" width="28" align="center"> [The Undergarden](https://modrinth.com/mod/the-undergarden)
+
+Dimensão subterrânea escura com minérios, mobs e chefe próprios. Portal: moldura de pedra-abismal (deepslate) acesa com o Catalisador.
+
+<img src="https://cdn.modrinth.com/data/Ejfl5qDL/images/eb7488d59a80a5025b91e85fba4b1b2b070a4159_350.webp" width="480">
+
+<sub>Versão `0.9.6`</sub>
+
+### <img src="https://cdn.modrinth.com/data/3ufwT9JF/2e903114b7d89b5e1adc7e15dcfd1ba7a1c59505_96.webp" width="28" align="center"> [Ad Astra](https://modrinth.com/mod/ad-astra)
+
+Foguetes e planetas (Lua, Marte, Vênus, Mercúrio) com minérios novos. Precisa montar energia e combustível antes de decolar.
+
+<img src="https://cdn.modrinth.com/data/3ufwT9JF/images/608c0354187296edf5d6008282302cf44568068a_350.webp" width="480">
+
+<sub>Versão `1.16.26`</sub>
+
+### <img src="https://cdn.modrinth.com/data/38tpSycf/df51606c81b979611259890f4a9bb68e4c45aeb9.png" width="28" align="center"> [The Bumblezone - NeoForge/Forge](https://modrinth.com/mod/the-bumblezone)
+
+Dimensão das abelhas: colmeias gigantes, mel, abelha rainha e armaduras. Entre jogando uma pérola do End num ninho de abelha.
+
+<img src="https://cdn.modrinth.com/data/38tpSycf/images/3464447833c325173d65b7c946deb53a333f0764_350.webp" width="480">
+
+<sub>Versão `7.19.0+1.21.1-neoforge`</sub>
+
+### <img src="https://cdn.modrinth.com/data/ZVzW5oNS/65c8dcaaf260e5b2182c228a1a442c792a7c4782.jpeg" width="28" align="center"> [Incendium Legacy](https://modrinth.com/mod/incendium)
+
+Nether renovado: biomas, estruturas, mobs e chefes novos.
+
+<sub>Versão `5.4.4`</sub>
+
+### <img src="https://cdn.modrinth.com/data/LPjGiSO4/30249e0548b8643b1559889eab585683cb397f3a_96.webp" width="28" align="center"> [Nullscape](https://modrinth.com/mod/nullscape)
+
+End renovado: ilhas e terreno novos depois do dragão.
+
+<sub>Versão `1.2.14`</sub>
+
+## Cavernas e minérios
+
+### <img src="https://cdn.modrinth.com/data/Kn7xyQ1v/25ef8a727b9b1d7da6c021b5104d4a186918d54a_96.webp" width="28" align="center"> [Galosphere](https://modrinth.com/mod/galosphere)
+
+Cavernas de cristal com minérios e minerais novos (prata, cristais) e itens de exploração.
+
+<img src="https://cdn.modrinth.com/data/Kn7xyQ1v/images/cf3929e5db44fdc291921c583eda41dc3dea789b_350.webp" width="480">
+
+<sub>Versão `1.21.1-1.5.5`</sub>
+
+### <img src="https://cdn.modrinth.com/data/krskFMfA/465cfcd453c22ee5a09884ede98a0442e97658c5.png" width="28" align="center"> [Spelunkery](https://modrinth.com/mod/spelunkery)
+
+Mineração mais interessante: minérios em pedras variadas, pepitas e ferramentas de caverna.
+
+<img src="https://cdn.modrinth.com/data/krskFMfA/images/c0198cdc42cf6b9d258b602f0501108d4e96616a_350.webp" width="480">
+
+<sub>Versão `1.21.1-0.4.5`</sub>
+
+## Mobs e animais
+
+### <img src="https://cdn.modrinth.com/data/F8BQNPWX/e52917ba0f5ecc1d827f0d4465a15422e0584bf5_96.webp" width="28" align="center"> [Naturalist](https://modrinth.com/mod/naturalist)
+
+Dezenas de animais realistas (urso, cervo, leão, elefante, borboletas, cobras) pelo mundo.
+
+<img src="https://cdn.modrinth.com/data/F8BQNPWX/images/d2f4d2ab51e36c80ca120e406ecbfe46e12dd3bb_350.webp" width="480">
+
+<sub>Versão `2.0.7+1.21.1-neoforge`</sub>
+
+### <img src="https://cdn.modrinth.com/data/BFbX9xcm/9a003725e2cf1cbe4e42807d394b87710b5c3e4d.png" width="28" align="center"> [Mowzie's Mobs](https://modrinth.com/mod/mowzies-mobs)
+
+Mobs e mini-chefes únicos e bem animados, com recompensas ótimas.
+
+<img src="https://cdn.modrinth.com/data/BFbX9xcm/images/062ff3f4f31061329115e82db45d881a1fcb6d9b_350.webp" width="480">
+
+<sub>Versão `1.8.2`</sub>
+
+### <img src="https://cdn.modrinth.com/data/k23mNPhZ/e33ffb391c8c05f1ea99b09d00d5369e0ac44ae7_96.webp" width="28" align="center"> [Aquamirae](https://modrinth.com/mod/aquamirae)
+
+Aventura no oceano congelado: navios, mobs aquáticos, chefe e armaduras.
+
+<img src="https://cdn.modrinth.com/data/k23mNPhZ/images/28676dc18ec5f5acaabcd64c3886a45d30b50607_350.webp" width="480">
+
+<sub>Versão `7.2.13`</sub>
+
+## Aventura e chefes
+
+### <img src="https://cdn.modrinth.com/data/46KJle7n/4de43b519c4b4ce09c5a3155e908da446dbf455a_96.webp" width="28" align="center"> [L_Ender's Cataclysm](https://modrinth.com/mod/l_enders-cataclysm)
+
+Chefes épicos em estruturas próprias (Ignis, Leviathan, Ender Guardian) com armas lendárias.
+
+<img src="https://cdn.modrinth.com/data/46KJle7n/images/63b87fce129fd28949028341562282d7233a86b2_350.webp" width="480">
+
+<sub>Versão `3.33`</sub>
+
+### <img src="https://cdn.modrinth.com/data/8DfbfASn/4240773f6aa5f8c69f44a5e2e0ff313f98ff3389_96.webp" width="28" align="center"> [When Dungeons Arise](https://modrinth.com/mod/when-dungeons-arise)
+
+Masmorras e estruturas gigantes (castelos, navios voadores, torres) cheias de mobs e tesouros.
+
+<img src="https://cdn.modrinth.com/data/8DfbfASn/images/49d30adf89cbbfff2c4bd41c8bc0d8ea96a9c6ab_350.webp" width="480">
+
+<sub>Versão `2.1.68`</sub>
+
+### <img src="https://cdn.modrinth.com/data/P0Mu4wcQ/icon.png" width="28" align="center"> [Artifacts](https://modrinth.com/mod/artifacts)
+
+Itens mágicos achados em baús de estruturas: asas de pena, bota de velocidade, anel de fogo.
+
+<img src="https://cdn.modrinth.com/data/P0Mu4wcQ/images/df1eb4b96a52f82b5d41b7ebd665d6bf5c56ff18_350.webp" width="480">
+
+<sub>Versão `13.2.5`</sub>
 
 ## Biomas e terreno
 
@@ -365,5 +471,5 @@ Shaders opcionais (vêm desligados). Ative em Opções → Vídeo → Shader Pac
 
 ## Dependências (entram sozinhas)
 
-[Balm](https://modrinth.com/mod/balm) · [Cloth Config API](https://modrinth.com/mod/cloth-config) · [CreativeCore](https://modrinth.com/mod/creativecore) · [Cristel Lib](https://modrinth.com/mod/cristel-lib) · [[ETF] Entity Texture Features](https://modrinth.com/mod/entitytexturefeatures) · [Kotlin for Forge](https://modrinth.com/mod/kotlin-for-forge) · [KotlinLangForge](https://modrinth.com/mod/kotlin-lang-forge) · [libIPN](https://modrinth.com/mod/libipn) · [Lithostitched](https://modrinth.com/mod/lithostitched) · [MezzConfig](https://modrinth.com/mod/mezzconfig) · [oωo (owo-lib)](https://modrinth.com/mod/owo-lib) · [Sophisticated Core](https://modrinth.com/mod/sophisticated-core) · [YUNG's API](https://modrinth.com/mod/yungs-api)
+[Balm](https://modrinth.com/mod/balm) · [Cloth Config API](https://modrinth.com/mod/cloth-config) · [Common Storage Lib](https://modrinth.com/mod/common-storage-lib) · [CreativeCore](https://modrinth.com/mod/creativecore) · [Cristel Lib](https://modrinth.com/mod/cristel-lib) · [Curios API](https://modrinth.com/mod/curios) · [[ETF] Entity Texture Features](https://modrinth.com/mod/entitytexturefeatures) · [Fragmentum](https://modrinth.com/mod/fragmentum) · [Geckolib](https://modrinth.com/mod/geckolib) · [Kotlin for Forge](https://modrinth.com/mod/kotlin-for-forge) · [KotlinLangForge](https://modrinth.com/mod/kotlin-lang-forge) · [libIPN](https://modrinth.com/mod/libipn) · [Lionfish-API](https://modrinth.com/mod/lionfish-api) · [Lithostitched](https://modrinth.com/mod/lithostitched) · [MezzConfig](https://modrinth.com/mod/mezzconfig) · [Moonlight Lib](https://modrinth.com/mod/moonlight) · [oωo (owo-lib)](https://modrinth.com/mod/owo-lib) · [Resourceful Config](https://modrinth.com/mod/resourceful-config) · [Resourceful Lib](https://modrinth.com/mod/resourceful-lib) · [Sophisticated Core](https://modrinth.com/mod/sophisticated-core) · [YUNG's API](https://modrinth.com/mod/yungs-api)
 <!-- mods:fim -->

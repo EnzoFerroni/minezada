@@ -24,6 +24,25 @@ wyrmroost | Dragões de vários tipos pelo mundo. Pegue um ovo, choque, crie o f
 
 ## Dimensões
 aether | Uma dimensão no céu, com ilhas flutuantes, mobs, chefes e itens novos. Portal: moldura de glowstone e um balde de água dentro.
+the-undergarden | Dimensão subterrânea escura com minérios, mobs e chefe próprios. Portal: moldura de pedra-abismal (deepslate) acesa com o Catalisador.
+ad-astra | Foguetes e planetas (Lua, Marte, Vênus, Mercúrio) com minérios novos. Precisa montar energia e combustível antes de decolar.
+the-bumblezone | Dimensão das abelhas: colmeias gigantes, mel, abelha rainha e armaduras. Entre jogando uma pérola do End num ninho de abelha.
+incendium | Nether renovado: biomas, estruturas, mobs e chefes novos.
+nullscape | End renovado: ilhas e terreno novos depois do dragão.
+
+## Cavernas e minérios
+galosphere | Cavernas de cristal com minérios e minerais novos (prata, cristais) e itens de exploração.
+spelunkery | Mineração mais interessante: minérios em pedras variadas, pepitas e ferramentas de caverna.
+
+## Mobs e animais
+naturalist | Dezenas de animais realistas (urso, cervo, leão, elefante, borboletas, cobras) pelo mundo.
+mowzies-mobs | Mobs e mini-chefes únicos e bem animados, com recompensas ótimas.
+aquamirae | Aventura no oceano congelado: navios, mobs aquáticos, chefe e armaduras.
+
+## Aventura e chefes
+l_enders-cataclysm | Chefes épicos em estruturas próprias (Ignis, Leviathan, Ender Guardian) com armas lendárias.
+when-dungeons-arise | Masmorras e estruturas gigantes (castelos, navios voadores, torres) cheias de mobs e tesouros.
+artifacts | Itens mágicos achados em baús de estruturas: asas de pena, bota de velocidade, anel de fogo.
 
 ## Biomas e terreno
 terralith | Quase 100 biomas novos no estilo vanilla: desfiladeiros, ilhas, florestas de cerejeira gigantes, cavernas novas.
