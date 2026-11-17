@@ -55,6 +55,9 @@ host com `DUCKDNS_TOKEN` no `config.env` grava o arquivo lá, e os outros hosts 
 
 Teste: com o servidor no ar, um celular no 4G (Wi-Fi desligado) consegue conectar.
 
+Na mesma casa do host o endereço público pode não funcionar (roteador sem NAT loopback, como o da
+Vivo): entre por `localhost` na máquina do host ou pelo IP local que o `iniciar` mostra.
+
 **CGNAT** (IP WAN do roteador ≠ IP de https://api.ipify.org): abrir porta não funciona. Saída:
 [playit.gg](https://playit.gg) (túnel). No plano grátis o túnel fica fora do Brasil (relatos de
 300-400 ms); o plano pago tem região América do Sul.
