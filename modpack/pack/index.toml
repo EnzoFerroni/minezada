@@ -1,0 +1,171 @@
+hash-format = "sha256"
+
+[[files]]
+file = "mods/create.pw.toml"
+hash = "0f9e653a1989fd186f4d268872a150f1fe84c0045d41559c5cb5321d86bf9c23"
+metafile = true
+
+[[files]]
+file = "mods/jei.pw.toml"
+hash = "ca41c3edb55636055d18ed98c84805e8d3878399304f55f0e4b550c3b601f1d7"
+metafile = true
+
+[[files]]
+file = "mods/jade.pw.toml"
+hash = "77f8b6bc4938d8565ac2d5cc234ac0768f22be595becc19675c8e57ee105e92a"
+metafile = true
+
+[[files]]
+file = "mods/appleskin.pw.toml"
+hash = "e057e81006a8710e67e30bd83a06b3fb4340590394fe54e6269e3a5a48c46f76"
+metafile = true
+
+[[files]]
+file = "mods/better-advancements.pw.toml"
+hash = "e16bdf33e5506ac979b25ca3bada43b67a810a96e2a51c43981ee4042e05d7bb"
+metafile = true
+
+[[files]]
+file = "mods/sophisticated-storage.pw.toml"
+hash = "cb38ede03df4d98f6550776e95e65d7eab5bc957044de401cfa6e598b549fc90"
+metafile = true
+
+[[files]]
+file = "mods/sophisticated-backpacks.pw.toml"
+hash = "4a172b6612dcdee4160910d945443439870723911d630108b80582d191f6f5d2"
+metafile = true
+
+[[files]]
+file = "mods/toms-storage.pw.toml"
+hash = "26431a9131b4fb8d98bdd62b0558d035d98e3e9fb63e6e3aea5ae9f6ef4274ab"
+metafile = true
+
+[[files]]
+file = "mods/just-hammers.pw.toml"
+hash = "e09c150b1a1c6c2252b6b372b875fe89eb27872c407ea8511493ba5680d20815"
+metafile = true
+
+[[files]]
+file = "mods/advanced-netherite.pw.toml"
+hash = "f779495a23d9fa1c80a941d6790db86f7cabedaca1b8e3331b4d6235cfcf1209"
+metafile = true
+
+[[files]]
+file = "mods/veinminer.pw.toml"
+hash = "bd6347fe71892997f39a827ceb032d2994e021cb8c7f27d0b0e02fd27ec4a0f7"
+metafile = true
+
+[[files]]
+file = "mods/wyrmroost.pw.toml"
+hash = "6f253022426d82631dfa6b028c79c429fefcbdf5d8f95de8855d01f43eae57c3"
+metafile = true
+
+[[files]]
+file = "mods/aether.pw.toml"
+hash = "ee0793ec5d025f9101737934684bd5a16ca64843f460df7053b05c9a5f8830cb"
+metafile = true
+
+[[files]]
+file = "mods/waystones.pw.toml"
+hash = "426ed3dd46017944747f0601f8832d6f7d7b84aa6efbcb1d0b2ba7cc574b5156"
+metafile = true
+
+[[files]]
+file = "mods/xaeros-minimap.pw.toml"
+hash = "a93b96d65478a332d8bab75b92669eedfc600193523285d9a73e83480132279d"
+metafile = true
+
+[[files]]
+file = "mods/xaeros-world-map.pw.toml"
+hash = "2e7e52e225c672dc318036f0f87c7452c68a78b2753a6e90ffb36b2bb71d4b64"
+metafile = true
+
+[[files]]
+file = "mods/corpse.pw.toml"
+hash = "3c9a0b51a15af2a39adaa59aa1cc76613e93c29dd8dd14e669bb3dc00af2f632"
+metafile = true
+
+[[files]]
+file = "mods/farmers-delight.pw.toml"
+hash = "8b102ca83c7f50dc729b206e1bcbe472807d32e8fa2e80165aa4012af2966eb8"
+metafile = true
+
+[[files]]
+file = "mods/mouse-tweaks.pw.toml"
+hash = "8f90fe0e4fcdc8503648a8d7fe955d3e5ebed6508b69c38d2f04f83dfb3e6c6f"
+metafile = true
+
+[[files]]
+file = "mods/inventory-profiles-next.pw.toml"
+hash = "b6c0535ffc567842a2b26dacebbe036c61618525f9b91d4c3801373606f43248"
+metafile = true
+
+[[files]]
+file = "mods/sodium.pw.toml"
+hash = "afb648b9cf0ba5f67a13da37cf53df7d910c36ec49fdd26087333a3f2682e898"
+metafile = true
+
+[[files]]
+file = "mods/lithium.pw.toml"
+hash = "b40e09b52cdf83075484d0d5349794b417e4afe86181d357536dbee5cc385f47"
+metafile = true
+
+[[files]]
+file = "mods/ferrite-core.pw.toml"
+hash = "4c13074da31dae6cb05af0e0693390f8c20c4b7cf9208b63e7800fffdcaa233e"
+metafile = true
+
+[[files]]
+file = "mods/modernfix.pw.toml"
+hash = "06abb8cb351e195bd5bf61a05a9bbfa9af87a37dbd2991cb84825407bf28b224"
+metafile = true
+
+[[files]]
+file = "mods/entityculling.pw.toml"
+hash = "776d4b343851c26893b7a4a3d88d6dba14529a72c935d05b87fc2ad53b024d15"
+metafile = true
+
+[[files]]
+file = "mods/immediatelyfast.pw.toml"
+hash = "d9833d26e9dcd87f67ffb5c7c9edb8a98e21fb1919bf30f695e386e5fe5598ca"
+metafile = true
+
+[[files]]
+file = "mods/iris.pw.toml"
+hash = "22e42f4b5a9756e24b499687ec5735479c8453b9cea53f5a83241ef967fa65a1"
+metafile = true
+
+[[files]]
+file = "mods/mezzconfig.pw.toml"
+hash = "0b4685872feb6558d7299bb406842206721d72826d87b7911909f9760155a4ff"
+metafile = true
+
+[[files]]
+file = "mods/sophisticated-core.pw.toml"
+hash = "becbfec4aa545e5fd20a0c7aff1b9cbac685716c6525ae31b6f3d954ec6de92e"
+metafile = true
+
+[[files]]
+file = "mods/kotlin-lang-forge.pw.toml"
+hash = "298c64c9e11966a8e06cfb8a89cfa08036512beece9ee6d29c482c77fc25dca0"
+metafile = true
+
+[[files]]
+file = "mods/owo-lib.pw.toml"
+hash = "0d76c01b16356f56f1b543efe1e3fec448868cea02dfc6d2a0698834e787a36f"
+metafile = true
+
+[[files]]
+file = "mods/balm.pw.toml"
+hash = "88215cb6e2dd2f9457d7424e0239c945ea61efa3fe25becc52c1ca04441f2037"
+metafile = true
+
+[[files]]
+file = "mods/kotlin-for-forge.pw.toml"
+hash = "c5056f4d15ce00269bb0555bb68ae5ec766b9b02fe44b9d0518b837d2401021f"
+metafile = true
+
+[[files]]
+file = "mods/libipn.pw.toml"
+hash = "27abe179f7e606bb1e1b572826de12262d6e7a3c7a89c24fdd27fd88171537d1"
+metafile = true
