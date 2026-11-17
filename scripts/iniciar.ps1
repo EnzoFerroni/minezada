@@ -225,19 +225,32 @@ if ($sync) {
     if ($dono -and $dono -ne $eu -and -not $Forcar) {
         throw "Servidor ja esta ativo em '$dono'. Se tiver certeza que nao esta, rode com -Forcar."
     }
-    # shortcut: a trava depende da nuvem ja ter sincronizado; dois hosts iniciando no mesmo minuto podem passar os dois.
-    Set-Content $lock $eu
     # Trava ja era desta maquina = ultima sessao caiu sem enviar; o mundo local e o mais novo.
     if ($dono -ne $eu -and (Test-Path $estado)) {
         Write-Host 'Baixando mundo da pasta sincronizada...'
+        # Extrai a parte e confere antes de mexer no mundo local ou pegar a trava: um arquivo corrompido
+        # nao pode virar o mundo desta maquina (ele seria enviado por cima do bom no proximo stop).
+        $novo = Join-Path $server '.mundo-novo'
+        Remove-Item -Recurse -Force $novo -ErrorAction SilentlyContinue
+        New-Item -ItemType Directory -Force $novo | Out-Null
+        & $tar -xzf $estado -C $novo
+        if ($LASTEXITCODE -or -not (Test-Path (Join-Path $novo 'world'))) {
+            Remove-Item -Recurse -Force $novo
+            throw "mundo.tar.gz corrompido. Copie o mais novo de $sync\backups por cima dele e rode de novo."
+        }
         $w = Join-Path $server 'world'
         if (Test-Path $w) {
             Remove-Item -Recurse -Force "$w.bak" -ErrorAction SilentlyContinue
             Rename-Item $w 'world.bak'
         }
-        & $tar -xzf $estado -C $server
-        if ($LASTEXITCODE) { throw 'Falha ao extrair o mundo.' }
+        Get-ChildItem -Force $novo | ForEach-Object {
+            Remove-Item -Recurse -Force (Join-Path $server $_.Name) -ErrorAction SilentlyContinue
+            Move-Item $_.FullName $server
+        }
+        Remove-Item -Recurse -Force $novo
     }
+    # shortcut: a trava depende da nuvem ja ter sincronizado; dois hosts iniciando no mesmo minuto podem passar os dois.
+    Set-Content $lock $eu
 }
 # Whitelist e admins: lista na pasta do Drive (vale para todos os hosts) ou, sem Drive, no servidor.
 $lista = if ($sync) { Join-Path $sync 'jogadores.txt' } else { Join-Path $server 'jogadores.txt' }
