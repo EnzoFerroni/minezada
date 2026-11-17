@@ -71,3 +71,4 @@ Lista completa com versões e links: seção **Mods** do [README](../README.md).
 | 2026-11-17 | 2026.11.17.6 | NeoForge escolhido pelo meta do Prism (21.1.266): o 21.1.267 ainda não estava lá e a instância não abria. |
 | 2026-11-17 | 2026.11.17.7 | Memória do jogo 4 GB (6 GB disparava o aviso de pouca RAM do Prism em máquinas de 16 GB). |
 | 2026-11-17 | 2026.11.17.8 | + Terralith, Tectonic, estruturas (YUNG's, Towns and Towers, Explorify), Fresh Animations, 3D Skin Layers, Ambient Sounds, luz dinâmica e shaders desligados. Mundo novo. Servidor testado. |
+| 2026-11-17 | 2026.11.17.9 | Correção: dependência herda os lados de quem precisa dela (Lithostitched faltava no cliente); + Reese's Sodium Options (exigido pela luz dinâmica). |

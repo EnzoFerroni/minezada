@@ -9,7 +9,7 @@
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.8` · 60 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.9` · 61 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
 
 ## Aprender e guias
 
@@ -252,6 +252,14 @@ Tocha ou lanterna na mão ilumina ao redor enquanto você anda.
 <img src="https://cdn.modrinth.com/data/PxQSWIcD/images/bf198f89bf08b1e43a67d8da3038c5b32c8f7ce3_350.webp" width="480">
 
 <sub>Versão `neoforge-1.21.1-1.0.10` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/Bh37bMuy/icon.png" width="28" align="center"> [Reese's Sodium Options](https://modrinth.com/mod/reeses-sodium-options)
+
+Tela de opções de vídeo mais organizada. Necessário para a luz dinâmica.
+
+<img src="https://cdn.modrinth.com/data/Bh37bMuy/images/4dbc5ac6e373ced6e10a0ed0cbeb94b088511d9d_350.webp" width="480">
+
+<sub>Versão `mc1.21.1-2.2.4+neoforge` · só no jogo de cada um, não no servidor</sub>
 
 ## Shaders (vêm desligados)
 

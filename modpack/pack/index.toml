@@ -151,6 +151,11 @@ hash = "660291181480b64e5a68b4b472a8bcaaf7ada27ef01c883c22eb21b9c94d4564"
 metafile = true
 
 [[files]]
+file = "mods/reeses-sodium-options.pw.toml"
+hash = "0bb174780a8b12243a683f7b0e3cc885711f0b825c2b33d4e30e7b0a315dd883"
+metafile = true
+
+[[files]]
 file = "shaderpacks/complementary-reimagined.pw.toml"
 hash = "cde29e11964d8e7226791a5a6d29ff853d02e4579a9cd835b04b5da6ba3ff942"
 metafile = true
@@ -252,7 +257,7 @@ metafile = true
 
 [[files]]
 file = "mods/lithostitched.pw.toml"
-hash = "c6c5ef0b4194e805eefcb3805f9d45167ef13bebefb5ede2215f8fb2caa7b16a"
+hash = "c10053de273fc248bf5ec362d9e8879f76af76eff96f352a4ea62ff47bd87525"
 metafile = true
 
 [[files]]
