@@ -27,7 +27,8 @@ trava é liberada. Fechar a janela não envia o mundo.
 
 **Whitelist ligada.** Para liberar alguém, adicione o nick em `jogadores.txt` na pasta do Drive (um
 por linha; `op` depois do nick também dá admin). O servidor libera todos no próximo start, em
-qualquer host. Com o servidor no ar, `whitelist add Nome` e `op Nome` no console valem na hora.
+qualquer host. Não use `whitelist add`/`op` no console: em modo offline, se o nick existir como
+conta original, o servidor grava o UUID da Mojang e a pessoa continua barrada.
 Amigo sem acesso aparece no console como `You are not white-listed`, com o nick.
 
 **Modo offline com senha.** O servidor aceita Minecraft não original (`online-mode=false`), então o
