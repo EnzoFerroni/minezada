@@ -46,8 +46,6 @@ fresh-animations | Pacote de recursos (já vem ligado): mobs com animações mui
 entity-model-features | Necessário para o Fresh Animations funcionar.
 3dskinlayers | As camadas da skin (jaqueta, chapéu) aparecem em 3D.
 ambientsounds | Sons de ambiente: vento, pássaros, grilos, água, cavernas.
-sodium-dynamic-lights | Tocha ou lanterna na mão ilumina ao redor enquanto você anda.
-reeses-sodium-options | Tela de opções de vídeo mais organizada. Necessário para a luz dinâmica.
 
 ## Shaders (vêm desligados)
 complementary-reimagined | Shader bonito e leve, funciona no Mac. Ligue em Opções → Vídeo → Shader Packs.

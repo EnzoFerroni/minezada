@@ -146,16 +146,6 @@ hash = "0c5f0bcdc0bf32e2d81c9fabe8645a73cdb58bd0d54764d605bde09c25b5383b"
 metafile = true
 
 [[files]]
-file = "mods/sodium-dynamic-lights.pw.toml"
-hash = "660291181480b64e5a68b4b472a8bcaaf7ada27ef01c883c22eb21b9c94d4564"
-metafile = true
-
-[[files]]
-file = "mods/reeses-sodium-options.pw.toml"
-hash = "0bb174780a8b12243a683f7b0e3cc885711f0b825c2b33d4e30e7b0a315dd883"
-metafile = true
-
-[[files]]
 file = "shaderpacks/complementary-reimagined.pw.toml"
 hash = "cde29e11964d8e7226791a5a6d29ff853d02e4579a9cd835b04b5da6ba3ff942"
 metafile = true
@@ -278,11 +268,6 @@ metafile = true
 [[files]]
 file = "mods/creativecore.pw.toml"
 hash = "79d91006767e6c59f8e25f2d78dcdf3c1092e07a05de254b5cc653c9954bed3b"
-metafile = true
-
-[[files]]
-file = "mods/sodium-options-api.pw.toml"
-hash = "b7ba5b4b5ac6f521df09fa76a1181ba9fde0e15766f6ed5601f50e17b59d873f"
 metafile = true
 
 [[files]]

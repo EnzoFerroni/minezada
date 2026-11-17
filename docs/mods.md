@@ -9,7 +9,7 @@
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.9` · 61 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.10` · 58 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
 
 ## Aprender e guias
 
@@ -245,22 +245,6 @@ Sons de ambiente: vento, pássaros, grilos, água, cavernas.
 
 <sub>Versão `6.3.11` · só no jogo de cada um, não no servidor</sub>
 
-### <img src="https://cdn.modrinth.com/data/PxQSWIcD/a5ab5515213391934e18baaf487c87e4b24ebfa3_96.webp" width="28" align="center"> [Sodium Dynamic Lights](https://modrinth.com/mod/sodium-dynamic-lights)
-
-Tocha ou lanterna na mão ilumina ao redor enquanto você anda.
-
-<img src="https://cdn.modrinth.com/data/PxQSWIcD/images/bf198f89bf08b1e43a67d8da3038c5b32c8f7ce3_350.webp" width="480">
-
-<sub>Versão `neoforge-1.21.1-1.0.10` · só no jogo de cada um, não no servidor</sub>
-
-### <img src="https://cdn.modrinth.com/data/Bh37bMuy/icon.png" width="28" align="center"> [Reese's Sodium Options](https://modrinth.com/mod/reeses-sodium-options)
-
-Tela de opções de vídeo mais organizada. Necessário para a luz dinâmica.
-
-<img src="https://cdn.modrinth.com/data/Bh37bMuy/images/4dbc5ac6e373ced6e10a0ed0cbeb94b088511d9d_350.webp" width="480">
-
-<sub>Versão `mc1.21.1-2.2.4+neoforge` · só no jogo de cada um, não no servidor</sub>
-
 ## Shaders (vêm desligados)
 
 ### <img src="https://cdn.modrinth.com/data/HVnmMxH1/79cb7c8123bbc54945305b2ebad6b8881efdf5f8_96.webp" width="28" align="center"> [Complementary Shaders - Reimagined](https://modrinth.com/mod/complementary-reimagined)
@@ -381,5 +365,5 @@ Shaders opcionais (vêm desligados). Ative em Opções → Vídeo → Shader Pac
 
 ## Dependências (entram sozinhas)
 
-[Balm](https://modrinth.com/mod/balm) · [Cloth Config API](https://modrinth.com/mod/cloth-config) · [CreativeCore](https://modrinth.com/mod/creativecore) · [Cristel Lib](https://modrinth.com/mod/cristel-lib) · [[ETF] Entity Texture Features](https://modrinth.com/mod/entitytexturefeatures) · [Kotlin for Forge](https://modrinth.com/mod/kotlin-for-forge) · [KotlinLangForge](https://modrinth.com/mod/kotlin-lang-forge) · [libIPN](https://modrinth.com/mod/libipn) · [Lithostitched](https://modrinth.com/mod/lithostitched) · [MezzConfig](https://modrinth.com/mod/mezzconfig) · [oωo (owo-lib)](https://modrinth.com/mod/owo-lib) · [Sodium Options API](https://modrinth.com/mod/sodium-options-api) · [Sophisticated Core](https://modrinth.com/mod/sophisticated-core) · [YUNG's API](https://modrinth.com/mod/yungs-api)
+[Balm](https://modrinth.com/mod/balm) · [Cloth Config API](https://modrinth.com/mod/cloth-config) · [CreativeCore](https://modrinth.com/mod/creativecore) · [Cristel Lib](https://modrinth.com/mod/cristel-lib) · [[ETF] Entity Texture Features](https://modrinth.com/mod/entitytexturefeatures) · [Kotlin for Forge](https://modrinth.com/mod/kotlin-for-forge) · [KotlinLangForge](https://modrinth.com/mod/kotlin-lang-forge) · [libIPN](https://modrinth.com/mod/libipn) · [Lithostitched](https://modrinth.com/mod/lithostitched) · [MezzConfig](https://modrinth.com/mod/mezzconfig) · [oωo (owo-lib)](https://modrinth.com/mod/owo-lib) · [Sophisticated Core](https://modrinth.com/mod/sophisticated-core) · [YUNG's API](https://modrinth.com/mod/yungs-api)
 <!-- mods:fim -->
