@@ -17,7 +17,7 @@ toms-storage | Liga todos os baús da base num terminal: uma tela só com busca 
 ## Ferramentas
 just-hammers | Martelos que quebram uma área 3x3 de uma vez. Ótimos para cavar túneis e minas.
 advanced-netherite | Ferramentas e armaduras ainda melhores que netherite, feitas com materiais do jogo. Progressão no estilo vanilla.
-veinminer | Agachado, quebre um minério ou tronco e o veio ou a árvore inteira vem junto.
+veinminer | Segure a tecla ' (apóstrofo) e quebre um minério ou tronco: o veio ou a árvore inteira vem junto. Troque a tecla em Opções → Controles (busque "vein").
 
 ## Dragões
 wyrmroost | Dragões de vários tipos pelo mundo. Pegue um ovo, choque, crie o filhote como pet e, quando ele crescer, monte e saia voando.
@@ -97,6 +97,13 @@ mouse-tweaks | Arraste o mouse com o botão apertado para mover vários itens de
 inventory-essentials | Organizar inventário e baús (botão do meio do mouse) e mover itens rápido com Shift.
 
 ## Desempenho
+options-profiles | Perfis de gráfico prontos: Opções → Perfis → 1 - Leve, 2 - Equilibrado, 3 - Bonito, 4 - Ultra. Ajuste e salve por cima do seu.
+sodium-extra | Mais opções de vídeo (contador de FPS, neblina, animações) para calibrar o desempenho.
+dynamic-fps | Baixa o FPS quando o jogo está minimizado ou em segundo plano: menos calor e bateria.
+moreculling | Deixa de desenhar faces de blocos que você não vê (folhas, vidro): mais FPS.
+chunky | Pré-gera o mundo no servidor para não travar ao explorar terreno novo.
+spark | Mede o desempenho do servidor e do jogo para achar o que pesa.
+noisium | Acelera a geração de terreno no servidor.
 sodium | Deixa o jogo muito mais leve e com mais FPS.
 lithium | Otimiza a lógica do jogo e do servidor, menos lag.
 ferrite-core | Faz o jogo usar menos memória RAM.

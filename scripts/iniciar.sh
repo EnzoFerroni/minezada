@@ -125,7 +125,9 @@ main() {
   # array vazio com set -u quebra no bash 3.2 do macOS.
   cafe=""; command -v caffeinate >/dev/null && cafe="caffeinate -i"
   trap 'true' INT  # Ctrl+C derruba so o java (que salva o mundo); o script segue para o envio
-  (cd "$server" && $cafe "$JAVA" "-Xms$RAM" "-Xmx$RAM" -jar server.jar nogui) || true
+  # Flags do Aikar: coleta de lixo G1 ajustada para servidor de Minecraft (menos travadas).
+  flags="-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1"
+  (cd "$server" && $cafe "$JAVA" "-Xms$RAM" "-Xmx$RAM" $flags -jar server.jar nogui) || true
   trap - INT
 
   [ -n "$ddns_pid" ] && kill "$ddns_pid" 2>/dev/null || true

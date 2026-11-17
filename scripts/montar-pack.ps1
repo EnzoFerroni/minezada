@@ -112,6 +112,18 @@ foreach ($m in $pwMods) {
     Escrever (Join-Path $pw $rel) "name = $(Toml $m.titulo)`nfilename = $(Toml $m.arquivo)`nside = `"$($m.lado)`"`n`n[download]`nurl = $(Toml $m.url)`nhash-format = `"sha1`"`nhash = `"$($m.sha1)`"`n"
     $idx += "`n[[files]]`nfile = `"$rel`"`nhash = `"$(Sha256 (Join-Path $pw $rel))`"`nmetafile = true`n"
 }
+# Arquivos soltos (perfis de grafico etc) de modpack/arquivos vao para o jogo de cada um.
+# preserve = so cria se nao existir: quem recalibrar um perfil nao perde o ajuste na proxima abertura.
+$soltos = Join-Path $root 'modpack\arquivos'
+if (Test-Path $soltos) {
+    foreach ($a in Get-ChildItem $soltos -Recurse -File) {
+        $rel = $a.FullName.Substring($soltos.Length + 1).Replace('\', '/')
+        $dest = Join-Path $pw $rel
+        New-Item -ItemType Directory -Force (Split-Path $dest) | Out-Null
+        Copy-Item $a.FullName $dest
+        $idx += "`n[[files]]`nfile = $(Toml $rel)`nhash = `"$(Sha256 $dest)`"`npreserve = true`n"
+    }
+}
 Escrever (Join-Path $pw 'index.toml') $idx
 Escrever (Join-Path $pw 'pack.toml') "name = `"Minezada`"`nversion = `"$Versao`"`npack-format = `"packwiz:1.1.0`"`n`n[index]`nfile = `"index.toml`"`nhash-format = `"sha256`"`nhash = `"$(Sha256 (Join-Path $pw 'index.toml'))`"`n`n[versions]`nminecraft = `"$mc`"`nneoforge = `"$neo`"`n"
 

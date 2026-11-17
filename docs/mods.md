@@ -6,10 +6,11 @@
 - **Tutorial do Create:** segure `W` com o mouse em cima de um item do Create.
 - **Mapa:** `M`. Minimapa e marcadores ficam no canto da tela.
 - **Morreu?** Volte ao local: seus itens estão num corpo.
+- **Minerar o veio inteiro:** segure `'` (apóstrofo) e quebre o minério ou tronco.
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.12` · 94 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.17.13` · 102 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
 
 ## Aprender e guias
 
@@ -87,7 +88,7 @@ Ferramentas e armaduras ainda melhores que netherite, feitas com materiais do jo
 
 ### <img src="https://cdn.modrinth.com/data/OhduvhIc/5ea1f538e66ee4d4e5e571ad952cba0e06e0bd5c.png" width="28" align="center"> [VeinMiner](https://modrinth.com/mod/veinminer)
 
-Agachado, quebre um minério ou tronco e o veio ou a árvore inteira vem junto.
+Segure a tecla ' (apóstrofo) e quebre um minério ou tronco: o veio ou a árvore inteira vem junto. Troque a tecla em Opções → Controles (busque "vein").
 
 <img src="https://cdn.modrinth.com/data/OhduvhIc/images/5ed63b5c5bfffadc782bde4a140ec8674f2d49a4.png" width="480">
 
@@ -535,6 +536,56 @@ Organizar inventário e baús (botão do meio do mouse) e mover itens rápido co
 
 ## Desempenho
 
+### <img src="https://cdn.modrinth.com/data/DnyS3EEW/e3e04a5d1a4cd98a9288fc1e9a3ea6ca3371e8d6.png" width="28" align="center"> [Options Profiles](https://modrinth.com/mod/options-profiles)
+
+Perfis de gráfico prontos: Opções → Perfis → 1 - Leve, 2 - Equilibrado, 3 - Bonito, 4 - Ultra. Ajuste e salve por cima do seu.
+
+<img src="https://cdn.modrinth.com/data/DnyS3EEW/images/71b7b1a5907926f9fe28b018d2b0fb4f81b3b17a_350.webp" width="480">
+
+<sub>Versão `1.4.2` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/PtjYWJkn/0df4fb22a11e1dcb5e83cb0aadd275b571aca7a9_96.webp" width="28" align="center"> [Sodium Extra](https://modrinth.com/mod/sodium-extra)
+
+Mais opções de vídeo (contador de FPS, neblina, animações) para calibrar o desempenho.
+
+<sub>Versão `mc1.21.1-0.9.5+neoforge` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/LQ3K71Q1/5056368d0d87c1a9f3efead0cb48ab39a4ea87bf_96.webp" width="28" align="center"> [Dynamic FPS](https://modrinth.com/mod/dynamic-fps)
+
+Baixa o FPS quando o jogo está minimizado ou em segundo plano: menos calor e bateria.
+
+<img src="https://cdn.modrinth.com/data/LQ3K71Q1/images/e8cc9af2ed7fced3b342f82e94f65fdde63eca17.png" width="480">
+
+<sub>Versão `3.11.4` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/51shyZVL/c51b07193b56e952269ef50101d12aecba2b4747_96.webp" width="28" align="center"> [More Culling](https://modrinth.com/mod/moreculling)
+
+Deixa de desenhar faces de blocos que você não vê (folhas, vidro): mais FPS.
+
+<img src="https://cdn.modrinth.com/data/51shyZVL/images/4c966271f02d0a7713069e94c933406e8e5b9097_350.webp" width="480">
+
+<sub>Versão `1.0.11` · só no jogo de cada um, não no servidor</sub>
+
+### <img src="https://cdn.modrinth.com/data/fALzjamp/e1954413665e57b7bae1feef44eda530270c7d47_96.webp" width="28" align="center"> [Chunky](https://modrinth.com/mod/chunky)
+
+Pré-gera o mundo no servidor para não travar ao explorar terreno novo.
+
+<sub>Versão `1.4.23`</sub>
+
+### <img src="https://cdn.modrinth.com/data/l6YH9Als/61a777dd08a8447ac93e8b6372e6d27d48cd1e1a_96.webp" width="28" align="center"> [spark](https://modrinth.com/mod/spark)
+
+Mede o desempenho do servidor e do jogo para achar o que pesa.
+
+<sub>Versão `1.10.124-neoforge-1.21.1`</sub>
+
+### <img src="https://cdn.modrinth.com/data/KuNKN7d2/7490b4d8e08bde8df44b2a71774edf2fe3176c83_96.webp" width="28" align="center"> [Noisium](https://modrinth.com/mod/noisium)
+
+Acelera a geração de terreno no servidor.
+
+<img src="https://cdn.modrinth.com/data/KuNKN7d2/images/2797cee340d5b4747345d27d321966a3e58d3e9e_350.webp" width="480">
+
+<sub>Versão `2.3.0+mc1.21-1.21.1`</sub>
+
 ### <img src="https://cdn.modrinth.com/data/AANobbMI/295862f4724dc3f78df3447ad6072b2dcd3ef0c9_96.webp" width="28" align="center"> [Sodium](https://modrinth.com/mod/sodium)
 
 Deixa o jogo muito mais leve e com mais FPS.
@@ -587,5 +638,5 @@ Shaders opcionais (vêm desligados). Ative em Opções → Vídeo → Shader Pac
 
 ## Dependências (entram sozinhas)
 
-[Balm](https://modrinth.com/mod/balm) · [Cloth Config API](https://modrinth.com/mod/cloth-config) · [Common Storage Lib](https://modrinth.com/mod/common-storage-lib) · [CreativeCore](https://modrinth.com/mod/creativecore) · [Cristel Lib](https://modrinth.com/mod/cristel-lib) · [Curios API](https://modrinth.com/mod/curios) · [[ETF] Entity Texture Features](https://modrinth.com/mod/entitytexturefeatures) · [Fragmentum](https://modrinth.com/mod/fragmentum) · [Geckolib](https://modrinth.com/mod/geckolib) · [KotlinLangForge](https://modrinth.com/mod/kotlin-lang-forge) · [Lionfish-API](https://modrinth.com/mod/lionfish-api) · [Lithostitched](https://modrinth.com/mod/lithostitched) · [MezzConfig](https://modrinth.com/mod/mezzconfig) · [Moonlight Lib](https://modrinth.com/mod/moonlight) · [oωo (owo-lib)](https://modrinth.com/mod/owo-lib) · [Puzzles Lib](https://modrinth.com/mod/puzzles-lib) · [Resourceful Config](https://modrinth.com/mod/resourceful-config) · [Resourceful Lib](https://modrinth.com/mod/resourceful-lib) · [Searchables](https://modrinth.com/mod/searchables) · [Sophisticated Core](https://modrinth.com/mod/sophisticated-core) · [YUNG's API](https://modrinth.com/mod/yungs-api)
+[Architectury API](https://modrinth.com/mod/architectury-api) · [Balm](https://modrinth.com/mod/balm) · [Cloth Config API](https://modrinth.com/mod/cloth-config) · [Common Storage Lib](https://modrinth.com/mod/common-storage-lib) · [CreativeCore](https://modrinth.com/mod/creativecore) · [Cristel Lib](https://modrinth.com/mod/cristel-lib) · [Curios API](https://modrinth.com/mod/curios) · [[ETF] Entity Texture Features](https://modrinth.com/mod/entitytexturefeatures) · [Fragmentum](https://modrinth.com/mod/fragmentum) · [Geckolib](https://modrinth.com/mod/geckolib) · [KotlinLangForge](https://modrinth.com/mod/kotlin-lang-forge) · [Lionfish-API](https://modrinth.com/mod/lionfish-api) · [Lithostitched](https://modrinth.com/mod/lithostitched) · [MezzConfig](https://modrinth.com/mod/mezzconfig) · [Moonlight Lib](https://modrinth.com/mod/moonlight) · [oωo (owo-lib)](https://modrinth.com/mod/owo-lib) · [Puzzles Lib](https://modrinth.com/mod/puzzles-lib) · [Resourceful Config](https://modrinth.com/mod/resourceful-config) · [Resourceful Lib](https://modrinth.com/mod/resourceful-lib) · [Searchables](https://modrinth.com/mod/searchables) · [Sophisticated Core](https://modrinth.com/mod/sophisticated-core) · [YUNG's API](https://modrinth.com/mod/yungs-api)
 <!-- mods:fim -->

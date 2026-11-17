@@ -1,0 +1,8 @@
+name = "Options Profiles"
+filename = "optionsprofiles-1.21.1-neoforge-v1.4.2.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/DnyS3EEW/versions/x6mxk2Lf/optionsprofiles-1.21.1-neoforge-v1.4.2.jar"
+hash-format = "sha1"
+hash = "d051aa448ec5f1669c6aef98d4c764ad91026914"
