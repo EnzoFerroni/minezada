@@ -2,6 +2,7 @@
 
 ## Primeiros passos
 
+- **Sem Minecraft original:** na primeira vez digite `/register senha senha`; nas outras, `/login senha`. Use uma senha só daqui.
 - **Receitas:** no inventário, passe o mouse num item e aperte `R` (como fazer) ou `U` (onde usar).
 - **Tutorial do Create:** segure `W` com o mouse em cima de um item do Create.
 - **Mapa:** `M`. Minimapa e marcadores ficam no canto da tela.
