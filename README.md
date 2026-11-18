@@ -54,4 +54,5 @@ desligar, digite `stop` (é isso que devolve o mundo para o Drive).
 - [Hospedar](docs/hospedar.md): como o servidor funciona, trocar de host, mudar o pack
 - [Requisitos](docs/requisitos.md): o que instalar, Google Drive e rede
 - [Decisões](docs/decisoes.md): por que cada versão e mod foi escolhido
-- [Planos](docs/planos.md): o que vem a seguir (livro de missões, mais mods)
+- [O que falta fazer](https://github.com/EnzoFerroni/minezada/issues) e [o que mudou em cada versão](https://github.com/EnzoFerroni/minezada/releases)
+- [Como mexer no projeto](.github/CONTRIBUTING.md): checklist para mudar o pack e lições aprendidas
