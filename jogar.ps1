@@ -69,7 +69,7 @@ $mem = if ($gb -ge 23) { 6144 } elseif ($gb -lt 11) { 3072 } else { $null }
 if ($mem) {
     (Get-Content "$inst\instance.cfg") -replace '^MaxMemAlloc=.*', "MaxMemAlloc=$mem" | Set-Content "$inst\instance.cfg" -Encoding ascii
 }
-Copy-Item "$tmp\x\.minecraft\packwiz-installer-bootstrap.jar" "$inst\.minecraft" -Force
+Copy-Item "$tmp\x\.minecraft\packwiz-installer-bootstrap.jar", "$tmp\x\.minecraft\packwiz-installer.jar" "$inst\.minecraft" -Force
 foreach ($f in 'servers.dat', 'options.txt') { if (-not (Test-Path "$inst\.minecraft\$f")) { Copy-Item "$tmp\x\.minecraft\$f" "$inst\.minecraft" } }
 # Liga os pacotes de recursos do pack em quem ja tinha options.txt, mantendo os que o jogador ligou.
 # -Encoding UTF8: o PS 5.1 le como ANSI e estragaria nomes com acento ou § (ex: Low On Fire).

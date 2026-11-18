@@ -130,9 +130,9 @@ function Sincronizar-Whitelist($lista, $pasta) {
     [IO.File]::WriteAllText((Join-Path $pasta 'ops.json'), (ConvertTo-Json -InputObject @($ops) -Depth 3))
 }
 
-# Tunel playit.gg para hospedar de redes que nao deixam abrir porta (faculdade, laboratorio, 4G).
-# O segredo do agente fica em playit.txt na pasta do Drive: todo host usa o mesmo tunel e endereco
-# (anotado em playit-endereco.txt). Devolve o processo do agente ou $null.
+# Tunel playit.gg: endereco principal. Funciona com o host em qualquer rede, sem porta aberta no roteador
+# e sem expor o IP do host. O segredo do agente fica em playit.txt na pasta do Drive: todo host usa o
+# mesmo tunel e endereco (anotado em playit-endereco.txt). Devolve o processo do agente ja conectado, ou $null.
 function Iniciar-Tunel($pasta) {
     $seg = if ($pasta) { Join-Path $pasta 'playit.txt' }
     if (-not ($seg -and (Test-Path $seg))) {
@@ -154,14 +154,27 @@ function Iniciar-Tunel($pasta) {
     # Agente que sobrou de uma sessao fechada sem stop (janela fechada no X).
     Get-Process playitd -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq $exe } | Stop-Process -Force
     New-Item -ItemType Directory -Force (Join-Path $server 'logs') | Out-Null
+    $log = Join-Path $server 'logs\playit.log'
+    Remove-Item $log -ErrorAction SilentlyContinue
     # Certificados e pipe proprios: nada vai para a pasta do Drive nem briga com um playit instalado.
     $p = Start-Process $exe -WindowStyle Hidden -PassThru -ArgumentList '--secret-path', "`"$seg`"",
-        '--socket-path', '\\.\pipe\minezada-playit', '--cert-dir', "`"$(Join-Path $dir 'certs')`"",
-        '-l', "`"$(Join-Path $server 'logs\playit.log')`""
+        '--socket-path', '\\.\pipe\minezada-playit', '--cert-dir', "`"$(Join-Path $dir 'certs')`"", '-l', "`"$log`""
+    Write-Host 'Ligando o tunel playit.gg...'
+    for ($i = 0; $i -lt 40 -and -not ((Test-Path $log) -and (Select-String -Quiet 'playit connected' $log)); $i++) { Start-Sleep -Milliseconds 500 }
+    if (-not (Select-String -Quiet 'playit connected' $log -ErrorAction SilentlyContinue)) {
+        Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue
+        Write-Warning "O tunel playit.gg nao conectou (detalhes em $log)."
+        return $null
+    }
     $end = Join-Path $pasta 'playit-endereco.txt'
-    Write-Host 'Tunel playit.gg ligado. Quem esta fora desta rede entra por:'
-    Write-Host "  $(if (Test-Path $end) { (Get-Content $end -Raw).Trim() } else { 'endereco do tunel no painel do playit.gg' })"
+    Write-Host "Endereco do servidor (tunel): $(if (Test-Path $end) { (Get-Content $end -Raw).Trim() } else { 'veja no painel do playit.gg' })"
     $p
+}
+
+# Roda um comando como administrador (o Windows pede permissao). Usado so para o firewall.
+function Como-Admin($cmd) {
+    try { Start-Process powershell -Verb RunAs -Wait -WindowStyle Hidden -ArgumentList '-NoProfile', '-Command', $cmd; $true }
+    catch { Write-Warning 'Permissao de administrador negada.'; $false }
 }
 
 function Achar-Drive {
@@ -326,39 +339,49 @@ $lista = if ($sync) { Join-Path $sync 'jogadores.txt' } else { Join-Path $server
 try { Sincronizar-Whitelist $lista $server }
 catch { Write-Warning "Falha ao atualizar a whitelist: $_" }
 
-# 6. Rede: firewall, porta e endereco.
-# Regra por porta (nao por programa): o aviso do Windows so libera o perfil de rede atual e nao repete.
-if (-not (Get-NetFirewallRule -DisplayName 'minezin 25565' -ErrorAction SilentlyContinue)) {
-    Write-Host "Liberando a porta $porta no firewall (o Windows vai pedir permissao de administrador)..."
-    try {
-        Start-Process powershell -Verb RunAs -Wait -ArgumentList '-NoProfile', '-Command',
-            "New-NetFirewallRule -DisplayName 'minezin 25565' -Direction Inbound -Protocol TCP -LocalPort $porta -Action Allow -Profile Any"
-    }
-    catch { Write-Warning 'Firewall nao liberado: libere o Java quando o Windows perguntar.' }
+# 6. Rede: firewall, tunel e, so se o tunel falhar, porta no roteador e DuckDNS.
+# Regra por porta (nao por programa), so para a rede local: quem vem pelo tunel chega por localhost, que o
+# firewall nao filtra. Regra antiga aberta para qualquer endereco e corrigida (pede administrador uma vez).
+$regra = Get-NetFirewallRule -DisplayName 'minezin 25565' -ErrorAction SilentlyContinue
+$criar = "New-NetFirewallRule -DisplayName 'minezin 25565' -Direction Inbound -Protocol TCP -LocalPort $porta -RemoteAddress LocalSubnet -Action Allow -Profile Any"
+if (-not $regra) {
+    Write-Host "Liberando a porta $porta no firewall para a rede local (o Windows vai pedir permissao de administrador)..."
+    [void](Como-Admin $criar)
 }
-# Roteador sem NAT loopback (comum em roteador de operadora) nao deixa quem esta na mesma casa entrar pelo endereco publico.
+elseif (@($regra | Get-NetFirewallAddressFilter).RemoteAddress -ne 'LocalSubnet') {
+    Write-Host 'Restringindo a regra do firewall a rede local (o Windows vai pedir permissao de administrador)...'
+    [void](Como-Admin "Remove-NetFirewallRule -DisplayName 'minezin 25565'; $criar")
+}
 $ipLocal = try { (Find-NetRoute -RemoteIPAddress 8.8.8.8 | Where-Object IPAddress | Select-Object -First 1).IPAddress } catch { $null }
 Write-Host "Na mesma casa: entre por localhost (nesta maquina) ou $ipLocal (outro computador)."
-if (Porta-UPnP $true) {
-    Write-Host "Porta $porta aberta via UPnP."
-    # Redes de faculdade/empresa costumam liberar so 80/443 de saida: a 443 do roteador tambem leva ao servidor.
-    if (Porta-UPnP $true $portaAlt) { Write-Host "Porta $portaAlt tambem aberta (para quem esta em rede que bloqueia a $porta)." }
+
+$ddns = $null; $reserva = $false
+$tunel = Iniciar-Tunel $cfg.SYNC_DIR
+$url = "https://www.duckdns.org/update?domains=$($cfg.DUCKDNS_DOMAIN)&token=$($cfg.DUCKDNS_TOKEN)"
+if ($tunel) {
+    # Tira o IP desta casa do DuckDNS: o endereco de reserva so aponta para um host quando ele precisa.
+    if ($cfg.DUCKDNS_TOKEN) { try { Invoke-RestMethod "$url&clear=true" | Out-Null } catch {} }
 }
 else {
-    Write-Host "Esta rede nao deixou abrir a porta $porta (UPnP indisponivel). Com redirecionamento manual no roteador, ignore o tunel."
-    $tunel = Iniciar-Tunel $cfg.SYNC_DIR
-}
-
-$ddns = $null
-if ($cfg.DUCKDNS_TOKEN) {
-    $url = "https://www.duckdns.org/update?domains=$($cfg.DUCKDNS_DOMAIN)&token=$($cfg.DUCKDNS_TOKEN)"
-    # Reaponta o nome para este host e repete a cada 5 min caso o IP mude durante a sessao.
-    $ddns = Start-Job -ArgumentList $url {
-        param($u)
-        [Net.ServicePointManager]::SecurityProtocol = 'Tls12'
-        while ($true) { try { Invoke-RestMethod $u | Out-Null } catch {}; Start-Sleep 300 }
+    # Reserva: porta no roteador por UPnP e o DuckDNS apontando para este host. Precisa de uma regra
+    # de firewall aberta para a internet, criada so agora e apagada no stop.
+    Write-Host "Reserva: abrindo a porta $porta no roteador (UPnP) e no firewall (o Windows vai pedir permissao)."
+    $reserva = Como-Admin "New-NetFirewallRule -DisplayName 'minezin 25565 internet' -Direction Inbound -Protocol TCP -LocalPort $porta -Action Allow -Profile Any"
+    if (Porta-UPnP $true) {
+        Write-Host "Porta $porta aberta via UPnP."
+        # Redes de faculdade/empresa costumam liberar so 80/443 de saida: a 443 do roteador tambem leva ao servidor.
+        if (Porta-UPnP $true $portaAlt) { Write-Host "Porta $portaAlt tambem aberta (para quem esta em rede que bloqueia a $porta)." }
     }
-    Write-Host "Endereco do servidor: $($cfg.DUCKDNS_DOMAIN).duckdns.org"
+    else { Write-Warning 'UPnP indisponivel: so quem esta nesta rede consegue entrar (ou redirecione a porta no roteador).' }
+    if ($cfg.DUCKDNS_TOKEN) {
+        # Reaponta o nome para este host e repete a cada 5 min caso o IP mude durante a sessao.
+        $ddns = Start-Job -ArgumentList $url {
+            param($u)
+            [Net.ServicePointManager]::SecurityProtocol = 'Tls12'
+            while ($true) { try { Invoke-RestMethod $u | Out-Null } catch {}; Start-Sleep 300 }
+        }
+        Write-Host "Endereco do servidor (reserva): $($cfg.DUCKDNS_DOMAIN).duckdns.org (na lista do jogo: Minezada (reserva))"
+    }
 }
 
 # Anuncia o servidor na rede local como o "Abrir para LAN" do jogo: quem esta na mesma rede ve
@@ -387,8 +410,11 @@ finally {
     if ($ddns) { Stop-Job $ddns; Remove-Job $ddns }
     Stop-Job $lan; Remove-Job $lan
     if ($tunel) { Stop-Process -Id $tunel.Id -Force -ErrorAction SilentlyContinue }
-    [void](Porta-UPnP $false)
-    [void](Porta-UPnP $false $portaAlt)
+    else {
+        [void](Porta-UPnP $false)
+        [void](Porta-UPnP $false $portaAlt)
+        if ($reserva) { [void](Como-Admin "Remove-NetFirewallRule -DisplayName 'minezin 25565 internet'") }
+    }
     if ($sync) {
         Write-Host 'Enviando mundo para a pasta sincronizada...'
         $itens = @('world', 'ops.json', 'whitelist.json', 'banned-players.json', 'banned-ips.json') |
