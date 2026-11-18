@@ -43,41 +43,38 @@ O `iniciar` acha a pasta sozinho em `X:\Meu Drive\minezada` (Windows) ou
 
 ## Rede
 
-**Endereço fixo:** `minezada-mc.duckdns.org`. Quem hospeda reaponta o nome para o próprio IP (no
-start e a cada 5 min). O token fica em `duckdns.txt` na pasta do Drive, nunca no git: o primeiro
-host com `DUCKDNS_TOKEN` no `config.env` grava o arquivo lá, e os outros hosts pegam de lá sozinhos. Se vazar: crie outro domínio no DuckDNS, troque o nome em `scripts/` e apague o antigo.
+**Endereço principal: túnel [playit.gg](https://playit.gg)**, hoje `molecule-spindle.tun.ply.gg`
+(sem porta). O `iniciar` liga o agente e espera ele conectar. Nada para configurar no roteador, o
+host pode estar em qualquer rede (casa, faculdade, 4G, CGNAT) e o IP dele não aparece. O segredo do
+agente fica em `playit.txt` na pasta do Drive e o endereço em `playit-endereco.txt`, então qualquer
+host usa o mesmo túnel. Plano grátis: sem limite de uso, mas a rota não é garantida para quem está
+longe (Premium fixa a região em São Paulo). Perdeu o segredo? `playit claim generate`,
+`playit claim url <código>`, aprove no site e `playit claim exchange <código>`: a última linha da
+saída é o segredo novo.
 
-**Porta 25565 TCP** precisa chegar no host. Duas formas:
-
-- **UPnP (automático):** se o roteador tiver UPnP ligado, o `iniciar` abre e fecha a porta sozinho
-  para a máquina que estiver hospedando (Windows e Mac falam direto com o roteador; no Mac usa o
-  `python3` das ferramentas de linha de comando, que o `git` já instala). Ligar UPnP é uma troca de
-  segurança: qualquer aparelho da rede pode abrir portas.
-- **Manual:** roteador → redirecionar porta `25565 TCP` para o IP local do host, com reserva de IP
-  (DHCP) para ele não mudar. Trocou de host na mesma casa: troque o IP da regra.
-
-Teste: com o servidor no ar, um celular no 4G (Wi-Fi desligado) consegue conectar.
+**Reserva (só se o túnel não conectar): `minezada-mc.duckdns.org`.** O host abre a porta 25565 TCP
+(e a 443) no roteador por UPnP e reaponta o nome para o próprio IP (no start e a cada 5 min). Com o
+túnel ligado, o host limpa o IP do DuckDNS. O token fica em `duckdns.txt` na pasta do Drive, nunca
+no git: o primeiro host com `DUCKDNS_TOKEN` no `config.env` grava o arquivo lá, e os outros hosts
+pegam de lá sozinhos. Se vazar: crie outro domínio no DuckDNS, troque o nome em `scripts/` e apague
+o antigo. Sem UPnP, a reserva precisa de redirecionamento manual da 25565 TCP para o IP local do
+host (com reserva de IP no DHCP). Ligar UPnP é uma troca de segurança: qualquer aparelho da rede pode
+abrir portas. Para o máximo de segurança, deixe o UPnP desligado e fique só com o túnel.
 
 Na mesma rede do host (casa, laboratório) o servidor aparece sozinho em **Multijogador**, na parte
-de LAN: o `iniciar` anuncia ele como o "Abrir para LAN" do jogo. O endereço público pode não
-funcionar ali (roteador sem NAT loopback, comum em roteador de operadora). Se a rede bloquear o anúncio (Wi-Fi com
-isolamento entre aparelhos), use `localhost` na máquina do host ou o IP local que o `iniciar` mostra.
+de LAN: o `iniciar` anuncia ele como o "Abrir para LAN" do jogo (o firewall do Windows aceita a
+25565 só da rede local). Se a rede bloquear o anúncio (Wi-Fi com isolamento entre aparelhos), use
+`localhost` na máquina do host ou o IP local que o `iniciar` mostra.
 
-**Jogar de rede que só libera 80/443** (faculdade testada): use a entrada **Minezada (rede da
-faculdade)**, porta 443. O túnel playit usa outra porta e também fica bloqueado nessas redes.
-
-**Rede que não deixa abrir porta** (faculdade, laboratório, 4G, CGNAT): o `iniciar` liga sozinho o
-túnel [playit.gg](https://playit.gg) e mostra o endereço, hoje `molecule-spindle.tun.ply.gg` (sem
-porta). O segredo do agente fica em `playit.txt` na pasta do Drive e o endereço em
-`playit-endereco.txt`, então qualquer host usa o mesmo túnel. Plano grátis: sem limite de uso, mas a
-rota não é garantida (Premium fixa a região em São Paulo). Em casa, com UPnP, a conexão segue direta.
-Perdeu o segredo? `playit claim generate`, `playit claim url <código>`, aprove no site e
-`playit claim exchange <código>`: a última linha da saída é o segredo novo.
+**Jogar de rede que só libera 80/443** (faculdade testada): o túnel usa outra porta e fica
+bloqueado. A entrada **Minezada (rede da faculdade)** (porta 443) só funciona na reserva e com um
+roteador que repasse a 443; o de casa não repassa (testado em 18/11).
 
 ## Dicas de rede
 
 - Com UPnP ligado, **não** crie regra manual na 25565: ela trava a porta numa máquina e impede o
   UPnP de apontar para outro host.
-- Windows: deixe a rede como **Privada** (Configurações → Rede e Internet → Ethernet/Wi-Fi).
+- Windows: deixe a rede de casa como **Privada** (Configurações → Rede e Internet → Ethernet/Wi-Fi);
+  em rede pública (faculdade) o túnel funciona igual.
 - VPNs (Radmin, Hamachi, ZeroTier) ligadas podem atrapalhar o UPnP e o IP detectado: desligue
   enquanto hospeda.

@@ -1,6 +1,6 @@
 # Minezada
 
-**Servidor:** `minezada-mc.duckdns.org`
+**Servidor:** `molecule-spindle.tun.ply.gg` (reserva: `minezada-mc.duckdns.org`)
 
 ## Jogar
 
@@ -22,7 +22,7 @@ Ele pergunta se você tem Minecraft original, instala tudo e abre o jogo. Na pri
 com a conta Microsoft ou, sem original, digite seu nick **exatamente como está na whitelist**
 (maiúsculas contam). Depois é só clicar em **Minezada** na Área de Trabalho: o jogo entra direto
 no servidor e os mods se atualizam sozinhos. Algo quebrou? Rode o comando de novo.
-Na faculdade não conecta? Entre em **Minezada (rede da faculdade)** na lista de servidores.
+Na faculdade não conecta? A rede de lá costuma bloquear o servidor: use o roteador do celular (4G).
 
 **Login no servidor.** Com Minecraft original você entra direto, sem senha. Sem original: na primeira
 vez digite `/register suasenha suasenha`; nas outras, `/login suasenha`. Use uma senha só daqui, não
