@@ -1,7 +1,9 @@
 ﻿# Gera modpack/minezada.mrpack, modpack/pack (packwiz), o zip do Prism e a lista do README a partir de modpack/mods.txt, resolvendo versoes e
 # dependencias obrigatorias no Modrinth para o loader e a versao do jogo abaixo.
-# Uso: powershell -ExecutionPolicy Bypass -File scripts/montar-pack.ps1 (Mac: pwsh scripts/montar-pack.ps1) [-Versao 1.0.0]
-param([string]$Versao = (Get-Date -Format 'yyyy.MM.dd'))
+# Uso: powershell -ExecutionPolicy Bypass -File scripts/montar-pack.ps1 (Mac: pwsh scripts/montar-pack.ps1) [-Versao 1.0.0] [-Atualizar]
+# Versoes fixas: cada mod repete a versao do .mrpack atual (o link de cada arquivo tem o id da versao); mod novo
+# pega a mais nova. -Atualizar busca a versao mais nova de todos (revise a lista de mudancas antes do push).
+param([string]$Versao = (Get-Date -Format 'yyyy.MM.dd'), [switch]$Atualizar)
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 [Net.ServicePointManager]::SecurityProtocol = 'Tls12'
@@ -42,6 +44,17 @@ $rpLigados = @('faithful-32x', 'default-dark-mode', 'fast-better-grass', 'simple
 $linhas = Get-Content (Join-Path $root 'modpack/mods.txt') -Encoding UTF8
 $pedidos = foreach ($l in $linhas) { if ($l -match '^\s*([a-z0-9_-]+)\s*\|') { $matches[1] } }
 
+# Pack anterior: lista de arquivos (para mostrar o que mudou) e a versao de cada projeto (para repetir).
+Add-Type -AssemblyName System.IO.Compression, System.IO.Compression.FileSystem
+$saida = Join-Path $root 'modpack/minezada.mrpack'
+$antigos = @(); $fixas = @{}
+if (Test-Path $saida) {
+    $za = [IO.Compression.ZipFile]::OpenRead($saida)
+    $antigos = @([IO.StreamReader]::new(($za.Entries | Where-Object FullName -eq 'modrinth.index.json').Open()).ReadToEnd() | ConvertFrom-Json | ForEach-Object { $_.files } | ForEach-Object { $_ })
+    $za.Dispose()
+    foreach ($a in $antigos) { if ($a.downloads[0] -match '/data/([^/]+)/versions/([^/]+)/') { $fixas[$matches[1]] = $matches[2] } }
+}
+
 $vistos = @{}; $projs = [ordered]@{}; $files = @(); $info = @{}; $pwMods = @()
 $fila = New-Object System.Collections.Queue
 $pedidos | ForEach-Object { $fila.Enqueue($_) }
@@ -52,10 +65,13 @@ while ($fila.Count) {
     $vistos[$p.id] = $true
     $pasta = $pastas[$p.project_type]
     if (-not $pasta) { throw "$($p.slug): tipo $($p.project_type) nao suportado" }
-    # Pacotes de recursos e shaders nao tem loader NeoForge: filtra so pela versao do jogo.
-    $vs = Get-Api "project/$($p.id)/version?$(if ($p.project_type -eq 'mod') { $filtro } else { $filtroMc })"
-    $v = ($vs | Where-Object version_type -eq 'release' | Select-Object -First 1)
-    if (-not $v) { $v = $vs | Select-Object -First 1 }
+    if ($fixas[$p.id] -and -not $Atualizar) { $v = Get-Api "version/$($fixas[$p.id])" }
+    else {
+        # Pacotes de recursos e shaders nao tem loader NeoForge: filtra so pela versao do jogo.
+        $vs = Get-Api "project/$($p.id)/version?$(if ($p.project_type -eq 'mod') { $filtro } else { $filtroMc })"
+        $v = ($vs | Where-Object version_type -eq 'release' | Select-Object -First 1)
+        if (-not $v) { $v = $vs | Select-Object -First 1 }
+    }
     if (-not $v) { throw "$($p.slug): sem versao para $loader $mc" }
     $f = $v.files | Where-Object primary | Select-Object -First 1
     if (-not $f) { $f = $v.files[0] }
@@ -109,16 +125,9 @@ $index = [ordered]@{
 $tmp = Join-Path ([IO.Path]::GetTempPath()) "minezada-pack-$PID"
 New-Item -ItemType Directory -Force $tmp | Out-Null
 [IO.File]::WriteAllText((Join-Path $tmp 'modrinth.index.json'), ($index | ConvertTo-Json -Depth 8), (New-Object Text.UTF8Encoding $false))
-$saida = Join-Path $root 'modpack/minezada.mrpack'
 
 # O que mudou desde o pack anterior: revisar antes do push (versao nova de mod = codigo novo no PC de todos).
-Add-Type -AssemblyName System.IO.Compression, System.IO.Compression.FileSystem
-$antes = @()
-if (Test-Path $saida) {
-    $za = [IO.Compression.ZipFile]::OpenRead($saida)
-    $antes = @([IO.StreamReader]::new(($za.Entries | Where-Object FullName -eq 'modrinth.index.json').Open()).ReadToEnd() | ConvertFrom-Json | ForEach-Object { $_.files } | ForEach-Object { $_.path })
-    $za.Dispose()
-}
+$antes = @($antigos | ForEach-Object { $_.path })
 $depois = @($files | ForEach-Object { $_.path })
 $saiu = @($antes | Where-Object { $_ -notin $depois }); $entrou = @($depois | Where-Object { $_ -notin $antes })
 Write-Host "`nMudancas desde o pack anterior: $(if (-not ($saiu + $entrou)) { 'nenhuma' })"
