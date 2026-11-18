@@ -107,7 +107,7 @@ chat-heads | Mostra a cabeça do jogador ao lado das mensagens do chat.
 comforts | Saco de dormir e rede: dormir sem mudar o ponto de renascimento.
 trade-cycling | Botão para trocar as ofertas de um aldeão que ainda não negociou.
 easy-anvils | Bigorna sem o limite de "Caro demais" e com nomes coloridos.
-mixauth | Login no servidor. Com Minecraft original você entra direto (a Mojang confirma a conta) e com a sua skin. Sem original: na primeira vez /register senha senha, depois /login senha; no mesmo IP fica logado por 7 dias. Protege seu nick.
+mixauth | Login no servidor. Com Minecraft original você entra direto (a Mojang confirma a conta) e com a sua skin. Sem original: na primeira vez /register senha senha, depois /login senha, sempre (protege seu nick).
 skinrestorer | Mostra a skin de cada um no servidor, mesmo em rede que bloqueia a Mojang. Trocar: /skin set nick SeuNick ou /skin set web classic <link da imagem>.
 
 ## Mundo e facilidade

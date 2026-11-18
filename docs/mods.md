@@ -645,7 +645,7 @@ Bigorna sem o limite de "Caro demais" e com nomes coloridos.
 
 ### <img src="https://cdn.modrinth.com/data/GzSiVPHb/81a7ae2116a3b5dfb3a8216ace2d0259862a597d_96.webp" width="28" align="center"> [MixAuth](https://modrinth.com/mod/mixauth)
 
-Login no servidor. Com Minecraft original você entra direto (a Mojang confirma a conta) e com a sua skin. Sem original: na primeira vez /register senha senha, depois /login senha; no mesmo IP fica logado por 7 dias. Protege seu nick.
+Login no servidor. Com Minecraft original você entra direto (a Mojang confirma a conta) e com a sua skin. Sem original: na primeira vez /register senha senha, depois /login senha, sempre (protege seu nick).
 
 <sub>Versão `1.3.3`</sub>
 

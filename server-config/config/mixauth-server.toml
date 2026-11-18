@@ -5,8 +5,9 @@ path = "mixauth/mixauth"
 [offline_login]
 max_login_attempts = 5
 temporary_block_minutes = 5
-# Mesmo nick + mesmo IP entra sem senha durante 7 dias.
-trusted_login_window_hours = 168
+# 0 = sempre pede senha. "Mesmo nick + mesmo IP sem senha" e inseguro aqui: pelo tunel playit (e em rede
+# de faculdade) todos chegam com o mesmo IP, e qualquer um entraria com o nick de outro jogador.
+trusted_login_window_hours = 0
 login_timeout_minutes = 5
 prompt_interval_seconds = 5
 bcrypt_cost = 12
