@@ -130,6 +130,40 @@ function Sincronizar-Whitelist($lista, $pasta) {
     [IO.File]::WriteAllText((Join-Path $pasta 'ops.json'), (ConvertTo-Json -InputObject @($ops) -Depth 3))
 }
 
+# Tunel playit.gg para hospedar de redes que nao deixam abrir porta (faculdade, laboratorio, 4G).
+# O segredo do agente fica em playit.txt na pasta do Drive: todo host usa o mesmo tunel e endereco
+# (anotado em playit-endereco.txt). Devolve o processo do agente ou $null.
+function Iniciar-Tunel($pasta) {
+    $seg = if ($pasta) { Join-Path $pasta 'playit.txt' }
+    if (-not ($seg -and (Test-Path $seg))) {
+        Write-Host 'Sem tunel playit.gg (precisa da pasta do Drive): so quem esta nesta rede consegue entrar.'
+        return $null
+    }
+    $dir = Join-Path $tools 'playit'
+    $exe = Join-Path $dir 'playitd.exe'
+    if (-not (Test-Path $exe)) {
+        Write-Host 'Baixando o playit.gg...'
+        New-Item -ItemType Directory -Force $dir | Out-Null
+        Invoke-WebRequest 'https://github.com/playit-cloud/playit-agent/releases/download/v2.0.2/playitd-windows-x86_64-signed.exe' -OutFile "$exe.tmp"
+        # SHA-256 publicado na release: so roda o binario se bater.
+        if ((Get-FileHash "$exe.tmp" -Algorithm SHA256).Hash -ne '6e62da9f56a3bcf72e0c62c29e94609c847cc9b110c460f68b20035525985238') {
+            Remove-Item "$exe.tmp"; Write-Warning 'Checksum do playit.gg nao confere; tunel nao ligado.'; return $null
+        }
+        Move-Item "$exe.tmp" $exe
+    }
+    # Agente que sobrou de uma sessao fechada sem stop (janela fechada no X).
+    Get-Process playitd -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq $exe } | Stop-Process -Force
+    New-Item -ItemType Directory -Force (Join-Path $server 'logs') | Out-Null
+    # Certificados e pipe proprios: nada vai para a pasta do Drive nem briga com um playit instalado.
+    $p = Start-Process $exe -WindowStyle Hidden -PassThru -ArgumentList '--secret-path', "`"$seg`"",
+        '--socket-path', '\\.\pipe\minezada-playit', '--cert-dir', "`"$(Join-Path $dir 'certs')`"",
+        '-l', "`"$(Join-Path $server 'logs\playit.log')`""
+    $end = Join-Path $pasta 'playit-endereco.txt'
+    Write-Host 'Tunel playit.gg ligado. Quem esta fora desta rede entra por:'
+    Write-Host "  $(if (Test-Path $end) { (Get-Content $end -Raw).Trim() } else { 'endereco do tunel no painel do playit.gg' })"
+    $p
+}
+
 function Achar-Drive {
     Get-PSDrive -PSProvider FileSystem |
         ForEach-Object { "$($_.Root)Meu Drive\minezada"; "$($_.Root)My Drive\minezada" } |
@@ -302,7 +336,7 @@ if (-not (Get-NetFirewallRule -DisplayName 'minezin 25565' -ErrorAction Silently
     }
     catch { Write-Warning 'Firewall nao liberado: libere o Java quando o Windows perguntar.' }
 }
-# Roteador sem NAT loopback (ex.: Vivo) nao deixa quem esta na mesma casa entrar pelo endereco publico.
+# Roteador sem NAT loopback (comum em roteador de operadora) nao deixa quem esta na mesma casa entrar pelo endereco publico.
 $ipLocal = try { (Find-NetRoute -RemoteIPAddress 8.8.8.8 | Where-Object IPAddress | Select-Object -First 1).IPAddress } catch { $null }
 Write-Host "Na mesma casa: entre por localhost (nesta maquina) ou $ipLocal (outro computador)."
 if (Porta-UPnP $true) {
@@ -310,7 +344,10 @@ if (Porta-UPnP $true) {
     # Redes de faculdade/empresa costumam liberar so 80/443 de saida: a 443 do roteador tambem leva ao servidor.
     if (Porta-UPnP $true $portaAlt) { Write-Host "Porta $portaAlt tambem aberta (para quem esta em rede que bloqueia a $porta)." }
 }
-else { Write-Host 'UPnP indisponivel: vale o redirecionamento manual do roteador (docs/requisitos.md).' }
+else {
+    Write-Host "Esta rede nao deixou abrir a porta $porta (UPnP indisponivel). Com redirecionamento manual no roteador, ignore o tunel."
+    $tunel = Iniciar-Tunel $cfg.SYNC_DIR
+}
 
 $ddns = $null
 if ($cfg.DUCKDNS_TOKEN) {
@@ -349,6 +386,7 @@ finally {
     [void][Minezada.Energia]::SetThreadExecutionState(2147483648)  # 0x80000000 = volta ao normal
     if ($ddns) { Stop-Job $ddns; Remove-Job $ddns }
     Stop-Job $lan; Remove-Job $lan
+    if ($tunel) { Stop-Process -Id $tunel.Id -Force -ErrorAction SilentlyContinue }
     [void](Porta-UPnP $false)
     [void](Porta-UPnP $false $portaAlt)
     if ($sync) {

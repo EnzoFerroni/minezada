@@ -70,7 +70,7 @@ main() {
   fi
 
   # 4. Pack -> servidor, tudo via Java. O mrpack-install (Go) tem DNS proprio e falha em roteador com
-  # DNS IPv6 quebrado (comum na Vivo); o Java usa o DNS do macOS.
+  # DNS IPv6 quebrado (comum em roteador de operadora); o Java usa o DNS do macOS.
   neo="$(sed -n 's/^neoforge = "\(.*\)"/\1/p' "$root/modpack/pack/pack.toml")"
   [ -n "$neo" ] || die "Versao do NeoForge nao encontrada em modpack/pack/pack.toml."
   mkdir -p "$server"
@@ -129,7 +129,7 @@ main() {
   # IP da placa da rota padrao (en0 nem sempre e a que vai para a internet).
   ifc="$(route -n get default 2>/dev/null | awk '/interface:/{print $2}')"
   ip="$(ipconfig getifaddr "${ifc:-en0}" 2>/dev/null || hostname -I 2>/dev/null | awk '{print $1}')"
-  # Roteador sem NAT loopback (ex.: Vivo) nao deixa quem esta na mesma casa entrar pelo endereco publico.
+  # Roteador sem NAT loopback (comum em roteador de operadora) nao deixa quem esta na mesma casa entrar pelo endereco publico.
   echo "Na mesma casa: entre por localhost (nesta maquina) ou $ip (outro computador)."
   tunel_pid=""
   if porta_upnp abrir "$ip" $porta; then
@@ -273,7 +273,8 @@ iniciar_tunel() {
   fi
   # Socket em TMPDIR: o macOS limita o caminho de socket a ~104 caracteres.
   mkdir -p "$server/logs"
-  "$dir/playitd" --secret-path "$seg" --socket-path "${TMPDIR:-/tmp}/minezada-playit.sock" \
+  # --cert-dir: sem ele o playit cria a pasta certs ao lado do segredo, dentro do Drive.
+  "$dir/playitd" --secret-path "$seg" --socket-path "${TMPDIR:-/tmp}/minezada-playit.sock" --cert-dir "$dir/certs" \
     -l "$server/logs/playit.log" >/dev/null 2>&1 &
   tunel_pid=$!
   echo "Tunel playit.gg ligado. Quem esta fora desta rede entra por:"
@@ -284,7 +285,7 @@ iniciar_tunel() {
 drive_url="https://drive.google.com/drive/folders/1Kw45U0B-b906dnDsUH8bLy9nDg7HfWzh"
 
 # Libera na whitelist os nicks de jogadores.txt (um por linha; "op" depois do nick tambem da admin),
-# com o UUID offline do nick (online-mode=false). Sem o arquivo, cria com o dono e quem ja esta
+# MixAuth: quem tem original entra com o UUID oficial (so ele e liberado); sem original, com o offline. Sem o arquivo, cria com o dono e quem ja esta
 # liberado. So adiciona; tirar alguem e no console. Uso: sincronizar_whitelist LISTA PASTA_DO_SERVIDOR
 sincronizar_whitelist() {
   if [ "$(uname -s)" = "Darwin" ] && ! xcode-select -p >/dev/null 2>&1; then return 0; fi

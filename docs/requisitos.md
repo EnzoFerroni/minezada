@@ -60,7 +60,7 @@ Teste: com o servidor no ar, um celular no 4G (Wi-Fi desligado) consegue conecta
 
 Na mesma rede do host (casa, laboratório) o servidor aparece sozinho em **Multijogador**, na parte
 de LAN: o `iniciar` anuncia ele como o "Abrir para LAN" do jogo. O endereço público pode não
-funcionar ali (roteador sem NAT loopback, como o da Vivo). Se a rede bloquear o anúncio (Wi-Fi com
+funcionar ali (roteador sem NAT loopback, comum em roteador de operadora). Se a rede bloquear o anúncio (Wi-Fi com
 isolamento entre aparelhos), use `localhost` na máquina do host ou o IP local que o `iniciar` mostra.
 
 **Jogar de rede que só libera 80/443** (faculdade testada): use a entrada **Minezada (rede da
