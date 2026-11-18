@@ -97,7 +97,7 @@ entra por `localhost`; outro computador da mesma casa vê o servidor sozinho na 
 túnel usa outra porta. A entrada **Minezada (rede da faculdade)** (`minezada-mc.duckdns.org:443`) só
 funciona na reserva e com um roteador que repasse a 443. No PC de casa (18/11) o roteador aceitou a
 443 e a 80 por UPnP mas não repassou quem vinha de fora (a 25565 e a 8443 passaram). Para quem joga
-da faculdade com o host em casa, falta uma saída na 443 (ver [planos.md](planos.md)).
+da faculdade com o host em casa, falta uma saída na 443 (ver a [issue #8](https://github.com/EnzoFerroni/minezada/issues/8)).
 
 **Lista de servidores do jogo.** Vem pronta e se atualiza a cada abertura (packwiz): Minezada (túnel),
 Minezada (reserva), Minezada (rede da faculdade) e Minezada (neste computador, para quem joga na
@@ -121,7 +121,7 @@ Servidor lento? `spark profiler start`, espere 1 minuto e `spark profiler stop`:
 2. Rode `powershell -ExecutionPolicy Bypass -File scripts\montar-pack.ps1`.
    Perfis de gráfico: edite a tabela em `scripts/perfis.ps1`, rode ele e depois o `montar-pack.ps1`
    (no Mac: `pwsh scripts/perfis.ps1`; os dois scripts rodam no PowerShell do Mac e do Windows).
-3. Anote no histórico de [decisoes.md](decisoes.md), commit e push.
+3. Siga o checklist de [CONTRIBUTING.md](../.github/CONTRIBUTING.md) (testar servidor e jogo, commit, push e Release).
 
 Os jogadores recebem ao abrir o jogo; o servidor, no próximo start. Se mudar a versão do NeoForge, cada
 um roda o comando de instalação de novo.
