@@ -1,0 +1,103 @@
+# Foto de cada mod em docs/mods.md (gerado por scripts/fotos.ps1; pode corrigir a mao). Vazio = so o icone.
+create | 
+jei | https://cdn.modrinth.com/data/u6dRKJwZ/images/7e845f89fbd1cece7cbec9474c193d500d34e5d9_350.webp
+bettersearch | https://cdn.modrinth.com/data/URxm65AM/images/5b771fa923a827ef272ad01a254a278cd720f387_350.webp
+jade | 
+appleskin | 
+better-advancements | https://cdn.modrinth.com/data/Q2OqKxDG/images/5480094d9c8cfc839ea336560c145b9ac03c0797_350.webp
+sophisticated-storage | https://github.com/user-attachments/assets/ba0d3b55-6200-4dcb-b71e-137cd814f711
+sophisticated-backpacks | https://github.com/user-attachments/assets/cc00389b-5f56-4748-8d40-843e102ab47a
+toms-storage | https://cdn.modrinth.com/data/gOPAFzp0/images/3f9eaa8b5f8decb0d119381f933403e219236efc.png
+just-hammers | 
+advanced-netherite | https://cdn.modrinth.com/data/CFX9ftUJ/images/32cd959b4be527617d127db981ae0ea846662f36_350.webp
+veinminer | https://cdn.modrinth.com/data/OhduvhIc/images/5acfafbf81a06e44c1c10a288279a2a379c31662.gif
+wyrmroost | https://cdn.modrinth.com/data/8dYAmpGw/images/de36bcf7483ca4c2f69ba15ef292d44d67c86e2c_350.webp
+aether | https://cdn.modrinth.com/data/YhmgMVyu/images/6bcfa05c5228af0eaa3abb567cea8072720f2fc1_350.webp
+the-undergarden | https://cdn.modrinth.com/data/Ejfl5qDL/images/eb7488d59a80a5025b91e85fba4b1b2b070a4159_350.webp
+ad-astra | https://cdn.modrinth.com/data/3ufwT9JF/images/75c397fb852024a673bc594d7c21965d80d0a3ec_350.webp
+the-bumblezone | https://cdn.modrinth.com/data/38tpSycf/images/3464447833c325173d65b7c946deb53a333f0764_350.webp
+incendium | 
+nullscape | 
+galosphere | https://cdn.modrinth.com/data/Kn7xyQ1v/images/cf3929e5db44fdc291921c583eda41dc3dea789b_350.webp
+spelunkery | https://cdn.modrinth.com/data/krskFMfA/images/c0198cdc42cf6b9d258b602f0501108d4e96616a_350.webp
+naturalist | https://cdn.modrinth.com/data/F8BQNPWX/images/c0c6829652377fe73a3104d0cad60dae9b70b62f_350.webp
+mowzies-mobs | https://cdn.modrinth.com/data/BFbX9xcm/images/062ff3f4f31061329115e82db45d881a1fcb6d9b_350.webp
+aquamirae | https://cdn.modrinth.com/data/k23mNPhZ/images/28676dc18ec5f5acaabcd64c3886a45d30b50607_350.webp
+l_enders-cataclysm | https://cdn.modrinth.com/data/46KJle7n/images/04cc6a87394c250a764687524c40f07013ece1de_350.webp
+when-dungeons-arise | https://cdn.modrinth.com/data/8DfbfASn/images/49d30adf89cbbfff2c4bd41c8bc0d8ea96a9c6ab_350.webp
+artifacts | https://cdn.modrinth.com/data/P0Mu4wcQ/images/df1eb4b96a52f82b5d41b7ebd665d6bf5c56ff18_350.webp
+terralith | https://cdn.modrinth.com/data/8oi3bsk5/images/c4168f5d280c85e0e3d050bb8f3bc776fd0762d4_350.webp
+tectonic | https://cdn.modrinth.com/data/lWDHr9jE/images/e312ff19967d89e3fd79f2d5b78270a44fb9f216_350.webp
+yungs-better-dungeons | https://cdn.modrinth.com/data/o1C1Dkj5/images/1a3ee86e7269bd3703d8ece03cf897b70d2188df_350.webp
+yungs-better-mineshafts | https://cdn.modrinth.com/data/HjmxVlSr/images/c7e1ce6a2349020210f1bfdff1782fc70b4b01d3_350.webp
+yungs-better-strongholds | https://cdn.modrinth.com/data/kidLKymU/images/8c0bd0448a8e3ebf0abb741b225e19dd46b82dad_350.webp
+yungs-better-ocean-monuments | https://cdn.modrinth.com/data/3dT9sgt4/images/f4cd2bbe82593190c58cb124d1b4d386d6184251_350.webp
+yungs-better-desert-temples | https://cdn.modrinth.com/data/XNlO7sBv/images/ecb046381f193016de03b7b988367e99f6f7dd32_350.webp
+yungs-better-jungle-temples | https://cdn.modrinth.com/data/z9Ve58Ih/images/a117c045615cda0771d7fa6729be69528c6c6150_350.webp
+yungs-better-witch-huts | https://cdn.modrinth.com/data/t5FRdP87/images/6dfeaa2a57220ea22a7c03bc850582ef3bc649c1_350.webp
+yungs-better-nether-fortresses | https://cdn.modrinth.com/data/Z2mXHnxP/images/40817bd0e6fcbc93590e29d808ecd2a3b3d55fe1_350.webp
+towns-and-towers | https://cdn.modrinth.com/data/DjLobEOy/images/59ab36324d8f7b81eb81c24e06e79ddf747055c4_350.webp
+explorify | https://cdn.modrinth.com/data/HSfsxuTo/images/ca1549848b1aa4ecfdd8c2d750c7b25a762f6131_350.webp
+fresh-animations | https://cdn.modrinth.com/data/50dA9Sha/images/26e5c0a8a65d421b1111e2c68880f1d657fdc920_350.webp
+entity-model-features | https://cdn.modrinth.com/data/4I1XuqiY/images/ba682dbb4d4ff5df8900987e6d8e86f4997fc119_350.webp
+3dskinlayers | 
+ambientsounds | 
+distanthorizons | https://cdn.modrinth.com/data/uCdwusMi/images/04d77db55375ede5d618dcaf681a0ea48b5d9ba0_350.webp
+fresh-animations-extensions | https://cdn.modrinth.com/data/YAVTU8mK/images/c016d26a33cc916aca627c714cff1269a1120e66_350.webp
+low-on-fire | https://cdn.modrinth.com/data/RRxvWKNC/images/67e073e6149cfb9dd46c7a53cf9b8a995f774595_350.webp
+better-leaves | https://cdn.modrinth.com/data/uvpymuxq/images/769f109a7d5a753ea93c8520bbaaace9f3059ea2_350.webp
+fast-better-grass | https://cdn.modrinth.com/data/dspVZXKP/images/44b46fae71c21058a904311d99f63d4881d24b1c_350.webp
+simple-grass-flowers | https://cdn.modrinth.com/data/ti9KkMHm/images/cb328268fb8d62895a93f9e21bd2adb698ed9362_350.webp
+3d-crops | https://cdn.modrinth.com/data/PgpTtNoI/images/44f2dba2396242183afacaa95356a4ac7887cc16_350.webp
+better-lanterns | https://cdn.modrinth.com/data/PGGrfcvL/images/44a3d8e75a253801ac61a5f37d2feb1e00e0aefb_350.webp
+cubic-sun-moon | https://cdn.modrinth.com/data/g4bSYbrU/images/60a70d9d2efc665ed5cde1d0c464c0e698648aea_350.webp
+fresh-waystones-texture | https://cdn.modrinth.com/data/BcyGAwlg/images/ff3cdd5d6bc89e1a4539a35da95601700890b694_350.webp
+low-shield-pack | https://imgur.com/E7tzOar.png
+default-dark-mode | https://cdn.modrinth.com/data/6SLU7tS5/images/72dad114b1d88964780d933d83e31e382c37cc48_350.webp
+faithful-32x | https://cdn.modrinth.com/data/w0TnApzs/images/8326664336340fe1919056f86d8d6009d06ad2e8_350.webp
+complementary-reimagined | https://cdn.modrinth.com/data/HVnmMxH1/images/111e76bfa966c68b3581a93f7322588e642ce4db_350.webp
+complementary-unbound | https://cdn.modrinth.com/data/R6NEzAwj/images/a5a420ab1668bcfe47a76a812eede7056c45fe31_350.webp
+makeup-ultra-fast-shaders | https://cdn.modrinth.com/data/izsIPI7a/images/26ccbdd7f0bb3b55829e0c3ba4c82f487a1f6774_350.webp
+bsl-shaders | https://cdn.modrinth.com/data/Q1vvjJYV/images/40b899ae09647c98722d67bb2288f790ae28b4fc_350.webp
+sildurs-vibrant-shaders | https://cdn.modrinth.com/data/z8EjLYqN/images/f805e5d32d4941eb33c4273cc908f70fca2753d5_350.webp
+super-duper-vanilla | https://cdn.modrinth.com/data/LMIZZNxZ/images/a1b45a0d10ff893cb4247979ced0ff0b9ce182a9_350.webp
+miniature-shader | https://cdn.modrinth.com/data/UaS8ROxa/images/47126cd6cc7ab7083c14fce162d185aa7e9953f4_350.webp
+photon-shader | https://cdn.modrinth.com/data/lLqFfGNs/images/8d5657f12c52084d64e2edccc4dfc0b6083b127f_350.webp
+solas-shader | https://cdn.modrinth.com/data/EpQFjzrQ/images/b87a4f77d7858c6b8fb9ecc40301f9d189a52c44_350.webp
+bliss-shader | https://cdn.modrinth.com/data/ZvMtQlho/images/7ceb3b0fcd9ccdbd5fc4bdc80ba7ee766509c69f_350.webp
+rethinking-voxels | https://cdn.modrinth.com/data/kmwfVOoi/images/c2de214a7981a9b0235b46209507eb9c0b225ddc_350.webp
+modflared | 
+controlling | 
+natures-compass | https://cdn.modrinth.com/data/fPetb5Kh/images/5040466f2a4552e12a317ee0030de06619b71c46_350.webp
+explorers-compass | https://cdn.modrinth.com/data/RV1qfVQ8/images/4e701b15485b8739871047de1cf81f75920d3b7c_350.webp
+ping-wheel | https://cdn.modrinth.com/data/QQXAdCzh/images/159a5c71986885492fd910ba5baaa5d02e80cf8b_350.webp
+carry-on | https://cdn.modrinth.com/data/joEfVgkn/images/3268c845f023a98e8dc95249cac16396c70b5413_350.webp
+clumps | 
+pick-up-notifier | https://raw.githubusercontent.com/Fuzss/modresources/main/pages/data/pickupnotifier/media/1.png
+chat-heads | 
+comforts | https://cdn.modrinth.com/data/SaCpeal4/images/a9837c941a4ea462ea017de1d8e14902f67a020e_350.webp
+trade-cycling | https://media.giphy.com/media/AX8FajusxpjFW9wEyP/giphy.gif
+easy-anvils | https://raw.githubusercontent.com/Fuzss/modresources/main/pages/data/easyanvils/media/1.png
+mixauth | 
+skinrestorer | 
+waystones | https://cdn.modrinth.com/data/LOpKHB2A/images/6f91f54ef37b6b19c06685231d81f03d28601e6d_350.webp
+xaeros-minimap | https://chocolateminecraft.com/images/minimap_2020.png
+xaeros-world-map | 
+corpse | https://i.imgur.com/PbLRPZG.png
+farmers-delight | https://cdn.modrinth.com/data/R2OftAxM/images/a5a80d8833b40a7cc5c2baa06ecc7960c819ac74_350.webp
+mouse-tweaks | 
+inventory-essentials | 
+options-profiles | https://cdn.modrinth.com/data/DnyS3EEW/images/71b7b1a5907926f9fe28b018d2b0fb4f81b3b17a_350.webp
+sodium-extra | 
+dynamic-fps | https://cdn.modrinth.com/data/LQ3K71Q1/images/e8cc9af2ed7fced3b342f82e94f65fdde63eca17.png
+moreculling | https://cdn.modrinth.com/data/51shyZVL/images/4c966271f02d0a7713069e94c933406e8e5b9097_350.webp
+chunky | 
+spark | 
+noisium | 
+sodium | https://cdn.modrinth.com/data/AANobbMI/images/5ca2e8f6c72f3d543dd3dc95b706964c5678d80e_350.webp
+lithium | 
+ferrite-core | 
+modernfix | https://cdn.modrinth.com/data/nmDcB62a/images/9d42b40a72ac5354649791dd9515e8fac6b1834e_350.webp
+entityculling | https://tr7zw.github.io/uikit/screens/entityculling_compare.png
+immediatelyfast | 
+iris | https://cdn.modrinth.com/data/YL57xq9U/images/f47cea26f135d74c2d69df0a1806751818d705d3_350.webp

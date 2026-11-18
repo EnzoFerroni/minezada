@@ -104,8 +104,8 @@ foreach ($x in $projs.Values) {
         downloads = @($f.url)
         fileSize  = $f.size
     }
-    $foto = ($p.gallery | Sort-Object { -not $_.featured } | Select-Object -First 1).url  # imagem destacada da galeria do Modrinth
-    $info[$p.slug] = [pscustomobject]@{ titulo = $p.title; versao = $v.version_number; servidor = $x.servidor; icone = $p.icon_url; foto = $foto }
+
+    $info[$p.slug] = [pscustomobject]@{ titulo = $p.title; versao = $v.version_number; servidor = $x.servidor; icone = $p.icon_url }
     $lado = if (-not $x.servidor) { 'client' } elseif (-not $x.cliente) { 'server' } else { 'both' }
     $pwMods += [pscustomobject]@{ slug = $p.slug; titulo = $p.title; arquivo = $f.filename; url = $f.url; sha1 = $f.hashes.sha1; lado = $lado; pasta = $x.pasta }
 }
@@ -225,21 +225,28 @@ Remove-Item -Recurse -Force $tmp
 # nome e a primeira frase da descricao do mods.txt; ao clicar, o resto, a imagem, o link e a versao).
 $ancora = { param($t) ($t.ToLower() -replace '[^\p{L}\p{Nd} -]', '') -replace ' ', '-' }  # mesmo id que o GitHub da ao titulo
 $cats = @($linhas | Where-Object { $_ -match '^## ' } | ForEach-Object { $_.Substring(3).Trim() })
-$md = @("<sub>Minecraft $mc · NeoForge $neo · pack ``$Versao`` · $($info.Count) mods. Gerado por ``scripts/montar-pack.ps1``. Clique num mod para ver mais.</sub>",
+$md = @("<sub>Minecraft $mc · NeoForge $neo · pack ``$Versao`` · $($info.Count) mods. Gerado por ``scripts/montar-pack.ps1``.</sub>",
     '', (($cats | ForEach-Object { $nome = ($_ -split ' [(]')[0]; $id = & $ancora $_; "[$nome](#$id)" }) -join ' · '))
+# Fotos escolhidas por scripts/fotos.ps1 (modpack/fotos.txt; vazio = so o icone).
+$fotos = @{}
+$arqFotos = Join-Path $root 'modpack/fotos.txt'
+if (Test-Path $arqFotos) { foreach ($l in Get-Content $arqFotos -Encoding UTF8) { if ($l -match '^\s*([a-z0-9_-]+)\s*\|\s*(.*?)\s*$') { $fotos[$matches[1]] = $matches[2] } } }
+# Cada categoria e uma grade de cartoes (3 por linha): foto, icone com nome (link) e a primeira frase.
+$cartoes = @()
+$fechar = { if ($cartoes) { $script:md += '<table>'; for ($k = 0; $k -lt $cartoes.Count; $k += 3) { $script:md += '<tr>' + (($cartoes[$k..([Math]::Min($k + 2, $cartoes.Count - 1))]) -join '') + '</tr>' }; $script:md += '</table>' }; $script:cartoes = @() }
 foreach ($l in $linhas) {
-    if ($l -match '^## (.+)') { $md += '', "## $($matches[1])", '' }
+    if ($l -match '^## (.+)') { & $fechar; $md += '', "## $($matches[1])", '' }
     elseif ($l -match '^\s*([a-z0-9_-]+)\s*\|\s*(.+)$') {
         $slug = $matches[1]; $desc = $matches[2].Trim(); $i = $info[$slug]
         $p = $desc.IndexOf('. ')
         $resumo = if ($p -gt 0) { $desc.Substring(0, $p) } else { $desc.TrimEnd('.') }
-        $ico = if ($i.icone) { "<img src=`"$($i.icone)`" width=`"20`" align=`"center`"> " } else { '' }
-        $md += "<details><summary>$ico<b>$($i.titulo)</b>: $resumo</summary>", ''
-        if ($p -gt 0) { $md += $desc.Substring($p + 2), '' }
-        if ($i.foto) { $md += "<img src=`"$($i.foto)`" width=`"480`">", '' }
-        $md += "<sub>[Modrinth](https://modrinth.com/mod/$slug) · versão ``$($i.versao)``$(if (-not $i.servidor) { ' · só no jogo de cada um, não no servidor' })</sub>", '', '</details>'
+        $link = "https://modrinth.com/mod/$slug"
+        $topo = if ($fotos[$slug]) { "<a href=`"$link`"><img src=`"$($fotos[$slug])`" width=`"100%`"></a>" } elseif ($i.icone) { "<a href=`"$link`"><img src=`"$($i.icone)`" width=`"64`"></a>" } else { '' }
+        $ico = if ($i.icone) { "<img src=`"$($i.icone)`" width=`"16`"> " } else { '' }
+        $cartoes += "<td width=`"33%`" valign=`"top`">$topo<br>$ico<a href=`"$link`"><b>$($i.titulo)</b></a><br><sub>$resumo</sub></td>"
     }
 }
+& $fechar
 $extras = $info.Keys | Where-Object { $_ -notin $pedidos } | Sort-Object
 if ($extras) { $md += '', '## Dependências (entram sozinhas)', '', (($extras | ForEach-Object { "[$($info[$_].titulo)](https://modrinth.com/mod/$_)" }) -join ' · ') }
 $doc = Join-Path $root 'docs/mods.md'
