@@ -23,10 +23,6 @@ mods se atualizam sozinhos.
 
 - **Sem original:** na primeira vez digite `/register suasenha suasenha`; nas outras,
   `/login suasenha`. Use uma senha só daqui, não a do seu e-mail ou de outro jogo.
-- **Skin:** quem tem original já aparece com a sua. Para trocar:
-  `/skin set web classic <link da imagem>` (`slim` para braço fino).
-- **Mac:** M1 ou mais novo. Com 8 GB, use o perfil de gráfico **Mac 1**.
-- **Faculdade:** a rede de lá costuma bloquear o servidor. Use o roteador do celular (4G).
 - **Deu problema?** Rode o comando de novo. Não resolveu?
   [Abra uma issue](https://github.com/EnzoFerroni/minezada/issues/new/choose).
 

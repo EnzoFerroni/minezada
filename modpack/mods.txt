@@ -96,6 +96,7 @@ bliss-shader | Céu e nuvens impressionantes, para PCs fortes. No Mac abre (test
 rethinking-voxels | Luz colorida de verdade (tochas, lava), para PCs fortes; ainda em beta. **Só PC: não roda no Mac.** Perfil PC - Rethinking Voxels.
 
 ## Qualidade de vida
+modflared | Liga sozinho o túnel da Cloudflare ao entrar no servidor. A conexão vai como site seguro (HTTPS), então funciona em rede de faculdade, empresa e Wi-Fi público.
 controlling | Busca nas teclas: em Opções → Controles, digite o nome da ação ou aperte a tecla para achar o que ela faz.
 natures-compass | Bússola que encontra qualquer bioma (ótimo com os biomas novos do Terralith).
 explorers-compass | Bússola que encontra estruturas (vilas, templos, masmorras dos mods).

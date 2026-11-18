@@ -6,14 +6,15 @@
 - **Tutorial do Create:** segure `W` com o mouse em cima de um item do Create.
 - **Mapa:** `M`. Minimapa e marcadores ficam no canto da tela.
 - **Morreu?** Volte ao local: seus itens estão num corpo.
-- **Gráficos:** Opções → **Perfis**. Mac: use os **Mac 1** a **Mac 7** (do 8 GB ao shader realista, mais bateria). PC: do 1 - Minimo ao 7 - Ultra Shader, 8 - FPS Maximo e 9 - Bateria; os **PC -** usam shaders que não rodam no Mac. Os **Shader -** servem para experimentar cada shader. Aplicar um perfil troca distância de renderização, qualidade e shader na hora. **Não use Salvar nem Criar perfil**: o mod copia a configuração do Sodium e o jogo fecha ao aplicar esse perfil. Ajuste fino fica em Opções → Vídeo.
+- **Skin:** quem tem original já aparece com a sua. Para trocar: `/skin set web classic <link da imagem>` (`slim` para braço fino).
+- **Gráficos:** Opções → **Perfis**. Mac (M1 ou mais novo; com 8 GB, o **Mac 1**): use os **Mac 1** a **Mac 7** (do 8 GB ao shader realista, mais bateria). PC: do 1 - Minimo ao 7 - Ultra Shader, 8 - FPS Maximo e 9 - Bateria; os **PC -** usam shaders que não rodam no Mac. Os **Shader -** servem para experimentar cada shader. Aplicar um perfil troca distância de renderização, qualidade e shader na hora. **Não use Salvar nem Criar perfil**: o mod copia a configuração do Sodium e o jogo fecha ao aplicar esse perfil. Ajuste fino fica em Opções → Vídeo.
 - **Distant Horizons (ver longe):** é opcional. Na primeira abertura aparece uma janela para marcar. No Mac, com ele instalado os shaders não abrem: escolha um ou outro. Mudou de ideia? Apague `packwiz.json` na pasta do jogo e a janela aparece de novo.
 - **Servidores:** o jogo já entra sozinho no **Minezada**. A lista também traz Minezada (reserva), Minezada (rede da faculdade) e Minezada (neste computador, para quem joga na máquina do host). Não conectou? Tente a próxima.
 - **Minerar o veio inteiro:** segure `'` (apóstrofo) e quebre o minério ou tronco.
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.18.1` · 123 mods. Gerado por `scripts/montar-pack.ps1`. Clique num mod para ver mais.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.18.2` · 124 mods. Gerado por `scripts/montar-pack.ps1`. Clique num mod para ver mais.</sub>
 
 [Aprender e guias](#aprender-e-guias) · [Baús e armazenamento](#baús-e-armazenamento) · [Ferramentas](#ferramentas) · [Dragões](#dragões) · [Dimensões](#dimensões) · [Cavernas e minérios](#cavernas-e-minérios) · [Mobs e animais](#mobs-e-animais) · [Aventura e chefes](#aventura-e-chefes) · [Biomas e terreno](#biomas-e-terreno) · [Estruturas](#estruturas) · [Visual e ambiente](#visual-e-ambiente) · [Pacotes de recursos](#pacotes-de-recursos-todos-vêm-ligados-desligue-em-opções--pacotes-de-recursos) · [Shaders](#shaders-vêm-desligados-ligue-pelos-perfis-ou-em-opções--vídeo--shader-packs) · [Qualidade de vida](#qualidade-de-vida) · [Mundo e facilidade](#mundo-e-facilidade) · [Desempenho](#desempenho)
 
@@ -559,6 +560,13 @@ No Mac abre (testado num M4), mas pode ter defeitos e pesa. Perfil PC - Bliss.
 
 ## Qualidade de vida
 
+<details><summary><img src="https://cdn.modrinth.com/data/uRHq6kbO/ab1f4ec637184a80209305271757c86d319db936_96.webp" width="20" align="center"> <b>Modflared</b>: Liga sozinho o túnel da Cloudflare ao entrar no servidor</summary>
+
+A conexão vai como site seguro (HTTPS), então funciona em rede de faculdade, empresa e Wi-Fi público.
+
+<sub>[Modrinth](https://modrinth.com/mod/modflared) · versão `1.2.2+release.81+1.21.1` · só no jogo de cada um, não no servidor</sub>
+
+</details>
 <details><summary><img src="https://cdn.modrinth.com/data/xv94TkTM/bdb6feb3d04ca37da4ed5aa73fef062a39d8b3e5_96.webp" width="20" align="center"> <b>Controlling</b>: Busca nas teclas: em Opções → Controles, digite o nome da ação ou aperte a tecla para achar o que ela faz</summary>
 
 <sub>[Modrinth](https://modrinth.com/mod/controlling) · versão `19.0.5` · só no jogo de cada um, não no servidor</sub>

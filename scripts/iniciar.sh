@@ -10,7 +10,6 @@ main() {
   server="$root/server"
   tools="$root/tools"
   porta=25565
-  porta_alt=443
   eu="$(hostname -s)"
   forcar=0; [ "${1:-}" = "--forcar" ] && forcar=1
   shopt -s nullglob
@@ -130,9 +129,11 @@ main() {
   ifc="$(route -n get default 2>/dev/null | awk '/interface:/{print $2}')"
   ip="$(ipconfig getifaddr "${ifc:-en0}" 2>/dev/null || hostname -I 2>/dev/null | awk '{print $1}')"
   echo "Na mesma casa: entre por localhost (nesta maquina) ou $ip (outro computador)."
-  tunel_pid=""; ddns_pid=""; reserva=""
+  cf_pid=""; tunel_pid=""; ddns_pid=""; reserva=""
   url="https://www.duckdns.org/update?domains=${DUCKDNS_DOMAIN}&token=${DUCKDNS_TOKEN}"
-  if iniciar_tunel; then
+  iniciar_cloudflare || true
+  iniciar_tunel || true
+  if [ -n "$cf_pid$tunel_pid" ]; then
     # Tira o IP desta casa do DuckDNS: o endereco de reserva so aponta para um host quando ele precisa.
     [ -z "$DUCKDNS_TOKEN" ] || curl -fsS "$url&clear=true" >/dev/null 2>&1 || true
   else
@@ -140,8 +141,6 @@ main() {
     echo "Reserva: abrindo a porta $porta no roteador (UPnP)."
     if porta_upnp abrir "$ip" $porta; then
       echo "Porta $porta aberta via UPnP."
-      # Redes de faculdade/empresa costumam liberar so 80/443 de saida: a 443 do roteador tambem leva ao servidor.
-      porta_upnp abrir "$ip" $porta $porta_alt && echo "Porta $porta_alt tambem aberta (para quem esta em rede que bloqueia a $porta)."
     else
       echo "AVISO: UPnP indisponivel: so quem esta nesta rede consegue entrar (ou redirecione a porta no roteador)." >&2
     fi
@@ -176,7 +175,7 @@ while True:
       lan_pid=$!
     fi
   fi
-  trap 'kill $ddns_pid $lan_pid $tunel_pid 2>/dev/null || true' EXIT
+  trap 'kill $ddns_pid $lan_pid $tunel_pid $cf_pid 2>/dev/null || true' EXIT
 
   echo "Iniciando servidor com $RAM de RAM. Digite 'stop' para desligar e salvar."
   # caffeinate impede o Mac de dormir enquanto o servidor roda. String sem aspas de proposito:
@@ -188,10 +187,9 @@ while True:
   (cd "$server" && $cafe "$JAVA" "-Xms$RAM" "-Xmx$RAM" $flags "@libraries/net/neoforged/neoforge/$neo/unix_args.txt" nogui) || true
   trap - INT
 
-  kill $ddns_pid $lan_pid $tunel_pid 2>/dev/null || true
+  kill $ddns_pid $lan_pid $tunel_pid $cf_pid 2>/dev/null || true
   if [ -n "$reserva" ]; then
     porta_upnp fechar "$ip" $porta || true
-    porta_upnp fechar "$ip" $porta $porta_alt || true
     # Servidor desligado: o IP desta casa sai do DuckDNS.
     [ -z "$ddns_pid" ] || curl -fsS "$url&clear=true" >/dev/null 2>&1 || true
   fi
@@ -258,7 +256,43 @@ sys.exit(1)
 PY
 }
 
-# Tunel playit.gg: endereco principal. Funciona com o host em qualquer rede, sem porta aberta no roteador
+# Tunel da Cloudflare: endereco principal (minezada.dpdns.org). O jogador conecta como HTTPS na 443 (o mod
+# Modflared liga o cloudflared nele), entao passa em rede de faculdade e Wi-Fi publico. O host so faz conexao
+# de saida (porta 7844). O token fica em cloudflare.txt na pasta do Drive. Preenche cf_pid; falha (1) se nao conectar.
+iniciar_cloudflare() {
+  local tok="$SYNC_DIR/cloudflare.txt" dir="$tools/cloudflared" log="$server/logs/cloudflared.log" arq sha i
+  if [ -z "$SYNC_DIR" ] || [ ! -f "$tok" ]; then echo "Sem tunel da Cloudflare (precisa de cloudflare.txt na pasta do Drive)."; return 1; fi
+  if [ "$(uname -s)" != "Darwin" ]; then echo "Tunel da Cloudflare automatico so no Mac e no Windows."; return 1; fi
+  # Versao fixa com o SHA-256 do release oficial. Atualizar: trocar a versao e os hashes (campo digest da API).
+  case "$(uname -m)" in
+    arm64) arq=arm64; sha=3586ccf397e98e5f437e60e7c307ca6ac463e110580503af8bb8e6f9ebf831bd ;;
+    *) arq=amd64; sha=02f3edfd87684dd5b705607688e4eb4b323f6e777b81e7b3a85af556aa356848 ;;
+  esac
+  if [ ! -x "$dir/cloudflared" ] || [ "$(cat "$dir/versao" 2>/dev/null)" != "2026.10.7-$arq" ]; then
+    echo "Baixando o cloudflared..."
+    mkdir -p "$dir"
+    curl -fsSL "https://github.com/cloudflare/cloudflared/releases/download/2026.10.7/cloudflared-darwin-$arq.tgz" -o "$dir/cf.tgz"
+    if [ "$(shasum -a 256 "$dir/cf.tgz" | awk '{print $1}')" != "$sha" ]; then
+      rm -f "$dir/cf.tgz"; echo "AVISO: checksum do cloudflared nao confere; tunel nao ligado." >&2; return 1
+    fi
+    tar -xzf "$dir/cf.tgz" -C "$dir" && rm -f "$dir/cf.tgz" && chmod +x "$dir/cloudflared" && echo "2026.10.7-$arq" > "$dir/versao"
+  fi
+  pkill -f "$dir/cloudflared" 2>/dev/null || true
+  mkdir -p "$server/logs"; rm -f "$log"
+  # --token-file: o token nao aparece na lista de processos. Opcoes globais antes do "run".
+  "$dir/cloudflared" tunnel --no-autoupdate --logfile "$log" run --token-file "$tok" >/dev/null 2>&1 &
+  cf_pid=$!
+  echo "Ligando o tunel da Cloudflare..."
+  for i in $(seq 1 40); do grep -q 'Registered tunnel connection' "$log" 2>/dev/null && break; sleep 0.5; done
+  if ! grep -q 'Registered tunnel connection' "$log" 2>/dev/null; then
+    kill "$cf_pid" 2>/dev/null || true; cf_pid=""
+    echo "AVISO: o tunel da Cloudflare nao conectou (detalhes em $log)." >&2
+    return 1
+  fi
+  echo "Endereco do servidor: minezada.dpdns.org (tunel da Cloudflare)"
+}
+
+# Tunel playit.gg: segunda entrada (o jogador entra por ele se a Cloudflare falhar). Sem porta aberta no roteador
 # e sem expor o IP do host. O segredo do agente fica em playit.txt na pasta do Drive: todo host usa o
 # mesmo tunel e endereco (anotado em playit-endereco.txt). Preenche tunel_pid; falha (1) se nao conectar.
 iniciar_tunel() {

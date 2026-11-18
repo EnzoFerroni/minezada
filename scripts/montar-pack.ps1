@@ -11,7 +11,8 @@ $loader = 'neoforge'
 $root = Split-Path $PSScriptRoot -Parent
 $api = 'https://api.modrinth.com/v2'
 $packUrl = 'https://raw.githubusercontent.com/EnzoFerroni/minezada/main/modpack/pack/pack.toml'
-$servidor = 'minezada-mc.duckdns.org'
+$servidor = 'minezada.dpdns.org'  # tunel da Cloudflare: o TXT do dominio manda o Modflared para mc.minezada.dpdns.org
+$reserva = 'minezada-mc.duckdns.org'  # DuckDNS: o host so aponta quando nenhum tunel conecta
 $tunel = 'molecule-spindle.tun.ply.gg'  # playit: endereco fixo do tunel (playit-endereco.txt no Drive)
 $h = @{ 'User-Agent' = 'minezada-modpack-builder/1.0' }
 
@@ -156,11 +157,11 @@ if (Test-Path $soltos) {
 }
 # servers.dat (NBT sem compressao): os enderecos do servidor ja na lista do Multiplayer. Vai pelo packwiz
 # sem preserve, entao todo mundo recebe a lista nova a cada abertura (servidor adicionado a mao some).
-# Principal: tunel playit (endereco em playit-endereco.txt no Drive). Reserva: DuckDNS, que o host so liga
-# se o tunel nao conectar (UPnP na 25565 e na 443, para redes de faculdade que so liberam 80/443 de saida).
+# Principal: Cloudflare (HTTPS na 443, passa em rede de faculdade). Depois: playit (playit-endereco.txt no Drive).
+# Reserva: DuckDNS, que o host so liga se nenhum tunel conectar (UPnP na 25565).
 function NbtStr($ms, $s) { $b = [Text.Encoding]::UTF8.GetBytes($s); $ms.WriteByte($b.Length -shr 8); $ms.WriteByte($b.Length -band 255); $ms.Write($b, 0, $b.Length) }
-$entradas = @(@('Minezada', $tunel), @('Minezada (reserva)', $servidor),
-    @('Minezada (rede da faculdade)', "${servidor}:443"), @('Minezada (neste computador)', 'localhost'))
+$entradas = @(@('Minezada', $servidor), @('Minezada (playit)', $tunel),
+    @('Minezada (reserva)', $reserva), @('Minezada (neste computador)', 'localhost'))
 $ms = New-Object IO.MemoryStream
 $ms.WriteByte(10); NbtStr $ms ''                                                                 # compound raiz
 $ms.WriteByte(9); NbtStr $ms 'servers'; $ms.WriteByte(10); $ms.Write([byte[]](0, 0, 0, $entradas.Count), 0, 4)  # lista de compounds
@@ -190,9 +191,9 @@ foreach ($j in $jars) {
     if ((Sha256 $arq) -ne $j[2]) { Remove-Item $arq; throw "$($j[0]): checksum nao confere (download corrompido ou adulterado)." }
     Copy-Item $arq (Join-Path $inst '.minecraft')
 }
-# Entra pelo tunel playit (funciona com o host em qualquer rede e nao expoe o IP dele); sem porta, o
-# jogo resolve o SRV do playit.
-Escrever (Join-Path $inst 'instance.cfg') "[General]`nInstanceType=OneSix`nname=Minezada`nOverrideCommands=true`nPreLaunchCommand=`"`$INST_JAVA`" -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar $packUrl`nOverrideMemory=true`nMinMemAlloc=1024`nMaxMemAlloc=4096`nJoinServerOnLaunch=true`nJoinServerOnLaunchAddress=$tunel`n"
+# Entra pelo tunel da Cloudflare (o Modflared le o TXT de $servidor e liga o cloudflared; passa em qualquer
+# rede que abre sites e nao expoe o IP do host).
+Escrever (Join-Path $inst 'instance.cfg') "[General]`nInstanceType=OneSix`nname=Minezada`nOverrideCommands=true`nPreLaunchCommand=`"`$INST_JAVA`" -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar $packUrl`nOverrideMemory=true`nMinMemAlloc=1024`nMaxMemAlloc=4096`nJoinServerOnLaunch=true`nJoinServerOnLaunchAddress=$servidor`n"
 [IO.File]::WriteAllBytes((Join-Path $inst '.minecraft/servers.dat'), $serversDat)
 # Opcoes iniciais (o jogo completa o resto); o jogar so copia se o jogador ainda nao tiver.
 # Pacotes de $rpLigados ja vem ligados. As quatro ultimas opcoes pulam as telas de primeira abertura:
