@@ -78,3 +78,11 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
   abrir", a memória ou o comando do packwiz? Cada um roda o comando de jogar de novo.
 - **Logs do PowerShell 5.1 redirecionados com `*>` saem em UTF-16**: ler com `iconv -f UTF-16LE`.
 
+- **Modflared precisa que o nome resolva**: ele intercepta depois que o jogo resolve o endereço. O nome do
+  jogador (`minezada.dpdns.org`) tem CNAME do túnel **e** o TXT `cloudflared-route=...`. Subdomínio não aceita
+  CNAME e TXT juntos; o domínio raiz aceita (a Cloudflare achata o CNAME).
+- **`cloudflared`: opções globais antes do `run`** (`tunnel --no-autoupdate --logfile X run --token-file Y`);
+  na ordem errada ele fecha na hora. O host precisa de saída na 7844; o jogador só na 443.
+- **Simular rede de faculdade**: regras de saída no firewall bloqueando, só para o Java do Prism e o
+  `cloudflared` do Modflared, as portas `1-52,54-79,81-442,444-65535` para `Internet`. Conferir com um
+  teste de porta rodando no mesmo `javaw`.

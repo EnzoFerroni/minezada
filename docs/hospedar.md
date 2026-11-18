@@ -40,8 +40,9 @@ sobe o servidor. Das próximas vezes, clique no atalho (ou em `iniciar.bat` / `i
    [mrpack-install](https://github.com/nothub/mrpack-install); no Mac com o instalador do NeoForge e o
    packwiz (o mrpack-install falha no DNS de roteadores de operadora).
 5. Baixa o mundo do Drive e trava para ninguém mais hospedar junto.
-6. Libera a porta no firewall só para a rede local e liga o túnel playit.gg. Só se o túnel não
-   conectar: abre a porta no roteador (UPnP) e aponta o DuckDNS para esta máquina (veja **Rede**).
+6. Libera a porta no firewall só para a rede local e liga os túneis da Cloudflare e do playit.gg.
+   Só se nenhum conectar: abre a porta no roteador (UPnP) e aponta o DuckDNS para esta máquina
+   (veja **Rede**).
 7. Libera na whitelist quem está no `jogadores.txt` e sobe o servidor sem deixar a máquina suspender.
 
 ## Liberar jogadores
@@ -79,20 +80,31 @@ em `server-config/config/skinrestorer/config.json`.
 
 ## Rede
 
-**Endereço principal: túnel [playit.gg](https://playit.gg)**, hoje `molecule-spindle.tun.ply.gg`.
-O jogo entra sozinho por ele. O `iniciar` liga o agente (baixa com checksum para `tools/playit`) e
-espera ele conectar; no `stop` o agente para. Nada para configurar no roteador, o host pode estar em
-qualquer rede (casa, faculdade, 4G, CGNAT) e o IP dele não aparece. O segredo do agente fica em
-`playit.txt` na pasta do Drive e o endereço em `playit-endereco.txt`, então todo host usa o mesmo
-túnel. Plano grátis: sem limite de uso, mas a rota não é garantida para quem está longe (do Brasil
-entra; um verificador nos EUA/Europa não). Perdeu o segredo? `playit claim generate`,
-`playit claim url <código>`, aprove no site e `playit claim exchange <código>`: a última linha da
-saída é o segredo novo.
+Três entradas, nesta ordem. Tudo grátis, e nas duas primeiras o roteador não abre porta nenhuma e o
+IP de casa não aparece.
 
-**Reserva (só se o túnel não conectar): `minezada-mc.duckdns.org`.** O host abre a 25565 TCP (e a
-443) no roteador por UPnP, cria uma regra de firewall para a internet e reaponta o nome para o
-próprio IP (no start e a cada 5 min). No `stop` fecha tudo e limpa o IP do DuckDNS; com o túnel
-ligado o IP também fica limpo. O token fica em `duckdns.txt` na pasta do Drive, nunca no git: o
+**1. Principal: `minezada.dpdns.org` (túnel da Cloudflare).** O jogo entra sozinho por ele. O mod
+Modflared (no pack) lê o registro TXT do domínio (`cloudflared-route=mc.minezada.dpdns.org`), baixa o
+`cloudflared` oficial (confere o hash) e conecta como HTTPS comum na porta 443. Por isso passa em
+rede de faculdade, empresa e Wi-Fi público, até nas que inspecionam o tráfego. No host, o `iniciar`
+baixa o `cloudflared` (versão fixa, SHA-256) para `tools/cloudflared` e liga o túnel com o token de
+`cloudflare.txt` na pasta do Drive (`--token-file`, o token não aparece na lista de processos). O host
+precisa de saída na porta 7844 (UDP ou TCP), livre em casa. Painel: conta Cloudflare do dono, domínio
+grátis `minezada.dpdns.org` (DigitalPlat), túnel `minezada` com a rota `mc.minezada.dpdns.org` →
+`tcp://localhost:25565`. Perdeu o token? Painel → Tunnels → `minezada` → gerar de novo e salvar em
+`cloudflare.txt`.
+
+**2. `molecule-spindle.tun.ply.gg` (túnel playit.gg).** Ligado junto, para quem não conseguir pela
+Cloudflare (entrada **Minezada (playit)**). Usa outra porta, então não passa em rede que só libera
+80/443. O segredo do agente fica em `playit.txt` e o endereço em `playit-endereco.txt`, na pasta do
+Drive. Plano grátis: a rota não é garantida para quem está longe. Perdeu o segredo?
+`playit claim generate`, `playit claim url <código>`, aprove no site e `playit claim exchange <código>`:
+a última linha da saída é o segredo novo.
+
+**3. Reserva (só se nenhum túnel conectar): `minezada-mc.duckdns.org`.** O host abre a 25565 TCP no
+roteador por UPnP, cria uma regra de firewall para a internet e reaponta o nome para o próprio IP (no
+start e a cada 5 min). No `stop` fecha tudo e limpa o IP do DuckDNS; com algum túnel ligado o IP
+também fica limpo. O token fica em `duckdns.txt` na pasta do Drive, nunca no git: o
 primeiro host com `DUCKDNS_TOKEN` no `config.env` grava o arquivo lá, e os outros pegam de lá. Sem
 UPnP, a reserva precisa de redirecionamento manual da 25565 TCP para o IP local do host (com reserva
 de IP no DHCP).
@@ -101,14 +113,9 @@ de IP no DHCP).
 **Multijogador**, na parte de LAN (o `iniciar` anuncia como o "Abrir para LAN" do jogo). Se a rede
 bloquear o anúncio (Wi-Fi com isolamento entre aparelhos), use o IP local que o `iniciar` mostra.
 
-**Faculdade.** Redes que só liberam saída nas portas 80 e 443 bloqueiam o túnel. A entrada
-**Minezada (rede da faculdade)** (`minezada-mc.duckdns.org:443`) só funciona na reserva e com um
-roteador que repasse a 443; o de casa não repassa a 80 nem a 443 (testado em 18/11). Por enquanto:
-roteador do celular ([issue #8](https://github.com/EnzoFerroni/minezada/issues/8)).
-
-**Lista de servidores do jogo.** Vem pronta e se atualiza a cada abertura (packwiz): Minezada (túnel),
-Minezada (reserva), Minezada (rede da faculdade) e Minezada (neste computador). Servidor adicionado à
-mão some na próxima abertura. Mudou o endereço do playit? Troque `$tunel` em
+**Lista de servidores do jogo.** Vem pronta e se atualiza a cada abertura (packwiz): Minezada
+(Cloudflare), Minezada (playit), Minezada (reserva) e Minezada (neste computador). Servidor adicionado
+à mão some na próxima abertura. Mudou algum endereço? Troque `$servidor`, `$tunel` ou `$reserva` em
 `scripts/montar-pack.ps1` e gere o pack.
 
 **Dicas.**
@@ -125,7 +132,7 @@ mais. Os passos manuais:
 
 1. Instale o Google Drive para desktop (https://www.google.com/drive/download/) e faça login.
 2. Dono: a pasta é `Meu Drive/minezada`, com acesso **restrito** (guarda o mundo, o token do DuckDNS
-   e o segredo do túnel). Quem vai hospedar clica em "Solicitar acesso" no link que o `iniciar` abre
+   e os segredos dos túneis). Quem vai hospedar clica em "Solicitar acesso" no link que o `iniciar` abre
    e o dono aprova como editor. Jogador não usa o Drive.
 3. Convidado: em drive.google.com → Compartilhados comigo → `minezada` → **Adicionar atalho ao Drive**
    (em "Meu Drive"). Sem o atalho a pasta não aparece no computador.
@@ -150,13 +157,15 @@ O `iniciar` acha a pasta sozinho em `X:\Meu Drive\minezada` (Windows) ou
 - O repositório é público e os comandos de jogar e hospedar rodam direto dele no PC de todos:
   **mantenha a verificação em duas etapas ligada no GitHub** e não dê acesso de escrita a ninguém.
   O `main` é protegido: ninguém (nem o dono) consegue force push ou apagar o branch.
-- A pasta `minezada` do Drive guarda o mundo, o token do DuckDNS e o segredo do túnel. Compartilhe
+- A pasta `minezada` do Drive guarda o mundo, o token do DuckDNS e os segredos dos túneis (`cloudflare.txt`, `playit.txt`). Compartilhe
   só com quem hospeda (com 2FA na conta Google): quem tem um deles pode apontar o endereço para um
-  servidor falso e pegar as senhas do `/login`. Vazou? Token novo no DuckDNS e segredo novo no playit.
-- Downloads com checksum e versão fixa: launcher sem original, playit, mrpack-install e
+  servidor falso e pegar as senhas do `/login`. Vazou? Token novo no DuckDNS, no túnel da Cloudflare e no playit.
+- Contas da Cloudflare (domínio e túnel) e da DigitalPlat (domínio grátis) com 2FA: quem entrar nelas pode
+  redirecionar o endereço.
+- Downloads com checksum e versão fixa: launcher sem original, cloudflared, playit, mrpack-install e
   packwiz-installer. Os mods vêm do Modrinth com hash conferido pelo packwiz. A cada push no pack, a
   Action **Servidor de teste** sobe o servidor no GitHub e avisa se ele não chegar no `Done`.
-- Com o túnel, nenhuma porta fica aberta no roteador e o IP de casa não aparece. O firewall do
+- Com os túneis, nenhuma porta fica aberta no roteador e o IP de casa não aparece (só conexões de saída). O firewall do
   Windows só aceita a 25565 da rede local. RCON e query ficam desligados.
 - Pelo túnel todos chegam com o mesmo IP: banir por IP não funciona. Use `whitelist remove Nick` e
   tire o nick do `jogadores.txt`.
