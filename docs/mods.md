@@ -9,7 +9,7 @@
 - **Skin:** quem tem original já aparece com a sua. Para trocar: `/skin set web classic <link da imagem>` (`slim` para braço fino).
 - **Gráficos:** Opções → **Perfis**. Mac (M1 ou mais novo; com 8 GB, o **Mac 1**): use os **Mac 1** a **Mac 7** (do 8 GB ao shader realista, mais bateria). PC: do 1 - Minimo ao 7 - Ultra Shader, 8 - FPS Maximo e 9 - Bateria; os **PC -** usam shaders que não rodam no Mac. Os **Shader -** servem para experimentar cada shader. Aplicar um perfil troca distância de renderização, qualidade e shader na hora. **Não use Salvar nem Criar perfil**: o mod copia a configuração do Sodium e o jogo fecha ao aplicar esse perfil. Ajuste fino fica em Opções → Vídeo.
 - **Distant Horizons (ver longe):** é opcional. Na primeira abertura aparece uma janela para marcar. No Mac, com ele instalado os shaders não abrem: escolha um ou outro. Mudou de ideia? Apague `packwiz.json` na pasta do jogo e a janela aparece de novo.
-- **Servidores:** o jogo já entra sozinho no **Minezada**. A lista também traz Minezada (reserva), Minezada (rede da faculdade) e Minezada (neste computador, para quem joga na máquina do host). Não conectou? Tente a próxima.
+- **Servidores:** o jogo já entra sozinho no **Minezada**, que funciona até em rede de faculdade (o mod Modflared liga sozinho o túnel da Cloudflare). A lista também traz Minezada (playit), Minezada (reserva) e Minezada (neste computador, para quem joga na máquina do host). Não conectou? Tente a próxima.
 - **Minerar o veio inteiro:** segure `'` (apóstrofo) e quebre o minério ou tronco.
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
