@@ -104,5 +104,10 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
   (`<&0`) e o trap repassa SIGTERM a ele. Nada na frente do java: o `caffeinate` na frente recebia o SIGTERM e o
   java seguia (agora é `caffeinate -w PID` ao lado). Com a janela fechada, escrever no terminal dá erro e o
   `set -e` parava o envio do mundo: a saída passa para o `iniciar.log`.
+- **Mac Apple Silicon sem Rosetta não entra pelo túnel**: o Modflared 1.2.2 (última versão) baixa só o
+  `cloudflared` Intel e dá `Bad CPU type in executable`. Ele usa primeiro o `cloudflared` do PATH, então o
+  `jogar.sh` baixa o binário ARM para `<instância>/bin` e passa o PATH pelo `Env` do `instance.cfg`.
+- **Distant Horizons no Mac M4**: com ele marcado o jogo caiu 5 s depois de entrar no mundo (crash no driver
+  gráfico da Apple) e parou de cair ao desmarcar. O texto da janela de opcionais pede para não marcar no Mac.
 - **Testar Ctrl+C num script**: o que roda em segundo plano num bash não interativo nasce ignorando SIGINT, e aí
   nem o trap é instalado. Ligar `set -m` antes (como em `scripts/testes/desligar.sh`), senão o teste falha à toa.
