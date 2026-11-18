@@ -106,7 +106,10 @@ if [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "arm64" ]; then
     fi
   fi
   if [ -x "$cf/cloudflared" ]; then
-    printf 'OverrideEnv=true\nEnv="{\\"PATH\\": \\"%s:/usr/bin:/bin:/usr/sbin:/sbin\\"}"\n' "$cf" >> "$inst/instance.cfg"
+    # O Prism so aplica Env no formato 1.3: sem ConfigVersion ele migra o Env com toMap() e grava {}.
+    # O instance.cfg do zip (montar-pack.ps1) nao tem ConfigVersion, entao converte aqui.
+    sed -i.bak '/^PreLaunchCommand=/s/"/\\"/g' "$inst/instance.cfg" && rm -f "$inst/instance.cfg.bak"
+    printf 'ConfigVersion=1.3\nOverrideEnv=true\nEnv="{\\"PATH\\": \\"%s:/usr/bin:/bin:/usr/sbin:/sbin\\"}"\n' "$cf" >> "$inst/instance.cfg"
   elif ! arch -x86_64 /usr/bin/true 2>/dev/null; then
     # Reserva: sem o binario ARM, o Intel do Modflared so roda com a Rosetta.
     echo "Instalando a Rosetta (o Mac vai pedir a sua senha)..."

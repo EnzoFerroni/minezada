@@ -106,7 +106,11 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
   `set -e` parava o envio do mundo: a saída passa para o `iniciar.log`.
 - **Mac Apple Silicon sem Rosetta não entra pelo túnel**: o Modflared 1.2.2 (última versão) baixa só o
   `cloudflared` Intel e dá `Bad CPU type in executable`. Ele usa primeiro o `cloudflared` do PATH, então o
-  `jogar.sh` baixa o binário ARM para `<instância>/bin` e passa o PATH pelo `Env` do `instance.cfg`.
+  `jogar.sh` baixa o binário ARM para `<instância>/bin` e passa o PATH pelo `Env` do `instance.cfg`. O Prism só
+  aplica `Env` em `instance.cfg` com `ConfigVersion=1.3` (sem ela grava `Env={}`), e nesse formato as aspas do
+  `PreLaunchCommand` precisam de `\"`: o `jogar.sh` converte.
+- **Modflared sem túnel com DNS IPv6 local** (`Unknown DNS server: [fe80::...]`): a consulta do TXT falha e ele
+  conecta direto. `modpack/arquivos/modflared/forced_tunnels.json` força o túnel em `minezada.dpdns.org` sem o TXT.
 - **Distant Horizons no Mac M4**: com ele marcado o jogo caiu 5 s depois de entrar no mundo (crash no driver
   gráfico da Apple) e parou de cair ao desmarcar. O texto da janela de opcionais pede para não marcar no Mac.
 - **Testar Ctrl+C num script**: o que roda em segundo plano num bash não interativo nasce ignorando SIGINT, e aí

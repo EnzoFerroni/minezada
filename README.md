@@ -5,8 +5,8 @@ Modpack e servidor de Minecraft 1.21.1.
 ## Jogar
 
 Rode o comando uma vez. Ele instala o Prism Launcher e o Java, baixa os mods, cria o atalho **Minezada** na
-Área de Trabalho e abre o jogo já entrando no servidor. Na primeira vez o Prism pede o login e o download dos mods
-demora alguns minutos.
+Área de Trabalho e abre o jogo. Na primeira vez o Prism pede o login e o download dos mods demora alguns minutos.
+No jogo, clique em **Multijogador**: a lista mostra quais servidores Minezada estão no ar.
 
 **Windows**: abra o PowerShell (menu Iniciar, digite "PowerShell") e cole:
 
@@ -27,6 +27,8 @@ Das próximas vezes, abra pelo atalho **Minezada**. Os mods se atualizam sozinho
 - **Não conectou no servidor**: o host pode estar desligado. Tente os outros Minezada da lista de servidores.
 - **Mac: o jogo fecha ao entrar no mundo ou os shaders não abrem**: desmarque o Distant Horizons. Apague
   `packwiz.json` na pasta `.minecraft` (como achar: no fim desta página) e abra de novo: a janela de opcionais aparece e ele vem desmarcado.
+- **Texto de site (HTML) na tela ao entrar**: a verificação de conta da Mojang recusou a sua rede (comum em rede de
+  faculdade ou empresa). Tente outra rede, como o 4G do celular, ou espere um pouco.
 - **Faltou mod, o jogo não abre ou algo ficou estranho**: rode o comando de novo. Ele repara a instalação sem
   apagar o mundo, as opções e os servidores.
 
