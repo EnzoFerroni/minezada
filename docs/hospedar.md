@@ -45,8 +45,9 @@ o nick fica como estava até o próximo start. Tirar alguém continua sendo no c
 sozinho não prova quem é a pessoa. O MixAuth resolve assim:
 - Quem tem original: a Mojang confirma a conta e a pessoa entra direto, com o UUID oficial e a skin.
   Se a Mojang estiver fora do ar, esse jogador não entra até ela voltar.
-- Quem não tem: `/register senha senha` na primeira vez e `/login senha` depois. No mesmo IP fica
-  logado por 7 dias. Peça para registrar logo que for liberado, senão outro pode registrar o nick.
+- Quem não tem: `/register senha senha` na primeira vez e `/login senha` sempre que entrar (o "lembrar
+  por IP" fica desligado: pelo túnel e em rede de faculdade todos chegam com o mesmo IP, e qualquer um
+  entraria com o nick de outro). Peça para registrar logo que for liberado, senão outro pode registrar o nick.
 - Esqueceu a senha: `auth setpassword Nick nova nova` no console. Recomeçar do zero:
   `auth remove Nick`.
 - Antes do login a pessoa fica em espectador, parada e cega. Morreu e saiu? Ao voltar ela consegue

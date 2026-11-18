@@ -25,8 +25,8 @@ no servidor e os mods se atualizam sozinhos. Algo quebrou? Rode o comando de nov
 Na faculdade não conecta? Entre em **Minezada (rede da faculdade)** na lista de servidores.
 
 **Login no servidor.** Com Minecraft original você entra direto, sem senha. Sem original: na primeira
-vez digite `/register suasenha suasenha`; nas outras, `/login suasenha` (no mesmo Wi-Fi ele lembra de
-você por 7 dias). Sem isso não dá para andar nem mexer em nada.
+vez digite `/register suasenha suasenha`; nas outras, `/login suasenha`. Use uma senha só daqui, não
+a do seu e-mail ou de outro jogo. Sem login não dá para andar nem mexer em nada.
 
 **Skin:** quem tem original já aparece com a sua. Para trocar:
 `/skin set web classic <link da imagem da skin>` (`slim` para braço fino).
