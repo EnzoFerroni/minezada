@@ -18,8 +18,9 @@ Clique em **Hospedar Minezada** (ou `iniciar.bat` / `iniciar.command` na pasta d
    [mrpack-install](https://github.com/nothub/mrpack-install); no Mac com o instalador do NeoForge e o
    packwiz (o mrpack-install falha no DNS de roteadores de operadora)
 5. Baixa o mundo do Drive e trava para ninguém mais hospedar junto
-6. Libera o firewall, abre a porta no roteador (UPnP) e aponta `minezada-mc.duckdns.org` para
-   esta máquina
+6. Libera a porta no firewall só para a rede local e liga o túnel playit.gg (endereço principal).
+   Só se o túnel não conectar: abre a porta no roteador (UPnP) e aponta `minezada-mc.duckdns.org`
+   para esta máquina (reserva)
 7. Sobe o servidor sem deixar a máquina suspender
 
 **Desligue sempre digitando `stop`.** Aí o mundo volta para o Drive (com backup dos 5 últimos) e a
@@ -66,10 +67,18 @@ dele. Senha mínima de 6 caracteres; 5 erros bloqueiam o nick por 5 minutos. Con
 - A pasta `minezada` do Drive guarda o mundo, o token do DuckDNS (`duckdns.txt`) e o segredo do
   túnel (`playit.txt`). Compartilhe só com quem hospeda; quem tem o token pode apontar o endereço
   para outro lugar. Vazou? Gere token novo no site do DuckDNS e troque o `duckdns.txt`.
-- Downloads com checksum: launcher sem original (versão fixa), playit e mrpack-install. Os mods vêm
-  do Modrinth com hash conferido pelo packwiz.
-- O servidor só abre a porta do jogo (25565 e a 443 do roteador, fechadas no `stop`). RCON e query
-  ficam desligados.
+- Downloads com checksum: launcher sem original, playit, mrpack-install e packwiz-installer (todos
+  em versão fixa; o packwiz-installer não se atualiza sozinho). Os mods vêm do Modrinth com hash
+  conferido pelo packwiz. O `montar-pack` lista os mods que mudaram de versão: confira antes do push.
+- `main` protegido no GitHub: ninguém (nem o dono) consegue force push ou apagar o branch.
+- Com o túnel, nenhuma porta fica aberta no roteador e o IP de casa não aparece: o host limpa o
+  DuckDNS ao ligar o túnel. O firewall do Windows só aceita a 25565 da rede local. Só na reserva
+  (túnel fora do ar) o `iniciar` abre a 25565 e a 443 por UPnP e uma regra de firewall para a
+  internet, e fecha tudo no `stop`. RCON e query ficam desligados.
+- Pelo túnel todos chegam com o mesmo IP: banir por IP não funciona, use `whitelist remove Nick` e
+  tire o nick do `jogadores.txt`.
+- Mais seguro ainda: desligue o UPnP no roteador. A reserva deixa de funcionar, mas nenhum aparelho
+  da casa consegue abrir porta sozinho.
 
 **Skins.** Sem conta verificada a Mojang não manda a skin, então o SkinRestorer busca pelo nick ao
 entrar pela primeira vez: Mojang e, se ela bloquear (`429` em rede compartilhada, como a de
@@ -77,23 +86,23 @@ laboratório), a imagem do mc-heads assinada pelo MineSkin. A skin fica salva no
 buscada de novo. Trocar: `/skin set nick SeuNick` ou `/skin set web classic <link>` (`slim` para
 braço fino). A configuração fica em `server-config/config/skinrestorer/config.json`.
 
-**Jogador em rede que bloqueia (faculdade).** Algumas redes só deixam sair pelas portas 80 e 443. Com UPnP o
-script abre também a 443 do roteador apontando para o servidor, e o jogo já traz a entrada
-**Minezada (rede da faculdade)** (`minezada-mc.duckdns.org:443`). Se o roteador do host já usa a 443, só
-a 25565 abre. Atenção: no PC de casa (18/11) o roteador aceitou a 443 por UPnP mas não repassou
-quem vinha de fora; só a 25565 funcionou. Antes de contar com ela, confira de fora (ex.:
-`https://api.mcsrvstat.us/3/minezada-mc.duckdns.org:443` com o servidor ligado).
+**Túnel playit.gg (endereço principal).** O jogo entra sozinho por `molecule-spindle.tun.ply.gg`.
+Funciona com o host em qualquer rede (casa, faculdade, 4G) sem abrir porta. O segredo do agente fica
+em `playit.txt` no Drive e o endereço em `playit-endereco.txt`, então todo host usa o mesmo túnel. O
+agente baixa sozinho com checksum para `tools/playit` e para no `stop`. Plano grátis: a rota não é
+garantida para quem está longe (testado: do Brasil entra; um verificador nos EUA/Europa não). O host
+entra por `localhost`; outro computador da mesma casa vê o servidor sozinho na parte de LAN.
 
-**Lista de servidores do jogo.** Vem pronta e se atualiza a cada abertura (packwiz): Minezada,
-Minezada (rede da faculdade), Minezada (túnel playit) e Minezada (neste computador, para quem joga na
+**Jogador em rede que bloqueia (faculdade).** Algumas redes só deixam sair pelas portas 80 e 443, e o
+túnel usa outra porta. A entrada **Minezada (rede da faculdade)** (`minezada-mc.duckdns.org:443`) só
+funciona na reserva e com um roteador que repasse a 443. No PC de casa (18/11) o roteador aceitou a
+443 e a 80 por UPnP mas não repassou quem vinha de fora (a 25565 e a 8443 passaram). Para quem joga
+da faculdade com o host em casa, falta uma saída na 443 (ver [planos.md](planos.md)).
+
+**Lista de servidores do jogo.** Vem pronta e se atualiza a cada abertura (packwiz): Minezada (túnel),
+Minezada (reserva), Minezada (rede da faculdade) e Minezada (neste computador, para quem joga na
 máquina do host). Servidor adicionado à mão some na próxima abertura. Mudou o endereço do playit?
 Troque `$tunel` em `scripts/montar-pack.ps1` e gere o pack.
-
-**Host em rede que bloqueia (faculdade, laboratório).** Sem UPnP o script liga o túnel playit.gg (Mac e
-Windows; o agente baixa sozinho com checksum para `tools/playit` e para no `stop`): quem
-está fora, ou na mesma rede se ela isola os computadores, entra pelo endereço de
-`playit-endereco.txt` no Drive. O host entra por `localhost`; o servidor não aparece sozinho em
-Multijogador porque a rede bloqueia o anúncio de LAN.
 
 **Mundo novo? Pré-gere o terreno** para ninguém travar explorando (Terralith e as estruturas pesam na geração). No console, uma vez: `chunky radius 1500` e `chunky start`. Leva um tempo; dá para jogar enquanto roda. `chunky pause` / `chunky continue` controlam.
 

@@ -4,39 +4,41 @@ O que falta fazer, em ordem, e lições aprendidas para mexer no projeto sem que
 
 ## Próximos passos
 
-Estado em 2026-11-17: pack `2026.11.17.20`. Testado num Mac M4: servidor (subir, MixAuth, whitelist
-com UUID oficial, voo), jogo (crash do Chunky + Distant Horizons corrigido, os 7 shaders de Mac
-abrem, Photon e Solas não), instalação do `jogar.sh` numa cópia da instância e envio do mundo ao Drive.
+Estado em 2026-11-18: pack `2026.11.18.1`. Testado num Mac M4 (17/11): servidor (subir, MixAuth,
+whitelist com UUID oficial, voo), jogo (crash do Chunky + Distant Horizons corrigido, os 7 shaders de
+Mac abrem, Photon e Solas não), instalação do `jogar.sh` numa cópia da instância e envio do mundo ao
+Drive.
 
-Testado no PC Windows em 2026-11-18: `iniciar.ps1` com o Drive (troca de host Mac → PC continuou o
-mesmo mundo, whitelist com UUID oficial, UPnP, DuckDNS, `stop` enviou o mundo e liberou a trava),
-entrada de fora pela 25565, túnel playit no Windows (agente conecta e o servidor responde por
-`molecule-spindle.tun.ply.gg`), `jogar.ps1` com original (memória 4096 com 16 GB) e o download do
-launcher sem original (SHA-256 confere).
+Testado no PC Windows (18/11), já com o túnel como endereço principal: `iniciar.ps1` com o Drive
+(troca de host Mac → PC continuou o mesmo mundo, whitelist com UUID oficial, túnel conectado, DuckDNS
+limpo, nenhuma porta no roteador, firewall só na rede local, `stop` enviou o mundo e liberou a trava),
+`jogar.ps1` com original (memória 4096 com 16 GB, packwiz-installer fixo) e o jogo entrando sozinho
+pelo túnel (`Enzobullet joined the game`). Launcher sem original: download e SHA-256 conferidos.
+Mundo corrompido: para com aviso, sem trava e sem mexer no local.
 
-1. **Porta 443 não repassa no roteador de casa**: o UPnP aceita o mapeamento 443 → 25565, mas de fora
-   ela não responde (a 25565 sim). Provável: o roteador reserva a 443 da WAN para ele ou a operadora
-   bloqueia. Sem ela, quem está numa rede de faculdade que só libera 80/443 não entra com o host em
-   casa. Opções: desligar a gerência remota HTTPS do roteador e testar de novo; ou túnel numa porta
-   443 (playit Premium ou outro serviço).
-2. **Testar o caminho sem original de ponta a ponta**: responder `n`, o fork pede o nick, `/register`,
-   morrer, sair e voltar (com o MixAuth deve renascer e logar; com o SimpleLogin travava).
-3. **Testar o comando de hospedar num PC sem o repo** (`hospedar.ps1`: instala o Git, clona, cria o
-   atalho). Mundo corrompido já conferido no Windows: para com aviso, sem trava e sem mexer no local.
-4. **Na próxima geração do pack**: trocar o endereço da entrada **Minezada** em `montar-pack.ps1` para
-   `minezada-mc.duckdns.org:25565`. O "entrar ao abrir" do Prism chega com `:25565`, o jogo não acha
-   igual na lista e cria uma entrada extra "Servidor de Minecraft" (o packwiz apaga na abertura
-   seguinte). Não vale gerar o pack só por isso: gerar atualiza todos os mods e pede o teste completo.
-5. **Pré-gerar o mundo real** antes de chamar todo mundo: no console do servidor,
+1. **Testar no Mac o `iniciar.sh` novo** (túnel primeiro, espera conectar, reserva por UPnP só se
+   falhar, DuckDNS limpo) e o `jogar.sh` (copia o `packwiz-installer.jar` fixo). Só a sintaxe foi
+   conferida no Windows.
+2. **Quem já instalou roda o comando de jogar de novo** (uma vez): o "entrar ao abrir" pelo túnel e o
+   packwiz-installer fixo ficam no `instance.cfg`, que o packwiz não atualiza.
+3. **Jogar da faculdade com o host em casa**: a rede de lá só libera 80/443 de saída, e o túnel grátis
+   usa outra porta. O roteador de casa não repassa a 80 nem a 443 (a 25565 e a 8443 passam). Opções:
+   desligar a gerência remota do roteador e testar a 443 de novo; um túnel que escute na 443; ou um
+   servidor alugado. Por enquanto: roteador do celular (4G).
+4. **Testar o caminho sem original de ponta a ponta**: responder `n`, o fork pede o nick, `/register`,
+   morrer, sair e voltar (com o MixAuth deve renascer e pedir `/login`).
+5. **Testar o comando de hospedar num PC sem o repo** (`hospedar.ps1`: instala o Git, clona, cria o
+   atalho).
+6. **Pré-gerar o mundo real** antes de chamar todo mundo: no console do servidor,
    `chunky radius 1500` e `chunky start`. O mundo atual foi gerado antes dos mods de aventura;
    minérios, mobs e estruturas novas só aparecem em terreno ainda não explorado. Se preferir tudo
    desde o início, apagar `mundo.tar.gz` no Drive e `server/world` (os backups ficam).
-6. **Convidar os jogadores**: mandar o comando de jogar (README) e liberar cada nick no
+7. **Convidar os jogadores**: mandar o comando de jogar (README) e liberar cada nick no
    `jogadores.txt` do Drive + restart (não `whitelist add`, ver [hospedar.md](hospedar.md)). Quem
    não tem original e já tinha senha do SimpleLogin registra de novo (senhas não migram). Amigo sem
    original com nick que existe como conta de outra pessoa: `Nick sem-original`. Quem for hospedar
    recebe a pasta `minezada` do Drive.
-7. **Livro de missões** (abaixo), depois que a lista de mods estabilizar.
+8. **Livro de missões** (abaixo), depois que a lista de mods estabilizar.
 
 ## Livro de missões (tutorial completo do pack)
 
@@ -123,6 +125,15 @@ Iron's Spells (complexo para iniciantes), Eternal Starlight (dimensão nova, men
   (`sessionserver ... ?unsigned=false`); a sem assinatura passa. Por isso a reserva do SkinRestorer.
 - **Mod sem lado no Modrinth** (`unknown`, ex: o antigo SimpleLogin) entra nos dois lados; mod só de servidor
   vai em `$soServidor` no `montar-pack.ps1`, senão pede login até no singleplayer.
+- **Login lembrado por IP é inseguro com túnel**: pelo playit (e numa faculdade) muitos jogadores
+  chegam com o mesmo IP. Com o "mesmo nick + mesmo IP sem senha" qualquer um entrava como outro;
+  por isso `trusted_login_window_hours = 0`.
+- **Porta aceita por UPnP não quer dizer porta aberta**: o roteador de casa aceitou a 80 e a 443 e não
+  repassou. Conferir sempre de fora (`https://api.mcsrvstat.us/3/<host>:<porta>`). O playit grátis
+  não responde a esse verificador (fora do Brasil), mas responde de dentro do Brasil.
+- **`instance.cfg` não atualiza sozinho**: o packwiz só mexe em `.minecraft`. Mudou o "entrar ao
+  abrir", a memória ou o comando do packwiz? Cada um roda o comando de jogar de novo.
+- **Logs do PowerShell 5.1 redirecionados com `*>` saem em UTF-16**: ler com `iconv -f UTF-16LE`.
 
 ## Ideias para melhorar no futuro
 
