@@ -23,7 +23,8 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
 
 1. Editar `modpack/mods.txt` (ou `scripts/perfis.ps1` para perfis) e rodar `scripts/montar-pack.ps1 -Versao AAAA.MM.DD.N`
    (no Mac `pwsh scripts/montar-pack.ps1`; shader novo: montar, `perfis.ps1`, montar de novo).
-2. Ler a lista **Mudanças desde o pack anterior** que ele mostra: versão nova de mod é código novo no
+2. As versões ficam fixas: cada mod repete a do pack atual e só mod novo pega a mais nova. Para atualizar
+   tudo, rode com `-Atualizar`. Ler a lista **Mudanças desde o pack anterior**: versão nova de mod é código novo no
    PC de todos. Conferir se não entrou `connector` / `forgified-fabric-api` (mod Fabric disfarçado).
 3. Testar o **servidor** (`iniciar`) até aparecer `Done`. A Action **Servidor de teste** também faz isso
    sozinha a cada push que mexe no pack (aba Actions; falhou, o GitHub avisa por e-mail).
