@@ -16,9 +16,10 @@ Ele instala o Git (Windows) ou as ferramentas de linha de comando da Apple (Mac)
 `Minezada-servidor` na pasta do usuário, cria o atalho **Hospedar Minezada** na Área de Trabalho e
 sobe o servidor. Das próximas vezes, clique no atalho (ou em `iniciar.bat` / `iniciar.command`).
 
-**Desligar: feche a janela "Minecraft server" ou digite `stop` nela.** O servidor salva, o mundo volta para o
-Drive (com backup dos 5 últimos) e a trava é liberada. A janela do `iniciar` pode ser fechada depois que o servidor
-abre (no Windows; no Mac ainda é preciso digitar `stop` no Terminal, [issue #7](https://github.com/EnzoFerroni/minezada/issues/7)). Registro da rede e do envio: `server/logs/iniciar.log`.
+**Desligar: feche a janela do servidor ou digite `stop` nela.** No Windows é a janela "Minecraft server" (a do
+`iniciar` pode ser fechada depois que o servidor abre); no Mac é a do Terminal, e Ctrl+C também serve. O servidor
+salva, o mundo volta para o Drive (com backup dos 5 últimos) e a trava é liberada. Registro da rede e do envio:
+`server/logs/iniciar.log` (no Mac, o que acontece depois de fechar a janela).
 
 ## Do que precisa
 

@@ -1,0 +1,65 @@
+# Testa os scripts de hospedar a cada push que mexe neles, sem Minecraft de verdade:
+# - Mac (bash 3.2 do macOS) e Linux: stop, Ctrl+C e janela fechada salvam, enviam o mundo e liberam a trava (issue #7)
+# - whitelist: a versao do Mac (Python) e a do Windows (PowerShell 5.1 e 7) dao o mesmo resultado
+# - Windows: sintaxe dos .ps1 no PowerShell 5.1 e BOM em .ps1 com acento; shellcheck nos .sh
+name: Testes dos scripts
+
+on:
+  push:
+    paths: ['scripts/**', '*.sh', '*.ps1', '*.command', '*.bat', '.github/workflows/scripts.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mac-linux:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      # Actions fixadas por commit: um release adulterado delas nao roda aqui.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: shellcheck
+        if: runner.os == 'Linux'
+        run: shellcheck -S warning scripts/*.sh scripts/testes/*.sh ./*.sh iniciar.command
+      # /bin/bash: no macOS e o 3.2, o mesmo que roda o iniciar.command (o do Homebrew pode vir antes no PATH).
+      - name: Desligar o servidor (stop, Ctrl+C, janela fechada)
+        run: /bin/bash scripts/testes/desligar.sh
+      - name: Whitelist (Python)
+        run: /bin/bash scripts/testes/whitelist.sh
+
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Sintaxe dos .ps1 (PowerShell 5.1) e BOM em quem tem acento
+        shell: powershell
+        run: |
+          $erros = 0
+          Get-ChildItem -Recurse -Filter *.ps1 | ForEach-Object {
+            $e = $null
+            [void][Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$null, [ref]$e)
+            foreach ($x in $e) { Write-Host "::error file=$($_.FullName),line=$($x.Extent.StartLineNumber)::$($x.Message)"; $erros++ }
+            # Sem BOM, o PS 5.1 le o arquivo como ANSI e estraga o acento (licao do CONTRIBUTING).
+            $b = [IO.File]::ReadAllBytes($_.FullName)
+            if (($b | Where-Object { $_ -gt 127 }) -and -not ($b[0] -eq 0xEF -and $b[1] -eq 0xBB -and $b[2] -eq 0xBF)) {
+              Write-Host "::error file=$($_.FullName)::.ps1 com acento precisa de BOM (salve como UTF-8 com BOM)"; $erros++
+            }
+          }
+          if ($erros) { exit 1 }
+          Write-Host 'ok    sintaxe e BOM'
+      - name: Whitelist (PowerShell 5.1)
+        shell: powershell
+        run: scripts\testes\whitelist.ps1
+      - name: Whitelist (PowerShell 7)
+        shell: pwsh
+        run: scripts/testes/whitelist.ps1

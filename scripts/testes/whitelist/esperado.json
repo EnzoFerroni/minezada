@@ -1,0 +1,12 @@
+{
+  "whitelist": [
+    {"uuid": "0f0f0f0f-1111-4222-8333-444444444444", "name": "Fulano"},
+    {"uuid": "187bd3df-c2ba-3f90-b4a1-982ab2129161", "name": "Ciclano"},
+    {"uuid": "4c2c5a35-8de3-34db-a942-e38c95cea756", "name": "Beltrano"}
+  ],
+  "ops": [
+    {"uuid": "0f0f0f0f-1111-4222-8333-444444444444", "name": "Fulano", "level": 4},
+    {"uuid": "4c2c5a35-8de3-34db-a942-e38c95cea756", "name": "Beltrano", "level": 4}
+  ],
+  "copiados": ["world/playerdata/0f0f0f0f-1111-4222-8333-444444444444.dat"]
+}

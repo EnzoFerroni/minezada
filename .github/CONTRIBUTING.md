@@ -14,6 +14,10 @@
   Perfis de gráfico: tabela em `scripts/perfis.ps1` (gera `modpack/arquivos/`). Configuração do servidor:
   `server-config/` (copiada para `server/` a cada start). O servidor no Windows instala o `.mrpack`; o do
   Mac e os jogadores instalam pelo `pack/` (packwiz).
+- **Testes**: `scripts/testes/` (desligar o servidor por stop, Ctrl+C e janela fechada; whitelist igual no Mac e no
+  Windows). A Action **Testes dos scripts** roda tudo no macOS, Linux e Windows a cada push que mexe nos scripts.
+  Mudou o `rodar_servidor`/`enviar_mundo` do `iniciar.sh` ou a whitelist? Rode `scripts/testes/desligar.sh` e
+  `scripts/testes/whitelist.sh` antes do push.
 
 Commits sem dados pessoais: autor com o e-mail `noreply` do GitHub
 (`git config user.email 125482399+EnzoFerroni@users.noreply.github.com`) e nada de IP local,
@@ -95,3 +99,10 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
   e abrir de novo depois de uns minutos resolve.
 - **Servidor na janela própria (Windows)**: a etapa do servidor roda escondida (`iniciar.ps1 -Rodar`); para
   desligar por script, feche a janela "Minecraft server" (`(Get-Process java).CloseMainWindow()`).
+- **Desligar no Mac pela janela ou Ctrl+C (issue #7)**: com o java em primeiro plano o bash só trata o sinal quando
+  ele sai, e a janela fechada manda SIGHUP só para o bash. Por isso o java roda em segundo plano com o teclado
+  (`<&0`) e o trap repassa SIGTERM a ele. Nada na frente do java: o `caffeinate` na frente recebia o SIGTERM e o
+  java seguia (agora é `caffeinate -w PID` ao lado). Com a janela fechada, escrever no terminal dá erro e o
+  `set -e` parava o envio do mundo: a saída passa para o `iniciar.log`.
+- **Testar Ctrl+C num script**: o que roda em segundo plano num bash não interativo nasce ignorando SIGINT, e aí
+  nem o trap é instalado. Ligar `set -m` antes (como em `scripts/testes/desligar.sh`), senão o teste falha à toa.
