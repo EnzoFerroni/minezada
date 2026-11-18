@@ -263,7 +263,7 @@ if (-not (Java-Ok $cfg.JAVA)) {
         winget install --id EclipseAdoptium.Temurin.25.JDK -e --silent --accept-source-agreements --accept-package-agreements
     }
     $j = & $temurin
-    if (-not ($j -and (Java-Ok $j.FullName))) { throw 'Java nao instalado. Veja docs/requisitos.md' }
+    if (-not ($j -and (Java-Ok $j.FullName))) { throw 'Java nao instalado. Veja docs/hospedar.md' }
     $cfg.JAVA = $j.FullName
 }
 

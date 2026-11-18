@@ -211,16 +211,23 @@ foreach ($arq in Get-ChildItem $inst -Recurse -File -Force) {
 $za.Dispose()
 Remove-Item -Recurse -Force $tmp
 
-# Vitrine de mods em docs/mods.md, entre os marcadores: icone, imagem, link e a descricao do mods.txt.
-$md = @("<sub>Minecraft $mc · NeoForge $neo · pack ``$Versao`` · $($info.Count) mods. Gerado por ``scripts/montar-pack.ps1``.</sub>")
+# Vitrine de mods em docs/mods.md, entre os marcadores: indice das categorias e cada mod recolhido (icone,
+# nome e a primeira frase da descricao do mods.txt; ao clicar, o resto, a imagem, o link e a versao).
+$ancora = { param($t) ($t.ToLower() -replace '[^\p{L}\p{Nd} -]', '') -replace ' ', '-' }  # mesmo id que o GitHub da ao titulo
+$cats = @($linhas | Where-Object { $_ -match '^## ' } | ForEach-Object { $_.Substring(3).Trim() })
+$md = @("<sub>Minecraft $mc · NeoForge $neo · pack ``$Versao`` · $($info.Count) mods. Gerado por ``scripts/montar-pack.ps1``. Clique num mod para ver mais.</sub>",
+    '', (($cats | ForEach-Object { $nome = ($_ -split ' [(]')[0]; $id = & $ancora $_; "[$nome](#$id)" }) -join ' · '))
 foreach ($l in $linhas) {
-    if ($l -match '^## (.+)') { $md += '', "## $($matches[1])" }
+    if ($l -match '^## (.+)') { $md += '', "## $($matches[1])", '' }
     elseif ($l -match '^\s*([a-z0-9_-]+)\s*\|\s*(.+)$') {
-        $i = $info[$matches[1]]
-        $ico = if ($i.icone) { '<img src="' + $i.icone + '" width="28" align="center"> ' } else { '' }
-        $md += '', "### $ico[$($i.titulo)](https://modrinth.com/mod/$($matches[1]))", '', $matches[2]
-        if ($i.foto) { $md += '', "<img src=`"$($i.foto)`" width=`"480`">" }
-        $md += '', "<sub>Versão ``$($i.versao)``$(if (-not $i.servidor) { ' · só no jogo de cada um, não no servidor' })</sub>"
+        $slug = $matches[1]; $desc = $matches[2].Trim(); $i = $info[$slug]
+        $p = $desc.IndexOf('. ')
+        $resumo = if ($p -gt 0) { $desc.Substring(0, $p) } else { $desc.TrimEnd('.') }
+        $ico = if ($i.icone) { "<img src=`"$($i.icone)`" width=`"20`" align=`"center`"> " } else { '' }
+        $md += "<details><summary>$ico<b>$($i.titulo)</b>: $resumo</summary>", ''
+        if ($p -gt 0) { $md += $desc.Substring($p + 2), '' }
+        if ($i.foto) { $md += "<img src=`"$($i.foto)`" width=`"480`">", '' }
+        $md += "<sub>[Modrinth](https://modrinth.com/mod/$slug) · versão ``$($i.versao)``$(if (-not $i.servidor) { ' · só no jogo de cada um, não no servidor' })</sub>", '', '</details>'
     }
 }
 $extras = $info.Keys | Where-Object { $_ -notin $pedidos } | Sort-Object

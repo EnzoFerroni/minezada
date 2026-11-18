@@ -66,7 +66,7 @@ main() {
         | tar -xz -C "$tools/jre" --strip-components 1 || die "Download do Java falhou."
     fi
     JAVA="$jre"
-    java_ok "$JAVA" || die "Java nao instalado. Veja docs/requisitos.md"
+    java_ok "$JAVA" || die "Java nao instalado. Veja docs/hospedar.md"
   fi
 
   # 4. Pack -> servidor, tudo via Java. O mrpack-install (Go) tem DNS proprio e falha em roteador com
@@ -83,9 +83,9 @@ main() {
   fi
   # Servidor montado pelo mrpack-install antigo: limpa os mods para o packwiz assumir sem duplicar.
   [ -f "$server/packwiz.json" ] || rm -rf "$server/mods"
-  unzip -o -q -j "$root/modpack/minezada-prism.zip" .minecraft/packwiz-installer-bootstrap.jar -d "$server"
+  unzip -o -q -j "$root/modpack/minezada-prism.zip" .minecraft/packwiz-installer-bootstrap.jar .minecraft/packwiz-installer.jar -d "$server"
   # Idempotente: sem mudanca no pack, nao baixa nada. "-s server" pula os mods so de cliente.
-  (cd "$server" && "$JAVA" -jar packwiz-installer-bootstrap.jar -g -s server "file://${root// /%20}/modpack/pack/pack.toml") \
+  (cd "$server" && "$JAVA" -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -g -s server "file://${root// /%20}/modpack/pack/pack.toml") \
     || die "Instalacao dos mods falhou."
 
   if ! grep -qs 'eula=true' "$server/eula.txt"; then
