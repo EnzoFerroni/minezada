@@ -177,15 +177,10 @@ while True:
   fi
   trap 'kill $ddns_pid $lan_pid $tunel_pid $cf_pid 2>/dev/null || true' EXIT
 
-  echo "Iniciando servidor com $RAM de RAM. Digite 'stop' para desligar e salvar."
-  # caffeinate impede o Mac de dormir enquanto o servidor roda. String sem aspas de proposito:
-  # array vazio com set -u quebra no bash 3.2 do macOS.
-  cafe=""; command -v caffeinate >/dev/null && cafe="caffeinate -i"
-  trap 'true' INT  # Ctrl+C derruba so o java (que salva o mundo); o script segue para o envio
+  echo "Iniciando servidor com $RAM de RAM. Para desligar e salvar: digite 'stop', aperte Ctrl+C ou feche esta janela."
   # Flags do Aikar: coleta de lixo G1 ajustada para servidor de Minecraft (menos travadas).
   flags="-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1"
-  (cd "$server" && $cafe "$JAVA" "-Xms$RAM" "-Xmx$RAM" $flags "@libraries/net/neoforged/neoforge/$neo/unix_args.txt" nogui) || true
-  trap - INT
+  rodar_servidor "$JAVA" "-Xms$RAM" "-Xmx$RAM" $flags "@libraries/net/neoforged/neoforge/$neo/unix_args.txt" nogui
 
   kill $ddns_pid $lan_pid $tunel_pid $cf_pid 2>/dev/null || true
   if [ -n "$reserva" ]; then
@@ -194,26 +189,55 @@ while True:
     [ -z "$ddns_pid" ] || curl -fsS "$url&clear=true" >/dev/null 2>&1 || true
   fi
 
-  if [ -n "$SYNC_DIR" ]; then
-    echo "Enviando mundo para a pasta sincronizada..."
-    itens=()
-    for f in world ops.json whitelist.json banned-players.json banned-ips.json; do [ -e "$server/$f" ] && itens+=("$f"); done
-    # COPYFILE_DISABLE: o tar do macOS nao embute arquivos ._* (metadados) que iriam parar no Windows.
-    if COPYFILE_DISABLE=1 tar -czf "$estado.tmp" -C "$server" "${itens[@]}"; then
-      mv -f "$estado.tmp" "$estado"
-      # Guarda os 5 ultimos mundos com data, caso um envio saia corrompido.
-      mkdir -p "$SYNC_DIR/backups"
-      cp "$estado" "$SYNC_DIR/backups/mundo-$(date +%Y%m%d-%H%M).tar.gz"
-      ls -1 "$SYNC_DIR"/backups/mundo-*.tar.gz | sort -r | tail -n +6 | while read -r f; do rm -f "$f"; done
-      rm -f "$lock"
-      echo "Pronto. Outro host ja pode iniciar."
-    else
-      echo "AVISO: falha ao enviar o mundo. Trava mantida em $eu; rode de novo nesta maquina." >&2
-    fi
-  fi
+  [ -z "$SYNC_DIR" ] || enviar_mundo
 }
 
 die() { echo "ERRO: $*" >&2; exit 1; }
+
+# Roda o servidor (comando nos argumentos, dentro de $server) ate ele desligar por stop, Ctrl+C ou janela fechada.
+# O java fica em segundo plano com o teclado (<&0) e o script esperando por ele: assim os sinais chegam no script,
+# que repassa SIGTERM ao java, e a JVM salva o mundo antes de sair. Com o java em primeiro plano o bash so trata o
+# sinal depois que ele sai, e o macOS manda o SIGHUP da janela fechada so para o bash (issue #7). Processo em
+# segundo plano nasce ignorando SIGINT (a JVM respeita), por isso o Ctrl+C tambem vira SIGTERM pelo trap.
+rodar_servidor() {
+  mkdir -p "$server/logs"
+  (cd "$server" && exec "$@") <&0 &
+  java_pid=$!
+  # caffeinate -w (Mac acordado enquanto o java viver) fica ao lado, nao na frente do java: na frente, o SIGTERM
+  # matava o caffeinate e o java seguia rodando com a trava presa.
+  if command -v caffeinate >/dev/null; then caffeinate -i -w "$java_pid" & fi
+  trap 'kill -TERM "$java_pid" 2>/dev/null || true' INT TERM
+  # Janela fechada: o terminal sumiu, e escrever nele da erro (com set -e o envio do mundo parava). O resto da
+  # saida vai para o registro.
+  trap 'exec >>"$server/logs/iniciar.log" 2>&1; echo "Janela fechada: desligando o servidor."; kill -TERM "$java_pid" 2>/dev/null || true' HUP
+  # Espera com sleep em primeiro plano: o Ctrl+C mata o sleep e o trap roda na hora, em qualquer bash (o do macOS
+  # e o 3.2). Testado em scripts/testes/desligar.sh.
+  while kill -0 "$java_pid" 2>/dev/null; do sleep 1 || true; done
+  wait "$java_pid" 2>/dev/null || true
+  trap - INT TERM
+  # Janela fechada durante o envio do mundo: o envio termina, com a saida no registro.
+  trap 'exec >>"$server/logs/iniciar.log" 2>&1' HUP
+}
+
+# Envia o mundo para a pasta sincronizada, guarda os 5 ultimos e libera a trava.
+enviar_mundo() {
+  local estado="$SYNC_DIR/mundo.tar.gz" f itens
+  itens=()
+  echo "Enviando mundo para a pasta sincronizada..."
+  for f in world ops.json whitelist.json banned-players.json banned-ips.json; do [ -e "$server/$f" ] && itens+=("$f"); done
+  # COPYFILE_DISABLE: o tar do macOS nao embute arquivos ._* (metadados) que iriam parar no Windows.
+  if COPYFILE_DISABLE=1 tar -czf "$estado.tmp" -C "$server" "${itens[@]}"; then
+    mv -f "$estado.tmp" "$estado"
+    # Guarda os 5 ultimos mundos com data, caso um envio saia corrompido.
+    mkdir -p "$SYNC_DIR/backups"
+    cp "$estado" "$SYNC_DIR/backups/mundo-$(date +%Y%m%d-%H%M).tar.gz"
+    ls -1 "$SYNC_DIR"/backups/mundo-*.tar.gz | sort -r | tail -n +6 | while read -r f; do rm -f "$f"; done
+    rm -f "$SYNC_DIR/host.lock"
+    echo "Pronto. Outro host ja pode iniciar."
+  else
+    echo "AVISO: falha ao enviar o mundo. Trava mantida em $eu; rode de novo nesta maquina." >&2
+  fi
+}
 
 # Abre (ou fecha) a porta no roteador por UPnP, falando SSDP/SOAP direto com ele (mesmo jeito do
 # iniciar.ps1), sem miniupnpc nem Homebrew. Uso: porta_upnp abrir|fechar IP PORTA [PORTA_EXTERNA]
@@ -260,7 +284,7 @@ PY
 # Modflared liga o cloudflared nele), entao passa em rede de faculdade e Wi-Fi publico. O host so faz conexao
 # de saida (porta 7844). O token fica em cloudflare.txt na pasta do Drive. Preenche cf_pid; falha (1) se nao conectar.
 iniciar_cloudflare() {
-  local tok="$SYNC_DIR/cloudflare.txt" dir="$tools/cloudflared" log="$server/logs/cloudflared.log" arq sha i
+  local tok="$SYNC_DIR/cloudflare.txt" dir="$tools/cloudflared" log="$server/logs/cloudflared.log" arq sha
   if [ -z "$SYNC_DIR" ] || [ ! -f "$tok" ]; then echo "Sem tunel da Cloudflare (precisa de cloudflare.txt na pasta do Drive)."; return 1; fi
   if [ "$(uname -s)" != "Darwin" ]; then echo "Tunel da Cloudflare automatico so no Mac e no Windows."; return 1; fi
   # Versao fixa com o SHA-256 do release oficial. Atualizar: trocar a versao e os hashes (campo digest da API).
@@ -283,7 +307,7 @@ iniciar_cloudflare() {
   "$dir/cloudflared" tunnel --no-autoupdate --logfile "$log" run --token-file "$tok" >/dev/null 2>&1 &
   cf_pid=$!
   echo "Ligando o tunel da Cloudflare..."
-  for i in $(seq 1 40); do grep -q 'Registered tunnel connection' "$log" 2>/dev/null && break; sleep 0.5; done
+  for _ in $(seq 1 40); do grep -q 'Registered tunnel connection' "$log" 2>/dev/null && break; sleep 0.5; done
   if ! grep -q 'Registered tunnel connection' "$log" 2>/dev/null; then
     kill "$cf_pid" 2>/dev/null || true; cf_pid=""
     echo "AVISO: o tunel da Cloudflare nao conectou (detalhes em $log)." >&2
@@ -296,7 +320,7 @@ iniciar_cloudflare() {
 # e sem expor o IP do host. O segredo do agente fica em playit.txt na pasta do Drive: todo host usa o
 # mesmo tunel e endereco (anotado em playit-endereco.txt). Preenche tunel_pid; falha (1) se nao conectar.
 iniciar_tunel() {
-  local seg="$SYNC_DIR/playit.txt" dir="$tools/playit" tgz log="$server/logs/playit.log" i
+  local seg="$SYNC_DIR/playit.txt" dir="$tools/playit" tgz log="$server/logs/playit.log"
   if [ -z "$SYNC_DIR" ] || [ ! -f "$seg" ]; then
     echo "Sem tunel playit.gg (precisa da pasta do Drive)."
     return 1
@@ -321,7 +345,7 @@ iniciar_tunel() {
     -l "$log" >/dev/null 2>&1 &
   tunel_pid=$!
   echo "Ligando o tunel playit.gg..."
-  for i in $(seq 1 40); do grep -q 'playit connected' "$log" 2>/dev/null && break; sleep 0.5; done
+  for _ in $(seq 1 40); do grep -q 'playit connected' "$log" 2>/dev/null && break; sleep 0.5; done
   if ! grep -q 'playit connected' "$log" 2>/dev/null; then
     kill "$tunel_pid" 2>/dev/null || true; tunel_pid=""
     echo "AVISO: o tunel playit.gg nao conectou (detalhes em $log)." >&2
@@ -468,5 +492,5 @@ java_ok() {
   [ "${v:-0}" -ge 21 ]
 }
 
-main "$@"
-exit
+# MINEZADA_TESTE=1: so carrega as funcoes, para os testes (scripts/testes/).
+[ -n "${MINEZADA_TESTE:-}" ] || { main "$@"; exit; }

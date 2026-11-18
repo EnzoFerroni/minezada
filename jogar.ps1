@@ -72,7 +72,7 @@ if ($mem) {
 Copy-Item "$tmp\x\.minecraft\packwiz-installer-bootstrap.jar", "$tmp\x\.minecraft\packwiz-installer.jar" "$inst\.minecraft" -Force
 foreach ($f in 'servers.dat', 'options.txt') { if (-not (Test-Path "$inst\.minecraft\$f")) { Copy-Item "$tmp\x\.minecraft\$f" "$inst\.minecraft" } }
 # Liga os pacotes de recursos do pack em quem ja tinha options.txt, mantendo os que o jogador ligou.
-# -Encoding UTF8: o PS 5.1 le como ANSI e estragaria nomes com acento ou § (ex: Low On Fire).
+# -Encoding UTF8: o PS 5.1 le como ANSI e estragaria nomes com acento ou com o simbolo de secao (ex: Low On Fire).
 $opt = "$inst\.minecraft\options.txt"
 # (o ForEach achata: no PS 5.1 o ConvertFrom-Json devolve a lista inteira como um item so)
 $doPack = @((Get-Content "$tmp\x\.minecraft\options.txt" -Encoding UTF8 | Where-Object { $_ -like 'resourcePacks:*' }) -replace '^resourcePacks:', '' | ConvertFrom-Json | ForEach-Object { $_ })
