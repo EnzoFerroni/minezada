@@ -84,7 +84,7 @@ em `server-config/config/skinrestorer/config.json`.
 Três entradas, nesta ordem. Tudo grátis, e nas duas primeiras o roteador não abre porta nenhuma e o
 IP de casa não aparece.
 
-**1. Principal: `minezada.dpdns.org` (túnel da Cloudflare).** O jogo entra sozinho por ele. O mod
+**1. Principal: `minezada.dpdns.org` (túnel da Cloudflare).** É o primeiro da lista de servidores do jogo. O mod
 Modflared (no pack) lê o registro TXT do domínio (`cloudflared-route=mc.minezada.dpdns.org`), baixa o
 `cloudflared` oficial (confere o hash) e conecta como HTTPS comum na porta 443. Por isso passa em
 rede de faculdade, empresa e Wi-Fi público, até nas que inspecionam o tráfego. No host, o `iniciar`
