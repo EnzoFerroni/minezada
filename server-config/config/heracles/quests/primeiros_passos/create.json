@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": { "type": "heracles:item", "item": "create:andesite_alloy" },
+    "title": "Primeiro passo no Create",
+    "subtitle": "Engrenagens e máquinas",
+    "description": [
+      "Tudo no Create começa com a liga de andesito: andesito com pepita de ferro (ou zinco).",
+      "",
+      "Segure W com o mouse em cima de qualquer item do Create para ver uma animação explicando como ele funciona (Ponder).",
+      "",
+      "Faça 4 ligas de andesito."
+    ],
+    "groups": { "Primeiros passos": { "position": [8, 0] } }
+  },
+  "settings": { "autoClaimRewards": true },
+  "dependencies": [ "bau", "mochila" ],
+  "tasks": {
+    "liga": { "type": "heracles:item", "item": "create:andesite_alloy", "amount": 4, "collection": "AUTOMATIC" }
+  },
+  "rewards": {
+    "engrenagens": { "type": "heracles:item", "item": { "id": "create:cogwheel", "count": 4 } }
+  }
+}

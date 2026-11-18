@@ -1,7 +1,7 @@
 # Faz tudo para hospedar: atualiza o repo, instala Java, cria config.env, instala/atualiza o pack,
 # puxa o mundo da pasta sincronizada, abre a porta (UPnP), atualiza o DuckDNS, roda e devolve o mundo.
 # Uso: iniciar.bat   (ou: powershell -ExecutionPolicy Bypass -File scripts\iniciar.ps1 [-Forcar])
-param([switch]$Forcar)
+param([switch]$Forcar, [switch]$Rodar)  # -Rodar: etapa do servidor, chamada pelo proprio script
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 [Net.ServicePointManager]::SecurityProtocol = 'Tls12'
@@ -50,7 +50,7 @@ function Porta-UPnP([bool]$abrir, [int]$externa = $porta) {
 }
 
 # 1. Repo atualizado: pack e scripts novos chegam sozinhos.
-if ((Test-Path (Join-Path $root '.git')) -and (Get-Command git -ErrorAction SilentlyContinue)) {
+if (-not $Rodar -and (Test-Path (Join-Path $root '.git')) -and (Get-Command git -ErrorAction SilentlyContinue)) {
     git -C $root pull --ff-only
     if ($LASTEXITCODE) { Write-Warning 'git pull falhou; seguindo com a versao local.' }
 }
@@ -263,7 +263,7 @@ foreach ($l in Get-Content $envFile) {
 }
 
 # Pasta do Drive: acha sozinho; faltou, oferece instalar e configurar ("n" nao pergunta mais).
-if (-not $cfg.SYNC_DIR) {
+if (-not $Rodar -and -not $cfg.SYNC_DIR) {
     $achado = Achar-Drive
     if (-not $achado -and $cfg.SEM_DRIVE -ne '1') { $achado = Configurar-Drive }
     if ($achado) {
@@ -302,76 +302,94 @@ if (-not (Java-Ok $cfg.JAVA)) {
 }
 
 # 4. Pack -> servidor.
-$packs = @(Get-ChildItem (Join-Path $root 'modpack') -Filter *.mrpack -ErrorAction SilentlyContinue)
-if ($packs.Count -ne 1) { throw "Precisa ter exatamente 1 arquivo .mrpack em modpack/ (achei $($packs.Count))." }
-
-$exe = Join-Path $tools 'mrpack-install.exe'
-if (-not (Test-Path $exe)) {
-    Write-Host "Baixando mrpack-install $mrpackVersion..."
-    New-Item -ItemType Directory -Force $tools | Out-Null
-    $zip = Join-Path $tools 'mrpack-install.zip'
-    Invoke-WebRequest "https://github.com/nothub/mrpack-install/releases/download/v$mrpackVersion/mrpack-install_${mrpackVersion}_windows_amd64.zip" -OutFile $zip
-    # SHA-256 do checksums.txt oficial da release: so roda o binario se bater.
-    if ((Get-FileHash $zip -Algorithm SHA256).Hash -ne '91ceaf0843aa66dc2f001dc11d26d557871a507e67f4097306cad30da221e026') {
-        Remove-Item $zip; throw 'Checksum do mrpack-install nao confere (download corrompido ou adulterado).'
-    }
-    Expand-Archive $zip $tools -Force
-    Remove-Item $zip
-}
-
-# Idempotente: sem mudanca no pack, nao faz nada.
-& $exe $packs[0].FullName --server-dir $server --server-file server.jar
-if ($LASTEXITCODE) { throw 'mrpack-install falhou.' }
-
-$eula = Join-Path $server 'eula.txt'
-if (-not ((Test-Path $eula) -and (Select-String -Quiet 'eula=true' $eula))) {
-    $r = Read-Host 'Voce aceita o EULA do Minecraft (https://aka.ms/MinecraftEULA)? [s/N]'
-    if ($r -ne 's') { throw 'EULA nao aceito.' }
-    Set-Content $eula 'eula=true'
-}
-Copy-Item (Join-Path $root 'server-config\*') $server -Recurse -Force
-
-# 5. Mundo da pasta sincronizada, com trava para so um host por vez.
 $sync = $cfg.SYNC_DIR
-if ($sync) {
-    if (-not (Test-Path $sync)) { throw "SYNC_DIR nao existe: $sync" }
-    $lock = Join-Path $sync 'host.lock'
-    $estado = Join-Path $sync 'mundo.tar.gz'
-    $dono = if (Test-Path $lock) { (Get-Content $lock -Raw).Trim() } else { '' }
-    if ($dono -and $dono -ne $eu -and -not $Forcar) {
-        throw "Servidor ja esta ativo em '$dono'. Se tiver certeza que nao esta, rode com -Forcar."
+$lock = if ($sync) { Join-Path $sync 'host.lock' }
+$estado = if ($sync) { Join-Path $sync 'mundo.tar.gz' }
+if (-not $Rodar) {
+    # Servidor ja rodando nesta maquina (atalho clicado duas vezes): nao mexe no mundo dele.
+    if (Get-NetTCPConnection -LocalPort $porta -State Listen -ErrorAction SilentlyContinue) { throw "Ja tem um servidor rodando nesta maquina (porta $porta em uso)." }
+    $packs = @(Get-ChildItem (Join-Path $root 'modpack') -Filter *.mrpack -ErrorAction SilentlyContinue)
+    if ($packs.Count -ne 1) { throw "Precisa ter exatamente 1 arquivo .mrpack em modpack/ (achei $($packs.Count))." }
+
+    $exe = Join-Path $tools 'mrpack-install.exe'
+    if (-not (Test-Path $exe)) {
+        Write-Host "Baixando mrpack-install $mrpackVersion..."
+        New-Item -ItemType Directory -Force $tools | Out-Null
+        $zip = Join-Path $tools 'mrpack-install.zip'
+        Invoke-WebRequest "https://github.com/nothub/mrpack-install/releases/download/v$mrpackVersion/mrpack-install_${mrpackVersion}_windows_amd64.zip" -OutFile $zip
+        # SHA-256 do checksums.txt oficial da release: so roda o binario se bater.
+        if ((Get-FileHash $zip -Algorithm SHA256).Hash -ne '91ceaf0843aa66dc2f001dc11d26d557871a507e67f4097306cad30da221e026') {
+            Remove-Item $zip; throw 'Checksum do mrpack-install nao confere (download corrompido ou adulterado).'
+        }
+        Expand-Archive $zip $tools -Force
+        Remove-Item $zip
     }
-    # Trava ja era desta maquina = ultima sessao caiu sem enviar; o mundo local e o mais novo.
-    if ($dono -ne $eu -and (Test-Path $estado)) {
-        Write-Host 'Baixando mundo da pasta sincronizada...'
-        # Extrai a parte e confere antes de mexer no mundo local ou pegar a trava: um arquivo corrompido
-        # nao pode virar o mundo desta maquina (ele seria enviado por cima do bom no proximo stop).
-        $novo = Join-Path $server '.mundo-novo'
-        Remove-Item -Recurse -Force $novo -ErrorAction SilentlyContinue
-        New-Item -ItemType Directory -Force $novo | Out-Null
-        & $tar -xzf $estado -C $novo
-        if ($LASTEXITCODE -or -not (Test-Path (Join-Path $novo 'world'))) {
+
+    # Idempotente: sem mudanca no pack, nao faz nada.
+    & $exe $packs[0].FullName --server-dir $server --server-file server.jar
+    if ($LASTEXITCODE) { throw 'mrpack-install falhou.' }
+
+    $eula = Join-Path $server 'eula.txt'
+    if (-not ((Test-Path $eula) -and (Select-String -Quiet 'eula=true' $eula))) {
+        $r = Read-Host 'Voce aceita o EULA do Minecraft (https://aka.ms/MinecraftEULA)? [s/N]'
+        if ($r -ne 's') { throw 'EULA nao aceito.' }
+        Set-Content $eula 'eula=true'
+    }
+    Copy-Item (Join-Path $root 'server-config\*') $server -Recurse -Force
+
+    # 5. Mundo da pasta sincronizada, com trava para so um host por vez.
+    $sync = $cfg.SYNC_DIR
+    if ($sync) {
+        if (-not (Test-Path $sync)) { throw "SYNC_DIR nao existe: $sync" }
+        $lock = Join-Path $sync 'host.lock'
+        $estado = Join-Path $sync 'mundo.tar.gz'
+        $dono = if (Test-Path $lock) { (Get-Content $lock -Raw).Trim() } else { '' }
+        if ($dono -and $dono -ne $eu -and -not $Forcar) {
+            throw "Servidor ja esta ativo em '$dono'. Se tiver certeza que nao esta, rode com -Forcar."
+        }
+        # Trava ja era desta maquina = ultima sessao caiu sem enviar; o mundo local e o mais novo.
+        if ($dono -ne $eu -and (Test-Path $estado)) {
+            Write-Host 'Baixando mundo da pasta sincronizada...'
+            # Extrai a parte e confere antes de mexer no mundo local ou pegar a trava: um arquivo corrompido
+            # nao pode virar o mundo desta maquina (ele seria enviado por cima do bom no proximo stop).
+            $novo = Join-Path $server '.mundo-novo'
+            Remove-Item -Recurse -Force $novo -ErrorAction SilentlyContinue
+            New-Item -ItemType Directory -Force $novo | Out-Null
+            & $tar -xzf $estado -C $novo
+            if ($LASTEXITCODE -or -not (Test-Path (Join-Path $novo 'world'))) {
+                Remove-Item -Recurse -Force $novo
+                throw "mundo.tar.gz corrompido. Copie o mais novo de $sync\backups por cima dele e rode de novo."
+            }
+            $w = Join-Path $server 'world'
+            if (Test-Path $w) {
+                Remove-Item -Recurse -Force "$w.bak" -ErrorAction SilentlyContinue
+                Rename-Item $w 'world.bak'
+            }
+            Get-ChildItem -Force $novo | ForEach-Object {
+                Remove-Item -Recurse -Force (Join-Path $server $_.Name) -ErrorAction SilentlyContinue
+                Move-Item $_.FullName $server
+            }
             Remove-Item -Recurse -Force $novo
-            throw "mundo.tar.gz corrompido. Copie o mais novo de $sync\backups por cima dele e rode de novo."
         }
-        $w = Join-Path $server 'world'
-        if (Test-Path $w) {
-            Remove-Item -Recurse -Force "$w.bak" -ErrorAction SilentlyContinue
-            Rename-Item $w 'world.bak'
-        }
-        Get-ChildItem -Force $novo | ForEach-Object {
-            Remove-Item -Recurse -Force (Join-Path $server $_.Name) -ErrorAction SilentlyContinue
-            Move-Item $_.FullName $server
-        }
-        Remove-Item -Recurse -Force $novo
+        # shortcut: a trava depende da nuvem ja ter sincronizado; dois hosts iniciando no mesmo minuto podem passar os dois.
+        Set-Content $lock $eu
     }
-    # shortcut: a trava depende da nuvem ja ter sincronizado; dois hosts iniciando no mesmo minuto podem passar os dois.
-    Set-Content $lock $eu
+    # Whitelist e admins: lista na pasta do Drive (vale para todos os hosts) ou, sem Drive, no servidor.
+    $lista = if ($sync) { Join-Path $sync 'jogadores.txt' } else { Join-Path $server 'jogadores.txt' }
+    try { Sincronizar-Whitelist $lista $server }
+    catch { Write-Warning "Falha ao atualizar a whitelist: $_" }
+
+    # Etapa do servidor num PowerShell escondido, fora desta janela: fechar esta janela nao derruba nada. O servidor
+    # abre na janela propria do Minecraft; fechar ela no X salva e para como o stop, e ai o mundo vai para o Drive.
+    $log = Join-Path $server 'logs\iniciar.log'
+    New-Item -ItemType Directory -Force (Split-Path $log) | Out-Null
+    Start-Process powershell -WindowStyle Hidden -RedirectStandardOutput $log -RedirectStandardError "$log.erros" -ArgumentList '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', "`"$PSCommandPath`"", '-Rodar'
+    Write-Host ''
+    Write-Host 'Servidor abrindo na janela "Minecraft server" (leva uns 30 segundos). Endereco: minezada.dpdns.org'
+    Write-Host 'Para desligar: feche a janela do servidor ou digite stop nela. O mundo vai sozinho para o Drive.'
+    Write-Host "Esta janela pode ser fechada. Registro da rede e do envio do mundo: $log"
+    exit
 }
-# Whitelist e admins: lista na pasta do Drive (vale para todos os hosts) ou, sem Drive, no servidor.
-$lista = if ($sync) { Join-Path $sync 'jogadores.txt' } else { Join-Path $server 'jogadores.txt' }
-try { Sincronizar-Whitelist $lista $server }
-catch { Write-Warning "Falha ao atualizar a whitelist: $_" }
 
 # 6. Rede: firewall, tunel e, so se o tunel falhar, porta no roteador e DuckDNS.
 # Regra por porta (nao por programa), so para a rede local: quem vem pelo tunel chega por localhost, que o
@@ -433,10 +451,11 @@ Add-Type -Name Energia -Namespace Minezada -MemberDefinition '[DllImport("kernel
 
 Push-Location $server
 try {
-    Write-Host "Iniciando servidor com $($cfg.RAM) de RAM. Digite 'stop' para desligar e salvar."
+    Write-Host "Iniciando servidor com $($cfg.RAM) de RAM, na janela propria (fechar ela ou digitar stop salva e desliga)."
     # Flags do Aikar: coleta de lixo G1 ajustada para servidor de Minecraft (menos travadas).
     $flags = '-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1' -split ' '
-    & $cfg.JAVA "-Xms$($cfg.RAM)" "-Xmx$($cfg.RAM)" @flags -jar server.jar nogui
+    # Sem "nogui": a janela do Minecraft server tem campo de comando, e fechar ela no X salva e para.
+    & $cfg.JAVA "-Xms$($cfg.RAM)" "-Xmx$($cfg.RAM)" @flags -jar server.jar
 }
 finally {
     Pop-Location
