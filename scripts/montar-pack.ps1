@@ -108,8 +108,22 @@ $index = [ordered]@{
 $tmp = Join-Path ([IO.Path]::GetTempPath()) "minezada-pack-$PID"
 New-Item -ItemType Directory -Force $tmp | Out-Null
 [IO.File]::WriteAllText((Join-Path $tmp 'modrinth.index.json'), ($index | ConvertTo-Json -Depth 8), (New-Object Text.UTF8Encoding $false))
-Get-ChildItem (Join-Path $root 'modpack') -Filter *.mrpack | Remove-Item
 $saida = Join-Path $root 'modpack/minezada.mrpack'
+
+# O que mudou desde o pack anterior: revisar antes do push (versao nova de mod = codigo novo no PC de todos).
+Add-Type -AssemblyName System.IO.Compression, System.IO.Compression.FileSystem
+$antes = @()
+if (Test-Path $saida) {
+    $za = [IO.Compression.ZipFile]::OpenRead($saida)
+    $antes = @([IO.StreamReader]::new(($za.Entries | Where-Object FullName -eq 'modrinth.index.json').Open()).ReadToEnd() | ConvertFrom-Json | ForEach-Object { $_.files } | ForEach-Object { $_.path })
+    $za.Dispose()
+}
+$depois = @($files | ForEach-Object { $_.path })
+$saiu = @($antes | Where-Object { $_ -notin $depois }); $entrou = @($depois | Where-Object { $_ -notin $antes })
+Write-Host "`nMudancas desde o pack anterior: $(if (-not ($saiu + $entrou)) { 'nenhuma' })"
+$saiu | ForEach-Object { Write-Host "  - $_" }
+$entrou | ForEach-Object { Write-Host "  + $_" }
+Get-ChildItem (Join-Path $root 'modpack') -Filter *.mrpack | Remove-Item
 Compress-Archive (Join-Path $tmp 'modrinth.index.json') "$tmp/pack.zip" -Force
 Move-Item "$tmp/pack.zip" $saida
 
@@ -142,11 +156,11 @@ if (Test-Path $soltos) {
 }
 # servers.dat (NBT sem compressao): os enderecos do servidor ja na lista do Multiplayer. Vai pelo packwiz
 # sem preserve, entao todo mundo recebe a lista nova a cada abertura (servidor adicionado a mao some).
-# 443: redes (faculdade) que so liberam 80/443 de saida; o host abre as duas por UPnP. Playit: tunel
-# usado quando o host esta numa rede sem UPnP (endereco em playit-endereco.txt no Drive).
+# Principal: tunel playit (endereco em playit-endereco.txt no Drive). Reserva: DuckDNS, que o host so liga
+# se o tunel nao conectar (UPnP na 25565 e na 443, para redes de faculdade que so liberam 80/443 de saida).
 function NbtStr($ms, $s) { $b = [Text.Encoding]::UTF8.GetBytes($s); $ms.WriteByte($b.Length -shr 8); $ms.WriteByte($b.Length -band 255); $ms.Write($b, 0, $b.Length) }
-$entradas = @(@('Minezada', $servidor), @('Minezada (rede da faculdade)', "${servidor}:443"),
-    @('Minezada (tunel playit)', $tunel), @('Minezada (neste computador)', 'localhost'))
+$entradas = @(@('Minezada', $tunel), @('Minezada (reserva)', $servidor),
+    @('Minezada (rede da faculdade)', "${servidor}:443"), @('Minezada (neste computador)', 'localhost'))
 $ms = New-Object IO.MemoryStream
 $ms.WriteByte(10); NbtStr $ms ''                                                                 # compound raiz
 $ms.WriteByte(9); NbtStr $ms 'servers'; $ms.WriteByte(10); $ms.Write([byte[]](0, 0, 0, $entradas.Count), 0, 4)  # lista de compounds
@@ -164,15 +178,21 @@ Escrever (Join-Path $pw 'pack.toml') "name = `"Minezada`"`nversion = `"$Versao`"
 
 # Instancia do Prism: arrastar o zip no Prism e jogar. O pre-launch roda o packwiz, que baixa/atualiza os mods.
 # shortcut: a versao do NeoForge fica fixa na instancia; se o pack trocar de NeoForge, os jogadores reimportam o zip.
-$boot = Join-Path $root 'tools/packwiz-installer-bootstrap.jar'
-if (-not (Test-Path $boot)) {
-    New-Item -ItemType Directory -Force (Split-Path $boot) | Out-Null
-    Invoke-WebRequest 'https://github.com/packwiz/packwiz-installer-bootstrap/releases/download/v0.0.3/packwiz-installer-bootstrap.jar' -OutFile $boot
-}
+# packwiz-installer com versao fixa e SHA-256 no zip, sem se atualizar sozinho a cada abertura: um release
+# adulterado no GitHub do packwiz nao chega nos jogadores. Atualizar: trocar url e hash.
+$jars = @(@('packwiz-installer-bootstrap.jar', 'https://github.com/packwiz/packwiz-installer-bootstrap/releases/download/v0.0.3/packwiz-installer-bootstrap.jar', 'a8fbb24dc604278e97f4688e82d3d91a318b98efc08d5dbfcbcbcab6443d116c'),
+    @('packwiz-installer.jar', 'https://github.com/packwiz/packwiz-installer/releases/download/v0.5.14/packwiz-installer.jar', 'c9f646908d340d84773948a9a7d98bc1dae250d35e1016dc6e2b8459760b5598'))
 $inst = Join-Path $tmp 'prism'
 New-Item -ItemType Directory -Force (Join-Path $inst '.minecraft') | Out-Null
-Copy-Item $boot (Join-Path $inst '.minecraft')
-Escrever (Join-Path $inst 'instance.cfg') "[General]`nInstanceType=OneSix`nname=Minezada`nOverrideCommands=true`nPreLaunchCommand=`"`$INST_JAVA`" -jar packwiz-installer-bootstrap.jar $packUrl`nOverrideMemory=true`nMinMemAlloc=1024`nMaxMemAlloc=4096`nJoinServerOnLaunch=true`nJoinServerOnLaunchAddress=$servidor`n"
+foreach ($j in $jars) {
+    $arq = Join-Path $root "tools/$($j[0])"
+    if (-not (Test-Path $arq)) { New-Item -ItemType Directory -Force (Split-Path $arq) | Out-Null; Invoke-WebRequest $j[1] -OutFile $arq }
+    if ((Sha256 $arq) -ne $j[2]) { Remove-Item $arq; throw "$($j[0]): checksum nao confere (download corrompido ou adulterado)." }
+    Copy-Item $arq (Join-Path $inst '.minecraft')
+}
+# Entra pelo tunel playit (funciona com o host em qualquer rede e nao expoe o IP dele); sem porta, o
+# jogo resolve o SRV do playit.
+Escrever (Join-Path $inst 'instance.cfg') "[General]`nInstanceType=OneSix`nname=Minezada`nOverrideCommands=true`nPreLaunchCommand=`"`$INST_JAVA`" -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar $packUrl`nOverrideMemory=true`nMinMemAlloc=1024`nMaxMemAlloc=4096`nJoinServerOnLaunch=true`nJoinServerOnLaunchAddress=$tunel`n"
 [IO.File]::WriteAllBytes((Join-Path $inst '.minecraft/servers.dat'), $serversDat)
 # Opcoes iniciais (o jogo completa o resto); o jogar so copia se o jogador ainda nao tiver.
 # Pacotes de $rpLigados ja vem ligados. As quatro ultimas opcoes pulam as telas de primeira abertura:

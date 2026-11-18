@@ -125,29 +125,32 @@ main() {
   lista="$server/jogadores.txt"; [ -z "$SYNC_DIR" ] || lista="$SYNC_DIR/jogadores.txt"
   sincronizar_whitelist "$lista" "$server"
 
-  # 6. Rede: porta (UPnP) e endereco.
+  # 6. Rede: tunel playit e, so se ele falhar, porta no roteador (UPnP) e DuckDNS.
   # IP da placa da rota padrao (en0 nem sempre e a que vai para a internet).
   ifc="$(route -n get default 2>/dev/null | awk '/interface:/{print $2}')"
   ip="$(ipconfig getifaddr "${ifc:-en0}" 2>/dev/null || hostname -I 2>/dev/null | awk '{print $1}')"
-  # Roteador sem NAT loopback (comum em roteador de operadora) nao deixa quem esta na mesma casa entrar pelo endereco publico.
   echo "Na mesma casa: entre por localhost (nesta maquina) ou $ip (outro computador)."
-  tunel_pid=""
-  if porta_upnp abrir "$ip" $porta; then
-    echo "Porta $porta aberta via UPnP."
-    # Redes de faculdade/empresa costumam liberar so 80/443 de saida: a 443 do roteador tambem leva ao servidor.
-    porta_upnp abrir "$ip" $porta $porta_alt && echo "Porta $porta_alt tambem aberta (para quem esta em rede que bloqueia a $porta)."
+  tunel_pid=""; ddns_pid=""; reserva=""
+  url="https://www.duckdns.org/update?domains=${DUCKDNS_DOMAIN}&token=${DUCKDNS_TOKEN}"
+  if iniciar_tunel; then
+    # Tira o IP desta casa do DuckDNS: o endereco de reserva so aponta para um host quando ele precisa.
+    [ -z "$DUCKDNS_TOKEN" ] || curl -fsS "$url&clear=true" >/dev/null 2>&1 || true
   else
-    echo "Esta rede nao deixou abrir a porta $porta (UPnP indisponivel)."
-    iniciar_tunel
-  fi
-
-  ddns_pid=""
-  if [ -n "$DUCKDNS_TOKEN" ]; then
-    url="https://www.duckdns.org/update?domains=${DUCKDNS_DOMAIN}&token=${DUCKDNS_TOKEN}"
-    # Reaponta o nome para este host e repete a cada 5 min caso o IP mude durante a sessao.
-    ( while true; do curl -fsS "$url" >/dev/null 2>&1 || true; sleep 300; done ) &
-    ddns_pid=$!
-    echo "Endereco do servidor: ${DUCKDNS_DOMAIN}.duckdns.org"
+    reserva=1
+    echo "Reserva: abrindo a porta $porta no roteador (UPnP)."
+    if porta_upnp abrir "$ip" $porta; then
+      echo "Porta $porta aberta via UPnP."
+      # Redes de faculdade/empresa costumam liberar so 80/443 de saida: a 443 do roteador tambem leva ao servidor.
+      porta_upnp abrir "$ip" $porta $porta_alt && echo "Porta $porta_alt tambem aberta (para quem esta em rede que bloqueia a $porta)."
+    else
+      echo "AVISO: UPnP indisponivel: so quem esta nesta rede consegue entrar (ou redirecione a porta no roteador)." >&2
+    fi
+    if [ -n "$DUCKDNS_TOKEN" ]; then
+      # Reaponta o nome para este host e repete a cada 5 min caso o IP mude durante a sessao.
+      ( while true; do curl -fsS "$url" >/dev/null 2>&1 || true; sleep 300; done ) &
+      ddns_pid=$!
+      echo "Endereco do servidor (reserva): ${DUCKDNS_DOMAIN}.duckdns.org (na lista do jogo: Minezada (reserva))"
+    fi
   fi
 
   # Anuncia o servidor na rede local como o "Abrir para LAN" do jogo: quem esta na mesma rede ve
@@ -186,8 +189,10 @@ while True:
   trap - INT
 
   kill $ddns_pid $lan_pid $tunel_pid 2>/dev/null || true
-  porta_upnp fechar "$ip" $porta || true
-  porta_upnp fechar "$ip" $porta $porta_alt || true
+  if [ -n "$reserva" ]; then
+    porta_upnp fechar "$ip" $porta || true
+    porta_upnp fechar "$ip" $porta $porta_alt || true
+  fi
 
   if [ -n "$SYNC_DIR" ]; then
     echo "Enviando mundo para a pasta sincronizada..."
@@ -251,34 +256,42 @@ sys.exit(1)
 PY
 }
 
-# Tunel playit.gg para hospedar de redes que nao deixam abrir porta (faculdade, laboratorio, 4G).
-# O segredo do agente fica em playit.txt na pasta do Drive: todo host usa o mesmo tunel e endereco
-# (anotado em playit-endereco.txt). Preenche tunel_pid.
+# Tunel playit.gg: endereco principal. Funciona com o host em qualquer rede, sem porta aberta no roteador
+# e sem expor o IP do host. O segredo do agente fica em playit.txt na pasta do Drive: todo host usa o
+# mesmo tunel e endereco (anotado em playit-endereco.txt). Preenche tunel_pid; falha (1) se nao conectar.
 iniciar_tunel() {
-  local seg="$SYNC_DIR/playit.txt" dir="$tools/playit" tgz
+  local seg="$SYNC_DIR/playit.txt" dir="$tools/playit" tgz log="$server/logs/playit.log" i
   if [ -z "$SYNC_DIR" ] || [ ! -f "$seg" ]; then
-    echo "Sem tunel playit.gg (precisa da pasta do Drive): so quem esta nesta rede consegue entrar."
-    return 0
+    echo "Sem tunel playit.gg (precisa da pasta do Drive)."
+    return 1
   fi
-  if [ "$(uname -s)" != "Darwin" ]; then echo "Tunel playit.gg automatico so no Mac e no Windows."; return 0; fi
+  if [ "$(uname -s)" != "Darwin" ]; then echo "Tunel playit.gg automatico so no Mac e no Windows."; return 1; fi
   if [ ! -x "$dir/playitd" ]; then
     echo "Baixando o playit.gg..."
     mkdir -p "$dir"; tgz="$dir/playit.tar.gz"
     curl -fsSL "https://github.com/playit-cloud/playit-agent/releases/download/v2.0.2/playit-macos-universal.tar.gz" -o "$tgz"
     # SHA-256 publicado na release: so roda o binario se bater.
     if [ "$(shasum -a 256 "$tgz" | awk '{print $1}')" != d3da262f8c58bfc13797a1bbf2e3fcc6d487e4e6832f54b35c00daeb59e1cce2 ]; then
-      rm -f "$tgz"; echo "AVISO: checksum do playit.gg nao confere; tunel nao ligado." >&2; return 0
+      rm -f "$tgz"; echo "AVISO: checksum do playit.gg nao confere; tunel nao ligado." >&2; return 1
     fi
     tar -xzf "$tgz" -C "$dir" --strip-components 1; rm -f "$tgz"
   fi
+  # Agente que sobrou de uma sessao fechada sem stop (janela fechada).
+  pkill -f "$dir/playitd" 2>/dev/null || true
   # Socket em TMPDIR: o macOS limita o caminho de socket a ~104 caracteres.
-  mkdir -p "$server/logs"
+  mkdir -p "$server/logs"; rm -f "$log"
   # --cert-dir: sem ele o playit cria a pasta certs ao lado do segredo, dentro do Drive.
   "$dir/playitd" --secret-path "$seg" --socket-path "${TMPDIR:-/tmp}/minezada-playit.sock" --cert-dir "$dir/certs" \
-    -l "$server/logs/playit.log" >/dev/null 2>&1 &
+    -l "$log" >/dev/null 2>&1 &
   tunel_pid=$!
-  echo "Tunel playit.gg ligado. Quem esta fora desta rede entra por:"
-  echo "  $(cat "$SYNC_DIR/playit-endereco.txt" 2>/dev/null || echo 'endereco do tunel no painel do playit.gg')"
+  echo "Ligando o tunel playit.gg..."
+  for i in $(seq 1 40); do grep -q 'playit connected' "$log" 2>/dev/null && break; sleep 0.5; done
+  if ! grep -q 'playit connected' "$log" 2>/dev/null; then
+    kill "$tunel_pid" 2>/dev/null || true; tunel_pid=""
+    echo "AVISO: o tunel playit.gg nao conectou (detalhes em $log)." >&2
+    return 1
+  fi
+  echo "Endereco do servidor (tunel): $(cat "$SYNC_DIR/playit-endereco.txt" 2>/dev/null || echo 'veja no painel do playit.gg')"
 }
 
 # Link da pasta minezada no Drive: quem nao tem acesso ve o botao "Solicitar acesso".
