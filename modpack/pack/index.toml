@@ -217,7 +217,7 @@ metafile = true
 
 [[files]]
 file = "mods/distanthorizons.pw.toml"
-hash = "9b4f5975ee1b92966fca208ed79c96e1b228fe577c5a83ab2d4601db0ca9084c"
+hash = "6af3dd68073c73b00dcde9d77606057f5f91ea2dfda1c1849809635b88cf27f3"
 metafile = true
 
 [[files]]
@@ -536,13 +536,13 @@ hash = "63129fbc993e777eb352ac1028ef959fa04264cfba9d3ad8c9cb93e631cee031"
 metafile = true
 
 [[files]]
-file = "mods/resourceful-config.pw.toml"
-hash = "9f447b390705da315b16a4aa2b9983114d67f8132836d88ac9c16bd9b9d8851f"
+file = "mods/common-storage-lib.pw.toml"
+hash = "ca9c879eb5099bdbe64f687087a9563a288a3de78dbde289053acdb295a45e41"
 metafile = true
 
 [[files]]
-file = "mods/common-storage-lib.pw.toml"
-hash = "ca9c879eb5099bdbe64f687087a9563a288a3de78dbde289053acdb295a45e41"
+file = "mods/resourceful-config.pw.toml"
+hash = "9f447b390705da315b16a4aa2b9983114d67f8132836d88ac9c16bd9b9d8851f"
 metafile = true
 
 [[files]]

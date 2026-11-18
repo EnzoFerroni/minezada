@@ -93,6 +93,27 @@ if [ $gb -ge 24 ]; then mem=6144; elif [ $gb -lt 12 ]; then mem=3072; fi
 if [ -n "$mem" ]; then
   sed -i.bak "s/^MaxMemAlloc=.*/MaxMemAlloc=$mem/" "$inst/instance.cfg" && rm -f "$inst/instance.cfg.bak"
 fi
+# Mac Apple Silicon: o Modflared so baixa o cloudflared Intel, que sem Rosetta da "Bad CPU type".
+# Ele prefere o "cloudflared" do PATH, entao o Prism recebe a pasta com o binario ARM.
+# Versao fixa com o SHA-256 do release oficial (a mesma do scripts/iniciar.sh).
+if [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "arm64" ]; then
+  cf="$inst/bin"
+  if [ "$(cat "$cf/versao" 2>/dev/null)" != "2026.10.7" ]; then
+    mkdir -p "$cf"
+    if curl -fsSL "https://github.com/cloudflare/cloudflared/releases/download/2026.10.7/cloudflared-darwin-arm64.tgz" -o "$tmp/cf.tgz" \
+      && [ "$(shasum -a 256 "$tmp/cf.tgz" | awk '{print $1}')" = "3586ccf397e98e5f437e60e7c307ca6ac463e110580503af8bb8e6f9ebf831bd" ]; then
+      tar -xzf "$tmp/cf.tgz" -C "$cf" && chmod +x "$cf/cloudflared" && echo 2026.10.7 > "$cf/versao"
+    fi
+  fi
+  if [ -x "$cf/cloudflared" ]; then
+    printf 'OverrideEnv=true\nEnv="{\\"PATH\\": \\"%s:/usr/bin:/bin:/usr/sbin:/sbin\\"}"\n' "$cf" >> "$inst/instance.cfg"
+  elif ! arch -x86_64 /usr/bin/true 2>/dev/null; then
+    # Reserva: sem o binario ARM, o Intel do Modflared so roda com a Rosetta.
+    echo "Instalando a Rosetta (o Mac vai pedir a sua senha)..."
+    sudo softwareupdate --install-rosetta --agree-to-license \
+      || echo "AVISO: sem Rosetta. Se o jogo nao conectar, entre em 'Minezada (playit)' na lista de servidores." >&2
+  fi
+fi
 cp "$tmp/x/.minecraft/packwiz-installer-bootstrap.jar" "$tmp/x/.minecraft/packwiz-installer.jar" "$inst/.minecraft/"
 for f in servers.dat options.txt; do [ -f "$inst/.minecraft/$f" ] || cp "$tmp/x/.minecraft/$f" "$inst/.minecraft/"; done
 # Liga os pacotes de recursos do pack em quem ja tinha options.txt, mantendo os que o jogador ligou.
