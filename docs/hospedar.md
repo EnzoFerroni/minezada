@@ -1,112 +1,139 @@
 # Hospedar o servidor
 
-## Primeira vez numa máquina
+**Windows** (PowerShell)
 
-Rode o comando de hospedar do [README](../README.md). Ele instala o Git (Windows) ou as ferramentas
-de linha de comando da Apple (Mac), baixa o repo em `Minezada-servidor` na pasta do usuário e cria o
-atalho **Hospedar Minezada**. Na primeira vez ele oferece configurar o Google Drive: clique em
-"Solicitar acesso" na pasta e avise o dono.
+```powershell
+irm https://raw.githubusercontent.com/EnzoFerroni/minezada/main/hospedar.ps1 | iex
+```
 
-## Rodar
+**Mac** (Terminal)
 
-Clique em **Hospedar Minezada** (ou `iniciar.bat` / `iniciar.command` na pasta do repo). O script:
+```sh
+curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/hospedar.sh | bash
+```
 
-1. Atualiza o repo (`git pull`)
-2. Na primeira vez: cria `config.env` (RAM, pasta do Drive, token do DuckDNS) e pergunta do EULA
-3. Instala o Java se faltar
+Ele instala o Git (Windows) ou as ferramentas de linha de comando da Apple (Mac), baixa o repo em
+`Minezada-servidor` na pasta do usuário, cria o atalho **Hospedar Minezada** na Área de Trabalho e
+sobe o servidor. Das próximas vezes, clique no atalho (ou em `iniciar.bat` / `iniciar.command`).
+
+**Desligue sempre digitando `stop`.** É isso que devolve o mundo para o Drive (com backup dos 5
+últimos) e libera a trava. Fechar a janela não envia o mundo
+([issue #7](https://github.com/EnzoFerroni/minezada/issues/7)).
+
+## Do que precisa
+
+| Item | Mínimo | Quem resolve |
+|------|--------|--------------|
+| Git | qualquer | O comando de hospedar instala. |
+| Java 21+ | - | O `iniciar` instala o Java 25 se faltar ou for antigo (Windows: winget; Mac: baixa para `tools/`, sem Homebrew). |
+| RAM | 16 GB | O servidor usa 6-8 GB. Jogar e hospedar na mesma máquina aperta. |
+| Disco | SSD, ~10 GB | O mundo cresce com o tempo. |
+| Rede | cabo, upload ≥ 10 Mbps | Wi-Fi funciona, mas oscila mais. |
+| Google Drive | pasta `minezada` | O `iniciar` oferece configurar (abaixo). Sem ele o mundo fica só nesta máquina. |
+
+## O que o `iniciar` faz
+
+1. Atualiza o repo (`git pull`).
+2. Na primeira vez: cria `config.env` (RAM, pasta do Drive, token do DuckDNS) e pergunta do EULA.
+3. Instala o Java se faltar.
 4. Instala/atualiza servidor, NeoForge e mods: no Windows com o
    [mrpack-install](https://github.com/nothub/mrpack-install); no Mac com o instalador do NeoForge e o
-   packwiz (o mrpack-install falha no DNS de roteadores de operadora)
-5. Baixa o mundo do Drive e trava para ninguém mais hospedar junto
-6. Libera a porta no firewall só para a rede local e liga o túnel playit.gg (endereço principal).
-   Só se o túnel não conectar: abre a porta no roteador (UPnP) e aponta `minezada-mc.duckdns.org`
-   para esta máquina (reserva)
-7. Sobe o servidor sem deixar a máquina suspender
+   packwiz (o mrpack-install falha no DNS de roteadores de operadora).
+5. Baixa o mundo do Drive e trava para ninguém mais hospedar junto.
+6. Libera a porta no firewall só para a rede local e liga o túnel playit.gg. Só se o túnel não
+   conectar: abre a porta no roteador (UPnP) e aponta o DuckDNS para esta máquina (veja **Rede**).
+7. Libera na whitelist quem está no `jogadores.txt` e sobe o servidor sem deixar a máquina suspender.
 
-**Desligue sempre digitando `stop`.** Aí o mundo volta para o Drive (com backup dos 5 últimos) e a
-trava é liberada. Fechar a janela não envia o mundo.
-
-**Whitelist ligada.** Para liberar alguém:
+## Liberar jogadores
 
 1. Abra `jogadores.txt` na pasta `minezada` do Drive.
 2. Escreva o nick numa linha nova, **igual ao do jogo, com as maiúsculas** (`Nick op` também dá
    admin). Não sabe o nick exato? Peça para a pessoa tentar entrar: o console mostra
    `Disconnecting Nick (...): You are not white-listed`.
 3. Reinicie o servidor (`stop` e abrir de novo). O start libera todos da lista, em qualquer host.
-4. Quem tem original entra direto. Quem não tem roda `/register senha senha` na hora.
 
 **Use o `jogadores.txt`, não `whitelist add` nem `op` no console.** O start pergunta à Mojang se o nick
-tem conta original. Se tiver, libera só o UUID oficial (e copia o progresso antigo do UUID offline para
-ele). Se não tiver, libera o UUID offline, e a pessoa usa senha. Amigo sem original com um nick que
-por acaso existe como conta de outra pessoa: escreva `Nick sem-original`. Se a Mojang não responder,
-o nick fica como estava até o próximo start. Tirar alguém continua sendo no console
-(`whitelist remove Nick`) e na lista.
+tem conta original. Se tiver, libera só o UUID oficial (e copia para ele o progresso antigo do UUID
+offline). Se não tiver, libera o UUID offline, e a pessoa usa senha. Amigo sem original com um nick
+que por acaso existe como conta de outra pessoa: escreva `Nick sem-original`. Se a Mojang não
+responder, o nick fica como estava até o próximo start. Tirar alguém: `whitelist remove Nick` no
+console e tirar da lista.
 
 **Login (MixAuth).** O servidor aceita Minecraft não original (`online-mode=false`), então o nick
-sozinho não prova quem é a pessoa. O MixAuth resolve assim:
+sozinho não prova quem é a pessoa:
 - Quem tem original: a Mojang confirma a conta e a pessoa entra direto, com o UUID oficial e a skin.
   Se a Mojang estiver fora do ar, esse jogador não entra até ela voltar.
-- Quem não tem: `/register senha senha` na primeira vez e `/login senha` sempre que entrar (o "lembrar
-  por IP" fica desligado: pelo túnel e em rede de faculdade todos chegam com o mesmo IP, e qualquer um
-  entraria com o nick de outro). Peça para registrar logo que for liberado, senão outro pode registrar o nick.
-- Esqueceu a senha: `auth setpassword Nick nova nova` no console. Recomeçar do zero:
-  `auth remove Nick`.
+- Quem não tem: `/register senha senha` na primeira vez e `/login senha` sempre que entrar. O
+  "lembrar por IP" fica desligado: pelo túnel e em rede de faculdade todos chegam com o mesmo IP, e
+  qualquer um entraria com o nick de outro. Peça para registrar logo que for liberado, senão outro
+  pode registrar o nick.
 - Antes do login a pessoa fica em espectador, parada e cega. Morreu e saiu? Ao voltar ela consegue
-  renascer e logar (o SimpleLogin, usado antes, travava nessa hora).
-
-O nick em `jogadores.txt` tem de ser igual ao do jogo, com as maiúsculas, porque o UUID offline sai
-dele. Senha mínima de 6 caracteres; 5 erros bloqueiam o nick por 5 minutos. Configuração em
-`server-config/config/mixauth-server.toml`.
-
-**Segurança, em resumo.**
-- Quem tem original só entra com a conta verificada pela Mojang. Nunca libere o UUID offline de um
-  nick com original: o MixAuth só pede senha a quem chega como offline, e qualquer um poderia
-  registrar uma senha e entrar com aquele nick (e com o op dele). O start já cuida disso.
-- O repositório é público e o comando de jogar e o de hospedar rodam direto dele no PC de todos:
-  **mantenha a verificação em duas etapas ligada no GitHub** e não dê acesso de escrita a ninguém.
-- A pasta `minezada` do Drive guarda o mundo, o token do DuckDNS (`duckdns.txt`) e o segredo do
-  túnel (`playit.txt`). Compartilhe só com quem hospeda; quem tem o token pode apontar o endereço
-  para outro lugar. Vazou? Gere token novo no site do DuckDNS e troque o `duckdns.txt`.
-- Downloads com checksum: launcher sem original, playit, mrpack-install e packwiz-installer (todos
-  em versão fixa; o packwiz-installer não se atualiza sozinho). Os mods vêm do Modrinth com hash
-  conferido pelo packwiz. O `montar-pack` lista os mods que mudaram de versão: confira antes do push.
-- `main` protegido no GitHub: ninguém (nem o dono) consegue force push ou apagar o branch.
-- Com o túnel, nenhuma porta fica aberta no roteador e o IP de casa não aparece: o host limpa o
-  DuckDNS ao ligar o túnel. O firewall do Windows só aceita a 25565 da rede local. Só na reserva
-  (túnel fora do ar) o `iniciar` abre a 25565 e a 443 por UPnP e uma regra de firewall para a
-  internet, e fecha tudo no `stop`. RCON e query ficam desligados.
-- Pelo túnel todos chegam com o mesmo IP: banir por IP não funciona, use `whitelist remove Nick` e
-  tire o nick do `jogadores.txt`.
-- Mais seguro ainda: desligue o UPnP no roteador. A reserva deixa de funcionar, mas nenhum aparelho
-  da casa consegue abrir porta sozinho.
+  renascer e logar.
+- Senha mínima de 6 caracteres; 5 erros bloqueiam o nick por 5 minutos. Configuração em
+  `server-config/config/mixauth-server.toml`.
 
 **Skins.** Sem conta verificada a Mojang não manda a skin, então o SkinRestorer busca pelo nick ao
 entrar pela primeira vez: Mojang e, se ela bloquear (`429` em rede compartilhada, como a de
-laboratório), a imagem do mc-heads assinada pelo MineSkin. A skin fica salva no mundo e não é
-buscada de novo. Trocar: `/skin set nick SeuNick` ou `/skin set web classic <link>` (`slim` para
-braço fino). A configuração fica em `server-config/config/skinrestorer/config.json`.
+laboratório), a imagem do mc-heads assinada pelo MineSkin. A skin fica salva no mundo. Configuração
+em `server-config/config/skinrestorer/config.json`.
 
-**Túnel playit.gg (endereço principal).** O jogo entra sozinho por `molecule-spindle.tun.ply.gg`.
-Funciona com o host em qualquer rede (casa, faculdade, 4G) sem abrir porta. O segredo do agente fica
-em `playit.txt` no Drive e o endereço em `playit-endereco.txt`, então todo host usa o mesmo túnel. O
-agente baixa sozinho com checksum para `tools/playit` e para no `stop`. Plano grátis: a rota não é
-garantida para quem está longe (testado: do Brasil entra; um verificador nos EUA/Europa não). O host
-entra por `localhost`; outro computador da mesma casa vê o servidor sozinho na parte de LAN.
+## Rede
 
-**Jogador em rede que bloqueia (faculdade).** Algumas redes só deixam sair pelas portas 80 e 443, e o
-túnel usa outra porta. A entrada **Minezada (rede da faculdade)** (`minezada-mc.duckdns.org:443`) só
-funciona na reserva e com um roteador que repasse a 443. No PC de casa (18/11) o roteador aceitou a
-443 e a 80 por UPnP mas não repassou quem vinha de fora (a 25565 e a 8443 passaram). Para quem joga
-da faculdade com o host em casa, falta uma saída na 443 (ver a [issue #8](https://github.com/EnzoFerroni/minezada/issues/8)).
+**Endereço principal: túnel [playit.gg](https://playit.gg)**, hoje `molecule-spindle.tun.ply.gg`.
+O jogo entra sozinho por ele. O `iniciar` liga o agente (baixa com checksum para `tools/playit`) e
+espera ele conectar; no `stop` o agente para. Nada para configurar no roteador, o host pode estar em
+qualquer rede (casa, faculdade, 4G, CGNAT) e o IP dele não aparece. O segredo do agente fica em
+`playit.txt` na pasta do Drive e o endereço em `playit-endereco.txt`, então todo host usa o mesmo
+túnel. Plano grátis: sem limite de uso, mas a rota não é garantida para quem está longe (do Brasil
+entra; um verificador nos EUA/Europa não). Perdeu o segredo? `playit claim generate`,
+`playit claim url <código>`, aprove no site e `playit claim exchange <código>`: a última linha da
+saída é o segredo novo.
+
+**Reserva (só se o túnel não conectar): `minezada-mc.duckdns.org`.** O host abre a 25565 TCP (e a
+443) no roteador por UPnP, cria uma regra de firewall para a internet e reaponta o nome para o
+próprio IP (no start e a cada 5 min). No `stop` fecha tudo e limpa o IP do DuckDNS; com o túnel
+ligado o IP também fica limpo. O token fica em `duckdns.txt` na pasta do Drive, nunca no git: o
+primeiro host com `DUCKDNS_TOKEN` no `config.env` grava o arquivo lá, e os outros pegam de lá. Sem
+UPnP, a reserva precisa de redirecionamento manual da 25565 TCP para o IP local do host (com reserva
+de IP no DHCP).
+
+**Mesma casa.** O host entra por `localhost`. Outro computador da mesma rede vê o servidor sozinho em
+**Multijogador**, na parte de LAN (o `iniciar` anuncia como o "Abrir para LAN" do jogo). Se a rede
+bloquear o anúncio (Wi-Fi com isolamento entre aparelhos), use o IP local que o `iniciar` mostra.
+
+**Faculdade.** Redes que só liberam saída nas portas 80 e 443 bloqueiam o túnel. A entrada
+**Minezada (rede da faculdade)** (`minezada-mc.duckdns.org:443`) só funciona na reserva e com um
+roteador que repasse a 443; o de casa não repassa a 80 nem a 443 (testado em 18/11). Por enquanto:
+roteador do celular ([issue #8](https://github.com/EnzoFerroni/minezada/issues/8)).
 
 **Lista de servidores do jogo.** Vem pronta e se atualiza a cada abertura (packwiz): Minezada (túnel),
-Minezada (reserva), Minezada (rede da faculdade) e Minezada (neste computador, para quem joga na
-máquina do host). Servidor adicionado à mão some na próxima abertura. Mudou o endereço do playit?
-Troque `$tunel` em `scripts/montar-pack.ps1` e gere o pack.
+Minezada (reserva), Minezada (rede da faculdade) e Minezada (neste computador). Servidor adicionado à
+mão some na próxima abertura. Mudou o endereço do playit? Troque `$tunel` em
+`scripts/montar-pack.ps1` e gere o pack.
 
-**Mundo novo? Pré-gere o terreno** para ninguém travar explorando (Terralith e as estruturas pesam na geração). No console, uma vez: `chunky radius 1500` e `chunky start`. Leva um tempo; dá para jogar enquanto roda. `chunky pause` / `chunky continue` controlam.
+**Dicas.**
+- Com UPnP ligado, **não** crie regra manual na 25565: ela trava a porta numa máquina e impede o
+  UPnP de apontar para outro host.
+- Windows: deixe a rede de casa como **Privada**; em rede pública o túnel funciona igual.
+- VPNs (Radmin, Hamachi, ZeroTier) ligadas podem atrapalhar o UPnP e o IP detectado.
 
-Servidor lento? `spark profiler start`, espere 1 minuto e `spark profiler stop`: ele gera um link mostrando o que está pesando.
+## Google Drive
+
+Sem a pasta, o `iniciar` oferece configurar: instala o Google Drive, abre o login e a pasta no
+navegador e espera ela aparecer. Responder `n` grava `SEM_DRIVE=1` no `config.env` e não pergunta
+mais. Os passos manuais:
+
+1. Instale o Google Drive para desktop (https://www.google.com/drive/download/) e faça login.
+2. Dono: a pasta é `Meu Drive/minezada`, com acesso **restrito** (guarda o mundo, o token do DuckDNS
+   e o segredo do túnel). Quem vai hospedar clica em "Solicitar acesso" no link que o `iniciar` abre
+   e o dono aprova como editor. Jogador não usa o Drive.
+3. Convidado: em drive.google.com → Compartilhados comigo → `minezada` → **Adicionar atalho ao Drive**
+   (em "Meu Drive"). Sem o atalho a pasta não aparece no computador.
+4. Mac: botão direito na pasta → **Disponível off-line**.
+
+O `iniciar` acha a pasta sozinho em `X:\Meu Drive\minezada` (Windows) ou
+`~/Library/CloudStorage/GoogleDrive-*/Meu Drive/minezada` (Mac). Pasta em outro lugar: edite
+`SYNC_DIR` no `config.env`.
 
 ## Trocar de host
 
@@ -115,13 +142,40 @@ Servidor lento? `spark profiler start`, espere 1 minuto e `spark profiler stop`:
 - Só use `iniciar.bat -Forcar` / `iniciar.command --forcar` em outra máquina se a original não tiver
   volta (perde o que não foi enviado).
 
+## Segurança
+
+- Quem tem original só entra com a conta verificada pela Mojang. Nunca libere o UUID offline de um
+  nick com original: o MixAuth só pede senha a quem chega como offline, e qualquer um poderia
+  registrar uma senha e entrar com aquele nick (e com o op dele). O start já cuida disso.
+- O repositório é público e os comandos de jogar e hospedar rodam direto dele no PC de todos:
+  **mantenha a verificação em duas etapas ligada no GitHub** e não dê acesso de escrita a ninguém.
+  O `main` é protegido: ninguém (nem o dono) consegue force push ou apagar o branch.
+- A pasta `minezada` do Drive guarda o mundo, o token do DuckDNS e o segredo do túnel. Compartilhe
+  só com quem hospeda (com 2FA na conta Google): quem tem um deles pode apontar o endereço para um
+  servidor falso e pegar as senhas do `/login`. Vazou? Token novo no DuckDNS e segredo novo no playit.
+- Downloads com checksum e versão fixa: launcher sem original, playit, mrpack-install e
+  packwiz-installer. Os mods vêm do Modrinth com hash conferido pelo packwiz. A cada push no pack, a
+  Action **Servidor de teste** sobe o servidor no GitHub e avisa se ele não chegar no `Done`.
+- Com o túnel, nenhuma porta fica aberta no roteador e o IP de casa não aparece. O firewall do
+  Windows só aceita a 25565 da rede local. RCON e query ficam desligados.
+- Pelo túnel todos chegam com o mesmo IP: banir por IP não funciona. Use `whitelist remove Nick` e
+  tire o nick do `jogadores.txt`.
+- Mais seguro ainda: desligue o UPnP no roteador. A reserva deixa de funcionar, mas nenhum aparelho
+  da casa consegue abrir porta sozinho.
+
+## Comandos úteis no console
+
+| Comando | Para quê |
+|---------|----------|
+| `stop` | Desligar e enviar o mundo |
+| `whitelist remove Nick` | Tirar alguém (e apagar do `jogadores.txt`) |
+| `auth setpassword Nick nova nova` | Trocar a senha de quem esqueceu |
+| `auth remove Nick` | Apagar o cadastro de senha |
+| `chunky radius 1500` e `chunky start` | Pré-gerar o terreno de um mundo novo (`chunky pause` / `chunky continue`) |
+| `spark profiler start`, 1 min, `spark profiler stop` | Servidor lento: gera um link mostrando o que pesa |
+
 ## Mudar o pack
 
-1. Edite [`modpack/mods.txt`](../modpack/mods.txt): uma linha `slug-do-modrinth | descrição`.
-2. Rode `powershell -ExecutionPolicy Bypass -File scripts\montar-pack.ps1`.
-   Perfis de gráfico: edite a tabela em `scripts/perfis.ps1`, rode ele e depois o `montar-pack.ps1`
-   (no Mac: `pwsh scripts/perfis.ps1`; os dois scripts rodam no PowerShell do Mac e do Windows).
-3. Siga o checklist de [CONTRIBUTING.md](../.github/CONTRIBUTING.md) (testar servidor e jogo, commit, push e Release).
-
-Os jogadores recebem ao abrir o jogo; o servidor, no próximo start. Se mudar a versão do NeoForge, cada
-um roda o comando de instalação de novo.
+Edite [`modpack/mods.txt`](../modpack/mods.txt) e siga o checklist do
+[CONTRIBUTING.md](../.github/CONTRIBUTING.md). Os jogadores recebem ao abrir o jogo; o servidor, no
+próximo start.

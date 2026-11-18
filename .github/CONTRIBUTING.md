@@ -9,6 +9,11 @@
   (antes de `2026.11.18.1`: histórico em [docs/decisoes.md](../docs/decisoes.md)).
 - **Por que cada coisa é assim**: [docs/decisoes.md](../docs/decisoes.md). Mudou uma decisão? Atualize lá.
 - **Como usar**: [README](../README.md) e [docs/](../docs).
+- **Pack**: `modpack/mods.txt` é a lista de mods (fonte da verdade). `modpack/minezada.mrpack`, `modpack/pack/`,
+  `modpack/minezada-prism.zip` e `docs/mods.md` são gerados pelo `scripts/montar-pack.ps1`: não edite à mão.
+  Perfis de gráfico: tabela em `scripts/perfis.ps1` (gera `modpack/arquivos/`). Configuração do servidor:
+  `server-config/` (copiada para `server/` a cada start). O servidor no Windows instala o `.mrpack`; o do
+  Mac e os jogadores instalam pelo `pack/` (packwiz).
 
 Commits sem dados pessoais: autor com o e-mail `noreply` do GitHub
 (`git config user.email 125482399+EnzoFerroni@users.noreply.github.com`) e nada de IP local,
@@ -20,7 +25,8 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
    (no Mac `pwsh scripts/montar-pack.ps1`; shader novo: montar, `perfis.ps1`, montar de novo).
 2. Ler a lista **Mudanças desde o pack anterior** que ele mostra: versão nova de mod é código novo no
    PC de todos. Conferir se não entrou `connector` / `forgified-fabric-api` (mod Fabric disfarçado).
-3. Testar o **servidor** (`iniciar`) até aparecer `Done`.
+3. Testar o **servidor** (`iniciar`) até aparecer `Done`. A Action **Servidor de teste** também faz isso
+   sozinha a cada push que mexe no pack (aba Actions; falhou, o GitHub avisa por e-mail).
 4. Testar o **jogo**: push, esperar o link raw do GitHub atualizar (até 5 min de cache), abrir o
    jogo e entrar no servidor. Erros de dependência só aparecem no jogo.
 5. Criar o Release: `gh release create vAAAA.MM.DD.N --title "Pack AAAA.MM.DD.N" --notes "o que mudou"`.
