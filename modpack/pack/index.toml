@@ -1,6 +1,11 @@
 hash-format = "sha256"
 
 [[files]]
+file = "mods/odyssey-quests.pw.toml"
+hash = "e906158966dd529bd5adfd0fa8cc615881bf96593a73f82abe8986326219ce1e"
+metafile = true
+
+[[files]]
 file = "mods/create.pw.toml"
 hash = "0f9e653a1989fd186f4d268872a150f1fe84c0045d41559c5cb5321d86bf9c23"
 metafile = true
@@ -511,6 +516,11 @@ hash = "22e42f4b5a9756e24b499687ec5735479c8453b9cea53f5a83241ef967fa65a1"
 metafile = true
 
 [[files]]
+file = "mods/resourceful-lib.pw.toml"
+hash = "63129fbc993e777eb352ac1028ef959fa04264cfba9d3ad8c9cb93e631cee031"
+metafile = true
+
+[[files]]
 file = "mods/mezzconfig.pw.toml"
 hash = "0b4685872feb6558d7299bb406842206721d72826d87b7911909f9760155a4ff"
 metafile = true
@@ -528,11 +538,6 @@ metafile = true
 [[files]]
 file = "mods/owo-lib.pw.toml"
 hash = "0d76c01b16356f56f1b543efe1e3fec448868cea02dfc6d2a0698834e787a36f"
-metafile = true
-
-[[files]]
-file = "mods/resourceful-lib.pw.toml"
-hash = "63129fbc993e777eb352ac1028ef959fa04264cfba9d3ad8c9cb93e631cee031"
 metafile = true
 
 [[files]]

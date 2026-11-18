@@ -14,12 +14,21 @@
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.18.2` · 124 mods. Gerado por `scripts/montar-pack.ps1`. Clique num mod para ver mais.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.18.3` · 125 mods. Gerado por `scripts/montar-pack.ps1`. Clique num mod para ver mais.</sub>
 
 [Aprender e guias](#aprender-e-guias) · [Baús e armazenamento](#baús-e-armazenamento) · [Ferramentas](#ferramentas) · [Dragões](#dragões) · [Dimensões](#dimensões) · [Cavernas e minérios](#cavernas-e-minérios) · [Mobs e animais](#mobs-e-animais) · [Aventura e chefes](#aventura-e-chefes) · [Biomas e terreno](#biomas-e-terreno) · [Estruturas](#estruturas) · [Visual e ambiente](#visual-e-ambiente) · [Pacotes de recursos](#pacotes-de-recursos-todos-vêm-ligados-desligue-em-opções--pacotes-de-recursos) · [Shaders](#shaders-vêm-desligados-ligue-pelos-perfis-ou-em-opções--vídeo--shader-packs) · [Qualidade de vida](#qualidade-de-vida) · [Mundo e facilidade](#mundo-e-facilidade) · [Desempenho](#desempenho)
 
 ## Aprender e guias
 
+<details><summary><img src="https://cdn.modrinth.com/data/lo90fZoB/df9338027dc4a436c651ccc975f593b7c43e1fbb_96.webp" width="20" align="center"> <b>Odyssey Quests</b>: Livro de missões em português: abra no botão do inventário</summary>
+
+Começa pelos primeiros passos e ensina cada mod, com pequenas recompensas.
+
+<img src="https://cdn.modrinth.com/data/lo90fZoB/images/df893165ea8ae55b08be8c9056605ea8c708e36b_350.webp" width="480">
+
+<sub>[Modrinth](https://modrinth.com/mod/odyssey-quests) · versão `2.0.3`</sub>
+
+</details>
 <details><summary><img src="https://cdn.modrinth.com/data/LNytGWDc/61d716699bcf1ec42ed4926a9e1c7311be6087e2_96.webp" width="20" align="center"> <b>Create</b>: Engrenagens, esteiras, moinhos e máquinas que automatizam fazendas e fábricas</summary>
 
 Segure W com o mouse em cima de qualquer item do Create para ver um tutorial animado de como ele funciona.

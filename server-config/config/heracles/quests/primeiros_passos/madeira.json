@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": { "type": "heracles:item", "item": "minecraft:oak_log" },
+    "title": "Primeira madeira",
+    "subtitle": "Todo começo é com um tronco",
+    "description": [
+      "Bem-vindo à Minezada! Este livro ensina o básico de cada mod.",
+      "",
+      "Quebre troncos de qualquer árvore. Dica: segure ' (apóstrofo) e quebre um tronco para derrubar a árvore inteira (Veinminer)."
+    ],
+    "groups": { "Primeiros passos": { "position": [0, 0] } }
+  },
+  "settings": { "autoClaimRewards": true },
+  "tasks": {
+    "troncos": { "type": "heracles:item", "item": "#minecraft:logs", "amount": 8, "collection": "AUTOMATIC" }
+  },
+  "rewards": {
+    "pao": { "type": "heracles:item", "item": { "id": "minecraft:bread", "count": 4 } }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": { "type": "heracles:item", "item": "sophisticatedbackpacks:backpack" },
+    "title": "Mochila nas costas",
+    "subtitle": "Mais espaço para explorar",
+    "description": [
+      "Faça uma mochila do Sophisticated Backpacks.",
+      "",
+      "Ela também ganha níveis e melhorias (ímã para pegar itens, alimentar sozinho, separar). Morreu? Seus itens ficam num corpo onde você caiu: volte lá e abra."
+    ],
+    "groups": { "Primeiros passos": { "position": [6, 1] } }
+  },
+  "settings": { "autoClaimRewards": true },
+  "dependencies": [ "picareta" ],
+  "tasks": {
+    "mochila": { "type": "heracles:item", "item": "sophisticatedbackpacks:backpack", "amount": 1, "collection": "AUTOMATIC" }
+  },
+  "rewards": {
+    "couro": { "type": "heracles:item", "item": { "id": "minecraft:leather", "count": 4 } }
+  }
+}

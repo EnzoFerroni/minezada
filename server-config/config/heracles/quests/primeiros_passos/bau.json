@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": { "type": "heracles:item", "item": "sophisticatedstorage:chest" },
+    "title": "Guardar tudo",
+    "subtitle": "Baús que crescem",
+    "description": [
+      "Faça um baú do Sophisticated Storage (receita no JEI: R em cima dele).",
+      "",
+      "Ele aceita melhorias de nível (ferro, ouro, diamante, netherite) aplicadas sem tirar nada de dentro, e melhorias como triturar, separar e coletar."
+    ],
+    "groups": { "Primeiros passos": { "position": [6, -1] } }
+  },
+  "settings": { "autoClaimRewards": true },
+  "dependencies": [ "picareta" ],
+  "tasks": {
+    "bau": { "type": "heracles:item", "item": "sophisticatedstorage:chest", "amount": 1, "collection": "AUTOMATIC" }
+  },
+  "rewards": {
+    "ferro": { "type": "heracles:item", "item": { "id": "minecraft:iron_ingot", "count": 4 } }
+  }
+}
