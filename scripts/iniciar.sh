@@ -192,6 +192,8 @@ while True:
   if [ -n "$reserva" ]; then
     porta_upnp fechar "$ip" $porta || true
     porta_upnp fechar "$ip" $porta $porta_alt || true
+    # Servidor desligado: o IP desta casa sai do DuckDNS.
+    [ -z "$ddns_pid" ] || curl -fsS "$url&clear=true" >/dev/null 2>&1 || true
   fi
 
   if [ -n "$SYNC_DIR" ]; then
