@@ -87,3 +87,11 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
 - **Simular rede de faculdade**: regras de saída no firewall bloqueando, só para o Java do Prism e o
   `cloudflared` do Modflared, as portas `1-52,54-79,81-442,444-65535` para `Internet`. Conferir com um
   teste de porta rodando no mesmo `javaw`.
+- **Mod novo com lado do servidor: testar entrando num servidor dedicado de verdade.** O Odyssey Quests
+  funciona em mundo de um jogador e derruba todo jogador em servidor dedicado (Heracles#292). A Action só
+  sobe o servidor; o erro só aparece no jogo, então push só depois de entrar e ficar no servidor.
+- **Logo depois de um push o link raw pode entregar o pack antigo por alguns minutos** (cada servidor de
+  borda do GitHub atualiza numa hora). Jogo e servidor com packs diferentes = "Incompatible client". Fechar
+  e abrir de novo depois de uns minutos resolve.
+- **Servidor na janela própria (Windows)**: a etapa do servidor roda escondida (`iniciar.ps1 -Rodar`); para
+  desligar por script, feche a janela "Minecraft server" (`(Get-Process java).CloseMainWindow()`).

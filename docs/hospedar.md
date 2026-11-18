@@ -16,9 +16,9 @@ Ele instala o Git (Windows) ou as ferramentas de linha de comando da Apple (Mac)
 `Minezada-servidor` na pasta do usuário, cria o atalho **Hospedar Minezada** na Área de Trabalho e
 sobe o servidor. Das próximas vezes, clique no atalho (ou em `iniciar.bat` / `iniciar.command`).
 
-**Desligue sempre digitando `stop`.** É isso que devolve o mundo para o Drive (com backup dos 5
-últimos) e libera a trava. Fechar a janela não envia o mundo
-([issue #7](https://github.com/EnzoFerroni/minezada/issues/7)).
+**Desligar: feche a janela "Minecraft server" ou digite `stop` nela.** O servidor salva, o mundo volta para o
+Drive (com backup dos 5 últimos) e a trava é liberada. A janela do `iniciar` pode ser fechada depois que o servidor
+abre (no Windows; no Mac ainda é preciso digitar `stop` no Terminal, [issue #7](https://github.com/EnzoFerroni/minezada/issues/7)). Registro da rede e do envio: `server/logs/iniciar.log`.
 
 ## Do que precisa
 
@@ -172,11 +172,11 @@ O `iniciar` acha a pasta sozinho em `X:\Meu Drive\minezada` (Windows) ou
 - Mais seguro ainda: desligue o UPnP no roteador. A reserva deixa de funcionar, mas nenhum aparelho
   da casa consegue abrir porta sozinho.
 
-## Comandos úteis no console
+## Comandos úteis (no campo de comando da janela do servidor)
 
 | Comando | Para quê |
 |---------|----------|
-| `stop` | Desligar e enviar o mundo |
+| `stop` (ou fechar a janela) | Desligar e enviar o mundo |
 | `whitelist remove Nick` | Tirar alguém (e apagar do `jogadores.txt`) |
 | `auth setpassword Nick nova nova` | Trocar a senha de quem esqueceu |
 | `auth remove Nick` | Apagar o cadastro de senha |
