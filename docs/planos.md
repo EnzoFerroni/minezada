@@ -4,21 +4,26 @@ O que falta fazer, em ordem, e lições aprendidas para mexer no projeto sem que
 
 ## Próximos passos
 
-1. **Testar no Mac**: `curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.sh | bash`
-   e, para hospedar, `iniciar.command`. Nada do lado do Mac rodou ainda (Prism no Mac, atalho
-   `Minezada.app`, Homebrew/Java, UPnP via `miniupnpc`, `caffeinate`, pasta do Drive).
-2. **Pré-gerar o mundo real** antes de chamar todo mundo: no console do servidor,
+Estado em 2026-11-17: pack `2026.11.17.20`. Testado num Mac M4: servidor (subir, MixAuth, whitelist
+com UUID oficial, voo), jogo (crash do Chunky + Distant Horizons corrigido, os 7 shaders de Mac
+abrem, Photon e Solas não), instalação do `jogar.sh` numa cópia da instância e envio do mundo ao Drive.
+
+1. **Testar no Windows** (nada rodou lá desde as mudanças de hoje): `jogar.ps1` com e sem original
+   (fork com SHA-256), `iniciar.ps1` (whitelist só com UUID oficial para quem tem original, porta 443
+   no UPnP, MixAuth).
+2. **Testar o caminho sem original de ponta a ponta**: responder `n`, o fork pede o nick, `/register`,
+   morrer, sair e voltar (com o MixAuth deve renascer e logar; com o SimpleLogin travava).
+3. **Testar a porta 443 de casa**: host com o `iniciar` novo e alguém numa rede de faculdade entrando
+   por **Minezada (rede da faculdade)**. Se o roteador recusar a 443, só a 25565 abre (o script avisa).
+4. **Pré-gerar o mundo real** antes de chamar todo mundo: no console do servidor,
    `chunky radius 1500` e `chunky start`. O mundo atual foi gerado antes dos mods de aventura;
    minérios, mobs e estruturas novas só aparecem em terreno ainda não explorado. Se preferir tudo
    desde o início, apagar `mundo.tar.gz` no Drive e `server/world` (os backups ficam).
-3. **Convidar os jogadores**: mandar o comando de jogar (README) e liberar cada nick no
+5. **Convidar os jogadores**: mandar o comando de jogar (README) e liberar cada nick no
    `jogadores.txt` do Drive + restart (não `whitelist add`, ver [hospedar.md](hospedar.md)). Quem
-   já tinha senha do SimpleLogin registra de novo (senhas não migram). Quem
-   for hospedar recebe a pasta `minezada` do Drive e o token do DuckDNS por mensagem privada.
-4. **Testar o caminho sem original** nos dois sistemas: responder `n`, conferir que o fork abre a
-   instância, pede o nick e entra no servidor.
-5. **Primeiro teste com alguém de fora** entrando por `minezada-mc.duckdns.org` (dentro da casa do
-   host o roteador não tem NAT loopback: lá se usa `localhost` ou o IP local).
+   não tem original e já tinha senha do SimpleLogin registra de novo (senhas não migram). Amigo sem
+   original com nick que existe como conta de outra pessoa: `Nick sem-original`. Quem for hospedar
+   recebe a pasta `minezada` do Drive.
 6. **Livro de missões** (abaixo), depois que a lista de mods estabilizar.
 
 ## Livro de missões (tutorial completo do pack)
