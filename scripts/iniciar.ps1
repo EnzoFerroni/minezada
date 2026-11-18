@@ -414,6 +414,8 @@ finally {
         [void](Porta-UPnP $false)
         [void](Porta-UPnP $false $portaAlt)
         if ($reserva) { [void](Como-Admin "Remove-NetFirewallRule -DisplayName 'minezin 25565 internet'") }
+        # Servidor desligado: o IP desta casa sai do DuckDNS.
+        if ($ddns) { try { Invoke-RestMethod "$url&clear=true" | Out-Null } catch {} }
     }
     if ($sync) {
         Write-Host 'Enviando mundo para a pasta sincronizada...'
