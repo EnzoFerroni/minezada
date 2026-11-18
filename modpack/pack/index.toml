@@ -336,6 +336,11 @@ hash = "1f7bcf75f4794dc1767dd002a3c6569b2b58f947f65fd469e9a800f8468cf0b4"
 metafile = true
 
 [[files]]
+file = "mods/modflared.pw.toml"
+hash = "8093c6fa9f1ef586787cc114924876f2f990ffc0ab7a400685ed801c18a7250c"
+metafile = true
+
+[[files]]
 file = "mods/controlling.pw.toml"
 hash = "aceff9106cdb6f4c20dc0cef4baf6ee9639423f78a52ae64370e367965ccc6ad"
 metafile = true
@@ -982,4 +987,4 @@ preserve = true
 
 [[files]]
 file = "servers.dat"
-hash = "cae7954e42647791fc13be90d3866254b9e39aec9521ce786a6ce50a01077a7c"
+hash = "fffd8f8fdd0671c4130da536d39f03e79d7c1281de803332c56b2c0ba372bcd6"

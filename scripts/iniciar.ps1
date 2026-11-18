@@ -12,7 +12,6 @@ $tools = Join-Path $root 'tools'
 $tar = "$env:SystemRoot\System32\tar.exe"  # bsdtar do Windows; o tar do Git Bash quebra com caminhos C:\
 $mrpackVersion = '0.23.0'
 $porta = 25565
-$portaAlt = 443
 $eu = $env:COMPUTERNAME
 $envFile = Join-Path $root 'config.env'
 
@@ -130,9 +129,9 @@ function Sincronizar-Whitelist($lista, $pasta) {
     [IO.File]::WriteAllText((Join-Path $pasta 'ops.json'), (ConvertTo-Json -InputObject @($ops) -Depth 3))
 }
 
-# Tunel playit.gg: endereco principal. Funciona com o host em qualquer rede, sem porta aberta no roteador
-# e sem expor o IP do host. O segredo do agente fica em playit.txt na pasta do Drive: todo host usa o
-# mesmo tunel e endereco (anotado em playit-endereco.txt). Devolve o processo do agente ja conectado, ou $null.
+# Tunel playit.gg: segunda entrada (o jogador entra por ele se a Cloudflare falhar). Sem porta aberta no
+# roteador e sem expor o IP do host. O segredo do agente fica em playit.txt na pasta do Drive: todo host usa
+# o mesmo tunel e endereco (anotado em playit-endereco.txt). Devolve o processo do agente ja conectado, ou $null.
 function Iniciar-Tunel($pasta) {
     $seg = if ($pasta) { Join-Path $pasta 'playit.txt' }
     if (-not ($seg -and (Test-Path $seg))) {
@@ -168,6 +167,41 @@ function Iniciar-Tunel($pasta) {
     }
     $end = Join-Path $pasta 'playit-endereco.txt'
     Write-Host "Endereco do servidor (tunel): $(if (Test-Path $end) { (Get-Content $end -Raw).Trim() } else { 'veja no painel do playit.gg' })"
+    $p
+}
+
+# Tunel da Cloudflare: endereco principal (minezada.dpdns.org). O jogador conecta como HTTPS na 443 (o mod
+# Modflared liga o cloudflared nele), entao passa em rede de faculdade e Wi-Fi publico. O host so faz conexao
+# de saida (porta 7844). O token fica em cloudflare.txt na pasta do Drive. Devolve o processo conectado, ou $null.
+function Iniciar-Cloudflare($pasta) {
+    $tok = if ($pasta) { Join-Path $pasta 'cloudflare.txt' }
+    if (-not ($tok -and (Test-Path $tok))) { Write-Host 'Sem tunel da Cloudflare (precisa de cloudflare.txt na pasta do Drive).'; return $null }
+    $dir = Join-Path $tools 'cloudflared'
+    $exe = Join-Path $dir 'cloudflared.exe'
+    # Versao fixa com o SHA-256 do release oficial. Atualizar: trocar a versao e o hash (campo digest da API).
+    if (-not ((Test-Path $exe) -and (Get-FileHash $exe -Algorithm SHA256).Hash -eq '2493dbc168923bb3e59e5e7716f71deced92992eea9acd6e9d74f84ac7751343')) {
+        Write-Host 'Baixando o cloudflared...'
+        New-Item -ItemType Directory -Force $dir | Out-Null
+        Invoke-WebRequest 'https://github.com/cloudflare/cloudflared/releases/download/2026.10.7/cloudflared-windows-amd64.exe' -OutFile "$exe.tmp"
+        if ((Get-FileHash "$exe.tmp" -Algorithm SHA256).Hash -ne '2493dbc168923bb3e59e5e7716f71deced92992eea9acd6e9d74f84ac7751343') {
+            Remove-Item "$exe.tmp"; Write-Warning 'Checksum do cloudflared nao confere; tunel nao ligado.'; return $null
+        }
+        Move-Item -Force "$exe.tmp" $exe
+    }
+    Get-Process cloudflared -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq $exe } | Stop-Process -Force
+    New-Item -ItemType Directory -Force (Join-Path $server 'logs') | Out-Null
+    $log = Join-Path $server 'logs\cloudflared.log'
+    Remove-Item $log -ErrorAction SilentlyContinue
+    # --token-file: o token nao aparece na lista de processos. Opcoes globais antes do "run".
+    $p = Start-Process $exe -WindowStyle Hidden -PassThru -ArgumentList 'tunnel', '--no-autoupdate', '--logfile', "`"$log`"", 'run', '--token-file', "`"$tok`""
+    Write-Host 'Ligando o tunel da Cloudflare...'
+    for ($i = 0; $i -lt 40 -and -not ((Test-Path $log) -and (Select-String -Quiet 'Registered tunnel connection' $log)); $i++) { Start-Sleep -Milliseconds 500 }
+    if (-not (Select-String -Quiet 'Registered tunnel connection' $log -ErrorAction SilentlyContinue)) {
+        Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue
+        Write-Warning "O tunel da Cloudflare nao conectou (detalhes em $log)."
+        return $null
+    }
+    Write-Host 'Endereco do servidor: minezada.dpdns.org (tunel da Cloudflare)'
     $p
 }
 
@@ -356,21 +390,21 @@ $ipLocal = try { (Find-NetRoute -RemoteIPAddress 8.8.8.8 | Where-Object IPAddres
 Write-Host "Na mesma casa: entre por localhost (nesta maquina) ou $ipLocal (outro computador)."
 
 $ddns = $null; $reserva = $false
+$cf = Iniciar-Cloudflare $cfg.SYNC_DIR
 $tunel = Iniciar-Tunel $cfg.SYNC_DIR
+$semTunel = -not ($cf -or $tunel)
 $url = "https://www.duckdns.org/update?domains=$($cfg.DUCKDNS_DOMAIN)&token=$($cfg.DUCKDNS_TOKEN)"
-if ($tunel) {
+if (-not $semTunel) {
     # Tira o IP desta casa do DuckDNS: o endereco de reserva so aponta para um host quando ele precisa.
     if ($cfg.DUCKDNS_TOKEN) { try { Invoke-RestMethod "$url&clear=true" | Out-Null } catch {} }
 }
 else {
-    # Reserva: porta no roteador por UPnP e o DuckDNS apontando para este host. Precisa de uma regra
+    # Reserva (nenhum tunel conectou): porta no roteador por UPnP e o DuckDNS apontando para este host. Precisa de uma regra
     # de firewall aberta para a internet, criada so agora e apagada no stop.
     Write-Host "Reserva: abrindo a porta $porta no roteador (UPnP) e no firewall (o Windows vai pedir permissao)."
     $reserva = Como-Admin "New-NetFirewallRule -DisplayName 'minezin 25565 internet' -Direction Inbound -Protocol TCP -LocalPort $porta -Action Allow -Profile Any"
     if (Porta-UPnP $true) {
         Write-Host "Porta $porta aberta via UPnP."
-        # Redes de faculdade/empresa costumam liberar so 80/443 de saida: a 443 do roteador tambem leva ao servidor.
-        if (Porta-UPnP $true $portaAlt) { Write-Host "Porta $portaAlt tambem aberta (para quem esta em rede que bloqueia a $porta)." }
     }
     else { Write-Warning 'UPnP indisponivel: so quem esta nesta rede consegue entrar (ou redirecione a porta no roteador).' }
     if ($cfg.DUCKDNS_TOKEN) {
@@ -409,10 +443,9 @@ finally {
     [void][Minezada.Energia]::SetThreadExecutionState(2147483648)  # 0x80000000 = volta ao normal
     if ($ddns) { Stop-Job $ddns; Remove-Job $ddns }
     Stop-Job $lan; Remove-Job $lan
-    if ($tunel) { Stop-Process -Id $tunel.Id -Force -ErrorAction SilentlyContinue }
-    else {
+    foreach ($t in $cf, $tunel) { if ($t) { Stop-Process -Id $t.Id -Force -ErrorAction SilentlyContinue } }
+    if ($semTunel) {
         [void](Porta-UPnP $false)
-        [void](Porta-UPnP $false $portaAlt)
         if ($reserva) { [void](Como-Admin "Remove-NetFirewallRule -DisplayName 'minezin 25565 internet'") }
         # Servidor desligado: o IP desta casa sai do DuckDNS.
         if ($ddns) { try { Invoke-RestMethod "$url&clear=true" | Out-Null } catch {} }
