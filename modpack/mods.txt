@@ -3,7 +3,6 @@
 # Dependências obrigatórias entram sozinhas.
 
 ## Aprender e guias
-odyssey-quests | Livro de missões em português: abra no botão do inventário. Começa pelos primeiros passos e ensina cada mod, com pequenas recompensas.
 create | Engrenagens, esteiras, moinhos e máquinas que automatizam fazendas e fábricas. Segure W com o mouse em cima de qualquer item do Create para ver um tutorial animado de como ele funciona.
 jei | Mostra a receita de qualquer item. No inventário, passe o mouse num item e aperte R para ver como fazer ou U para ver onde ele é usado.
 bettersearch | Pesquisa que entende erro de digitação e nome em inglês ou português (JEI, inventário criativo e comandos).
