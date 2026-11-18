@@ -16,7 +16,7 @@ Clique em **Hospedar Minezada** (ou `iniciar.bat` / `iniciar.command` na pasta d
 3. Instala o Java se faltar
 4. Instala/atualiza servidor, NeoForge e mods: no Windows com o
    [mrpack-install](https://github.com/nothub/mrpack-install); no Mac com o instalador do NeoForge e o
-   packwiz (o mrpack-install falha no DNS de roteadores como o da operadora)
+   packwiz (o mrpack-install falha no DNS de roteadores de operadora)
 5. Baixa o mundo do Drive e trava para ninguém mais hospedar junto
 6. Libera o firewall, abre a porta no roteador (UPnP) e aponta `minezada-mc.duckdns.org` para
    esta máquina
@@ -79,14 +79,17 @@ braço fino). A configuração fica em `server-config/config/skinrestorer/config
 **Jogador em rede que bloqueia (faculdade).** Algumas redes só deixam sair pelas portas 80 e 443. Com UPnP o
 script abre também a 443 do roteador apontando para o servidor, e o jogo já traz a entrada
 **Minezada (rede da faculdade)** (`minezada-mc.duckdns.org:443`). Se o roteador do host já usa a 443, só
-a 25565 abre.
+a 25565 abre. Atenção: no PC de casa (18/11) o roteador aceitou a 443 por UPnP mas não repassou
+quem vinha de fora; só a 25565 funcionou. Antes de contar com ela, confira de fora (ex.:
+`https://api.mcsrvstat.us/3/minezada-mc.duckdns.org:443` com o servidor ligado).
 
 **Lista de servidores do jogo.** Vem pronta e se atualiza a cada abertura (packwiz): Minezada,
 Minezada (rede da faculdade), Minezada (túnel playit) e Minezada (neste computador, para quem joga na
 máquina do host). Servidor adicionado à mão some na próxima abertura. Mudou o endereço do playit?
 Troque `$tunel` em `scripts/montar-pack.ps1` e gere o pack.
 
-**Host em rede que bloqueia (faculdade, laboratório).** Sem UPnP o script liga o túnel playit.gg: quem
+**Host em rede que bloqueia (faculdade, laboratório).** Sem UPnP o script liga o túnel playit.gg (Mac e
+Windows; o agente baixa sozinho com checksum para `tools/playit` e para no `stop`): quem
 está fora, ou na mesma rede se ela isola os computadores, entra pelo endereço de
 `playit-endereco.txt` no Drive. O host entra por `localhost`; o servidor não aparece sozinho em
 Multijogador porque a rede bloqueia o anúncio de LAN.

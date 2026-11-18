@@ -8,23 +8,35 @@ Estado em 2026-11-17: pack `2026.11.17.20`. Testado num Mac M4: servidor (subir,
 com UUID oficial, voo), jogo (crash do Chunky + Distant Horizons corrigido, os 7 shaders de Mac
 abrem, Photon e Solas não), instalação do `jogar.sh` numa cópia da instância e envio do mundo ao Drive.
 
-1. **Testar no Windows** (nada rodou lá desde as mudanças de hoje): `jogar.ps1` com e sem original
-   (fork com SHA-256), `iniciar.ps1` (whitelist só com UUID oficial para quem tem original, porta 443
-   no UPnP, MixAuth).
+Testado no PC Windows em 2026-11-18: `iniciar.ps1` com o Drive (troca de host Mac → PC continuou o
+mesmo mundo, whitelist com UUID oficial, UPnP, DuckDNS, `stop` enviou o mundo e liberou a trava),
+entrada de fora pela 25565, túnel playit no Windows (agente conecta e o servidor responde por
+`molecule-spindle.tun.ply.gg`), `jogar.ps1` com original (memória 4096 com 16 GB) e o download do
+launcher sem original (SHA-256 confere).
+
+1. **Porta 443 não repassa no roteador de casa**: o UPnP aceita o mapeamento 443 → 25565, mas de fora
+   ela não responde (a 25565 sim). Provável: o roteador reserva a 443 da WAN para ele ou a operadora
+   bloqueia. Sem ela, quem está numa rede de faculdade que só libera 80/443 não entra com o host em
+   casa. Opções: desligar a gerência remota HTTPS do roteador e testar de novo; ou túnel numa porta
+   443 (playit Premium ou outro serviço).
 2. **Testar o caminho sem original de ponta a ponta**: responder `n`, o fork pede o nick, `/register`,
    morrer, sair e voltar (com o MixAuth deve renascer e logar; com o SimpleLogin travava).
-3. **Testar a porta 443 de casa**: host com o `iniciar` novo e alguém numa rede de faculdade entrando
-   por **Minezada (rede da faculdade)**. Se o roteador recusar a 443, só a 25565 abre (o script avisa).
-4. **Pré-gerar o mundo real** antes de chamar todo mundo: no console do servidor,
+3. **Testar o comando de hospedar num PC sem o repo** (`hospedar.ps1`: instala o Git, clona, cria o
+   atalho). Mundo corrompido já conferido no Windows: para com aviso, sem trava e sem mexer no local.
+4. **Na próxima geração do pack**: trocar o endereço da entrada **Minezada** em `montar-pack.ps1` para
+   `minezada-mc.duckdns.org:25565`. O "entrar ao abrir" do Prism chega com `:25565`, o jogo não acha
+   igual na lista e cria uma entrada extra "Servidor de Minecraft" (o packwiz apaga na abertura
+   seguinte). Não vale gerar o pack só por isso: gerar atualiza todos os mods e pede o teste completo.
+5. **Pré-gerar o mundo real** antes de chamar todo mundo: no console do servidor,
    `chunky radius 1500` e `chunky start`. O mundo atual foi gerado antes dos mods de aventura;
    minérios, mobs e estruturas novas só aparecem em terreno ainda não explorado. Se preferir tudo
    desde o início, apagar `mundo.tar.gz` no Drive e `server/world` (os backups ficam).
-5. **Convidar os jogadores**: mandar o comando de jogar (README) e liberar cada nick no
+6. **Convidar os jogadores**: mandar o comando de jogar (README) e liberar cada nick no
    `jogadores.txt` do Drive + restart (não `whitelist add`, ver [hospedar.md](hospedar.md)). Quem
    não tem original e já tinha senha do SimpleLogin registra de novo (senhas não migram). Amigo sem
    original com nick que existe como conta de outra pessoa: `Nick sem-original`. Quem for hospedar
    recebe a pasta `minezada` do Drive.
-6. **Livro de missões** (abaixo), depois que a lista de mods estabilizar.
+7. **Livro de missões** (abaixo), depois que a lista de mods estabilizar.
 
 ## Livro de missões (tutorial completo do pack)
 
