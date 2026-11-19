@@ -9,7 +9,6 @@ main() {
   root="$(cd "$(dirname "$0")/.." && pwd)"
   server="$root/server"
   tools="$root/tools"
-  porta=25565
   eu="$(hostname -s)"
   forcar=0; [ "${1:-}" = "--forcar" ] && forcar=1
   shopt -s nullglob
@@ -42,19 +41,19 @@ main() {
     fi
   fi
 
-  # 3. Java 21+ (no macOS /usr/bin/java existe mesmo sem JDK, por isso testa rodando). Faltou ou e
-  # antigo: baixa o Temurin 25 para tools/, sem Homebrew nem senha de administrador.
+  # 3. JDK 21+ (o JDK roda o scripts/Whitelist.java direto; no macOS /usr/bin/java existe mesmo sem JDK, por isso
+  # testa rodando). Faltou, e antigo ou so JRE: baixa o Temurin 25 para tools/, sem Homebrew nem senha de administrador.
   if ! java_ok "$JAVA"; then
-    jre="$tools/jre/Contents/Home/bin/java"; [ "$(uname -s)" = "Darwin" ] || jre="$tools/jre/bin/java"
-    if ! java_ok "$jre"; then
+    jdk="$tools/jdk/Contents/Home/bin/java"; [ "$(uname -s)" = "Darwin" ] || jdk="$tools/jdk/bin/java"
+    if ! java_ok "$jdk"; then
       echo "Instalando Java 25..."
       case "$(uname -s)" in Darwin) os=mac ;; *) os=linux ;; esac
       case "$(uname -m)" in arm64|aarch64) arch=aarch64 ;; *) arch=x64 ;; esac
-      rm -rf "$tools/jre"; mkdir -p "$tools/jre"
-      curl -fsSL "https://api.adoptium.net/v3/binary/latest/25/ga/$os/$arch/jre/hotspot/normal/eclipse" \
-        | tar -xz -C "$tools/jre" --strip-components 1 || die "Download do Java falhou."
+      rm -rf "$tools/jdk" "$tools/jre"; mkdir -p "$tools/jdk"
+      curl -fsSL "https://api.adoptium.net/v3/binary/latest/25/ga/$os/$arch/jdk/hotspot/normal/eclipse" \
+        | tar -xz -C "$tools/jdk" --strip-components 1 || die "Download do Java falhou."
     fi
-    JAVA="$jre"
+    JAVA="$jdk"
     java_ok "$JAVA" || die "Java nao instalado. Veja docs/hospedar.md"
   fi
 
@@ -113,47 +112,19 @@ main() {
   lista="$server/jogadores.txt"; [ -z "$SYNC_DIR" ] || lista="$SYNC_DIR/jogadores.txt"
   sincronizar_whitelist "$lista" "$server"
 
-  # 6. Rede: tuneis da Cloudflare e do playit.
-  # IP da placa da rota padrao (en0 nem sempre e a que vai para a internet).
-  ifc="$(route -n get default 2>/dev/null | awk '/interface:/{print $2}')"
-  ip="$(ipconfig getifaddr "${ifc:-en0}" 2>/dev/null || hostname -I 2>/dev/null | awk '{print $1}')"
-  echo "Na mesma casa: entre por localhost (nesta maquina) ou $ip (outro computador)."
+  # 6. Rede: tuneis da Cloudflare e do playit. Quem esta nesta maquina entra por localhost; o resto, pelo tunel.
   cf_pid=""; tunel_pid=""
   iniciar_cloudflare || true
   iniciar_tunel || true
-  [ -n "$cf_pid$tunel_pid" ] || echo "AVISO: nenhum tunel conectou: so quem esta nesta rede consegue entrar." >&2
-
-  # Anuncia o servidor na rede local como o "Abrir para LAN" do jogo: quem esta na mesma rede ve
-  # "Minezada" sozinho em Multijogador, sem digitar IP.
-  lan_pid=""
-  if [ "$(uname -s)" != "Darwin" ] || xcode-select -p >/dev/null 2>&1; then
-    if command -v python3 >/dev/null; then
-      python3 -c '
-import socket, sys, time
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-s.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 1)
-try:
-    s.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_IF, socket.inet_aton(sys.argv[1]))
-except OSError:
-    pass
-msg = ("[MOTD]Minezada[/MOTD][AD]" + sys.argv[2] + "[/AD]").encode()
-while True:
-    try:
-        s.sendto(msg, ("224.0.2.60", 4445))
-    except OSError:
-        pass
-    time.sleep(1.5)' "${ip:-0.0.0.0}" "$porta" >/dev/null 2>&1 &
-      lan_pid=$!
-    fi
-  fi
-  trap 'kill $lan_pid $tunel_pid $cf_pid 2>/dev/null || true' EXIT
+  [ -n "$cf_pid$tunel_pid" ] || echo "AVISO: nenhum tunel conectou: so esta maquina consegue entrar (localhost)." >&2
+  trap 'kill $tunel_pid $cf_pid 2>/dev/null || true' EXIT
 
   echo "Iniciando servidor com $RAM de RAM. Para desligar e salvar: digite 'stop', aperte Ctrl+C ou feche esta janela."
   # Flags do Aikar: coleta de lixo G1 ajustada para servidor de Minecraft (menos travadas).
   flags="-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1"
   rodar_servidor "$JAVA" "-Xms$RAM" "-Xmx$RAM" $flags "@libraries/net/neoforged/neoforge/$neo/unix_args.txt" nogui
 
-  kill $lan_pid $tunel_pid $cf_pid 2>/dev/null || true
+  kill $tunel_pid $cf_pid 2>/dev/null || true
 
   [ -z "$SYNC_DIR" ] || enviar_mundo
 }
@@ -283,83 +254,10 @@ iniciar_tunel() {
 # Link da pasta minezada no Drive: quem nao tem acesso ve o botao "Solicitar acesso".
 drive_url="https://drive.google.com/drive/folders/1Kw45U0B-b906dnDsUH8bLy9nDg7HfWzh"
 
-# Libera na whitelist os nicks de jogadores.txt (um por linha; "op" depois do nick tambem da admin),
-# MixAuth: quem tem original entra com o UUID oficial (so ele e liberado); sem original, com o offline. Sem o arquivo, cria com o dono e quem ja esta
-# liberado. So adiciona; tirar alguem e no console. Uso: sincronizar_whitelist LISTA PASTA_DO_SERVIDOR
+# Libera na whitelist os nicks de jogadores.txt: mesma logica no Windows e no Mac (scripts/Whitelist.java).
+# Uso: sincronizar_whitelist LISTA PASTA_DO_SERVIDOR (com o servidor rodando, depois: whitelist reload no console)
 sincronizar_whitelist() {
-  if [ "$(uname -s)" = "Darwin" ] && ! xcode-select -p >/dev/null 2>&1; then return 0; fi
-  command -v python3 >/dev/null || return 0
-  python3 - "$@" <<'PY' || echo "AVISO: falha ao atualizar a whitelist." >&2
-import hashlib, json, os, re, shutil, sys, urllib.error, urllib.request, uuid
-lista, pasta = sys.argv[1], sys.argv[2]
-def offline(nome):  # mesmo UUID que o servidor da ao nick sem conta Microsoft (maiusculas contam)
-    return str(uuid.UUID(bytes=hashlib.md5(b"OfflinePlayer:" + nome.encode()).digest(), version=3))
-def ler(nome):
-    arq = os.path.join(pasta, nome)
-    return json.load(open(arq)) if os.path.exists(arq) else []
-wl, ops = ler("whitelist.json"), ler("ops.json")
-mundo = os.path.join(pasta, "world")
-# UUID oficial ja conhecido (whitelist/ops) evita consultar a Mojang a cada start.
-oficiais = {e["name"].lower(): e["uuid"] for e in wl + ops if e["uuid"] != offline(e["name"])}
-FALHA = object()  # a Mojang nao respondeu: nao mexe nas entradas deste nick neste start
-def oficial(nome):
-    if nome.lower() in oficiais:
-        return oficiais[nome.lower()]
-    # Dois enderecos da Mojang: rede compartilhada (faculdade) costuma levar 429 em um deles.
-    for url in ("https://api.mojang.com/users/profiles/minecraft/",
-                "https://api.minecraftservices.com/minecraft/profile/lookup/name/"):
-        try:
-            return str(uuid.UUID(json.load(urllib.request.urlopen(url + nome, timeout=5))["id"]))
-        except urllib.error.HTTPError as e:
-            if e.code == 404:  # nick sem conta original
-                return None
-        except Exception:
-            pass
-    print(f"AVISO: a Mojang nao respondeu sobre {nome}; whitelist dele fica como estava ate o proximo start.")
-    return FALHA
-if not os.path.exists(lista):
-    with open(lista, "w") as f:
-        f.write("# Um nick por linha, igual ao do jogo (maiusculas contam); 'op' depois tambem da admin.\n"
-                "# 'sem-original' depois: joga sem Minecraft original com um nick que existe como conta original.\n"
-                "# O servidor libera todos ao iniciar: depois de editar, reinicie. Nao use whitelist add no console.\nEnzobullet op\n")
-        f.writelines(e["name"] + "\n" for e in wl if e["name"].lower() != "enzobullet")
-for linha in open(lista, encoding="utf-8-sig"):
-    partes = linha.split("#")[0].split()
-    if not partes:
-        continue
-    nome = partes[0]
-    if not re.fullmatch(r"[A-Za-z0-9_]{1,16}", nome):  # nick valido do Java
-        print(f"AVISO: nick invalido em jogadores.txt: {nome}")
-        continue
-    flags = [x.lower() for x in partes[1:]]
-    op, off = "op" in flags, offline(nome)
-    on = None if "sem-original" in flags else oficial(nome)
-    if on is FALHA:
-        continue
-    if on:
-        # Nick com original: so o UUID oficial. O offline liberado deixaria qualquer um sem original
-        # entrar com esse nick (o MixAuth so pede senha) e herdar op e progresso.
-        for nome_arq, dados in (("whitelist", wl), ("ops", ops)):
-            if any(e["uuid"] == off for e in dados):
-                dados[:] = [e for e in dados if e["uuid"] != off]
-                print(f"UUID offline de {nome} tirado de {nome_arq} (ele tem original).")
-        # Progresso de antes (UUID offline) copiado para o oficial, so se o oficial ainda nao tem nada.
-        for sub, ext in (("playerdata", ".dat"), ("advancements", ".json"), ("stats", ".json")):
-            de, para = (os.path.join(mundo, sub, u + ext) for u in (off, on))
-            if os.path.exists(de) and not os.path.exists(para):
-                shutil.copy2(de, para)
-                print(f"Progresso de {nome} copiado para o UUID oficial: {sub}/{on}{ext}")
-    u = on or off
-    if u not in {e["uuid"] for e in wl}:
-        wl.append({"uuid": u, "name": nome})
-        print(f"Liberado na whitelist: {nome} ({'original' if on else 'sem original'})")
-    if op and u not in {e["uuid"] for e in ops}:
-        ops.append({"uuid": u, "name": nome, "level": 4, "bypassesPlayerLimit": False})
-        print(f"Admin (op): {nome}")
-for nome, dados in (("whitelist.json", wl), ("ops.json", ops)):
-    with open(os.path.join(pasta, nome), "w") as f:
-        json.dump(dados, f, indent=2)
-PY
+  "${JAVA:-java}" "$(dirname "${BASH_SOURCE[0]}")/Whitelist.java" "$1" "$2" || echo "AVISO: falha ao atualizar a whitelist." >&2
 }
 
 achar_drive() {
@@ -411,11 +309,11 @@ configurar_drive() {
   done
 }
 
-# Versao principal do Java >= 21 (NeoForge 1.21.1). "1.8.0" vira 1.
+# Java >= 21 (NeoForge 1.21.1; "1.8.0" vira 1) e JDK (jdk.compiler roda o Whitelist.java).
 java_ok() {
   local v
   v="$("$1" -version 2>&1 | sed -n 's/.*version "\([0-9]*\).*/\1/p' | head -n 1)"
-  [ "${v:-0}" -ge 21 ]
+  [ "${v:-0}" -ge 21 ] && "$1" --list-modules 2>/dev/null | grep '^jdk.compiler' >/dev/null  # sem -q: o java nao leva SIGPIPE (pipefail)
 }
 
 # MINEZADA_TESTE=1: so carrega as funcoes, para os testes (scripts/testes/).

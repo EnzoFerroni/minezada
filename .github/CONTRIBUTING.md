@@ -16,10 +16,10 @@
   Perfis de gráfico: tabela em `scripts/perfis.ps1` (gera `modpack/arquivos/`). Configuração do servidor:
   `server-config/` (copiada para `server/` a cada start). Servidor (Windows e Mac) e jogadores
   instalam pelo `pack/` (packwiz).
-- **Testes**: `scripts/testes/` (desligar o servidor por stop, Ctrl+C e janela fechada; whitelist igual no Mac e no
-  Windows). A Action **Testes dos scripts** roda tudo no macOS, Linux e Windows a cada push que mexe nos scripts.
-  Mudou o `rodar_servidor`/`enviar_mundo` do `iniciar.sh` ou a whitelist? Rode `scripts/testes/desligar.sh` e
-  `scripts/testes/whitelist.sh` antes do push.
+- **Testes**: `scripts/testes/` (desligar o servidor por stop, Ctrl+C e janela fechada; whitelist, que é um arquivo
+  só para Windows e Mac: `scripts/Whitelist.java`). A Action **Testes dos scripts** roda tudo no macOS, Linux e
+  Windows a cada push que mexe nos scripts. Mudou o `rodar_servidor`/`enviar_mundo` do `iniciar.sh` ou a whitelist?
+  Rode `scripts/testes/desligar.sh` e `java scripts/testes/WhitelistTeste.java` antes do push.
 
 Commits sem dados pessoais: autor com o e-mail `noreply` do GitHub
 (`git config user.email 125482399+EnzoFerroni@users.noreply.github.com`) e nada de IP local,

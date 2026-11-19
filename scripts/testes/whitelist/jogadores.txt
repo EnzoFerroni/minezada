@@ -1,4 +1,4 @@
-# Caso de teste da whitelist (scripts/testes/whitelist.sh e whitelist.ps1). Sem consultas a Mojang: o UUID
+# Caso de teste da whitelist (scripts/testes/WhitelistTeste.java). Sem consultas a Mojang: o UUID
 # oficial do Fulano ja esta no whitelist.json, e os outros sao sem-original.
 Fulano op
 Ciclano sem-original
