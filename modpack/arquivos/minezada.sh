@@ -36,15 +36,5 @@ if [ "$(uname -s)" = "Darwin" ]; then
   perl -pi -e 's/("mods\/distanthorizons\.pw\.toml":\{.*?"optionValue":)true/${1}false/' packwiz.json
   rm -f mods/DistantHorizons-*.jar
 fi
-# NeoForge da instancia igual ao do pack. O Prism ja carregou a versao desta abertura, entao troca o
-# mmc-pack.json e pede para abrir de novo (com a versao antiga o servidor recusa a entrada).
-t="$(curl -fsSL --max-time 10 "$pack" || true)"
-mc="$(printf '%s\n' "$t" | sed -n 's/^minecraft = "\(.*\)"/\1/p')"
-neo="$(printf '%s\n' "$t" | sed -n 's/^neoforge = "\(.*\)"/\1/p')"
-if [ -n "$neo" ] && ! grep -qF "\"$neo\"" "$inst/mmc-pack.json"; then
-  printf '{"formatVersion":1,"components":[{"uid":"net.minecraft","version":"%s","important":true},{"uid":"net.neoforged","version":"%s"}]}\n' "$mc" "$neo" > "$inst/mmc-pack.json"
-  echo "Minezada atualizou o NeoForge para $neo. Feche este aviso e abra o jogo de novo."
-  exit 1
-fi
 exit 0
 }

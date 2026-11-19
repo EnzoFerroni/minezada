@@ -53,6 +53,7 @@ $pedidos = foreach ($l in $linhas) { if ($l -match '^\s*([a-z0-9_-]+)\s*\|') { $
 # Pack anterior (modpack/pack): lista de arquivos (para mostrar o que mudou) e a versao de cada projeto (para
 # repetir; o link de cada arquivo tem o id do projeto e da versao).
 $antes = @(); $fixas = @{}
+$neoAntes = if (Test-Path (Join-Path $root 'modpack/pack/pack.toml')) { [regex]::Match((Get-Content (Join-Path $root 'modpack/pack/pack.toml') -Raw), 'neoforge = "(.+?)"').Groups[1].Value }
 foreach ($m in Get-ChildItem (Join-Path $root 'modpack/pack') -Filter *.pw.toml -Recurse -ErrorAction SilentlyContinue) {
     $c = Get-Content $m.FullName -Raw -Encoding UTF8
     if ($c -match '(?m)^filename = "(.+)"') { $antes += "$($m.Directory.Name)/$($matches[1])" }
@@ -110,6 +111,8 @@ foreach ($x in $projs.Values) {
 # e uma versao que ainda nao esta la faz a instancia falhar ao abrir.
 $metaNeo = [Text.Encoding]::UTF8.GetString((Invoke-WebRequest 'https://meta.prismlauncher.org/v1/net.neoforged/index.json' -UseBasicParsing).RawContentStream.ToArray()) | ConvertFrom-Json
 $neo = ($metaNeo.versions | Where-Object { $_.version -like "$($mc.Substring(2)).*" } | Select-Object -First 1).version  # "21.1.*"
+# Versao fixa como a dos mods (trocar o NeoForge faz o Prism de quem abre sem o atalho perguntar "Update"). -Atualizar busca a mais nova.
+if ($neoAntes -and -not $Atualizar -and ($metaNeo.versions | Where-Object version -eq $neoAntes)) { $neo = $neoAntes }
 if (-not $neo) { throw "Nenhum NeoForge para $mc no meta do Prism" }
 $tmp = Join-Path ([IO.Path]::GetTempPath()) "minezada-pack-$PID"
 New-Item -ItemType Directory -Force $tmp | Out-Null
