@@ -118,5 +118,10 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
   no `packwiz.json` (o packwiz respeita a escolha salva e não pergunta). Não use `-g` no packwiz: sem a janela ele
   marca todos os opcionais. O `-t 0` tira a espera de 10 s do "Reconfigure optional mods?" (ali dava para marcar
   o DH no Mac); opcional novo ainda abre a lista de escolha.
+- **Script de antes de abrir** (`modpack/arquivos/minezada.ps1` e `.sh`, issue #17): vem pelo pack e o
+  `PreLaunchCommand` roda ele. É ele que chama o packwiz, então uma versão quebrada impede o jogo de abrir e não
+  se conserta sozinha (só rodando o comando de jogar de novo). Teste abrindo pelo Prism antes do push. No Windows
+  o `Start-Process -Wait` dá "Acesso negado" quando o Prism roda o script: use o `java.exe`, que o PowerShell
+  espera. Mudança no `instance.cfg` (memória, `Env`) continua pedindo o comando de jogar.
 - **Testar Ctrl+C num script**: o que roda em segundo plano num bash não interativo nasce ignorando SIGINT, e aí
   nem o trap é instalado. Ligar `set -m` antes (como em `scripts/testes/desligar.sh`), senão o teste falha à toa.
