@@ -57,6 +57,10 @@ O projeto é aberto a qualquer um:
 - **Quer mexer no código ou no pack?** Pull requests são bem-vindos; o [guia](.github/CONTRIBUTING.md) explica como
   montar e testar.
 
+Código e documentação sob a [licença MIT](LICENSE). Os mods não ficam neste repositório: o jogo baixa cada um do
+Modrinth, com a licença do seu autor. O zip do Prism traz o [packwiz-installer](https://github.com/packwiz/packwiz-installer)
+(MIT).
+
 ## Mais
 
 [Mods](docs/mods.md) · [Hospedar](docs/hospedar.md) · [Tarefas](https://github.com/users/EnzoFerroni/projects/3) · [Versões](https://github.com/EnzoFerroni/minezada/releases) · [Decisões](docs/decisoes.md) · [Como mexer](.github/CONTRIBUTING.md)
