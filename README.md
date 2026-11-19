@@ -31,8 +31,16 @@ Minecraft original, só o seu nick) e espere os mods baixarem.
 - **Pede senha**: na primeira vez, `/register senha senha`; depois, `/login senha`.
 - **Jogo lento**: **Opções** > **Perfis** > **1 - Minimo**.
 
-Achou um erro? Mande um print para o Enzo. Se o jogo fechou, cole o `latest.log` em [mclo.gs](https://mclo.gs) e
-mande o link (no Prism: botão direito em **Minezada** > **Pasta** > `.minecraft` > `logs`).
+Achou um erro? Mande um print para o Enzo. Se o jogo fechou ou não conectou, rode o comando abaixo e mande os links
+que ele copia (ele envia os logs do jogo para o [mclo.gs](https://mclo.gs), só com o seu nick):
+
+```powershell
+irm https://raw.githubusercontent.com/EnzoFerroni/minezada/main/logs.ps1 | iex
+```
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/logs.sh | bash
+```
 
 ## Mais
 
