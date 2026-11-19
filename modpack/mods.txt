@@ -39,6 +39,7 @@ spelunkery | Mineração mais interessante: minérios em pedras variadas, pepita
 naturalist | Dezenas de animais realistas (urso, cervo, leão, elefante, borboletas, cobras) pelo mundo.
 mowzies-mobs | Mobs e mini-chefes únicos e bem animados, com recompensas ótimas.
 aquamirae | Aventura no oceano congelado: navios, mobs aquáticos, chefe e armaduras.
+adorable-hamster-pets | Hamsters fofos. Domestique com pepino fatiado, carregue até três nos ombros (eles farejam creeper e diamante) e aperte G para arremessar. Tem livro guia no jogo.
 
 ## Aventura e chefes
 l_enders-cataclysm | Chefes épicos em estruturas próprias (Ignis, Leviathan, Ender Guardian) com armas lendárias.
@@ -115,6 +116,7 @@ skinrestorer | Mostra a skin de cada um no servidor, mesmo em rede que bloqueia 
 waystones | Pedras de teleporte: ative nas suas bases e em vilas e viaje entre elas.
 xaeros-minimap | Minimapa no canto da tela, com marcadores (waypoints) e marcação de onde você morreu.
 xaeros-world-map | Mapa do mundo inteiro que você já explorou. Tecla M.
+map-atlases-forge | Atlas que junta seus mapas de papel em um livro. Receita: mapa preenchido, livro e slime ou garrafa de mel. Na hotbar ou na mão secundária, mostra os mapas como minimapa.
 corpse | Ao morrer, seus itens ficam guardados num corpo no lugar da morte, sem sumir.
 farmers-delight | Culinária: plantações, panela, tábua de corte e dezenas de comidas novas.
 mouse-tweaks | Arraste o mouse com o botão apertado para mover vários itens de uma vez.
