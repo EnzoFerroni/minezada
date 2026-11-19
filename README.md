@@ -4,8 +4,8 @@ Modpack e servidor de Minecraft 1.21.1.
 
 ## Jogar
 
-Rode o comando uma vez. Ele instala o Prism Launcher e o Java, baixa os mods, cria o atalho **Minezada** na
-Área de Trabalho e abre o jogo. Na primeira vez o Prism pede o login e o download dos mods demora alguns minutos.
+Rode o comando uma vez. Ele instala o Prism Launcher e o Java, baixa os mods, pergunta se você quer um atalho
+**Minezada** na Área de Trabalho e abre o jogo. Na primeira vez o Prism pede o login e o download dos mods demora alguns minutos.
 No jogo, clique em **Multijogador**: a lista mostra quais servidores Minezada estão no ar.
 
 **Windows**: abra o PowerShell (menu Iniciar, digite "PowerShell") e cole:
@@ -20,7 +20,7 @@ irm https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.ps1 | iex
 curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.sh | bash
 ```
 
-Das próximas vezes, abra pelo atalho **Minezada**. Os mods se atualizam sozinhos a cada abertura.
+Das próximas vezes, abra pelo atalho **Minezada** (ou pelo Prism Launcher, instância Minezada). Os mods se atualizam sozinhos a cada abertura.
 
 ## Problemas comuns
 

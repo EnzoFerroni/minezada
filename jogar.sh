@@ -149,17 +149,33 @@ else
 fi
 rm -rf "$tmp"
 
-# 4. Atalho na Mesa (Mac) que abre direto o jogo.
+# 4. Atalho opcional na Mesa (Mac). Quem ja tem o atalho ganha a versao nova sem pergunta.
+# open -n -a abre o Prism como app normal: com "&" o macOS avisava que o Minezada roda em segundo plano.
+abrir="abrir o Prism Launcher e jogar a instancia Minezada"
 if [ "$(uname -s)" = "Darwin" ]; then
-  rm -rf "$HOME/Desktop/Minezada.app"
-  osacompile -o "$HOME/Desktop/Minezada.app" -e "do shell script quoted form of \"$prism\" & \" --launch Minezada >/dev/null 2>&1 &\"" || true
+  if [ -d "$HOME/Desktop/Minezada.app" ]; then
+    resp=s
+  else
+    printf 'Criar um atalho "Minezada" na Mesa para abrir o jogo? [S/n] '
+    read -r resp </dev/tty || resp=s
+  fi
+  case "$resp" in
+    [nN]*) ;;
+    *)
+      rm -rf "$HOME/Desktop/Minezada.app"
+      if osacompile -o "$HOME/Desktop/Minezada.app" \
+        -e "do shell script \"open -n -a \" & quoted form of \"$app\" & \" --args --launch Minezada\""; then
+        abrir="abrir 'Minezada' na Mesa"
+      fi
+      ;;
+  esac
 fi
 
 nohup "$prism" --launch Minezada >/dev/null 2>&1 &
 echo
 if [ $original = 1 ]; then
-  echo "Pronto! Na primeira vez entre com a conta Microsoft. Depois e so abrir 'Minezada' na Mesa."
+  echo "Pronto! Na primeira vez entre com a conta Microsoft. Depois e so $abrir."
 else
   echo "Pronto! Na primeira vez o launcher pede um nome: use seu nick exatamente como esta na"
-  echo "whitelist (maiusculas contam). Depois e so abrir 'Minezada' na Mesa."
+  echo "whitelist (maiusculas contam). Depois e so $abrir."
 fi
