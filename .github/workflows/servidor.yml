@@ -83,13 +83,17 @@ jobs:
             -g -s client "file://$GITHUB_WORKSPACE/modpack/pack/pack.toml"
           ls mods | wc -l
 
+      # Sem os GameTests dos mods (/test runall): um teste do Sable falha no CI, o jogo fecha e a action fica presa.
+      # So carregar e entrar no mundo (~3 min); o limite pega travamento.
       - name: Abrir o jogo e entrar em um mundo
+        timeout-minutes: 15
         uses: headlesshq/mc-runtime-test@dfc8a2a0145f723b01abda5e1cf59eaba516d128 # 5.0.0
         with:
           mc: 1.21.1
           modloader: neoforge
           java: 21
           mc-runtime-test: neoforge
+          headlessmc-command: --jvm "-DMcRuntimeGameTest=false -Djava.awt.headless=true"
 
       - name: Guardar logs
         if: always()
