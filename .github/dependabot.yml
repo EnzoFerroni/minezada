@@ -1,0 +1,7 @@
+# Abre PR toda semana quando uma Action fixada por SHA ganha versao nova (troca o SHA e o comentario da versao).
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
