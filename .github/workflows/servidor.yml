@@ -43,16 +43,6 @@ jobs:
           pid=$!
           exec 3> console
           until grep -q 'Done (' logs/latest.log 2> /dev/null || ! kill -0 $pid 2> /dev/null; do sleep 2; done
-          # Zumbi matando aldeao no Dificil (conversao garantida em zumbi-aldeao): o Bumblezone 7.19.x derrubava
-          # o servidor aqui ("Late invocations of Mob#setSpawnCancelled"). Roda no ponto de spawn (sempre carregado).
-          if grep -q 'Done (' logs/latest.log; then
-            # forceload: sem jogador perto, a entidade nova so entra no mundo depois e o erro nao aparece.
-            for c in 'difficulty hard' 'forceload add ~-32 ~-32 ~32 ~32' 'summon zombie ~ ~ ~ {Tags:["tz"],NoAI:1b}' 'summon villager ~2 ~ ~ {Tags:["tv"],NoAI:1b}' \
-              'damage @e[tag=tv,limit=1] 1000 minecraft:mob_attack by @e[tag=tz,limit=1]'; do echo "$c" >&3; sleep 1; done
-            sleep 5
-            echo 'execute if entity @e[type=zombie_villager] run say conversao-ok' >&3
-            sleep 3
-          fi
           echo stop >&3
           wait $pid || true
           if ! grep -q 'Done (' logs/latest.log 2> /dev/null; then
@@ -60,12 +50,7 @@ jobs:
             tail -n 150 saida.log
             exit 1
           fi
-          if ! grep -q 'conversao-ok' logs/latest.log; then
-            echo "::error::Zumbi convertendo aldeao derrubou o servidor ou nao converteu"
-            grep -nE 'Exception|Late invocations|crash' logs/latest.log | head -n 20
-            exit 1
-          fi
-          grep -E 'Done \(|conversao-ok|Stopping the server' logs/latest.log
+          grep -E 'Done \(|Stopping the server' logs/latest.log
 
       - name: Guardar logs
         if: always()

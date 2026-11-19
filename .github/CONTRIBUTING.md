@@ -118,6 +118,10 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
   no `packwiz.json` (o packwiz respeita a escolha salva e não pergunta). Não use `-g` no packwiz: sem a janela ele
   marca todos os opcionais. O `-t 0` tira a espera de 10 s do "Reconfigure optional mods?" (ali dava para marcar
   o DH no Mac); opcional novo ainda abre a lista de escolha.
+- **Bumblezone 7.19.x derruba o servidor** quando um zumbi converte um aldeão (`Late invocations of
+  Mob#setSpawnCancelled`): a versão chama o `setSpawnCancelled` sem condição desde 15/11. Preso na 7.17.3 por
+  `$presas` no `montar-pack.ps1` (vale até com `-Atualizar`); soltar quando sair versão corrigida. O servidor de
+  teste não reproduz (precisa de jogador perto da conversão).
 - **Script de antes de abrir** (`modpack/arquivos/minezada.ps1` e `.sh`, issue #17): vem pelo pack e o
   `PreLaunchCommand` roda ele. É ele que chama o packwiz, então uma versão quebrada impede o jogo de abrir e não
   se conserta sozinha (só rodando o comando de jogar de novo). Teste abrindo pelo Prism antes do push. No Windows

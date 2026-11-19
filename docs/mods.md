@@ -15,7 +15,7 @@
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.18.10` · 124 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.18.11` · 124 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
 
 [Aprender e guias](#aprender-e-guias) · [Baús e armazenamento](#baús-e-armazenamento) · [Ferramentas](#ferramentas) · [Dragões](#dragões) · [Dimensões](#dimensões) · [Cavernas e minérios](#cavernas-e-minérios) · [Mobs e animais](#mobs-e-animais) · [Aventura e chefes](#aventura-e-chefes) · [Biomas e terreno](#biomas-e-terreno) · [Estruturas](#estruturas) · [Visual e ambiente](#visual-e-ambiente) · [Pacotes de recursos](#pacotes-de-recursos-todos-vêm-ligados-desligue-em-opções--pacotes-de-recursos) · [Shaders](#shaders-vêm-desligados-ligue-pelos-perfis-ou-em-opções--vídeo--shader-packs) · [Qualidade de vida](#qualidade-de-vida) · [Mundo e facilidade](#mundo-e-facilidade) · [Desempenho](#desempenho)
 
