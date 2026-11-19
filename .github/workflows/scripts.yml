@@ -6,7 +6,7 @@ name: Testes dos scripts
 
 on:
   push:
-    paths: ['scripts/**', '*.sh', '*.ps1', '*.command', '*.bat', '.github/workflows/scripts.yml']
+    paths: ['scripts/**', '*.sh', '*.ps1', '*.command', '*.bat', 'modpack/arquivos/minezada.*', '.github/workflows/scripts.yml']
   workflow_dispatch:
 
 permissions:
@@ -29,7 +29,7 @@ jobs:
           java-version: '21'
       - name: shellcheck
         if: runner.os == 'Linux'
-        run: shellcheck -S warning scripts/*.sh scripts/testes/*.sh ./*.sh iniciar.command
+        run: shellcheck -S warning scripts/*.sh scripts/testes/*.sh ./*.sh iniciar.command modpack/arquivos/minezada.sh
       # /bin/bash: no macOS e o 3.2, o mesmo que roda o iniciar.command (o do Homebrew pode vir antes no PATH).
       - name: Desligar o servidor (stop, Ctrl+C, janela fechada)
         run: /bin/bash scripts/testes/desligar.sh
