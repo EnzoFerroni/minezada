@@ -611,13 +611,13 @@ hash = "63129fbc993e777eb352ac1028ef959fa04264cfba9d3ad8c9cb93e631cee031"
 metafile = true
 
 [[files]]
-file = "mods/common-storage-lib.pw.toml"
-hash = "ca9c879eb5099bdbe64f687087a9563a288a3de78dbde289053acdb295a45e41"
+file = "mods/resourceful-config.pw.toml"
+hash = "9f447b390705da315b16a4aa2b9983114d67f8132836d88ac9c16bd9b9d8851f"
 metafile = true
 
 [[files]]
-file = "mods/resourceful-config.pw.toml"
-hash = "9f447b390705da315b16a4aa2b9983114d67f8132836d88ac9c16bd9b9d8851f"
+file = "mods/common-storage-lib.pw.toml"
+hash = "ca9c879eb5099bdbe64f687087a9563a288a3de78dbde289053acdb295a45e41"
 metafile = true
 
 [[files]]

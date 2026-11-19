@@ -133,6 +133,9 @@ $pw = Join-Path $root 'modpack/pack'
 if (Test-Path $pw) { Remove-Item -Recurse -Force $pw }
 $pastas.Values | ForEach-Object { New-Item -ItemType Directory -Force (Join-Path $pw $_) | Out-Null }
 $idx = "hash-format = `"sha256`"`n"
+# Ordem fixa (ordinal, igual no Windows e no Mac): a ordem da fila do Modrinth muda e trocava o hash do pack sem mudar mod.
+$chaves = [string[]]@($pwMods | ForEach-Object { "$($_.pasta)/$($_.slug)" }); $lista = [object[]]$pwMods
+[Array]::Sort($chaves, $lista, [StringComparer]::Ordinal); $pwMods = $lista
 foreach ($m in $pwMods) {
     $rel = "$($m.pasta)/$($m.slug).pw.toml"  # o packwiz instala o arquivo na pasta do metafile
     $opc = if ($opcionais[$m.slug]) { "`n[option]`noptional = true`ndefault = false`ndescription = $(Toml $opcionais[$m.slug])`n" } else { '' }
