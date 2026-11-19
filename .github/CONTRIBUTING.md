@@ -114,6 +114,7 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
 - **Distant Horizons no Mac M4**: com ele marcado o jogo caiu 5 s depois de entrar no mundo (crash no driver
   gráfico da Apple) e parou de cair ao desmarcar. O `jogar.sh` desliga o DH no Mac gravando `optionValue: false`
   no `packwiz.json` (o packwiz respeita a escolha salva e não pergunta). Não use `-g` no packwiz: sem a janela ele
-  marca todos os opcionais.
+  marca todos os opcionais. O `-t 0` tira a espera de 10 s do "Reconfigure optional mods?" (ali dava para marcar
+  o DH no Mac); opcional novo ainda abre a lista de escolha.
 - **Testar Ctrl+C num script**: o que roda em segundo plano num bash não interativo nasce ignorando SIGINT, e aí
   nem o trap é instalado. Ligar `set -m` antes (como em `scripts/testes/desligar.sh`), senão o teste falha à toa.

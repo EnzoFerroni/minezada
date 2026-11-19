@@ -201,7 +201,9 @@ foreach ($j in $jars) {
     Copy-Item $arq (Join-Path $inst '.minecraft')
 }
 # Sem JoinServerOnLaunch: o jogo abre no menu e a lista de servidores mostra quais estao no ar.
-Escrever (Join-Path $inst 'instance.cfg') "[General]`nInstanceType=OneSix`nname=Minezada`nOverrideCommands=true`nPreLaunchCommand=`"`$INST_JAVA`" -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar $packUrl`nOverrideMemory=true`nMinMemAlloc=1024`nMaxMemAlloc=4096`n"
+# -t 0: sem a espera de 10 s do "Reconfigure optional mods?" (no Mac marcar o DH ali derrubava o jogo).
+# Opcional novo continua abrindo a lista de escolha.
+Escrever (Join-Path $inst 'instance.cfg') "[General]`nInstanceType=OneSix`nname=Minezada`nOverrideCommands=true`nPreLaunchCommand=`"`$INST_JAVA`" -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -t 0 $packUrl`nOverrideMemory=true`nMinMemAlloc=1024`nMaxMemAlloc=4096`n"
 [IO.File]::WriteAllBytes((Join-Path $inst '.minecraft/servers.dat'), $serversDat)
 # Opcoes iniciais (o jogo completa o resto); o jogar so copia se o jogador ainda nao tiver.
 # Pacotes de $rpLigados ja vem ligados. As quatro ultimas opcoes pulam as telas de primeira abertura:
