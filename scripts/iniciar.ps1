@@ -326,8 +326,9 @@ try {
         $saida = @(& $cfg.JAVA $wl $lista $server)
         $saida | ForEach-Object { Write-Host $_ }
         $vistoJogo = & $datas $jsons
-        $cmds = @('whitelist reload') + @($saida | Where-Object { $_ -like 'Admin (op): *' } | ForEach-Object { 'op ' + $_.Substring(12) })
-        try { foreach ($c in $cmds) { $proc.StandardInput.WriteLine($c) } } catch { Write-Warning "Nao consegui avisar o servidor: $($_.Exception.Message)" }
+        # Sem "op Nick" aqui: o servidor resolve nick offline em minusculas e daria admin a outro UUID.
+        if ($saida -like 'Admin (op): *') { Write-Host 'Admin novo vale no proximo start (ou /op Nick no jogo com a pessoa online).' }
+        try { $proc.StandardInput.WriteLine('whitelist reload') } catch { Write-Warning "Nao consegui avisar o servidor: $($_.Exception.Message)" }
     }
 }
 finally {

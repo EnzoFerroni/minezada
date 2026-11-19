@@ -283,7 +283,7 @@ datas_jogo() { echo "$(modificado "$server/whitelist.json") $(modificado "$serve
 # Com o servidor ligado: se o jogadores.txt mudou, libera os novos e avisa o servidor pelo console (fd 4). Se o
 # whitelist.json ou o ops.json mudou (/whitelist add ou /op no jogo), copia o nick para a lista antes.
 recarregar_whitelist() {
-  local agora saida linha jogo
+  local agora saida jogo
   [ -n "${lista:-}" ] || return 0
   jogo="$(datas_jogo)"
   if [ "$jogo" != "$jogo_visto" ]; then
@@ -297,11 +297,9 @@ recarregar_whitelist() {
   saida="$(sincronizar_whitelist "$lista" "$server")"
   [ -z "$saida" ] || echo "$saida"
   jogo_visto="$(datas_jogo)"
-  { echo "whitelist reload"
-    while IFS= read -r linha; do
-      case "$linha" in "Admin (op): "*) echo "op ${linha#Admin (op): }" ;; esac
-    done <<< "$saida"
-  } >&4 2>/dev/null || true
+  # Sem "op Nick" aqui: o servidor resolve nick offline em minusculas e daria admin a outro UUID.
+  case "$saida" in *"Admin (op): "*) echo "Admin novo vale no proximo start (ou /op Nick no jogo com a pessoa online)." ;; esac
+  echo "whitelist reload" >&4 2>/dev/null || true
 }
 
 achar_drive() {

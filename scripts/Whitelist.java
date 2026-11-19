@@ -26,6 +26,7 @@ public class Whitelist {
     static final String FALHA = "FALHA";  // a Mojang nao respondeu: nao mexe nas entradas deste nick neste start
     static final HttpClient HTTP = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build();
     static final Map<String, String> oficiais = new HashMap<>();
+    static final Map<String, String> nomesOficiais = new HashMap<>();  // nick em minusculas -> como esta na conta
 
     public static void main(String[] args) throws Exception {
         if (args[0].equals("--do-jogo")) {
@@ -65,8 +66,11 @@ public class Whitelist {
             if (on != null) {
                 // Nick com original: so o UUID oficial. O offline liberado deixaria qualquer um sem original
                 // entrar com esse nick (o MixAuth so pede senha) e herdar op e progresso.
-                if (wl.removeIf(e -> uuid(e).equals(off))) System.out.println("UUID offline de " + nome + " tirado da whitelist (ele tem original).");
-                if (ops.removeIf(e -> uuid(e).equals(off))) System.out.println("UUID offline de " + nome + " tirado dos ops (ele tem original).");
+                // Inclui o offline do nick em outras maiusculas, que o servidor grava com /whitelist add e /op.
+                java.util.function.Predicate<Map<String, String>> offlineDele = e -> uuid(e).equals(off)
+                    || (nome(e).equalsIgnoreCase(nome) && uuid(e).equals(offline(nome(e))));
+                if (wl.removeIf(offlineDele)) System.out.println("UUID offline de " + nome + " tirado da whitelist (ele tem original).");
+                if (ops.removeIf(offlineDele)) System.out.println("UUID offline de " + nome + " tirado dos ops (ele tem original).");
                 // Progresso de antes (UUID offline) copiado para o oficial, so se o oficial ainda nao tem nada.
                 for (String a : List.of("playerdata/%s.dat", "advancements/%s.json", "stats/%s.json")) {
                     Path de = mundo.resolve(a.formatted(off)), para = mundo.resolve(a.formatted(on));
@@ -92,7 +96,9 @@ public class Whitelist {
 
     // /whitelist add e /op no jogo: copia para o jogadores.txt quem esta no whitelist.json ou no ops.json e falta na
     // lista. O iniciar roda isto quando o servidor muda esses arquivos; a lista nova passa depois pela conferencia
-    // normal, que troca o UUID offline pelo oficial de quem tem original. Tirar alguem continua sendo no jogo e na lista.
+    // normal. Tirar alguem continua sendo no jogo e na lista.
+    // Com o jogador offline, o servidor grava o nick em minusculas com o UUID offline dele (outro UUID). Nick com
+    // original: copia o nome certo da Mojang e tira a entrada errada. Sem original: copia como veio e avisa.
     static void doJogo(Path lista, Path pasta) throws Exception {
         if (!Files.exists(lista)) return;
         List<String> linhas = new ArrayList<>(Files.readAllLines(lista, StandardCharsets.UTF_8));
@@ -101,16 +107,30 @@ public class Whitelist {
             String nick = linhas.get(i).replace("﻿", "").split("#", 2)[0].trim().split("\\s+")[0];
             if (!nick.isEmpty()) linhaDe.put(nick.toLowerCase(), i);
         }
+        List<Map<String, String>> wl = ler(pasta.resolve("whitelist.json")), opsJson = ler(pasta.resolve("ops.json"));
         List<String> ops = new ArrayList<>();
-        for (Map<String, String> e : ler(pasta.resolve("ops.json"))) ops.add(nome(e).toLowerCase());
-        List<Map<String, String>> todos = ler(pasta.resolve("whitelist.json"));
-        todos.addAll(ler(pasta.resolve("ops.json")));
-        boolean mudou = false;
+        for (Map<String, String> e : opsJson) ops.add(nome(e).toLowerCase());
+        List<Map<String, String>> todos = new ArrayList<>(wl);
+        todos.addAll(opsJson);
+        boolean mudou = false, errados = false;
         for (Map<String, String> e : todos) {
             String nick = nome(e);
             if (!nick.matches("[A-Za-z0-9_]{1,16}")) continue;
             boolean op = ops.contains(nick.toLowerCase());
             Integer i = linhaDe.get(nick.toLowerCase());
+            if (i == null && uuid(e).equals(offline(nick))) {
+                String on = oficial(nick);
+                if (FALHA.equals(on)) continue;
+                if (on != null) {
+                    String errado = uuid(e);
+                    wl.removeIf(x -> uuid(x).equals(errado));
+                    opsJson.removeIf(x -> uuid(x).equals(errado));
+                    errados = true;
+                    nick = nomesOficiais.getOrDefault(nick.toLowerCase(), nick);
+                } else {
+                    System.out.println("AVISO: " + nick + " foi liberado pelo jogo sem conta original. Se o nick tem maiusculas, corrija no jogadores.txt.");
+                }
+            }
             if (i == null) {
                 linhas.add(nick + (op ? " op" : ""));
                 linhaDe.put(nick.toLowerCase(), linhas.size() - 1);
@@ -127,6 +147,10 @@ public class Whitelist {
             }
         }
         if (mudou) Files.write(lista, linhas, StandardCharsets.UTF_8);
+        if (errados) {
+            escrever(pasta.resolve("whitelist.json"), wl);
+            escrever(pasta.resolve("ops.json"), opsJson);
+        }
     }
 
     // Mesmo UUID que o servidor da ao nick sem conta Microsoft (maiusculas contam).
@@ -143,6 +167,8 @@ public class Whitelist {
                 HttpResponse<String> r = HTTP.send(HttpRequest.newBuilder(URI.create(url + nome)).timeout(Duration.ofSeconds(5)).build(), HttpResponse.BodyHandlers.ofString());
                 if (r.statusCode() == 404) return null;  // nick sem conta original
                 Matcher m = Pattern.compile("\"id\"\\s*:\\s*\"([0-9a-f]{32})\"").matcher(r.body());
+                Matcher n = Pattern.compile("\"name\"\\s*:\\s*\"(\\w+)\"").matcher(r.body());
+                if (n.find()) nomesOficiais.put(nome.toLowerCase(), n.group(1));
                 if (r.statusCode() == 200 && m.find()) return m.group(1).replaceFirst("(.{8})(.{4})(.{4})(.{4})(.{12})", "$1-$2-$3-$4-$5");
             } catch (Exception e) {
                 // tenta o outro endereco

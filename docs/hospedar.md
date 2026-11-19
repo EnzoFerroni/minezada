@@ -51,10 +51,13 @@ salva, o mundo volta para o Drive (com backup dos 5 últimos) e a trava é liber
    admin). Não sabe o nick exato? Peça para a pessoa tentar entrar: o console mostra
    `Disconnecting Nick (...): You are not white-listed`.
 3. Pronto: com o servidor ligado, em até 30 segundos o nick é liberado (o console mostra
-   `jogadores.txt mudou`). Desligado, ele é liberado no próximo start, em qualquer host.
+   `jogadores.txt mudou`). Desligado, ele é liberado no próximo start, em qualquer host. Admin (`op`)
+   novo pela lista vale a partir do próximo start.
 
-Pelo jogo também dá: quem é op digita `/whitelist add Nick` ou `/op Nick` no chat. Em até 30 segundos
-o nick vai sozinho para o `jogadores.txt` e passa pela mesma conferência.
+Pelo jogo também dá: quem é op digita `/whitelist add Nick` no chat, e em até 30 segundos o nick vai
+sozinho para o `jogadores.txt` e passa pela mesma conferência. Funciona para quem tem Minecraft
+original. Sem original, o servidor grava o nick em minúsculas: se o nick tem maiúsculas, escreva ele
+certo no `jogadores.txt`. Para dar admin na hora, use `/op Nick` com a pessoa online.
 
 A conferência pergunta à Mojang se o nick tem conta original. Se tiver, libera só o UUID oficial (e
 copia para ele o progresso antigo do UUID offline). Se não tiver, libera o UUID offline, e a pessoa usa
