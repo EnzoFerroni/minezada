@@ -55,6 +55,7 @@ adorable-hamster-pets | Hamsters fofos. Domestique com pepino fatiado, carregue 
 ## Aventura e chefes
 when-dungeons-arise | Masmorras e estruturas gigantes (castelos, navios voadores, torres) cheias de mobs e tesouros.
 artifacts | Itens mágicos achados em baús de estruturas: asas de pena, bota de velocidade, anel de fogo.
+lootr | Cada jogador tem o próprio loot nos baús de estruturas: quem chega depois também ganha o tesouro.
 
 ## Biomas e terreno
 terralith | Quase 100 biomas novos no estilo vanilla: desfiladeiros, ilhas, florestas de cerejeira gigantes, cavernas novas.
@@ -77,6 +78,7 @@ fresh-animations | Pacote de recursos (já vem ligado): mobs com animações mui
 entity-model-features | Necessário para o Fresh Animations funcionar.
 3dskinlayers | As camadas da skin (jaqueta, chapéu) aparecem em 3D.
 ambientsounds | Sons de ambiente: vento, pássaros, grilos, água, cavernas.
+sound-physics-remastered | Som com eco e abafamento realistas em cavernas e salas fechadas.
 distanthorizons | Enxerga muito mais longe (montanhas no horizonte) desenhando o terreno distante em versão simplificada e leve. No servidor mostra os lugares por onde você já passou. **Opcional**: na primeira abertura aparece uma janela para marcar. No PC funciona junto com Complementary, BSL, Sildur's, Photon e Bliss; **no Mac ele fica desligado**: fechou o jogo em um M4 e impede os shaders de abrir (limite de texturas do Mac).
 
 ## Pacotes de recursos (todos vêm ligados; desligue em Opções → Pacotes de recursos)
@@ -112,6 +114,7 @@ pick-up-notifier | Mostra no canto da tela os itens que você pegou.
 chat-heads | Mostra a cabeça do jogador ao lado das mensagens do chat.
 comforts | Saco de dormir e rede: dormir sem mudar o ponto de renascimento.
 trade-cycling | Botão para trocar as ofertas de um aldeão que ainda não negociou.
+polymorph | Quando duas receitas usam os mesmos ingredientes, aparece um botão para escolher qual item fazer.
 easy-anvils | Bigorna sem o limite de "Caro demais" e com nomes coloridos.
 mixauth | Login no servidor. Com Minecraft original você entra direto (a Mojang confirma a conta) e com a sua skin. Sem original: na primeira vez /register senha senha, depois /login senha, sempre (protege seu nick).
 skinrestorer | Mostra a skin de cada um no servidor, mesmo em rede que bloqueia a Mojang. Trocar: /skin set nick SeuNick ou /skin set web classic <link da imagem>.
@@ -124,6 +127,7 @@ xaeros-minimap-world-map-waystones-compatibility-forge | Ao ativar uma waystone,
 map-atlases-forge | Atlas que junta seus mapas de papel em um livro. Receita: mapa preenchido, livro e slime ou garrafa de mel. Na hotbar ou na mão secundária, mostra os mapas como minimapa.
 corpse | Ao morrer, seus itens ficam guardados num corpo no lugar da morte, sem sumir.
 farmers-delight | Culinária: plantações, panela, tábua de corte e dezenas de comidas novas.
+supplementaries | Blocos no estilo vanilla: potes, placas de direção, cata-vento, lanternas de parede e muito mais para construir.
 mouse-tweaks | Arraste o mouse com o botão apertado para mover vários itens de uma vez.
 inventory-essentials | Organizar inventário e baús (botão do meio do mouse) e mover itens rápido com Shift.
 
