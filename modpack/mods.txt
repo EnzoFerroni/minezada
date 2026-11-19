@@ -21,6 +21,12 @@ create-deco | Blocos industriais de decoração: tijolos, grades, portas e luzes
 create-jetpack | A mochila de ar comprimido do Create vira um jetpack para voar.
 create-connected | Blocos de qualidade de vida que faltam no Create.
 create-aeronautics | Dirigíveis, aviões e carros montados com blocos do Create.
+create-ore-excavation | Máquinas que extraem minério de veios no chão usando força de rotação.
+create-big-cannons | Canhões grandes montados com blocos, com munição e pólvora próprias.
+create-goggles | Capacetes com os óculos do engenheiro embutidos e backtank que serve de armadura.
+create-dreams-and-desires | Itens e máquinas variadas no estilo do Create.
+create-stuff-additions | Equipamentos com tecnologia do Create.
+createbetterfps | Mais FPS com shader ligado em bases grandes do Create.
 
 ## Baús e armazenamento
 sophisticated-storage | Baús, barris e caixas que ganham upgrades: viram maiores (ferro, ouro, diamante, netherite) sem tirar os itens, organizam sozinhos, filtram e puxam itens.

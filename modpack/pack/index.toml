@@ -81,6 +81,36 @@ hash = "0928ea037c59702657ebdc0240f394628e3d3d9cc9341cd95f6afe07f9a037f3"
 metafile = true
 
 [[files]]
+file = "mods/create-ore-excavation.pw.toml"
+hash = "46144721aff9c953185bc646506f73d9038619847a0be352076149fd4fa6c837"
+metafile = true
+
+[[files]]
+file = "mods/create-big-cannons.pw.toml"
+hash = "a03041e41398774bba19ae346bcd524c6a4cdc060977db128a50b6975ad04202"
+metafile = true
+
+[[files]]
+file = "mods/create-goggles.pw.toml"
+hash = "eac04f1f1aa008c77bb12c5e71e0932b39950a8b82a267bd903125125a3a67c2"
+metafile = true
+
+[[files]]
+file = "mods/create-dreams-and-desires.pw.toml"
+hash = "a3147fb97106421cc8a904e718f3f43740f7b9ec3dc55d36c40aa4f59a5983d0"
+metafile = true
+
+[[files]]
+file = "mods/create-stuff-additions.pw.toml"
+hash = "54fa68047ff5821a19c167b78fb08953d13c6a352847bf8fccabe790b474c744"
+metafile = true
+
+[[files]]
+file = "mods/createbetterfps.pw.toml"
+hash = "4a5f7a1eb43a685b82d5feeda80a9e577965bdc1308ce75490f61edb9bc195af"
+metafile = true
+
+[[files]]
 file = "mods/sophisticated-storage.pw.toml"
 hash = "cb38ede03df4d98f6550776e95e65d7eab5bc957044de401cfa6e598b549fc90"
 metafile = true
@@ -601,6 +631,16 @@ hash = "ac6671f269f12e6bdc06f515363aa02a8f64de233753309402327e25aff5573e"
 metafile = true
 
 [[files]]
+file = "mods/rpl.pw.toml"
+hash = "1a19cfa96e6cbdf2c225f5552a759661db6152e1b85212c72682ffc138c7e0db"
+metafile = true
+
+[[files]]
+file = "mods/architectury-api.pw.toml"
+hash = "2b76ed836cd3f2de485c58cba896a68116427a56be02d6001e7d62a6daf92312"
+metafile = true
+
+[[files]]
 file = "mods/sophisticated-core.pw.toml"
 hash = "becbfec4aa545e5fd20a0c7aff1b9cbac685716c6525ae31b6f3d954ec6de92e"
 metafile = true
@@ -648,11 +688,6 @@ metafile = true
 [[files]]
 file = "mods/fragmentum.pw.toml"
 hash = "4433b33f668d46f316d95f1910559c8c6b52a755765ab562ea4c2a66eead2831"
-metafile = true
-
-[[files]]
-file = "mods/architectury-api.pw.toml"
-hash = "2b76ed836cd3f2de485c58cba896a68116427a56be02d6001e7d62a6daf92312"
 metafile = true
 
 [[files]]
