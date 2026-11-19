@@ -2,6 +2,9 @@
 # Instala/atualiza o Minezada e abre o jogo. Rode no Terminal (serve para instalar, atualizar e reparar):
 #   curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.sh | bash
 set -euo pipefail
+# --abrir: modo do atalho Minezada, que baixa este script a cada abertura. Sem perguntas; so refaz o launcher e a
+# instancia se mudaram.
+atalho=0; [ "${1:-}" != "--abrir" ] || atalho=1
 zip_url="https://github.com/EnzoFerroni/minezada/raw/main/modpack/minezada-prism.zip"
 # Fork do Prism que aceita conta offline sem conta Microsoft (o Prism oficial abre em modo Demo).
 # Versao fixa com SHA-256: e mantido por uma pessoa so, entao so roda o binario conferido. Atualizar:
@@ -52,10 +55,14 @@ if [ "$(uname -s)" = "Darwin" ]; then
       app="$HOME/Applications/Prism Launcher.app"
     fi
   else
-    # Baixado a cada vez (versao fixa): rodar o comando de novo repara o launcher.
-    echo "Instalando o launcher para conta offline..."
-    baixar_prism_mac "$fork_url" "$HOME/Applications/Minezada" "$fork_sha"
+    # Versao fixa: rodar o comando de novo repara o launcher; o atalho so baixa quando a versao muda.
     app="$HOME/Applications/Minezada/Prism Launcher.app"
+    marca="$HOME/Applications/Minezada/minezada-versao.txt"
+    if [ $atalho = 0 ] || [ ! -d "$app" ] || [ "$(cat "$marca" 2>/dev/null)" != "$fork_sha" ]; then
+      echo "Instalando o launcher para conta offline..."
+      baixar_prism_mac "$fork_url" "$HOME/Applications/Minezada" "$fork_sha"
+      echo "$fork_sha" > "$marca"
+    fi
   fi
   # Contents/MacOS tambem tem a pasta jars: o executavel certo vem do Info.plist.
   prism="$app/Contents/MacOS/$(/usr/libexec/PlistBuddy -c 'Print CFBundleExecutable' "$app/Contents/Info.plist")"
@@ -81,6 +88,9 @@ case "$inst_dir" in /*) ;; *) inst_dir="$dados/$inst_dir" ;; esac
 inst="$inst_dir/Minezada"
 tmp="$(mktemp -d)"
 curl -fsSL "$zip_url" -o "$tmp/pack.zip"
+# O atalho so refaz a instancia quando o zip muda (e o packwiz, antes de abrir, cuida dos mods).
+hash="$(shasum -a 256 "$tmp/pack.zip" 2>/dev/null || sha256sum "$tmp/pack.zip")"; hash="${hash%% *}"
+if [ $atalho = 0 ] || [ "$(cat "$inst/minezada-zip.txt" 2>/dev/null)" != "$hash" ]; then
 mkdir -p "$tmp/x" "$inst/.minecraft"
 (cd "$tmp/x" && unzip -q ../pack.zip)
 # shortcut: instance.cfg e sobrescrito (zera tempo de jogo do Prism); trocar por merge se incomodar.
@@ -102,16 +112,11 @@ if [ "$(uname -s)" = "Darwin" ] && [ ! -f "$inst/.minecraft/packwiz.json" ]; the
 fi
 # Mac Apple Silicon: o Modflared so baixa o cloudflared Intel, que sem Rosetta da "Bad CPU type".
 # Ele prefere o "cloudflared" do PATH, entao o Prism recebe a pasta com o binario ARM.
-# Versao fixa com o SHA-256 do release oficial (a mesma do scripts/iniciar.sh).
+# O download (versao fixa e SHA-256) fica no minezada.sh, que tambem atualiza o binario antes de cada abertura.
+cp "$tmp/x/.minecraft/packwiz-installer-bootstrap.jar" "$tmp/x/.minecraft/packwiz-installer.jar" "$tmp/x/.minecraft/minezada.sh" "$inst/.minecraft/"
 if [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "arm64" ]; then
   cf="$inst/bin"
-  if [ "$(cat "$cf/versao" 2>/dev/null)" != "2026.10.7" ]; then
-    mkdir -p "$cf"
-    if curl -fsSL "https://github.com/cloudflare/cloudflared/releases/download/2026.10.7/cloudflared-darwin-arm64.tgz" -o "$tmp/cf.tgz" \
-      && [ "$(shasum -a 256 "$tmp/cf.tgz" | awk '{print $1}')" = "3586ccf397e98e5f437e60e7c307ca6ac463e110580503af8bb8e6f9ebf831bd" ]; then
-      tar -xzf "$tmp/cf.tgz" -C "$cf" && chmod +x "$cf/cloudflared" && echo 2026.10.7 > "$cf/versao"
-    fi
-  fi
+  (cd "$inst/.minecraft" && /bin/bash minezada.sh --cloudflared) || true
   if [ -x "$cf/cloudflared" ]; then
     # O Prism so aplica Env no formato 1.3: sem ConfigVersion ele migra o Env com toMap() e grava {}.
     # O instance.cfg do zip (montar-pack.ps1) nao tem ConfigVersion, entao converte aqui.
@@ -124,7 +129,6 @@ if [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "arm64" ]; then
       || echo "AVISO: sem Rosetta. Se o jogo nao conectar, entre em 'Minezada (playit)' na lista de servidores." >&2
   fi
 fi
-cp "$tmp/x/.minecraft/packwiz-installer-bootstrap.jar" "$tmp/x/.minecraft/packwiz-installer.jar" "$tmp/x/.minecraft/minezada.sh" "$inst/.minecraft/"
 for f in servers.dat options.txt; do [ -f "$inst/.minecraft/$f" ] || cp "$tmp/x/.minecraft/$f" "$inst/.minecraft/"; done
 # Liga os pacotes de recursos do pack em quem ja tinha options.txt, mantendo os que o jogador ligou.
 # shortcut: nomes de pacote com virgula quebram este trecho; trocar por parser de JSON se aparecer um.
@@ -154,12 +158,15 @@ if grep -q '^resourcePacks:' "$opt"; then
 else
   echo "resourcePacks:[$have]" >> "$opt"
 fi
+echo "$hash" > "$inst/minezada-zip.txt"
+fi
 rm -rf "$tmp"
 
 # 4. Atalho opcional na Mesa (Mac). Quem ja tem o atalho ganha a versao nova sem pergunta.
+# O atalho baixa este script a cada abertura (--abrir) e atualiza o que mudou; sem internet, abre o launcher direto.
 # open -n -a abre o Prism como app normal: com "&" o macOS avisava que o Minezada roda em segundo plano.
 abrir="abrir o Prism Launcher e jogar a instancia Minezada"
-if [ "$(uname -s)" = "Darwin" ]; then
+if [ "$(uname -s)" = "Darwin" ] && [ $atalho = 0 ]; then
   if [ -d "$HOME/Desktop/Minezada.app" ]; then
     resp=s
   else
@@ -171,14 +178,15 @@ if [ "$(uname -s)" = "Darwin" ]; then
     *)
       rm -rf "$HOME/Desktop/Minezada.app"
       if osacompile -o "$HOME/Desktop/Minezada.app" \
-        -e "do shell script \"open -n -a \" & quoted form of \"$app\" & \" --args --launch Minezada\""; then
+        -e "do shell script \"f=\$(mktemp -t minezada); curl -fsSL --max-time 20 -o \$f https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.sh && /bin/bash \$f --abrir >/dev/null 2>&1 || open -n -a \" & quoted form of \"$app\" & \" --args --launch Minezada; rm -f \$f\""; then
         abrir="abrir 'Minezada' na Mesa"
       fi
       ;;
   esac
 fi
 
-nohup "$prism" --launch Minezada >/dev/null 2>&1 &
+if [ "$(uname -s)" = "Darwin" ]; then open -n -a "$app" --args --launch Minezada; else nohup "$prism" --launch Minezada >/dev/null 2>&1 & fi
+[ $atalho = 0 ] || exit 0
 echo
 if [ $original = 1 ]; then
   echo "Pronto! Na primeira vez entre com a conta Microsoft. Depois e so $abrir."

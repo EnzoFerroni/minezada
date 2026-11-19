@@ -2,13 +2,27 @@
 # Roda antes de cada abertura do jogo (PreLaunchCommand da instancia, na pasta .minecraft).
 # Vem pelo pack: uma mudanca aqui chega em todos sem rodar o comando de jogar de novo (vale a partir da
 # abertura seguinte). Tudo entre chaves: o bash le o bloco inteiro antes de rodar, e o packwiz pode trocar
-# este arquivo no meio.
+# este arquivo no meio. --cloudflared: so o passo do cloudflared (o jogar.sh usa na instalacao).
 {
 set -e
+inst="$(cd .. && pwd)"
+# Mac Apple Silicon: o Modflared so baixa o cloudflared Intel, que sem Rosetta da "Bad CPU type". Ele prefere
+# o "cloudflared" do PATH, e o jogar.sh poe esta pasta no PATH do Prism (Env da instancia). Versao fixa com o
+# SHA-256 do release oficial (a mesma do scripts/iniciar.sh).
+if [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "arm64" ] && [ "$(cat "$inst/bin/versao" 2>/dev/null)" != "2026.10.7" ]; then
+  t="$(mktemp -d)"
+  if curl -fsSL "https://github.com/cloudflare/cloudflared/releases/download/2026.10.7/cloudflared-darwin-arm64.tgz" -o "$t/cf.tgz" \
+    && [ "$(shasum -a 256 "$t/cf.tgz" | awk '{print $1}')" = "3586ccf397e98e5f437e60e7c307ca6ac463e110580503af8bb8e6f9ebf831bd" ]; then
+    mkdir -p "$inst/bin"
+    tar -xzf "$t/cf.tgz" -C "$inst/bin" && chmod +x "$inst/bin/cloudflared" && echo 2026.10.7 > "$inst/bin/versao"
+  fi
+  rm -rf "$t"
+fi
+[ "${1:-}" != "--cloudflared" ] || exit 0
 java="${INST_JAVA:-java}"
+pack="https://raw.githubusercontent.com/EnzoFerroni/minezada/main/modpack/pack/pack.toml"
 # -t 0: sem a espera de 10 s do "Reconfigure optional mods?". Opcional novo continua abrindo a lista.
-"$java" -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -t 0 \
-  https://raw.githubusercontent.com/EnzoFerroni/minezada/main/modpack/pack/pack.toml
+"$java" -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -t 0 "$pack"
 # Perfis de shaders que sairam do pack (o packwiz nao apaga arquivo com preserve).
 rm -rf "options-profiles/Shader - Sildurs Vibrant" "options-profiles/Shader - Super Duper Vanilla" \
   "options-profiles/Shader - Miniature" "options-profiles/PC - Solas" "options-profiles/PC - Rethinking Voxels"
@@ -17,6 +31,16 @@ rm -rf "options-profiles/Shader - Sildurs Vibrant" "options-profiles/Shader - Su
 if [ "$(uname -s)" = "Darwin" ]; then
   perl -pi -e 's/("mods\/distanthorizons\.pw\.toml":\{.*?"optionValue":)true/${1}false/' packwiz.json
   rm -f mods/DistantHorizons-*.jar
+fi
+# NeoForge da instancia igual ao do pack. O Prism ja carregou a versao desta abertura, entao troca o
+# mmc-pack.json e pede para abrir de novo (com a versao antiga o servidor recusa a entrada).
+t="$(curl -fsSL --max-time 10 "$pack" || true)"
+mc="$(printf '%s\n' "$t" | sed -n 's/^minecraft = "\(.*\)"/\1/p')"
+neo="$(printf '%s\n' "$t" | sed -n 's/^neoforge = "\(.*\)"/\1/p')"
+if [ -n "$neo" ] && ! grep -qF "\"$neo\"" "$inst/mmc-pack.json"; then
+  printf '{"formatVersion":1,"components":[{"uid":"net.minecraft","version":"%s","important":true},{"uid":"net.neoforged","version":"%s"}]}\n' "$mc" "$neo" > "$inst/mmc-pack.json"
+  echo "Minezada atualizou o NeoForge para $neo. Feche este aviso e abra o jogo de novo."
+  exit 1
 fi
 exit 0
 }
