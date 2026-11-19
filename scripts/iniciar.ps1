@@ -23,77 +23,6 @@ if (-not $Rodar -and (Test-Path (Join-Path $root '.git')) -and (Get-Command git 
 # Link da pasta minezada no Drive: quem nao tem acesso ve o botao "Solicitar acesso".
 $driveUrl = 'https://drive.google.com/drive/folders/1Kw45U0B-b906dnDsUH8bLy9nDg7HfWzh'
 
-# Libera na whitelist os nicks de jogadores.txt (um por linha; "op" depois do nick tambem da admin).
-# MixAuth: quem tem original entra com o UUID oficial (so ele e liberado); sem original, com o offline.
-# Sem o arquivo, cria com o dono e quem ja esta liberado. So adiciona; tirar alguem e no console.
-function Sincronizar-Whitelist($lista, $pasta) {
-    # (o ForEach achata: no PS 5.1 o ConvertFrom-Json devolve a lista inteira como um item so)
-    $ler = { param($n) $a = Join-Path $pasta $n; @(if (Test-Path $a) { Get-Content $a -Raw | ConvertFrom-Json | ForEach-Object { $_ } }) }
-    $wl = @(& $ler 'whitelist.json'); $ops = @(& $ler 'ops.json')
-    # Mesmo UUID que o servidor da ao nick sem conta Microsoft (maiusculas contam).
-    $offline = { param($n)
-        $b = [Security.Cryptography.MD5]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes("OfflinePlayer:$n"))
-        $b[6] = ($b[6] -band 0x0f) -bor 0x30; $b[8] = ($b[8] -band 0x3f) -bor 0x80
-        $x = -join ($b | ForEach-Object { $_.ToString('x2') })
-        "$($x.Substring(0,8))-$($x.Substring(8,4))-$($x.Substring(12,4))-$($x.Substring(16,4))-$($x.Substring(20))"
-    }
-    # UUID oficial ja conhecido (whitelist/ops) evita consultar a Mojang a cada start.
-    $oficiais = @{}
-    foreach ($e in $wl + $ops) { if ($e.uuid -ne (& $offline $e.name)) { $oficiais[$e.name.ToLower()] = $e.uuid } }
-    # Devolve o UUID oficial, $null (nick sem original) ou 'FALHA' (Mojang nao respondeu: nao mexe neste start).
-    $oficial = { param($n)
-        if ($oficiais.ContainsKey($n.ToLower())) { return $oficiais[$n.ToLower()] }
-        # Dois enderecos da Mojang: rede compartilhada (faculdade) costuma levar 429 em um deles.
-        foreach ($url in 'https://api.mojang.com/users/profiles/minecraft/', 'https://api.minecraftservices.com/minecraft/profile/lookup/name/') {
-            try {
-                $x = (Invoke-RestMethod "$url$n" -TimeoutSec 5).id
-                if ($x) { return "$($x.Substring(0,8))-$($x.Substring(8,4))-$($x.Substring(12,4))-$($x.Substring(16,4))-$($x.Substring(20))" }
-            }
-            catch {
-                if ($_.Exception.Response -and [int]$_.Exception.Response.StatusCode -eq 404) { return $null }  # nick sem conta original
-            }
-        }
-        Write-Warning "A Mojang nao respondeu sobre $n; whitelist dele fica como estava ate o proximo start."
-        'FALHA'
-    }
-    if (-not (Test-Path $lista)) {
-        $linhas = @("# Um nick por linha, igual ao do jogo (maiusculas contam); 'op' depois tambem da admin.",
-            "# 'sem-original' depois: joga sem Minecraft original com um nick que existe como conta original.",
-            '# O servidor libera todos ao iniciar: depois de editar, reinicie. Nao use whitelist add no console.', 'Enzobullet op') + @($wl | Where-Object { $_.name -ne 'Enzobullet' } | ForEach-Object { $_.name })
-        [IO.File]::WriteAllLines($lista, [string[]]$linhas)
-    }
-    $mundo = Join-Path $pasta 'world'
-    foreach ($l in Get-Content $lista) {
-        $partes = @(($l -split '#')[0].Trim() -split '\s+' | Where-Object { $_ })
-        if (-not $partes) { continue }
-        $nome = $partes[0]
-        if ($nome -notmatch '^[A-Za-z0-9_]{1,16}$') { Write-Warning "Nick invalido em jogadores.txt: $nome"; continue }
-        $flags = @($partes | Select-Object -Skip 1)
-        $op = $flags -contains 'op'
-        $off = & $offline $nome
-        $on = if ($flags -contains 'sem-original') { $null } else { & $oficial $nome }
-        if ($on -eq 'FALHA') { continue }
-        if ($on) {
-            # Nick com original: so o UUID oficial. O offline liberado deixaria qualquer um sem original
-            # entrar com esse nick (o MixAuth so pede senha) e herdar op e progresso.
-            if ($wl | Where-Object { $_.uuid -eq $off }) { $wl = @($wl | Where-Object { $_.uuid -ne $off }); Write-Host "UUID offline de $nome tirado da whitelist (ele tem original)." }
-            if ($ops | Where-Object { $_.uuid -eq $off }) { $ops = @($ops | Where-Object { $_.uuid -ne $off }); Write-Host "UUID offline de $nome tirado dos ops (ele tem original)." }
-            # Progresso de antes (UUID offline) copiado para o oficial, so se o oficial ainda nao tem nada.
-            foreach ($a in 'playerdata\{0}.dat', 'advancements\{0}.json', 'stats\{0}.json') {
-                $de = Join-Path $mundo ($a -f $off); $para = Join-Path $mundo ($a -f $on)
-                if ((Test-Path $de) -and -not (Test-Path $para)) {
-                    Copy-Item $de $para; Write-Host "Progresso de $nome copiado para o UUID oficial: $($a -f $on)"
-                }
-            }
-        }
-        $u = if ($on) { $on } else { $off }
-        if (-not ($wl | Where-Object { $_.uuid -eq $u })) { $wl += [pscustomobject]@{ uuid = $u; name = $nome }; Write-Host "Liberado na whitelist: $nome ($(if ($on) { 'original' } else { 'sem original' }))" }
-        if ($op -and -not ($ops | Where-Object { $_.uuid -eq $u })) { $ops += [pscustomobject]@{ uuid = $u; name = $nome; level = 4; bypassesPlayerLimit = $false }; Write-Host "Admin (op): $nome" }
-    }
-    [IO.File]::WriteAllText((Join-Path $pasta 'whitelist.json'), (ConvertTo-Json -InputObject @($wl) -Depth 3))
-    [IO.File]::WriteAllText((Join-Path $pasta 'ops.json'), (ConvertTo-Json -InputObject @($ops) -Depth 3))
-}
-
 # Tunel playit.gg: segunda entrada (o jogador entra por ele se a Cloudflare falhar). Sem porta aberta no
 # roteador e sem expor o IP do host. O segredo do agente fica em playit.txt na pasta do Drive: todo host usa
 # o mesmo tunel e endereco (anotado em playit-endereco.txt). Devolve o processo do agente ja conectado, ou $null.
@@ -170,12 +99,6 @@ function Iniciar-Cloudflare($pasta) {
     $p
 }
 
-# Roda um comando como administrador (o Windows pede permissao). Usado so para o firewall.
-function Como-Admin($cmd) {
-    try { Start-Process powershell -Verb RunAs -Wait -WindowStyle Hidden -ArgumentList '-NoProfile', '-Command', $cmd; $true }
-    catch { Write-Warning 'Permissao de administrador negada.'; $false }
-}
-
 function Achar-Drive {
     Get-PSDrive -PSProvider FileSystem |
         ForEach-Object { "$($_.Root)Meu Drive\minezada"; "$($_.Root)My Drive\minezada" } |
@@ -238,24 +161,30 @@ if (-not $Rodar -and -not $cfg.SYNC_DIR) {
     }
 }
 
-# 3. Java 21+ (NeoForge 1.21.1). Um Java 8/17 antigo no PATH tambem conta como faltando.
+# 3. JDK 21+ (NeoForge 1.21.1; o JDK roda o scripts/Whitelist.java direto). Java 8/17 antigo ou so JRE contam
+# como faltando: baixa o Temurin 25 para tools/, sem winget nem administrador (igual ao iniciar.sh).
 function Java-Ok($j) {
     $ErrorActionPreference = 'Continue'  # o java -version escreve no stderr; com 'Stop' o PS 5.1 aborta
     if (-not (Get-Command $j -ErrorAction SilentlyContinue)) { return $false }
     $v = (& $j -version 2>&1 | Out-String)
-    return ([regex]::Match($v, 'version "(\d+)').Groups[1].Value -as [int]) -ge 21
+    return ([regex]::Match($v, 'version "(\d+)').Groups[1].Value -as [int]) -ge 21 -and ((& $j --list-modules 2>$null) -match '^jdk\.compiler')
 }
 if (-not (Java-Ok $cfg.JAVA)) {
-    $temurin = { Get-ChildItem "$env:ProgramFiles\Eclipse Adoptium\jdk-25*\bin\java.exe" -ErrorAction SilentlyContinue | Select-Object -Last 1 }
-    if (-not (& $temurin)) {
+    $jdk = Join-Path $tools 'jdk\bin\java.exe'
+    if (-not (Java-Ok $jdk)) {
         Write-Host 'Instalando Java 25...'
-        winget install --id EclipseAdoptium.Temurin.25.JDK -e --silent --accept-source-agreements --accept-package-agreements
+        New-Item -ItemType Directory -Force $tools | Out-Null
+        $zip = Join-Path $tools 'jdk.zip'; $tmp = Join-Path $tools 'jdk-tmp'
+        Remove-Item -Recurse -Force $tmp, (Join-Path $tools 'jdk') -ErrorAction SilentlyContinue
+        Invoke-WebRequest 'https://api.adoptium.net/v3/binary/latest/25/ga/windows/x64/jdk/hotspot/normal/eclipse' -OutFile $zip
+        New-Item -ItemType Directory $tmp | Out-Null
+        & $tar -xf $zip -C $tmp
+        Move-Item (Get-ChildItem $tmp -Directory | Select-Object -First 1).FullName (Join-Path $tools 'jdk')
+        Remove-Item -Recurse -Force $zip, $tmp
     }
-    $j = & $temurin
-    if (-not ($j -and (Java-Ok $j.FullName))) { throw 'Java nao instalado. Veja docs/hospedar.md' }
-    $cfg.JAVA = $j.FullName
+    if (-not (Java-Ok $jdk)) { throw 'Java nao instalado. Veja docs/hospedar.md' }
+    $cfg.JAVA = $jdk
 }
-
 # 4. Pack -> servidor.
 $sync = $cfg.SYNC_DIR
 $lock = if ($sync) { Join-Path $sync 'host.lock' }
@@ -340,8 +269,9 @@ if (-not $Rodar) {
     }
     # Whitelist e admins: lista na pasta do Drive (vale para todos os hosts) ou, sem Drive, no servidor.
     $lista = if ($sync) { Join-Path $sync 'jogadores.txt' } else { Join-Path $server 'jogadores.txt' }
-    try { Sincronizar-Whitelist $lista $server }
-    catch { Write-Warning "Falha ao atualizar a whitelist: $_" }
+    # Mesma logica no Windows e no Mac: scripts/Whitelist.java, rodado com o Java do servidor.
+    & $cfg.JAVA (Join-Path $PSScriptRoot 'Whitelist.java') $lista $server
+    if ($LASTEXITCODE) { Write-Warning 'Falha ao atualizar a whitelist.' }
 
     # Etapa do servidor num PowerShell escondido, fora desta janela: fechar esta janela nao derruba nada. O servidor
     # abre na janela propria do Minecraft; fechar ela no X salva e para como o stop, e ai o mundo vai para o Drive.
@@ -355,34 +285,10 @@ if (-not $Rodar) {
     exit
 }
 
-# 6. Rede: firewall so para a rede local e os tuneis (Cloudflare e playit).
-# Regra por porta (nao por programa), so para a rede local: quem vem pelo tunel chega por localhost, que o
-# firewall nao filtra. Regra antiga aberta para qualquer endereco e corrigida (pede administrador uma vez).
-$regra = Get-NetFirewallRule -DisplayName 'minezin 25565' -ErrorAction SilentlyContinue
-$criar = "New-NetFirewallRule -DisplayName 'minezin 25565' -Direction Inbound -Protocol TCP -LocalPort $porta -RemoteAddress LocalSubnet -Action Allow -Profile Any"
-if (-not $regra) {
-    Write-Host "Liberando a porta $porta no firewall para a rede local (o Windows vai pedir permissao de administrador)..."
-    [void](Como-Admin $criar)
-}
-elseif (@($regra | Get-NetFirewallAddressFilter).RemoteAddress -ne 'LocalSubnet') {
-    Write-Host 'Restringindo a regra do firewall a rede local (o Windows vai pedir permissao de administrador)...'
-    [void](Como-Admin "Remove-NetFirewallRule -DisplayName 'minezin 25565'; $criar")
-}
-$ipLocal = try { (Find-NetRoute -RemoteIPAddress 8.8.8.8 | Where-Object IPAddress | Select-Object -First 1).IPAddress } catch { $null }
-Write-Host "Na mesma casa: entre por localhost (nesta maquina) ou $ipLocal (outro computador)."
-
+# 6. Rede: tuneis da Cloudflare e do playit. Quem esta nesta maquina entra por localhost; o resto, pelo tunel.
 $cf = Iniciar-Cloudflare $cfg.SYNC_DIR
 $tunel = Iniciar-Tunel $cfg.SYNC_DIR
-if (-not ($cf -or $tunel)) { Write-Warning 'Nenhum tunel conectou: so quem esta nesta rede consegue entrar.' }
-
-# Anuncia o servidor na rede local como o "Abrir para LAN" do jogo: quem esta na mesma rede ve
-# "Minezada" sozinho em Multijogador, sem digitar IP.
-$lan = Start-Job -ArgumentList $porta {
-    param($p)
-    $u = New-Object Net.Sockets.UdpClient
-    $m = [Text.Encoding]::UTF8.GetBytes("[MOTD]Minezada[/MOTD][AD]$p[/AD]")
-    while ($true) { try { [void]$u.Send($m, $m.Length, '224.0.2.60', 4445) } catch {}; Start-Sleep -Milliseconds 1500 }
-}
+if (-not ($cf -or $tunel)) { Write-Warning 'Nenhum tunel conectou: so esta maquina consegue entrar (localhost).' }
 
 # Impede o Windows de suspender enquanto o servidor roda (tela pode apagar).
 Add-Type -Name Energia -Namespace Minezada -MemberDefinition '[DllImport("kernel32.dll")] public static extern uint SetThreadExecutionState(uint f);'
@@ -399,7 +305,6 @@ try {
 finally {
     Pop-Location
     [void][Minezada.Energia]::SetThreadExecutionState(2147483648)  # 0x80000000 = volta ao normal
-    Stop-Job $lan; Remove-Job $lan
     foreach ($t in $cf, $tunel) { if ($t) { Stop-Process -Id $t.Id -Force -ErrorAction SilentlyContinue } }
     if ($sync) {
         Write-Host 'Enviando mundo para a pasta sincronizada...'

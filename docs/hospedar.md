@@ -26,7 +26,7 @@ salva, o mundo volta para o Drive (com backup dos 5 últimos) e a trava é liber
 | Item | Mínimo | Quem resolve |
 |------|--------|--------------|
 | Git | qualquer | O comando de hospedar instala. |
-| Java 21+ | - | O `iniciar` instala o Java 25 se faltar ou for antigo (Windows: winget; Mac: baixa para `tools/`, sem Homebrew). |
+| Java 21+ | - | O `iniciar` baixa o JDK 25 para `tools/` se faltar ou for antigo, sem instalador nem administrador (Windows e Mac). |
 | RAM | 16 GB | O servidor usa 6-8 GB. Jogar e hospedar na mesma máquina aperta. |
 | Disco | SSD, ~10 GB | O mundo cresce com o tempo. |
 | Rede | cabo, upload ≥ 10 Mbps | Wi-Fi funciona, mas oscila mais. |
@@ -36,11 +36,11 @@ salva, o mundo volta para o Drive (com backup dos 5 últimos) e a trava é liber
 
 1. Atualiza o repo (`git pull`).
 2. Na primeira vez: cria `config.env` (RAM e pasta do Drive) e pergunta do EULA.
-3. Instala o Java se faltar.
+3. Baixa o Java (JDK 25) para `tools/` se faltar.
 4. Instala/atualiza o NeoForge (instalador oficial) e os mods (packwiz, o mesmo do jogo), igual no
    Windows e no Mac.
 5. Baixa o mundo do Drive e trava para ninguém mais hospedar junto.
-6. Libera a porta no firewall só para a rede local e liga os túneis da Cloudflare e do playit.gg
+6. Liga os túneis da Cloudflare e do playit.gg
    (veja **Rede**).
 7. Libera na whitelist quem está no `jogadores.txt` e sobe o servidor sem deixar a máquina suspender.
 
@@ -99,9 +99,8 @@ Drive. Plano grátis: a rota não é garantida para quem está longe. Perdeu o s
 `playit claim generate`, `playit claim url <código>`, aprove no site e `playit claim exchange <código>`:
 a última linha da saída é o segredo novo.
 
-**Mesma casa.** O host entra por `localhost`. Outro computador da mesma rede vê o servidor sozinho em
-**Multijogador**, na parte de LAN (o `iniciar` anuncia como o "Abrir para LAN" do jogo). Se a rede
-bloquear o anúncio (Wi-Fi com isolamento entre aparelhos), use o IP local que o `iniciar` mostra.
+**Mesma casa.** O host entra por **Minezada (neste computador)** (`localhost`). Outro computador da mesma
+casa entra pelo túnel, como todo mundo (**Minezada**).
 
 **Lista de servidores do jogo.** Vem pronta e se atualiza a cada abertura (packwiz): Minezada
 (Cloudflare), Minezada (playit) e Minezada (neste computador). Servidor adicionado
@@ -153,8 +152,8 @@ O `iniciar` acha a pasta sozinho em `X:\Meu Drive\minezada` (Windows) ou
 - Downloads com checksum e versão fixa: launcher sem original, cloudflared, playit e
   packwiz-installer. Os mods vêm do Modrinth com hash conferido pelo packwiz. A cada push no pack, a
   Action **Servidor de teste** sobe o servidor no GitHub e avisa se ele não chegar no `Done`.
-- Com os túneis, nenhuma porta fica aberta no roteador e o IP de casa não aparece (só conexões de saída). O firewall do
-  Windows só aceita a 25565 da rede local. RCON e query ficam desligados.
+- Com os túneis, nenhuma porta fica aberta no roteador e o IP de casa não aparece (só conexões de saída). Nenhuma regra de
+  firewall é criada: o túnel entrega o jogador em `localhost`. RCON e query ficam desligados.
 - Pelo túnel todos chegam com o mesmo IP: banir por IP não funciona. Use `whitelist remove Nick` e
   tire o nick do `jogadores.txt`.
 - Mais seguro ainda: desligue o UPnP no roteador. O servidor não precisa dele, e nenhum aparelho da
