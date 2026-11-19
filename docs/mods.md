@@ -15,7 +15,7 @@
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.19.1` · 134 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.19.2` · 134 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
 
 [Aprender e guias](#aprender-e-guias) · [Create: addons](#create-addons) · [Baús e armazenamento](#baús-e-armazenamento) · [Ferramentas](#ferramentas) · [Dragões](#dragões) · [Dimensões](#dimensões) · [Cavernas e minérios](#cavernas-e-minérios) · [Mobs e animais](#mobs-e-animais) · [Aventura e chefes](#aventura-e-chefes) · [Biomas e terreno](#biomas-e-terreno) · [Estruturas](#estruturas) · [Visual e ambiente](#visual-e-ambiente) · [Pacotes de recursos](#pacotes-de-recursos-todos-vêm-ligados-desligue-em-opções--pacotes-de-recursos) · [Shaders](#shaders-vêm-desligados-ligue-pelos-perfis-ou-em-opções--vídeo--shader-packs) · [Qualidade de vida](#qualidade-de-vida) · [Mundo e facilidade](#mundo-e-facilidade) · [Desempenho](#desempenho)
 
@@ -50,7 +50,7 @@
 ## Dragões
 
 <table>
-<tr><td width="33%" valign="top"><a href="https://modrinth.com/mod/wyrmroost"><img src="https://cdn.modrinth.com/data/8dYAmpGw/images/de36bcf7483ca4c2f69ba15ef292d44d67c86e2c_350.webp" width="100%"></a><br><img src="https://cdn.modrinth.com/data/8dYAmpGw/509a18afb5fd96fcb5556383eb42463b6e397dd4_96.webp" width="16"> <a href="https://modrinth.com/mod/wyrmroost"><b>Wyrmroost</b></a><br><sub>Dragões de vários tipos pelo mundo</sub></td></tr>
+<tr><td width="33%" valign="top"><a href="https://modrinth.com/mod/dmr"><img src="https://cdn.modrinth.com/data/DUx05jFK/47f705a8c9a9e1245b6fd1637f3a752724e86df6_96.webp" width="64"></a><br><img src="https://cdn.modrinth.com/data/DUx05jFK/47f705a8c9a9e1245b6fd1637f3a752724e86df6_96.webp" width="16"> <a href="https://modrinth.com/mod/dmr"><b>Dragon Mounts Remastered</b></a><br><sub>Dragões soltos pelo mundo (no mundo normal, no Nether e no End)</sub></td></tr>
 </table>
 
 ## Dimensões

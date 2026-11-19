@@ -33,7 +33,7 @@ advanced-netherite | Ferramentas e armaduras ainda melhores que netherite, feita
 veinminer | Segure a tecla ' (apóstrofo) e quebre um minério ou tronco: o veio ou a árvore inteira vem junto. Troque a tecla em Opções → Controles (busque "vein").
 
 ## Dragões
-wyrmroost | Dragões de vários tipos pelo mundo. Pegue um ovo, choque, crie o filhote como pet e, quando ele crescer, monte e saia voando.
+dmr | Dragões soltos pelo mundo (no mundo normal, no Nether e no End). Dome dando peixe, monte e voe. Faça um apito para chamar o seu dragão de qualquer lugar; ele também carrega baú. Ovo: coloque no chão e clique com o botão direito para chocar. Dragões de biomas diferentes cruzam e geram híbridos.
 
 ## Dimensões
 aether | Uma dimensão no céu, com ilhas flutuantes, mobs, chefes e itens novos. Portal: moldura de glowstone e um balde de água dentro.
