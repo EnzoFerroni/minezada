@@ -209,7 +209,8 @@ rodar_servidor() {
   trap 'kill -TERM "$java_pid" 2>/dev/null || true' INT TERM
   # Janela fechada: o terminal sumiu, e escrever nele da erro (com set -e o envio do mundo parava). O resto da
   # saida vai para o registro.
-  trap 'exec >>"$server/logs/iniciar.log" 2>&1; echo "Janela fechada: desligando o servidor."; kill -TERM "$java_pid" 2>/dev/null || true' HUP
+  # O SIGHUP pode chegar mais de uma vez: o trap '' HUP faz o aviso sair uma vez so.
+  trap 'trap "" HUP; exec >>"$server/logs/iniciar.log" 2>&1; echo "Janela fechada: desligando o servidor."; kill -TERM "$java_pid" 2>/dev/null || true' HUP
   # Espera com sleep em primeiro plano: o Ctrl+C mata o sleep e o trap roda na hora, em qualquer bash (o do macOS
   # e o 3.2). Testado em scripts/testes/desligar.sh.
   while kill -0 "$java_pid" 2>/dev/null; do sleep 1 || true; done
