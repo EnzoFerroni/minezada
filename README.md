@@ -16,27 +16,32 @@ irm https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.ps1 | iex
 curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.sh | bash
 ```
 
-O comando instala tudo, cria o atalho **Minezada** e abre o jogo. Na primeira vez, entre com a sua conta (sem
-Minecraft original, só o seu nick) e espere os mods baixarem.
+O comando instala tudo, oferece criar o atalho **Minezada** na Área de Trabalho (responda que sim) e abre o jogo.
+Na primeira vez, entre com a sua conta (sem Minecraft original, só o seu nick) e espere os mods baixarem.
 
 ## Jogar
 
-1. Abra o atalho **Minezada**. Ele atualiza tudo sozinho.
+1. Abra sempre pelo atalho **Minezada**. A cada abertura ele atualiza o launcher, os mods e as configurações sozinho;
+   não precisa rodar o comando de instalar de novo.
 2. Clique em **Multijogador** e entre em **Minezada**.
 
 ## Problemas
 
 - **Algo deu errado**: rode o comando de instalar de novo. Ele não apaga nada.
-- **"You are not white-listed"**: mande o seu nick exato para o Enzo.
+- **"You are not white-listed"**: mande o seu nick exato (com as maiúsculas) para quem está hospedando o servidor.
 - **Pede senha**: na primeira vez, `/register senha senha`; depois, `/login senha`.
 - **Jogo lento**: **Opções** > **Perfis** > **1 - Minimo**.
 
-Achou um erro? Mande um print para o Enzo. Se o jogo fechou ou não conectou, rode o comando abaixo e mande os links
-que ele copia (ele envia os logs do jogo para o [mclo.gs](https://mclo.gs), só com o seu nick):
+Achou um erro? Mande um print para quem está hospedando. Se o jogo fechou ou não conectou, rode o comando do seu
+sistema e mande os links que ele copia (ele envia os logs do jogo para o [mclo.gs](https://mclo.gs), só com o seu nick).
+
+**Windows**, no **PowerShell**:
 
 ```powershell
 irm https://raw.githubusercontent.com/EnzoFerroni/minezada/main/logs.ps1 | iex
 ```
+
+**Mac**, no **Terminal**:
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/logs.sh | bash
