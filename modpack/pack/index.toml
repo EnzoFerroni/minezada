@@ -622,7 +622,7 @@ metafile = true
 
 [[files]]
 file = "minezada.ps1"
-hash = "3a97b4e06141e996c78ffb0b5c973a97f5a129f5a0eadbea5d6c0ada0e172474"
+hash = "ba0c69aabc780107ef5506ab9b729519cc1fc5792bad49d68490a30ae257bd49"
 
 [[files]]
 file = "minezada.sh"
