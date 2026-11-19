@@ -41,12 +41,10 @@ $opcionais = @{ 'distanthorizons' = 'Ver muito mais longe (montanhas no horizont
 $rpLigados = @('faithful-32x', 'default-dark-mode', 'fast-better-grass', 'simple-grass-flowers', 'better-leaves',
     '3d-crops', 'better-lanterns', 'cubic-sun-moon', 'fresh-waystones-texture', 'low-shield-pack', 'low-on-fire',
     'fresh-animations', 'fresh-animations-extensions')
-# Versao presa (id da versao no Modrinth), vale ate com -Atualizar. Bumblezone 7.17.3: a 7.19.x chama
-# setSpawnCancelled quando um zumbi converte aldeao e o NeoForge derruba o servidor ("Late invocations of
-# Mob#setSpawnCancelled"). Tirar daqui quando sair versao corrigida.
+# Versao presa (id da versao no Modrinth), vale ate com -Atualizar.
 # Accessories 1.1.0-beta.53: minimo que o Hamster aceita. O Aether embute a beta.48, que impede o
 # servidor de abrir; a avulsa tem prioridade sobre a embutida.
-$presas = @{ 'the-bumblezone' = 'LwGXnQCW'; 'accessories' = 'Fb55Fgjz' }
+$presas = @{ 'accessories' = 'Fb55Fgjz' }
 # Dependencias que o jar exige mas a versao no Modrinth nao declara (ids de projeto do Modrinth).
 # Hamster 3.7.0: architectury, geckolib, fzzy-config, patchouli e accessories (ver acima).
 $depsExtras = @{ 'adorable-hamster-pets' = @('lhGA9TYQ', '8BmcQJ2H', 'hYykXjDp', 'nU0bVIaL', 'jtmvUHXj') }

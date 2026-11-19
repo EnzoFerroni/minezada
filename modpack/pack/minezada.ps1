@@ -3,6 +3,10 @@
 # abertura seguinte, porque o packwiz troca este arquivo enquanto ele roda).
 # java.exe no lugar do javaw.exe: o PowerShell so espera programa de console terminar. (Start-Process -Wait
 # da "Acesso negado" quando o Prism roda este script.)
+# Perfis de shaders que sairam do pack (o packwiz nao apaga arquivo com preserve).
+foreach ($p in 'Shader - Sildurs Vibrant', 'Shader - Super Duper Vanilla', 'Shader - Miniature', 'PC - Solas', 'PC - Rethinking Voxels') {
+    Remove-Item -LiteralPath "options-profiles/$p" -Recurse -Force -ErrorAction SilentlyContinue
+}
 $java = if ($env:INST_JAVA) { $env:INST_JAVA -replace 'javaw\.exe$', 'java.exe' } else { 'java' }
 # -t 0: sem a espera de 10 s do "Reconfigure optional mods?". Opcional novo continua abrindo a lista.
 & $java -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -t 0 https://raw.githubusercontent.com/EnzoFerroni/minezada/main/modpack/pack/pack.toml

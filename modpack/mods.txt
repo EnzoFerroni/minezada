@@ -11,20 +11,14 @@ appleskin | Mostra na barra de fome quanto cada comida vai encher e a saturaçã
 better-advancements | Tela de conquistas (tecla L) mais clara. Serve de guia do que fazer a seguir.
 
 ## Create: addons
-slice-and-dice | Automatiza a culinária do Farmer's Delight com as máquinas do Create (cortar, cozinhar).
 create-contraption-terminals | O terminal do Tom's Storage funciona em máquinas móveis do Create (trens, elevadores).
 createaddition | Eletricidade no Create: motores elétricos, geradores, baterias e fios.
 create-enchantment-industry | Encantamento automático e XP líquido com as máquinas do Create.
-interiors | Móveis no estilo do Create (sofás, cadeiras) onde dá para sentar, até dentro de trens.
-copycats | Blocos que copiam a textura de qualquer outro (degraus, cercas, painéis) para construir.
-create-deco | Blocos industriais de decoração: tijolos, grades, portas e luzes de metal.
 create-jetpack | A mochila de ar comprimido do Create vira um jetpack para voar.
 create-connected | Blocos de qualidade de vida que faltam no Create.
 create-aeronautics | Dirigíveis, aviões e carros montados com blocos do Create.
 create-ore-excavation | Máquinas que extraem minério de veios no chão usando força de rotação.
-create-big-cannons | Canhões grandes montados com blocos, com munição e pólvora próprias.
 create-goggles | Capacetes com os óculos do engenheiro embutidos e backtank que serve de armadura.
-create-dreams-and-desires | Itens e máquinas variadas no estilo do Create.
 create-stuff-additions | Equipamentos com tecnologia do Create.
 createbetterfps | Mais FPS com shader ligado em bases grandes do Create.
 
@@ -46,13 +40,11 @@ aether | Uma dimensão no céu, com ilhas flutuantes, mobs, chefes e itens novos
 deep-aether | Mais biomas, mobs, chefe e itens dentro do Aether.
 the-undergarden | Dimensão subterrânea escura com minérios, mobs e chefe próprios. Portal: moldura de pedra-abismal (deepslate) acesa com o Catalisador.
 ad-astra | Foguetes e planetas (Lua, Marte, Vênus, Mercúrio) com minérios novos. Precisa montar energia e combustível antes de decolar.
-the-bumblezone | Dimensão das abelhas: colmeias gigantes, mel, abelha rainha e armaduras. Entre jogando uma pérola do End num ninho de abelha.
 incendium | Nether renovado: biomas, estruturas, mobs e chefes novos.
 nullscape | End renovado: ilhas e terreno novos depois do dragão.
 
 ## Cavernas e minérios
 galosphere | Cavernas de cristal com minérios e minerais novos (prata, cristais) e itens de exploração.
-spelunkery | Mineração mais interessante: minérios em pedras variadas, pepitas e ferramentas de caverna.
 
 ## Mobs e animais
 naturalist | Dezenas de animais realistas (urso, cervo, leão, elefante, borboletas, cobras) pelo mundo.
@@ -61,7 +53,6 @@ aquamirae | Aventura no oceano congelado: navios, mobs aquáticos, chefe e armad
 adorable-hamster-pets | Hamsters fofos. Domestique com pepino fatiado, carregue até três nos ombros (eles farejam creeper e diamante) e aperte G para arremessar. Tem livro guia no jogo.
 
 ## Aventura e chefes
-l_enders-cataclysm | Chefes épicos em estruturas próprias (Ignis, Leviathan, Ender Guardian) com armas lendárias.
 when-dungeons-arise | Masmorras e estruturas gigantes (castelos, navios voadores, torres) cheias de mobs e tesouros.
 artifacts | Itens mágicos achados em baús de estruturas: asas de pena, bota de velocidade, anel de fogo.
 
@@ -103,17 +94,11 @@ default-dark-mode | Menus e inventários escuros, inclusive os de vários mods.
 faithful-32x | Texturas com o dobro de detalhe, mantendo o visual do Minecraft. Pesa um pouco mais.
 
 ## Shaders (vêm desligados; ligue pelos perfis ou em Opções → Vídeo → Shader Packs)
-complementary-reimagined | Bonito e leve, o mais testado no Mac. Perfis 5, 6 e Mac 5.
-complementary-unbound | Versão mais realista do Complementary (luz e céu mais cinematográficos). Perfis 7 - Ultra Shader e Mac 6.
+complementary-reimagined | Bonito e leve, o mais testado no Mac. Perfis 5, 6, 7 e Mac 5.
 makeup-ultra-fast-shaders | Bem leve, para computadores fracos e Macs de 8 GB. Perfil Mac 4.
-bsl-shaders | Clássico e equilibrado: bonito sem pesar muito. Perfil Shader - BSL.
-sildurs-vibrant-shaders | Cores vivas e céu bonito; versão Extreme, para Macs Pro/Max e PCs bons. Perfil Shader - Sildurs Vibrant.
-super-duper-vanilla | Parece o Minecraft normal, só que mais bonito; leve e feito também para Mac. Perfil Shader - Super Duper Vanilla.
-miniature-shader | Estilo suave e colorido, levíssimo. Roda em qualquer Mac. Perfil Shader - Miniature.
+bsl-shaders | Clássico e equilibrado: bonito sem pesar muito. Perfis Mac 6 e Shader - BSL.
 photon-shader | O mais bonito da lista, para PCs fortes. **Só PC: não roda no Mac.** Perfil PC - Photon.
-solas-shader | Visual suave e realista, para PCs médios. **Só PC: não roda no Mac.** Perfil PC - Solas.
 bliss-shader | Céu e nuvens impressionantes, para PCs fortes. No Mac abre (testado num M4), mas pode ter defeitos e pesa. Perfil PC - Bliss.
-rethinking-voxels | Luz colorida de verdade (tochas, lava), para PCs fortes; ainda em beta. **Só PC: não roda no Mac.** Perfil PC - Rethinking Voxels.
 
 ## Qualidade de vida
 modflared | Liga sozinho o túnel da Cloudflare ao entrar no servidor. A conexão vai como site seguro (HTTPS), então funciona em rede de faculdade, empresa e Wi-Fi público.

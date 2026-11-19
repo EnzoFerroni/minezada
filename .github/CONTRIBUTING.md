@@ -118,10 +118,15 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
   no `packwiz.json` (o packwiz respeita a escolha salva e não pergunta). Não use `-g` no packwiz: sem a janela ele
   marca todos os opcionais. O `-t 0` tira a espera de 10 s do "Reconfigure optional mods?" (ali dava para marcar
   o DH no Mac); opcional novo ainda abre a lista de escolha.
-- **Bumblezone 7.19.x derruba o servidor** quando um zumbi converte um aldeão (`Late invocations of
-  Mob#setSpawnCancelled`): a versão chama o `setSpawnCancelled` sem condição desde 15/11. Preso na 7.17.3 por
-  `$presas` no `montar-pack.ps1` (vale até com `-Atualizar`); soltar quando sair versão corrigida. O servidor de
-  teste não reproduz (precisa de jogador perto da conversão).
+- **O Modrinth nem sempre lista as dependências**: o que vale é o `META-INF/neoforge.mods.toml` dentro do jar
+  (`required`, `optional` com versão mínima, `incompatible`). Dependência que falta vai em `$depsExtras` e
+  versão mínima ou presa em `$presas`, no `montar-pack.ps1`. Mod pode trazer outro dentro (`META-INF/jarjar/`,
+  ex.: o Aether traz o Accessories); um jar avulso mais novo tem prioridade.
+- **Mod só de cliente passa no teste do servidor** mesmo com dependência errada: só quebra ao abrir o jogo.
+  Por isso o passo 4 do checklist não pode ser pulado.
+- **Mod que sai do pack**: o mrpack-install e o packwiz apagam os jars que eles instalaram, mas um jar copiado à
+  mão fica. Bloco ou item do mod some do mundo (vira ar); mod que gera minério ou estrutura deixa buracos no
+  mundo já gerado.
 - **Script de antes de abrir** (`modpack/arquivos/minezada.ps1` e `.sh`, issue #17): vem pelo pack e o
   `PreLaunchCommand` roda ele. É ele que chama o packwiz, então uma versão quebrada impede o jogo de abrir e não
   se conserta sozinha (só rodando o comando de jogar de novo). Teste abrindo pelo Prism antes do push. No Windows
