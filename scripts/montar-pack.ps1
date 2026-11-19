@@ -41,6 +41,10 @@ $opcionais = @{ 'distanthorizons' = 'Ver muito mais longe (montanhas no horizont
 $rpLigados = @('faithful-32x', 'default-dark-mode', 'fast-better-grass', 'simple-grass-flowers', 'better-leaves',
     '3d-crops', 'better-lanterns', 'cubic-sun-moon', 'fresh-waystones-texture', 'low-shield-pack', 'low-on-fire',
     'fresh-animations', 'fresh-animations-extensions')
+# Versao presa (id da versao no Modrinth), vale ate com -Atualizar. Bumblezone 7.17.3: a 7.19.x chama
+# setSpawnCancelled quando um zumbi converte aldeao e o NeoForge derruba o servidor ("Late invocations of
+# Mob#setSpawnCancelled"). Tirar daqui quando sair versao corrigida.
+$presas = @{ 'the-bumblezone' = 'LwGXnQCW' }
 $linhas = Get-Content (Join-Path $root 'modpack/mods.txt') -Encoding UTF8
 $pedidos = foreach ($l in $linhas) { if ($l -match '^\s*([a-z0-9_-]+)\s*\|') { $matches[1] } }
 
@@ -65,7 +69,8 @@ while ($fila.Count) {
     $vistos[$p.id] = $true
     $pasta = $pastas[$p.project_type]
     if (-not $pasta) { throw "$($p.slug): tipo $($p.project_type) nao suportado" }
-    if ($fixas[$p.id] -and -not $Atualizar) { $v = Get-Api "version/$($fixas[$p.id])" }
+    if ($presas[$p.slug]) { $v = Get-Api "version/$($presas[$p.slug])" }
+    elseif ($fixas[$p.id] -and -not $Atualizar) { $v = Get-Api "version/$($fixas[$p.id])" }
     else {
         # Pacotes de recursos e shaders nao tem loader NeoForge: filtra so pela versao do jogo.
         $vs = Get-Api "project/$($p.id)/version?$(if ($p.project_type -eq 'mod') { $filtro } else { $filtroMc })"
