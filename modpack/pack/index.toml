@@ -181,6 +181,11 @@ hash = "ba312d0e92fc59786dd7d4d08197ddda52ab10049450e5332610d262c8a4466c"
 metafile = true
 
 [[files]]
+file = "mods/lootr.pw.toml"
+hash = "4417373af3091281516fe41f86bb4f1a93a18c378308e946e253f62b1e3ddb1b"
+metafile = true
+
+[[files]]
 file = "mods/terralith.pw.toml"
 hash = "4cb370b7ea368c9bdce93e2fb80e2009506020aef7c279151759bbf01085af0f"
 metafile = true
@@ -258,6 +263,11 @@ metafile = true
 [[files]]
 file = "mods/ambientsounds.pw.toml"
 hash = "0c5f0bcdc0bf32e2d81c9fabe8645a73cdb58bd0d54764d605bde09c25b5383b"
+metafile = true
+
+[[files]]
+file = "mods/sound-physics-remastered.pw.toml"
+hash = "34c38b6c20b7fd07b702528e426623f2e9cbf5d009e183d11b12acb418612369"
 metafile = true
 
 [[files]]
@@ -406,6 +416,11 @@ hash = "2352e484e28ebce0fa23b30d2b22f9b9ca67b2a6282448fb92c918fc0345bd7c"
 metafile = true
 
 [[files]]
+file = "mods/polymorph.pw.toml"
+hash = "582eb87e28509e321ee8e003ec6680d6775d793305bb25b94c83e3a54436791d"
+metafile = true
+
+[[files]]
 file = "mods/easy-anvils.pw.toml"
 hash = "9b825405ec04b3b440f657cb1f7ec28875643528f376a6071673792a33c77194"
 metafile = true
@@ -453,6 +468,11 @@ metafile = true
 [[files]]
 file = "mods/farmers-delight.pw.toml"
 hash = "8b102ca83c7f50dc729b206e1bcbe472807d32e8fa2e80165aa4012af2966eb8"
+metafile = true
+
+[[files]]
+file = "mods/supplementaries.pw.toml"
+hash = "2d848eb445d975416f0b244dde89ea1cf8e183d08b36ebad0c9e8b9eea85b9a6"
 metafile = true
 
 [[files]]
@@ -591,13 +611,13 @@ hash = "63129fbc993e777eb352ac1028ef959fa04264cfba9d3ad8c9cb93e631cee031"
 metafile = true
 
 [[files]]
-file = "mods/resourceful-config.pw.toml"
-hash = "9f447b390705da315b16a4aa2b9983114d67f8132836d88ac9c16bd9b9d8851f"
+file = "mods/common-storage-lib.pw.toml"
+hash = "ca9c879eb5099bdbe64f687087a9563a288a3de78dbde289053acdb295a45e41"
 metafile = true
 
 [[files]]
-file = "mods/common-storage-lib.pw.toml"
-hash = "ca9c879eb5099bdbe64f687087a9563a288a3de78dbde289053acdb295a45e41"
+file = "mods/resourceful-config.pw.toml"
+hash = "9f447b390705da315b16a4aa2b9983114d67f8132836d88ac9c16bd9b9d8851f"
 metafile = true
 
 [[files]]
