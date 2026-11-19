@@ -1,5 +1,8 @@
 # Instala/atualiza o Minezada e abre o jogo. Rode no PowerShell (serve para instalar, atualizar e reparar):
 #   irm https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.ps1 | iex
+# -Abrir: modo do atalho Minezada, que baixa este script a cada abertura. Sem perguntas; so refaz o launcher e a
+# instancia se mudaram.
+param([switch]$Abrir)
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 $zipUrl = 'https://github.com/EnzoFerroni/minezada/raw/main/modpack/minezada-prism.zip'
@@ -30,17 +33,21 @@ if ($original) {
     }
 }
 else {
-    # Baixado a cada vez (versao fixa): rodar o comando de novo repara o launcher. Zip MSVC sem
-    # "Portable" guarda os dados em %APPDATA%\PrismLauncher, como o oficial.
-    Write-Host 'Instalando o launcher para conta offline...'
-    $forkZip = Join-Path $env:TEMP "minezada-launcher-$PID.zip"
-    Invoke-WebRequest $forkUrl -OutFile $forkZip
-    if ((Get-FileHash $forkZip -Algorithm SHA256).Hash -ne $forkSha) {
-        Remove-Item $forkZip; throw 'O launcher baixado nao confere (checksum). Avise o Enzo.'
-    }
-    Expand-Archive $forkZip $forkDir -Force
-    Remove-Item $forkZip
+    # Versao fixa: rodar o comando de novo repara o launcher; o atalho so baixa quando a versao muda. Zip MSVC
+    # sem "Portable" guarda os dados em %APPDATA%\PrismLauncher, como o oficial.
     $prism = "$forkDir\prismlauncher.exe"
+    $marca = "$forkDir\minezada-versao.txt"
+    if (-not ($Abrir -and (Test-Path $prism) -and (Get-Content $marca -ErrorAction SilentlyContinue) -eq $forkSha)) {
+        Write-Host 'Instalando o launcher para conta offline...'
+        $forkZip = Join-Path $env:TEMP "minezada-launcher-$PID.zip"
+        Invoke-WebRequest $forkUrl -OutFile $forkZip
+        if ((Get-FileHash $forkZip -Algorithm SHA256).Hash -ne $forkSha) {
+            Remove-Item $forkZip; throw 'O launcher baixado nao confere (checksum). Avise o Enzo.'
+        }
+        Expand-Archive $forkZip $forkDir -Force
+        Remove-Item $forkZip
+        Set-Content $marca $forkSha
+    }
 }
 
 # 2. Primeira vez: idioma, tema e Java automatico, para o assistente do Prism so pedir o login.
@@ -58,46 +65,57 @@ $inst = Join-Path $instDir 'Minezada'
 $tmp = Join-Path $env:TEMP "minezada-$PID"
 New-Item -ItemType Directory -Force $tmp | Out-Null
 Invoke-WebRequest $zipUrl -OutFile "$tmp\pack.zip"
-Expand-Archive "$tmp\pack.zip" "$tmp\x" -Force
-New-Item -ItemType Directory -Force "$inst\.minecraft" | Out-Null
-# shortcut: instance.cfg e sobrescrito (zera tempo de jogo do Prism); trocar por merge se incomodar.
-Copy-Item "$tmp\x\instance.cfg", "$tmp\x\mmc-pack.json" $inst -Force
-# Memoria do jogo: 6 GB com 24 GB+ de RAM, 3 GB abaixo de 12 GB; senao fica a do zip (4 GB evita o
-# aviso do Prism em 16 GB). Limites 23/11: o Windows reporta um pouco menos que o instalado.
-$gb = (Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB
-$mem = if ($gb -ge 23) { 6144 } elseif ($gb -lt 11) { 3072 } else { $null }
-$cfgLinhas = Get-Content "$inst\instance.cfg"
-if ($mem) { $cfgLinhas = $cfgLinhas -replace '^MaxMemAlloc=.*', "MaxMemAlloc=$mem" }
-# Antes de abrir roda o minezada.ps1 (vem pelo pack): atualiza os mods e o que fica fora do pack.
-$cfgLinhas = $cfgLinhas -replace '^PreLaunchCommand=.*', 'PreLaunchCommand=powershell -NoProfile -ExecutionPolicy Bypass -File minezada.ps1'
-$cfgLinhas | Set-Content "$inst\instance.cfg" -Encoding ascii
-Copy-Item "$tmp\x\.minecraft\packwiz-installer-bootstrap.jar", "$tmp\x\.minecraft\packwiz-installer.jar", "$tmp\x\.minecraft\minezada.ps1" "$inst\.minecraft" -Force
-foreach ($f in 'servers.dat', 'options.txt') { if (-not (Test-Path "$inst\.minecraft\$f")) { Copy-Item "$tmp\x\.minecraft\$f" "$inst\.minecraft" } }
-# Liga os pacotes de recursos do pack em quem ja tinha options.txt, mantendo os que o jogador ligou.
-# -Encoding UTF8: o PS 5.1 le como ANSI e estragaria nomes com acento ou com o simbolo de secao (ex: Low On Fire).
-$opt = "$inst\.minecraft\options.txt"
-# (o ForEach achata: no PS 5.1 o ConvertFrom-Json devolve a lista inteira como um item so)
-$doPack = @((Get-Content "$tmp\x\.minecraft\options.txt" -Encoding UTF8 | Where-Object { $_ -like 'resourcePacks:*' }) -replace '^resourcePacks:', '' | ConvertFrom-Json | ForEach-Object { $_ })
-$linhas = @(Get-Content $opt -Encoding UTF8)
-$atual = $linhas | Where-Object { $_ -like 'resourcePacks:*' } | Select-Object -First 1
-$lista = if ($atual) { @(($atual -replace '^resourcePacks:', '') | ConvertFrom-Json | ForEach-Object { $_ }) } else { @('vanilla') }
-# Pacotes do jogador na ordem dele e os do pack por cima, na ordem do pack; "vanilla" fica na base.
-$lista = @($lista | Where-Object { $_ -eq 'vanilla' -or $_ -cnotin $doPack }) + @($doPack | Where-Object { $_ -ne 'vanilla' })
-$nova = 'resourcePacks:' + (ConvertTo-Json -InputObject @($lista) -Compress)
-$linhas = if ($atual) { $linhas | ForEach-Object { if ($_ -like 'resourcePacks:*') { $nova } else { $_ } } } else { $linhas + $nova }
-[IO.File]::WriteAllLines($opt, [string[]]$linhas, (New-Object Text.UTF8Encoding $false))
+# O atalho so refaz a instancia quando o zip muda (e o packwiz, antes de abrir, cuida dos mods).
+$marca = "$inst\minezada-zip.txt"
+$hash = (Get-FileHash "$tmp\pack.zip" -Algorithm SHA256).Hash
+if (-not ($Abrir -and (Get-Content $marca -ErrorAction SilentlyContinue) -eq $hash)) {
+    Expand-Archive "$tmp\pack.zip" "$tmp\x" -Force
+    New-Item -ItemType Directory -Force "$inst\.minecraft" | Out-Null
+    # shortcut: instance.cfg e sobrescrito (zera tempo de jogo do Prism); trocar por merge se incomodar.
+    Copy-Item "$tmp\x\instance.cfg", "$tmp\x\mmc-pack.json" $inst -Force
+    # Memoria do jogo: 6 GB com 24 GB+ de RAM, 3 GB abaixo de 12 GB; senao fica a do zip (4 GB evita o
+    # aviso do Prism em 16 GB). Limites 23/11: o Windows reporta um pouco menos que o instalado.
+    $gb = (Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB
+    $mem = if ($gb -ge 23) { 6144 } elseif ($gb -lt 11) { 3072 } else { $null }
+    $cfgLinhas = Get-Content "$inst\instance.cfg"
+    if ($mem) { $cfgLinhas = $cfgLinhas -replace '^MaxMemAlloc=.*', "MaxMemAlloc=$mem" }
+    # Antes de abrir roda o minezada.ps1 (vem pelo pack): atualiza os mods e o que fica fora do pack.
+    $cfgLinhas = $cfgLinhas -replace '^PreLaunchCommand=.*', 'PreLaunchCommand=powershell -NoProfile -ExecutionPolicy Bypass -File minezada.ps1'
+    $cfgLinhas | Set-Content "$inst\instance.cfg" -Encoding ascii
+    Copy-Item "$tmp\x\.minecraft\packwiz-installer-bootstrap.jar", "$tmp\x\.minecraft\packwiz-installer.jar", "$tmp\x\.minecraft\minezada.ps1" "$inst\.minecraft" -Force
+    foreach ($f in 'servers.dat', 'options.txt') { if (-not (Test-Path "$inst\.minecraft\$f")) { Copy-Item "$tmp\x\.minecraft\$f" "$inst\.minecraft" } }
+    # Liga os pacotes de recursos do pack em quem ja tinha options.txt, mantendo os que o jogador ligou.
+    # -Encoding UTF8: o PS 5.1 le como ANSI e estragaria nomes com acento ou com o simbolo de secao (ex: Low On Fire).
+    $opt = "$inst\.minecraft\options.txt"
+    # (o ForEach achata: no PS 5.1 o ConvertFrom-Json devolve a lista inteira como um item so)
+    $doPack = @((Get-Content "$tmp\x\.minecraft\options.txt" -Encoding UTF8 | Where-Object { $_ -like 'resourcePacks:*' }) -replace '^resourcePacks:', '' | ConvertFrom-Json | ForEach-Object { $_ })
+    $linhas = @(Get-Content $opt -Encoding UTF8)
+    $atual = $linhas | Where-Object { $_ -like 'resourcePacks:*' } | Select-Object -First 1
+    $lista = if ($atual) { @(($atual -replace '^resourcePacks:', '') | ConvertFrom-Json | ForEach-Object { $_ }) } else { @('vanilla') }
+    # Pacotes do jogador na ordem dele e os do pack por cima, na ordem do pack; "vanilla" fica na base.
+    $lista = @($lista | Where-Object { $_ -eq 'vanilla' -or $_ -cnotin $doPack }) + @($doPack | Where-Object { $_ -ne 'vanilla' })
+    $nova = 'resourcePacks:' + (ConvertTo-Json -InputObject @($lista) -Compress)
+    $linhas = if ($atual) { $linhas | ForEach-Object { if ($_ -like 'resourcePacks:*') { $nova } else { $_ } } } else { $linhas + $nova }
+    [IO.File]::WriteAllLines($opt, [string[]]$linhas, (New-Object Text.UTF8Encoding $false))
+    Set-Content $marca $hash
+}
 Remove-Item -Recurse -Force $tmp
 
 # 4. Atalho opcional na Area de Trabalho. Quem ja tem o atalho ganha a versao nova sem pergunta.
+# O atalho baixa este script a cada abertura (-Abrir) e atualiza o que mudou; sem internet, abre o launcher direto.
 $abrir = 'abrir o Prism Launcher e jogar a instancia Minezada'
 $lnkPath = "$([Environment]::GetFolderPath('Desktop'))\Minezada.lnk"
 if ((Test-Path $lnkPath) -or (Read-Host 'Criar um atalho "Minezada" na Area de Trabalho para abrir o jogo? [S/n]') -notmatch '^\s*n') {
     $lnk = (New-Object -ComObject WScript.Shell).CreateShortcut($lnkPath)
-    $lnk.TargetPath = $prism; $lnk.Arguments = '--launch Minezada'; $lnk.IconLocation = "$prism,0"; $lnk.Save()
+    $lnk.TargetPath = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
+    $lnk.Arguments = "-NoProfile -ExecutionPolicy Bypass -Command `"try { & ([scriptblock]::Create((Invoke-RestMethod https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.ps1 -TimeoutSec 15))) -Abrir } catch { Start-Process '$prism' -ArgumentList '--launch', 'Minezada' }`""
+    $lnk.WindowStyle = 7  # minimizado
+    $lnk.IconLocation = "$prism,0"; $lnk.Save()
     $abrir = "clicar em 'Minezada' na Area de Trabalho"
 }
 
 Start-Process $prism -ArgumentList '--launch', 'Minezada'
+if ($Abrir) { return }
 if ($original) {
     Write-Host "`nPronto! Na primeira vez entre com a conta Microsoft. Depois e so $abrir."
 }
