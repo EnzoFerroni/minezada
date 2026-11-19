@@ -24,24 +24,20 @@ Das próximas vezes, abra pelo atalho **Minezada**: ele confere a versão mais n
 
 ## Problemas comuns
 
-- **Não conectou no servidor**: o host pode estar desligado. Tente os outros Minezada da lista de servidores.
-- **Mac: o jogo fecha ao entrar no mundo ou os shaders não abrem**: rode o comando de jogar de novo. No Mac ele
-  desliga o Distant Horizons, que causa os dois.
-- **Texto de site (HTML) na tela ao entrar**: a verificação de conta da Mojang recusou a sua rede (comum em rede de
-  faculdade ou empresa). Tente outra rede, como o 4G do celular, ou espere um pouco.
-- **Faltou mod, o jogo não abre ou algo ficou estranho**: rode o comando de novo. Ele repara a instalação sem
-  apagar o mundo, as opções e os servidores.
+Primeiro, feche o jogo e abra pelo atalho **Minezada**. Não resolveu? Rode o comando de jogar de novo (não apaga nada).
+
+- **Servidor fora do ar**: o host está desligado.
+- **"You are not white-listed"**: mande o seu nick exato para o Enzo.
+- **Pede senha**: na primeira vez, `/register senha senha`; depois, `/login senha`.
+- **Texto de site na tela ao entrar**: clique em **Voltar** e entre de novo.
+- **Jogo lento**: **Opções** > **Perfis** > **1 - Minimo**.
 
 ## Achou um erro?
 
-Abra uma [issue](https://github.com/EnzoFerroni/minezada/issues/new?template=problema.md) (precisa de conta no
-GitHub) ou mande direto para o Enzo. Em qualquer caso, envie:
-
-- o que aconteceu e o que você estava fazendo;
-- Windows ou Mac, e o modelo do computador;
-- print da tela ou da mensagem de erro;
-- se o jogo fechou sozinho: o arquivo mais novo de `crash-reports`, ou o `logs/latest.log`. Para achar: no Prism,
-  botão direito em Minezada, **Pasta**, depois `.minecraft`.
+Mande para o Enzo (ou abra uma [issue](https://github.com/EnzoFerroni/minezada/issues/new?template=problema.md)):
+o que aconteceu, um print e se é Windows ou Mac. Se o jogo fechou, mande também o registro: no Prism, botão
+direito em **Minezada** > **Pasta** > `.minecraft` > `logs` > `latest.log`. Cole o conteúdo em
+[mclo.gs](https://mclo.gs) e mande o link.
 
 ## Mais
 
