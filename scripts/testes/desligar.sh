@@ -44,10 +44,10 @@ EOF
   else
     case "$nome" in
       stop) printf 'stop\n' >> "$t/entrada" ;;
-      # Nick novo no jogadores.txt com o servidor ligado: o iniciar libera e manda whitelist reload e op (issue #16).
+      # Nick novo no jogadores.txt com o servidor ligado: o iniciar libera e manda whitelist reload (issue #16).
       whitelist)
         sleep 1.2; echo 'ZzTesteMz sem-original op' >> "$t/sync/jogadores.txt"
-        for _ in $(seq 1 60); do grep -q 'op ZzTesteMz' "$t/server/console.txt" 2>/dev/null && break; sleep 0.5; done
+        for _ in $(seq 1 60); do grep -q 'whitelist reload' "$t/server/console.txt" 2>/dev/null && break; sleep 0.5; done
         printf 'stop\n' >> "$t/entrada" ;;
       ctrlc) printf '\003' >> "$t/entrada" ;;
       janela) kill -9 "$spid" ;;  # fecha o terminal: o sistema manda SIGHUP para a sessao
