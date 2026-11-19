@@ -66,7 +66,7 @@ fresh-animations | Pacote de recursos (já vem ligado): mobs com animações mui
 entity-model-features | Necessário para o Fresh Animations funcionar.
 3dskinlayers | As camadas da skin (jaqueta, chapéu) aparecem em 3D.
 ambientsounds | Sons de ambiente: vento, pássaros, grilos, água, cavernas.
-distanthorizons | Enxerga muito mais longe (montanhas no horizonte) desenhando o terreno distante em versão simplificada e leve. No servidor mostra os lugares por onde você já passou. **Opcional**: na primeira abertura aparece uma janela para marcar. No PC funciona junto com Complementary, BSL, Sildur's, Photon e Bliss; **no Mac, não marque**: ele pode fechar o jogo ao entrar no mundo e impede os shaders de abrir (limite de texturas do Mac).
+distanthorizons | Enxerga muito mais longe (montanhas no horizonte) desenhando o terreno distante em versão simplificada e leve. No servidor mostra os lugares por onde você já passou. **Opcional**: na primeira abertura aparece uma janela para marcar. No PC funciona junto com Complementary, BSL, Sildur's, Photon e Bliss; **no Mac ele fica desligado**: fechou o jogo em um M4 e impede os shaders de abrir (limite de texturas do Mac).
 
 ## Pacotes de recursos (todos vêm ligados; desligue em Opções → Pacotes de recursos)
 fresh-animations-extensions | Extensões oficiais do Fresh Animations: mais animações em mobs e jogadores.
