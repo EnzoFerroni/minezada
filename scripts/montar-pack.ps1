@@ -161,7 +161,9 @@ if (Test-Path $soltos) {
         $dest = Join-Path $pw $rel
         New-Item -ItemType Directory -Force (Split-Path $dest) | Out-Null
         Copy-Item $a.FullName $dest
-        $idx += "`n[[files]]`nfile = $(Toml $rel)`nhash = `"$(Sha256 $dest)`"`npreserve = true`n"
+        # minezada.ps1/.sh (rodam antes de abrir) sempre atualizam: sem preserve.
+        $pres = if ($rel -like 'minezada.*') { '' } else { "preserve = true`n" }
+        $idx += "`n[[files]]`nfile = $(Toml $rel)`nhash = `"$(Sha256 $dest)`"`n$pres"
     }
 }
 # servers.dat (NBT sem compressao): os enderecos do servidor ja na lista do Multiplayer. Vai pelo packwiz
@@ -200,9 +202,10 @@ foreach ($j in $jars) {
     if ((Sha256 $arq) -ne $j[2]) { Remove-Item $arq; throw "$($j[0]): checksum nao confere (download corrompido ou adulterado)." }
     Copy-Item $arq (Join-Path $inst '.minecraft')
 }
+# Scripts de antes de abrir: o jogar troca o PreLaunchCommand por eles (minezada.ps1 no Windows, .sh no Mac).
+Copy-Item (Join-Path $soltos 'minezada.ps1'), (Join-Path $soltos 'minezada.sh') (Join-Path $inst '.minecraft')
 # Sem JoinServerOnLaunch: o jogo abre no menu e a lista de servidores mostra quais estao no ar.
-# -t 0: sem a espera de 10 s do "Reconfigure optional mods?" (no Mac marcar o DH ali derrubava o jogo).
-# Opcional novo continua abrindo a lista de escolha.
+# PreLaunchCommand do zip serve para quem importa o zip no Prism a mao; o jogar troca pelo minezada.ps1/.sh.
 Escrever (Join-Path $inst 'instance.cfg') "[General]`nInstanceType=OneSix`nname=Minezada`nOverrideCommands=true`nPreLaunchCommand=`"`$INST_JAVA`" -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -t 0 $packUrl`nOverrideMemory=true`nMinMemAlloc=1024`nMaxMemAlloc=4096`n"
 [IO.File]::WriteAllBytes((Join-Path $inst '.minecraft/servers.dat'), $serversDat)
 # Opcoes iniciais (o jogo completa o resto); o jogar so copia se o jogador ainda nao tiver.

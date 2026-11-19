@@ -621,6 +621,14 @@ hash = "ae112eb85ca8343d2f2c1829427d84e73a1c4020fb5c71341039580cfae63ba9"
 metafile = true
 
 [[files]]
+file = "minezada.ps1"
+hash = "3a97b4e06141e996c78ffb0b5c973a97f5a129f5a0eadbea5d6c0ada0e172474"
+
+[[files]]
+file = "minezada.sh"
+hash = "73573ebbd330359def3b87a74813cfbbc74a2cfde1a4db864db69651fdff0cce"
+
+[[files]]
 file = "config/sodium-extra-options.json"
 hash = "5c5c0468a62ce1cb09763855823bea730d056fce7a6f840550f511c238b9acf4"
 preserve = true

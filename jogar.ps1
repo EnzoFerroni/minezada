@@ -66,10 +66,12 @@ Copy-Item "$tmp\x\instance.cfg", "$tmp\x\mmc-pack.json" $inst -Force
 # aviso do Prism em 16 GB). Limites 23/11: o Windows reporta um pouco menos que o instalado.
 $gb = (Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB
 $mem = if ($gb -ge 23) { 6144 } elseif ($gb -lt 11) { 3072 } else { $null }
-if ($mem) {
-    (Get-Content "$inst\instance.cfg") -replace '^MaxMemAlloc=.*', "MaxMemAlloc=$mem" | Set-Content "$inst\instance.cfg" -Encoding ascii
-}
-Copy-Item "$tmp\x\.minecraft\packwiz-installer-bootstrap.jar", "$tmp\x\.minecraft\packwiz-installer.jar" "$inst\.minecraft" -Force
+$cfgLinhas = Get-Content "$inst\instance.cfg"
+if ($mem) { $cfgLinhas = $cfgLinhas -replace '^MaxMemAlloc=.*', "MaxMemAlloc=$mem" }
+# Antes de abrir roda o minezada.ps1 (vem pelo pack): atualiza os mods e o que fica fora do pack.
+$cfgLinhas = $cfgLinhas -replace '^PreLaunchCommand=.*', 'PreLaunchCommand=powershell -NoProfile -ExecutionPolicy Bypass -File minezada.ps1'
+$cfgLinhas | Set-Content "$inst\instance.cfg" -Encoding ascii
+Copy-Item "$tmp\x\.minecraft\packwiz-installer-bootstrap.jar", "$tmp\x\.minecraft\packwiz-installer.jar", "$tmp\x\.minecraft\minezada.ps1" "$inst\.minecraft" -Force
 foreach ($f in 'servers.dat', 'options.txt') { if (-not (Test-Path "$inst\.minecraft\$f")) { Copy-Item "$tmp\x\.minecraft\$f" "$inst\.minecraft" } }
 # Liga os pacotes de recursos do pack em quem ja tinha options.txt, mantendo os que o jogador ligou.
 # -Encoding UTF8: o PS 5.1 le como ANSI e estragaria nomes com acento ou com o simbolo de secao (ex: Low On Fire).
