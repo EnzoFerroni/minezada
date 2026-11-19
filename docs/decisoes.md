@@ -28,7 +28,7 @@ dragão para domar, criar como pet e voar, mods que deixam o jogo mais leve e f�
 | Baús maiores | Sophisticated Storage + Backpacks | - |
 | Sistema de baú | Tom's Simple Storage (terminal com busca, fácil) | Refined Storage e AE2 (complexos para iniciantes) |
 | Ferramentas melhores | Just Hammers (3x3), Advanced Netherite, Veinminer | Tinkers' Construct (sem versão 1.21.1), Silent Gear (complexo) |
-| Dragão pet que voa | Wyrmroost (choca ovo, cria, cresce, monta e voa) | Cobblemon (Pokémon fugia do estilo do pack), Ice and Fire e Dragon Mounts (sem versão NeoForge 1.21.1), Tiny Dragons (não voa) |
+| Dragão pet que voa | Dragon Mounts Remastered (desde 2026-11-19): o mais simples e com cara de vanilla, doma com peixe, apito para chamar, só precisa do GeckoLib | Wyrmroost (poucos dragões prontos e difícil de domar), Ice and Fire CE (o mais famoso, mas pesado, com dragões que quebram o terreno e muitas outras criaturas), Book of Dragons (estilo Como Treinar o Seu Dragão, domar é um processo longo), Cobblemon (Pokémon fugia do estilo do pack), Tiny Dragons (não voa) |
 | Upgrade de baú | Sophisticated Storage já faz: itens de upgrade de tier (madeira → ferro → ouro → diamante → netherite) aplicados no baú sem tirar os itens | Iron Chests (redundante) |
 | Dimensões novas | The Aether | Twilight Forest (só no CurseForge, e o `.mrpack` só baixa do Modrinth), Blue Skies e Deeper and Darker (sem versão NeoForge 1.21.1), Bumblezone (derrubava o servidor e confunde iniciantes) |
 | Biomas e terreno | Terralith + Tectonic (vanilla+, roda só no servidor) | Biomes O' Plenty e Oh The Biomes We've Gone (mais pesados e fogem do visual vanilla) |

@@ -111,8 +111,8 @@ hash = "bd6347fe71892997f39a827ceb032d2994e021cb8c7f27d0b0e02fd27ec4a0f7"
 metafile = true
 
 [[files]]
-file = "mods/wyrmroost.pw.toml"
-hash = "6f253022426d82631dfa6b028c79c429fefcbdf5d8f95de8855d01f43eae57c3"
+file = "mods/dmr.pw.toml"
+hash = "985df06834a030a7ea6c35b2c46b7a5ed01e0f99500cb68ca6ac3e3f7f909ec3"
 metafile = true
 
 [[files]]
@@ -571,6 +571,11 @@ hash = "298c64c9e11966a8e06cfb8a89cfa08036512beece9ee6d29c482c77fc25dca0"
 metafile = true
 
 [[files]]
+file = "mods/geckolib.pw.toml"
+hash = "8c8d5b4010c780a5e09bfb575d05c61b86f3abfe3a85e16cc639204f367f7dd9"
+metafile = true
+
+[[files]]
 file = "mods/owo-lib.pw.toml"
 hash = "0d76c01b16356f56f1b543efe1e3fec448868cea02dfc6d2a0698834e787a36f"
 metafile = true
@@ -593,11 +598,6 @@ metafile = true
 [[files]]
 file = "mods/common-storage-lib.pw.toml"
 hash = "ca9c879eb5099bdbe64f687087a9563a288a3de78dbde289053acdb295a45e41"
-metafile = true
-
-[[files]]
-file = "mods/geckolib.pw.toml"
-hash = "8c8d5b4010c780a5e09bfb575d05c61b86f3abfe3a85e16cc639204f367f7dd9"
 metafile = true
 
 [[files]]
