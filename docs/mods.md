@@ -9,13 +9,13 @@
 - **Morreu?** Volte ao local: seus itens estão num corpo.
 - **Skin:** quem tem original já aparece com a sua. Para trocar: `/skin set web classic <link da imagem>` (`slim` para braço fino).
 - **Gráficos:** Opções → **Perfis**. Mac (M1 ou mais novo; com 8 GB, o **Mac 1**): use os **Mac 1** a **Mac 7** (do 8 GB ao shader realista, mais bateria). PC: do 1 - Minimo ao 7 - Ultra Shader, 8 - FPS Maximo e 9 - Bateria; os **PC -** usam shaders que não rodam no Mac. Os **Shader -** servem para experimentar cada shader. Aplicar um perfil troca distância de renderização, qualidade e shader na hora. **Não use Salvar nem Criar perfil**: o mod copia a configuração do Sodium e o jogo fecha ao aplicar esse perfil. Ajuste fino fica em Opções → Vídeo.
-- **Distant Horizons (ver longe):** é opcional. Na primeira abertura aparece uma janela para marcar. No Mac, não marque: ele pode fechar o jogo ao entrar no mundo e impede os shaders de abrir. Mudou de ideia? Apague `packwiz.json` na pasta do jogo e a janela aparece de novo.
+- **Distant Horizons (ver longe):** é opcional. Na primeira abertura aparece uma janela para marcar. No Mac ele fica desligado (fechou o jogo em um M4 e impede os shaders de abrir). Mudou de ideia? Apague `packwiz.json` na pasta do jogo e a janela aparece de novo.
 - **Servidores:** em **Multijogador** a lista mostra quais estão no ar. O principal é o **Minezada**, que funciona até em rede de faculdade (o mod Modflared liga sozinho o túnel da Cloudflare). A lista também traz Minezada (playit), Minezada (reserva) e Minezada (neste computador, para quem joga na máquina do host). Não conectou? Tente a próxima.
 - **Minerar o veio inteiro:** segure `'` (apóstrofo) e quebre o minério ou tronco.
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
 
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.18.6` · 124 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.18.7` · 124 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
 
 [Aprender e guias](#aprender-e-guias) · [Baús e armazenamento](#baús-e-armazenamento) · [Ferramentas](#ferramentas) · [Dragões](#dragões) · [Dimensões](#dimensões) · [Cavernas e minérios](#cavernas-e-minérios) · [Mobs e animais](#mobs-e-animais) · [Aventura e chefes](#aventura-e-chefes) · [Biomas e terreno](#biomas-e-terreno) · [Estruturas](#estruturas) · [Visual e ambiente](#visual-e-ambiente) · [Pacotes de recursos](#pacotes-de-recursos-todos-vêm-ligados-desligue-em-opções--pacotes-de-recursos) · [Shaders](#shaders-vêm-desligados-ligue-pelos-perfis-ou-em-opções--vídeo--shader-packs) · [Qualidade de vida](#qualidade-de-vida) · [Mundo e facilidade](#mundo-e-facilidade) · [Desempenho](#desempenho)
 

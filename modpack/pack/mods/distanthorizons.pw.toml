@@ -10,4 +10,4 @@ hash = "4357b4d19fab818780c94f0e43dad1cc931634b2"
 [option]
 optional = true
 default = false
-description = "Ver muito mais longe (montanhas no horizonte). No Mac, nao marque: ele pode fechar o jogo ao entrar no mundo e impede os shaders de abrir. No PC funciona junto com shader."
+description = "Ver muito mais longe (montanhas no horizonte). Funciona junto com shader. No Mac ele fica desligado."

@@ -93,6 +93,17 @@ if [ $gb -ge 24 ]; then mem=6144; elif [ $gb -lt 12 ]; then mem=3072; fi
 if [ -n "$mem" ]; then
   sed -i.bak "s/^MaxMemAlloc=.*/MaxMemAlloc=$mem/" "$inst/instance.cfg" && rm -f "$inst/instance.cfg.bak"
 fi
+# Mac: Distant Horizons sempre desligado (o jogo caiu em um M4 e os shaders nao abrem com ele).
+# O packwiz respeita a escolha salva no packwiz.json e nao pergunta de novo.
+if [ "$(uname -s)" = "Darwin" ]; then
+  pw="$inst/.minecraft/packwiz.json"
+  if [ -f "$pw" ]; then
+    perl -pi -e 's/("mods\/distanthorizons\.pw\.toml":\{.*?"optionValue":)true/${1}false/' "$pw"
+  else
+    printf '{"cachedFiles":{"mods/distanthorizons.pw.toml":{"isOptional":true,"optionValue":false}}}' > "$pw"
+  fi
+  rm -f "$inst/.minecraft/mods/"DistantHorizons-*.jar
+fi
 # Mac Apple Silicon: o Modflared so baixa o cloudflared Intel, que sem Rosetta da "Bad CPU type".
 # Ele prefere o "cloudflared" do PATH, entao o Prism recebe a pasta com o binario ARM.
 # Versao fixa com o SHA-256 do release oficial (a mesma do scripts/iniciar.sh).

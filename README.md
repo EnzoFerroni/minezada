@@ -25,8 +25,8 @@ Das próximas vezes, abra pelo atalho **Minezada** (ou pelo Prism Launcher, inst
 ## Problemas comuns
 
 - **Não conectou no servidor**: o host pode estar desligado. Tente os outros Minezada da lista de servidores.
-- **Mac: o jogo fecha ao entrar no mundo ou os shaders não abrem**: desmarque o Distant Horizons. Apague
-  `packwiz.json` na pasta `.minecraft` (como achar: no fim desta página) e abra de novo: a janela de opcionais aparece e ele vem desmarcado.
+- **Mac: o jogo fecha ao entrar no mundo ou os shaders não abrem**: rode o comando de jogar de novo. No Mac ele
+  desliga o Distant Horizons, que causa os dois.
 - **Texto de site (HTML) na tela ao entrar**: a verificação de conta da Mojang recusou a sua rede (comum em rede de
   faculdade ou empresa). Tente outra rede, como o 4G do celular, ou espere um pouco.
 - **Faltou mod, o jogo não abre ou algo ficou estranho**: rode o comando de novo. Ele repara a instalação sem

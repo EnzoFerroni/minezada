@@ -112,6 +112,8 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
 - **Modflared sem túnel com DNS IPv6 local** (`Unknown DNS server: [fe80::...]`): a consulta do TXT falha e ele
   conecta direto. `modpack/arquivos/modflared/forced_tunnels.json` força o túnel em `minezada.dpdns.org` sem o TXT.
 - **Distant Horizons no Mac M4**: com ele marcado o jogo caiu 5 s depois de entrar no mundo (crash no driver
-  gráfico da Apple) e parou de cair ao desmarcar. O texto da janela de opcionais pede para não marcar no Mac.
+  gráfico da Apple) e parou de cair ao desmarcar. O `jogar.sh` desliga o DH no Mac gravando `optionValue: false`
+  no `packwiz.json` (o packwiz respeita a escolha salva e não pergunta). Não use `-g` no packwiz: sem a janela ele
+  marca todos os opcionais.
 - **Testar Ctrl+C num script**: o que roda em segundo plano num bash não interativo nasce ignorando SIGINT, e aí
   nem o trap é instalado. Ligar `set -m` antes (como em `scripts/testes/desligar.sh`), senão o teste falha à toa.
