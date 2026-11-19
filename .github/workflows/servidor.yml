@@ -46,7 +46,8 @@ jobs:
           # Zumbi matando aldeao no Dificil (conversao garantida em zumbi-aldeao): o Bumblezone 7.19.x derrubava
           # o servidor aqui ("Late invocations of Mob#setSpawnCancelled"). Roda no ponto de spawn (sempre carregado).
           if grep -q 'Done (' logs/latest.log; then
-            for c in 'difficulty hard' 'summon zombie ~ ~ ~ {Tags:["tz"],NoAI:1b}' 'summon villager ~2 ~ ~ {Tags:["tv"],NoAI:1b}' \
+            # forceload: sem jogador perto, a entidade nova so entra no mundo depois e o erro nao aparece.
+            for c in 'difficulty hard' 'forceload add ~-32 ~-32 ~32 ~32' 'summon zombie ~ ~ ~ {Tags:["tz"],NoAI:1b}' 'summon villager ~2 ~ ~ {Tags:["tv"],NoAI:1b}' \
               'damage @e[tag=tv,limit=1] 1000 minecraft:mob_attack by @e[tag=tz,limit=1]'; do echo "$c" >&3; sleep 1; done
             sleep 5
             echo 'execute if entity @e[type=zombie_villager] run say conversao-ok' >&3
