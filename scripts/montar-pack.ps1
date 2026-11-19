@@ -1,4 +1,4 @@
-# Gera modpack/pack (packwiz, usado pelo jogo e pelo servidor), o zip do Prism e a lista de docs/mods.md a partir
+﻿# Gera modpack/pack (packwiz, usado pelo jogo e pelo servidor), o zip do Prism e a lista de docs/mods.md a partir
 # de modpack/mods.txt, resolvendo versoes e dependencias obrigatorias no Modrinth para o loader e a versao abaixo.
 # Uso: powershell -ExecutionPolicy Bypass -File scripts/montar-pack.ps1 (Mac: pwsh scripts/montar-pack.ps1) [-Versao 1.0.0] [-Atualizar]
 # Versoes fixas: cada mod repete a versao do modpack/pack atual (o link de cada arquivo tem o id da versao); mod novo
