@@ -8,20 +8,10 @@ foreach ($p in 'Shader - Sildurs Vibrant', 'Shader - Super Duper Vanilla', 'Shad
     Remove-Item -LiteralPath "options-profiles/$p" -Recurse -Force -ErrorAction SilentlyContinue
 }
 $java = if ($env:INST_JAVA) { $env:INST_JAVA -replace 'javaw\.exe$', 'java.exe' } else { 'java' }
-# -t 0: sem a espera de 10 s do "Reconfigure optional mods?". Opcional novo continua abrindo a lista.
 # Pack pelo link do commit mais novo: o link do main fica ate 5 min velho no cache do GitHub depois de um push.
 $ref = try { "$(Invoke-RestMethod 'https://api.github.com/repos/EnzoFerroni/minezada/commits/main' -Headers @{ Accept = 'application/vnd.github.sha' } -TimeoutSec 10)".Trim() } catch { '' }
 if ($ref -notmatch '^[0-9a-f]{40}$') { $ref = 'main' }
 $pack = "https://raw.githubusercontent.com/EnzoFerroni/minezada/$ref/modpack/pack/pack.toml"
+# -t 0: sem a espera de 10 s do "Reconfigure optional mods?". Opcional novo continua abrindo a lista.
 & $java -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -t 0 $pack
-if ($LASTEXITCODE) { exit $LASTEXITCODE }
-# NeoForge da instancia igual ao do pack. O Prism ja carregou a versao desta abertura, entao troca o
-# mmc-pack.json e pede para abrir de novo (com a versao antiga o servidor recusa a entrada).
-try { $t = Invoke-RestMethod $pack -TimeoutSec 10 } catch { exit 0 }
-$mc = [regex]::Match($t, 'minecraft = "(.+?)"').Groups[1].Value; $neo = [regex]::Match($t, 'neoforge = "(.+?)"').Groups[1].Value
-if ($neo -and -not (Select-String -Quiet -SimpleMatch "`"$neo`"" ..\mmc-pack.json)) {
-    Set-Content ..\mmc-pack.json -Encoding ascii "{`"formatVersion`":1,`"components`":[{`"uid`":`"net.minecraft`",`"version`":`"$mc`",`"important`":true},{`"uid`":`"net.neoforged`",`"version`":`"$neo`"}]}"
-    Write-Host "Minezada atualizou o NeoForge para $neo. Feche este aviso e abra o jogo de novo."
-    exit 1
-}
-exit 0
+exit $LASTEXITCODE

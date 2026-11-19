@@ -81,6 +81,13 @@ if [ ! -f "$cfg" ]; then
   printf '[General]\nLanguage=pt_BR\nApplicationTheme=dark\nIconTheme=pe_colored\nAutomaticJavaDownload=true\nAutomaticJavaSwitch=true\nIgnoreJavaWizard=true\n' > "$cfg"
 fi
 
+# Atalho: com o jogo ja aberto nao mexe em nada. Prism aberto sem jogo fecha antes de atualizar a instancia
+# (ele regravaria instance.cfg e mmc-pack.json com o que tem na memoria).
+if [ $atalho = 1 ] && [ "$(uname -s)" = "Darwin" ]; then
+  if pgrep -f 'instances/Minezada' >/dev/null; then open -n -a "$app" --args --launch Minezada; exit 0; fi
+  if pgrep -f "$app/Contents/MacOS/" >/dev/null; then osascript -e "tell application \"$app\" to quit" >/dev/null 2>&1 || true; fi
+fi
+
 # 3. Instancia: extrai direto na pasta do Prism (sem dialogo). Preserva mundo, opcoes e servidores do jogador.
 inst_dir="$(sed -n 's/^InstanceDir=//p' "$cfg" | head -n 1)"
 inst_dir="${inst_dir:-instances}"

@@ -57,6 +57,15 @@ if (-not (Test-Path $cfg)) {
     Set-Content $cfg -Encoding ascii "[General]`nLanguage=pt_BR`nApplicationTheme=dark`nIconTheme=pe_colored`nAutomaticJavaDownload=true`nAutomaticJavaSwitch=true`nIgnoreJavaWizard=true"
 }
 
+# Atalho: com o jogo ja aberto nao mexe em nada. Prism aberto sem jogo fecha antes de atualizar a instancia
+# (ele regravaria instance.cfg e mmc-pack.json com o que tem na memoria).
+if ($Abrir) {
+    if (Get-CimInstance Win32_Process -Filter "Name='javaw.exe' or Name='java.exe'" | Where-Object { $_.CommandLine -match 'instances[\\/]Minezada' }) {
+        Start-Process $prism -ArgumentList '--launch', 'Minezada'; return
+    }
+    Get-Process prismlauncher -ErrorAction SilentlyContinue | ForEach-Object { [void]$_.CloseMainWindow(); if (-not $_.WaitForExit(5000)) { $_ | Stop-Process -Force } }
+}
+
 # 3. Instancia: extrai direto na pasta do Prism (sem dialogo). Preserva mundo, opcoes e servidores do jogador.
 $instDir = Select-String '^InstanceDir=(.+)$' $cfg | Select-Object -First 1 | ForEach-Object { $_.Matches[0].Groups[1].Value }
 if (-not $instDir) { $instDir = 'instances' }
