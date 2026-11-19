@@ -44,7 +44,12 @@ $rpLigados = @('faithful-32x', 'default-dark-mode', 'fast-better-grass', 'simple
 # Versao presa (id da versao no Modrinth), vale ate com -Atualizar. Bumblezone 7.17.3: a 7.19.x chama
 # setSpawnCancelled quando um zumbi converte aldeao e o NeoForge derruba o servidor ("Late invocations of
 # Mob#setSpawnCancelled"). Tirar daqui quando sair versao corrigida.
-$presas = @{ 'the-bumblezone' = 'LwGXnQCW' }
+# Accessories 1.1.0-beta.53: minimo que o Hamster aceita. O Aether embute a beta.48, que impede o
+# servidor de abrir; a avulsa tem prioridade sobre a embutida.
+$presas = @{ 'the-bumblezone' = 'LwGXnQCW'; 'accessories' = 'Fb55Fgjz' }
+# Dependencias que o jar exige mas a versao no Modrinth nao declara (ids de projeto do Modrinth).
+# Hamster 3.7.0: architectury, geckolib, fzzy-config, patchouli e accessories (ver acima).
+$depsExtras = @{ 'adorable-hamster-pets' = @('lhGA9TYQ', '8BmcQJ2H', 'hYykXjDp', 'nU0bVIaL', 'jtmvUHXj') }
 $linhas = Get-Content (Join-Path $root 'modpack/mods.txt') -Encoding UTF8
 $pedidos = foreach ($l in $linhas) { if ($l -match '^\s*([a-z0-9_-]+)\s*\|') { $matches[1] } }
 
@@ -80,7 +85,7 @@ while ($fila.Count) {
     if (-not $v) { throw "$($p.slug): sem versao para $loader $mc" }
     $f = $v.files | Where-Object primary | Select-Object -First 1
     if (-not $f) { $f = $v.files[0] }
-    $deps = @($v.dependencies | Where-Object { $_.dependency_type -eq 'required' -and $_.project_id } | ForEach-Object project_id)
+    $deps = @($v.dependencies | Where-Object { $_.dependency_type -eq 'required' -and $_.project_id } | ForEach-Object project_id) + @($depsExtras[$p.slug] | Where-Object { $_ })
     $deps | ForEach-Object { $fila.Enqueue($_) }
     $projs[$p.id] = [pscustomobject]@{ p = $p; v = $v; f = $f; pasta = $pasta; deps = $deps
         cliente = $p.client_side -ne 'unsupported' -and $p.slug -notin $soServidor; servidor = $p.server_side -ne 'unsupported' -and $p.slug -notin $soCliente }

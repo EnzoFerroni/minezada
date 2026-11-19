@@ -121,6 +121,11 @@ hash = "07e57c4bcd6676948c04ecdbbfa93da85424f156f8f11bf9a358756bd2d429c7"
 metafile = true
 
 [[files]]
+file = "mods/adorable-hamster-pets.pw.toml"
+hash = "30fcd1c02a4b0e9b8e8c09e1cf33e5ce2e67b5a9b81362b1e55e8c21238060fd"
+metafile = true
+
+[[files]]
 file = "mods/l_enders-cataclysm.pw.toml"
 hash = "8d073bc85a9e8d4879ed5c40a42eca45974847d8ea3851f0b4e10f99fc150495"
 metafile = true
@@ -421,6 +426,11 @@ hash = "2e7e52e225c672dc318036f0f87c7452c68a78b2753a6e90ffb36b2bb71d4b64"
 metafile = true
 
 [[files]]
+file = "mods/map-atlases-forge.pw.toml"
+hash = "5f5855ffacdc26f427f18f6e8c33a8fbc168444ba7efb25e1b72257495dd2ca2"
+metafile = true
+
+[[files]]
 file = "mods/corpse.pw.toml"
 hash = "3c9a0b51a15af2a39adaa59aa1cc76613e93c29dd8dd14e669bb3dc00af2f632"
 metafile = true
@@ -536,13 +546,13 @@ hash = "63129fbc993e777eb352ac1028ef959fa04264cfba9d3ad8c9cb93e631cee031"
 metafile = true
 
 [[files]]
-file = "mods/common-storage-lib.pw.toml"
-hash = "ca9c879eb5099bdbe64f687087a9563a288a3de78dbde289053acdb295a45e41"
+file = "mods/resourceful-config.pw.toml"
+hash = "9f447b390705da315b16a4aa2b9983114d67f8132836d88ac9c16bd9b9d8851f"
 metafile = true
 
 [[files]]
-file = "mods/resourceful-config.pw.toml"
-hash = "9f447b390705da315b16a4aa2b9983114d67f8132836d88ac9c16bd9b9d8851f"
+file = "mods/common-storage-lib.pw.toml"
+hash = "ca9c879eb5099bdbe64f687087a9563a288a3de78dbde289053acdb295a45e41"
 metafile = true
 
 [[files]]
@@ -558,6 +568,26 @@ metafile = true
 [[files]]
 file = "mods/fragmentum.pw.toml"
 hash = "4433b33f668d46f316d95f1910559c8c6b52a755765ab562ea4c2a66eead2831"
+metafile = true
+
+[[files]]
+file = "mods/architectury-api.pw.toml"
+hash = "2b76ed836cd3f2de485c58cba896a68116427a56be02d6001e7d62a6daf92312"
+metafile = true
+
+[[files]]
+file = "mods/fzzy-config.pw.toml"
+hash = "03cc20e18a4929cd869e84158f567b5013692004ed432b59bdc58fce98200e36"
+metafile = true
+
+[[files]]
+file = "mods/patchouli.pw.toml"
+hash = "20eef3ccbd2512ec0968d038a17a9d1e1bafa95a31786664d5909aeaf5477058"
+metafile = true
+
+[[files]]
+file = "mods/accessories.pw.toml"
+hash = "ffec02e79453f0e50e3e7d21c8f4c29e772e4c6565ba39f41e6e55d211ae2a4a"
 metafile = true
 
 [[files]]
@@ -611,13 +641,13 @@ hash = "88215cb6e2dd2f9457d7424e0239c945ea61efa3fe25becc52c1ca04441f2037"
 metafile = true
 
 [[files]]
-file = "mods/architectury-api.pw.toml"
-hash = "2b76ed836cd3f2de485c58cba896a68116427a56be02d6001e7d62a6daf92312"
+file = "mods/cloth-config.pw.toml"
+hash = "ae112eb85ca8343d2f2c1829427d84e73a1c4020fb5c71341039580cfae63ba9"
 metafile = true
 
 [[files]]
-file = "mods/cloth-config.pw.toml"
-hash = "ae112eb85ca8343d2f2c1829427d84e73a1c4020fb5c71341039580cfae63ba9"
+file = "mods/kotlin-for-forge.pw.toml"
+hash = "c5056f4d15ce00269bb0555bb68ae5ec766b9b02fe44b9d0518b837d2401021f"
 metafile = true
 
 [[files]]
