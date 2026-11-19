@@ -103,7 +103,7 @@ Remove-Item -Recurse -Force $tmp
 
 # 4. Atalho opcional na Area de Trabalho. Quem ja tem o atalho ganha a versao nova sem pergunta.
 # O atalho baixa este script a cada abertura (-Abrir) e atualiza o que mudou; sem internet, abre o launcher direto.
-$abrir = 'abrir o Prism Launcher e jogar a instancia Minezada'
+$comoAbrir = 'abrir o Prism Launcher e jogar a instancia Minezada'
 $lnkPath = "$([Environment]::GetFolderPath('Desktop'))\Minezada.lnk"
 if ((Test-Path $lnkPath) -or (Read-Host 'Criar um atalho "Minezada" na Area de Trabalho para abrir o jogo? [S/n]') -notmatch '^\s*n') {
     $lnk = (New-Object -ComObject WScript.Shell).CreateShortcut($lnkPath)
@@ -111,15 +111,15 @@ if ((Test-Path $lnkPath) -or (Read-Host 'Criar um atalho "Minezada" na Area de T
     $lnk.Arguments = "-NoProfile -ExecutionPolicy Bypass -Command `"try { & ([scriptblock]::Create((Invoke-RestMethod https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.ps1 -TimeoutSec 15))) -Abrir } catch { Start-Process '$prism' -ArgumentList '--launch', 'Minezada' }`""
     $lnk.WindowStyle = 7  # minimizado
     $lnk.IconLocation = "$prism,0"; $lnk.Save()
-    $abrir = "clicar em 'Minezada' na Area de Trabalho"
+    $comoAbrir = "clicar em 'Minezada' na Area de Trabalho"
 }
 
 Start-Process $prism -ArgumentList '--launch', 'Minezada'
 if ($Abrir) { return }
 if ($original) {
-    Write-Host "`nPronto! Na primeira vez entre com a conta Microsoft. Depois e so $abrir."
+    Write-Host "`nPronto! Na primeira vez entre com a conta Microsoft. Depois e so $comoAbrir."
 }
 else {
     Write-Host "`nPronto! Na primeira vez o launcher pede um nome: use seu nick exatamente como esta na"
-    Write-Host "whitelist (maiusculas contam). Depois e so $abrir."
+    Write-Host "whitelist (maiusculas contam). Depois e so $comoAbrir."
 }
