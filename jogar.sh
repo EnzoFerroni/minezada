@@ -93,16 +93,12 @@ if [ $gb -ge 24 ]; then mem=6144; elif [ $gb -lt 12 ]; then mem=3072; fi
 if [ -n "$mem" ]; then
   sed -i.bak "s/^MaxMemAlloc=.*/MaxMemAlloc=$mem/" "$inst/instance.cfg" && rm -f "$inst/instance.cfg.bak"
 fi
-# Mac: Distant Horizons sempre desligado (o jogo caiu em um M4 e os shaders nao abrem com ele).
-# O packwiz respeita a escolha salva no packwiz.json e nao pergunta de novo.
-if [ "$(uname -s)" = "Darwin" ]; then
-  pw="$inst/.minecraft/packwiz.json"
-  if [ -f "$pw" ]; then
-    perl -pi -e 's/("mods\/distanthorizons\.pw\.toml":\{.*?"optionValue":)true/${1}false/' "$pw"
-  else
-    printf '{"cachedFiles":{"mods/distanthorizons.pw.toml":{"isOptional":true,"optionValue":false}}}' > "$pw"
-  fi
-  rm -f "$inst/.minecraft/mods/"DistantHorizons-*.jar
+# Antes de abrir roda o minezada.sh (vem pelo pack): atualiza os mods e o que fica fora do pack.
+sed -i.bak 's|^PreLaunchCommand=.*|PreLaunchCommand=/bin/bash minezada.sh|' "$inst/instance.cfg" && rm -f "$inst/instance.cfg.bak"
+# Mac: Distant Horizons desligado ja na primeira abertura (o minezada.sh garante nas seguintes). Com a
+# escolha salva, a lista de opcionais nem mostra o DH.
+if [ "$(uname -s)" = "Darwin" ] && [ ! -f "$inst/.minecraft/packwiz.json" ]; then
+  printf '{"cachedFiles":{"mods/distanthorizons.pw.toml":{"isOptional":true,"optionValue":false}}}' > "$inst/.minecraft/packwiz.json"
 fi
 # Mac Apple Silicon: o Modflared so baixa o cloudflared Intel, que sem Rosetta da "Bad CPU type".
 # Ele prefere o "cloudflared" do PATH, entao o Prism recebe a pasta com o binario ARM.
@@ -128,7 +124,7 @@ if [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "arm64" ]; then
       || echo "AVISO: sem Rosetta. Se o jogo nao conectar, entre em 'Minezada (playit)' na lista de servidores." >&2
   fi
 fi
-cp "$tmp/x/.minecraft/packwiz-installer-bootstrap.jar" "$tmp/x/.minecraft/packwiz-installer.jar" "$inst/.minecraft/"
+cp "$tmp/x/.minecraft/packwiz-installer-bootstrap.jar" "$tmp/x/.minecraft/packwiz-installer.jar" "$tmp/x/.minecraft/minezada.sh" "$inst/.minecraft/"
 for f in servers.dat options.txt; do [ -f "$inst/.minecraft/$f" ] || cp "$tmp/x/.minecraft/$f" "$inst/.minecraft/"; done
 # Liga os pacotes de recursos do pack em quem ja tinha options.txt, mantendo os que o jogador ligou.
 # shortcut: nomes de pacote com virgula quebram este trecho; trocar por parser de JSON se aparecer um.
