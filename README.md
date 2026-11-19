@@ -20,7 +20,7 @@ irm https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.ps1 | iex
 curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.sh | bash
 ```
 
-Das próximas vezes, abra pelo atalho **Minezada** (ou pelo Prism Launcher, instância Minezada). Os mods se atualizam sozinhos a cada abertura.
+Das próximas vezes, abra pelo atalho **Minezada**: ele confere a versão mais nova e atualiza tudo sozinho antes de abrir o jogo. Pelo Prism Launcher (instância Minezada) os mods também se atualizam a cada abertura.
 
 ## Problemas comuns
 

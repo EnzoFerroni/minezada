@@ -131,6 +131,11 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
   `PreLaunchCommand` roda ele. É ele que chama o packwiz, então uma versão quebrada impede o jogo de abrir e não
   se conserta sozinha (só rodando o comando de jogar de novo). Teste abrindo pelo Prism antes do push. No Windows
   o `Start-Process -Wait` dá "Acesso negado" quando o Prism roda o script: use o `java.exe`, que o PowerShell
-  espera. Mudança no `instance.cfg` (memória, `Env`) continua pedindo o comando de jogar.
+  espera. Ele baixa o pack pelo commit mais novo (API do GitHub): o link `main` fica até 5 min velho no cache.
+- **O Prism regrava `instance.cfg` e `mmc-pack.json`** com o que tem na memória (no começo da abertura e ao
+  fechar o jogo): nada que o script de antes de abrir escreva neles fica. Quem atualiza esses arquivos é o atalho
+  Minezada, que roda o comando de jogar (`-Abrir` / `--abrir`) antes de abrir o Prism e fecha o Prism parado.
+  Por isso o NeoForge tem versão fixa no `montar-pack` (só muda com `-Atualizar`): quem abre pelo Prism sem o
+  atalho vê o "Update" do packwiz quando ele muda.
 - **Testar Ctrl+C num script**: o que roda em segundo plano num bash não interativo nasce ignorando SIGINT, e aí
   nem o trap é instalado. Ligar `set -m` antes (como em `scripts/testes/desligar.sh`), senão o teste falha à toa.
