@@ -20,7 +20,11 @@ if [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "arm64" ] && [ "$(cat "$ins
 fi
 [ "${1:-}" != "--cloudflared" ] || exit 0
 java="${INST_JAVA:-java}"
-pack="https://raw.githubusercontent.com/EnzoFerroni/minezada/main/modpack/pack/pack.toml"
+# Pack pelo link do commit mais novo: o link do main fica ate 5 min velho no cache do GitHub depois de um push.
+ref="$(curl -fsSL --max-time 10 -H 'Accept: application/vnd.github.sha' https://api.github.com/repos/EnzoFerroni/minezada/commits/main 2>/dev/null || true)"
+case "$ref" in *[!0-9a-f]* | "") ref=main ;; esac
+[ ${#ref} -eq 40 ] || ref=main
+pack="https://raw.githubusercontent.com/EnzoFerroni/minezada/$ref/modpack/pack/pack.toml"
 # -t 0: sem a espera de 10 s do "Reconfigure optional mods?". Opcional novo continua abrindo a lista.
 "$java" -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -t 0 "$pack"
 # Perfis de shaders que sairam do pack (o packwiz nao apaga arquivo com preserve).
