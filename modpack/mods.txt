@@ -10,6 +10,18 @@ jade | Olhe para um bloco ou mob e aparece no topo da tela o que ele é, de qual
 appleskin | Mostra na barra de fome quanto cada comida vai encher e a saturação, para saber o que vale a pena comer.
 better-advancements | Tela de conquistas (tecla L) mais clara. Serve de guia do que fazer a seguir.
 
+## Create: addons
+slice-and-dice | Automatiza a culinária do Farmer's Delight com as máquinas do Create (cortar, cozinhar).
+create-contraption-terminals | O terminal do Tom's Storage funciona em máquinas móveis do Create (trens, elevadores).
+createaddition | Eletricidade no Create: motores elétricos, geradores, baterias e fios.
+create-enchantment-industry | Encantamento automático e XP líquido com as máquinas do Create.
+interiors | Móveis no estilo do Create (sofás, cadeiras) onde dá para sentar, até dentro de trens.
+copycats | Blocos que copiam a textura de qualquer outro (degraus, cercas, painéis) para construir.
+create-deco | Blocos industriais de decoração: tijolos, grades, portas e luzes de metal.
+create-jetpack | A mochila de ar comprimido do Create vira um jetpack para voar.
+create-connected | Blocos de qualidade de vida que faltam no Create.
+create-aeronautics | Dirigíveis, aviões e carros montados com blocos do Create.
+
 ## Baús e armazenamento
 sophisticated-storage | Baús, barris e caixas que ganham upgrades: viram maiores (ferro, ouro, diamante, netherite) sem tirar os itens, organizam sozinhos, filtram e puxam itens.
 sophisticated-backpacks | Mochilas com upgrades: coletam itens do chão, organizam, alimentam você e podem ficar maiores.
@@ -25,6 +37,7 @@ wyrmroost | Dragões de vários tipos pelo mundo. Pegue um ovo, choque, crie o f
 
 ## Dimensões
 aether | Uma dimensão no céu, com ilhas flutuantes, mobs, chefes e itens novos. Portal: moldura de glowstone e um balde de água dentro.
+deep-aether | Mais biomas, mobs, chefe e itens dentro do Aether.
 the-undergarden | Dimensão subterrânea escura com minérios, mobs e chefe próprios. Portal: moldura de pedra-abismal (deepslate) acesa com o Catalisador.
 ad-astra | Foguetes e planetas (Lua, Marte, Vênus, Mercúrio) com minérios novos. Precisa montar energia e combustível antes de decolar.
 the-bumblezone | Dimensão das abelhas: colmeias gigantes, mel, abelha rainha e armaduras. Entre jogando uma pérola do End num ninho de abelha.
@@ -116,6 +129,7 @@ skinrestorer | Mostra a skin de cada um no servidor, mesmo em rede que bloqueia 
 waystones | Pedras de teleporte: ative nas suas bases e em vilas e viaje entre elas.
 xaeros-minimap | Minimapa no canto da tela, com marcadores (waypoints) e marcação de onde você morreu.
 xaeros-world-map | Mapa do mundo inteiro que você já explorou. Tecla M.
+xaeros-maps-x-waystones | As waystones ativadas aparecem sozinhas no minimapa e no mapa do Xaero.
 map-atlases-forge | Atlas que junta seus mapas de papel em um livro. Receita: mapa preenchido, livro e slime ou garrafa de mel. Na hotbar ou na mão secundária, mostra os mapas como minimapa.
 corpse | Ao morrer, seus itens ficam guardados num corpo no lugar da morte, sem sumir.
 farmers-delight | Culinária: plantações, panela, tábua de corte e dezenas de comidas novas.

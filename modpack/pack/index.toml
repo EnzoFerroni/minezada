@@ -31,6 +31,56 @@ hash = "e16bdf33e5506ac979b25ca3bada43b67a810a96e2a51c43981ee4042e05d7bb"
 metafile = true
 
 [[files]]
+file = "mods/slice-and-dice.pw.toml"
+hash = "c09806ef5351e665f8580abbf39fe543052ddfd0be8218de06b07d3f4c55fc50"
+metafile = true
+
+[[files]]
+file = "mods/create-contraption-terminals.pw.toml"
+hash = "0634164be639aad0264cd714cba028636ed9aa66ca7dc794547cd95631602a60"
+metafile = true
+
+[[files]]
+file = "mods/createaddition.pw.toml"
+hash = "fc3636e729b3c7dcfa3bf2b7930d7f00e73f68a4545bd8ee230b26cac6f8266e"
+metafile = true
+
+[[files]]
+file = "mods/create-enchantment-industry.pw.toml"
+hash = "28e85148c09506e114b26704e1c30fbfd7d5f5d709d3008a3d85d3c96de5469b"
+metafile = true
+
+[[files]]
+file = "mods/interiors.pw.toml"
+hash = "8bfc9d042a5315df9d16fd68656509c7f58d6eb6ced6307db4692767251dd3cf"
+metafile = true
+
+[[files]]
+file = "mods/copycats.pw.toml"
+hash = "abf42492de300eb08795656a73176e7855f04fcba55b758d1f8f349bd6191bf9"
+metafile = true
+
+[[files]]
+file = "mods/create-deco.pw.toml"
+hash = "86a6be59b38831b5f3d0b1925c15cdfcaa2ddb436f7656d862810cd923143a18"
+metafile = true
+
+[[files]]
+file = "mods/create-jetpack.pw.toml"
+hash = "dec822b9d9f03600a4823bce191597989c1e803edd2f1d607c995450b6e6623e"
+metafile = true
+
+[[files]]
+file = "mods/create-connected.pw.toml"
+hash = "e9cf863a2d9ee029ad0ec485ea0cb8a04fefaa1ab0fb2fa64ec93008468c7d49"
+metafile = true
+
+[[files]]
+file = "mods/create-aeronautics.pw.toml"
+hash = "0928ea037c59702657ebdc0240f394628e3d3d9cc9341cd95f6afe07f9a037f3"
+metafile = true
+
+[[files]]
 file = "mods/sophisticated-storage.pw.toml"
 hash = "cb38ede03df4d98f6550776e95e65d7eab5bc957044de401cfa6e598b549fc90"
 metafile = true
@@ -68,6 +118,11 @@ metafile = true
 [[files]]
 file = "mods/aether.pw.toml"
 hash = "ee0793ec5d025f9101737934684bd5a16ca64843f460df7053b05c9a5f8830cb"
+metafile = true
+
+[[files]]
+file = "mods/deep-aether.pw.toml"
+hash = "55f2719207e3db6593129a7f4e97d13618ed20595a8a0a15815d91227a1e4d6b"
 metafile = true
 
 [[files]]
@@ -426,6 +481,11 @@ hash = "2e7e52e225c672dc318036f0f87c7452c68a78b2753a6e90ffb36b2bb71d4b64"
 metafile = true
 
 [[files]]
+file = "mods/xaeros-maps-x-waystones.pw.toml"
+hash = "fb9b0c3abaa655cd99f346282636e76281ead0ed8105954441a37ac6c21ed3b1"
+metafile = true
+
+[[files]]
 file = "mods/map-atlases-forge.pw.toml"
 hash = "5f5855ffacdc26f427f18f6e8c33a8fbc168444ba7efb25e1b72257495dd2ca2"
 metafile = true
@@ -526,6 +586,21 @@ hash = "0b4685872feb6558d7299bb406842206721d72826d87b7911909f9760155a4ff"
 metafile = true
 
 [[files]]
+file = "mods/kotlin-for-forge.pw.toml"
+hash = "c5056f4d15ce00269bb0555bb68ae5ec766b9b02fe44b9d0518b837d2401021f"
+metafile = true
+
+[[files]]
+file = "mods/create-dragons-plus.pw.toml"
+hash = "406a19b969a84bb0f7c07f1c62cde296ccfb9aed7240f02f7a7cfeba9940955b"
+metafile = true
+
+[[files]]
+file = "mods/sable.pw.toml"
+hash = "ac6671f269f12e6bdc06f515363aa02a8f64de233753309402327e25aff5573e"
+metafile = true
+
+[[files]]
 file = "mods/sophisticated-core.pw.toml"
 hash = "becbfec4aa545e5fd20a0c7aff1b9cbac685716c6525ae31b6f3d954ec6de92e"
 metafile = true
@@ -538,6 +613,11 @@ metafile = true
 [[files]]
 file = "mods/owo-lib.pw.toml"
 hash = "0d76c01b16356f56f1b543efe1e3fec448868cea02dfc6d2a0698834e787a36f"
+metafile = true
+
+[[files]]
+file = "mods/terrablender.pw.toml"
+hash = "17b83659e23ebdd2470faeb926ebb97af4b8ccd47388553b0e70520b360d2b5d"
 metafile = true
 
 [[files]]
@@ -641,13 +721,13 @@ hash = "88215cb6e2dd2f9457d7424e0239c945ea61efa3fe25becc52c1ca04441f2037"
 metafile = true
 
 [[files]]
-file = "mods/cloth-config.pw.toml"
-hash = "ae112eb85ca8343d2f2c1829427d84e73a1c4020fb5c71341039580cfae63ba9"
+file = "mods/yacl.pw.toml"
+hash = "786b4a86e1ca93700efe2346e89bd81acdcd0b9ec3409af1752a14455ee75d9a"
 metafile = true
 
 [[files]]
-file = "mods/kotlin-for-forge.pw.toml"
-hash = "c5056f4d15ce00269bb0555bb68ae5ec766b9b02fe44b9d0518b837d2401021f"
+file = "mods/cloth-config.pw.toml"
+hash = "ae112eb85ca8343d2f2c1829427d84e73a1c4020fb5c71341039580cfae63ba9"
 metafile = true
 
 [[files]]

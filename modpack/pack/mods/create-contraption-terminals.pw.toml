@@ -1,0 +1,8 @@
+name = "Create Contraption Terminals"
+filename = "createcontraptionterminals-1.21-1.4.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/gOPAFzp0/versions/gBvq8zOa/createcontraptionterminals-1.21-1.4.0.jar"
+hash-format = "sha1"
+hash = "ede963781ca5bf49c5117031087b8085043c7ab3"
