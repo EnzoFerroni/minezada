@@ -1,5 +1,5 @@
 # Sobe o servidor com o pack do repo e espera o "Done": pega mod faltando ou incompativel no servidor
-# antes de chegar em quem hospeda. O jogo (cliente) continua precisando de teste manual.
+# antes de chegar em quem hospeda. O job "jogo" abre o cliente e entra em um mundo (mods so de cliente).
 name: Servidor de teste
 
 on:
@@ -61,4 +61,42 @@ jobs:
             server/logs/
             server/crash-reports/
             server/saida.log
+          if-no-files-found: ignore
+
+  # Abre o jogo com os mods de cliente (HeadlessMC em tela virtual), entra em um mundo novo e fecha: pega mod so de
+  # cliente com dependencia errada, que o servidor nao carrega. Opcionais (Distant Horizons) entram ligados.
+  jogo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Baixar os mods do jogo (packwiz, lado cliente)
+        run: |
+          mkdir -p run && cd run
+          unzip -o -q -j ../modpack/minezada-prism.zip .minecraft/packwiz-installer-bootstrap.jar .minecraft/packwiz-installer.jar -d .
+          java -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar \
+            -g -s client "file://$GITHUB_WORKSPACE/modpack/pack/pack.toml"
+          ls mods | wc -l
+
+      - name: Abrir o jogo e entrar em um mundo
+        uses: headlesshq/mc-runtime-test@dfc8a2a0145f723b01abda5e1cf59eaba516d128 # 5.0.0
+        with:
+          mc: 1.21.1
+          modloader: neoforge
+          java: 21
+          mc-runtime-test: neoforge
+
+      - name: Guardar logs
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: logs-do-jogo
+          path: |
+            run/logs/
+            run/crash-reports/
           if-no-files-found: ignore
