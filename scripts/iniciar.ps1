@@ -189,6 +189,8 @@ if (-not (Java-Ok $cfg.JAVA)) {
 $sync = $cfg.SYNC_DIR
 $lock = if ($sync) { Join-Path $sync 'host.lock' }
 $estado = if ($sync) { Join-Path $sync 'mundo.tar.gz' }
+# Whitelist e admins: lista na pasta do Drive (vale para todos os hosts) ou, sem Drive, no servidor.
+$lista = if ($sync) { Join-Path $sync 'jogadores.txt' } else { Join-Path $server 'jogadores.txt' }
 $neo = [regex]::Match((Get-Content (Join-Path $root 'modpack/pack/pack.toml') -Raw), 'neoforge = "(.+?)"').Groups[1].Value
 if (-not $neo) { throw 'Versao do NeoForge nao encontrada em modpack/pack/pack.toml.' }
 if (-not $Rodar) {
@@ -267,8 +269,6 @@ if (-not $Rodar) {
         # shortcut: a trava depende da nuvem ja ter sincronizado; dois hosts iniciando no mesmo minuto podem passar os dois.
         Set-Content $lock $eu
     }
-    # Whitelist e admins: lista na pasta do Drive (vale para todos os hosts) ou, sem Drive, no servidor.
-    $lista = if ($sync) { Join-Path $sync 'jogadores.txt' } else { Join-Path $server 'jogadores.txt' }
     # Mesma logica no Windows e no Mac: scripts/Whitelist.java, rodado com o Java do servidor.
     & $cfg.JAVA (Join-Path $PSScriptRoot 'Whitelist.java') $lista $server
     if ($LASTEXITCODE) { Write-Warning 'Falha ao atualizar a whitelist.' }
@@ -300,7 +300,35 @@ try {
     # Flags do Aikar: coleta de lixo G1 ajustada para servidor de Minecraft (menos travadas).
     $flags = '-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1' -split ' '
     # Sem "nogui": a janela do Minecraft server tem campo de comando, e fechar ela no X salva e para.
-    & $cfg.JAVA "-Xms$($cfg.RAM)" "-Xmx$($cfg.RAM)" @flags "@libraries/net/neoforged/neoforge/$neo/win_args.txt"
+    # A entrada do java fica com este script: se o jogadores.txt mudar, libera os novos e manda whitelist reload
+    # (issue #16). Se o whitelist.json ou o ops.json mudar (/whitelist add ou /op no jogo), copia o nick para a
+    # lista antes. Confere a cada 30 s.
+    $psi = New-Object Diagnostics.ProcessStartInfo $cfg.JAVA
+    $psi.Arguments = (@("-Xms$($cfg.RAM)", "-Xmx$($cfg.RAM)") + $flags + "@libraries/net/neoforged/neoforge/$neo/win_args.txt") -join ' '
+    $psi.WorkingDirectory = $server
+    $psi.UseShellExecute = $false
+    $psi.RedirectStandardInput = $true
+    $proc = [Diagnostics.Process]::Start($psi)
+    $wl = Join-Path $PSScriptRoot 'Whitelist.java'
+    $datas = { param($arqs) ($arqs | ForEach-Object { if (Test-Path $_) { (Get-Item $_).LastWriteTimeUtc.Ticks } }) -join ',' }
+    $jsons = (Join-Path $server 'whitelist.json'), (Join-Path $server 'ops.json')
+    $visto = & $datas $lista; $vistoJogo = & $datas $jsons
+    while (-not $proc.WaitForExit(30000)) {
+        $jogo = & $datas $jsons
+        if ($jogo -ne $vistoJogo) {
+            $vistoJogo = $jogo
+            & $cfg.JAVA $wl --do-jogo $lista $server | ForEach-Object { Write-Host $_ }
+        }
+        $agora = & $datas $lista
+        if ($agora -eq $visto) { continue }
+        $visto = $agora
+        Write-Host 'jogadores.txt mudou: atualizando a whitelist.'
+        $saida = @(& $cfg.JAVA $wl $lista $server)
+        $saida | ForEach-Object { Write-Host $_ }
+        $vistoJogo = & $datas $jsons
+        $cmds = @('whitelist reload') + @($saida | Where-Object { $_ -like 'Admin (op): *' } | ForEach-Object { 'op ' + $_.Substring(12) })
+        try { foreach ($c in $cmds) { $proc.StandardInput.WriteLine($c) } } catch { Write-Warning "Nao consegui avisar o servidor: $($_.Exception.Message)" }
+    }
 }
 finally {
     Pop-Location

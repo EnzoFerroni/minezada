@@ -50,14 +50,17 @@ salva, o mundo volta para o Drive (com backup dos 5 últimos) e a trava é liber
 2. Escreva o nick numa linha nova, **igual ao do jogo, com as maiúsculas** (`Nick op` também dá
    admin). Não sabe o nick exato? Peça para a pessoa tentar entrar: o console mostra
    `Disconnecting Nick (...): You are not white-listed`.
-3. Reinicie o servidor (`stop` e abrir de novo). O start libera todos da lista, em qualquer host.
+3. Pronto: com o servidor ligado, em até 30 segundos o nick é liberado (o console mostra
+   `jogadores.txt mudou`). Desligado, ele é liberado no próximo start, em qualquer host.
 
-**Use o `jogadores.txt`, não `whitelist add` nem `op` no console.** O start pergunta à Mojang se o nick
-tem conta original. Se tiver, libera só o UUID oficial (e copia para ele o progresso antigo do UUID
-offline). Se não tiver, libera o UUID offline, e a pessoa usa senha. Amigo sem original com um nick
-que por acaso existe como conta de outra pessoa: escreva `Nick sem-original`. Se a Mojang não
-responder, o nick fica como estava até o próximo start. Tirar alguém: `whitelist remove Nick` no
-console e tirar da lista.
+Pelo jogo também dá: quem é op digita `/whitelist add Nick` ou `/op Nick` no chat. Em até 30 segundos
+o nick vai sozinho para o `jogadores.txt` e passa pela mesma conferência.
+
+A conferência pergunta à Mojang se o nick tem conta original. Se tiver, libera só o UUID oficial (e
+copia para ele o progresso antigo do UUID offline). Se não tiver, libera o UUID offline, e a pessoa usa
+senha. Amigo sem original com um nick que por acaso existe como conta de outra pessoa: escreva
+`Nick sem-original`. Se a Mojang não responder, o nick fica como estava até a próxima mudança ou start.
+Tirar alguém: `/whitelist remove Nick` (ou `/deop Nick`) e tirar da lista.
 
 **Login (MixAuth).** O servidor aceita Minecraft não original (`online-mode=false`), então o nick
 sozinho não prova quem é a pessoa:
