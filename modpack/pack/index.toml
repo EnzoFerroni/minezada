@@ -481,8 +481,8 @@ hash = "2e7e52e225c672dc318036f0f87c7452c68a78b2753a6e90ffb36b2bb71d4b64"
 metafile = true
 
 [[files]]
-file = "mods/xaeros-maps-x-waystones.pw.toml"
-hash = "fb9b0c3abaa655cd99f346282636e76281ead0ed8105954441a37ac6c21ed3b1"
+file = "mods/xaeros-minimap-world-map-waystones-compatibility-forge.pw.toml"
+hash = "2eeb1649c85b60118b58f103ccdedb9c48c26e4344bf22ad7ea33b2d03a8aa43"
 metafile = true
 
 [[files]]
@@ -718,11 +718,6 @@ metafile = true
 [[files]]
 file = "mods/balm.pw.toml"
 hash = "88215cb6e2dd2f9457d7424e0239c945ea61efa3fe25becc52c1ca04441f2037"
-metafile = true
-
-[[files]]
-file = "mods/yacl.pw.toml"
-hash = "786b4a86e1ca93700efe2346e89bd81acdcd0b9ec3409af1752a14455ee75d9a"
 metafile = true
 
 [[files]]

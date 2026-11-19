@@ -1,8 +1,0 @@
-name = "Xaero's Maps x Waystones"
-filename = "xmxw-2.12.1+1.21.1-neoforge.jar"
-side = "client"
-
-[download]
-url = "https://cdn.modrinth.com/data/iv2jCzkP/versions/9jzCjsb2/xmxw-2.12.1%2B1.21.1-neoforge.jar"
-hash-format = "sha1"
-hash = "d3d807965eb3f95d738c19536a59dde41b510351"
