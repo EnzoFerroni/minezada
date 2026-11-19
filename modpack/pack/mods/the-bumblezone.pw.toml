@@ -1,8 +1,0 @@
-name = "The Bumblezone - NeoForge/Forge"
-filename = "the_bumblezone-7.17.3+1.21.1-neoforge.jar"
-side = "both"
-
-[download]
-url = "https://cdn.modrinth.com/data/38tpSycf/versions/LwGXnQCW/the_bumblezone-7.17.3%2B1.21.1-neoforge.jar"
-hash-format = "sha1"
-hash = "7d79d1c61a1c90ee622773bfe4b2311c29519783"

@@ -1,8 +1,0 @@
-name = "Rethinking Voxels"
-filename = "rethinking-voxels_r0.1-beta9.zip"
-side = "client"
-
-[download]
-url = "https://cdn.modrinth.com/data/kmwfVOoi/versions/cpD4esk9/rethinking-voxels_r0.1-beta9.zip"
-hash-format = "sha1"
-hash = "9689915ec1a7215eb6060be2a08eaf3a09ebdbab"

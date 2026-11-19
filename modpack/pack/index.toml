@@ -31,11 +31,6 @@ hash = "e16bdf33e5506ac979b25ca3bada43b67a810a96e2a51c43981ee4042e05d7bb"
 metafile = true
 
 [[files]]
-file = "mods/slice-and-dice.pw.toml"
-hash = "c09806ef5351e665f8580abbf39fe543052ddfd0be8218de06b07d3f4c55fc50"
-metafile = true
-
-[[files]]
 file = "mods/create-contraption-terminals.pw.toml"
 hash = "0634164be639aad0264cd714cba028636ed9aa66ca7dc794547cd95631602a60"
 metafile = true
@@ -48,21 +43,6 @@ metafile = true
 [[files]]
 file = "mods/create-enchantment-industry.pw.toml"
 hash = "28e85148c09506e114b26704e1c30fbfd7d5f5d709d3008a3d85d3c96de5469b"
-metafile = true
-
-[[files]]
-file = "mods/interiors.pw.toml"
-hash = "8bfc9d042a5315df9d16fd68656509c7f58d6eb6ced6307db4692767251dd3cf"
-metafile = true
-
-[[files]]
-file = "mods/copycats.pw.toml"
-hash = "abf42492de300eb08795656a73176e7855f04fcba55b758d1f8f349bd6191bf9"
-metafile = true
-
-[[files]]
-file = "mods/create-deco.pw.toml"
-hash = "86a6be59b38831b5f3d0b1925c15cdfcaa2ddb436f7656d862810cd923143a18"
 metafile = true
 
 [[files]]
@@ -86,18 +66,8 @@ hash = "46144721aff9c953185bc646506f73d9038619847a0be352076149fd4fa6c837"
 metafile = true
 
 [[files]]
-file = "mods/create-big-cannons.pw.toml"
-hash = "a03041e41398774bba19ae346bcd524c6a4cdc060977db128a50b6975ad04202"
-metafile = true
-
-[[files]]
 file = "mods/create-goggles.pw.toml"
 hash = "eac04f1f1aa008c77bb12c5e71e0932b39950a8b82a267bd903125125a3a67c2"
-metafile = true
-
-[[files]]
-file = "mods/create-dreams-and-desires.pw.toml"
-hash = "a3147fb97106421cc8a904e718f3f43740f7b9ec3dc55d36c40aa4f59a5983d0"
 metafile = true
 
 [[files]]
@@ -166,11 +136,6 @@ hash = "626b3195cfdf95ca84345e19f97ad87f73b480862ce0967c98d135abdc31a282"
 metafile = true
 
 [[files]]
-file = "mods/the-bumblezone.pw.toml"
-hash = "de1e785f2f279bef9d45ab36c2543f3131bc60c62603b0f8a9f234052a8743f7"
-metafile = true
-
-[[files]]
 file = "mods/incendium.pw.toml"
 hash = "9afc05e4e90e14dccb89d3cc34af2fb9b189ce86967fce980b07aa138240887d"
 metafile = true
@@ -183,11 +148,6 @@ metafile = true
 [[files]]
 file = "mods/galosphere.pw.toml"
 hash = "8f306bac30706424a069df4848d52c28354602cab531d99a8d928b10eba71186"
-metafile = true
-
-[[files]]
-file = "mods/spelunkery.pw.toml"
-hash = "5cb100cefb62996ab2ee5f324a60df3888ed5b562609f7d85631f5891716ad92"
 metafile = true
 
 [[files]]
@@ -208,11 +168,6 @@ metafile = true
 [[files]]
 file = "mods/adorable-hamster-pets.pw.toml"
 hash = "30fcd1c02a4b0e9b8e8c09e1cf33e5ce2e67b5a9b81362b1e55e8c21238060fd"
-metafile = true
-
-[[files]]
-file = "mods/l_enders-cataclysm.pw.toml"
-hash = "8d073bc85a9e8d4879ed5c40a42eca45974847d8ea3851f0b4e10f99fc150495"
 metafile = true
 
 [[files]]
@@ -376,11 +331,6 @@ hash = "cde29e11964d8e7226791a5a6d29ff853d02e4579a9cd835b04b5da6ba3ff942"
 metafile = true
 
 [[files]]
-file = "shaderpacks/complementary-unbound.pw.toml"
-hash = "e8527de82e9b32c8ddadceb3d6361645d8ee90c885ea87b0af507e183ac4299b"
-metafile = true
-
-[[files]]
 file = "shaderpacks/makeup-ultra-fast-shaders.pw.toml"
 hash = "18490a30ec3bd1b4017df5903cc01739b7080d18642491ae204d04a1e5a44356"
 metafile = true
@@ -391,38 +341,13 @@ hash = "13fdad633e414bffe368aa8213536f40af0ef8f1fb27fd4e774b157909e6c8c2"
 metafile = true
 
 [[files]]
-file = "shaderpacks/sildurs-vibrant-shaders.pw.toml"
-hash = "1bad29ee569c3ff4c413066c71d59b72f1877ef8ab66257eb55c55e55030411e"
-metafile = true
-
-[[files]]
-file = "shaderpacks/super-duper-vanilla.pw.toml"
-hash = "dfa4e895c3aeb00b706d42ced6a22004ec1e0812cb398d8f48077f97fe4a81ef"
-metafile = true
-
-[[files]]
-file = "shaderpacks/miniature-shader.pw.toml"
-hash = "8d8d7353ae2e110f570e596d6e49a4e97050c733bbe4ece20697584de9e1eef4"
-metafile = true
-
-[[files]]
 file = "shaderpacks/photon-shader.pw.toml"
 hash = "36563c265fc144d007b64cfb73191e67451d268d7b795aca9e8d0a55fda55d6f"
 metafile = true
 
 [[files]]
-file = "shaderpacks/solas-shader.pw.toml"
-hash = "362eee2b2129c5925313d0ea10f3776b4f6464697d2fded5918a1ed11ba12282"
-metafile = true
-
-[[files]]
 file = "shaderpacks/bliss-shader.pw.toml"
 hash = "f9a5a12380ec95af7ad4eca144cf5067c2bf973d6806fab79ea85de0b7381054"
-metafile = true
-
-[[files]]
-file = "shaderpacks/rethinking-voxels.pw.toml"
-hash = "1f7bcf75f4794dc1767dd002a3c6569b2b58f947f65fd469e9a800f8468cf0b4"
 metafile = true
 
 [[files]]
@@ -616,23 +541,18 @@ hash = "0b4685872feb6558d7299bb406842206721d72826d87b7911909f9760155a4ff"
 metafile = true
 
 [[files]]
-file = "mods/kotlin-for-forge.pw.toml"
-hash = "c5056f4d15ce00269bb0555bb68ae5ec766b9b02fe44b9d0518b837d2401021f"
-metafile = true
-
-[[files]]
 file = "mods/create-dragons-plus.pw.toml"
 hash = "406a19b969a84bb0f7c07f1c62cde296ccfb9aed7240f02f7a7cfeba9940955b"
 metafile = true
 
 [[files]]
-file = "mods/sable.pw.toml"
-hash = "ac6671f269f12e6bdc06f515363aa02a8f64de233753309402327e25aff5573e"
+file = "mods/kotlin-for-forge.pw.toml"
+hash = "c5056f4d15ce00269bb0555bb68ae5ec766b9b02fe44b9d0518b837d2401021f"
 metafile = true
 
 [[files]]
-file = "mods/rpl.pw.toml"
-hash = "1a19cfa96e6cbdf2c225f5552a759661db6152e1b85212c72682ffc138c7e0db"
+file = "mods/sable.pw.toml"
+hash = "ac6671f269f12e6bdc06f515363aa02a8f64de233753309402327e25aff5573e"
 metafile = true
 
 [[files]]
@@ -676,11 +596,6 @@ hash = "ca9c879eb5099bdbe64f687087a9563a288a3de78dbde289053acdb295a45e41"
 metafile = true
 
 [[files]]
-file = "mods/moonlight.pw.toml"
-hash = "0e8c7caa250e1a3cfb10d2370278c15bae7abd3f6c5b2c07c2244361ff523cdc"
-metafile = true
-
-[[files]]
 file = "mods/geckolib.pw.toml"
 hash = "8c8d5b4010c780a5e09bfb575d05c61b86f3abfe3a85e16cc639204f367f7dd9"
 metafile = true
@@ -703,16 +618,6 @@ metafile = true
 [[files]]
 file = "mods/accessories.pw.toml"
 hash = "ffec02e79453f0e50e3e7d21c8f4c29e772e4c6565ba39f41e6e55d211ae2a4a"
-metafile = true
-
-[[files]]
-file = "mods/lionfish-api.pw.toml"
-hash = "8806d3c3f4c441bbb812ed949530aa603b0f6fb7605a9e40dbe068cdc05965f3"
-metafile = true
-
-[[files]]
-file = "mods/curios.pw.toml"
-hash = "d94382cd2d5d4f040ad6b170d8fb413e0989bc1302983572ddc6c2578bd0878a"
 metafile = true
 
 [[files]]
@@ -756,17 +661,22 @@ hash = "88215cb6e2dd2f9457d7424e0239c945ea61efa3fe25becc52c1ca04441f2037"
 metafile = true
 
 [[files]]
+file = "mods/moonlight.pw.toml"
+hash = "0e8c7caa250e1a3cfb10d2370278c15bae7abd3f6c5b2c07c2244361ff523cdc"
+metafile = true
+
+[[files]]
 file = "mods/cloth-config.pw.toml"
 hash = "ae112eb85ca8343d2f2c1829427d84e73a1c4020fb5c71341039580cfae63ba9"
 metafile = true
 
 [[files]]
 file = "minezada.ps1"
-hash = "ba0c69aabc780107ef5506ab9b729519cc1fc5792bad49d68490a30ae257bd49"
+hash = "2ec183f49dbd449c217269a3c981fbf3927afb02af6ccd8298a29c26fe7339e6"
 
 [[files]]
 file = "minezada.sh"
-hash = "73573ebbd330359def3b87a74813cfbbc74a2cfde1a4db864db69651fdff0cce"
+hash = "790a64f67af0c8b1c70ddccd24a004cca8d23a062a41be977c99ad122b19d35d"
 
 [[files]]
 file = "config/sodium-extra-options.json"
@@ -780,7 +690,7 @@ preserve = true
 
 [[files]]
 file = "options-profiles/1 - Minimo/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -795,7 +705,7 @@ preserve = true
 
 [[files]]
 file = "options-profiles/2 - Leve/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -810,7 +720,7 @@ preserve = true
 
 [[files]]
 file = "options-profiles/3 - Equilibrado/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -825,7 +735,7 @@ preserve = true
 
 [[files]]
 file = "options-profiles/4 - Alto/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -840,7 +750,7 @@ preserve = true
 
 [[files]]
 file = "options-profiles/5 - Bonito Shader/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -855,7 +765,7 @@ preserve = true
 
 [[files]]
 file = "options-profiles/6 - Muito Alto Shader/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -870,12 +780,12 @@ preserve = true
 
 [[files]]
 file = "options-profiles/7 - Ultra Shader/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
 file = "options-profiles/7 - Ultra Shader/iris.properties"
-hash = "af9c1cc221d7c801a8666d93e7953b58dff99a3dda9a7aef08c34f0527052a0f"
+hash = "b6c1d7be904f770f0feb4b8bf991e24638640336a8fc24e1f89f26bafc8ea1e6"
 preserve = true
 
 [[files]]
@@ -885,7 +795,7 @@ preserve = true
 
 [[files]]
 file = "options-profiles/8 - FPS Maximo/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -900,7 +810,7 @@ preserve = true
 
 [[files]]
 file = "options-profiles/9 - Bateria/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -915,7 +825,7 @@ preserve = true
 
 [[files]]
 file = "options-profiles/Mac 1 - Leve 8GB/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -930,7 +840,7 @@ preserve = true
 
 [[files]]
 file = "options-profiles/Mac 2 - Equilibrado/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -945,7 +855,7 @@ preserve = true
 
 [[files]]
 file = "options-profiles/Mac 3 - Alto Pro Max/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -960,7 +870,7 @@ preserve = true
 
 [[files]]
 file = "options-profiles/Mac 4 - Shader Leve/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -975,7 +885,7 @@ preserve = true
 
 [[files]]
 file = "options-profiles/Mac 5 - Shader Bonito/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -990,12 +900,12 @@ preserve = true
 
 [[files]]
 file = "options-profiles/Mac 6 - Shader Realista/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
 file = "options-profiles/Mac 6 - Shader Realista/iris.properties"
-hash = "af9c1cc221d7c801a8666d93e7953b58dff99a3dda9a7aef08c34f0527052a0f"
+hash = "7c5740bc6b51e0d378b3670e2ef0c3c58b41289c517c464508b8e41d2ac1e81f"
 preserve = true
 
 [[files]]
@@ -1005,7 +915,7 @@ preserve = true
 
 [[files]]
 file = "options-profiles/Mac 7 - Bateria/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -1020,7 +930,7 @@ preserve = true
 
 [[files]]
 file = "options-profiles/PC - Bliss/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -1035,7 +945,7 @@ preserve = true
 
 [[files]]
 file = "options-profiles/PC - Photon/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -1049,38 +959,8 @@ hash = "0a3f771c8ba541a3a004bf9ae83f716166bb927900b9ae8051dc015b95a120c3"
 preserve = true
 
 [[files]]
-file = "options-profiles/PC - Rethinking Voxels/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
-preserve = true
-
-[[files]]
-file = "options-profiles/PC - Rethinking Voxels/iris.properties"
-hash = "f00855be69cf44d8ffcb6ab71a041313593868758532667e244804ec6df8c8cc"
-preserve = true
-
-[[files]]
-file = "options-profiles/PC - Rethinking Voxels/options.txt"
-hash = "9bea101c5846cb3bb64f64dcd4167ec45730759636a51211f909f4a2297ba454"
-preserve = true
-
-[[files]]
-file = "options-profiles/PC - Solas/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
-preserve = true
-
-[[files]]
-file = "options-profiles/PC - Solas/iris.properties"
-hash = "9d7ebf8936f333306a2d7cfd2de2afc93b0c66f49fb236f6a7d477deabb55e8a"
-preserve = true
-
-[[files]]
-file = "options-profiles/PC - Solas/options.txt"
-hash = "313800cbfa2a5bb0b80dcb450678974554b11d2b01d1b39fed3ec939afec3492"
-preserve = true
-
-[[files]]
 file = "options-profiles/Shader - BSL/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
+hash = "7f07aa7adab5cdf6edb3e3d4e93a70536debed2b33a713a5a056c931d19ad0b6"
 preserve = true
 
 [[files]]
@@ -1090,51 +970,6 @@ preserve = true
 
 [[files]]
 file = "options-profiles/Shader - BSL/options.txt"
-hash = "5ee97850177de705028382af752df868f5b2787738c4848de3bdbe99b1a445a1"
-preserve = true
-
-[[files]]
-file = "options-profiles/Shader - Miniature/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
-preserve = true
-
-[[files]]
-file = "options-profiles/Shader - Miniature/iris.properties"
-hash = "5f83f43c12c122da8866f5a88766ccf23c26f7472aa6c48b1aaa77968f2469d2"
-preserve = true
-
-[[files]]
-file = "options-profiles/Shader - Miniature/options.txt"
-hash = "5ee97850177de705028382af752df868f5b2787738c4848de3bdbe99b1a445a1"
-preserve = true
-
-[[files]]
-file = "options-profiles/Shader - Sildurs Vibrant/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
-preserve = true
-
-[[files]]
-file = "options-profiles/Shader - Sildurs Vibrant/iris.properties"
-hash = "9fb38890866067bb879510b1d818e44d407b6a8bf9cfeec0d21c78a4d6963f11"
-preserve = true
-
-[[files]]
-file = "options-profiles/Shader - Sildurs Vibrant/options.txt"
-hash = "5ee97850177de705028382af752df868f5b2787738c4848de3bdbe99b1a445a1"
-preserve = true
-
-[[files]]
-file = "options-profiles/Shader - Super Duper Vanilla/configuration.json"
-hash = "3f883e4f15602fd0f0500530e6776c16c0419f830833277ad16bc4889ee2c9a4"
-preserve = true
-
-[[files]]
-file = "options-profiles/Shader - Super Duper Vanilla/iris.properties"
-hash = "afe23f48f16fa84e530299e330e8858cae26432401f7171304b35fe9f71c7f85"
-preserve = true
-
-[[files]]
-file = "options-profiles/Shader - Super Duper Vanilla/options.txt"
 hash = "5ee97850177de705028382af752df868f5b2787738c4848de3bdbe99b1a445a1"
 preserve = true
 

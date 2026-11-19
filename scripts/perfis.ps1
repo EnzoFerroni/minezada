@@ -23,7 +23,7 @@ $perfis = @(
     @{ n = '4 - Alto';              rd = 14; sim = 10; gm = 1; ao = $true;  part = 0; somb = $true;  bio = 3; mip = 4; ent = '1.0';  nuv = 'true';  fps = 260; vs = $false; shader = '' }
     @{ n = '5 - Bonito Shader';     rd = 12; sim = 8;  gm = 1; ao = $true;  part = 0; somb = $true;  bio = 3; mip = 4; ent = '1.0';  nuv = 'true';  fps = 260; vs = $true;  shader = 'complementary-reimagined' }
     @{ n = '6 - Muito Alto Shader'; rd = 16; sim = 10; gm = 1; ao = $true;  part = 0; somb = $true;  bio = 5; mip = 4; ent = '1.25'; nuv = 'true';  fps = 260; vs = $true;  shader = 'complementary-reimagined' }
-    @{ n = '7 - Ultra Shader';      rd = 20; sim = 12; gm = 1; ao = $true;  part = 0; somb = $true;  bio = 7; mip = 4; ent = '1.5';  nuv = 'true';  fps = 260; vs = $true;  shader = 'complementary-unbound' }
+    @{ n = '7 - Ultra Shader';      rd = 20; sim = 12; gm = 1; ao = $true;  part = 0; somb = $true;  bio = 7; mip = 4; ent = '1.5';  nuv = 'true';  fps = 260; vs = $true;  shader = 'complementary-reimagined' }
     @{ n = '8 - FPS Maximo';        rd = 8;  sim = 6;  gm = 0; ao = $false; part = 1; somb = $false; bio = 0; mip = 2; ent = '0.75'; nuv = 'false'; fps = 260; vs = $false; shader = '' }
     @{ n = '9 - Bateria';           rd = 6;  sim = 5;  gm = 1; ao = $true;  part = 1; somb = $true;  bio = 1; mip = 2; ent = '0.75'; nuv = 'fast';  fps = 40;  vs = $true;  shader = '' }
     # Mac (Apple Silicon): VSync ligado (tela de 60/120 Hz, menos calor), simulacao menor que a distancia.
@@ -32,18 +32,13 @@ $perfis = @(
     @{ n = 'Mac 3 - Alto Pro Max';     rd = 14; sim = 8; gm = 1; ao = $true; part = 0; somb = $true;  bio = 3; mip = 4; ent = '1.0';  nuv = 'true'; fps = 120; vs = $true; shader = '' }
     @{ n = 'Mac 4 - Shader Leve';      rd = 8;  sim = 6; gm = 1; ao = $true; part = 1; somb = $true;  bio = 2; mip = 4; ent = '1.0';  nuv = 'fast'; fps = 60;  vs = $true; shader = 'makeup-ultra-fast-shaders' }
     @{ n = 'Mac 5 - Shader Bonito';    rd = 10; sim = 6; gm = 1; ao = $true; part = 0; somb = $true;  bio = 2; mip = 4; ent = '1.0';  nuv = 'true'; fps = 60;  vs = $true; shader = 'complementary-reimagined' }
-    @{ n = 'Mac 6 - Shader Realista';  rd = 12; sim = 8; gm = 1; ao = $true; part = 0; somb = $true;  bio = 3; mip = 4; ent = '1.0';  nuv = 'true'; fps = 60;  vs = $true; shader = 'complementary-unbound' }
+    @{ n = 'Mac 6 - Shader Realista';  rd = 12; sim = 8; gm = 1; ao = $true; part = 0; somb = $true;  bio = 3; mip = 4; ent = '1.0';  nuv = 'true'; fps = 60;  vs = $true; shader = 'bsl-shaders' }
     @{ n = 'Mac 7 - Bateria';          rd = 6;  sim = 5; gm = 1; ao = $true; part = 1; somb = $true;  bio = 1; mip = 2; ent = '0.75'; nuv = 'fast'; fps = 30;  vs = $true; shader = '' }
     # Um perfil por shader que nao esta acima, para experimentar cada um com distancias medias.
     @{ n = 'Shader - BSL';                 rd = 10; sim = 6; gm = 1; ao = $true; part = 0; somb = $true; bio = 2; mip = 4; ent = '1.0'; nuv = 'true'; fps = 120; vs = $true; shader = 'bsl-shaders' }
-    @{ n = 'Shader - Sildurs Vibrant';     rd = 10; sim = 6; gm = 1; ao = $true; part = 0; somb = $true; bio = 2; mip = 4; ent = '1.0'; nuv = 'true'; fps = 120; vs = $true; shader = 'sildurs-vibrant-shaders' }
-    @{ n = 'Shader - Super Duper Vanilla'; rd = 10; sim = 6; gm = 1; ao = $true; part = 0; somb = $true; bio = 2; mip = 4; ent = '1.0'; nuv = 'true'; fps = 120; vs = $true; shader = 'super-duper-vanilla' }
-    @{ n = 'Shader - Miniature';           rd = 10; sim = 6; gm = 1; ao = $true; part = 0; somb = $true; bio = 2; mip = 4; ent = '1.0'; nuv = 'true'; fps = 120; vs = $true; shader = 'miniature-shader' }
     # So PC (Windows/Linux com placa de video): nao rodam no Mac.
     @{ n = 'PC - Photon';            rd = 16; sim = 10; gm = 1; ao = $true; part = 0; somb = $true; bio = 5; mip = 4; ent = '1.25'; nuv = 'true'; fps = 260; vs = $true; shader = 'photon-shader' }
-    @{ n = 'PC - Solas';             rd = 14; sim = 10; gm = 1; ao = $true; part = 0; somb = $true; bio = 3; mip = 4; ent = '1.0';  nuv = 'true'; fps = 260; vs = $true; shader = 'solas-shader' }
     @{ n = 'PC - Bliss';             rd = 16; sim = 10; gm = 1; ao = $true; part = 0; somb = $true; bio = 5; mip = 4; ent = '1.25'; nuv = 'true'; fps = 260; vs = $true; shader = 'bliss-shader' }
-    @{ n = 'PC - Rethinking Voxels'; rd = 12; sim = 8;  gm = 1; ao = $true; part = 0; somb = $true; bio = 3; mip = 4; ent = '1.0';  nuv = 'true'; fps = 260; vs = $true; shader = 'rethinking-voxels' }
 )
 
 $utf8 = New-Object Text.UTF8Encoding $false
