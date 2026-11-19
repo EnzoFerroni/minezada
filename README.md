@@ -29,7 +29,8 @@ Na primeira vez, entre com a sua conta (sem Minecraft original, só o seu nick) 
 
 - **Algo deu errado**: rode o comando de instalar de novo. Ele não apaga nada.
 - **"You are not white-listed"**: mande o seu nick exato (com as maiúsculas) para quem está hospedando o servidor.
-- **Pede senha**: na primeira vez, `/register senha senha`; depois, `/login senha`.
+- **Pede senha** (só para quem joga sem Minecraft original; com original entra direto): na primeira vez, escolha uma
+  senha e digite `/register senha senha`; nas próximas, `/login senha`.
 - **Jogo lento**: **Opções** > **Perfis** > **1 - Minimo**.
 
 Achou um erro? Mande um print para quem está hospedando. Se o jogo fechou ou não conectou, rode o comando do seu
