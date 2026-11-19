@@ -7,7 +7,11 @@
 foreach ($p in 'Shader - Sildurs Vibrant', 'Shader - Super Duper Vanilla', 'Shader - Miniature', 'PC - Solas', 'PC - Rethinking Voxels') {
     Remove-Item -LiteralPath "options-profiles/$p" -Recurse -Force -ErrorAction SilentlyContinue
 }
-$java = if ($env:INST_JAVA) { $env:INST_JAVA -replace 'javaw\.exe$', 'java.exe' } else { 'java' }
+# Na primeira abertura (instancia sem Java escolhido) o Prism passa a pasta de dados dele em INST_JAVA: usa o Java
+# que ele baixou la dentro.
+$java = $env:INST_JAVA
+if (-not ($java -and (Test-Path -LiteralPath $java -PathType Leaf))) { $java = Get-ChildItem "$env:INST_JAVA\java\*\bin\javaw.exe" -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName }
+$java = if ($java) { $java -replace 'javaw\.exe$', 'java.exe' } else { 'java' }
 # Pack pelo link do commit mais novo: o link do main fica ate 5 min velho no cache do GitHub depois de um push.
 $ref = try { "$(Invoke-RestMethod 'https://api.github.com/repos/EnzoFerroni/minezada/commits/main' -Headers @{ Accept = 'application/vnd.github.sha' } -TimeoutSec 10)".Trim() } catch { '' }
 if ($ref -notmatch '^[0-9a-f]{40}$') { $ref = 'main' }

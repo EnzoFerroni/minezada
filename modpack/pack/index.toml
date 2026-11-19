@@ -611,13 +611,13 @@ hash = "63129fbc993e777eb352ac1028ef959fa04264cfba9d3ad8c9cb93e631cee031"
 metafile = true
 
 [[files]]
-file = "mods/resourceful-config.pw.toml"
-hash = "9f447b390705da315b16a4aa2b9983114d67f8132836d88ac9c16bd9b9d8851f"
+file = "mods/common-storage-lib.pw.toml"
+hash = "ca9c879eb5099bdbe64f687087a9563a288a3de78dbde289053acdb295a45e41"
 metafile = true
 
 [[files]]
-file = "mods/common-storage-lib.pw.toml"
-hash = "ca9c879eb5099bdbe64f687087a9563a288a3de78dbde289053acdb295a45e41"
+file = "mods/resourceful-config.pw.toml"
+hash = "9f447b390705da315b16a4aa2b9983114d67f8132836d88ac9c16bd9b9d8851f"
 metafile = true
 
 [[files]]
@@ -692,11 +692,11 @@ metafile = true
 
 [[files]]
 file = "minezada.ps1"
-hash = "a58d062985e82f89753aa6c06fb40b760ad96772a08c503a931f668b9d3e678d"
+hash = "7ab829c9a4749fedf95127e4945c7e4a5268727648f93e2fe1a108cd9580830d"
 
 [[files]]
 file = "minezada.sh"
-hash = "d66c561226e6e1dda11c3565f9405fc0bbb886fd00a291af104fb60e59145ee8"
+hash = "d98b5ce2aaecdb3ca7074d88e7dc5b7bd26be967c0a53ef426c31b6614de4e83"
 
 [[files]]
 file = "config/sodium-extra-options.json"

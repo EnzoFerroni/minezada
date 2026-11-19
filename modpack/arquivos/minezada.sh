@@ -19,7 +19,11 @@ if [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "arm64" ] && [ "$(cat "$ins
   rm -rf "$t"
 fi
 [ "${1:-}" != "--cloudflared" ] || exit 0
-java="${INST_JAVA:-java}"
+# Na primeira abertura (instancia sem Java escolhido) o Prism passa a pasta de dados dele em INST_JAVA: usa o Java
+# que ele baixou la dentro.
+java="${INST_JAVA:-}"
+[ -f "$java" ] || java="$(ls "${INST_JAVA:-/nada}"/java/*/bin/java "${INST_JAVA:-/nada}"/java/*/*/Contents/Home/bin/java 2>/dev/null | head -n 1)"
+[ -n "$java" ] || java=java
 # Pack pelo link do commit mais novo: o link do main fica ate 5 min velho no cache do GitHub depois de um push.
 ref="$(curl -fsSL --max-time 10 -H 'Accept: application/vnd.github.sha' https://api.github.com/repos/EnzoFerroni/minezada/commits/main 2>/dev/null || true)"
 case "$ref" in *[!0-9a-f]* | "") ref=main ;; esac
