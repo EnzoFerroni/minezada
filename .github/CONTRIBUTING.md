@@ -4,7 +4,9 @@
 
 - **O que falta fazer**: [issues](https://github.com/EnzoFerroni/minezada/issues), no [quadro do projeto](https://github.com/users/EnzoFerroni/projects/3) (Ideias, A fazer, Fazendo, Feito). Milestone
   **Abrir para os amigos** = o que falta antes de chamar todo mundo; **Depois** = melhorias. Label
-  `ideia` = ainda não decidido. Labels de área: `servidor`, `jogo`, `rede`, `mac`, `windows`.
+  `ideia` = ainda não decidido. Labels de área: `servidor`, `jogo`, `rede`, `mac`, `windows`. Campo
+  **Prioridade** no quadro: **Alta** = jogo fechando ou sem conseguir conectar; **Média** = simplificar instalação e
+  configuração; **Baixa** = o resto.
 - **O que mudou em cada versão do pack**: [Releases](https://github.com/EnzoFerroni/minezada/releases)
   (antes de `2026.11.18.1`: histórico em [docs/decisoes.md](../docs/decisoes.md)).
 - **Por que cada coisa é assim**: [docs/decisoes.md](../docs/decisoes.md). Mudou uma decisão? Atualize lá.
