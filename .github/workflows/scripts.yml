@@ -57,6 +57,9 @@ jobs:
           }
           if ($erros) { exit 1 }
           Write-Host 'ok    sintaxe e BOM'
+      - name: Versoes (dependencias dos jars no montar-pack)
+        shell: powershell
+        run: scripts/testes/versoes.ps1
       - uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
         with:
           distribution: temurin

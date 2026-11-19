@@ -245,3 +245,118 @@ $novo = [regex]::Replace($txt, '(?s)(<!-- mods:inicio -->).*?(<!-- mods:fim -->)
 [IO.File]::WriteAllText($doc, $novo, (New-Object Text.UTF8Encoding $false))
 
 Write-Host "`n$($pwMods.Count) arquivos, NeoForge $neo -> modpack/pack"
+
+# Confere as dependencias que cada jar declara (META-INF/neoforge.mods.toml, inclusive os jars embutidos em
+# META-INF/jarjar), no jogo e no servidor: o Modrinth nem sempre lista o que o jar exige. Jars em tools/jars.
+$cache = Join-Path $root 'tools/jars'
+New-Item -ItemType Directory -Force $cache | Out-Null
+function Ler-Toml($texto, $jarVer) {
+    $mods = @(); $deps = @(); $atual = $null; $multi = $false
+    foreach ($l in $texto -split "`r?`n") {
+        # Pula strings de varias linhas (descricoes).
+        if (([regex]::Matches($l, "'''|`"`"`"")).Count % 2) { $multi = -not $multi; continue }
+        if ($multi) { continue }
+        if ($l -match '^\s*\[\[mods\]\]') { $atual = @{}; $mods += $atual }
+        elseif ($l -match '^\s*\[\[dependencies\.([^\]]+)\]\]') { $atual = @{ dono = $matches[1].Trim('"') }; $deps += $atual }
+        elseif ($l -match '^\s*\[') { $atual = $null }
+        elseif ($atual -and $l -match '^\s*([A-Za-z]+)\s*=\s*(?:"([^"]*)"|''([^'']*)''|([^\s#]+))') {
+            $atual[$matches[1]] = "$($matches[2])$($matches[3])$($matches[4])"
+        }
+    }
+    foreach ($m in $mods) { if ($m.version -eq '${file.jarVersion}' -or -not $m.version) { $m.version = $jarVer } }
+    , @($mods, $deps)
+}
+function Ler-Jar($zip, $saida, $embutido) {
+    $man = $zip.GetEntry('META-INF/MANIFEST.MF'); $jarVer = '0'
+    if ($man) { $r = New-Object IO.StreamReader($man.Open()); if ($r.ReadToEnd() -match 'Implementation-Version:\s*(\S+)') { $jarVer = $matches[1] }; $r.Dispose() }
+    $e = $zip.GetEntry('META-INF/neoforge.mods.toml')
+    if ($e) { $r = New-Object IO.StreamReader($e.Open()); $t = Ler-Toml $r.ReadToEnd() $jarVer; [void]$saida.Add(@($t[0], $t[1], $embutido)); $r.Dispose() }
+    foreach ($j in @($zip.Entries | Where-Object { $_.FullName -like 'META-INF/jarjar/*.jar' })) {
+        $ms = New-Object IO.MemoryStream; $s = $j.Open(); $s.CopyTo($ms); $s.Dispose()
+        $z2 = New-Object IO.Compression.ZipArchive($ms); Ler-Jar $z2 $saida $true; $z2.Dispose()
+    }
+}
+# Compara versoes como o Maven (o NeoForge usa as mesmas regras): numeros por valor, alpha < beta < rc < final.
+# O que vem depois de "+" (ex: 1.0.82+mc1.21.1) e so informacao e nao conta.
+function Comparar-Versao($a, $b) {
+    $ta = @([regex]::Matches(("$a" -split '\+')[0].ToLower(), '\d+|[a-z]+') | ForEach-Object Value)
+    $tb = @([regex]::Matches(("$b" -split '\+')[0].ToLower(), '\d+|[a-z]+') | ForEach-Object Value)
+    $ordem = @{ alpha = 1; a = 1; beta = 2; b = 2; milestone = 3; m = 3; rc = 4; cr = 4; pre = 4; snapshot = 5; final = 6; ga = 6; release = 6 }
+    for ($i = 0; $i -lt [Math]::Max($ta.Count, $tb.Count); $i++) {
+        $x = if ($i -lt $ta.Count) { $ta[$i] } else { '0' }
+        $y = if ($i -lt $tb.Count) { $tb[$i] } else { '0' }
+        $nx = $x -match '^\d+$'; $ny = $y -match '^\d+$'
+        # Versao que acaba antes de um qualificador (1.0 contra 1.0-beta) e maior.
+        if ($i -ge $ta.Count -and -not $ny) { return 1 }
+        if ($i -ge $tb.Count -and -not $nx) { return -1 }
+        if ($nx -and $ny) { $c = ([decimal]$x).CompareTo([decimal]$y) }
+        elseif ($nx) { $c = 1 } elseif ($ny) { $c = -1 }
+        else { $c = ([int]$ordem[$x]).CompareTo([int]$ordem[$y]); if (-not $c -and -not $ordem[$x]) { $c = [string]::CompareOrdinal($x, $y) } }
+        if ($c) { return [Math]::Sign($c) }
+    }
+    0
+}
+# Faixa do Maven: "[1.0,2.0)", "[1.0,)", "[1.0]", varias separadas por virgula; vazia, "*" ou versao solta aceitam tudo.
+function Na-Faixa($v, $faixa) {
+    if (-not $faixa -or $faixa -eq '*' -or $faixa -notmatch '[\[\(]') { return $true }
+    foreach ($f in [regex]::Matches($faixa, '([\[\(])([^,\]\)]*)(?:(,)([^\]\)]*))?([\]\)])')) {
+        $ini = $f.Groups[2].Value.Trim(); $fim = if ($f.Groups[3].Success) { $f.Groups[4].Value.Trim() } else { $ini }
+        $ok = $true
+        if ($ini) { $c = Comparar-Versao $v $ini; if ($c -lt 0 -or ($c -eq 0 -and $f.Groups[1].Value -eq '(')) { $ok = $false } }
+        if ($fim) { $c = Comparar-Versao $v $fim; if ($c -gt 0 -or ($c -eq 0 -and $f.Groups[5].Value -eq ')')) { $ok = $false } }
+        if ($ok) { return $true }
+    }
+    $false
+}
+Write-Host "`nConferindo as dependencias dentro dos jars..."
+$porJar = @{}
+foreach ($m in $pwMods | Where-Object pasta -eq 'mods') {
+    $arq = Join-Path $cache "$($m.sha1).jar"
+    if (-not (Test-Path $arq)) {
+        Invoke-WebRequest $m.url -OutFile "$arq.tmp" -Headers $h -UseBasicParsing
+        if ((Get-FileHash "$arq.tmp" -Algorithm SHA1).Hash -ne $m.sha1) { Remove-Item "$arq.tmp"; throw "$($m.arquivo): checksum nao confere" }
+        Move-Item "$arq.tmp" $arq
+    }
+    $lista = New-Object Collections.ArrayList
+    $z = [IO.Compression.ZipFile]::OpenRead($arq); Ler-Jar $z $lista $false; $z.Dispose()
+    $porJar[$m.arquivo] = @{ lado = $m.lado; tomls = $lista }
+}
+$problemas = 0
+foreach ($lado in 'client', 'server') {
+    $nome = @{ client = 'jogo'; server = 'servidor' }[$lado]
+    # Mod avulso tem prioridade sobre o embutido; entre embutidos fica a versao mais nova (como o NeoForge faz).
+    $tem = @{ minecraft = @{ version = $mc; arq = 'Minecraft' }; neoforge = @{ version = $neo; arq = 'NeoForge' } }
+    $deps = @{}
+    foreach ($embutido in $false, $true) {
+        foreach ($k in $porJar.Keys) {
+            $j = $porJar[$k]
+            if ($j.lado -ne 'both' -and $j.lado -ne $lado) { continue }
+            foreach ($t in @($j.tomls | Where-Object { $_[2] -eq $embutido })) {
+                foreach ($mod in $t[0]) {
+                    $id = $mod.modId; if (-not $id) { continue }
+                    $antigo = $tem[$id]
+                    if (-not $antigo -or ($embutido -and $antigo.embutido -and (Comparar-Versao $mod.version $antigo.version) -gt 0)) {
+                        $tem[$id] = @{ version = $mod.version; arq = $k; embutido = $embutido }
+                        $deps[$id] = @($t[1] | Where-Object { $_.dono -eq $id })
+                    }
+                }
+            }
+        }
+    }
+    foreach ($id in $deps.Keys) {
+        foreach ($d in $deps[$id]) {
+            if ($d.side -and $d.side -ne 'BOTH' -and $d.side.ToLower() -ne $lado) { continue }
+            # Faixa do Minecraft fica de fora: o Modrinth ja filtra pela 1.21.1, e varios mods declaram [1.21,1.21.1) e rodam.
+            if ($d.modId -eq 'minecraft') { continue }
+            $tipo = if ($d.type) { $d.type.ToLower() } elseif ($d.mandatory -eq 'false') { 'optional' } else { 'required' }
+            $alvo = $tem[$d.modId]; $faixa = $d.versionRange
+            $msg = $null
+            if ($tipo -eq 'required' -and -not $alvo) { $msg = "falta $($d.modId) $faixa" }
+            elseif ($tipo -in 'required', 'optional' -and $alvo -and -not (Na-Faixa $alvo.version $faixa)) { $msg = "pede $($d.modId) $faixa, tem $($alvo.version) ($($alvo.arq))" }
+            elseif ($tipo -in 'incompatible', 'discouraged' -and $alvo -and (Na-Faixa $alvo.version $faixa)) { $msg = "$tipo com $($d.modId) $($alvo.version) ($($alvo.arq))" }
+            if ($msg) { Write-Host "  [$nome] $id ($($tem[$id].arq)): $msg" -ForegroundColor Red; $problemas++ }
+        }
+    }
+}
+if ($problemas) { Write-Host "$problemas problema(s) de dependencia: corrija antes do push." -ForegroundColor Red; exit 1 }
+Write-Host 'Dependencias dos jars: ok'

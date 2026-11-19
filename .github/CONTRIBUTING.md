@@ -119,7 +119,8 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
   marca todos os opcionais. O `-t 0` tira a espera de 10 s do "Reconfigure optional mods?" (ali dava para marcar
   o DH no Mac); opcional novo ainda abre a lista de escolha.
 - **O Modrinth nem sempre lista as dependências**: o que vale é o `META-INF/neoforge.mods.toml` dentro do jar
-  (`required`, `optional` com versão mínima, `incompatible`). Dependência que falta vai em `$depsExtras` e
+  (`required`, `optional` com versão mínima, `incompatible`). O `montar-pack.ps1` confere isso no fim, no jogo e
+  no servidor (jars guardados em `tools/jars`), e sai com erro se algo não bate. Dependência que falta vai em `$depsExtras` e
   versão mínima ou presa em `$presas`, no `montar-pack.ps1`. Mod pode trazer outro dentro (`META-INF/jarjar/`,
   ex.: o Aether traz o Accessories); um jar avulso mais novo tem prioridade.
 - **Mod só de cliente passa no teste do servidor** mesmo com dependência errada: só quebra ao abrir o jogo.
