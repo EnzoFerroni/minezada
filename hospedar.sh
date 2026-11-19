@@ -5,7 +5,7 @@
 set -euo pipefail
 dir="$HOME/Minezada-servidor"
 
-# git vem nas ferramentas de linha de comando da Apple (que tambem trazem o python3 do UPnP e do tunel).
+# git vem nas ferramentas de linha de comando da Apple (que tambem trazem o python3 da whitelist e do anuncio na rede local).
 if [ "$(uname -s)" = "Darwin" ] && ! xcode-select -p >/dev/null 2>&1; then
   echo "Instalando as ferramentas de linha de comando da Apple: clique em 'Instalar' na janela que abriu."
   xcode-select --install >/dev/null 2>&1 || true

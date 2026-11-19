@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Faz tudo para hospedar: atualiza o repo, instala Java, cria config.env, instala/atualiza o pack,
-# puxa o mundo da pasta sincronizada, abre a porta (UPnP), atualiza o DuckDNS, roda e devolve o mundo.
+# puxa o mundo da pasta sincronizada, liga os tuneis (Cloudflare e playit), roda e devolve o mundo.
 # Uso: ./iniciar.command (Mac, duplo clique) ou ./scripts/iniciar.sh [--forcar]
 set -euo pipefail
 
@@ -25,10 +25,10 @@ main() {
     bytes="$(sysctl -n hw.memsize 2>/dev/null || awk '/MemTotal/{print $2*1024}' /proc/meminfo)"
     gb=$((bytes / 1073741824))
     if [ $gb -ge 24 ]; then ram=8G; elif [ $gb -ge 12 ]; then ram=6G; else ram=4G; fi
-    printf 'RAM=%s\nSYNC_DIR=""\nJAVA=java\nDUCKDNS_TOKEN=\n' "$ram" > "$root/config.env"
+    printf 'RAM=%s\nSYNC_DIR=""\nJAVA=java\n' "$ram" > "$root/config.env"
   fi
 
-  RAM=6G; SYNC_DIR=""; JAVA=java; DUCKDNS_DOMAIN=minezada-mc; DUCKDNS_TOKEN=""; SEM_DRIVE=""
+  RAM=6G; SYNC_DIR=""; JAVA=java; SEM_DRIVE=""
   . "$root/config.env"
 
   # Pasta do Drive: acha sozinho; faltou, oferece instalar e configurar ("n" nao pergunta mais).
@@ -39,16 +39,6 @@ main() {
       echo "Pasta do Google Drive: $SYNC_DIR"
       { grep -v '^SYNC_DIR=' "$root/config.env" || true; echo "SYNC_DIR=\"$SYNC_DIR\""; } > "$root/config.env.tmp"
       mv -f "$root/config.env.tmp" "$root/config.env"
-    fi
-  fi
-
-  # Token do DuckDNS mora na pasta do Drive (fora do git): quem tem o token no config.env grava la,
-  # e os outros hosts pegam de la sem precisar perguntar a ninguem.
-  if [ -n "$SYNC_DIR" ] && [ -d "$SYNC_DIR" ]; then
-    if [ -n "$DUCKDNS_TOKEN" ]; then
-      [ -f "$SYNC_DIR/duckdns.txt" ] || echo "$DUCKDNS_TOKEN" > "$SYNC_DIR/duckdns.txt"
-    elif [ -f "$SYNC_DIR/duckdns.txt" ]; then
-      DUCKDNS_TOKEN="$(tr -d '[:space:]' < "$SYNC_DIR/duckdns.txt")"
     fi
   fi
 
@@ -68,8 +58,7 @@ main() {
     java_ok "$JAVA" || die "Java nao instalado. Veja docs/hospedar.md"
   fi
 
-  # 4. Pack -> servidor, tudo via Java. O mrpack-install (Go) tem DNS proprio e falha em roteador com
-  # DNS IPv6 quebrado (comum em roteador de operadora); o Java usa o DNS do macOS.
+  # 4. Pack -> servidor, tudo via Java: instalador oficial do NeoForge e packwiz (igual ao iniciar.ps1).
   neo="$(sed -n 's/^neoforge = "\(.*\)"/\1/p' "$root/modpack/pack/pack.toml")"
   [ -n "$neo" ] || die "Versao do NeoForge nao encontrada em modpack/pack/pack.toml."
   mkdir -p "$server"
@@ -124,33 +113,15 @@ main() {
   lista="$server/jogadores.txt"; [ -z "$SYNC_DIR" ] || lista="$SYNC_DIR/jogadores.txt"
   sincronizar_whitelist "$lista" "$server"
 
-  # 6. Rede: tunel playit e, so se ele falhar, porta no roteador (UPnP) e DuckDNS.
+  # 6. Rede: tuneis da Cloudflare e do playit.
   # IP da placa da rota padrao (en0 nem sempre e a que vai para a internet).
   ifc="$(route -n get default 2>/dev/null | awk '/interface:/{print $2}')"
   ip="$(ipconfig getifaddr "${ifc:-en0}" 2>/dev/null || hostname -I 2>/dev/null | awk '{print $1}')"
   echo "Na mesma casa: entre por localhost (nesta maquina) ou $ip (outro computador)."
-  cf_pid=""; tunel_pid=""; ddns_pid=""; reserva=""
-  url="https://www.duckdns.org/update?domains=${DUCKDNS_DOMAIN}&token=${DUCKDNS_TOKEN}"
+  cf_pid=""; tunel_pid=""
   iniciar_cloudflare || true
   iniciar_tunel || true
-  if [ -n "$cf_pid$tunel_pid" ]; then
-    # Tira o IP desta casa do DuckDNS: o endereco de reserva so aponta para um host quando ele precisa.
-    [ -z "$DUCKDNS_TOKEN" ] || curl -fsS "$url&clear=true" >/dev/null 2>&1 || true
-  else
-    reserva=1
-    echo "Reserva: abrindo a porta $porta no roteador (UPnP)."
-    if porta_upnp abrir "$ip" $porta; then
-      echo "Porta $porta aberta via UPnP."
-    else
-      echo "AVISO: UPnP indisponivel: so quem esta nesta rede consegue entrar (ou redirecione a porta no roteador)." >&2
-    fi
-    if [ -n "$DUCKDNS_TOKEN" ]; then
-      # Reaponta o nome para este host e repete a cada 5 min caso o IP mude durante a sessao.
-      ( while true; do curl -fsS "$url" >/dev/null 2>&1 || true; sleep 300; done ) &
-      ddns_pid=$!
-      echo "Endereco do servidor (reserva): ${DUCKDNS_DOMAIN}.duckdns.org (na lista do jogo: Minezada (reserva))"
-    fi
-  fi
+  [ -n "$cf_pid$tunel_pid" ] || echo "AVISO: nenhum tunel conectou: so quem esta nesta rede consegue entrar." >&2
 
   # Anuncia o servidor na rede local como o "Abrir para LAN" do jogo: quem esta na mesma rede ve
   # "Minezada" sozinho em Multijogador, sem digitar IP.
@@ -175,19 +146,14 @@ while True:
       lan_pid=$!
     fi
   fi
-  trap 'kill $ddns_pid $lan_pid $tunel_pid $cf_pid 2>/dev/null || true' EXIT
+  trap 'kill $lan_pid $tunel_pid $cf_pid 2>/dev/null || true' EXIT
 
   echo "Iniciando servidor com $RAM de RAM. Para desligar e salvar: digite 'stop', aperte Ctrl+C ou feche esta janela."
   # Flags do Aikar: coleta de lixo G1 ajustada para servidor de Minecraft (menos travadas).
   flags="-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1"
   rodar_servidor "$JAVA" "-Xms$RAM" "-Xmx$RAM" $flags "@libraries/net/neoforged/neoforge/$neo/unix_args.txt" nogui
 
-  kill $ddns_pid $lan_pid $tunel_pid $cf_pid 2>/dev/null || true
-  if [ -n "$reserva" ]; then
-    porta_upnp fechar "$ip" $porta || true
-    # Servidor desligado: o IP desta casa sai do DuckDNS.
-    [ -z "$ddns_pid" ] || curl -fsS "$url&clear=true" >/dev/null 2>&1 || true
-  fi
+  kill $lan_pid $tunel_pid $cf_pid 2>/dev/null || true
 
   [ -z "$SYNC_DIR" ] || enviar_mundo
 }
@@ -238,47 +204,6 @@ enviar_mundo() {
   else
     echo "AVISO: falha ao enviar o mundo. Trava mantida em $eu; rode de novo nesta maquina." >&2
   fi
-}
-
-# Abre (ou fecha) a porta no roteador por UPnP, falando SSDP/SOAP direto com ele (mesmo jeito do
-# iniciar.ps1), sem miniupnpc nem Homebrew. Uso: porta_upnp abrir|fechar IP PORTA [PORTA_EXTERNA]
-porta_upnp() {
-  # Sem as ferramentas de linha de comando, o python3 do macOS abre um dialogo de instalacao.
-  if [ "$(uname -s)" = "Darwin" ] && ! xcode-select -p >/dev/null 2>&1; then return 1; fi
-  command -v python3 >/dev/null || return 1
-  python3 - "$@" >/dev/null 2>&1 <<'PY'
-import re, socket, sys, urllib.request
-from urllib.parse import urljoin
-abrir, ip, porta = sys.argv[1] == "abrir", sys.argv[2], sys.argv[3]
-externa = sys.argv[4] if len(sys.argv) > 4 else porta
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-s.bind((ip, 0))  # sai pela placa da internet, nao por VPN
-s.settimeout(3)
-s.sendto(b'M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMAN: "ssdp:discover"\r\nMX: 2\r\n'
-         b'ST: urn:schemas-upnp-org:device:InternetGatewayDevice:1\r\n\r\n', ("239.255.255.250", 1900))
-loc = re.search(r"(?im)^location:\s*(\S+)", s.recv(4096).decode(errors="ignore")).group(1)
-xml = urllib.request.urlopen(loc, timeout=5).read().decode(errors="ignore")
-acao = "AddPortMapping" if abrir else "DeletePortMapping"
-campos = f"<NewRemoteHost></NewRemoteHost><NewExternalPort>{externa}</NewExternalPort><NewProtocol>TCP</NewProtocol>"
-if abrir:
-    campos += (f"<NewInternalPort>{porta}</NewInternalPort><NewInternalClient>{ip}</NewInternalClient>"
-               "<NewEnabled>1</NewEnabled><NewPortMappingDescription>minezada {externa}</NewPortMappingDescription>"
-               "<NewLeaseDuration>0</NewLeaseDuration>")
-servicos = re.findall(r"<serviceType>(urn:schemas-upnp-org:service:WAN(?:IP|PPP)Connection:\d)</serviceType>"
-                      r".*?<controlURL>([^<]+)</controlURL>", xml, re.S)
-for tipo, ctrl in servicos:  # roteador pode anunciar WANIP e WANPPP; so um aceita
-    corpo = (f'<?xml version="1.0"?><s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" '
-             f's:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><s:Body>'
-             f'<u:{acao} xmlns:u="{tipo}">{campos}</u:{acao}></s:Body></s:Envelope>')
-    req = urllib.request.Request(urljoin(loc, ctrl), corpo.encode(),
-                                 {"Content-Type": 'text/xml; charset="utf-8"', "SOAPAction": f'"{tipo}#{acao}"'})
-    try:
-        urllib.request.urlopen(req, timeout=5)
-        sys.exit(0)
-    except Exception:
-        pass
-sys.exit(1)
-PY
 }
 
 # Tunel da Cloudflare: endereco principal (minezada.dpdns.org). O jogador conecta como HTTPS na 443 (o mod

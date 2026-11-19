@@ -1,5 +1,5 @@
 # Faz tudo para hospedar: atualiza o repo, instala Java, cria config.env, instala/atualiza o pack,
-# puxa o mundo da pasta sincronizada, abre a porta (UPnP), atualiza o DuckDNS, roda e devolve o mundo.
+# puxa o mundo da pasta sincronizada, liga os tuneis (Cloudflare e playit), roda e devolve o mundo.
 # Uso: iniciar.bat   (ou: powershell -ExecutionPolicy Bypass -File scripts\iniciar.ps1 [-Forcar])
 param([switch]$Forcar, [switch]$Rodar)  # -Rodar: etapa do servidor, chamada pelo proprio script
 $ErrorActionPreference = 'Stop'
@@ -10,44 +10,9 @@ $root = Split-Path $PSScriptRoot -Parent
 $server = Join-Path $root 'server'
 $tools = Join-Path $root 'tools'
 $tar = "$env:SystemRoot\System32\tar.exe"  # bsdtar do Windows; o tar do Git Bash quebra com caminhos C:\
-$mrpackVersion = '0.23.0'
 $porta = 25565
 $eu = $env:COMPUTERNAME
 $envFile = Join-Path $root 'config.env'
-
-# Abre (ou fecha) a porta no roteador por UPnP falando SOAP direto com ele. Nao usa o HNetCfg.NATUPnP
-# do Windows porque ele nao funciona com a rede em perfil "Publica". Falha: vale o redirecionamento manual.
-function Porta-UPnP([bool]$abrir, [int]$externa = $porta) {
-    try {
-        # IP da placa que vai pra internet; prender o socket nela evita a descoberta sair por VPN (Radmin etc).
-        $ip = (Find-NetRoute -RemoteIPAddress 8.8.8.8 | Where-Object IPAddress | Select-Object -First 1).IPAddress
-        $u = New-Object Net.Sockets.UdpClient (New-Object Net.IPEndPoint([Net.IPAddress]::Parse($ip), 0))
-        $u.Client.ReceiveTimeout = 3000
-        $q = [Text.Encoding]::ASCII.GetBytes("M-SEARCH * HTTP/1.1`r`nHOST: 239.255.255.250:1900`r`nMAN: `"ssdp:discover`"`r`nMX: 2`r`nST: urn:schemas-upnp-org:device:InternetGatewayDevice:1`r`n`r`n")
-        [void]$u.Send($q, $q.Length, '239.255.255.250', 1900)
-        $ep = New-Object Net.IPEndPoint([Net.IPAddress]::Any, 0)
-        $resp = [Text.Encoding]::ASCII.GetString($u.Receive([ref]$ep))
-        $u.Close()
-        $loc = [regex]::Match($resp, '(?im)^location:\s*(\S+)').Groups[1].Value
-        # Alguns roteadores respondem application/octet-stream: le os bytes crus.
-        $xml = [Text.Encoding]::UTF8.GetString((Invoke-WebRequest $loc -UseBasicParsing).RawContentStream.ToArray())
-        $acao = if ($abrir) { 'AddPortMapping' } else { 'DeletePortMapping' }
-        $campos = "<NewRemoteHost></NewRemoteHost><NewExternalPort>$externa</NewExternalPort><NewProtocol>TCP</NewProtocol>"
-        if ($abrir) { $campos += "<NewInternalPort>$porta</NewInternalPort><NewInternalClient>$ip</NewInternalClient><NewEnabled>1</NewEnabled><NewPortMappingDescription>minezada $externa</NewPortMappingDescription><NewLeaseDuration>0</NewLeaseDuration>" }
-        $svcs = [regex]::Matches($xml, '<serviceType>(urn:schemas-upnp-org:service:WAN(?:IP|PPP)Connection:\d)</serviceType>.*?<controlURL>([^<]+)</controlURL>', 'Singleline')
-        foreach ($s in $svcs) {
-            $tipo = $s.Groups[1].Value
-            $body = "<?xml version=`"1.0`"?><s:Envelope xmlns:s=`"http://schemas.xmlsoap.org/soap/envelope/`" s:encodingStyle=`"http://schemas.xmlsoap.org/soap/encoding/`"><s:Body><u:$acao xmlns:u=`"$tipo`">$campos</u:$acao></s:Body></s:Envelope>"
-            try {
-                Invoke-WebRequest ([Uri]::new([Uri]$loc, $s.Groups[2].Value)) -Method Post -Body $body -ContentType 'text/xml; charset="utf-8"' -Headers @{ SOAPAction = "`"$tipo#$acao`"" } -UseBasicParsing | Out-Null
-                return $true
-            }
-            catch {}  # roteador pode anunciar WANIP e WANPPP; so um aceita
-        }
-        return $false
-    }
-    catch { return $false }
-}
 
 # 1. Repo atualizado: pack e scripts novos chegam sozinhos.
 if (-not $Rodar -and (Test-Path (Join-Path $root '.git')) -and (Get-Command git -ErrorAction SilentlyContinue)) {
@@ -254,10 +219,10 @@ if (-not (Test-Path $envFile)) {
     Write-Host 'Primeira vez nesta maquina: criando config.env.'
     $gb = [math]::Round((Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB)
     $ram = if ($gb -ge 24) { '8G' } elseif ($gb -ge 12) { '6G' } else { '4G' }
-    Set-Content $envFile -Encoding ascii @("RAM=$ram", 'SYNC_DIR=""', 'JAVA=java', 'DUCKDNS_TOKEN=')
+    Set-Content $envFile -Encoding ascii @("RAM=$ram", 'SYNC_DIR=""', 'JAVA=java')
 }
 
-$cfg = @{ RAM = '6G'; SYNC_DIR = ''; JAVA = 'java'; DUCKDNS_DOMAIN = 'minezada-mc'; DUCKDNS_TOKEN = ''; SEM_DRIVE = '' }
+$cfg = @{ RAM = '6G'; SYNC_DIR = ''; JAVA = 'java'; SEM_DRIVE = '' }
 foreach ($l in Get-Content $envFile) {
     if ($l -match '^\s*([A-Z_]+)\s*=\s*(.*?)\s*$') { $cfg[$matches[1]] = $matches[2].Trim('"') }
 }
@@ -271,16 +236,6 @@ if (-not $Rodar -and -not $cfg.SYNC_DIR) {
         $cfg.SYNC_DIR = $achado
         Set-Content $envFile -Encoding ascii (@(Get-Content $envFile | Where-Object { $_ -notmatch '^\s*SYNC_DIR\s*=' }) + "SYNC_DIR=`"$achado`"")
     }
-}
-
-# Token do DuckDNS mora na pasta do Drive (fora do git): quem tem o token no config.env grava la,
-# e os outros hosts pegam de la sem precisar perguntar a ninguem.
-if ($cfg.SYNC_DIR -and (Test-Path $cfg.SYNC_DIR)) {
-    $tokenArq = Join-Path $cfg.SYNC_DIR 'duckdns.txt'
-    if ($cfg.DUCKDNS_TOKEN) {
-        if (-not (Test-Path $tokenArq)) { Set-Content $tokenArq -Encoding ascii $cfg.DUCKDNS_TOKEN }
-    }
-    elseif (Test-Path $tokenArq) { $cfg.DUCKDNS_TOKEN = (Get-Content $tokenArq -Raw).Trim() }
 }
 
 # 3. Java 21+ (NeoForge 1.21.1). Um Java 8/17 antigo no PATH tambem conta como faltando.
@@ -305,30 +260,39 @@ if (-not (Java-Ok $cfg.JAVA)) {
 $sync = $cfg.SYNC_DIR
 $lock = if ($sync) { Join-Path $sync 'host.lock' }
 $estado = if ($sync) { Join-Path $sync 'mundo.tar.gz' }
+$neo = [regex]::Match((Get-Content (Join-Path $root 'modpack/pack/pack.toml') -Raw), 'neoforge = "(.+?)"').Groups[1].Value
+if (-not $neo) { throw 'Versao do NeoForge nao encontrada em modpack/pack/pack.toml.' }
 if (-not $Rodar) {
     # Servidor ja rodando nesta maquina (atalho clicado duas vezes): nao mexe no mundo dele.
     if (Get-NetTCPConnection -LocalPort $porta -State Listen -ErrorAction SilentlyContinue) { throw "Ja tem um servidor rodando nesta maquina (porta $porta em uso)." }
-    $packs = @(Get-ChildItem (Join-Path $root 'modpack') -Filter *.mrpack -ErrorAction SilentlyContinue)
-    if ($packs.Count -ne 1) { throw "Precisa ter exatamente 1 arquivo .mrpack em modpack/ (achei $($packs.Count))." }
-
-    $exe = Join-Path $tools 'mrpack-install.exe'
-    if (-not (Test-Path $exe)) {
-        Write-Host "Baixando mrpack-install $mrpackVersion..."
-        New-Item -ItemType Directory -Force $tools | Out-Null
-        $zip = Join-Path $tools 'mrpack-install.zip'
-        Invoke-WebRequest "https://github.com/nothub/mrpack-install/releases/download/v$mrpackVersion/mrpack-install_${mrpackVersion}_windows_amd64.zip" -OutFile $zip
-        # SHA-256 do checksums.txt oficial da release: so roda o binario se bater.
-        if ((Get-FileHash $zip -Algorithm SHA256).Hash -ne '91ceaf0843aa66dc2f001dc11d26d557871a507e67f4097306cad30da221e026') {
-            Remove-Item $zip; throw 'Checksum do mrpack-install nao confere (download corrompido ou adulterado).'
-        }
-        Expand-Archive $zip $tools -Force
-        Remove-Item $zip
+    # Instalador oficial do NeoForge e packwiz, igual ao iniciar.sh (e ao jogo de cada jogador).
+    New-Item -ItemType Directory -Force $server | Out-Null
+    if (-not (Test-Path (Join-Path $server "libraries/net/neoforged/neoforge/$neo/win_args.txt"))) {
+        Write-Host "Instalando NeoForge $neo..."
+        $inst = Join-Path $server 'neoforge-installer.jar'
+        Invoke-WebRequest "https://maven.neoforged.net/releases/net/neoforged/neoforge/$neo/neoforge-$neo-installer.jar" -OutFile $inst
+        Push-Location $server
+        & $cfg.JAVA -jar $inst --installServer . | Out-Null
+        $ok = -not $LASTEXITCODE
+        Pop-Location
+        Remove-Item $inst, "$inst.log" -ErrorAction SilentlyContinue
+        if (-not $ok) { throw 'Instalacao do NeoForge falhou.' }
     }
-
-    # Idempotente: sem mudanca no pack, nao faz nada.
-    & $exe $packs[0].FullName --server-dir $server --server-file server.jar
-    if ($LASTEXITCODE) { throw 'mrpack-install falhou.' }
-
+    # Servidor montado pelo mrpack-install antigo: limpa os mods para o packwiz assumir sem duplicar.
+    if (-not (Test-Path (Join-Path $server 'packwiz.json'))) { Remove-Item -Recurse -Force (Join-Path $server 'mods') -ErrorAction SilentlyContinue }
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    $z = [IO.Compression.ZipFile]::OpenRead((Join-Path $root 'modpack/minezada-prism.zip'))
+    foreach ($e in $z.Entries | Where-Object { $_.FullName -in '.minecraft/packwiz-installer-bootstrap.jar', '.minecraft/packwiz-installer.jar' }) {
+        [IO.Compression.ZipFileExtensions]::ExtractToFile($e, (Join-Path $server $e.Name), $true)
+    }
+    $z.Dispose()
+    # Idempotente: sem mudanca no pack, nao baixa nada. "-s server" pula os mods so de cliente.
+    $packToml = 'file:///' + ((Join-Path $root 'modpack/pack/pack.toml') -replace '\\', '/' -replace ' ', '%20')
+    Push-Location $server
+    & $cfg.JAVA -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -g -s server $packToml
+    $ok = -not $LASTEXITCODE
+    Pop-Location
+    if (-not $ok) { throw 'Instalacao dos mods falhou.' }
     $eula = Join-Path $server 'eula.txt'
     if (-not ((Test-Path $eula) -and (Select-String -Quiet 'eula=true' $eula))) {
         $r = Read-Host 'Voce aceita o EULA do Minecraft (https://aka.ms/MinecraftEULA)? [s/N]'
@@ -391,7 +355,7 @@ if (-not $Rodar) {
     exit
 }
 
-# 6. Rede: firewall, tunel e, so se o tunel falhar, porta no roteador e DuckDNS.
+# 6. Rede: firewall so para a rede local e os tuneis (Cloudflare e playit).
 # Regra por porta (nao por programa), so para a rede local: quem vem pelo tunel chega por localhost, que o
 # firewall nao filtra. Regra antiga aberta para qualquer endereco e corrigida (pede administrador uma vez).
 $regra = Get-NetFirewallRule -DisplayName 'minezin 25565' -ErrorAction SilentlyContinue
@@ -407,34 +371,9 @@ elseif (@($regra | Get-NetFirewallAddressFilter).RemoteAddress -ne 'LocalSubnet'
 $ipLocal = try { (Find-NetRoute -RemoteIPAddress 8.8.8.8 | Where-Object IPAddress | Select-Object -First 1).IPAddress } catch { $null }
 Write-Host "Na mesma casa: entre por localhost (nesta maquina) ou $ipLocal (outro computador)."
 
-$ddns = $null; $reserva = $false
 $cf = Iniciar-Cloudflare $cfg.SYNC_DIR
 $tunel = Iniciar-Tunel $cfg.SYNC_DIR
-$semTunel = -not ($cf -or $tunel)
-$url = "https://www.duckdns.org/update?domains=$($cfg.DUCKDNS_DOMAIN)&token=$($cfg.DUCKDNS_TOKEN)"
-if (-not $semTunel) {
-    # Tira o IP desta casa do DuckDNS: o endereco de reserva so aponta para um host quando ele precisa.
-    if ($cfg.DUCKDNS_TOKEN) { try { Invoke-RestMethod "$url&clear=true" | Out-Null } catch {} }
-}
-else {
-    # Reserva (nenhum tunel conectou): porta no roteador por UPnP e o DuckDNS apontando para este host. Precisa de uma regra
-    # de firewall aberta para a internet, criada so agora e apagada no stop.
-    Write-Host "Reserva: abrindo a porta $porta no roteador (UPnP) e no firewall (o Windows vai pedir permissao)."
-    $reserva = Como-Admin "New-NetFirewallRule -DisplayName 'minezin 25565 internet' -Direction Inbound -Protocol TCP -LocalPort $porta -Action Allow -Profile Any"
-    if (Porta-UPnP $true) {
-        Write-Host "Porta $porta aberta via UPnP."
-    }
-    else { Write-Warning 'UPnP indisponivel: so quem esta nesta rede consegue entrar (ou redirecione a porta no roteador).' }
-    if ($cfg.DUCKDNS_TOKEN) {
-        # Reaponta o nome para este host e repete a cada 5 min caso o IP mude durante a sessao.
-        $ddns = Start-Job -ArgumentList $url {
-            param($u)
-            [Net.ServicePointManager]::SecurityProtocol = 'Tls12'
-            while ($true) { try { Invoke-RestMethod $u | Out-Null } catch {}; Start-Sleep 300 }
-        }
-        Write-Host "Endereco do servidor (reserva): $($cfg.DUCKDNS_DOMAIN).duckdns.org (na lista do jogo: Minezada (reserva))"
-    }
-}
+if (-not ($cf -or $tunel)) { Write-Warning 'Nenhum tunel conectou: so quem esta nesta rede consegue entrar.' }
 
 # Anuncia o servidor na rede local como o "Abrir para LAN" do jogo: quem esta na mesma rede ve
 # "Minezada" sozinho em Multijogador, sem digitar IP.
@@ -455,20 +394,13 @@ try {
     # Flags do Aikar: coleta de lixo G1 ajustada para servidor de Minecraft (menos travadas).
     $flags = '-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1' -split ' '
     # Sem "nogui": a janela do Minecraft server tem campo de comando, e fechar ela no X salva e para.
-    & $cfg.JAVA "-Xms$($cfg.RAM)" "-Xmx$($cfg.RAM)" @flags -jar server.jar
+    & $cfg.JAVA "-Xms$($cfg.RAM)" "-Xmx$($cfg.RAM)" @flags "@libraries/net/neoforged/neoforge/$neo/win_args.txt"
 }
 finally {
     Pop-Location
     [void][Minezada.Energia]::SetThreadExecutionState(2147483648)  # 0x80000000 = volta ao normal
-    if ($ddns) { Stop-Job $ddns; Remove-Job $ddns }
     Stop-Job $lan; Remove-Job $lan
     foreach ($t in $cf, $tunel) { if ($t) { Stop-Process -Id $t.Id -Force -ErrorAction SilentlyContinue } }
-    if ($semTunel) {
-        [void](Porta-UPnP $false)
-        if ($reserva) { [void](Como-Admin "Remove-NetFirewallRule -DisplayName 'minezin 25565 internet'") }
-        # Servidor desligado: o IP desta casa sai do DuckDNS.
-        if ($ddns) { try { Invoke-RestMethod "$url&clear=true" | Out-Null } catch {} }
-    }
     if ($sync) {
         Write-Host 'Enviando mundo para a pasta sincronizada...'
         $itens = @('world', 'ops.json', 'whitelist.json', 'banned-players.json', 'banned-ips.json') |

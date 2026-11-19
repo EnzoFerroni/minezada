@@ -35,14 +35,12 @@ salva, o mundo volta para o Drive (com backup dos 5 últimos) e a trava é liber
 ## O que o `iniciar` faz
 
 1. Atualiza o repo (`git pull`).
-2. Na primeira vez: cria `config.env` (RAM, pasta do Drive, token do DuckDNS) e pergunta do EULA.
+2. Na primeira vez: cria `config.env` (RAM e pasta do Drive) e pergunta do EULA.
 3. Instala o Java se faltar.
-4. Instala/atualiza servidor, NeoForge e mods: no Windows com o
-   [mrpack-install](https://github.com/nothub/mrpack-install); no Mac com o instalador do NeoForge e o
-   packwiz (o mrpack-install falha no DNS de roteadores de operadora).
+4. Instala/atualiza o NeoForge (instalador oficial) e os mods (packwiz, o mesmo do jogo), igual no
+   Windows e no Mac.
 5. Baixa o mundo do Drive e trava para ninguém mais hospedar junto.
-6. Libera a porta no firewall só para a rede local e liga os túneis da Cloudflare e do playit.gg.
-   Só se nenhum conectar: abre a porta no roteador (UPnP) e aponta o DuckDNS para esta máquina
+6. Libera a porta no firewall só para a rede local e liga os túneis da Cloudflare e do playit.gg
    (veja **Rede**).
 7. Libera na whitelist quem está no `jogadores.txt` e sobe o servidor sem deixar a máquina suspender.
 
@@ -81,8 +79,7 @@ em `server-config/config/skinrestorer/config.json`.
 
 ## Rede
 
-Três entradas, nesta ordem. Tudo grátis, e nas duas primeiras o roteador não abre porta nenhuma e o
-IP de casa não aparece.
+Duas entradas, nesta ordem. Tudo grátis, o roteador não abre porta nenhuma e o IP de casa não aparece.
 
 **1. Principal: `minezada.dpdns.org` (túnel da Cloudflare).** É o primeiro da lista de servidores do jogo. O mod
 Modflared (no pack) lê o registro TXT do domínio (`cloudflared-route=mc.minezada.dpdns.org`), baixa o
@@ -102,28 +99,18 @@ Drive. Plano grátis: a rota não é garantida para quem está longe. Perdeu o s
 `playit claim generate`, `playit claim url <código>`, aprove no site e `playit claim exchange <código>`:
 a última linha da saída é o segredo novo.
 
-**3. Reserva (só se nenhum túnel conectar): `minezada-mc.duckdns.org`.** O host abre a 25565 TCP no
-roteador por UPnP, cria uma regra de firewall para a internet e reaponta o nome para o próprio IP (no
-start e a cada 5 min). No `stop` fecha tudo e limpa o IP do DuckDNS; com algum túnel ligado o IP
-também fica limpo. O token fica em `duckdns.txt` na pasta do Drive, nunca no git: o
-primeiro host com `DUCKDNS_TOKEN` no `config.env` grava o arquivo lá, e os outros pegam de lá. Sem
-UPnP, a reserva precisa de redirecionamento manual da 25565 TCP para o IP local do host (com reserva
-de IP no DHCP).
-
 **Mesma casa.** O host entra por `localhost`. Outro computador da mesma rede vê o servidor sozinho em
 **Multijogador**, na parte de LAN (o `iniciar` anuncia como o "Abrir para LAN" do jogo). Se a rede
 bloquear o anúncio (Wi-Fi com isolamento entre aparelhos), use o IP local que o `iniciar` mostra.
 
 **Lista de servidores do jogo.** Vem pronta e se atualiza a cada abertura (packwiz): Minezada
-(Cloudflare), Minezada (playit), Minezada (reserva) e Minezada (neste computador). Servidor adicionado
-à mão some na próxima abertura. Mudou algum endereço? Troque `$servidor`, `$tunel` ou `$reserva` em
+(Cloudflare), Minezada (playit) e Minezada (neste computador). Servidor adicionado
+à mão some na próxima abertura. Mudou algum endereço? Troque `$servidor` ou `$tunel` em
 `scripts/montar-pack.ps1` e gere o pack.
 
 **Dicas.**
-- Com UPnP ligado, **não** crie regra manual na 25565: ela trava a porta numa máquina e impede o
-  UPnP de apontar para outro host.
 - Windows: deixe a rede de casa como **Privada**; em rede pública o túnel funciona igual.
-- VPNs (Radmin, Hamachi, ZeroTier) ligadas podem atrapalhar o UPnP e o IP detectado.
+- VPNs (Radmin, Hamachi, ZeroTier) ligadas podem atrapalhar o IP local detectado.
 
 ## Google Drive
 
@@ -132,8 +119,8 @@ navegador e espera ela aparecer. Responder `n` grava `SEM_DRIVE=1` no `config.en
 mais. Os passos manuais:
 
 1. Instale o Google Drive para desktop (https://www.google.com/drive/download/) e faça login.
-2. Dono: a pasta é `Meu Drive/minezada`, com acesso **restrito** (guarda o mundo, o token do DuckDNS
-   e os segredos dos túneis). Quem vai hospedar clica em "Solicitar acesso" no link que o `iniciar` abre
+2. Dono: a pasta é `Meu Drive/minezada`, com acesso **restrito** (guarda o mundo e os segredos dos
+   túneis). Quem vai hospedar clica em "Solicitar acesso" no link que o `iniciar` abre
    e o dono aprova como editor. Jogador não usa o Drive.
 3. Convidado: em drive.google.com → Compartilhados comigo → `minezada` → **Adicionar atalho ao Drive**
    (em "Meu Drive"). Sem o atalho a pasta não aparece no computador.
@@ -158,20 +145,20 @@ O `iniciar` acha a pasta sozinho em `X:\Meu Drive\minezada` (Windows) ou
 - O repositório é público e os comandos de jogar e hospedar rodam direto dele no PC de todos:
   **mantenha a verificação em duas etapas ligada no GitHub** e não dê acesso de escrita a ninguém.
   O `main` é protegido: ninguém (nem o dono) consegue force push ou apagar o branch.
-- A pasta `minezada` do Drive guarda o mundo, o token do DuckDNS e os segredos dos túneis (`cloudflare.txt`, `playit.txt`). Compartilhe
+- A pasta `minezada` do Drive guarda o mundo e os segredos dos túneis (`cloudflare.txt`, `playit.txt`). Compartilhe
   só com quem hospeda (com 2FA na conta Google): quem tem um deles pode apontar o endereço para um
-  servidor falso e pegar as senhas do `/login`. Vazou? Token novo no DuckDNS, no túnel da Cloudflare e no playit.
+  servidor falso e pegar as senhas do `/login`. Vazou? Token novo no túnel da Cloudflare e no playit.
 - Contas da Cloudflare (domínio e túnel) e da DigitalPlat (domínio grátis) com 2FA: quem entrar nelas pode
   redirecionar o endereço.
-- Downloads com checksum e versão fixa: launcher sem original, cloudflared, playit, mrpack-install e
+- Downloads com checksum e versão fixa: launcher sem original, cloudflared, playit e
   packwiz-installer. Os mods vêm do Modrinth com hash conferido pelo packwiz. A cada push no pack, a
   Action **Servidor de teste** sobe o servidor no GitHub e avisa se ele não chegar no `Done`.
 - Com os túneis, nenhuma porta fica aberta no roteador e o IP de casa não aparece (só conexões de saída). O firewall do
   Windows só aceita a 25565 da rede local. RCON e query ficam desligados.
 - Pelo túnel todos chegam com o mesmo IP: banir por IP não funciona. Use `whitelist remove Nick` e
   tire o nick do `jogadores.txt`.
-- Mais seguro ainda: desligue o UPnP no roteador. A reserva deixa de funcionar, mas nenhum aparelho
-  da casa consegue abrir porta sozinho.
+- Mais seguro ainda: desligue o UPnP no roteador. O servidor não precisa dele, e nenhum aparelho da
+  casa consegue abrir porta sozinho.
 
 ## Comandos úteis (no campo de comando da janela do servidor)
 

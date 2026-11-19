@@ -11,11 +11,11 @@
   (antes de `2026.11.18.1`: histórico em [docs/decisoes.md](../docs/decisoes.md)).
 - **Por que cada coisa é assim**: [docs/decisoes.md](../docs/decisoes.md). Mudou uma decisão? Atualize lá.
 - **Como usar**: [README](../README.md) e [docs/](../docs).
-- **Pack**: `modpack/mods.txt` é a lista de mods (fonte da verdade). `modpack/minezada.mrpack`, `modpack/pack/`,
+- **Pack**: `modpack/mods.txt` é a lista de mods (fonte da verdade). `modpack/pack/`,
   `modpack/minezada-prism.zip` e `docs/mods.md` são gerados pelo `scripts/montar-pack.ps1`: não edite à mão.
   Perfis de gráfico: tabela em `scripts/perfis.ps1` (gera `modpack/arquivos/`). Configuração do servidor:
-  `server-config/` (copiada para `server/` a cada start). O servidor no Windows instala o `.mrpack`; o do
-  Mac e os jogadores instalam pelo `pack/` (packwiz).
+  `server-config/` (copiada para `server/` a cada start). Servidor (Windows e Mac) e jogadores
+  instalam pelo `pack/` (packwiz).
 - **Testes**: `scripts/testes/` (desligar o servidor por stop, Ctrl+C e janela fechada; whitelist igual no Mac e no
   Windows). A Action **Testes dos scripts** roda tudo no macOS, Linux e Windows a cada push que mexe nos scripts.
   Mudou o `rodar_servidor`/`enviar_mundo` do `iniciar.sh` ou a whitelist? Rode `scripts/testes/desligar.sh` e
@@ -124,7 +124,7 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
   ex.: o Aether traz o Accessories); um jar avulso mais novo tem prioridade.
 - **Mod só de cliente passa no teste do servidor** mesmo com dependência errada: só quebra ao abrir o jogo.
   Por isso o passo 4 do checklist não pode ser pulado.
-- **Mod que sai do pack**: o mrpack-install e o packwiz apagam os jars que eles instalaram, mas um jar copiado à
+- **Mod que sai do pack**: o packwiz apaga os jars que ele instalou, mas um jar copiado à
   mão fica. Bloco ou item do mod some do mundo (vira ar); mod que gera minério ou estrutura deixa buracos no
   mundo já gerado.
 - **Script de antes de abrir** (`modpack/arquivos/minezada.ps1` e `.sh`, issue #17): vem pelo pack e o
