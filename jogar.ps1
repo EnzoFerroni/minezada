@@ -51,7 +51,7 @@ if (-not (Test-Path $cfg)) {
 }
 
 # 3. Instancia: extrai direto na pasta do Prism (sem dialogo). Preserva mundo, opcoes e servidores do jogador.
-$instDir = (Select-String '^InstanceDir=(.+)$' $cfg | Select-Object -First 1).Matches.Groups[1].Value
+$instDir = Select-String '^InstanceDir=(.+)$' $cfg | Select-Object -First 1 | ForEach-Object { $_.Matches[0].Groups[1].Value }
 if (-not $instDir) { $instDir = 'instances' }
 if (-not [IO.Path]::IsPathRooted($instDir)) { $instDir = Join-Path $dados $instDir }
 $inst = Join-Path $instDir 'Minezada'
