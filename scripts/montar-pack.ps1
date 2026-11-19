@@ -1,7 +1,7 @@
-﻿# Gera modpack/minezada.mrpack, modpack/pack (packwiz), o zip do Prism e a lista do README a partir de modpack/mods.txt, resolvendo versoes e
-# dependencias obrigatorias no Modrinth para o loader e a versao do jogo abaixo.
+# Gera modpack/pack (packwiz, usado pelo jogo e pelo servidor), o zip do Prism e a lista de docs/mods.md a partir
+# de modpack/mods.txt, resolvendo versoes e dependencias obrigatorias no Modrinth para o loader e a versao abaixo.
 # Uso: powershell -ExecutionPolicy Bypass -File scripts/montar-pack.ps1 (Mac: pwsh scripts/montar-pack.ps1) [-Versao 1.0.0] [-Atualizar]
-# Versoes fixas: cada mod repete a versao do .mrpack atual (o link de cada arquivo tem o id da versao); mod novo
+# Versoes fixas: cada mod repete a versao do modpack/pack atual (o link de cada arquivo tem o id da versao); mod novo
 # pega a mais nova. -Atualizar busca a versao mais nova de todos (revise a lista de mudancas antes do push).
 param([string]$Versao = (Get-Date -Format 'yyyy.MM.dd'), [switch]$Atualizar)
 $ErrorActionPreference = 'Stop'
@@ -14,7 +14,6 @@ $root = Split-Path $PSScriptRoot -Parent
 $api = 'https://api.modrinth.com/v2'
 $packUrl = 'https://raw.githubusercontent.com/EnzoFerroni/minezada/main/modpack/pack/pack.toml'
 $servidor = 'minezada.dpdns.org'  # tunel da Cloudflare: o TXT do dominio manda o Modflared para mc.minezada.dpdns.org
-$reserva = 'minezada-mc.duckdns.org'  # DuckDNS: o host so aponta quando nenhum tunel conecta
 $tunel = 'molecule-spindle.tun.ply.gg'  # playit: endereco fixo do tunel (playit-endereco.txt no Drive)
 $h = @{ 'User-Agent' = 'minezada-modpack-builder/1.0' }
 
@@ -51,18 +50,15 @@ $depsExtras = @{ 'adorable-hamster-pets' = @('lhGA9TYQ', '8BmcQJ2H', 'hYykXjDp',
 $linhas = Get-Content (Join-Path $root 'modpack/mods.txt') -Encoding UTF8
 $pedidos = foreach ($l in $linhas) { if ($l -match '^\s*([a-z0-9_-]+)\s*\|') { $matches[1] } }
 
-# Pack anterior: lista de arquivos (para mostrar o que mudou) e a versao de cada projeto (para repetir).
-Add-Type -AssemblyName System.IO.Compression, System.IO.Compression.FileSystem
-$saida = Join-Path $root 'modpack/minezada.mrpack'
-$antigos = @(); $fixas = @{}
-if (Test-Path $saida) {
-    $za = [IO.Compression.ZipFile]::OpenRead($saida)
-    $antigos = @([IO.StreamReader]::new(($za.Entries | Where-Object FullName -eq 'modrinth.index.json').Open()).ReadToEnd() | ConvertFrom-Json | ForEach-Object { $_.files } | ForEach-Object { $_ })
-    $za.Dispose()
-    foreach ($a in $antigos) { if ($a.downloads[0] -match '/data/([^/]+)/versions/([^/]+)/') { $fixas[$matches[1]] = $matches[2] } }
+# Pack anterior (modpack/pack): lista de arquivos (para mostrar o que mudou) e a versao de cada projeto (para
+# repetir; o link de cada arquivo tem o id do projeto e da versao).
+$antes = @(); $fixas = @{}
+foreach ($m in Get-ChildItem (Join-Path $root 'modpack/pack') -Filter *.pw.toml -Recurse -ErrorAction SilentlyContinue) {
+    $c = Get-Content $m.FullName -Raw -Encoding UTF8
+    if ($c -match '(?m)^filename = "(.+)"') { $antes += "$($m.Directory.Name)/$($matches[1])" }
+    if ($c -match '/data/([^/]+)/versions/([^/]+)/') { $fixas[$matches[1]] = $matches[2] }
 }
-
-$vistos = @{}; $projs = [ordered]@{}; $files = @(); $info = @{}; $pwMods = @()
+$vistos = @{}; $projs = [ordered]@{}; $info = @{}; $pwMods = @()
 $fila = New-Object System.Collections.Queue
 $pedidos | ForEach-Object { $fila.Enqueue($_) }
 while ($fila.Count) {
@@ -105,14 +101,6 @@ do {
 
 foreach ($x in $projs.Values) {
     $p = $x.p; $v = $x.v; $f = $x.f
-    $files += [ordered]@{
-        path      = "$($x.pasta)/$($f.filename)"
-        hashes    = [ordered]@{ sha1 = $f.hashes.sha1; sha512 = $f.hashes.sha512 }
-        env       = [ordered]@{ client = $(if (-not $x.cliente) { 'unsupported' } elseif ($opcionais[$p.slug]) { 'optional' } else { 'required' }); server = $(if ($x.servidor) { 'required' } else { 'unsupported' }) }
-        downloads = @($f.url)
-        fileSize  = $f.size
-    }
-
     $info[$p.slug] = [pscustomobject]@{ titulo = $p.title; versao = $v.version_number; servidor = $x.servidor; icone = $p.icon_url }
     $lado = if (-not $x.servidor) { 'client' } elseif (-not $x.cliente) { 'server' } else { 'both' }
     $pwMods += [pscustomobject]@{ slug = $p.slug; titulo = $p.title; arquivo = $f.filename; url = $f.url; sha1 = $f.hashes.sha1; lado = $lado; pasta = $x.pasta }
@@ -123,27 +111,15 @@ foreach ($x in $projs.Values) {
 $metaNeo = [Text.Encoding]::UTF8.GetString((Invoke-WebRequest 'https://meta.prismlauncher.org/v1/net.neoforged/index.json' -UseBasicParsing).RawContentStream.ToArray()) | ConvertFrom-Json
 $neo = ($metaNeo.versions | Where-Object { $_.version -like "$($mc.Substring(2)).*" } | Select-Object -First 1).version  # "21.1.*"
 if (-not $neo) { throw "Nenhum NeoForge para $mc no meta do Prism" }
-$index = [ordered]@{
-    formatVersion = 1; game = 'minecraft'; versionId = $Versao; name = 'Minezada'
-    summary = 'Vanilla melhorado: Create, baus, dragoes, Aether e guias'
-    files = $files
-    dependencies = [ordered]@{ minecraft = $mc; neoforge = $neo }
-}
-
 $tmp = Join-Path ([IO.Path]::GetTempPath()) "minezada-pack-$PID"
 New-Item -ItemType Directory -Force $tmp | Out-Null
-[IO.File]::WriteAllText((Join-Path $tmp 'modrinth.index.json'), ($index | ConvertTo-Json -Depth 8), (New-Object Text.UTF8Encoding $false))
 
 # O que mudou desde o pack anterior: revisar antes do push (versao nova de mod = codigo novo no PC de todos).
-$antes = @($antigos | ForEach-Object { $_.path })
-$depois = @($files | ForEach-Object { $_.path })
+$depois = @($pwMods | ForEach-Object { "$($_.pasta)/$($_.arquivo)" })
 $saiu = @($antes | Where-Object { $_ -notin $depois }); $entrou = @($depois | Where-Object { $_ -notin $antes })
 Write-Host "`nMudancas desde o pack anterior: $(if (-not ($saiu + $entrou)) { 'nenhuma' })"
 $saiu | ForEach-Object { Write-Host "  - $_" }
 $entrou | ForEach-Object { Write-Host "  + $_" }
-Get-ChildItem (Join-Path $root 'modpack') -Filter *.mrpack | Remove-Item
-Compress-Archive (Join-Path $tmp 'modrinth.index.json') "$tmp/pack.zip" -Force
-Move-Item "$tmp/pack.zip" $saida
 
 # Formato packwiz em modpack/pack: o Prism le pelo link raw do GitHub a cada abertura e sincroniza os mods.
 $utf8 = New-Object Text.UTF8Encoding $false
@@ -176,11 +152,9 @@ if (Test-Path $soltos) {
 }
 # servers.dat (NBT sem compressao): os enderecos do servidor ja na lista do Multiplayer. Vai pelo packwiz
 # sem preserve, entao todo mundo recebe a lista nova a cada abertura (servidor adicionado a mao some).
-# Principal: Cloudflare (HTTPS na 443, passa em rede de faculdade). Depois: playit (playit-endereco.txt no Drive).
-# Reserva: DuckDNS, que o host so liga se nenhum tunel conectar (UPnP na 25565).
+# Principal: Cloudflare (HTTPS na 443, passa em rede de faculdade). Reserva: playit (playit-endereco.txt no Drive).
 function NbtStr($ms, $s) { $b = [Text.Encoding]::UTF8.GetBytes($s); $ms.WriteByte($b.Length -shr 8); $ms.WriteByte($b.Length -band 255); $ms.Write($b, 0, $b.Length) }
-$entradas = @(@('Minezada', $servidor), @('Minezada (playit)', $tunel),
-    @('Minezada (reserva)', $reserva), @('Minezada (neste computador)', 'localhost'))
+$entradas = @(@('Minezada', $servidor), @('Minezada (playit)', $tunel), @('Minezada (neste computador)', 'localhost'))
 $ms = New-Object IO.MemoryStream
 $ms.WriteByte(10); NbtStr $ms ''                                                                 # compound raiz
 $ms.WriteByte(9); NbtStr $ms 'servers'; $ms.WriteByte(10); $ms.Write([byte[]](0, 0, 0, $entradas.Count), 0, 4)  # lista de compounds
@@ -267,4 +241,4 @@ if ($txt -notmatch '<!-- mods:inicio -->') { throw 'docs/mods.md sem os marcador
 $novo = [regex]::Replace($txt, '(?s)(<!-- mods:inicio -->).*?(<!-- mods:fim -->)', { param($m) "$($m.Groups[1].Value)`n$($md -join "`n")`n$($m.Groups[2].Value)" })
 [IO.File]::WriteAllText($doc, $novo, (New-Object Text.UTF8Encoding $false))
 
-Write-Host "`n$($files.Count) arquivos, NeoForge $neo -> $saida"
+Write-Host "`n$($pwMods.Count) arquivos, NeoForge $neo -> modpack/pack"
