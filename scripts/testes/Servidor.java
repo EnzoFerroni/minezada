@@ -16,6 +16,7 @@ public class Servidor {
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String linha;
         while ((linha = console.readLine()) != null) {
+            Files.writeString(Path.of("console.txt"), linha + "\n", java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.APPEND);
             if (linha.trim().equals("stop")) {
                 salvar("stop");
                 System.exit(0);

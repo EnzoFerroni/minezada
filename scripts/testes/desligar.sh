@@ -16,11 +16,12 @@ caso() {
   echo mundo > "$t/server/world/level.dat"
   cp "$aqui/Servidor.java" "$t/server/"
   echo teste > "$t/sync/host.lock"
+  echo '# teste' > "$t/sync/jogadores.txt"
   # O fim do iniciar.sh: servidor e envio do mundo.
   cat > "$t/rodar.sh" <<EOF
 #!/usr/bin/env bash
 MINEZADA_TESTE=1 . "$raiz/scripts/iniciar.sh"
-server="$t/server"; SYNC_DIR="$t/sync"; eu=teste
+server="$t/server"; SYNC_DIR="$t/sync"; eu=teste; lista="$t/sync/jogadores.txt"; intervalo=1
 rodar_servidor java Servidor.java
 enviar_mundo
 touch "$t/fim"
@@ -43,6 +44,11 @@ EOF
   else
     case "$nome" in
       stop) printf 'stop\n' >> "$t/entrada" ;;
+      # Nick novo no jogadores.txt com o servidor ligado: o iniciar libera e manda whitelist reload e op (issue #16).
+      whitelist)
+        sleep 1.2; echo 'ZzTesteMz sem-original op' >> "$t/sync/jogadores.txt"
+        for _ in $(seq 1 60); do grep -q 'op ZzTesteMz' "$t/server/console.txt" 2>/dev/null && break; sleep 0.5; done
+        printf 'stop\n' >> "$t/entrada" ;;
       ctrlc) printf '\003' >> "$t/entrada" ;;
       janela) kill -9 "$spid" ;;  # fecha o terminal: o sistema manda SIGHUP para a sessao
     esac
@@ -53,6 +59,8 @@ EOF
     elif [ -f "$t/sync/host.lock" ]; then erro="a trava ficou presa"
     elif ! tar -tzf "$t/sync/mundo.tar.gz" | grep -q 'world/level.dat'; then erro="o mundo nao foi enviado"
     elif [ "$nome" = janela ] && ! grep -q 'Janela fechada' "$t/server/logs/iniciar.log"; then erro="sem registro em iniciar.log"
+    elif [ "$nome" = whitelist ] && ! grep -q 'whitelist reload' "$t/server/console.txt" 2>/dev/null; then erro="o servidor nao recebeu whitelist reload"
+    elif [ "$nome" = whitelist ] && ! grep -q 'ZzTesteMz' "$t/server/whitelist.json" 2>/dev/null; then erro="o nick novo nao entrou no whitelist.json"
     fi
   fi
   if [ -z "$erro" ]; then
@@ -73,4 +81,5 @@ echo "bash $BASH_VERSION, $(uname -s)"
 caso stop
 caso ctrlc
 caso janela
+caso whitelist
 [ $falhas -eq 0 ] || { echo "$falhas caso(s) falharam."; exit 1; }

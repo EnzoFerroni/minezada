@@ -29,6 +29,15 @@ public class WhitelistTeste {
         c.find();
         Matcher a = Pattern.compile("\"([^\"]+)\"").matcher(c.group(1));
         while (a.find()) if (!Files.exists(t.resolve(a.group(1)))) erros.add("progresso nao copiado: " + a.group(1));
+
+        // --do-jogo: /whitelist add Novo e /op Amigo feitos no jogo voltam para o jogadores.txt.
+        Path j = Files.createTempDirectory("minezada-jogo");
+        Files.writeString(j.resolve("jogadores.txt"), "Enzobullet op\nAmigo # da escola\n");
+        Files.writeString(j.resolve("whitelist.json"), "[{\"uuid\": \"1\", \"name\": \"Enzobullet\"}, {\"uuid\": \"2\", \"name\": \"Amigo\"}, {\"uuid\": \"3\", \"name\": \"Novo\"}]");
+        Files.writeString(j.resolve("ops.json"), "[{\"uuid\": \"1\", \"name\": \"Enzobullet\", \"level\": 4}, {\"uuid\": \"2\", \"name\": \"Amigo\", \"level\": 4}]");
+        saida = new ProcessBuilder(java, "scripts/Whitelist.java", "--do-jogo", j.resolve("jogadores.txt").toString(), j.toString()).inheritIO().start().waitFor();
+        List<String> lista = Files.readAllLines(j.resolve("jogadores.txt"));
+        if (saida != 0 || !lista.equals(List.of("Enzobullet op", "Amigo op # da escola", "Novo"))) erros.add("--do-jogo: veio " + lista);
         if (!erros.isEmpty()) {
             System.out.println("FALHA whitelist:\n  " + String.join("\n  ", erros));
             System.exit(1);

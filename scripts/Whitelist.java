@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 // Libera na whitelist os nicks de jogadores.txt (um por linha; "op" depois do nick tambem da admin).
 // MixAuth: quem tem original entra com o UUID oficial (so ele e liberado); sem original, com o offline.
 // Sem o arquivo, cria com o dono e quem ja esta liberado. So adiciona; tirar alguem e no console.
+// --do-jogo LISTA PASTA: o caminho contrario, para /whitelist add e /op feitos no jogo (ver doJogo).
 // O iniciar.ps1 e o iniciar.sh rodam com o Java do servidor: java scripts/Whitelist.java LISTA PASTA_DO_SERVIDOR
 public class Whitelist {
     static final Pattern OBJETO = Pattern.compile("\\{[^{}]*\\}");
@@ -27,6 +28,10 @@ public class Whitelist {
     static final Map<String, String> oficiais = new HashMap<>();
 
     public static void main(String[] args) throws Exception {
+        if (args[0].equals("--do-jogo")) {
+            doJogo(Path.of(args[1]), Path.of(args[2]));
+            return;
+        }
         Path lista = Path.of(args[0]), pasta = Path.of(args[1]), mundo = pasta.resolve("world");
         List<Map<String, String>> wl = ler(pasta.resolve("whitelist.json")), ops = ler(pasta.resolve("ops.json"));
         // UUID oficial ja conhecido (whitelist/ops) evita consultar a Mojang a cada start.
@@ -38,7 +43,7 @@ public class Whitelist {
         if (!Files.exists(lista)) {
             StringBuilder s = new StringBuilder("# Um nick por linha, igual ao do jogo (maiusculas contam); 'op' depois tambem da admin.\n"
                 + "# 'sem-original' depois: joga sem Minecraft original com um nick que existe como conta original.\n"
-                + "# O servidor libera todos ao iniciar: depois de editar, reinicie. Nao use whitelist add no console.\nEnzobullet op\n");
+                + "# O servidor confere este arquivo a cada 30 segundos. No jogo, quem e op pode usar /whitelist add e /op: o nick vem para ca.\nEnzobullet op\n");
             for (Map<String, String> e : wl) {
                 if (!nome(e).equalsIgnoreCase("Enzobullet")) s.append(nome(e)).append('\n');
             }
@@ -83,6 +88,45 @@ public class Whitelist {
         }
         escrever(pasta.resolve("whitelist.json"), wl);
         escrever(pasta.resolve("ops.json"), ops);
+    }
+
+    // /whitelist add e /op no jogo: copia para o jogadores.txt quem esta no whitelist.json ou no ops.json e falta na
+    // lista. O iniciar roda isto quando o servidor muda esses arquivos; a lista nova passa depois pela conferencia
+    // normal, que troca o UUID offline pelo oficial de quem tem original. Tirar alguem continua sendo no jogo e na lista.
+    static void doJogo(Path lista, Path pasta) throws Exception {
+        if (!Files.exists(lista)) return;
+        List<String> linhas = new ArrayList<>(Files.readAllLines(lista, StandardCharsets.UTF_8));
+        Map<String, Integer> linhaDe = new HashMap<>();
+        for (int i = 0; i < linhas.size(); i++) {
+            String nick = linhas.get(i).replace("﻿", "").split("#", 2)[0].trim().split("\\s+")[0];
+            if (!nick.isEmpty()) linhaDe.put(nick.toLowerCase(), i);
+        }
+        List<String> ops = new ArrayList<>();
+        for (Map<String, String> e : ler(pasta.resolve("ops.json"))) ops.add(nome(e).toLowerCase());
+        List<Map<String, String>> todos = ler(pasta.resolve("whitelist.json"));
+        todos.addAll(ler(pasta.resolve("ops.json")));
+        boolean mudou = false;
+        for (Map<String, String> e : todos) {
+            String nick = nome(e);
+            if (!nick.matches("[A-Za-z0-9_]{1,16}")) continue;
+            boolean op = ops.contains(nick.toLowerCase());
+            Integer i = linhaDe.get(nick.toLowerCase());
+            if (i == null) {
+                linhas.add(nick + (op ? " op" : ""));
+                linhaDe.put(nick.toLowerCase(), linhas.size() - 1);
+                System.out.println("Liberado pelo jogo, copiado para o jogadores.txt: " + nick + (op ? " (op)" : ""));
+                mudou = true;
+            } else if (op) {
+                String l = linhas.get(i);
+                int h = l.indexOf('#');
+                String codigo = h < 0 ? l : l.substring(0, h);
+                if (List.of(codigo.trim().toLowerCase().split("\\s+")).contains("op")) continue;
+                linhas.set(i, codigo.stripTrailing() + " op" + (h < 0 ? "" : " " + l.substring(h)));
+                System.out.println("Admin pelo jogo, marcado no jogadores.txt: " + nick);
+                mudou = true;
+            }
+        }
+        if (mudou) Files.write(lista, linhas, StandardCharsets.UTF_8);
     }
 
     // Mesmo UUID que o servidor da ao nick sem conta Microsoft (maiusculas contam).

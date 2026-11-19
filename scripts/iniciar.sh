@@ -132,14 +132,24 @@ main() {
 die() { echo "ERRO: $*" >&2; exit 1; }
 
 # Roda o servidor (comando nos argumentos, dentro de $server) ate ele desligar por stop, Ctrl+C ou janela fechada.
-# O java fica em segundo plano com o teclado (<&0) e o script esperando por ele: assim os sinais chegam no script,
+# O java fica em segundo plano com o teclado (pelo FIFO) e o script esperando por ele: assim os sinais chegam no script,
 # que repassa SIGTERM ao java, e a JVM salva o mundo antes de sair. Com o java em primeiro plano o bash so trata o
 # sinal depois que ele sai, e o macOS manda o SIGHUP da janela fechada so para o bash (issue #7). Processo em
 # segundo plano nasce ignorando SIGINT (a JVM respeita), por isso o Ctrl+C tambem vira SIGTERM pelo trap.
+# O console do java e um FIFO: o teclado (cat) e a conferencia do jogadores.txt escrevem nele (issue #16). O fd 4
+# fica aberto ate o fim, entao o java nunca ve o console fechar.
 rodar_servidor() {
   mkdir -p "$server/logs"
-  (cd "$server" && exec "$@") <&0 &
+  local fifo="$server/logs/console.fifo" n=0 teclado_pid
+  rm -f "$fifo"; mkfifo "$fifo"
+  (cd "$server" && exec "$@") < "$fifo" &
   java_pid=$!
+  exec 4> "$fifo"
+  cat <&0 >&4 &
+  teclado_pid=$!
+  # Escrever no console depois que o java saiu daria SIGPIPE e mataria o script antes de enviar o mundo.
+  trap '' PIPE
+  lista_visto="$(modificado "${lista:-}")"; jogo_visto="$(datas_jogo)"
   # caffeinate -w (Mac acordado enquanto o java viver) fica ao lado, nao na frente do java: na frente, o SIGTERM
   # matava o caffeinate e o java seguia rodando com a trava presa.
   if command -v caffeinate >/dev/null; then caffeinate -i -w "$java_pid" & fi
@@ -150,9 +160,14 @@ rodar_servidor() {
   trap 'trap "" HUP; exec >>"$server/logs/iniciar.log" 2>&1; echo "Janela fechada: desligando o servidor."; kill -TERM "$java_pid" 2>/dev/null || true' HUP
   # Espera com sleep em primeiro plano: o Ctrl+C mata o sleep e o trap roda na hora, em qualquer bash (o do macOS
   # e o 3.2). Testado em scripts/testes/desligar.sh.
-  while kill -0 "$java_pid" 2>/dev/null; do sleep 1 || true; done
+  while kill -0 "$java_pid" 2>/dev/null; do
+    sleep 1 || true
+    n=$((n + 1)); [ $((n % ${intervalo:-30})) -ne 0 ] || recarregar_whitelist
+  done
   wait "$java_pid" 2>/dev/null || true
-  trap - INT TERM
+  kill "$teclado_pid" 2>/dev/null || true
+  exec 4>&-; rm -f "$fifo"
+  trap - INT TERM PIPE
   # Janela fechada durante o envio do mundo: o envio termina, com a saida no registro.
   trap 'exec >>"$server/logs/iniciar.log" 2>&1' HUP
 }
@@ -258,6 +273,35 @@ drive_url="https://drive.google.com/drive/folders/1Kw45U0B-b906dnDsUH8bLy9nDg7Hf
 # Uso: sincronizar_whitelist LISTA PASTA_DO_SERVIDOR (com o servidor rodando, depois: whitelist reload no console)
 sincronizar_whitelist() {
   "${JAVA:-java}" "$(dirname "${BASH_SOURCE[0]}")/Whitelist.java" "$1" "$2" || echo "AVISO: falha ao atualizar a whitelist." >&2
+}
+
+# Data de modificacao em segundos (vazio se o arquivo nao existe). stat do macOS ou do Linux.
+modificado() { stat -f %m "$1" 2>/dev/null || stat -c %Y "$1" 2>/dev/null || true; }
+
+datas_jogo() { echo "$(modificado "$server/whitelist.json") $(modificado "$server/ops.json")"; }
+
+# Com o servidor ligado: se o jogadores.txt mudou, libera os novos e avisa o servidor pelo console (fd 4). Se o
+# whitelist.json ou o ops.json mudou (/whitelist add ou /op no jogo), copia o nick para a lista antes.
+recarregar_whitelist() {
+  local agora saida linha jogo
+  [ -n "${lista:-}" ] || return 0
+  jogo="$(datas_jogo)"
+  if [ "$jogo" != "$jogo_visto" ]; then
+    jogo_visto="$jogo"
+    "${JAVA:-java}" "$(dirname "${BASH_SOURCE[0]}")/Whitelist.java" --do-jogo "$lista" "$server" || true
+  fi
+  agora="$(modificado "$lista")"
+  [ -n "$agora" ] && [ "$agora" != "$lista_visto" ] || return 0
+  lista_visto="$agora"
+  echo "jogadores.txt mudou: atualizando a whitelist."
+  saida="$(sincronizar_whitelist "$lista" "$server")"
+  [ -z "$saida" ] || echo "$saida"
+  jogo_visto="$(datas_jogo)"
+  { echo "whitelist reload"
+    while IFS= read -r linha; do
+      case "$linha" in "Admin (op): "*) echo "op ${linha#Admin (op): }" ;; esac
+    done <<< "$saida"
+  } >&4 2>/dev/null || true
 }
 
 achar_drive() {
