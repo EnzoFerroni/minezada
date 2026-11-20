@@ -19,31 +19,13 @@ curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.sh 
 O comando instala tudo, oferece criar o atalho **Minezada** na Área de Trabalho (responda que sim) e abre o jogo.
 Na primeira vez, entre com a sua conta (sem Minecraft original, só o seu nick) e espere os mods baixarem.
 
+Prefere outro launcher (Modrinth App, ATLauncher)? Cada [versão](https://github.com/EnzoFerroni/minezada/releases/latest) traz o arquivo `.mrpack` para importar. Por ele o pack não se atualiza sozinho e o Distant Horizons vem ligado (no Mac, desligue).
+
 ## Jogar
 
 1. Abra sempre pelo atalho **Minezada**. A cada abertura ele atualiza o launcher, os mods e as configurações sozinho;
    não precisa rodar o comando de instalar de novo.
 2. Clique em **Multijogador** e entre em **Minezada**.
-
-## Teclas
-
-As principais do pack (as do Minecraft continuam iguais):
-
-| Tecla | O que faz |
-|---|---|
-| B | Abrir a mochila |
-| M | Mapa |
-| N | Marcar um ponto no mapa (U mostra a lista) |
-| Segurar a tecla ao lado do 1 | Quebrar de uma vez vários blocos iguais grudados |
-| Botão do meio do mouse | Marcar um lugar ou item para os amigos verem |
-| Shift + botão direito com a mão vazia | Pegar um baú ou animal no colo |
-| V | Chamar o seu dragão |
-| G | Arremessar o hamster do ombro |
-| H | Acessórios (anéis, colares) |
-| Alt + U | Lugares onde você morreu |
-| K | Ligar e desligar o shader (O escolhe qual) |
-
-Para achar qualquer outra: **Opções > Controles**, digite o nome da ação ou aperte a tecla.
 
 ## Problemas
 
