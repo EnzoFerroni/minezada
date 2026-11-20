@@ -43,7 +43,8 @@ $rpLigados = @('faithful-32x', 'default-dark-mode', 'fast-better-grass', 'simple
 # Versao presa (id da versao no Modrinth), vale ate com -Atualizar.
 # Accessories 1.1.0-beta.53: minimo que o Hamster aceita. O Aether embute a beta.48, que impede o
 # servidor de abrir; a avulsa tem prioridade sobre a embutida.
-$presas = @{ 'accessories' = 'Fb55Fgjz' }
+# CustomSkinLoader 14.21.1-ForgeV3: testado no NeoForge 1.21.1; a Universal 15.x derruba o jogo (MCCustomSkinLoader#387).
+$presas = @{ 'accessories' = 'Fb55Fgjz'; 'customskinloader' = '9B1Mb9IZ' }
 # Dependencias que o jar exige mas a versao no Modrinth nao declara (ids de projeto do Modrinth).
 # Hamster 3.7.0: architectury, geckolib, fzzy-config, patchouli e accessories (ver acima).
 $depsExtras = @{ 'adorable-hamster-pets' = @('lhGA9TYQ', '8BmcQJ2H', 'hYykXjDp', 'nU0bVIaL', 'jtmvUHXj') }

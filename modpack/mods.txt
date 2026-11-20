@@ -106,6 +106,7 @@ bliss-shader | Céu e nuvens impressionantes, para PCs fortes. No Mac abre (test
 ## Qualidade de vida
 modflared | Liga sozinho o túnel da Cloudflare ao entrar no servidor. A conexão vai como site seguro (HTTPS), então funciona em rede de faculdade, empresa e Wi-Fi público.
 controlling | Busca nas teclas: em Opções → Controles, digite o nome da ação ou aperte a tecla para achar o que ela faz.
+keybind-atlas | Aperte K para ver em um teclado o que cada tecla faz (também tem um botão em Opções → Controles). Ligar e desligar o shader fica em Alt + K.
 natures-compass | Bússola que encontra qualquer bioma (ótimo com os biomas novos do Terralith).
 explorers-compass | Bússola que encontra estruturas (vilas, templos, masmorras dos mods).
 ping-wheel | Clique com o botão do meio do mouse (o scroll) para marcar um lugar ou item para os amigos verem. Segure para escolher o tipo de marca.
@@ -119,6 +120,7 @@ polymorph | Quando duas receitas usam os mesmos ingredientes, aparece um botão 
 easy-anvils | Bigorna sem o limite de "Caro demais" e com nomes coloridos.
 mixauth | Login no servidor. Com Minecraft original você entra direto (a Mojang confirma a conta) e com a sua skin. Sem original: na primeira vez /register senha senha, depois /login senha, sempre (protege seu nick).
 skinrestorer | Mostra a skin de cada um no servidor, mesmo em rede que bloqueia a Mojang. Trocar: /skin set nick SeuNick ou /skin set web classic <link da imagem>.
+customskinloader | Busca a skin de cada jogador direto no jogo. Se o servidor não conseguir as skins (limite da Mojang em rede compartilhada, como na faculdade), elas continuam aparecendo.
 
 ## Mundo e facilidade
 waystones | Pedras de teleporte: ative nas suas bases e em vilas e viaje entre elas.

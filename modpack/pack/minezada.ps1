@@ -29,7 +29,10 @@ $teclas = @(
     @('key_key.ad_astra.toggle_suit_flight', 'key.keyboard.v', 'key.keyboard.v:SHIFT'),
     @('key_key.aether.invisibility_toggle.desc', 'key.keyboard.v', 'key.keyboard.j'),
     @('key_key.deep_aether.toggle_skyjade_transparency', 'key.keyboard.v', 'key.keyboard.unknown'),
-    @('key_key.corpse.death_history', 'key.keyboard.u', 'key.keyboard.u:ALT')
+    @('key_key.corpse.death_history', 'key.keyboard.u', 'key.keyboard.u:ALT'),
+    # K abre o Keybind Atlas (o que cada tecla faz); ligar e desligar shader vai para Alt+K.
+    @('key_iris.keybind.toggleShaders', 'key.keyboard.k', 'key.keyboard.k:ALT'),
+    @('key_key.keybindatlas.cycle_sets', 'key.keyboard.k', 'key.keyboard.unknown')
 )
 if (Test-Path options.txt) {
     $o = [Collections.Generic.List[string]](Get-Content options.txt -Encoding UTF8)
