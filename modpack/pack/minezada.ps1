@@ -7,16 +7,23 @@
 foreach ($p in 'Shader - Sildurs Vibrant', 'Shader - Super Duper Vanilla', 'Shader - Miniature', 'PC - Solas', 'PC - Rethinking Voxels') {
     Remove-Item -LiteralPath "options-profiles/$p" -Recurse -Force -ErrorAction SilentlyContinue
 }
-# Teclas: Ping Wheel no botao do meio (o padrao dele e o botao lateral, que o trackpad nao tem) e o pegar bloco
-# no lateral. Troca so quem ainda esta no padrao do mod ou sem a tecla salva.
-# shortcut: quem escolher o botao lateral para o Ping Wheel volta para o meio; marcar a troca se alguem reclamar.
+# Teclas do pack, trocadas so em quem ainda esta sem a tecla salva ou no padrao do mod (tecla, padroes, nova):
+# Ping Wheel no botao do meio (o padrao e o lateral, que o trackpad nao tem) e o pegar bloco no lateral;
+# VeinMiner no Z (o padrao Y ou Z bate com o Xaero) e o ampliar mapa do Xaero sem tecla.
+# shortcut: quem escolher de volta um padrao do mod perde a escolha na abertura seguinte; marcar a troca se alguem reclamar.
+$teclas = @(
+    @('key_key.pingwheel.ping_location', 'key.mouse.5', 'key.mouse.middle'),
+    @('key_key.pickItem', 'key.mouse.middle', 'key.mouse.5'),
+    @('key_key.veinminer_client.hold', 'key.keyboard.y', 'key.keyboard.z'),
+    @('key_gui.xaero_enlarge_map', 'key.keyboard.z', 'key.keyboard.unknown')
+)
 if (Test-Path options.txt) {
-    $o = @(Get-Content options.txt -Encoding UTF8 | Where-Object { $_ -notmatch '^key_key\.(pingwheel\.ping_location|pickItem):' })
-    $antes = Get-Content options.txt -Encoding UTF8 | Where-Object { $_ -like 'key_key.pingwheel.ping_location:*' }
-    if (-not $antes -or $antes -eq 'key_key.pingwheel.ping_location:key.mouse.5') {
-        $o += 'key_key.pingwheel.ping_location:key.mouse.middle', 'key_key.pickItem:key.mouse.5'
-        [IO.File]::WriteAllLines("$PWD\options.txt", $o)
+    $o = [Collections.Generic.List[string]](Get-Content options.txt -Encoding UTF8)
+    foreach ($t in $teclas) {
+        $n = $o.FindIndex({ param($l) $l -like "$($t[0]):*" })
+        if ($n -lt 0) { $o.Add("$($t[0]):$($t[2])") } elseif ($o[$n] -eq "$($t[0]):$($t[1])") { $o[$n] = "$($t[0]):$($t[2])" }
     }
+    [IO.File]::WriteAllLines("$PWD\options.txt", $o)
 }
 # Na primeira abertura (instancia sem Java escolhido) o Prism passa a pasta de dados dele em INST_JAVA: usa o Java
 # que ele baixou la dentro.

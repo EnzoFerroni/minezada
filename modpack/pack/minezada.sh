@@ -19,16 +19,26 @@ if [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "arm64" ] && [ "$(cat "$ins
   rm -rf "$t"
 fi
 [ "${1:-}" != "--cloudflared" ] || exit 0
-# Teclas: Ping Wheel no botao do meio (o padrao dele e o botao lateral, que o trackpad nao tem) e o pegar bloco
-# no lateral. Troca so quem ainda esta no padrao do mod ou sem a tecla salva.
-# shortcut: quem escolher o botao lateral para o Ping Wheel volta para o meio; marcar a troca se alguem reclamar.
+# Teclas do pack, trocadas so em quem ainda esta sem a tecla salva ou no padrao do mod (tecla padrao nova):
+# Ping Wheel no botao do meio (o padrao e o lateral, que o trackpad nao tem) e o pegar bloco no lateral;
+# VeinMiner no Z (o padrao Y ou Z bate com o Xaero) e o ampliar mapa do Xaero sem tecla.
+# shortcut: quem escolher de volta um padrao do mod perde a escolha na abertura seguinte; marcar a troca se alguem reclamar.
 if [ -f options.txt ]; then
-  antes="$(grep '^key_key.pingwheel.ping_location:' options.txt || true)"
-  if [ -z "$antes" ] || [ "$antes" = "key_key.pingwheel.ping_location:key.mouse.5" ]; then
-    grep -v -E '^key_key\.(pingwheel\.ping_location|pickItem):' options.txt > options.txt.novo || true
-    printf 'key_key.pingwheel.ping_location:key.mouse.middle\nkey_key.pickItem:key.mouse.5\n' >> options.txt.novo
-    mv options.txt.novo options.txt
-  fi
+  while read -r k padrao nova; do
+    atual="$(grep -m 1 "^$k:" options.txt || true)"
+    if [ -z "$atual" ]; then
+      echo "$k:$nova" >> options.txt
+    elif [ "$atual" = "$k:$padrao" ]; then
+      grep -v "^$k:" options.txt > options.txt.novo || true
+      echo "$k:$nova" >> options.txt.novo
+      mv options.txt.novo options.txt
+    fi
+  done <<'FIM'
+key_key.pingwheel.ping_location key.mouse.5 key.mouse.middle
+key_key.pickItem key.mouse.middle key.mouse.5
+key_key.veinminer_client.hold key.keyboard.y key.keyboard.z
+key_gui.xaero_enlarge_map key.keyboard.z key.keyboard.unknown
+FIM
 fi
 # Na primeira abertura (instancia sem Java escolhido) o Prism passa a pasta de dados dele em INST_JAVA: usa o Java
 # que ele baixou la dentro.

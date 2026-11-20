@@ -697,11 +697,11 @@ metafile = true
 
 [[files]]
 file = "minezada.ps1"
-hash = "83efc00ecdc8141781dbc8a558cc57d9a17197541f9baec42de8714142c822a4"
+hash = "42663d09a2b8c6ec7984467fad7dc46848bd110e1e7088a8d5823bc9a0fbdc71"
 
 [[files]]
 file = "minezada.sh"
-hash = "2ea3edf5c933342a43f017a77aafdfbe54c7f7ecf41c6141a1cb728f2d10af1a"
+hash = "c2ce8d23903abf4c87cb90403db2f52f23e226408effaab3d10d4c56e07c7df2"
 
 [[files]]
 file = "config/sodium-extra-options.json"
