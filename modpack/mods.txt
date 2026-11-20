@@ -30,7 +30,7 @@ toms-storage | Liga todos os baús da base num terminal: uma tela só com busca 
 ## Ferramentas
 just-hammers | Martelos que quebram uma área 3x3 de uma vez. Ótimos para cavar túneis e minas.
 advanced-netherite | Ferramentas e armaduras ainda melhores que netherite, feitas com materiais do jogo. Progressão no estilo vanilla.
-veinminer | Segure a tecla do VeinMiner e quebre um bloco: os blocos iguais grudados vêm junto (até 64). Funciona com qualquer bloco: minério, tronco, terra, pedra.
+veinminer | Segure Z e quebre um bloco: os blocos iguais grudados vêm junto (até 64). Funciona com qualquer bloco: minério, tronco, terra, pedra.
 veinminer-client | Tecla do VeinMiner e contorno do que vai quebrar. Segure a tecla e role o scroll para trocar o formato. Troque a tecla em Opções → Controles (busque "vein").
 
 ## Dragões
