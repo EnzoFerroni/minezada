@@ -55,12 +55,17 @@ key_key.veinminer_client.config key.keyboard.o key.keyboard.o:SHIFT
 FIM
 fi
 # Avisos dos mods que so atrapalham (arquivo, opcao, valor). O servidor tem os mesmos em server-config.
-# Distant Horizons: aviso de garbage collector no chat (o ZGC que ele sugere gasta mais memoria nos PCs fracos).
+# Distant Horizons: avisos no chat de garbage collector (o ZGC que ele sugere gasta mais memoria nos PCs fracos),
+# distancia de renderizacao alta e pouca memoria. Terralith: mensagem de boas-vindas.
 # Hamster: sino de novidades e livro entregue na mao; o aviso de "sem livro" vem uma vez, no tempo maximo (5 min).
+# Vale para TOML (opcao = valor) e JSON ("opcao": valor).
 while read -r arq opcao valor; do
-  [ ! -f "$arq" ] || OPCAO="$opcao" VALOR="$valor" perl -pi -e 's/^(\s*\Q$ENV{OPCAO}\E\s*=\s*)[^\r\n]*/$1$ENV{VALOR}/' "$arq"
+  [ ! -f "$arq" ] || OPCAO="$opcao" VALOR="$valor" perl -pi -e 's/^(\s*"?\Q$ENV{OPCAO}\E"?\s*[=:]\s*)[^\r\n,]*/$1$ENV{VALOR}/' "$arq"
 done <<'FIM'
 config/DistantHorizons.toml showGarbageCollectorWarning false
+config/DistantHorizons.toml showHighVanillaRenderDistanceWarning false
+config/DistantHorizons.toml showLowMemoryWarningOnStartup false
+config/terralith.json intro_message false
 config/adorablehamsterpets/ui.toml enableNotificationIcons false
 config/adorablehamsterpets/ui.toml serverDisableAnnouncements true
 config/adorablehamsterpets/ui.toml enableAutoGuidebookDelivery false
