@@ -32,6 +32,8 @@ jobs:
       - name: shellcheck
         if: runner.os == 'Linux'
         run: shellcheck -S warning scripts/*.sh scripts/testes/*.sh ./*.sh iniciar.command modpack/arquivos/minezada.sh
+      - name: desinstalar.sh
+        run: /bin/bash scripts/testes/desinstalar.sh
       # /bin/bash: no macOS e o 3.2, o mesmo que roda o iniciar.command (o do Homebrew pode vir antes no PATH).
       - name: Desligar o servidor (stop, Ctrl+C, janela fechada)
         run: /bin/bash scripts/testes/desligar.sh
