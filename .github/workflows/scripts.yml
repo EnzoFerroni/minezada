@@ -2,6 +2,7 @@
 # - Mac (bash 3.2 do macOS) e Linux: stop, Ctrl+C e janela fechada salvam, enviam o mundo e liberam a trava (issue #7)
 # - whitelist (scripts/Whitelist.java, a mesma no Mac, no Linux e no Windows)
 # - Windows: sintaxe dos .ps1 no PowerShell 5.1 e BOM em .ps1 com acento; shellcheck nos .sh
+# - Windows: desinstalar.ps1 em uma arvore falsa (issue #25)
 name: Testes dos scripts
 
 on:
@@ -66,6 +67,9 @@ jobs:
       - name: Versoes (dependencias dos jars no montar-pack)
         shell: powershell
         run: scripts/testes/versoes.ps1
+      - name: Desinstalar (arvore falsa)
+        shell: powershell
+        run: scripts/testes/desinstalar.ps1
       - uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
         with:
           distribution: temurin

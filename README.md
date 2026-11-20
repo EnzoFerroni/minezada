@@ -48,6 +48,22 @@ irm https://raw.githubusercontent.com/EnzoFerroni/minezada/main/logs.ps1 | iex
 curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/logs.sh | bash
 ```
 
+## Desinstalar
+
+Remove a Minezada, o atalho e o launcher (o Prism só sai se não tiver outras instâncias). Pede confirmação antes.
+
+**Windows**, no **PowerShell**:
+
+```powershell
+irm https://raw.githubusercontent.com/EnzoFerroni/minezada/main/desinstalar.ps1 | iex
+```
+
+**Mac**, no **Terminal**:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/desinstalar.sh | bash
+```
+
 ## Ajudar
 
 O projeto é aberto a qualquer um:
