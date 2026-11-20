@@ -31,7 +31,9 @@ $teclas = @(
     @('key_key.deep_aether.toggle_skyjade_transparency', 'key.keyboard.v', 'key.keyboard.unknown'),
     @('key_key.corpse.death_history', 'key.keyboard.u', 'key.keyboard.u:ALT'),
     # Shader volta para o K (ficou em Alt+K enquanto um mod de teclado visual usou o K em 20/11).
-    @('key_iris.keybind.toggleShaders', 'key.keyboard.k:ALT', 'key.keyboard.k')
+    @('key_iris.keybind.toggleShaders', 'key.keyboard.k:ALT', 'key.keyboard.k'),
+    # O escolhe o shader do Iris; a config do VeinMiner vai para Shift+O.
+    @('key_key.veinminer_client.config', 'key.keyboard.o', 'key.keyboard.o:SHIFT')
 )
 if (Test-Path options.txt) {
     $o = [Collections.Generic.List[string]](Get-Content options.txt -Encoding UTF8)
@@ -52,4 +54,14 @@ if ($ref -notmatch '^[0-9a-f]{40}$') { $ref = 'main' }
 $pack = "https://raw.githubusercontent.com/EnzoFerroni/minezada/$ref/modpack/pack/pack.toml"
 # -t 0: sem a espera de 10 s do "Reconfigure optional mods?". Opcional novo continua abrindo a lista.
 & $java -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -t 0 $pack
-exit $LASTEXITCODE
+$codigo = $LASTEXITCODE
+# Shader atualizado muda o nome do zip: o iris.properties atual e o dos perfis (preserve) passam para o zip novo.
+foreach ($f in @(Get-ChildItem config/iris.properties, options-profiles/*/iris.properties -ErrorAction SilentlyContinue)) {
+    $t = [IO.File]::ReadAllText($f.FullName)
+    if ($t -notmatch '(?m)^shaderPack=(.+?)\s*$') { continue }
+    $velho = $matches[1]
+    if ((Test-Path -LiteralPath "shaderpacks/$velho") -or $velho -notmatch '^(.+?)[_-][vr]?\d') { continue }
+    $novo = @(Get-ChildItem shaderpacks -Filter "$($matches[1])*" -ErrorAction SilentlyContinue)
+    if ($novo.Count -eq 1) { [IO.File]::WriteAllText($f.FullName, $t.Replace("shaderPack=$velho", "shaderPack=$($novo[0].Name)")) }
+}
+exit $codigo
