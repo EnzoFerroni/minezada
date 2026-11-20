@@ -146,8 +146,11 @@ foreach ($m in $pwMods) {
 # preserve = so cria se nao existir: quem recalibrar um perfil nao perde o ajuste na proxima abertura.
 $soltos = Join-Path $root 'modpack/arquivos'
 if (Test-Path $soltos) {
-    foreach ($a in Get-ChildItem $soltos -Recurse -File) {
-        $rel = $a.FullName.Substring($soltos.Length + 1).Replace('\', '/')
+    # Ordem ordinal: no Linux (CI) o Get-ChildItem lista em outra ordem e o hash do index mudaria.
+    $rels = [string[]]@(Get-ChildItem $soltos -Recurse -File | ForEach-Object { $_.FullName.Substring($soltos.Length + 1).Replace('\', '/') })
+    [Array]::Sort($rels, [StringComparer]::Ordinal)
+    foreach ($rel in $rels) {
+        $a = Get-Item -LiteralPath (Join-Path $soltos $rel)
         $dest = Join-Path $pw $rel
         New-Item -ItemType Directory -Force (Split-Path $dest) | Out-Null
         Copy-Item $a.FullName $dest

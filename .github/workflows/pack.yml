@@ -1,0 +1,60 @@
+# conferir: monta o pack de novo a partir do mods.txt e falha se modpack/pack mudar (mods.txt editado sem
+# montar, ou dependencia quebrada dentro de um jar). atualizacoes: toda segunda procura versoes novas dos mods
+# e abre (ou atualiza) uma issue com a lista, sem commit: versao nova de mod e codigo novo no PC de todos.
+name: Pack
+
+on:
+  push:
+    paths: ['modpack/**', 'scripts/montar-pack.ps1', '.github/workflows/pack.yml']
+  schedule:
+    - cron: '0 12 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  conferir:
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # shortcut: baixa todos os jars a cada vez (~600 MB, o montar-pack confere as dependencias); cache se ficar lento.
+      - name: Montar de novo e comparar
+        shell: pwsh
+        run: |
+          $v = [regex]::Match((Get-Content modpack/pack/pack.toml -Raw), 'version = "(.+?)"').Groups[1].Value
+          ./scripts/montar-pack.ps1 -Versao $v
+          git diff --stat -- modpack/pack
+          git diff --quiet -- modpack/pack
+          if ($LASTEXITCODE) { Write-Host '::error::modpack/pack nao bate com o mods.txt: rode scripts/montar-pack.ps1 e faca commit'; exit 1 }
+
+  atualizacoes:
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Procurar versoes novas e abrir issue
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $log = try { ./scripts/montar-pack.ps1 -Atualizar *>&1 | Out-String } catch { "ERRO: $_" }
+          $linhas = $log -split "`n"
+          $mudou = @($linhas | Where-Object { $_ -match '^  [-+] ' })
+          if (-not $mudou) { Write-Host 'Nenhuma versao nova.'; exit 0 }
+          $deps = @($linhas | Where-Object { $_ -match '^\s+\[(jogo|servidor)\]|problema\(s\)|^ERRO' })
+          $conf = if ($deps) { "Conferencia dos jars com as versoes novas:`n``````n$($deps -join "`n")`n``````" } else { 'Conferencia dos jars com as versoes novas: ok.' }
+          $corpo = "Versoes novas no Modrinth em $(Get-Date -Format 'yyyy-MM-dd') (montar-pack -Atualizar, sem commit).`n`n``````diff`n$($mudou -join "`n")`n``````n`n$conf`n`nPara aplicar: ler o changelog dos mods, rodar ``scripts/montar-pack.ps1 -Atualizar`` e seguir o checklist do CONTRIBUTING."
+          $titulo = 'Mods com versao nova'
+          $n = gh issue list --state open --search "in:title `"$titulo`"" --json number --jq '.[0].number'
+          if ($n) { gh issue edit $n --body $corpo } else { gh issue create --title $titulo --body $corpo }

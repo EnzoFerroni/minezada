@@ -616,13 +616,13 @@ hash = "63129fbc993e777eb352ac1028ef959fa04264cfba9d3ad8c9cb93e631cee031"
 metafile = true
 
 [[files]]
-file = "mods/resourceful-config.pw.toml"
-hash = "9f447b390705da315b16a4aa2b9983114d67f8132836d88ac9c16bd9b9d8851f"
+file = "mods/common-storage-lib.pw.toml"
+hash = "ca9c879eb5099bdbe64f687087a9563a288a3de78dbde289053acdb295a45e41"
 metafile = true
 
 [[files]]
-file = "mods/common-storage-lib.pw.toml"
-hash = "ca9c879eb5099bdbe64f687087a9563a288a3de78dbde289053acdb295a45e41"
+file = "mods/resourceful-config.pw.toml"
+hash = "9f447b390705da315b16a4aa2b9983114d67f8132836d88ac9c16bd9b9d8851f"
 metafile = true
 
 [[files]]
@@ -696,12 +696,8 @@ hash = "ae112eb85ca8343d2f2c1829427d84e73a1c4020fb5c71341039580cfae63ba9"
 metafile = true
 
 [[files]]
-file = "minezada.ps1"
-hash = "3d083ddcdf5182c214e6fd3347103ab96359c6e282f97a94f70f47e469ba1d02"
-
-[[files]]
-file = "minezada.sh"
-hash = "462bef38dec030913e369f2f0d573008209d77dc9baa145b87525ae19ef23294"
+file = "config/Veinminer/settings.json"
+hash = "2bd9383d76ad0ea12c1a5980c9992b103a38dc2efbc8781232e6eeb3668f14ff"
 
 [[files]]
 file = "config/sodium-extra-options.json"
@@ -709,8 +705,12 @@ hash = "5c5c0468a62ce1cb09763855823bea730d056fce7a6f840550f511c238b9acf4"
 preserve = true
 
 [[files]]
-file = "config/Veinminer/settings.json"
-hash = "2bd9383d76ad0ea12c1a5980c9992b103a38dc2efbc8781232e6eeb3668f14ff"
+file = "minezada.ps1"
+hash = "3d083ddcdf5182c214e6fd3347103ab96359c6e282f97a94f70f47e469ba1d02"
+
+[[files]]
+file = "minezada.sh"
+hash = "462bef38dec030913e369f2f0d573008209d77dc9baa145b87525ae19ef23294"
 
 [[files]]
 file = "modflared/forced_tunnels.json"
