@@ -1,0 +1,8 @@
+name = "VeinMiner Hotkey"
+filename = "veinminer-client-neoforge-2.14.0+1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/dxa0Bm8m/versions/eyiRGy7h/veinminer-client-neoforge-2.14.0%2B1.21.1.jar"
+hash-format = "sha1"
+hash = "706f630460edbf5f8c1fe39b9250478b6dbf4b14"

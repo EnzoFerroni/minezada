@@ -19,6 +19,17 @@ if [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "arm64" ] && [ "$(cat "$ins
   rm -rf "$t"
 fi
 [ "${1:-}" != "--cloudflared" ] || exit 0
+# Teclas: Ping Wheel no botao do meio (o padrao dele e o botao lateral, que o trackpad nao tem) e o pegar bloco
+# no lateral. Troca so quem ainda esta no padrao do mod ou sem a tecla salva.
+# shortcut: quem escolher o botao lateral para o Ping Wheel volta para o meio; marcar a troca se alguem reclamar.
+if [ -f options.txt ]; then
+  antes="$(grep '^key_key.pingwheel.ping_location:' options.txt || true)"
+  if [ -z "$antes" ] || [ "$antes" = "key_key.pingwheel.ping_location:key.mouse.5" ]; then
+    grep -v -E '^key_key\.(pingwheel\.ping_location|pickItem):' options.txt > options.txt.novo || true
+    printf 'key_key.pingwheel.ping_location:key.mouse.middle\nkey_key.pickItem:key.mouse.5\n' >> options.txt.novo
+    mv options.txt.novo options.txt
+  fi
+fi
 # Na primeira abertura (instancia sem Java escolhido) o Prism passa a pasta de dados dele em INST_JAVA: usa o Java
 # que ele baixou la dentro.
 java="${INST_JAVA:-}"

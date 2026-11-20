@@ -30,7 +30,8 @@ toms-storage | Liga todos os baús da base num terminal: uma tela só com busca 
 ## Ferramentas
 just-hammers | Martelos que quebram uma área 3x3 de uma vez. Ótimos para cavar túneis e minas.
 advanced-netherite | Ferramentas e armaduras ainda melhores que netherite, feitas com materiais do jogo. Progressão no estilo vanilla.
-veinminer | Segure a tecla ' (apóstrofo) e quebre um minério ou tronco: o veio ou a árvore inteira vem junto. Troque a tecla em Opções → Controles (busque "vein").
+veinminer | Segure a tecla do VeinMiner e quebre um bloco: os blocos iguais grudados vêm junto (até 64). Funciona com qualquer bloco: minério, tronco, terra, pedra.
+veinminer-client | Tecla do VeinMiner e contorno do que vai quebrar. Segure a tecla e role o scroll para trocar o formato. Troque a tecla em Opções → Controles (busque "vein").
 
 ## Dragões
 dmr | Dragões soltos pelo mundo (no mundo normal, no Nether e no End). Dome dando peixe, monte e voe. Faça um apito para chamar o seu dragão de qualquer lugar; ele também carrega baú. Ovo: coloque no chão e clique com o botão direito para chocar. Dragões de biomas diferentes cruzam e geram híbridos.
@@ -107,7 +108,7 @@ modflared | Liga sozinho o túnel da Cloudflare ao entrar no servidor. A conexã
 controlling | Busca nas teclas: em Opções → Controles, digite o nome da ação ou aperte a tecla para achar o que ela faz.
 natures-compass | Bússola que encontra qualquer bioma (ótimo com os biomas novos do Terralith).
 explorers-compass | Bússola que encontra estruturas (vilas, templos, masmorras dos mods).
-ping-wheel | Segure a roda do mouse para marcar um lugar ou item para os amigos verem.
+ping-wheel | Clique com o botão do meio do mouse (o scroll) para marcar um lugar ou item para os amigos verem. Segure para escolher o tipo de marca.
 carry-on | Pegue baús e animais no colo (Shift + botão direito com as mãos vazias) e leve para outro lugar.
 clumps | Junta as bolinhas de XP em uma só: menos lag.
 pick-up-notifier | Mostra no canto da tela os itens que você pegou.

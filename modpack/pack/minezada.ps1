@@ -7,6 +7,17 @@
 foreach ($p in 'Shader - Sildurs Vibrant', 'Shader - Super Duper Vanilla', 'Shader - Miniature', 'PC - Solas', 'PC - Rethinking Voxels') {
     Remove-Item -LiteralPath "options-profiles/$p" -Recurse -Force -ErrorAction SilentlyContinue
 }
+# Teclas: Ping Wheel no botao do meio (o padrao dele e o botao lateral, que o trackpad nao tem) e o pegar bloco
+# no lateral. Troca so quem ainda esta no padrao do mod ou sem a tecla salva.
+# shortcut: quem escolher o botao lateral para o Ping Wheel volta para o meio; marcar a troca se alguem reclamar.
+if (Test-Path options.txt) {
+    $o = @(Get-Content options.txt -Encoding UTF8 | Where-Object { $_ -notmatch '^key_key\.(pingwheel\.ping_location|pickItem):' })
+    $antes = Get-Content options.txt -Encoding UTF8 | Where-Object { $_ -like 'key_key.pingwheel.ping_location:*' }
+    if (-not $antes -or $antes -eq 'key_key.pingwheel.ping_location:key.mouse.5') {
+        $o += 'key_key.pingwheel.ping_location:key.mouse.middle', 'key_key.pickItem:key.mouse.5'
+        [IO.File]::WriteAllLines("$PWD\options.txt", $o)
+    }
+}
 # Na primeira abertura (instancia sem Java escolhido) o Prism passa a pasta de dados dele em INST_JAVA: usa o Java
 # que ele baixou la dentro.
 $java = $env:INST_JAVA

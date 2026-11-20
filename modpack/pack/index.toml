@@ -111,6 +111,11 @@ hash = "bd6347fe71892997f39a827ceb032d2994e021cb8c7f27d0b0e02fd27ec4a0f7"
 metafile = true
 
 [[files]]
+file = "mods/veinminer-client.pw.toml"
+hash = "302147b4048df3015d9adaec1795535923664c90710b6ae107125c2129dba004"
+metafile = true
+
+[[files]]
 file = "mods/dmr.pw.toml"
 hash = "985df06834a030a7ea6c35b2c46b7a5ed01e0f99500cb68ca6ac3e3f7f909ec3"
 metafile = true
@@ -692,16 +697,20 @@ metafile = true
 
 [[files]]
 file = "minezada.ps1"
-hash = "7ab829c9a4749fedf95127e4945c7e4a5268727648f93e2fe1a108cd9580830d"
+hash = "83efc00ecdc8141781dbc8a558cc57d9a17197541f9baec42de8714142c822a4"
 
 [[files]]
 file = "minezada.sh"
-hash = "d98b5ce2aaecdb3ca7074d88e7dc5b7bd26be967c0a53ef426c31b6614de4e83"
+hash = "2ea3edf5c933342a43f017a77aafdfbe54c7f7ecf41c6141a1cb728f2d10af1a"
 
 [[files]]
 file = "config/sodium-extra-options.json"
 hash = "5c5c0468a62ce1cb09763855823bea730d056fce7a6f840550f511c238b9acf4"
 preserve = true
+
+[[files]]
+file = "config/Veinminer/settings.json"
+hash = "2bd9383d76ad0ea12c1a5980c9992b103a38dc2efbc8781232e6eeb3668f14ff"
 
 [[files]]
 file = "modflared/forced_tunnels.json"

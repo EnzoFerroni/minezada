@@ -151,8 +151,8 @@ if (Test-Path $soltos) {
         $dest = Join-Path $pw $rel
         New-Item -ItemType Directory -Force (Split-Path $dest) | Out-Null
         Copy-Item $a.FullName $dest
-        # minezada.ps1/.sh (rodam antes de abrir) sempre atualizam: sem preserve.
-        $pres = if ($rel -like 'minezada.*') { '' } else { "preserve = true`n" }
+        # minezada.ps1/.sh (rodam antes de abrir) e as regras do VeinMiner (mundo de um jogador so) sempre atualizam: sem preserve.
+        $pres = if ($rel -like 'minezada.*' -or $rel -like 'config/Veinminer/*') { '' } else { "preserve = true`n" }
         $idx += "`n[[files]]`nfile = $(Toml $rel)`nhash = `"$(Sha256 $dest)`"`n$pres"
     }
 }
