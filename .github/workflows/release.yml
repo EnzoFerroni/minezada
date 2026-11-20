@@ -1,0 +1,38 @@
+# A cada Release publicada: anexa o .mrpack (abre no Prism, Modrinth App, ATLauncher) e o zip do Prism.
+name: Release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag de uma Release que ja existe'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  anexar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    env:
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ env.TAG }}
+          persist-credentials: false
+      # packwiz fixo por commit. O export baixa cada mod para calcular o sha512 que o .mrpack exige.
+      - name: Gerar o .mrpack
+        run: |
+          go install github.com/packwiz/packwiz@170b22d785959dda5876b54b7f16e1b807a57fb6
+          cd modpack/pack
+          "$(go env GOPATH)/bin/packwiz" -y modrinth export -o "$GITHUB_WORKSPACE/minezada-$TAG.mrpack"
+      - name: Anexar na Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "$TAG" "minezada-$TAG.mrpack" modpack/minezada-prism.zip --clobber --repo "$GITHUB_REPOSITORY"

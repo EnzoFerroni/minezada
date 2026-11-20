@@ -32,11 +32,14 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
 2. As versões ficam fixas: cada mod repete a do pack atual e só mod novo pega a mais nova. Para atualizar
    tudo, rode com `-Atualizar`. Ler a lista **Mudanças desde o pack anterior**: versão nova de mod é código novo no
    PC de todos. Conferir se não entrou `connector` / `forgified-fabric-api` (mod Fabric disfarçado).
+   A Action **Pack** monta de novo a cada push e falha se `modpack/pack` não bater com o `mods.txt`. Toda
+   segunda ela abre a issue **Mods com versao nova** quando sai versão nova de algum mod.
 3. Testar o **servidor** (`iniciar`) até aparecer `Done`. A Action **Servidor de teste** também faz isso
    sozinha a cada push que mexe no pack (aba Actions; falhou, o GitHub avisa por e-mail).
 4. Testar o **jogo**: push, esperar o link raw do GitHub atualizar (até 5 min de cache), abrir o
    jogo e entrar no servidor. Erros de dependência só aparecem no jogo.
 5. Criar o Release: `gh release create vAAAA.MM.DD.N --title "Pack AAAA.MM.DD.N" --notes "o que mudou"`.
+   A Action **Release** anexa sozinha o `.mrpack` (Prism, Modrinth App, ATLauncher) e o zip do Prism.
    Mudou o `instance.cfg` (memória, endereço, comando do packwiz)? Avisar para todos rodarem o
    comando de jogar de novo.
 
