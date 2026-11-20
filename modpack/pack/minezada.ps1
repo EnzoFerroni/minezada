@@ -43,12 +43,22 @@ if (Test-Path options.txt) {
     }
     [IO.File]::WriteAllLines("$PWD\options.txt", $o)
 }
-# Distant Horizons sem o aviso de garbage collector no chat (o ZGC que ele sugere gasta mais memoria nos PCs fracos).
-$dh = 'config/DistantHorizons.toml'
-if (Test-Path $dh) {
-    $t = [IO.File]::ReadAllText("$PWD\$dh")
-    $n = $t -replace '(?m)^(\s*showGarbageCollectorWarning\s*=\s*)true', '${1}false'
-    if ($n -ne $t) { [IO.File]::WriteAllText("$PWD\$dh", $n) }
+# Avisos dos mods que so atrapalham (arquivo, opcao, valor). O servidor tem os mesmos em server-config.
+# Distant Horizons: aviso de garbage collector no chat (o ZGC que ele sugere gasta mais memoria nos PCs fracos).
+# Hamster: sino de novidades e livro entregue na mao; o aviso de "sem livro" vem uma vez, no tempo maximo (5 min).
+$ajustes = @(
+    @('config/DistantHorizons.toml', 'showGarbageCollectorWarning', 'false'),
+    @('config/adorablehamsterpets/ui.toml', 'enableNotificationIcons', 'false'),
+    @('config/adorablehamsterpets/ui.toml', 'serverDisableAnnouncements', 'true'),
+    @('config/adorablehamsterpets/ui.toml', 'enableAutoGuidebookDelivery', 'false'),
+    @('config/adorablehamsterpets/ui.toml', 'enableAutoGuidebookDeliveryFallback', 'false'),
+    @('config/adorablehamsterpets/ui.toml', 'guidebookWarningTimer', '6000')
+)
+foreach ($a in $ajustes) {
+    if (-not (Test-Path $a[0])) { continue }
+    $t = [IO.File]::ReadAllText("$PWD\$($a[0])")
+    $n = $t -replace "(?m)^(\s*$($a[1])\s*=\s*)[^\r\n]*", "`${1}$($a[2])"
+    if ($n -ne $t) { [IO.File]::WriteAllText("$PWD\$($a[0])", $n) }
 }
 # Na primeira abertura (instancia sem Java escolhido) o Prism passa a pasta de dados dele em INST_JAVA: usa o Java
 # que ele baixou la dentro.
