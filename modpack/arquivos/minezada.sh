@@ -21,7 +21,7 @@ fi
 [ "${1:-}" != "--cloudflared" ] || exit 0
 # Teclas do pack, trocadas so em quem ainda esta sem a tecla salva ou no padrao do mod (tecla padrao nova):
 # Ping Wheel no botao do meio (o padrao e o lateral, que o trackpad nao tem) e o pegar bloco no lateral;
-# VeinMiner no Z (o padrao Y ou Z bate com o Xaero) e o ampliar mapa do Xaero sem tecla.
+# VeinMiner na tecla ao lado do 1 (o padrao Z bate com o Xaero).
 # shortcut: quem escolher de volta um padrao do mod perde a escolha na abertura seguinte; marcar a troca se alguem reclamar.
 if [ -f options.txt ]; then
   while read -r k padrao nova; do
@@ -36,8 +36,7 @@ if [ -f options.txt ]; then
   done <<'FIM'
 key_key.pingwheel.ping_location key.mouse.5 key.mouse.middle
 key_key.pickItem key.mouse.middle key.mouse.5
-key_key.veinminer_client.hold key.keyboard.y key.keyboard.z
-key_gui.xaero_enlarge_map key.keyboard.z key.keyboard.unknown
+key_key.veinminer_client.hold key.keyboard.z key.keyboard.grave.accent
 FIM
 fi
 # Na primeira abertura (instancia sem Java escolhido) o Prism passa a pasta de dados dele em INST_JAVA: usa o Java

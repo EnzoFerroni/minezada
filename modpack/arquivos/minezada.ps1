@@ -9,13 +9,12 @@ foreach ($p in 'Shader - Sildurs Vibrant', 'Shader - Super Duper Vanilla', 'Shad
 }
 # Teclas do pack, trocadas so em quem ainda esta sem a tecla salva ou no padrao do mod (tecla, padroes, nova):
 # Ping Wheel no botao do meio (o padrao e o lateral, que o trackpad nao tem) e o pegar bloco no lateral;
-# VeinMiner no Z (o padrao Y ou Z bate com o Xaero) e o ampliar mapa do Xaero sem tecla.
+# VeinMiner na tecla ao lado do 1 (o padrao Z bate com o Xaero).
 # shortcut: quem escolher de volta um padrao do mod perde a escolha na abertura seguinte; marcar a troca se alguem reclamar.
 $teclas = @(
     @('key_key.pingwheel.ping_location', 'key.mouse.5', 'key.mouse.middle'),
     @('key_key.pickItem', 'key.mouse.middle', 'key.mouse.5'),
-    @('key_key.veinminer_client.hold', 'key.keyboard.y', 'key.keyboard.z'),
-    @('key_gui.xaero_enlarge_map', 'key.keyboard.z', 'key.keyboard.unknown')
+    @('key_key.veinminer_client.hold', 'key.keyboard.z', 'key.keyboard.grave.accent')
 )
 if (Test-Path options.txt) {
     $o = [Collections.Generic.List[string]](Get-Content options.txt -Encoding UTF8)
