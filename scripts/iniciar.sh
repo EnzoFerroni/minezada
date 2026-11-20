@@ -162,7 +162,9 @@ rodar_servidor() {
   # e o 3.2). Testado em scripts/testes/desligar.sh.
   while kill -0 "$java_pid" 2>/dev/null; do
     sleep 1 || true
-    n=$((n + 1)); [ $((n % ${intervalo:-30})) -ne 0 ] || recarregar_whitelist
+    # || true: o Ctrl+C tambem mata o $(...) que estiver rodando na conferencia, e com set -e o script saia sem
+    # enviar o mundo (o java morria pelo fim da sessao e a trava ficava presa).
+    n=$((n + 1)); [ $((n % ${intervalo:-30})) -ne 0 ] || recarregar_whitelist || true
   done
   wait "$java_pid" 2>/dev/null || true
   kill "$teclado_pid" 2>/dev/null || true
