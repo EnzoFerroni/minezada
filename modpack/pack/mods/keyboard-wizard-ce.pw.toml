@@ -1,8 +1,0 @@
-name = "Keyboard Wizard CE"
-filename = "keyboard-wizard-community-edition-neoforge-1.21.1-1.1.1.jar"
-side = "client"
-
-[download]
-url = "https://cdn.modrinth.com/data/K9lejUXc/versions/hCynVZd3/keyboard-wizard-community-edition-neoforge-1.21.1-1.1.1.jar"
-hash-format = "sha1"
-hash = "4789c87722d387c9d57f3dd8e4a5016e0df57f48"

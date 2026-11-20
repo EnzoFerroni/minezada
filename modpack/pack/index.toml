@@ -376,11 +376,6 @@ hash = "aceff9106cdb6f4c20dc0cef4baf6ee9639423f78a52ae64370e367965ccc6ad"
 metafile = true
 
 [[files]]
-file = "mods/keyboard-wizard-ce.pw.toml"
-hash = "26da0e439bea8ec5b1dbdea6d3b0b17ba8972d7abc718e71264afa2620f92f16"
-metafile = true
-
-[[files]]
 file = "mods/natures-compass.pw.toml"
 hash = "eeb3c1e0702309b366132244dd0475b9f612f9207686e8963433e6b784682104"
 metafile = true
@@ -716,11 +711,11 @@ preserve = true
 
 [[files]]
 file = "minezada.ps1"
-hash = "a5b66ab8055461c16e873ce295fef95b2f98dbf8b67fc66d1ea61d5dd16a3d63"
+hash = "b3044758fc7885e2bab5fd5296674df75e6b94a5cd8fa0e1fded458b90bee194"
 
 [[files]]
 file = "minezada.sh"
-hash = "440172f95135210b8a8ba7ae47d8ac3b3bb7a555f7d6f907a98866767c1eb0de"
+hash = "4c89d339a4c08e25774a9dd0dd12a2601d7ae962959753be271e0fd67898c620"
 
 [[files]]
 file = "modflared/forced_tunnels.json"
