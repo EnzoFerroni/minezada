@@ -166,7 +166,7 @@ if (Test-Path $soltos) {
 # sem preserve, entao todo mundo recebe a lista nova a cada abertura (servidor adicionado a mao some).
 # Principal: Cloudflare (HTTPS na 443, passa em rede de faculdade). Reserva: playit (playit-endereco.txt no Drive).
 function NbtStr($ms, $s) { $b = [Text.Encoding]::UTF8.GetBytes($s); $ms.WriteByte($b.Length -shr 8); $ms.WriteByte($b.Length -band 255); $ms.Write($b, 0, $b.Length) }
-$entradas = @(@('Minezada', $servidor), @('Minezada (playit)', $tunel), @('Minezada (neste computador)', 'localhost'))
+$entradas = @(@('Minezada', $servidor), @('Minezada (playit)', $tunel), @('Minezada (neste computador)', '127.0.0.1'))
 $ms = New-Object IO.MemoryStream
 $ms.WriteByte(10); NbtStr $ms ''                                                                 # compound raiz
 $ms.WriteByte(9); NbtStr $ms 'servers'; $ms.WriteByte(10); $ms.Write([byte[]](0, 0, 0, $entradas.Count), 0, 4)  # lista de compounds

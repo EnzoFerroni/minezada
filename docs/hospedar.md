@@ -105,7 +105,7 @@ Drive. Plano grátis: a rota não é garantida para quem está longe. Perdeu o s
 `playit claim generate`, `playit claim url <código>`, aprove no site e `playit claim exchange <código>`:
 a última linha da saída é o segredo novo.
 
-**Mesma casa.** O host entra por **Minezada (neste computador)** (`localhost`). Outro computador da mesma
+**Mesma casa.** O host entra por **Minezada (neste computador)** (`127.0.0.1`). Outro computador da mesma
 casa entra pelo túnel, como todo mundo (**Minezada**).
 
 **Lista de servidores do jogo.** Vem pronta e se atualiza a cada abertura (packwiz): Minezada
