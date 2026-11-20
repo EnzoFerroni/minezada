@@ -25,6 +25,26 @@ Na primeira vez, entre com a sua conta (sem Minecraft original, só o seu nick) 
    não precisa rodar o comando de instalar de novo.
 2. Clique em **Multijogador** e entre em **Minezada**.
 
+## Teclas
+
+As principais do pack (as do Minecraft continuam iguais):
+
+| Tecla | O que faz |
+|---|---|
+| B | Abrir a mochila |
+| M | Mapa |
+| N | Marcar um ponto no mapa (U mostra a lista) |
+| Segurar a tecla ao lado do 1 | Quebrar de uma vez vários blocos iguais grudados |
+| Botão do meio do mouse | Marcar um lugar ou item para os amigos verem |
+| Shift + botão direito com a mão vazia | Pegar um baú ou animal no colo |
+| V | Chamar o seu dragão |
+| G | Arremessar o hamster do ombro |
+| H | Acessórios (anéis, colares) |
+| Alt + U | Lugares onde você morreu |
+| K | Ligar e desligar o shader (O escolhe qual) |
+
+Para achar qualquer outra: **Opções > Controles**, digite o nome da ação ou aperte a tecla.
+
 ## Problemas
 
 - **Algo deu errado**: rode o comando de instalar de novo. Ele não apaga nada.
