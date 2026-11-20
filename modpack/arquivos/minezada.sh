@@ -54,8 +54,19 @@ key_iris.keybind.toggleShaders key.keyboard.k:ALT key.keyboard.k
 key_key.veinminer_client.config key.keyboard.o key.keyboard.o:SHIFT
 FIM
 fi
-# Distant Horizons sem o aviso de garbage collector no chat (o ZGC que ele sugere gasta mais memoria nos PCs fracos).
-[ ! -f config/DistantHorizons.toml ] || perl -pi -e 's/^(\s*showGarbageCollectorWarning\s*=\s*)true/${1}false/' config/DistantHorizons.toml
+# Avisos dos mods que so atrapalham (arquivo, opcao, valor). O servidor tem os mesmos em server-config.
+# Distant Horizons: aviso de garbage collector no chat (o ZGC que ele sugere gasta mais memoria nos PCs fracos).
+# Hamster: sino de novidades e livro entregue na mao; o aviso de "sem livro" vem uma vez, no tempo maximo (5 min).
+while read -r arq opcao valor; do
+  [ ! -f "$arq" ] || OPCAO="$opcao" VALOR="$valor" perl -pi -e 's/^(\s*\Q$ENV{OPCAO}\E\s*=\s*)[^\r\n]*/$1$ENV{VALOR}/' "$arq"
+done <<'FIM'
+config/DistantHorizons.toml showGarbageCollectorWarning false
+config/adorablehamsterpets/ui.toml enableNotificationIcons false
+config/adorablehamsterpets/ui.toml serverDisableAnnouncements true
+config/adorablehamsterpets/ui.toml enableAutoGuidebookDelivery false
+config/adorablehamsterpets/ui.toml enableAutoGuidebookDeliveryFallback false
+config/adorablehamsterpets/ui.toml guidebookWarningTimer 6000
+FIM
 # Na primeira abertura (instancia sem Java escolhido) o Prism passa a pasta de dados dele em INST_JAVA: usa o Java
 # que ele baixou la dentro.
 java="${INST_JAVA:-}"
