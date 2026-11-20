@@ -1,0 +1,8 @@
+name = "CustomSkinLoader"
+filename = "CustomSkinLoader_ForgeV3-14.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/idMHQ4n2/versions/9B1Mb9IZ/CustomSkinLoader_ForgeV3-14.21.1.jar"
+hash-format = "sha1"
+hash = "4f52855efacfce5c1872fc875d0b2a372cde9643"

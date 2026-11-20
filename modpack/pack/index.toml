@@ -376,6 +376,11 @@ hash = "aceff9106cdb6f4c20dc0cef4baf6ee9639423f78a52ae64370e367965ccc6ad"
 metafile = true
 
 [[files]]
+file = "mods/keybind-atlas.pw.toml"
+hash = "ef993a9b74532c030af7a57709d88678ab4dbfe432f3834ddaedaa7d1eee8bfc"
+metafile = true
+
+[[files]]
 file = "mods/natures-compass.pw.toml"
 hash = "eeb3c1e0702309b366132244dd0475b9f612f9207686e8963433e6b784682104"
 metafile = true
@@ -438,6 +443,11 @@ metafile = true
 [[files]]
 file = "mods/skinrestorer.pw.toml"
 hash = "7130772974f1b27e3638182e59cd09773f1fa9a1348d570016a08663260664e2"
+metafile = true
+
+[[files]]
+file = "mods/customskinloader.pw.toml"
+hash = "8d15318523406a483f40baaa25fc74b541413b5bb7a6a821481b6b2e4bf209ff"
 metafile = true
 
 [[files]]
@@ -706,11 +716,11 @@ preserve = true
 
 [[files]]
 file = "minezada.ps1"
-hash = "3d083ddcdf5182c214e6fd3347103ab96359c6e282f97a94f70f47e469ba1d02"
+hash = "2c1ab919f97b939d7a742733221095da54f467edab112013029f13371ead2a0d"
 
 [[files]]
 file = "minezada.sh"
-hash = "462bef38dec030913e369f2f0d573008209d77dc9baa145b87525ae19ef23294"
+hash = "ca1454bf0201ec545cb73cf3527498d9e0f6d21a2932f4a9e4b7f50b18cd747e"
 
 [[files]]
 file = "modflared/forced_tunnels.json"
