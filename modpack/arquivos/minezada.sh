@@ -54,6 +54,8 @@ key_iris.keybind.toggleShaders key.keyboard.k:ALT key.keyboard.k
 key_key.veinminer_client.config key.keyboard.o key.keyboard.o:SHIFT
 FIM
 fi
+# Distant Horizons sem o aviso de garbage collector no chat (o ZGC que ele sugere gasta mais memoria nos PCs fracos).
+[ ! -f config/DistantHorizons.toml ] || perl -pi -e 's/^(\s*showGarbageCollectorWarning\s*=\s*)true/${1}false/' config/DistantHorizons.toml
 # Na primeira abertura (instancia sem Java escolhido) o Prism passa a pasta de dados dele em INST_JAVA: usa o Java
 # que ele baixou la dentro.
 java="${INST_JAVA:-}"

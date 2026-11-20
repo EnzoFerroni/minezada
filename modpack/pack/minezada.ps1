@@ -43,6 +43,13 @@ if (Test-Path options.txt) {
     }
     [IO.File]::WriteAllLines("$PWD\options.txt", $o)
 }
+# Distant Horizons sem o aviso de garbage collector no chat (o ZGC que ele sugere gasta mais memoria nos PCs fracos).
+$dh = 'config/DistantHorizons.toml'
+if (Test-Path $dh) {
+    $t = [IO.File]::ReadAllText("$PWD\$dh")
+    $n = $t -replace '(?m)^(\s*showGarbageCollectorWarning\s*=\s*)true', '${1}false'
+    if ($n -ne $t) { [IO.File]::WriteAllText("$PWD\$dh", $n) }
+}
 # Na primeira abertura (instancia sem Java escolhido) o Prism passa a pasta de dados dele em INST_JAVA: usa o Java
 # que ele baixou la dentro.
 $java = $env:INST_JAVA
