@@ -51,7 +51,7 @@ key_key.aether.invisibility_toggle.desc key.keyboard.v key.keyboard.j
 key_key.deep_aether.toggle_skyjade_transparency key.keyboard.v key.keyboard.unknown
 key_key.corpse.death_history key.keyboard.u key.keyboard.u:ALT
 key_iris.keybind.toggleShaders key.keyboard.k key.keyboard.k:ALT
-key_key.keybindatlas.cycle_sets key.keyboard.k key.keyboard.unknown
+key_key.keyboard_wizard_ce.openKeyWizard key.keyboard.f7 key.keyboard.k
 FIM
 fi
 # Na primeira abertura (instancia sem Java escolhido) o Prism passa a pasta de dados dele em INST_JAVA: usa o Java
