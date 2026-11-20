@@ -50,7 +50,7 @@ jobs:
         run: |
           $log = try { ./scripts/montar-pack.ps1 -Atualizar *>&1 | Out-String } catch { "ERRO: $_" }
           $linhas = $log -split "`n"
-          $mudou = @($linhas | Where-Object { $_ -match '^  [-+] ' })
+          $mudou = @($linhas | Where-Object { $_ -match '^  [-+] ' } | ForEach-Object { $_.Trim() })
           if (-not $mudou) { Write-Host 'Nenhuma versao nova.'; exit 0 }
           $deps = @($linhas | Where-Object { $_ -match '^\s+\[(jogo|servidor)\]|problema\(s\)|^ERRO' })
           $conf = if ($deps) { "Conferencia dos jars com as versoes novas:`n``````n$($deps -join "`n")`n``````" } else { 'Conferencia dos jars com as versoes novas: ok.' }
