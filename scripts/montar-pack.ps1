@@ -198,9 +198,10 @@ foreach ($j in $jars) {
 }
 # Scripts de antes de abrir: o jogar troca o PreLaunchCommand por eles (minezada.ps1 no Windows, .sh no Mac).
 Copy-Item (Join-Path $soltos 'minezada.ps1'), (Join-Path $soltos 'minezada.sh') (Join-Path $inst '.minecraft')
+# LowMemWarning=false: o aviso de pouca RAM livre do Prism cancela o jogo se a pessoa aperta Esc ou Nao.
 # Sem JoinServerOnLaunch: o jogo abre no menu e a lista de servidores mostra quais estao no ar.
 # PreLaunchCommand do zip serve para quem importa o zip no Prism a mao; o jogar troca pelo minezada.ps1/.sh.
-Escrever (Join-Path $inst 'instance.cfg') "[General]`nInstanceType=OneSix`nname=Minezada`nOverrideCommands=true`nPreLaunchCommand=`"`$INST_JAVA`" -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -t 0 $packUrl`nOverrideMemory=true`nMinMemAlloc=1024`nMaxMemAlloc=4096`n"
+Escrever (Join-Path $inst 'instance.cfg') "[General]`nInstanceType=OneSix`nname=Minezada`nOverrideCommands=true`nPreLaunchCommand=`"`$INST_JAVA`" -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -t 0 $packUrl`nOverrideMemory=true`nMinMemAlloc=1024`nMaxMemAlloc=4096`nLowMemWarning=false`n"
 [IO.File]::WriteAllBytes((Join-Path $inst '.minecraft/servers.dat'), $serversDat)
 # Opcoes iniciais (o jogo completa o resto); o jogar so copia se o jogador ainda nao tiver.
 # Pacotes de $rpLigados ja vem ligados. As quatro ultimas opcoes pulam as telas de primeira abertura:
