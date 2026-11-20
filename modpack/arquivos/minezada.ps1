@@ -44,10 +44,15 @@ if (Test-Path options.txt) {
     [IO.File]::WriteAllLines("$PWD\options.txt", $o)
 }
 # Avisos dos mods que so atrapalham (arquivo, opcao, valor). O servidor tem os mesmos em server-config.
-# Distant Horizons: aviso de garbage collector no chat (o ZGC que ele sugere gasta mais memoria nos PCs fracos).
+# Distant Horizons: avisos no chat de garbage collector (o ZGC que ele sugere gasta mais memoria nos PCs fracos),
+# distancia de renderizacao alta e pouca memoria. Terralith: mensagem de boas-vindas.
 # Hamster: sino de novidades e livro entregue na mao; o aviso de "sem livro" vem uma vez, no tempo maximo (5 min).
+# Vale para TOML (opcao = valor) e JSON ("opcao": valor).
 $ajustes = @(
     @('config/DistantHorizons.toml', 'showGarbageCollectorWarning', 'false'),
+    @('config/DistantHorizons.toml', 'showHighVanillaRenderDistanceWarning', 'false'),
+    @('config/DistantHorizons.toml', 'showLowMemoryWarningOnStartup', 'false'),
+    @('config/terralith.json', 'intro_message', 'false'),
     @('config/adorablehamsterpets/ui.toml', 'enableNotificationIcons', 'false'),
     @('config/adorablehamsterpets/ui.toml', 'serverDisableAnnouncements', 'true'),
     @('config/adorablehamsterpets/ui.toml', 'enableAutoGuidebookDelivery', 'false'),
@@ -57,7 +62,7 @@ $ajustes = @(
 foreach ($a in $ajustes) {
     if (-not (Test-Path $a[0])) { continue }
     $t = [IO.File]::ReadAllText("$PWD\$($a[0])")
-    $n = $t -replace "(?m)^(\s*$($a[1])\s*=\s*)[^\r\n]*", "`${1}$($a[2])"
+    $n = $t -replace "(?m)^(\s*`"?$($a[1])`"?\s*[=:]\s*)[^\r\n,]*", "`${1}$($a[2])"
     if ($n -ne $t) { [IO.File]::WriteAllText("$PWD\$($a[0])", $n) }
 }
 # Na primeira abertura (instancia sem Java escolhido) o Prism passa a pasta de dados dele em INST_JAVA: usa o Java

@@ -38,7 +38,7 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
    sozinha a cada push que mexe no pack (aba Actions; falhou, o GitHub avisa por e-mail).
 4. Testar o **jogo**: push, esperar o link raw do GitHub atualizar (até 5 min de cache), abrir o
    jogo e entrar no servidor. Erros de dependência só aparecem no jogo.
-5. Criar o Release: `gh release create vAAAA.MM.DD.N --title "Pack AAAA.MM.DD.N" --notes "o que mudou"`.
+5. Criar o Release (uma por dia de mudança, ou ao fim de cada sessão de trabalho): `gh release create vAAAA.MM.DD.N --title "Pack AAAA.MM.DD.N" --notes "o que mudou"`.
    A Action **Release** anexa sozinha o `.mrpack` (Prism, Modrinth App, ATLauncher) e o zip do Prism.
    Mudou o `instance.cfg` (memória, endereço, comando do packwiz)? Avisar para todos rodarem o
    comando de jogar de novo.
