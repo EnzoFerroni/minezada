@@ -14,7 +14,22 @@ foreach ($p in 'Shader - Sildurs Vibrant', 'Shader - Super Duper Vanilla', 'Shad
 $teclas = @(
     @('key_key.pingwheel.ping_location', 'key.mouse.5', 'key.mouse.middle'),
     @('key_key.pickItem', 'key.mouse.middle', 'key.mouse.5'),
-    @('key_key.veinminer_client.hold', 'key.keyboard.z', 'key.keyboard.grave.accent')
+    @('key_key.veinminer_client.hold', 'key.keyboard.z', 'key.keyboard.grave.accent'),
+    # Teclas com varias acoes dos mods: a mais usada fica sozinha, as outras vao para Alt ou Shift
+    # (Ctrl no Mac vira Cmd, e Cmd+H e Cmd+M escondem a janela).
+    @('key_gui.xaero_new_waypoint', 'key.keyboard.b', 'key.keyboard.n'),
+    @('key_key.toms_storage.open_terminal', 'key.keyboard.b', 'key.keyboard.b:ALT'),
+    @('key_key.map_atlases.place_pin', 'key.keyboard.b', 'key.keyboard.b:SHIFT'),
+    @('key_key.map_atlases.open_minimap', 'key.keyboard.m', 'key.keyboard.m:ALT'),
+    @('key_key.jetpack.toggle_active.description', 'key.keyboard.g', 'key.keyboard.g:ALT'),
+    @('key_key.jetpack.toggle_hover.description', 'key.keyboard.h', 'key.keyboard.h:ALT'),
+    @('key_key.ad_astra.open_radio', 'key.keyboard.r', 'key.keyboard.r:ALT'),
+    @('key_iris.keybind.reload', 'key.keyboard.r', 'key.keyboard.unknown'),
+    @('key_supplementaries.keybind.quiver', 'key.keyboard.v', 'key.keyboard.v:ALT'),
+    @('key_key.ad_astra.toggle_suit_flight', 'key.keyboard.v', 'key.keyboard.v:SHIFT'),
+    @('key_key.aether.invisibility_toggle.desc', 'key.keyboard.v', 'key.keyboard.j'),
+    @('key_key.deep_aether.toggle_skyjade_transparency', 'key.keyboard.v', 'key.keyboard.unknown'),
+    @('key_key.corpse.death_history', 'key.keyboard.u', 'key.keyboard.u:ALT')
 )
 if (Test-Path options.txt) {
     $o = [Collections.Generic.List[string]](Get-Content options.txt -Encoding UTF8)
