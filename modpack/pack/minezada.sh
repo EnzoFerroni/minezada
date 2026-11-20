@@ -51,6 +51,7 @@ key_key.aether.invisibility_toggle.desc key.keyboard.v key.keyboard.j
 key_key.deep_aether.toggle_skyjade_transparency key.keyboard.v key.keyboard.unknown
 key_key.corpse.death_history key.keyboard.u key.keyboard.u:ALT
 key_iris.keybind.toggleShaders key.keyboard.k:ALT key.keyboard.k
+key_key.veinminer_client.config key.keyboard.o key.keyboard.o:SHIFT
 FIM
 fi
 # Na primeira abertura (instancia sem Java escolhido) o Prism passa a pasta de dados dele em INST_JAVA: usa o Java
@@ -74,5 +75,16 @@ if [ "$(uname -s)" = "Darwin" ]; then
   perl -pi -e 's/("mods\/distanthorizons\.pw\.toml":\{.*?"optionValue":)true/${1}false/' packwiz.json
   rm -f mods/DistantHorizons-*.jar
 fi
+# Shader atualizado muda o nome do zip: o iris.properties atual e o dos perfis (preserve) passam para o zip novo.
+for f in config/iris.properties options-profiles/*/iris.properties; do
+  [ -f "$f" ] || continue
+  velho="$(sed -n 's/^shaderPack=//p' "$f" | head -n 1 | tr -d '\r')"
+  { [ -n "$velho" ] && [ ! -e "shaderpacks/$velho" ]; } || continue
+  base="$(printf '%s' "$velho" | perl -ne 'print $1 if /^(.+?)[_-][vr]?\d/')"
+  [ -n "$base" ] || continue
+  set -- shaderpacks/"$base"*
+  { [ $# -eq 1 ] && [ -e "$1" ]; } || continue
+  VELHO="$velho" NOVO="${1#shaderpacks/}" perl -pi -e 's/^shaderPack=\Q$ENV{VELHO}\E(?=\r?$)/shaderPack=$ENV{NOVO}/' "$f"
+done
 exit 0
 }
