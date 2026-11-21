@@ -1,0 +1,166 @@
+// status: pergunta a um servidor de Minecraft o que a lista de Multijogador mostraria.
+//
+//   status <endereco> [porta] [--json] [--selo arquivo.svg]
+//
+// Sai com 0 quando o servidor respondeu, 1 quando nao respondeu e 2 para comando errado. --json escreve um
+// objeto so, para uma pagina ler; --selo grava a imagem do selo do README.
+
+import "std/bytes"
+import "std/fs"
+import "std/io"
+import "std/json"
+import "std/mem"
+import "std/os"
+import "std/strings"
+import "std/time"
+import "minezada/mc"
+
+func usage() int {
+    io.Print("uso: status <endereco> [porta] [--json] [--selo arquivo.svg]\n") catch {}
+    return 2
+}
+
+struct Options {
+    host   string
+    port   i32
+    asJSON bool
+    badge  string
+}
+
+// Selo no formato dos que ficam no topo de um README: o nome a esquerda em cinza, o estado a direita em
+// verde ou vermelho. Verdana de 11px tem uns 7px por letra; o texto e ASCII, entao um byte e uma letra.
+func badge(path string, text string, color string, mut a mem.Allocator) !void {
+    label := "Minezada"
+    lw := label.len * 7 + 12
+    vw := text.len * 7 + 12
+    mut b := try bytes.New(a, 1024)
+    try b.WriteString("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"")
+    try b.WriteU64(lw + vw)
+    try b.WriteString("\" height=\"20\" role=\"img\" aria-label=\"Minezada: ")
+    try b.WriteString(text)
+    try b.WriteString("\"><title>Minezada: ")
+    try b.WriteString(text)
+    try b.WriteString("</title><rect width=\"")
+    try b.WriteU64(lw)
+    try b.WriteString("\" height=\"20\" fill=\"#555\"/><rect x=\"")
+    try b.WriteU64(lw)
+    try b.WriteString("\" width=\"")
+    try b.WriteU64(vw)
+    try b.WriteString("\" height=\"20\" fill=\"")
+    try b.WriteString(color)
+    try b.WriteString("\"/><g fill=\"#fff\" font-family=\"Verdana,DejaVu Sans,sans-serif\" font-size=\"11\" text-anchor=\"middle\"><text x=\"")
+    try b.WriteU64(lw / 2)
+    try b.WriteString("\" y=\"14\">")
+    try b.WriteString(label)
+    try b.WriteString("</text><text x=\"")
+    try b.WriteU64(lw + vw / 2)
+    try b.WriteString("\" y=\"14\">")
+    try b.WriteString(text)
+    try b.WriteString("</text></g></svg>\n")
+    try fs.WriteAll(path, b.Bytes())
+}
+
+func offline(o Options, why string, mut a mem.Allocator) !int {
+    if o.badge.len > 0 {
+        try badge(o.badge, "desligado", "#c62828", a)
+    }
+    if o.asJSON {
+        mut out := try bytes.New(a, 256)
+        mut w := json.NewWriter(&out)
+        w.BeginObject()
+        w.Key("online")
+        w.Bool(false)
+        w.Key("erro")
+        w.Str(why)
+        w.EndObject()
+        try w.Err()
+        try io.Printf("{}\n", out.Str())
+    } else {
+        try io.Printf("{}:{} sem resposta: {}\n", o.host, o.port, why)
+    }
+    return 1
+}
+
+func main() !int {
+    mut room := [16]string{}
+    args := os.Args(room[..])
+    mut o := Options{host: "", port: 25565, asJSON: false, badge: ""}
+    mut seen u64 = 0
+    mut i u64 = 1
+    for i < args.len {
+        a := args[i]
+        i += 1
+        if strings.Equal(a, "--json") {
+            o.asJSON = true
+        } else if strings.Equal(a, "--selo") {
+            if i == args.len {
+                return usage()
+            }
+            o.badge = args[i]
+            i += 1
+        } else if seen == 0 {
+            o.host = a
+            seen = 1
+        } else if seen == 1 {
+            p := strings.ParseU64(a) catch return usage()
+            if p == 0 || p > 65535 {
+                return usage()
+            }
+            o.port = i32(p)
+            seen = 2
+        } else {
+            return usage()
+        }
+    }
+    if o.host.len == 0 {
+        return usage()
+    }
+
+    // Uma consulta e o programa acaba: nada precisa ser devolvido ao sistema antes disso.
+    mut sys := mem.NewSystem()
+    s := mc.Query(o.host, o.port, time.Seconds(5), &sys) catch |e| {
+        return offline(o, e.Message(), &sys)
+    }
+
+    if o.badge.len > 0 {
+        mut t := try bytes.New(&sys, 32)
+        try t.WriteString("ligado, ")
+        try t.WriteU64(u64(s.Online))
+        try t.WriteString("/")
+        try t.WriteU64(u64(s.Max))
+        try badge(o.badge, t.Str(), "#2e7d32", &sys)
+    }
+    if o.asJSON {
+        mut out := try bytes.New(&sys, 1024)
+        mut w := json.NewWriter(&out)
+        w.BeginObject()
+        w.Key("online")
+        w.Bool(true)
+        w.Key("jogadores")
+        w.Int(s.Online)
+        w.Key("max")
+        w.Int(s.Max)
+        w.Key("versao")
+        w.Str(s.Version)
+        w.Key("motd")
+        w.Str(s.Motd)
+        w.Key("ping_ms")
+        w.Int(s.Ping.AsMillis())
+        w.Key("nomes")
+        w.BeginArray()
+        for n in s.Players {
+            w.Str(n)
+        }
+        w.EndArray()
+        w.EndObject()
+        try w.Err()
+        try io.Printf("{}\n", out.Str())
+        return 0
+    }
+    try io.Printf("{}:{} ligado: {}/{} jogadores, {} ({}), {} ms\n",
+        o.host, o.port, s.Online, s.Max, s.Version, s.Motd, s.Ping.AsMillis())
+    for n in s.Players {
+        try io.Printf("  {}\n", n)
+    }
+    return 0
+}

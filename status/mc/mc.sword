@@ -1,0 +1,252 @@
+// A parte do protocolo do Minecraft que o servidor responde antes de qualquer login: o handshake, o pedido de
+// status que preenche a lista de Multijogador e o ping que mede a demora. Nada disso e cifrado nem comprimido,
+// em nenhum modo do servidor, por isso um programa pequeno consegue perguntar.
+package mc
+
+import "std/bytes"
+import "std/json"
+import "std/mem"
+import "std/net"
+import "std/time"
+
+error PacketTooLong = "um pacote e maior do que a resposta de status pode ser"
+error BadVarInt     = "um tamanho passa de cinco bytes"
+error BadPacket     = "o servidor respondeu com um pacote que este programa nao conhece"
+error Closed        = "o servidor fechou a conexao antes de responder"
+
+// A resposta de status e um texto JSON de no maximo 32767 caracteres UTF-16, tres bytes cada no pior caso,
+// mais o tamanho do pacote.
+const MaxPacket = 131072
+
+// O que a lista de Multijogador mostra de um servidor.
+struct Status {
+    Version  string
+    Protocol i64
+    Online   i64
+    Max      i64
+    Motd     string
+    Players  []string // a amostra que o servidor escolhe mostrar, muitas vezes vazia
+    Modded   bool     // NeoForge e Forge avisam na resposta
+    Ping     time.Duration
+}
+
+// Acrescenta v como VarInt: sete bits por byte, os mais baixos primeiro, com o bit alto ligado em todo byte
+// menos o ultimo. Um valor negativo ocupa os cinco bytes.
+func PutVarInt(mut b *bytes.Buffer, v i32) !void {
+    mut u := u32(v)
+    for {
+        if u < 128 {
+            try b.WriteByte(u8(u))
+            return
+        }
+        try b.WriteByte(u8(u & 127) | 128)
+        u = u >> 7
+    }
+}
+
+struct Int {
+    value i32
+    size  u64
+}
+
+// Le um VarInt do comeco de from: o valor e quantos bytes ele ocupou, ou size 0 quando from acaba antes do
+// VarInt (ainda nao chegou tudo, nao e erro).
+func VarInt(from []u8) !Int {
+    mut u u32 = 0
+    for i in 0..from.len {
+        if i == 5 {
+            return error.BadVarInt
+        }
+        c := from[i]
+        u = u | (u32(c & 127) << u32(7 * i))
+        if c < 128 {
+            return Int{value: i32(u), size: i + 1}
+        }
+    }
+    if from.len >= 5 {
+        return error.BadVarInt
+    }
+    return Int{value: 0, size: 0}
+}
+
+func putString(mut b *bytes.Buffer, s string) !void {
+    try PutVarInt(b, i32(s.len))
+    try b.WriteString(s)
+}
+
+// Um pacote: o tamanho, depois o id e o corpo.
+func frame(mut out *bytes.Buffer, body []u8) !void {
+    try PutVarInt(out, i32(body.len))
+    try out.Write(body)
+}
+
+// O handshake que pede o estado de status (1), seguido do pedido de status. Protocolo -1 quer dizer "qualquer
+// versao": a resposta de status nao depende dele, e ela diz qual versao o servidor roda.
+func Request(mut out *bytes.Buffer, host string, port i32, mut a mem.Allocator) !void {
+    mut body := try bytes.New(a, 64 + host.len)
+    try body.WriteByte(0)
+    try PutVarInt(&body, -1)
+    try putString(&body, host)
+    try body.WriteByte(u8((port >> 8) & 255))
+    try body.WriteByte(u8(port & 255))
+    try PutVarInt(&body, 1)
+    try frame(out, body.Bytes())
+    body.Free()
+    try out.WriteByte(1)
+    try out.WriteByte(0)
+}
+
+// Le um pacote inteiro para buf e devolve o id e o corpo, que sao a memoria do proprio buf.
+func ReadPacket(c *net.Conn, mut buf []u8) ![]u8 {
+    mut have u64 = 0
+    for {
+        n := try VarInt(buf[0..have])
+        if n.size > 0 {
+            if n.value <= 0 {
+                return error.BadPacket
+            }
+            end := n.size + u64(n.value)
+            if end > buf.len {
+                return error.PacketTooLong
+            }
+            for have < end {
+                got := try c.Read(buf[have..end])
+                if got == 0 {
+                    return error.Closed
+                }
+                have += got
+            }
+            return buf[n.size..end]
+        }
+        if have == buf.len {
+            return error.PacketTooLong
+        }
+        // O tamanho e lido um byte por vez, para nada do corpo ser lido antes de se saber quanto ele tem.
+        got := try c.Read(buf[have..have + 1])
+        if got == 0 {
+            return error.Closed
+        }
+        have += got
+    }
+}
+
+// O texto de uma descricao: texto puro em servidor antigo, componente com "text" e "extra" nos novos. Os
+// codigos de cor (sinal de paragrafo e a letra seguinte) saem.
+func motd(d *json.Document, at u64, mut out *bytes.Buffer) !void {
+    switch d.Kind(at) {
+    case json.Kind.Str:
+        try plain(out, d.Text(at))
+    case json.Kind.Object:
+        if t := d.Get(at, "text") {
+            try plain(out, d.Text(t))
+        }
+        if x := d.Get(at, "extra") {
+            for i in 0..d.Len(x) {
+                if e := d.At(x, i) {
+                    try motd(d, e, out)
+                }
+            }
+        }
+    case json.Kind.Array:
+        for i in 0..d.Len(at) {
+            if e := d.At(at, i) {
+                try motd(d, e, out)
+            }
+        }
+    default:
+    }
+}
+
+// Copia s sem os dois bytes do sinal de paragrafo (C2 A7) e sem o codigo que vem depois de cada um.
+func plain(mut out *bytes.Buffer, s string) !void {
+    mut i u64 = 0
+    for i < s.len {
+        if s[i] == 194 && i + 1 < s.len && s[i + 1] == 167 {
+            i += 3
+            continue
+        }
+        try out.WriteByte(s[i])
+        i += 1
+    }
+}
+
+// Le o JSON da resposta de status. Os textos do Status ficam na memoria de a.
+func Parse(text []u8, mut a mem.Allocator) !Status {
+    d := try json.Parse(text, a)
+    root := d.Root()
+    mut s := Status{Version: "", Protocol: 0, Online: 0, Max: 0, Motd: "",
+        Players: (mem.Alloc[string](a, 0) orelse return error.OutOfMemory), Modded: false, Ping: time.Millis(0)}
+    if v := d.Get(root, "version") {
+        s.Version = try dup(a, d.GetText(v, "name"))
+        s.Protocol = i64(d.GetNumber(v, "protocol", 0.0))
+    }
+    if p := d.Get(root, "players") {
+        s.Online = i64(d.GetNumber(p, "online", 0.0))
+        s.Max = i64(d.GetNumber(p, "max", 0.0))
+        if sample := d.Get(p, "sample") {
+            mut names := (mem.Alloc[string](a, d.Len(sample)) orelse return error.OutOfMemory)
+            for i in 0..d.Len(sample) {
+                names[i] = ""
+                if e := d.At(sample, i) {
+                    names[i] = try dup(a, d.GetText(e, "name"))
+                }
+            }
+            s.Players = names
+        }
+    }
+    if m := d.Get(root, "description") {
+        mut out := try bytes.New(a, 128)
+        try motd(&d, m, &out)
+        s.Motd = out.Str()
+    }
+    s.Modded = d.Get(root, "forgeData") != nil || d.Get(root, "isModded") != nil
+    return s
+}
+
+func dup(mut a mem.Allocator, s string) !string {
+    mut b := try bytes.New(a, s.len)
+    try b.WriteString(s)
+    return b.Str()
+}
+
+// Pergunta o status a host:porta, como a lista de Multijogador faz, e mede um ping. Nada espera mais que
+// limit, a conexao incluida.
+func Query(host string, port i32, limit time.Duration, mut a mem.Allocator) !Status {
+    mut c := try net.DialTimeout(host, port, limit)
+    try c.SetDeadline(time.Now().Add(limit))
+    mut out := try bytes.New(a, 128)
+    try Request(&out, host, port, a)
+    try c.Write(out.Bytes())
+
+    mut buf := (mem.Alloc[u8](a, MaxPacket) orelse return error.OutOfMemory)
+    p := try ReadPacket(&c, buf)
+    id := try VarInt(p)
+    if id.size == 0 || id.value != 0 {
+        c.Close()
+        return error.BadPacket
+    }
+    n := try VarInt(p[id.size..])
+    start := id.size + n.size
+    if n.size == 0 || start + u64(n.value) > p.len {
+        c.Close()
+        return error.BadPacket
+    }
+    mut s := try Parse(p[start..start + u64(n.value)], a)
+
+    // Ping: id 1 e oito bytes que o servidor devolve iguais.
+    out.Reset()
+    try out.WriteByte(9)
+    try out.WriteByte(1)
+    for i in 0..8 {
+        try out.WriteByte(u8(i + 1))
+    }
+    sent := time.Now()
+    try c.Write(out.Bytes())
+    pong := try ReadPacket(&c, buf)
+    s.Ping = time.Since(sent)
+    c.Close()
+    if pong.len != 9 || pong[0] != 1 {
+        return error.BadPacket
+    }
+    return s
+}
