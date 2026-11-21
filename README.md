@@ -1,6 +1,6 @@
 # Minezada
 
-[![Servidor](https://raw.githubusercontent.com/EnzoFerroni/minezada/status/status.svg)](https://github.com/EnzoFerroni/minezada/blob/status/status.json)
+[![Servidor](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FEnzoFerroni%2Fminezada%2Fstatus%2Fstatus.json&cacheSeconds=60)](https://github.com/EnzoFerroni/minezada/blob/status/status.json)
 
 Modpack e servidor de Minecraft 1.21.1. O selo acima diz se tem alguém hospedando agora (atualiza a cada 10 minutos).
 

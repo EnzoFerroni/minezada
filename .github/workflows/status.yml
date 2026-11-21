@@ -101,7 +101,16 @@ jobs:
           done
           cat bruto.json
           # Os nicks ficam de fora: o branch e publico, e daria para ver quem joga e quando.
-          jq -c --arg t "$(date -u +%Y-%m-%dT%H:%M:%SZ)" 'del(.nomes) + {atualizado: $t}' bruto.json > saida/status.json
+          jq -c --arg t "$(date -u +%Y-%m-%dT%H:%M:%SZ)" '
+            del(.nomes)
+            + {
+              atualizado: $t,
+              schemaVersion: 1,
+              label: "Servidor",
+              message: (if .online then "ligado, " + (.jogadores | tostring) + "/" + (.max | tostring) else "desligado" end),
+              color: (if .online then "2e7d32" else "b91c1c" end)
+            }
+          ' bruto.json > saida/status.json
       # Um commit so, trocado a cada vez (force push): o branch nao cresce. Nao dispara nenhuma outra Action.
       - name: Publicar no branch status
         working-directory: saida
