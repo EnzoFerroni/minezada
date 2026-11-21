@@ -1,6 +1,8 @@
 # Minezada
 
-Modpack e servidor de Minecraft 1.21.1.
+[![Servidor](https://raw.githubusercontent.com/EnzoFerroni/minezada/status/status.svg)](https://github.com/EnzoFerroni/minezada/blob/status/status.json)
+
+Modpack e servidor de Minecraft 1.21.1. O selo acima diz se tem alguém hospedando agora (atualiza a cada 10 minutos).
 
 ## Instalar (só uma vez)
 

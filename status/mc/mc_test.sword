@@ -1,0 +1,140 @@
+package mc
+
+import "std/bytes"
+import "std/net"
+import "std/testing"
+import "std/time"
+
+const answer = "{\"version\":{\"name\":\"1.21.1\",\"protocol\":767},\"players\":{\"max\":10,\"online\":2,\"sample\":[{\"name\":\"Enzobullet\",\"id\":\"00000000-0000-0000-0000-000000000001\"},{\"name\":\"Ana\",\"id\":\"00000000-0000-0000-0000-000000000002\"}]},\"description\":{\"text\":\"§6Mine§rzada\",\"extra\":[{\"text\":\" - 1.21.1\"}]},\"isModded\":true}"
+
+func TestVarInt(mut t *testing.T) !void {
+    mut b := try bytes.New(t.Mem, 16)
+    try PutVarInt(&b, 300)
+    t.Equal(b.Len(), 2)
+    t.Equal(b.Bytes()[0], 172)
+    t.Equal(b.Bytes()[1], 2)
+    n := try VarInt(b.Bytes())
+    t.Equal(n.value, 300)
+    t.Equal(n.size, 2)
+
+    b.Reset()
+    try PutVarInt(&b, -1)
+    t.Equal(b.Len(), 5)
+    m := try VarInt(b.Bytes())
+    t.Equal(m.value, -1)
+
+    // VarInt cortado nao e erro: so ainda nao chegou tudo.
+    short := try VarInt(b.Bytes()[0..3])
+    t.Equal(short.size, 0)
+}
+
+func TestHandshake(mut t *testing.T) !void {
+    mut b := try bytes.New(t.Mem, 64)
+    try Request(&b, "mc.local", 25565, t.Mem)
+    p := b.Bytes()
+    // tamanho 18: id, protocolo (5), endereco (1 + 8), porta (2), estado
+    t.Equal(p[0], 18)
+    t.Equal(p[1], 0)
+    t.Equal(p[7], 8)
+    t.Equal(p[16], 99)
+    t.Equal(p[17], 221)
+    t.Equal(p[18], 1)
+    // depois, o pedido de status
+    t.Equal(p[19], 1)
+    t.Equal(p[20], 0)
+    t.Equal(b.Len(), 21)
+}
+
+func TestParse(mut t *testing.T) !void {
+    s := try Parse([]u8(answer), t.Mem)
+    t.Equal(s.Version, "1.21.1")
+    t.Equal(s.Protocol, 767)
+    t.Equal(s.Online, 2)
+    t.Equal(s.Max, 10)
+    t.Equal(s.Motd, "Minezada - 1.21.1")
+    t.Equal(s.Players.len, 2)
+    t.Equal(s.Players[1], "Ana")
+    t.Check(s.Modded)
+}
+
+func TestPlainMotd(mut t *testing.T) !void {
+    s := try Parse([]u8("{\"description\":\"A Minecraft Server\"}"), t.Mem)
+    t.Equal(s.Motd, "A Minecraft Server")
+    t.Equal(s.Online, 0)
+    t.Check(!s.Modded)
+}
+
+// Responde a uma consulta de status como um servidor: handshake, pedido, resposta e o ping devolvido.
+func fake(l *net.Listener, mut failed *atomic[u64]) !void {
+    mut c := try l.Accept()
+    serve(&c) catch {
+        failed.Store(1)
+    }
+    c.Close()
+}
+
+func serve(c *net.Conn) !void {
+    mut room := [4096]u8{}
+    hs := try ReadPacket(c, room[..])
+    if hs[0] != 0 || hs[hs.len - 1] != 1 {
+        return error.BadPacket
+    }
+    rq := try ReadPacket(c, room[..])
+    if rq.len != 1 || rq[0] != 0 {
+        return error.BadPacket
+    }
+    mut store := [2048]u8{}
+    mut arena := mem.NewArena(store[..])
+    mut body := try bytes.New(&arena, 512)
+    try body.WriteByte(0)
+    try putString(&body, answer)
+    mut out := try bytes.New(&arena, 512)
+    try frame(&out, body.Bytes())
+    try c.Write(out.Bytes())
+    ping := try ReadPacket(c, room[..])
+    out.Reset()
+    try frame(&out, ping)
+    try c.Write(out.Bytes())
+}
+
+func TestQuery(mut t *testing.T) !void {
+    mut l := try net.Listen(0)
+    port := l.Port()
+    mut failed := atomic[u64](0)
+    mut got := Status{Version: "", Protocol: 0, Online: 0, Max: 0, Motd: "",
+        Players: (mem.Alloc[string](t.Mem, 0) orelse return error.OutOfMemory), Modded: false, Ping: time.Millis(0)}
+    mut err := atomic[u64](0)
+    scope {
+        spawn fake(&l, &failed)
+        spawn ask(port, &got, &err, t.Mem)
+    }
+    l.Close()
+    t.Equal(failed.Load(), 0)
+    t.Equal(err.Load(), 0)
+    t.Equal(got.Online, 2)
+    t.Equal(got.Motd, "Minezada - 1.21.1")
+    t.Check(got.Ping.AsMillis() < 1000)
+}
+
+func ask(port i32, mut into *Status, mut err *atomic[u64], mut a mem.Allocator) !void {
+    s := Query("127.0.0.1", port, time.Seconds(2), a) catch {
+        err.Store(1)
+        return
+    }
+    into.Version = s.Version
+    into.Online = s.Online
+    into.Motd = s.Motd
+    into.Ping = s.Ping
+}
+
+func TestRefused(mut t *testing.T) !void {
+    // Porta recem fechada: ninguem escuta nela.
+    mut l := try net.Listen(0)
+    port := l.Port()
+    l.Close()
+    mut failed := false
+    Query("127.0.0.1", port, time.Millis(500), t.Mem) catch {
+        failed = true
+    }
+    t.Check(failed)
+}

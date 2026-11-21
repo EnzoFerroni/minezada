@@ -1,3 +1,4 @@
 server/
 tools/
 config.env
+status/status
