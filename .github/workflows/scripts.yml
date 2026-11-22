@@ -43,6 +43,8 @@ jobs:
         run: java scripts/testes/WhitelistTeste.java
       - name: Mundo no GitHub (GitHub falso, local)
         run: java scripts/testes/MundoGithubTeste.java
+      - name: Aviso as Actions (GitHub falso, local)
+        run: java scripts/testes/AvisarTeste.java
 
   windows:
     runs-on: windows-latest
@@ -81,3 +83,5 @@ jobs:
         run: java scripts/testes/WhitelistTeste.java
       - name: Mundo no GitHub (GitHub falso, local)
         run: java scripts/testes/MundoGithubTeste.java
+      - name: Aviso as Actions (GitHub falso, local)
+        run: java scripts/testes/AvisarTeste.java

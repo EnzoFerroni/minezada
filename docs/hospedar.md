@@ -150,6 +150,18 @@ A página do GitHub Pages mostra o mapa do mundo, o placar e o céu como o mundo
    `MUNDO_TOKEN`, o mesmo token.
 5. Settings → Pages → Source: **GitHub Actions**.
 
+### Atualização em tempo quase real
+
+O cron do GitHub atrasa por horas, então o `iniciar` pede as Actions na hora (`scripts/Avisar.java`): a do selo
+(`status.yml`) ao ligar, a cada 5 minutos e ao desligar; a da página (`pagina.yml`) depois de cada envio do
+mundo. Durante a sessão, a cada 30 minutos ele faz `save-off`, `save-all flush`, manda o mundo para o Drive
+(sem mexer na trava nem nos backups) e para o GitHub. Sem `dispatch.txt` na pasta do Drive nada disso é pedido
+(o cron continua como reserva). Configurado uma vez só, por quem é dono do repositório do pack:
+
+1. Token: https://github.com/settings/personal-access-tokens/new, **Only select repositories** → o repositório
+   do pack e **Repository permissions → Actions: Read and write**. Nada mais.
+2. Na pasta `minezada` do Drive, `dispatch.txt` com o token na primeira linha.
+
 A Action **Pagina** olha a cada meia hora se chegou mundo novo. Token vencido: o `iniciar` avisa no fim
 ("mundo não enviado para o GitHub") e o mundo do Drive continua salvo; gere outro e troque nos passos 3 e 4.
 Para mostrar no mapa onde cada um saiu do jogo: Settings → Secrets and variables → Actions → Variables,
