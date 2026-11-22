@@ -1,0 +1,58 @@
+package nbt
+
+import "std/testing"
+
+// Um compound sem nome com um campo de cada tipo que o mapa, o placar e o estado leem:
+// n Int -5, s Str "oi", d Double 1.5, f Float -2.25, l List de Double [1, -0.5], L Longs [7, -1] e c Compound {b Byte -1}.
+const sample = "\x0a\x00\x00" +
+    "\x03\x00\x01n\xff\xff\xff\xfb" +
+    "\x08\x00\x01s\x00\x02oi" +
+    "\x06\x00\x01d\x3f\xf8\x00\x00\x00\x00\x00\x00" +
+    "\x05\x00\x01f\xc0\x10\x00\x00" +
+    "\x09\x00\x01l\x06\x00\x00\x00\x02\x3f\xf0\x00\x00\x00\x00\x00\x00\xbf\xe0\x00\x00\x00\x00\x00\x00" +
+    "\x0c\x00\x01L\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x07\xff\xff\xff\xff\xff\xff\xff\xff" +
+    "\x0a\x00\x01c\x01\x00\x01b\xff\x00" +
+    "\x00"
+
+func TestFields(mut t *testing.T) !void {
+    b := []u8(sample)
+    root := try Root(b)
+    t.Equal(try Number(b, try Find(b, root, "n")), -5)
+    t.Equal(try Text(b, try Find(b, root, "s")), "oi")
+    t.Equal(try Real(b, try Find(b, root, "d")), 1.5)
+    t.Equal(try Real(b, try Find(b, root, "f")), -2.25)
+    t.Equal(try Real(b, try Find(b, root, "n")), -5.0)
+    c := try Find(b, root, "c")
+    t.Equal(try Number(b, try Find(b, c, "b")), -1)
+    t.Equal((try Find(b, root, "nada")).Kind, u8(End))
+    t.Equal((try Find(b, c, "n")).Kind, u8(End))
+}
+
+func TestLists(mut t *testing.T) !void {
+    b := []u8(sample)
+    root := try Root(b)
+    l := try Find(b, root, "l")
+    t.Equal(try Len(b, l), 2)
+    first := try First(b, l)
+    t.Equal(first.Kind, u8(Double))
+    t.Equal(try Real(b, first), 1.0)
+    t.Equal(try Real(b, try Next(b, first)), -0.5)
+    longs := try Find(b, root, "L")
+    t.Equal(try Len(b, longs), 2)
+    t.Equal(try LongAt(b, longs, 0), 7)
+    t.Equal(try LongAt(b, longs, 1), 18446744073709551615)
+}
+
+func cut(b []u8) bool {
+    root := Root(b) catch return true
+    got := Find(b, root, "c") catch return true
+    return got.Kind == 99
+}
+
+// Um arquivo cortado no meio e um erro, nunca uma leitura fora dos bytes.
+func TestCut(mut t *testing.T) !void {
+    b := []u8(sample)
+    t.Check(cut(b[0..20]))
+    t.Check(cut(b[0..2]))
+    t.Check(!cut(b))
+}

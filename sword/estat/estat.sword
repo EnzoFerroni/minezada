@@ -1,0 +1,127 @@
+// Resume o arquivo de estatisticas que o Minecraft guarda de cada jogador (world/stats/<uuid>.json) nos numeros
+// que o placar mostra.
+package estat
+
+import "std/json"
+import "std/mem"
+import "std/strings"
+
+// Um "mais" de uma categoria: o bloco mais minerado, o mob mais morto, o que mais matou o jogador.
+struct Top {
+    Name  string
+    Count i64
+}
+
+struct Player {
+    Ticks     i64 // tempo de jogo, 20 por segundo
+    Deaths    i64
+    MobKills  i64
+    PvpKills  i64
+    WalkCm    i64 // a pe: andando, correndo, agachado, subindo
+    TotalCm   i64 // tudo: a pe, nadando, voando, de barco, a cavalo, de elytra...
+    Mined     i64
+    Diamonds  i64
+    Crafted   i64
+    Jumps     i64
+    DealtTen  i64 // dano causado, em decimos de meio coracao
+    TakenTen  i64
+    Fish      i64
+    Bred      i64
+    Trades    i64
+    Slept     i64
+    Chests    i64
+    MostMined Top
+    MostKill  Top
+    KilledBy  Top
+}
+
+func custom(d *json.Document, stats u64, key string) i64 {
+    if c := d.Get(stats, "minecraft:custom") {
+        return i64(d.GetNumber(c, key, 0.0))
+    }
+    return 0
+}
+
+// Soma de uma categoria inteira (minerados, fabricados, mortos...) e o item com mais.
+func category(d *json.Document, stats u64, key string, mut top *Top, mut a mem.Allocator) !i64 {
+    top.Name = ""
+    top.Count = 0
+    mut sum i64 = 0
+    if c := d.Get(stats, key) {
+        for i in 0..d.Len(c) {
+            if e := d.At(c, i) {
+                n := i64(d.Number(e))
+                sum += n
+                // Empate fica com o primeiro na ordem do arquivo, que o jogo grava sempre igual.
+                if n > top.Count {
+                    top.Count = n
+                    top.Name = try short(d.KeyAt(e), a)
+                }
+            }
+        }
+    }
+    return sum
+}
+
+// "minecraft:zombie" -> "zombie"; o nome de mod fica ("create:andesite_alloy").
+func short(id string, mut a mem.Allocator) !string {
+    if strings.HasPrefix(id, "minecraft:") {
+        return try strings.Concat(a, id[10..])
+    }
+    return try strings.Concat(a, id)
+}
+
+func distance(d *json.Document, stats u64, keys []string) i64 {
+    mut sum i64 = 0
+    for k in keys {
+        sum += custom(d, stats, k)
+    }
+    return sum
+}
+
+// Le um arquivo de estatisticas. Os nomes em Top ficam em a.
+func Read(text []u8, mut a mem.Allocator) !Player {
+    d := try json.Parse(text, a)
+    mut p := Player{Ticks: 0, Deaths: 0, MobKills: 0, PvpKills: 0, WalkCm: 0, TotalCm: 0, Mined: 0, Diamonds: 0,
+        Crafted: 0, Jumps: 0, DealtTen: 0, TakenTen: 0, Fish: 0, Bred: 0, Trades: 0, Slept: 0, Chests: 0,
+        MostMined: Top{Name: "", Count: 0}, MostKill: Top{Name: "", Count: 0}, KilledBy: Top{Name: "", Count: 0}}
+    stats := d.Get(d.Root(), "stats") orelse return p
+    p.Ticks = custom(&d, stats, "minecraft:play_time")
+    p.Deaths = custom(&d, stats, "minecraft:deaths")
+    p.MobKills = custom(&d, stats, "minecraft:mob_kills")
+    p.PvpKills = custom(&d, stats, "minecraft:player_kills")
+    p.Jumps = custom(&d, stats, "minecraft:jump")
+    p.DealtTen = custom(&d, stats, "minecraft:damage_dealt")
+    p.TakenTen = custom(&d, stats, "minecraft:damage_taken")
+    p.Fish = custom(&d, stats, "minecraft:fish_caught")
+    p.Bred = custom(&d, stats, "minecraft:animals_bred")
+    p.Trades = custom(&d, stats, "minecraft:traded_with_villager")
+    p.Slept = custom(&d, stats, "minecraft:sleep_in_bed")
+    p.Chests = custom(&d, stats, "minecraft:open_chest")
+    mut walk := [5]string{"minecraft:walk_one_cm", "minecraft:sprint_one_cm", "minecraft:crouch_one_cm",
+        "minecraft:climb_one_cm", "minecraft:walk_on_water_one_cm"}
+    mut other := [10]string{"minecraft:swim_one_cm", "minecraft:walk_under_water_one_cm", "minecraft:fly_one_cm",
+        "minecraft:aviate_one_cm", "minecraft:boat_one_cm", "minecraft:horse_one_cm", "minecraft:minecart_one_cm",
+        "minecraft:pig_one_cm", "minecraft:strider_one_cm", "minecraft:fall_one_cm"}
+    p.WalkCm = distance(&d, stats, walk[..])
+    p.TotalCm = p.WalkCm + distance(&d, stats, other[..])
+    mut most := Top{Name: "", Count: 0}
+    p.Mined = try category(&d, stats, "minecraft:mined", &most, a)
+    p.MostMined = most
+    p.Crafted = try category(&d, stats, "minecraft:crafted", &most, a)
+    deaths := try category(&d, stats, "minecraft:killed_by", &most, a)
+    p.KilledBy = most
+    kills := try category(&d, stats, "minecraft:killed", &most, a)
+    p.MostKill = most
+    // Os contadores gerais existem desde sempre; os por mob, so de quem matou ou morreu depois que eles vieram.
+    if p.Deaths < deaths {
+        p.Deaths = deaths
+    }
+    if p.MobKills < kills {
+        p.MobKills = kills
+    }
+    if m := d.Get(stats, "minecraft:mined") {
+        p.Diamonds = i64(d.GetNumber(m, "minecraft:diamond_ore", 0.0)) + i64(d.GetNumber(m, "minecraft:deepslate_diamond_ore", 0.0))
+    }
+    return p
+}

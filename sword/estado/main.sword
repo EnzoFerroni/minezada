@@ -1,0 +1,61 @@
+// estado: o que o mundo estava fazendo no ultimo salvamento, tirado do level.dat, num JSON para a pagina.
+//
+//   estado <pasta do mundo> <saida.json>
+//
+// Dia do mundo, hora do jogo (0 e 6h da manha, 24000 por dia), fase da lua (8, uma por noite), chuva e trovoada,
+// o spawn e se o Dragao do Ender ja caiu. Com o servidor desligado o mundo fica parado, entao isto e o mundo
+// como o grupo deixou.
+
+import "std/bytes"
+import "std/fs"
+import "std/io"
+import "std/json"
+import "std/mem"
+import "std/os"
+import "std/strings"
+import "minezada/nbt"
+import "minezada/zlib"
+
+func main() !int {
+    mut room := [4]string{}
+    args := os.Args(room[..])
+    if args.len != 3 {
+        try io.Print("uso: estado <pasta do mundo> <saida.json>\n")
+        return 2
+    }
+    mut sys := mem.NewSystem()
+    b := try zlib.ReadGzip(try strings.Concat(&sys, args[1], "/level.dat"), &sys)
+    root := try nbt.Root(b)
+    d := try nbt.Find(b, root, "Data")
+    ticks := try nbt.Number(b, try nbt.Find(b, d, "DayTime"))
+    dragon := try nbt.Find(b, d, "DragonFight")
+    killed := (try nbt.Number(b, try nbt.Find(b, dragon, "DragonKilled"))) != 0 ||
+        (try nbt.Number(b, try nbt.Find(b, dragon, "PreviouslyKilled"))) != 0
+
+    mut out := try bytes.New(&sys, 256)
+    mut w := json.NewWriter(&out)
+    w.BeginObject()
+    w.Key("dia")
+    w.Int(ticks / 24000 + 1)
+    w.Key("hora")
+    w.Int(ticks % 24000)
+    w.Key("lua")
+    w.Int((ticks / 24000) % 8)
+    w.Key("chuva")
+    w.Bool((try nbt.Number(b, try nbt.Find(b, d, "raining"))) != 0)
+    w.Key("trovoada")
+    w.Bool((try nbt.Number(b, try nbt.Find(b, d, "thundering"))) != 0)
+    w.Key("spawn_x")
+    w.Int(try nbt.Number(b, try nbt.Find(b, d, "SpawnX")))
+    w.Key("spawn_z")
+    w.Int(try nbt.Number(b, try nbt.Find(b, d, "SpawnZ")))
+    w.Key("dragao_derrotado")
+    w.Bool(killed)
+    w.Key("salvo_em_ms")
+    w.Int(try nbt.Number(b, try nbt.Find(b, d, "LastPlayed")))
+    w.EndObject()
+    try w.Err()
+    try out.WriteByte(10)
+    try fs.WriteAll(args[2], out.Bytes())
+    return 0
+}
