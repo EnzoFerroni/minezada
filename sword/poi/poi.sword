@@ -1,0 +1,187 @@
+// Os pontos de interesse de uma regiao (world/poi/r.X.Z.mca): o jogo anota ali cada bloco que os aldeoes e os
+// portais usam. Daqui saem os sinos de vila (um por vila, e o centro dela) e os blocos de portal do Nether.
+package poi
+
+import "std/fs"
+import "std/mem"
+import "std/strings"
+import "minezada/nbt"
+import "minezada/zlib"
+
+const Bell = 1
+const Portal = 2
+
+struct Point {
+    Kind u8
+    X    i64
+    Y    i64
+    Z    i64
+}
+
+func be(b []u8, at u64, n u64) u64 {
+    mut v u64 = 0
+    for i in 0..n {
+        v = (v << 8) | u64(b[at + i])
+    }
+    return v
+}
+
+// Le a regiao path e acrescenta em out[n..] os sinos e os blocos de portal; devolve o novo n. O que nao cabe em
+// out fica de fora.
+func Region(path string, mut out []Point, n u64, mut a mem.Allocator) !u64 {
+    data := try fs.ReadAll(path, a)
+    mut got := n
+    if data.len < 8192 {
+        return got
+    }
+    mut room := mem.Alloc[u8](a, 1 << 20) orelse return error.OutOfMemory
+    chunks u64 = 1024
+    for i in 0..chunks {
+        off := be(data, i * 4, 3) * 4096
+        if off == 0 || off + 5 > data.len {
+            continue
+        }
+        size := be(data, off, 4)
+        if data[off + 4] != 2 || size < 1 || off + 4 + size > data.len {
+            continue
+        }
+        src := data[off + 5..off + 4 + size]
+        mut plain := room[0..0]
+        for {
+            plain = zlib.Uncompress(src, room) catch |e| {
+                if nameof(e) == "TooSmall" && room.len < (64 << 20) {
+                    room = mem.Alloc[u8](a, room.len * 2) orelse return error.OutOfMemory
+                    continue
+                }
+                return e
+            }
+            break
+        }
+        got = try chunk(plain, out, got)
+    }
+    return got
+}
+
+// Um chunk do arquivo: Sections e um compound de secoes com o Y no nome, cada uma com a lista Records.
+func chunk(b []u8, mut out []Point, n u64) !u64 {
+    mut got := n
+    secs := try nbt.Find(b, try nbt.Root(b), "Sections")
+    mut s := try nbt.FirstIn(b, secs)
+    for s.Kind != 0 {
+        recs := try nbt.Find(b, s, "Records")
+        count := try nbt.Len(b, recs)
+        mut r := try nbt.First(b, recs)
+        for _ in 0..count {
+            kind := kindOf(try nbt.Text(b, try nbt.Find(b, r, "type")))
+            pos := try nbt.Find(b, r, "pos")
+            if kind != 0 && pos.Kind == nbt.Ints && (try nbt.Len(b, pos)) == 3 && got < out.len {
+                out[got] = Point{Kind: kind, X: try nbt.IntAt(b, pos, 0), Y: try nbt.IntAt(b, pos, 1), Z: try nbt.IntAt(b, pos, 2)}
+                got += 1
+            }
+            r = try nbt.Next(b, r)
+        }
+        s = try nbt.After(b, s)
+    }
+    return got
+}
+
+// O sino de vila e "meeting" (onde os aldeoes se juntam); camas ("home") ficam de fora: mostram a base de cada um.
+func kindOf(t string) u8 {
+    if strings.Equal(t, "minecraft:meeting") {
+        return Bell
+    }
+    if strings.Equal(t, "minecraft:nether_portal") {
+        return Portal
+    }
+    return 0
+}
+
+// Junta os blocos de portal que se encostam num portal so e poe em out o bloco do meio de cada um (a media,
+// arredondada para baixo); devolve quantos. Os sinos ficam de fora: cada sino ja e uma vila.
+func Portals(pts []Point, mut out []Point, mut a mem.Allocator) !u64 {
+    mut m u64 = 0
+    for p in pts {
+        if p.Kind == Portal {
+            m += 1
+        }
+    }
+    if m == 0 {
+        return 0
+    }
+    mut blocks := mem.Alloc[Point](a, m) orelse return error.OutOfMemory
+    mut parent := mem.Alloc[u64](a, m) orelse return error.OutOfMemory
+    mut k u64 = 0
+    for p in pts {
+        if p.Kind != Portal {
+            continue
+        }
+        blocks[k] = p
+        parent[k] = k
+        // Encostou num bloco ja visto: os dois grupos viram um.
+        for j in 0..k {
+            if near(blocks[j], p) {
+                join(parent, j, k)
+            }
+        }
+        k += 1
+    }
+    mut sums := mem.Alloc[i64](a, m * 4) orelse return error.OutOfMemory
+    for i in 0..sums.len {
+        sums[i] = 0
+    }
+    for i in 0..m {
+        r := root(parent, i) * 4
+        sums[r] += blocks[i].X
+        sums[r + 1] += blocks[i].Y
+        sums[r + 2] += blocks[i].Z
+        sums[r + 3] += 1
+    }
+    mut groups u64 = 0
+    for i in 0..m {
+        c := sums[i * 4 + 3]
+        if c == 0 || groups >= out.len {
+            continue
+        }
+        out[groups] = Point{Kind: Portal, X: div(sums[i * 4], c), Y: div(sums[i * 4 + 1], c), Z: div(sums[i * 4 + 2], c)}
+        groups += 1
+    }
+    return groups
+}
+
+func near(a Point, b Point) bool {
+    return abs(a.X - b.X) <= 1 && abs(a.Y - b.Y) <= 1 && abs(a.Z - b.Z) <= 1
+}
+
+func abs(v i64) i64 {
+    if v < 0 {
+        return -v
+    }
+    return v
+}
+
+// Divisao arredondada para baixo tambem nos negativos: o meio de -3 e -2 e o bloco -3.
+func div(a i64, b i64) i64 {
+    q := a / b
+    if q * b > a {
+        return q - 1
+    }
+    return q
+}
+
+func root(mut parent []u64, i u64) u64 {
+    mut r := i
+    for parent[r] != r {
+        r = parent[r]
+    }
+    return r
+}
+
+func join(mut parent []u64, a u64, b u64) {
+    ra := root(parent, a)
+    rb := root(parent, b)
+    if ra < rb {
+        parent[rb] = ra
+    } else if rb < ra {
+        parent[ra] = rb
+    }
+}

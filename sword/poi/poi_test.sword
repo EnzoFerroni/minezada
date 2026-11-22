@@ -1,0 +1,39 @@
+package poi
+
+import "std/testing"
+
+// Dois portais: um de pe em x 10..11, y 64..66, z 5; outro deitado ao contrario, em x -3..-2, z -8. Um sino no
+// meio nao entra.
+func TestPortals(mut t *testing.T) !void {
+    mut pts := [11]Point{}
+    mut n u64 = 0
+    for x in 10..12 {
+        for y in 64..67 {
+            pts[n] = Point{Kind: Portal, X: x, Y: y, Z: 5}
+            n += 1
+        }
+    }
+    pts[n] = Point{Kind: Bell, X: 0, Y: 70, Z: 0}
+    n += 1
+    for x in -3..-1 {
+        for y in 40..42 {
+            pts[n] = Point{Kind: Portal, X: x, Y: y, Z: -8}
+            n += 1
+        }
+    }
+    mut out := [4]Point{}
+    got := try Portals(pts[0..n], out[..], t.Mem)
+    t.Equal(got, 2)
+    t.Equal(out[0].X, 10)
+    t.Equal(out[0].Y, 65)
+    t.Equal(out[0].Z, 5)
+    t.Equal(out[1].X, -3)
+    t.Equal(out[1].Y, 40)
+    t.Equal(out[1].Z, -8)
+}
+
+func TestKind(mut t *testing.T) !void {
+    t.Equal(kindOf("minecraft:meeting"), u8(Bell))
+    t.Equal(kindOf("minecraft:nether_portal"), u8(Portal))
+    t.Equal(kindOf("minecraft:home"), u8(0))
+}
