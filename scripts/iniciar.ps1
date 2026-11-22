@@ -315,7 +315,8 @@ function Foto-Do-Mundo {
     if ($ok) {
         $itens = @('world', 'ops.json', 'whitelist.json', 'banned-players.json', 'banned-ips.json') |
             Where-Object { Test-Path (Join-Path $server $_) }
-        & $tar -czf "$foto.tmp" -C $server @itens
+        # session.lock fica travado pelo servidor ligado no Windows e o tar falha com "(null)" sem este exclude.
+        & $tar -czf "$foto.tmp" --exclude session.lock -C $server @itens
         if ($LASTEXITCODE) { $ok = $false }
     }
     try { $proc.StandardInput.WriteLine('save-on') } catch { }
