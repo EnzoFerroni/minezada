@@ -1,0 +1,59 @@
+package hist
+
+import "std/testing"
+
+func TestCalendar(mut t *testing.T) !void {
+    t.Equal(DaysFromCivil(1970, 1, 1), 0)
+    t.Equal(DaysFromCivil(2000, 3, 1), 11017)
+    t.Equal(DaysFromCivil(2026, 11, 22), 20779)
+    d := CivilFromDays(20779)
+    t.Equal(d.Year, 2026)
+    t.Equal(d.Month, 11)
+    t.Equal(d.Day, 22)
+    leap := CivilFromDays(DaysFromCivil(2028, 2, 29))
+    t.Equal(leap.Month, 2)
+    t.Equal(leap.Day, 29)
+}
+
+func TestParse(mut t *testing.T) !void {
+    s := try Parse("2026-11-22T10:08:28Z 1 3")
+    t.Equal(s.Unix, 20779 * 86400 + 10 * 3600 + 8 * 60 + 28)
+    t.Check(s.Online)
+    t.Equal(s.Players, 3)
+    off := try Parse("2026-11-22T10:18:28Z 0 0")
+    t.Check(!off.Online)
+    mut bad := false
+    Parse("ontem 1 3") catch {
+        bad = true
+    }
+    t.Check(bad)
+}
+
+func TestSum(mut t *testing.T) !void {
+    // Ligado das 02:50 as 03:10 UTC de 22/11, que em Brasilia e 23:50 de 21/11 a 00:10 de 22/11: 10 minutos
+    // em cada dia. Depois uma consulta ligada sozinha, uma hora mais tarde, que nao conta tempo (e a ultima).
+    mut samples := [4]Sample{
+        try Parse("2026-11-22T02:50:00Z 1 2"),
+        try Parse("2026-11-22T03:00:00Z 1 4"),
+        try Parse("2026-11-22T03:10:00Z 0 0"),
+        try Parse("2026-11-22T04:10:00Z 1 1"),
+    }
+    mut days := [2]Day{}
+    first := DaysFromCivil(2026, 11, 21)
+    Sum(samples[..], first, days[..])
+    t.Equal(days[0].Seconds, 600)
+    t.Equal(days[1].Seconds, 600)
+    t.Equal(days[0].Peak, 2)
+    t.Equal(days[1].Peak, 4)
+}
+
+func TestGap(mut t *testing.T) !void {
+    // A Action ficou duas horas sem rodar: conta so MaxGap depois da consulta ligada.
+    mut samples := [2]Sample{
+        try Parse("2026-11-22T12:00:00Z 1 1"),
+        try Parse("2026-11-22T14:00:00Z 1 1"),
+    }
+    mut days := [1]Day{}
+    Sum(samples[..], DaysFromCivil(2026, 11, 22), days[..])
+    t.Equal(days[0].Seconds, MaxGap)
+}
