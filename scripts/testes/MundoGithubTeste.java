@@ -19,7 +19,7 @@ public class MundoGithubTeste {
     static final List<String> erros = new ArrayList<>();
     static final List<Integer> apagados = new ArrayList<>();
     static byte[] recebido;
-    static int pedidos;
+    static int pedidos, paginas;
     static String base;
 
     public static void main(String[] args) throws Exception {
@@ -50,6 +50,12 @@ public class MundoGithubTeste {
         if (recebido == null || !Arrays.equals(recebido, conteudo)) erros.add("envio: o arquivo chegou diferente");
         if (!apagados.equals(List.of(4, 1))) erros.add("envio: apagou " + apagados + ", esperado [4, 1]");
         if (!assets.containsKey(2) || !assets.containsKey(3) || assets.size() != 3) erros.add("envio: ficaram " + assets.values());
+
+        // Sem dispatch.txt a pagina nao e avisada; com ele, o envio pede a Action pagina.yml do repositorio dele.
+        if (paginas != 0) erros.add("aviso da pagina sem dispatch.txt");
+        Files.writeString(drive.resolve("dispatch.txt"), "token-de-teste\nalguem/pack-teste\n");
+        s = roda(mundo, drive);
+        if (s != 0 || paginas != 1) erros.add("aviso da pagina: saiu com " + s + " e avisou " + paginas + " vez(es)");
 
         // Token que nao vale mais: avisa e sai com 1.
         tokenVale = false;
@@ -90,6 +96,10 @@ public class MundoGithubTeste {
             if (!nome.matches("mundo-\\d{8}-\\d{6}\\.tar\\.gz")) erros.add("nome do arquivo: " + nome);
             assets.put(9, nome);
             manda(x, 201, "{\"id\": 9}");
+        } else if (m.equals("POST") && p.equals("/repos/alguem/pack-teste/actions/workflows/pagina.yml/dispatches")) {
+            paginas++;
+            x.sendResponseHeaders(204, -1);
+            x.close();
         } else if (m.equals("GET") && p.equals("/repos/alguem/mundo-teste/releases/77/assets")) {
             StringBuilder b = new StringBuilder("[");
             for (var e : assets.entrySet()) {
