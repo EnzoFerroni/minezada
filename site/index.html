@@ -192,7 +192,7 @@ h2 { margin: 0 0 12px; font-size: 22px; font-weight: 600; color: var(--texto); }
 const paleta = {
   k: "#1b1b1b", w: "#f2f0ea", g: "#9a9a9a", G: "#5e5e5e", y: "#f6cf4b", Y: "#b8861b", c: "#6fe8e0", C: "#2a9d9a",
   e: "#3fd06a", E: "#1d7a3a", b: "#8a5a2b", B: "#5a3a1a", r: "#d23a3a", R: "#7d1616", s: "#c8d2dc", S: "#6c7a86",
-  o: "#e08a3a", O: "#9a5420", u: "#4a7fd4", U: "#2a4f94", p: "#e9a9c0", l: "#7cc243", L: "#4c8a24", t: "#b88a5a", h: "#d9b07a"
+  o: "#e08a3a", O: "#9a5420", u: "#4a7fd4", U: "#2a4f94", p: "#b04bf0", P: "#6a1fb0", l: "#7cc243", L: "#4c8a24", t: "#b88a5a", h: "#d9b07a"
 };
 const icones = {
   relogio: ["....kkkk....", "..kkyyyykk..", ".kyyyyyyyyk.", ".kyyyykyyyk.", "kyyyyykyyyyk", "kyyyyykyyyyk", "kyyyyykkkyyk", "kyyyyyyyyyyk", ".kyyyyyyyyk.", ".kYyyyyyyYk.", "..kkYYYYkk..", "....kkkk...."],
@@ -211,6 +211,8 @@ const icones = {
   coracaoVazio: ["............", ".kkk...kkk..", "kGGGk.kGGGk.", "kGggGkGgggk.", "kGgggggggGk.", "kGgggggggGk.", ".kGggggggk..", "..kGgggGk...", "...kGgGk....", "....kGk.....", ".....k......", "............"],
   coxa: ["............", ".......kkk..", "......kooOk.", ".....kooooOk", "....koooooOk", "...kooooooOk", "..koooooOOk.", ".kwkOOOOOk..", "kwwkkkkkk...", "kwk.........", ".k..........", "............"],
   coxaVazia: ["............", ".......kkk..", "......kGGGk.", ".....kGgggGk", "....kGggggGk", "...kGgggggGk", "..kGggggGGk.", ".kGkGGGGGk..", "kGGkkkkkk...", "kGk.........", ".k..........", "............"],
+  sino: ["....kkkk....", "...kyyyyk...", "..kyyyyyYk..", "..kyyyyyYk..", "..kyyyyyYk..", ".kyyyyyyyYk.", ".kyyyyyyyYk.", "kyyyyyyyyyYk", "kkkkkkkkkkkk", ".....kk.....", ".....kk.....", "............"],
+  portal: ["kkkkkkkkkkkk", "kppPPpPPpppk", "kpPPpPPpPPpk", "kPPpPPpPpPPk", "kpPpPPpPPpPk", "kPpPPpPPpPPk", "kpPPpPpPPpPk", "kPPpPPpPpPPk", "kpPpPPpPPpPk", "kPpPPpPPpPPk", "kpPPpPpPPpPk", "kkkkkkkkkkkk"],
   grama: ["llllllllllll", "lLllllLlllll", "lLlLllLllLll", "bLbLbbLbbLbb", "bbbLbbbbbbBb", "bBbbbbbBbbbb", "bbbbBbbbbbbb", "bbbbbbbbBbbb", "bBbbbbbbbbBb", "bbbbbBbbbbbb", "bbBbbbbbbBbb", "bbbbbbbbbbbb"]
 };
 const svg = nome => {
@@ -546,6 +548,13 @@ async function mapa() {
   const todas = (p ? p.jogadores : []).filter(j => j.saiu && j.saiu.x != null)
     .map(j => { const img = new Image(); img.crossOrigin = "anonymous"; img.src = cabeca(j.nick); img.onload = () => desenha(); return { x: j.saiu.x, z: j.saiu.z, dim: j.saiu.dimensao, nick: j.nick || j.uuid.slice(0, 8), img }; });
   let cabecas = todas.filter(c => c.dim === dim[2]);
+  // Vilas (um sino cada) e portais acesos de cada dimensao, quando a Action gerou.
+  const marcas = {};
+  for (const [d] of prontos) marcas[d[0]] = await pega(`${d[0]}-pontos.json`) || {};
+  const sino = new Image(); sino.src = svg("sino"); sino.onload = () => desenha();
+  const portal = new Image(); portal.src = svg("portal"); portal.onload = () => desenha();
+  const pontos = () => [...(marcas[dim[0]].vilas || []).map(v => ({ ...v, img: sino, nome: "Vila" })),
+    ...(marcas[dim[0]].portais || []).map(v => ({ ...v, img: portal, nome: `Portal do Nether (y ${v.y})` }))];
   const ctx = cv.getContext("2d");
   const desenha = () => {
     const dpr = devicePixelRatio || 1, W = box.clientWidth, H = box.clientHeight;
@@ -567,6 +576,12 @@ async function mapa() {
       ctx.stroke();
     };
     if (px >= 10) linhas(1, "rgba(0,0,0,.18)", 1);
+    for (const m of pontos()) {
+      if (!m.img.complete) continue;
+      const mx = (ox + (m.x - info.x + .5) * s) * dpr, mz = (oy + (m.z - info.z + .5) * s) * dpr, l = 20 * dpr;
+      ctx.fillStyle = "rgba(0,0,0,.6)"; ctx.fillRect(mx - l / 2 - 2 * dpr, mz - l / 2 - 2 * dpr, l + 4 * dpr, l + 4 * dpr);
+      ctx.drawImage(m.img, mx - l / 2, mz - l / 2, l, l);
+    }
     for (const c of cabecas) {
       if (!c.img.complete || !c.img.naturalWidth) continue;
       const cx = (ox + (c.x - info.x + .5) * s) * dpr, cz = (oy + (c.z - info.z + .5) * s) * dpr, l = 22 * dpr;
@@ -581,8 +596,9 @@ async function mapa() {
     if (chunks) linhas(16, "rgba(255,230,60,.75)", Math.max(1, dpr));
     if (rato) {
       const bx = Math.floor((rato.x - ox) / s) + info.x, bz = Math.floor((rato.y - oy) / s) + info.z;
-      const perto = cabecas.find(c => Math.abs(c.x - bx) <= 12 / s + 1 && Math.abs(c.z - bz) <= 12 / s + 1);
-      f3.textContent = `XZ: ${bx} / ${bz}\nChunk: ${Math.floor(bx / 16)} ${Math.floor(bz / 16)}${perto ? `\n${perto.nick} saiu aqui` : ""}`;
+      const raio = 12 / s + 1, ali = c => Math.abs(c.x - bx) <= raio && Math.abs(c.z - bz) <= raio;
+      const perto = cabecas.find(ali), marca = pontos().find(ali);
+      f3.textContent = `XZ: ${bx} / ${bz}\nChunk: ${Math.floor(bx / 16)} ${Math.floor(bz / 16)}${perto ? `\n${perto.nick} saiu aqui` : ""}${marca ? `\n${marca.nome}` : ""}`;
     } else f3.textContent = info.chunks === 1 ? "1 chunk explorado" : `${num(info.chunks)} chunks explorados`;
   };
   const centra = () => {

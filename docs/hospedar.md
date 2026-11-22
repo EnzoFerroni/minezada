@@ -152,7 +152,8 @@ A página do GitHub Pages mostra o mapa do mundo, o placar e o céu como o mundo
 
 A Action **Pagina** olha a cada meia hora se chegou mundo novo. Token vencido: o `iniciar` avisa no fim
 ("mundo não enviado para o GitHub") e o mundo do Drive continua salvo; gere outro e troque nos passos 3 e 4.
-Para mostrar no mapa onde cada um saiu do jogo: Settings → Secrets and variables → Actions → Variables,
+O mapa marca as vilas (pelo sino). Para mostrar também onde cada um saiu do jogo e os portais do Nether acesos
+(o de quem joga costuma ficar na base): Settings → Secrets and variables → Actions → Variables,
 `MOSTRAR_POSICOES` = `sim`.
 
 ## Trocar de host
