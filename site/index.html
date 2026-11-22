@@ -563,6 +563,15 @@ const cama = new Image(); cama.src = svg("cama");
 
 // Mapa num canvas sem suavizacao: cada bloco e um quadrado nitido em qualquer zoom e em qualquer navegador.
 // Uma aba por dimensao que ja tem mapa; o Nether e o End so aparecem depois que alguem andou por la.
+// As dimensoes dos mods que ja tem mapa entram depois, de dimensoes.json, com o nome daqui.
+const nomesDeDimensao = {
+  "aether:the_aether": "Aether", "undergarden:undergarden": "Undergarden",
+  "ad_astra:moon": "Lua", "ad_astra:mars": "Marte", "ad_astra:venus": "Vênus", "ad_astra:mercury": "Mercúrio",
+  "ad_astra:glacio": "Glacio", "ad_astra:earth_orbit": "Órbita da Terra", "ad_astra:moon_orbit": "Órbita da Lua",
+  "ad_astra:mars_orbit": "Órbita de Marte", "ad_astra:venus_orbit": "Órbita de Vênus",
+  "ad_astra:mercury_orbit": "Órbita de Mercúrio", "ad_astra:glacio_orbit": "Órbita de Glacio",
+};
+const nomeDaDimensao = id => nomesDeDimensao[id] || id.split(":").pop().replace(/_/g, " ").replace(/^./, c => c.toUpperCase());
 const dimensoes = [["mapa", "Superfície", "minecraft:overworld"], ["nether", "Nether", "minecraft:the_nether"], ["end", "End", "minecraft:the_end"]];
 // O que cada conquista conta, numa frase minha depois do nick ("Fulano entrou no Nether"). As do jogo e as dos mods
 // do pack que ja apareceram; conquista fora daqui nao entra no diario. As marcadas com ! sao desafios.
@@ -797,6 +806,7 @@ const ha = ms => {
 const tempo = m => m < 60 ? `${m} min` : `${Math.floor(m / 60)} h${m % 60 ? ` ${m % 60} min` : ""}`;
 async function mapa() {
   const box = document.getElementById("mapa"), cv = document.getElementById("tela"), f3 = document.getElementById("f3");
+  for (const d of (await pega("dimensoes.json")) || []) dimensoes.push([d.arquivo, nomeDaDimensao(d.id), d.id]);
   const prontos = (await Promise.all(dimensoes.map(async d => [d, await pega(`${d[0]}.json`)]))).filter(([, i]) => i);
   if (!prontos.length) { box.style.display = "none"; document.getElementById("mapa-nota").textContent = "O mapa ainda não foi gerado."; return; }
   let [dim, info] = prontos[0];

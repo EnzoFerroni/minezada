@@ -134,6 +134,23 @@ jobs:
             sword/bin/estruturas "$RUNNER_TEMP/mundo/world" _site/mapa-estruturas.json
             sword/bin/estruturas "$RUNNER_TEMP/mundo/world/DIM-1" _site/nether-estruturas.json
             sword/bin/estruturas "$RUNNER_TEMP/mundo/world/DIM1" _site/end-estruturas.json
+            # As dimensoes dos mods (o Aether, os planetas do Ad Astra, o Undergarden), cada uma em
+            # world/dimensions/<mod>/<nome>, so quando alguem ja foi. dimensoes.json diz a pagina quais tem mapa. O
+            # Undergarden e uma caverna com teto, como o Nether: lido por baixo dele.
+            lista=; for d in "$RUNNER_TEMP"/mundo/world/dimensions/*/*/; do
+              ls "$d"region/r.*.mca >/dev/null 2>&1 || continue
+              ns="$(basename "$(dirname "$d")")"; nome="$(basename "$d")"
+              case "$ns$nome" in *[!a-z0-9_.-]*) continue ;; esac
+              arq="dim-$ns-$nome"; teto=
+              [ "$ns:$nome" != undergarden:undergarden ] || teto="--teto 250"
+              sword/bin/mapa "$d" "_site/$arq.png" "_site/$arq.json" $teto || true
+              [ -f "_site/$arq.json" ] || continue
+              sword/bin/pontos "$d" "_site/$arq-pontos.json" $portais
+              sword/bin/estruturas "$d" "_site/$arq-estruturas.json"
+              [ "$POSICOES" != sim ] || sword/bin/calor "$d" "_site/$arq-calor.json"
+              lista="$lista${lista:+,}{\"arquivo\":\"$arq\",\"id\":\"$ns:$nome\"}"
+            done
+            echo "[$lista]" > _site/dimensoes.json
           fi
           echo "$NOME" > _site/mundo.txt
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
