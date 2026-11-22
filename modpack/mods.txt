@@ -128,6 +128,7 @@ xaeros-world-map | Mapa do mundo inteiro que você já explorou. Tecla M.
 xaeros-minimap-world-map-waystones-compatibility-forge | Ao ativar uma waystone, ela vira um marcador (waypoint) no minimapa e no mapa do Xaero.
 ok-zoomer | Zoom da câmera como no OptiFine: segure C e use a roda do mouse para ajustar.
 cubes-without-borders | Tela cheia sem bordas: em Opções → Vídeo, escolha o modo sem bordas em vez da tela cheia exclusiva.
+dynamic-torches | Luz dinâmica: tocha, lanterna e outros itens iluminam ao redor quando você os segura, com ou sem shader.
 map-atlases-forge | Atlas que junta seus mapas de papel em um livro. Receita: mapa preenchido, livro e slime ou garrafa de mel. Na hotbar ou na mão secundária, mostra os mapas como minimapa.
 corpse | Ao morrer, seus itens ficam guardados num corpo no lugar da morte, sem sumir.
 farmers-delight | Culinária: plantações, panela, tábua de corte e dezenas de comidas novas.
