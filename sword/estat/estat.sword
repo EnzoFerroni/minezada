@@ -2,6 +2,7 @@
 // que o placar mostra.
 package estat
 
+import "std/fs"
 import "std/json"
 import "std/mem"
 import "std/strings"
@@ -124,4 +125,23 @@ func Read(text []u8, mut a mem.Allocator) !Player {
         p.Diamonds = i64(d.GetNumber(m, "minecraft:diamond_ore", 0.0)) + i64(d.GetNumber(m, "minecraft:deepslate_diamond_ore", 0.0))
     }
     return p
+}
+
+// O nick de uuid em whitelist.json ou ops.json; vazio quando nao esta em nenhum.
+func Nick(dir string, uuid string, mut a mem.Allocator) !string {
+    files := [2]string{"whitelist.json", "ops.json"}
+    for f in files {
+        path := try strings.Concat(a, dir, "/", f)
+        text := fs.ReadAll(path, a) catch continue
+        d := json.Parse(text, a) catch continue
+        root := d.Root()
+        for i in 0..d.Len(root) {
+            if e := d.At(root, i) {
+                if strings.Equal(d.GetText(e, "uuid"), uuid) {
+                    return try strings.Concat(a, d.GetText(e, "name"))
+                }
+            }
+        }
+    }
+    return ""
 }

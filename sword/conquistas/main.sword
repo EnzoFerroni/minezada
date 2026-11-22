@@ -1,0 +1,161 @@
+// conquistas: quem fez cada conquista e quando, num JSON para a pagina.
+//
+//   conquistas <pasta do servidor> <saida.json>
+//
+// Le world/advancements/<uuid>.json e, como o placar, tira o nick de whitelist.json e ops.json. Escreve
+// {"conquistas": [{nick, id, quando_ms}, ...]}, da mais nova para a mais antiga. Ficam de fora as receitas (o
+// jogo conta cada receita aprendida como conquista), as tecnicas dos mods e a raiz de cada aba, que todo mundo
+// ganha ao entrar. O nome de cada uma, em portugues, fica na pagina.
+
+import "std/bytes"
+import "std/fs"
+import "std/io"
+import "std/json"
+import "std/mem"
+import "std/os"
+import "std/strings"
+import "minezada/estat"
+import "minezada/hist"
+
+struct Done {
+    nick string
+    id   string
+    when i64
+}
+
+// Fica de fora: receita, tecnica, ou a raiz de uma aba ("create:root", "undergarden:undergarden/root").
+func wanted(id string) bool {
+    if strings.Contains(id, "recipe") || strings.Contains(id, "technical") {
+        return false
+    }
+    mut i := id.len
+    for i > 0 && id[i - 1] != 47 && id[i - 1] != 58 {
+        i -= 1
+    }
+    return !strings.Equal(id[i..], "root")
+}
+
+// A mais nova primeiro; na mesma hora, por nick e depois pelo id, para a saida nao depender da ordem dos arquivos.
+func before(a Done, b Done) bool {
+    if a.when != b.when {
+        return a.when > b.when
+    }
+    if !strings.Equal(a.nick, b.nick) {
+        return less(a.nick, b.nick)
+    }
+    return less(a.id, b.id)
+}
+
+func less(a string, b string) bool {
+    mut i u64 = 0
+    for i < a.len && i < b.len {
+        if a[i] != b[i] {
+            return a[i] < b[i]
+        }
+        i += 1
+    }
+    return a.len < b.len
+}
+
+func main() !int {
+    mut room := [4]string{}
+    args := os.Args(room[..])
+    if args.len != 3 {
+        try io.Print("uso: conquistas <pasta do servidor> <saida.json>\n")
+        return 2
+    }
+    mut sys := mem.NewSystem()
+    dir := try strings.Concat(&sys, args[1], "/world/advancements")
+    none := [0]fs.Entry{}
+    files := fs.ReadDir(dir, &sys) catch none[..]
+    mut all := mem.Alloc[Done](&sys, 1 << 14) orelse return error.OutOfMemory
+    mut n u64 = 0
+    mut bad u64 = 0
+    for f in files {
+        if f.IsDir || !strings.HasSuffix(f.Name, ".json") {
+            continue
+        }
+        uuid := f.Name[0..f.Name.len - 5]
+        mut nick := try estat.Nick(args[1], uuid, &sys)
+        if nick.len == 0 {
+            nick = uuid[0..8]
+        }
+        text := fs.ReadAll(try strings.Concat(&sys, dir, "/", f.Name), &sys) catch |e| {
+            try io.Printf("AVISO: {} nao foi lido: {}\n", f.Name, e.Message())
+            bad += 1
+            continue
+        }
+        d := json.Parse(text, &sys) catch |e| {
+            try io.Printf("AVISO: {} nao foi lido: {}\n", f.Name, e.Message())
+            bad += 1
+            continue
+        }
+        root := d.Root()
+        for i in 0..d.Len(root) {
+            if e := d.At(root, i) {
+                id := d.KeyAt(e)
+                if !wanted(id) || d.Kind(e) != json.Kind.Object {
+                    continue
+                }
+                if done := d.Get(e, "done") {
+                    if !d.Truth(done) {
+                        continue
+                    }
+                } else {
+                    continue
+                }
+                // A conquista e da hora do ultimo criterio que faltava.
+                mut when i64 = 0
+                if crit := d.Get(e, "criteria") {
+                    for k in 0..d.Len(crit) {
+                        if c := d.At(crit, k) {
+                            t := hist.Stamp(d.Text(c)) catch 0
+                            if t > when {
+                                when = t
+                            }
+                        }
+                    }
+                }
+                if when > 0 && n < all.len {
+                    all[n] = Done{nick: nick, id: id, when: when * 1000}
+                    n += 1
+                }
+            }
+        }
+    }
+    for i in 1..n {
+        mut j := i
+        for j > 0 && before(all[j], all[j - 1]) {
+            tmp := all[j]
+            all[j] = all[j - 1]
+            all[j - 1] = tmp
+            j -= 1
+        }
+    }
+
+    mut out := try bytes.New(&sys, 4096)
+    mut w := json.NewWriter(&out)
+    w.BeginObject()
+    w.Key("conquistas")
+    w.BeginArray()
+    for i in 0..n {
+        w.BeginObject()
+        w.Key("nick")
+        w.Str(all[i].nick)
+        w.Key("id")
+        w.Str(all[i].id)
+        w.Key("quando_ms")
+        w.Int(all[i].when)
+        w.EndObject()
+    }
+    w.EndArray()
+    w.EndObject()
+    try w.Err()
+    try out.WriteByte(10)
+    try fs.WriteAll(args[2], out.Bytes())
+    try io.Printf("{} conquistas\n", n)
+    if bad > 0 {
+        return 1
+    }
+    return 0
+}

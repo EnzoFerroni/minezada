@@ -24,3 +24,18 @@ func TestHeatsSmall(mut t *testing.T) !void {
     mut out := [1]Heat{}
     t.Equal(try Heats(heats, 0, out[..]), 1)
 }
+
+// Na mesma regiao: o chunk (0, 0) tem um bastiao e uma casa de banhos; o (1, 0) ainda esta em geracao e o
+// iglu dele fica de fora; o (2, 1) tem uma estrutura que o jogo marcou INVALID e um iglu que comeca no chunk
+// (-3, 1).
+func TestStarts(mut t *testing.T) !void {
+    mut out := [8]Start{}
+    n := try Starts(heats, out[..])
+    t.Equal(n, 3)
+    t.Check(strEq(out[0].Name(), "minecraft:bastion_remnant"))
+    t.Equal(out[0].X, 8)
+    t.Check(strEq(out[1].Name(), "dungeons_arise:bathhouse"))
+    t.Check(strEq(out[2].Name(), "minecraft:igloo"))
+    t.Equal(out[2].X, -40)
+    t.Equal(out[2].Z, 24)
+}

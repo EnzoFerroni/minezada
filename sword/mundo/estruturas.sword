@@ -1,0 +1,59 @@
+import "minezada/nbt"
+
+// Onde uma estrutura do mundo comeca: o bloco do meio do chunk de partida e o id ("minecraft:bastion_remnant",
+// "dungeons_arise:bathhouse"). O id e copiado para dentro, porque o chunk lido some na proxima leitura.
+struct Start {
+    X   i64
+    Z   i64
+    Id  [64]u8
+    Len u64
+}
+
+func (s *Start) Name() string {
+    return string(s.Id[0..s.Len])
+}
+
+// As estruturas que comecam nos chunks completos do arquivo de regiao path, em out, na ordem do arquivo. Diz
+// quantas. Um chunk que o jogo so comecou a gerar tambem ja sabe que estrutura vai ter, mas ninguem viu ela
+// ainda: fica de fora, como no mapa.
+func Starts(path string, mut out []Start) !u64 {
+    mut r := try Open(path)
+    mut k u64 = 0
+    chunks u64 = 1024
+    for i in 0..chunks {
+        plain := r.Chunk(i) catch |e| {
+            r.Close()
+            return e
+        }
+        if plain.len > 0 {
+            k = starts(plain, out, k) catch k
+        }
+    }
+    r.Close()
+    return k
+}
+
+func starts(b []u8, mut out []Start, from u64) !u64 {
+    root := try nbt.Root(b)
+    if !strEq(try nbt.Text(b, try nbt.Find(b, root, "Status")), "minecraft:full") {
+        return from
+    }
+    all := try nbt.Find(b, try nbt.Find(b, root, "structures"), "starts")
+    mut k := from
+    mut f := try nbt.FirstIn(b, all)
+    for f.Kind != 0 {
+        id := try nbt.Text(b, try nbt.Find(b, f, "id"))
+        if id.len > 0 && id.len <= 64 && !strEq(id, "INVALID") && k < out.len {
+            mut s := Start{X: 0, Z: 0, Id: [64]u8{}, Len: id.len}
+            s.X = (try nbt.Number(b, try nbt.Find(b, f, "ChunkX"))) * 16 + 8
+            s.Z = (try nbt.Number(b, try nbt.Find(b, f, "ChunkZ"))) * 16 + 8
+            for j in 0..id.len {
+                s.Id[j] = id[j]
+            }
+            out[k] = s
+            k += 1
+        }
+        f = try nbt.After(b, f)
+    }
+    return k
+}
