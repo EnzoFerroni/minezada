@@ -68,7 +68,29 @@ public class MundoGithub {
                 HttpResponse.BodyHandlers.ofString());
             if (d.statusCode() != 204) System.out.println("AVISO: nao consegui apagar " + a.get("name") + " (HTTP " + d.statusCode() + ").");
         }
-        System.out.println("Mundo no GitHub: " + nome + ". A pagina atualiza em ate meia hora.");
+        System.out.println("Mundo no GitHub: " + nome + ".");
+        avisarPagina(Path.of(args[1]).resolve("dispatch.txt"));
+    }
+
+    // Pede a Action da pagina agora (o cron dela o GitHub atrasa por horas). Usa o dispatch.txt do selo, porque o token
+    // daqui nao enxerga as Actions do repositorio do pack. Sem dispatch.txt ou com qualquer falha, a pagina so
+    // atualiza no proximo horario do GitHub.
+    static void avisarPagina(Path conf) {
+        try {
+            if (!Files.exists(conf)) { System.out.println("A pagina atualiza no proximo horario do GitHub (sem dispatch.txt)."); return; }
+            List<String> l = new ArrayList<>();
+            for (String s : Files.readAllLines(conf, StandardCharsets.UTF_8)) if (!(s = s.replace("﻿", "").trim()).isEmpty()) l.add(s);
+            String repo = l.size() > 1 ? l.get(1) : "EnzoFerroni/minezada";
+            if (l.isEmpty() || !repo.matches("[\\w.-]+/[\\w.-]+")) return;
+            HttpResponse<String> r = HTTP.send(HttpRequest.newBuilder(URI.create(API + "/repos/" + repo + "/actions/workflows/pagina.yml/dispatches"))
+                .timeout(Duration.ofSeconds(20)).header("Authorization", "Bearer " + l.get(0))
+                .header("Accept", "application/vnd.github+json").header("X-GitHub-Api-Version", "2022-11-28")
+                .POST(HttpRequest.BodyPublishers.ofString("{\"ref\":\"main\"}")).build(), HttpResponse.BodyHandlers.ofString());
+            System.out.println(r.statusCode() == 204 ? "Pagina avisada: atualiza em poucos minutos."
+                : "AVISO: o GitHub recusou o aviso da pagina (HTTP " + r.statusCode() + "); ela atualiza no proximo horario.");
+        } catch (Exception e) {
+            System.out.println("AVISO: nao consegui avisar a pagina (" + e.getClass().getSimpleName() + ").");
+        }
     }
 
     // O release "mundo"; na primeira vez, cria (o repositorio precisa de um commit, por exemplo um README).

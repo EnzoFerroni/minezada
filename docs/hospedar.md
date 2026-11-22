@@ -152,7 +152,8 @@ Configurado uma vez só:
    `MUNDO_TOKEN`, o mesmo token.
 5. Settings → Pages → Source: **GitHub Actions**.
 
-A Action **Pagina** olha a cada meia hora se chegou mundo novo. Token vencido: o `iniciar` avisa no fim
+A Action **Pagina** olha a cada meia hora se chegou mundo novo, e o envio ainda pede ela na hora quando existe o
+`dispatch.txt` do selo (seção abaixo). Token vencido: o `iniciar` avisa no fim
 ("mundo não enviado para o GitHub") e o mundo do Drive continua salvo; gere outro e troque nos passos 3 e 4.
 Para mostrar no mapa onde cada um saiu do jogo: Settings → Secrets and variables → Actions → Variables,
 `MOSTRAR_POSICOES` = `sim`.
