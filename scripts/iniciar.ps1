@@ -294,6 +294,7 @@ if (-not ($cf -or $tunel)) { Write-Warning 'Nenhum tunel conectou: so esta maqui
 Add-Type -Name Energia -Namespace Minezada -MemberDefinition '[DllImport("kernel32.dll")] public static extern uint SetThreadExecutionState(uint f);'
 [void][Minezada.Energia]::SetThreadExecutionState(2147483649)  # 0x80000001 = ES_CONTINUOUS | ES_SYSTEM_REQUIRED (hex vira negativo no PS 5.1)
 
+$avisar = { param($fluxo) if ($sync) { & $cfg.JAVA (Join-Path $PSScriptRoot 'Avisar.java') $sync $fluxo | ForEach-Object { Write-Host $_ } } }
 Push-Location $server
 try {
     Write-Host "Iniciando servidor com $($cfg.RAM) de RAM, na janela propria (fechar ela ou digitar stop salva e desliga)."
@@ -313,7 +314,36 @@ try {
     $datas = { param($arqs) ($arqs | ForEach-Object { if (Test-Path $_) { (Get-Item $_).LastWriteTimeUtc.Ticks } }) -join ',' }
     $jsons = (Join-Path $server 'whitelist.json'), (Join-Path $server 'ops.json')
     $visto = & $datas $lista; $vistoJogo = & $datas $jsons
+    # A cada 5 min pede a Action do status (selo do README); a cada 30 min manda o mundo para o Drive e o GitHub.
+    $proxAviso = (Get-Date).AddMinutes(2); $proxSalvar = (Get-Date).AddMinutes(30)
     while (-not $proc.WaitForExit(30000)) {
+        if ($sync -and (Get-Date) -ge $proxAviso) {
+            $proxAviso = (Get-Date).AddMinutes(5)
+            & $avisar 'status.yml'
+        }
+        if ($sync -and (Get-Date) -ge $proxSalvar) {
+            $proxSalvar = (Get-Date).AddMinutes(30)
+            $log = Join-Path $server 'logs\latest.log'
+            $antes = @(Select-String -Pattern 'Saved the game' -Path $log).Count
+            try {
+                # save-off + save-all flush deixam os arquivos do mundo parados enquanto o tar le.
+                $proc.StandardInput.WriteLine('save-off'); $proc.StandardInput.WriteLine('save-all flush')
+                for ($i = 0; $i -lt 90 -and @(Select-String -Pattern 'Saved the game' -Path $log).Count -le $antes; $i++) { Start-Sleep -Seconds 2 }
+                $itens = @('world', 'ops.json', 'whitelist.json', 'banned-players.json', 'banned-ips.json') |
+                    Where-Object { Test-Path (Join-Path $server $_) }
+                & $tar -czf "$estado.tmp" -C $server @itens
+                $ok = -not $LASTEXITCODE
+            }
+            catch { Write-Warning "Salvamento do meio da sessao falhou: $($_.Exception.Message)"; $ok = $false }
+            finally { try { $proc.StandardInput.WriteLine('save-on') } catch { } }
+            if ($ok) {
+                Move-Item -Force "$estado.tmp" $estado
+                Write-Host 'Mundo salvo no Drive (a trava continua com esta maquina).'
+                & $cfg.JAVA (Join-Path $PSScriptRoot 'MundoGithub.java') $estado $sync | ForEach-Object { Write-Host $_ }
+                if (-not $LASTEXITCODE) { & $avisar 'pagina.yml' }
+            }
+            else { Remove-Item "$estado.tmp" -ErrorAction SilentlyContinue; Write-Warning 'Nao salvei o mundo no Drive agora; tento de novo em 30 min.' }
+        }
         $jogo = & $datas $jsons
         if ($jogo -ne $vistoJogo) {
             $vistoJogo = $jogo
@@ -335,6 +365,7 @@ finally {
     Pop-Location
     [void][Minezada.Energia]::SetThreadExecutionState(2147483648)  # 0x80000000 = volta ao normal
     foreach ($t in $cf, $tunel) { if ($t) { Stop-Process -Id $t.Id -Force -ErrorAction SilentlyContinue } }
+    & $avisar 'status.yml'
     if ($sync) {
         Write-Host 'Enviando mundo para a pasta sincronizada...'
         $itens = @('world', 'ops.json', 'whitelist.json', 'banned-players.json', 'banned-ips.json') |
@@ -354,6 +385,7 @@ finally {
             Write-Host 'Pronto. Outro host ja pode iniciar.'
             # Depois da trava: um envio lento ao GitHub nao segura o proximo host. Sem github.txt, nao faz nada.
             & $cfg.JAVA (Join-Path $PSScriptRoot 'MundoGithub.java') $estado $sync | ForEach-Object { Write-Host $_ }
+            if (-not $LASTEXITCODE) { & $avisar 'pagina.yml' }
         }
     }
 }
