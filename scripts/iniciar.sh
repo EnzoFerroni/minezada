@@ -217,6 +217,8 @@ foto_do_mundo() {
   fi
   echo "save-on" >&4 2>/dev/null || true
   [ $ok -eq 0 ] && mv -f "$foto.tmp" "$foto" || { rm -f "$foto.tmp"; return 0; }
+  # Copia de seguranca no Drive (backups/sessao-atual.tar.gz): se a maquina cair, outro host ainda tem a sessao.
+  mkdir -p "$SYNC_DIR/backups" && cp -f "$foto" "$SYNC_DIR/backups/sessao-atual.tar.gz" || echo "Nao copiei a sessao para o Drive." >&2
   "${JAVA:-java}" "$(dirname "${BASH_SOURCE[0]}")/MundoGithub.java" "$foto" "$SYNC_DIR" > /dev/null || true
 }
 

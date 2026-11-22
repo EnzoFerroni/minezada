@@ -322,6 +322,13 @@ function Foto-Do-Mundo {
     try { $proc.StandardInput.WriteLine('save-on') } catch { }
     if (-not $ok) { Remove-Item -Force "$foto.tmp" -ErrorAction SilentlyContinue; return }
     Move-Item -Force "$foto.tmp" $foto
+    # Copia de seguranca no Drive (backups\sessao-atual.tar.gz): se o PC cair, outro host ainda tem a sessao. O
+    # mundo.tar.gz e a trava continuam so do stop.
+    try {
+        $bk = Join-Path $sync 'backups'
+        New-Item -ItemType Directory -Force $bk | Out-Null
+        Copy-Item -Force $foto (Join-Path $bk 'sessao-atual.tar.gz')
+    } catch { Write-Warning "Nao copiei a sessao para o Drive: $($_.Exception.Message)" }
     Start-Process -WindowStyle Hidden -FilePath $cfg.JAVA -ArgumentList @("`"$(Join-Path $PSScriptRoot 'MundoGithub.java')`"", "`"$foto`"", "`"$sync`"")
 }
 

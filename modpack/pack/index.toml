@@ -216,6 +216,11 @@ hash = "54bd36ecf965dee3a068ffc1a55e5c8b82c2daa62be88f51e4f2c9f5945df3f0"
 metafile = true
 
 [[files]]
+file = "mods/dynamic-torches.pw.toml"
+hash = "8948152948e23bfadde65643b0bb7924872f561065f5122ee2df0e98797de739"
+metafile = true
+
+[[files]]
 file = "mods/easy-anvils.pw.toml"
 hash = "9b825405ec04b3b440f657cb1f7ec28875643528f376a6071673792a33c77194"
 metafile = true
@@ -712,7 +717,7 @@ metafile = true
 
 [[files]]
 file = "config/Veinminer/settings.json"
-hash = "2bd9383d76ad0ea12c1a5980c9992b103a38dc2efbc8781232e6eeb3668f14ff"
+hash = "1273c142b4a9e4c915bacfaaff3634023aedb8fc5a8a70245d150a5753bbdcac"
 
 [[files]]
 file = "config/sodium-extra-options.json"

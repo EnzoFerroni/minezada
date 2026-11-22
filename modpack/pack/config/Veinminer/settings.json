@@ -6,7 +6,7 @@
     "needCorrectTool": false,
     "searchRadius": 1,
     "permissionRestricted": false,
-    "mergeItemDrops": false,
+    "mergeItemDrops": true,
     "autoUpdate": false,
     "decreaseDurability": true,
     "hungerPerBlock": 0.0,
