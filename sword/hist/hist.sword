@@ -101,6 +101,20 @@ func Parse(line string) !Sample {
     return Sample{Unix: days * 86400 + secs, Online: on, Players: players}
 }
 
+// "2026-11-22 13:39:13 -0300", a hora com fuso que o jogo grava em cada conquista, em segundos desde 1970 (UTC).
+func Stamp(s string) !i64 {
+    if s.len != 25 || s[4] != 45 || s[10] != 32 || s[19] != 32 || (s[20] != 43 && s[20] != 45) {
+        return error.BadLine
+    }
+    days := DaysFromCivil(try digits(s, 0, 4), try digits(s, 5, 2), try digits(s, 8, 2))
+    secs := (try digits(s, 11, 2)) * 3600 + (try digits(s, 14, 2)) * 60 + (try digits(s, 17, 2))
+    mut zone := (try digits(s, 21, 2)) * 3600 + (try digits(s, 23, 2)) * 60
+    if s[20] == 45 {
+        zone = -zone
+    }
+    return days * 86400 + secs - zone
+}
+
 func LocalDay(unix i64) i64 {
     t := unix + Brasilia
     if t >= 0 {

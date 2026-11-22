@@ -1,0 +1,9 @@
+{
+  "minecraft:husbandry/breed_an_animal": {
+    "criteria": {
+      "bred": "2026-11-21 12:00:00 -0300"
+    },
+    "done": true
+  },
+  "DataVersion": 3955
+}
