@@ -1,0 +1,28 @@
+package estat
+
+import "std/testing"
+
+const sample = "{\"stats\":{\"minecraft:custom\":{\"minecraft:play_time\":72000,\"minecraft:deaths\":3,\"minecraft:mob_kills\":7,\"minecraft:walk_one_cm\":150000,\"minecraft:sprint_one_cm\":50000,\"minecraft:boat_one_cm\":100000,\"minecraft:jump\":42},\"minecraft:mined\":{\"minecraft:stone\":120,\"minecraft:diamond_ore\":2,\"minecraft:deepslate_diamond_ore\":3,\"create:zinc_ore\":4},\"minecraft:killed\":{\"minecraft:zombie\":5,\"minecraft:creeper\":2},\"minecraft:killed_by\":{\"minecraft:creeper\":2,\"minecraft:skeleton\":1},\"minecraft:crafted\":{\"minecraft:torch\":64,\"create:cogwheel\":8}},\"DataVersion\":3955}"
+
+func TestRead(mut t *testing.T) !void {
+    p := try Read([]u8(sample), t.Mem)
+    t.Equal(p.Ticks, 72000)
+    t.Equal(p.Deaths, 3)
+    t.Equal(p.MobKills, 7)
+    t.Equal(p.WalkCm, 200000)
+    t.Equal(p.TotalCm, 300000)
+    t.Equal(p.Mined, 129)
+    t.Equal(p.Diamonds, 5)
+    t.Equal(p.MostMined.Name, "stone")
+    t.Equal(p.MostKill.Name, "zombie")
+    t.Equal(p.MostKill.Count, 5)
+    t.Equal(p.KilledBy.Name, "creeper")
+    t.Equal(p.Crafted, 72)
+    t.Equal(p.Jumps, 42)
+}
+
+func TestEmpty(mut t *testing.T) !void {
+    p := try Read([]u8("{\"stats\":{}}"), t.Mem)
+    t.Equal(p.Ticks, 0)
+    t.Equal(p.MostMined.Name, "")
+}

@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minezada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gui: #c6c6c6; --gui-claro: #ffffff; --gui-escuro: #555555; --borda: #000000;
+  --slot: #8b8b8b; --slot-claro: #ffffff; --slot-escuro: #373737;
+  --texto: #3f3f3f; --branco: #ffffff; --sombra: #3f3f3f; --cinza: #a8a8a8;
+  --verde: #55ff55; --vermelho: #ff5555; --amarelo: #ffff55; --ouro: #ffaa00;
+  --fundo: #2b1d14;
+}
+* { box-sizing: border-box; }
+html { background: var(--fundo); }
+body {
+  margin: 0; color: var(--texto); background-color: var(--fundo);
+  font: 18px/1.35 "Pixelify Sans", ui-monospace, monospace;
+  -webkit-font-smoothing: none; image-rendering: pixelated;
+}
+main { max-width: 1080px; margin: 0 auto; padding: 0 16px 48px; }
+img, canvas { image-rendering: pixelated; }
+
+/* topo: o ceu do mundo no ultimo salvamento, desenhado em codigo, com a grama embaixo */
+.ceu { position: relative; height: 292px; overflow: hidden; }
+.ceu canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ceu .titulo { position: absolute; left: 0; right: 0; top: 46px; padding: 0 16px; text-align: center; color: #fff; text-shadow: 2px 2px 0 #1e1e1e; }
+h1 { margin: 0 0 14px; font: 400 clamp(28px, 7vw, 56px)/1.1 "Press Start 2P", monospace; letter-spacing: 0; color: #f4f4f4; text-shadow: 4px 4px 0 #2a2a2a; }
+.ceu .clima { font-size: 20px; }
+.ceu .quando { font-size: 15px; color: #f4f4f4; }
+.ceu .clima, .ceu .quando { display: table; margin: 4px auto 0; padding: 0 6px; background: rgba(0, 0, 0, .35); }
+.dragao {
+  margin: 0 0 22px; padding: 10px 14px; text-align: center; color: #f0c8ff; font-size: 20px; text-shadow: 2px 2px 0 #1a0024;
+  background: #2a0a3a; border: 3px solid #000; box-shadow: inset 3px 3px 0 #6a2a8a, inset -3px -3px 0 #14001e;
+}
+
+/* painel no estilo das telas do jogo: cinza, relevo claro em cima e escuro embaixo, contorno preto */
+.painel {
+  background: var(--gui); border: 3px solid var(--borda); border-radius: 6px;
+  box-shadow: inset 3px 3px 0 var(--gui-claro), inset -3px -3px 0 var(--gui-escuro);
+  padding: 16px 18px 18px; margin-bottom: 22px;
+}
+h2 { margin: 0 0 12px; font-size: 22px; font-weight: 600; color: var(--texto); }
+.nota { margin: 10px 0 0; font-size: 16px; color: #555; }
+
+/* slot de inventario: fundo cinza escuro afundado */
+.slot {
+  position: relative; background: var(--slot);
+  box-shadow: inset 2px 2px 0 var(--slot-escuro), inset -2px -2px 0 var(--slot-claro);
+}
+
+/* botao do jogo */
+.botao {
+  font: inherit; font-size: 16px; color: var(--branco); text-shadow: 2px 2px 0 var(--sombra);
+  background: #727272; border: 2px solid var(--borda); padding: 6px 12px; cursor: pointer; border-radius: 0;
+  box-shadow: inset 2px 2px 0 #aaaaaa, inset -2px -3px 0 #4a4a4a;
+}
+.botao:hover { background: #7f8cbf; box-shadow: inset 2px 2px 0 #b5c0ee, inset -2px -3px 0 #4f5a8a; }
+.botao[aria-pressed="true"] { background: #5d8a3a; box-shadow: inset 2px 2px 0 #8fc068, inset -2px -3px 0 #3c5d22; }
+
+/* linha da lista de Multijogador */
+.servidor {
+  display: grid; grid-template-columns: 72px 1fr auto; gap: 4px 14px; align-items: start;
+  background: rgba(0, 0, 0, .55); border: 2px solid #000; outline: 2px solid #8b8b8b; outline-offset: -4px;
+  padding: 12px; margin-bottom: 22px; color: var(--branco); text-shadow: 2px 2px 0 var(--sombra);
+}
+.servidor img { width: 72px; height: 72px; grid-row: span 3; }
+.servidor .nome { font-size: 22px; font-weight: 600; }
+.servidor .motd { color: #d8d8d8; }
+.servidor .extra { color: #bdbdbd; font-size: 15px; }
+.servidor .direita { grid-row: 1; grid-column: 3; display: flex; align-items: center; gap: 8px; color: #f0f0f0; }
+@media (max-width: 560px) {
+  .servidor { grid-template-columns: 56px 1fr; }
+  .servidor img { width: 56px; height: 56px; grid-row: span 4; }
+  .servidor .direita { grid-row: auto; grid-column: 2; }
+}
+.sinal { display: inline-flex; align-items: flex-end; gap: 2px; height: 16px; }
+.sinal i { display: block; width: 4px; background: #333; box-shadow: 1px 1px 0 #000; }
+.sinal.on i { background: var(--verde); }
+
+/* mapa */
+#mapa { position: relative; height: 62vh; min-height: 320px; overflow: hidden; background: #22262b; cursor: grab; touch-action: none; }
+#mapa.arrastando { cursor: grabbing; }
+#mapa canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+#f3 {
+  position: absolute; left: 8px; top: 8px; padding: 2px 6px; background: rgba(80, 80, 80, .55);
+  color: #e0e0e0; text-shadow: 2px 2px 0 #333; font-size: 16px; pointer-events: none; white-space: pre;
+}
+.controles { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+
+/* historico: colunas de blocos de grama */
+#grafico { position: relative; }
+#grafico canvas { width: 100%; height: 200px; display: block; }
+.eixo { display: flex; justify-content: space-between; font-size: 15px; color: #555; margin-top: 4px; }
+
+/* tooltip do jogo: fundo quase preto, borda roxa */
+#tooltip {
+  position: fixed; z-index: 10; pointer-events: none; display: none; max-width: 260px;
+  background: rgba(16, 0, 16, .94); color: var(--branco); text-shadow: 2px 2px 0 #3f3f3f;
+  padding: 6px 8px; font-size: 16px; border: 2px solid #25015b; outline: 2px solid rgba(16, 0, 16, .94);
+  box-shadow: inset 0 0 0 1px #5000a0;
+}
+#tooltip .t { color: var(--amarelo); }
+#tooltip .c { color: var(--cinza); }
+
+/* conquistas */
+.conquistas { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+.conquista { display: grid; grid-template-columns: 52px 1fr; gap: 10px; align-items: center; padding: 10px; background: #1e1e1e; border: 2px solid #000; color: var(--branco); text-shadow: 2px 2px 0 #000; }
+.conquista .icone { width: 52px; height: 52px; display: grid; place-items: center; background: #c6a24a; box-shadow: inset 2px 2px 0 #f5d77a, inset -2px -2px 0 #7a5d1a; }
+.conquista .icone img { width: 36px; height: 36px; }
+.conquista .titulo { color: var(--amarelo); font-size: 17px; }
+.conquista .lider { display: flex; align-items: center; gap: 6px; margin-top: 2px; min-width: 0; }
+.conquista .lider span:nth-child(2) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.conquista .lider img { width: 20px; height: 20px; }
+.conquista .valor { color: var(--verde); font-size: 20px; }
+.conquista .resto { grid-column: 1 / -1; font-size: 15px; color: var(--cinza); display: flex; gap: 12px; flex-wrap: wrap; }
+.conquista .resto b { font-weight: 400; color: #c0c0c0; }
+
+/* inventario de cada jogador */
+.jogadores { display: grid; gap: 16px; margin-top: 16px; }
+.jogador { padding: 12px; background: #b5b5b5; box-shadow: inset 2px 2px 0 #e0e0e0, inset -2px -2px 0 #6a6a6a; border: 2px solid #000; }
+.jogador .cab { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.jogador .cab .slot { width: 56px; height: 56px; display: grid; place-items: center; }
+.jogador .cab img { width: 44px; height: 44px; }
+.jogador .cab .nick { font-size: 22px; font-weight: 600; }
+.jogador .cab .sub { font-size: 15px; color: #4a4a4a; }
+.slots { display: grid; grid-template-columns: repeat(auto-fill, 56px); gap: 4px; }
+.slots .slot { width: 56px; height: 56px; display: grid; place-items: center; cursor: default; }
+.slots .slot img { width: 30px; height: 30px; margin: -10px 0 0 -8px; }
+.slots .slot .n {
+  position: absolute; right: 3px; bottom: 0; font-size: 15px; color: var(--branco); text-shadow: 2px 2px 0 var(--sombra);
+}
+.slots .slot.vazio img { opacity: .35; }
+.slots .slot:hover { background: #a3a3a3; }
+.barras { display: flex; flex-wrap: wrap; gap: 4px 18px; align-items: center; margin: 0 0 10px; }
+.barra { display: flex; gap: 1px; }
+.barra span { position: relative; width: 18px; height: 18px; background-size: 18px 18px; }
+.barra span i { position: absolute; inset: 0; background-size: 18px 18px; }
+.nivel { color: #80ff20; font-size: 20px; text-shadow: 2px 2px 0 #1f3f00; }
+.dim { font-size: 15px; padding: 1px 6px; border: 2px solid #000; color: #fff; text-shadow: 1px 1px 0 #000; }
+.dim.superficie { background: #4f8a2a; } .dim.nether { background: #8a1f1f; } .dim.end { background: #5a2a8a; }
+.vazio-msg { color: #555; }
+</style>
+</head>
+<body>
+<div class="ceu" id="ceu"><canvas id="ceu-tela"></canvas>
+  <div class="titulo"><h1>MINEZADA</h1><div class="clima" id="clima"></div><div class="quando" id="quando"></div></div>
+</div>
+<main>
+  <div class="dragao" id="dragao" hidden>O Dragão do Ender foi derrotado</div>
+
+  <div class="servidor" id="servidor">
+    <img id="servidor-icone" alt="">
+    <div class="nome">Minezada</div>
+    <div class="direita"><span id="servidor-jog">…</span><span class="sinal" id="sinal"><i style="height:4px"></i><i style="height:7px"></i><i style="height:10px"></i><i style="height:13px"></i><i style="height:16px"></i></span></div>
+    <div class="motd" id="servidor-motd">Consultando…</div>
+    <div class="extra" id="servidor-extra"></div>
+  </div>
+
+  <section class="painel">
+    <h2>Mapa do mundo</h2>
+    <div id="mapa" class="slot"><canvas id="tela"></canvas><div id="f3"></div></div>
+    <div class="controles">
+      <button class="botao" id="mais">Aproximar</button>
+      <button class="botao" id="menos">Afastar</button>
+      <button class="botao" id="centro">Ver tudo</button>
+      <button class="botao" id="chunks" aria-pressed="false">Bordas dos chunks</button>
+    </div>
+    <p class="nota" id="mapa-nota">Arraste para mover; roda do mouse ou dois dedos para aproximar.</p>
+  </section>
+
+  <section class="painel">
+    <h2>Horas ligado por dia</h2>
+    <div id="grafico" class="slot"><canvas id="barras"></canvas></div>
+    <div class="eixo"><span id="eixo-ini"></span><span id="eixo-fim"></span></div>
+    <p class="nota" id="hist-nota"></p>
+  </section>
+
+  <section class="painel">
+    <h2>Conquistas</h2>
+    <div class="conquistas" id="conquistas"></div>
+    <div class="jogadores" id="jogadores"></div>
+  </section>
+</main>
+<div id="tooltip"></div>
+<script>
+// Pixel art: cada letra e uma cor; "." e transparente. Tudo desenhado aqui, nada copiado do jogo.
+const paleta = {
+  k: "#1b1b1b", w: "#f2f0ea", g: "#9a9a9a", G: "#5e5e5e", y: "#f6cf4b", Y: "#b8861b", c: "#6fe8e0", C: "#2a9d9a",
+  e: "#3fd06a", E: "#1d7a3a", b: "#8a5a2b", B: "#5a3a1a", r: "#d23a3a", R: "#7d1616", s: "#c8d2dc", S: "#6c7a86",
+  o: "#e08a3a", O: "#9a5420", u: "#4a7fd4", U: "#2a4f94", p: "#e9a9c0", l: "#7cc243", L: "#4c8a24", t: "#b88a5a", h: "#d9b07a"
+};
+const icones = {
+  relogio: ["....kkkk....", "..kkyyyykk..", ".kyyyyyyyyk.", ".kyyyykyyyk.", "kyyyyykyyyyk", "kyyyyykyyyyk", "kyyyyykkkyyk", "kyyyyyyyyyyk", ".kyyyyyyyyk.", ".kYyyyyyyYk.", "..kkYYYYkk..", "....kkkk...."],
+  caveira: ["..kkkkkkkk..", ".kwwwwwwwwk.", "kwwwwwwwwwwk", "kwwwwwwwwwwk", "kwkkkwwkkkwk", "kwkkkwwkkkwk", "kwwwwkkwwwwk", ".kwwwwwwwwk.", "..kwkwkwkk..", "..kwkwkwk...", "...kkkkk....", "............"],
+  espada: ["..........kk", ".........ksk", "........kssk", ".......kssk.", "......kssk..", ".k...kssk...", "..k.kssk....", "...kssk.....", "...bkk......", "..bBk.k.....", ".bBk........", "kkk........."],
+  picareta: ["..kkkkkkk...", ".kssssssk...", "kSk...kbsk..", "k.....kbSk..", "......kbk.k.", ".....kbk..k.", "....kbk.....", "...kbk......", "..kbk.......", ".kbk........", "kbk.........", "kk.........."],
+  diamante: ["............", "...kkkkkk...", "..kcwcccck..", ".kcwccccCCk.", "kccccccCCCCk", ".kCccccCCCk.", "..kCcccCCk..", "...kCcCCk...", "....kCCk....", ".....kk.....", "............", "............"],
+  bota: ["...kkkkk....", "...kbbbk....", "...kbbbk....", "...kbbbk....", "...kbBbk....", "...kbbbk....", "...kbbbkkkk.", "..kbbbbbbbk.", "..kbbbbbbbbk", "..kBBBBBBBBk", "..kkkkkkkkkk", "............"],
+  peixe: ["............", "............", "..kkkk....kk", ".kuuuuk..kuk", "kuwkuuuk.kuk", "kuuuuuuukuuk", "kuuuuuuuuuk.", ".kUUUUUUkuk.", "..kkkkkkkUk.", ".........kk.", "............", "............"],
+  esmeralda: ["....kkkk....", "...keeeek...", "..keweeeEk..", ".keweeeeEEk.", ".keeeeeeEEk.", ".keeeeeeEEk.", ".keeeeeEEEk.", ".kEeeeeEEEk.", "..kEEeEEEk..", "...kEEEEk...", "....kkkk....", "............"],
+  mesa: ["kkkkkkkkkkkk", "kttttttttttk", "khtkhtkhtkhk", "kttttttttttk", "kkkkkkkkkkkk", "kbtbbbbbbtbk", "kbtbbbbbbtbk", "kbkbbbbbbkbk", "kbtbbbbbbtbk", "kbtbbbbbbtbk", "kBkBBBBBBkBk", "kkkkkkkkkkkk"],
+  pena: ["........kkk.", ".......kwwk.", "......kwwwk.", ".....kwwgk..", "....kwwgk...", "...kwwgk....", "..kwwgk.....", "..kwgk......", ".kgkk.......", ".kk.........", "k...........", "............"],
+  coracao: ["............", ".kkk...kkk..", "krrrk.krrrk.", "krwrrkrrrrk.", "krrrrrrrrRk.", "krrrrrrrrRk.", ".krrrrrrRk..", "..krrrrRk...", "...krrRk....", "....kRk.....", ".....k......", "............"],
+  cama: ["............", "............", "kk..........", "kbk.........", "kbkkkkkkkkk.", "kbwwwrrrrrrk", "kbwwwrrrrrrk", "kbkkkkkkkkkk", "kbtttttttttk", "kbk......kbk", "kk.......kk.", "............"],
+  bau: ["kkkkkkkkkkkk", "khhhhhhhhhhk", "khttttttttkk", "khtttttttthk", "kkkkkggkkkkk", "kttttgSkttttk".slice(0, 12), "khtttttttthk", "khtttttttthk", "khtttttttthk", "khtttttttthk", "kBBBBBBBBBBk", "kkkkkkkkkkkk"],
+  coracaoVazio: ["............", ".kkk...kkk..", "kGGGk.kGGGk.", "kGggGkGgggk.", "kGgggggggGk.", "kGgggggggGk.", ".kGggggggk..", "..kGgggGk...", "...kGgGk....", "....kGk.....", ".....k......", "............"],
+  coxa: ["............", ".......kkk..", "......kooOk.", ".....kooooOk", "....koooooOk", "...kooooooOk", "..koooooOOk.", ".kwkOOOOOk..", "kwwkkkkkk...", "kwk.........", ".k..........", "............"],
+  coxaVazia: ["............", ".......kkk..", "......kGGGk.", ".....kGgggGk", "....kGggggGk", "...kGgggggGk", "..kGggggGGk.", ".kGkGGGGGk..", "kGGkkkkkk...", "kGk.........", ".k..........", "............"],
+  grama: ["llllllllllll", "lLllllLlllll", "lLlLllLllLll", "bLbLbbLbbLbb", "bbbLbbbbbbBb", "bBbbbbbBbbbb", "bbbbBbbbbbbb", "bbbbbbbbBbbb", "bBbbbbbbbbBb", "bbbbbBbbbbbb", "bbBbbbbbbBbb", "bbbbbbbbbbbb"]
+};
+const svg = nome => {
+  const g = icones[nome];
+  let r = "";
+  g.forEach((linha, y) => [...linha].forEach((ch, x) => { if (paleta[ch]) r += `<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${paleta[ch]}"/>`; }));
+  return "data:image/svg+xml," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${g[0].length} ${g.length}" shape-rendering="crispEdges">${r}</svg>`);
+};
+
+// Texturas de terra e grama geradas com um sorteio fixo: saem sempre iguais.
+function sorteio(semente) { let a = semente; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function textura(desenha, w, h, escala) {
+  const c = document.createElement("canvas"); c.width = w * escala; c.height = h * escala;
+  const x = c.getContext("2d");
+  desenha((px, py, cor) => { x.fillStyle = cor; x.fillRect(px * escala, py * escala, escala, escala); });
+  return c.toDataURL();
+}
+// A pagina se veste da dimensao em que os jogadores sairam: quem ficou no End ou no Nether puxa o tema.
+const temas = {
+  superficie: { chao: ["#6b4a30", "#5c3f28", "#7a5638", "#4f3522", "#86603e"], topo: ["#5d9b33", "#6aab3a", "#4f8a2a", "#79bb45"], fundo: "#2b1d14" },
+  nether: { chao: ["#6b2a2a", "#5a2020", "#7a3434", "#4a1818", "#843c3c"], topo: ["#8a1f1f", "#a32626", "#7a1a1a", "#b83030"], fundo: "#2a0d0d" },
+  end: { chao: ["#dcd99e", "#cfcb8c", "#e6e3ae", "#c4bf7e", "#d6d296"], topo: ["#dcd99e", "#cfcb8c", "#e6e3ae", "#c4bf7e"], fundo: "#1a0f24" }
+};
+let terra = temas.superficie.chao, verdes = temas.superficie.topo;
+function temaDe(p) {
+  const dims = (p ? p.jogadores : []).map(j => j.saiu && j.saiu.dimensao);
+  if (dims.includes("minecraft:the_end")) return "end";
+  if (dims.includes("minecraft:the_nether")) return "nether";
+  return "superficie";
+}
+function fundos(tema) {
+  const t = temas[tema];
+  document.documentElement.style.setProperty("--fundo", t.fundo);
+  const chao = t.chao;
+  const r = sorteio(7);
+  const escura = textura(p => { for (let y = 0; y < 16; y++) for (let x = 0; x < 16; x++) { const v = chao[Math.floor(r() * chao.length)]; p(x, y, v); } }, 16, 16, 4);
+  document.body.style.backgroundImage = `linear-gradient(rgba(0,0,0,.62), rgba(0,0,0,.62)), url(${escura})`;
+  const r2 = sorteio(11);
+  const topo = textura(p => {
+    for (let x = 0; x < 16; x++) {
+      const fundoGrama = 3 + Math.floor(r2() * 3);
+      for (let y = 0; y < 18; y++) p(x, y, y < fundoGrama ? t.topo[Math.floor(r2() * t.topo.length)] : chao[Math.floor(r2() * chao.length)]);
+    }
+  }, 16, 18, 4);
+  return topo;
+}
+
+
+// O ceu do topo segue o mundo no ultimo salvamento: a hora (0 = 6h da manha, 24000 por dia) move o sol ou a lua,
+// muda a cor do ceu e acende as estrelas; a lua tem a fase daquela noite; chuva e trovoada aparecem como no jogo.
+const cores = [ // [hora do jogo, cor de cima, cor de baixo]
+  [0, "#6f8fd8", "#f4b878"], [1500, "#5f9fff", "#a8ccff"], [11000, "#5f9fff", "#a8ccff"], [12500, "#3b4c8f", "#f08a4b"],
+  [13800, "#0b1230", "#1c2547"], [22200, "#0b1230", "#1c2547"], [23300, "#3a4a8a", "#f2a35e"], [24000, "#6f8fd8", "#f4b878"]
+];
+const mistura = (a, b, f) => { const pa = parseInt(a.slice(1), 16), pb = parseInt(b.slice(1), 16); const c = s => [(s >> 16) & 255, (s >> 8) & 255, s & 255]; const [x, y] = [c(pa), c(pb)]; return `rgb(${x.map((v, i) => Math.round(v + (y[i] - v) * f)).join(",")})`; };
+function corDoCeu(t) {
+  for (let i = 0; i < cores.length - 1; i++) {
+    const [t0, a0, b0] = cores[i], [t1, a1, b1] = cores[i + 1];
+    if (t >= t0 && t <= t1) { const f = (t - t0) / (t1 - t0); return [mistura(a0, a1, f), mistura(b0, b1, f)]; }
+  }
+  return [cores[0][1], cores[0][2]];
+}
+const nomeHora = t => { const m = Math.floor(((t / 1000 + 6) % 24) * 60); return `${Math.floor(m / 60)}h${String(m % 60).padStart(2, "0")}`; };
+const fases = ["lua cheia", "lua minguante gibosa", "quarto minguante", "lua minguante", "lua nova", "lua crescente", "quarto crescente", "lua crescente gibosa"];
+
+function ceu(e, grama, tema) {
+  const box = document.getElementById("ceu"), cv = document.getElementById("ceu-tela"), x = cv.getContext("2d");
+  const t = e ? e.hora : 6000, chuva = e && e.chuva, trovoada = e && e.trovoada;
+  if (e) {
+    const noite = t > 13000 && t < 23000;
+    document.getElementById("clima").textContent = tema === "nether" ? `Dia ${e.dia} · alguém ficou no Nether` : tema === "end" ? `Dia ${e.dia} · alguém ficou no End`
+      : `Dia ${e.dia} · ${nomeHora(t)} · ${trovoada ? "trovoada" : chuva ? "chovendo" : noite ? fases[e.lua] : "céu limpo"}`;
+    document.getElementById("quando").textContent = `como o mundo ficou no último salvamento, em ${new Date(e.salvo_em_ms).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short", timeZone: "America/Sao_Paulo" })}`;
+    if (e.dragao_derrotado) document.getElementById("dragao").hidden = false;
+  }
+  const imgGrama = new Image(); imgGrama.src = grama;
+  const estrelas = (() => { const r = sorteio(5); return Array.from({ length: 90 }, () => [r(), r() * 0.75, r() < .2 ? 2 : 1]); })();
+  const nuvens = (() => { const r = sorteio(9); return Array.from({ length: 7 }, () => [r(), 0.08 + r() * 0.35, 3 + Math.floor(r() * 5), 1 + Math.floor(r() * 2)]); })();
+  const gotas = (() => { const r = sorteio(13); return Array.from({ length: 160 }, () => [r(), r(), 0.6 + r() * 0.6]); })();
+  const cinzas = (() => { const r = sorteio(17); return Array.from({ length: 120 }, () => [r(), r(), 0.3 + r() * 0.7, r() < .25]); })();
+  const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let inicio = performance.now();
+  const quadro = agora => {
+    const dpr = devicePixelRatio || 1, W = box.clientWidth, H = box.clientHeight;
+    if (cv.width !== Math.round(W * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); }
+    x.setTransform(dpr, 0, 0, dpr, 0, 0); x.imageSmoothingEnabled = false;
+    const seg = quieto ? 0 : (agora - inicio) / 1000;
+    let [cima, baixo] = corDoCeu(t);
+    const g = x.createLinearGradient(0, 0, 0, H); g.addColorStop(0, cima); g.addColorStop(1, baixo);
+    x.fillStyle = g; x.fillRect(0, 0, W, H);
+    const pix = 4, chao = H - 72;
+    // Nether: nevoa vermelha e cinzas subindo; End: escuro roxo com pontos parados, sem sol, lua nem clima.
+    if (tema === "nether" || tema === "end") {
+      const g2 = x.createLinearGradient(0, 0, 0, H);
+      g2.addColorStop(0, tema === "nether" ? "#2a0606" : "#0c0414"); g2.addColorStop(1, tema === "nether" ? "#7a2414" : "#2a1238");
+      x.fillStyle = g2; x.fillRect(0, 0, W, H);
+      for (const [cx, cy, v, brasa] of cinzas) {
+        const yy = tema === "nether" ? (chao - ((cy * chao + seg * 14 * v) % chao)) : cy * chao;
+        x.fillStyle = tema === "nether" ? (brasa ? "rgba(255,140,40,.8)" : "rgba(180,160,150,.5)") : `rgba(200,170,255,${0.25 + 0.35 * v})`;
+        x.fillRect(Math.round(cx * W / pix) * pix, Math.round(yy / pix) * pix, pix, pix);
+      }
+      if (imgGrama.complete && imgGrama.width) for (let gx = 0; gx < W; gx += imgGrama.width) x.drawImage(imgGrama, gx, chao, imgGrama.width, 72);
+      if (!quieto) requestAnimationFrame(quadro);
+      return;
+    }
+    // estrelas, mais fortes no meio da noite
+    const escuro = t > 12500 && t < 23500 ? Math.min(1, Math.min(t - 12500, 23500 - t) / 1300) : 0;
+    if (escuro > 0) for (const [sx, sy, sz] of estrelas) { x.fillStyle = `rgba(255,255,255,${escuro * (0.5 + 0.5 * Math.sin(seg * 1.5 + sx * 40))})`; x.fillRect(Math.round(sx * W), Math.round(sy * chao), sz * 2, sz * 2); }
+    // sol de dia, lua de noite, em arco da esquerda para a direita
+    const arco = (p, cor, borda, fase) => {
+      const cx = p * W, cy = chao - Math.sin(p * Math.PI) * (chao - 30), lado = 14 * pix;
+      x.fillStyle = borda; x.fillRect(cx - lado / 2 - pix, cy - lado / 2 - pix, lado + 2 * pix, lado + 2 * pix);
+      x.fillStyle = cor; x.fillRect(cx - lado / 2, cy - lado / 2, lado, lado);
+      if (fase != null) {
+        // a parte escura da lua: cobre de um lado (minguante) ou do outro (crescente) conforme a fase
+        const sombra = [0, 4, 7, 10, 14, 10, 7, 4][fase] * pix, esquerda = fase >= 4;
+        x.fillStyle = "rgba(20,26,50,.92)";
+        if (sombra) x.fillRect(esquerda ? cx - lado / 2 : cx + lado / 2 - sombra, cy - lado / 2, sombra, lado);
+        x.fillStyle = "rgba(150,160,190,.5)"; x.fillRect(cx - pix * 3, cy - pix * 2, pix * 2, pix * 2); x.fillRect(cx + pix * 2, cy + pix, pix * 2, pix * 2);
+      }
+    };
+    const pSol = ((t + 1000) % 24000) / 14000, pLua = ((t - 12000 + 24000) % 24000 + 1000) / 14000;
+    if (pSol >= 0 && pSol <= 1 && !chuva) arco(pSol, "#fff6a0", "#ffd84a");
+    if (pLua >= 0 && pLua <= 1 && !chuva) arco(pLua, "#e8ecf4", "#b8c0d8", e ? e.lua : 0);
+    // chuva: ceu mais escuro e gotas caindo; trovoada: mais escuro ainda, com relampago de vez em quando
+    if (chuva || trovoada) {
+      x.fillStyle = trovoada ? "rgba(20,24,34,.62)" : "rgba(60,66,80,.45)"; x.fillRect(0, 0, W, H);
+      if (trovoada && !quieto && (seg % 7) < 0.12) { x.fillStyle = "rgba(230,235,255,.55)"; x.fillRect(0, 0, W, H); }
+    }
+    // nuvens em bloco, andando devagar
+    for (const [nx, ny, larg, alt] of nuvens) {
+      const w = larg * 12 * pix, h = alt * 3 * pix;
+      const px0 = ((nx * (W + w) + seg * 6) % (W + w)) - w;
+      x.fillStyle = chuva || trovoada ? "rgba(120,126,140,.9)" : escuro > .5 ? "rgba(150,160,190,.35)" : "rgba(255,255,255,.85)";
+      x.fillRect(Math.round(px0 / pix) * pix, Math.round(ny * chao / pix) * pix, w, h);
+    }
+    if (chuva || trovoada) {
+      x.fillStyle = "rgba(120,150,230,.75)";
+      for (const [gx, gy, v] of gotas) { const yy = ((gy * H + seg * 260 * v) % H); x.fillRect(Math.round(gx * W), Math.round(yy), 2, 10); }
+    }
+    // grama e terra embaixo
+    if (imgGrama.complete && imgGrama.width) for (let gx = 0; gx < W; gx += imgGrama.width) x.drawImage(imgGrama, gx, chao, imgGrama.width, 72);
+    if (!quieto) requestAnimationFrame(quadro);
+  };
+  requestAnimationFrame(quadro);
+}
+
+const mobs = {
+  zombie: "zumbi", skeleton: "esqueleto", creeper: "creeper", spider: "aranha", cave_spider: "aranha da caverna",
+  enderman: "enderman", witch: "bruxa", slime: "slime", drowned: "afogado", husk: "zumbi do deserto",
+  stray: "esqueleto errante", phantom: "phantom", pillager: "saqueador", vindicator: "vingador", blaze: "blaze",
+  ghast: "ghast", piglin: "piglin", zombified_piglin: "piglin zumbi", hoglin: "hoglin", wither_skeleton: "esqueleto wither",
+  magma_cube: "cubo de magma", silverfish: "traça", guardian: "guardião", warden: "warden", ender_dragon: "dragão do Ender",
+  wither: "wither", cow: "vaca", pig: "porco", sheep: "ovelha", chicken: "galinha", wolf: "lobo", bee: "abelha", player: "outro jogador",
+  stone: "pedra", deepslate: "ardósia", dirt: "terra", grass_block: "grama", sand: "areia", gravel: "cascalho", netherrack: "netherrack"
+};
+const traduz = id => mobs[id] || id.replace(/^[a-z_]+:/, "").replaceAll("_", " ");
+const num = v => Number(v).toLocaleString("pt-BR");
+const curto = v => v >= 1e6 ? `${(v / 1e6).toFixed(1).replace(".", ",")}M` : v >= 1e4 ? `${Math.round(v / 1e3)}k` : v >= 1e3 ? `${(v / 1e3).toFixed(1).replace(".", ",")}k` : `${v}`;
+const dia = s => { const [, m, d] = s.split("-"); return `${d}/${m}`; };
+const quando = iso => new Date(iso).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short", timeZone: "America/Sao_Paulo" });
+const pega = async f => { try { const r = await fetch(f, { cache: "no-store" }); return r.ok ? await r.json() : null; } catch { return null; } };
+const cabeca = nick => `https://mc-heads.net/avatar/${encodeURIComponent(nick || "MHF_Steve")}/64`;
+
+// No GitHub Pages (dono.github.io/repo) o estado e o historico vem direto do branch status, que a Action do selo
+// atualiza a cada 10 minutos: a pagina nao precisa ser publicada de novo para eles andarem.
+function doStatus(arquivo) {
+  if (!location.hostname.endsWith(".github.io")) return arquivo;
+  const dono = location.hostname.split(".")[0], repo = location.pathname.split("/")[1];
+  return `https://raw.githubusercontent.com/${dono}/${repo}/status/${arquivo}`;
+}
+
+const tip = document.getElementById("tooltip");
+function mostra(e, html) { tip.innerHTML = html; tip.style.display = "block"; move(e); }
+function move(e) {
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  let x = e.clientX + 14, y = e.clientY - h - 10;
+  if (x + w > innerWidth - 4) x = e.clientX - w - 14;
+  if (y < 4) y = e.clientY + 18;
+  tip.style.left = `${x}px`; tip.style.top = `${y}px`;
+}
+const esconde = () => { tip.style.display = "none"; };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+async function servidor(h) {
+  document.getElementById("servidor-icone").src = svg("grama");
+  const s = await pega(doStatus("status.json"));
+  const jog = document.getElementById("servidor-jog"), motd = document.getElementById("servidor-motd"), extra = document.getElementById("servidor-extra");
+  if (s && s.online) {
+    jog.textContent = `${s.jogadores}/${s.max}`;
+    document.getElementById("sinal").classList.add("on");
+    motd.textContent = s.motd || "Ligado";
+    extra.textContent = `Ligado agora · ${s.versao || ""}`;
+  } else {
+    jog.innerHTML = '<span style="color:var(--vermelho)">desligado</span>';
+    motd.textContent = "Ninguém está hospedando agora.";
+    extra.textContent = h && h.ultimo_ligado ? `Visto ligado pela última vez em ${quando(h.ultimo_ligado)}` : "";
+  }
+}
+
+function historico(h) {
+  const cv = document.getElementById("barras");
+  if (!h || !h.dias.length) { document.getElementById("hist-nota").textContent = "Ainda sem histórico."; return; }
+  const dias = h.dias;
+  const desenha = () => {
+    const dpr = devicePixelRatio || 1, W = cv.clientWidth, H = cv.clientHeight;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    const x = cv.getContext("2d");
+    x.setTransform(dpr, 0, 0, dpr, 0, 0); x.imageSmoothingEnabled = false;
+    x.fillStyle = "#7a9bd4"; x.fillRect(0, 0, W, H);
+    const col = W / dias.length, lado = Math.max(4, Math.floor(col) - 2);
+    const cabem = Math.floor((H - 8) / lado), max = Math.max(...dias.map(d => d.horas), 0.1);
+    dias.forEach((d, i) => {
+      const n = d.horas > 0 ? Math.max(1, Math.round(d.horas / max * cabem)) : 0;
+      const x0 = Math.round(i * col + (col - lado) / 2);
+      for (let k = 0; k < n; k++) {
+        const y0 = H - (k + 1) * lado;
+        const topoBloco = k === n - 1;
+        const r = sorteio(i * 97 + k), t = lado / 4;
+        for (let py = 0; py < 4; py++) for (let px = 0; px < 4; px++) {
+          const grama = topoBloco && (py === 0 || (py === 1 && r() < .5));
+          x.fillStyle = grama ? verdes[Math.floor(r() * verdes.length)] : terra[Math.floor(r() * terra.length)];
+          x.fillRect(x0 + px * t, y0 + py * t, Math.ceil(t), Math.ceil(t));
+        }
+        x.strokeStyle = "rgba(0,0,0,.35)"; x.lineWidth = 1; x.strokeRect(x0 + .5, y0 + .5, lado - 1, lado - 1);
+      }
+      if (!n) { x.fillStyle = "#5c3f28"; x.fillRect(x0, H - 2, lado, 2); }
+    });
+    cv.onmousemove = e => {
+      const r = cv.getBoundingClientRect(), i = Math.min(dias.length - 1, Math.floor((e.clientX - r.left) / (r.width / dias.length)));
+      const d = dias[i];
+      mostra(e, `<div class="t">${dia(d.dia)}</div>${d.horas ? `${num(d.horas)} h ligado` : "desligado o dia todo"}${d.pico ? `<div class="c">até ${d.pico} jogando</div>` : ""}`);
+    };
+    cv.onmouseleave = esconde;
+  };
+  desenha(); addEventListener("resize", desenha);
+  document.getElementById("eixo-ini").textContent = dia(dias[0].dia);
+  document.getElementById("eixo-fim").textContent = dia(dias.at(-1).dia);
+  document.getElementById("hist-nota").textContent = `${num(h.horas)} horas ligado nos últimos ${dias.length} dias.`;
+}
+
+const stats = [
+  ["horas", "relogio", "Horas jogadas", v => `${num(v)} h`],
+  ["mortes", "caveira", "Mortes", num, j => j.mais_morreu_para && `mais por ${traduz(j.mais_morreu_para.nome)}`],
+  ["mobs", "espada", "Mobs derrotados", num, j => j.mais_matou && `mais ${traduz(j.mais_matou.nome)} (${num(j.mais_matou.n)})`],
+  ["minerados", "picareta", "Blocos minerados", num, j => j.mais_minerado && `mais ${traduz(j.mais_minerado.nome)}`],
+  ["diamantes", "diamante", "Diamantes", num],
+  ["km_a_pe", "bota", "Andou a pé", v => `${num(v)} km`],
+  ["fabricados", "mesa", "Itens fabricados", num],
+  ["peixes", "peixe", "Peixes pescados", num],
+  ["trocas", "esmeralda", "Trocas com aldeões", num],
+  ["pulos", "pena", "Pulos", num],
+  ["animais_cruzados", "coracao", "Animais cruzados", num],
+  ["dormiu", "cama", "Noites dormidas", num],
+  ["baus_abertos", "bau", "Baús abertos", num],
+];
+const conquistas = ["horas", "mortes", "diamantes", "km_a_pe", "mobs", "minerados", "peixes", "trocas"];
+
+// A barra de 10 coracoes (ou coxas) do jogo: cheio, meio ou vazio.
+function barra(valor, cheio, vazio, titulo) {
+  let h = "";
+  for (let i = 0; i < 10; i++) {
+    const v = Math.max(0, Math.min(1, valor - i));
+    const parte = v >= .75 ? 100 : v >= .25 ? 50 : 0;
+    h += `<span style="background-image:url('${svg(vazio)}')"><i style="background-image:url('${svg(cheio)}');clip-path:inset(0 ${100 - parte}% 0 0)"></i></span>`;
+  }
+  return `<div class="barra" title="${titulo}">${h}</div>`;
+}
+const nomesDim = { "minecraft:overworld": ["superficie", "na Superfície"], "minecraft:the_nether": ["nether", "no Nether"], "minecraft:the_end": ["end", "no End"] };
+function barras(s) {
+  if (!s) return "";
+  const [cls, onde] = nomesDim[s.dimensao] || ["superficie", s.dimensao.replace(/^[a-z_]+:/, "")];
+  return `<div class="barras">${barra(s.vida, "coracao", "coracaoVazio", `${num(s.vida)} corações`)}${barra(s.fome / 2, "coxa", "coxaVazia", `fome ${s.fome}/20`)}
+    <span class="nivel" title="nível de experiência">${s.nivel}</span><span class="dim ${cls}">saiu ${onde}</span></div>`;
+}
+
+function placar(p) {
+  const box = document.getElementById("conquistas"), jbox = document.getElementById("jogadores");
+  const js = p ? p.jogadores.filter(j => j.horas > 0) : [];
+  if (!js.length) { box.innerHTML = '<p class="vazio-msg">Ninguém jogou ainda.</p>'; return; }
+  const nome = j => j.nick || j.uuid.slice(0, 8);
+  for (const chave of conquistas) {
+    const [, icone, titulo, fmt, extra] = stats.find(s => s[0] === chave);
+    const top = js.filter(j => j[chave] > 0).sort((a, b) => b[chave] - a[chave]).slice(0, 3);
+    if (!top.length) continue;
+    const c = document.createElement("div");
+    c.className = "conquista";
+    const resto = top.slice(1).map((j, i) => `<span>${i + 2}. <b>${esc(nome(j))}</b> ${esc(fmt(j[chave]))}</span>`).join("");
+    c.innerHTML = `<div class="icone"><img src="${svg(icone)}" alt=""></div>
+      <div><div class="titulo">${esc(titulo)}</div>
+      <div class="lider"><img src="${cabeca(top[0].nick)}" alt=""><span>${esc(nome(top[0]))}</span></div>
+      <div class="valor">${esc(fmt(top[0][chave]))}</div></div>
+      ${resto ? `<div class="resto">${resto}</div>` : ""}`;
+    const e = extra && extra(top[0]);
+    if (e) { c.onmousemove = ev => mostra(ev, `<div class="t">${esc(titulo)}</div>${esc(nome(top[0]))}: ${esc(e)}`); c.onmouseleave = esconde; }
+    box.append(c);
+  }
+  for (const j of js) {
+    const d = document.createElement("div");
+    d.className = "jogador";
+    d.innerHTML = `<div class="cab"><div class="slot"><img src="${cabeca(j.nick)}" alt=""></div>
+      <div><div class="nick">${esc(nome(j))}</div><div class="sub">${num(j.horas)} h jogadas · ${num(j.km_total)} km percorridos</div></div></div>${barras(j.saiu)}<div class="slots"></div>`;
+    const grade = d.querySelector(".slots");
+    for (const [chave, icone, titulo, fmt, extra] of stats) {
+      const v = j[chave];
+      const s = document.createElement("div");
+      s.className = "slot" + (v ? "" : " vazio");
+      s.innerHTML = `<img src="${svg(icone)}" alt=""><span class="n">${v ? esc(curto(Math.round(v))) : ""}</span>`;
+      const e = extra && extra(j);
+      s.onmousemove = ev => mostra(ev, `<div class="t">${esc(titulo)}</div>${esc(fmt(v))}${e ? `<div class="c">${esc(e)}</div>` : ""}`);
+      s.onmouseleave = esconde;
+      grade.append(s);
+    }
+    jbox.append(d);
+  }
+}
+
+let mapaSpawn = null;
+const cama = new Image(); cama.src = svg("cama");
+
+// Mapa num canvas sem suavizacao: cada bloco e um quadrado nitido em qualquer zoom e em qualquer navegador.
+// Uma aba por dimensao que ja tem mapa; o Nether e o End so aparecem depois que alguem andou por la.
+const dimensoes = [["mapa", "Superfície", "minecraft:overworld"], ["nether", "Nether", "minecraft:the_nether"], ["end", "End", "minecraft:the_end"]];
+async function mapa() {
+  const box = document.getElementById("mapa"), cv = document.getElementById("tela"), f3 = document.getElementById("f3");
+  const prontos = (await Promise.all(dimensoes.map(async d => [d, await pega(`${d[0]}.json`)]))).filter(([, i]) => i);
+  if (!prontos.length) { box.style.display = "none"; document.getElementById("mapa-nota").textContent = "O mapa ainda não foi gerado."; return; }
+  let [dim, info] = prontos[0];
+  let img = new Image(); img.src = `${dim[0]}.png`;
+  await img.decode().catch(() => {});
+  let s = 1, ox = 0, oy = 0, chunks = false, rato = null;
+  const p = await dadosPlacar;
+  const todas = (p ? p.jogadores : []).filter(j => j.saiu && j.saiu.x != null)
+    .map(j => { const img = new Image(); img.crossOrigin = "anonymous"; img.src = cabeca(j.nick); img.onload = () => desenha(); return { x: j.saiu.x, z: j.saiu.z, dim: j.saiu.dimensao, nick: j.nick || j.uuid.slice(0, 8), img }; });
+  let cabecas = todas.filter(c => c.dim === dim[2]);
+  const ctx = cv.getContext("2d");
+  const desenha = () => {
+    const dpr = devicePixelRatio || 1, W = box.clientWidth, H = box.clientHeight;
+    if (cv.width !== Math.round(W * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); }
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.fillStyle = "#22262b"; ctx.fillRect(0, 0, cv.width, cv.height);
+    ctx.imageSmoothingEnabled = false;
+    ctx.setTransform(s * dpr, 0, 0, s * dpr, ox * dpr, oy * dpr);
+    ctx.drawImage(img, 0, 0);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    const px = s * dpr;
+    // Bloco a bloco quando cada um ja tem 10 pixels de tela; bordas dos chunks (16 blocos) se ligadas.
+    const linhas = (passo, cor, larg) => {
+      ctx.strokeStyle = cor; ctx.lineWidth = larg; ctx.beginPath();
+      const a = Math.ceil(-ox / s / passo) * passo, b = (W - ox) / s;
+      for (let gx = a - ((info.x % passo) + passo) % passo; gx <= b; gx += passo) { const X = Math.round((ox + gx * s) * dpr) + .5; ctx.moveTo(X, 0); ctx.lineTo(X, cv.height); }
+      const c = Math.ceil(-oy / s / passo) * passo, d = (H - oy) / s;
+      for (let gz = c - ((info.z % passo) + passo) % passo; gz <= d; gz += passo) { const Y = Math.round((oy + gz * s) * dpr) + .5; ctx.moveTo(0, Y); ctx.lineTo(cv.width, Y); }
+      ctx.stroke();
+    };
+    if (px >= 10) linhas(1, "rgba(0,0,0,.18)", 1);
+    for (const c of cabecas) {
+      if (!c.img.complete || !c.img.naturalWidth) continue;
+      const cx = (ox + (c.x - info.x + .5) * s) * dpr, cz = (oy + (c.z - info.z + .5) * s) * dpr, l = 22 * dpr;
+      ctx.fillStyle = "#000"; ctx.fillRect(cx - l / 2 - 2 * dpr, cz - l / 2 - 2 * dpr, l + 4 * dpr, l + 4 * dpr);
+      ctx.drawImage(c.img, cx - l / 2, cz - l / 2, l, l);
+    }
+    if (mapaSpawn && cama.complete && dim[0] === "mapa") {
+      const sx = (ox + (mapaSpawn.spawn_x - info.x + .5) * s) * dpr, sz = (oy + (mapaSpawn.spawn_z - info.z + .5) * s) * dpr, l = 24 * dpr;
+      ctx.fillStyle = "rgba(0,0,0,.55)"; ctx.fillRect(sx - l / 2 - 3 * dpr, sz - l / 2 - 3 * dpr, l + 6 * dpr, l + 6 * dpr);
+      ctx.drawImage(cama, sx - l / 2, sz - l / 2, l, l);
+    }
+    if (chunks) linhas(16, "rgba(255,230,60,.75)", Math.max(1, dpr));
+    if (rato) {
+      const bx = Math.floor((rato.x - ox) / s) + info.x, bz = Math.floor((rato.y - oy) / s) + info.z;
+      const perto = cabecas.find(c => Math.abs(c.x - bx) <= 12 / s + 1 && Math.abs(c.z - bz) <= 12 / s + 1);
+      f3.textContent = `XZ: ${bx} / ${bz}\nChunk: ${Math.floor(bx / 16)} ${Math.floor(bz / 16)}${perto ? `\n${perto.nick} saiu aqui` : ""}`;
+    } else f3.textContent = info.chunks === 1 ? "1 chunk explorado" : `${num(info.chunks)} chunks explorados`;
+  };
+  const centra = () => {
+    s = Math.min(box.clientWidth / info.largura, box.clientHeight / info.altura) * 0.95;
+    ox = (box.clientWidth - info.largura * s) / 2; oy = (box.clientHeight - info.altura * s) / 2; desenha();
+  };
+  const zoom = (f, cx, cy) => {
+    const n = Math.min(40, Math.max(0.1, s * f));
+    ox = cx - (cx - ox) * (n / s); oy = cy - (cy - oy) * (n / s); s = n; desenha();
+  };
+  centra();
+  if (prontos.length > 1) {
+    const ctl = document.querySelector(".controles"), abas = [];
+    for (const [d, i] of prontos) {
+      const b = document.createElement("button");
+      b.className = "botao"; b.textContent = d[1]; b.setAttribute("aria-pressed", d === dim);
+      b.onclick = async () => {
+        const novo = new Image(); novo.src = `${d[0]}.png`; await novo.decode().catch(() => {});
+        dim = d; info = i; img = novo; cabecas = todas.filter(c => c.dim === dim[2]);
+        abas.forEach(a => a.setAttribute("aria-pressed", a === b)); centra();
+      };
+      abas.push(b);
+    }
+    ctl.prepend(...abas);
+  }
+  document.getElementById("mais").onclick = () => zoom(2, box.clientWidth / 2, box.clientHeight / 2);
+  document.getElementById("menos").onclick = () => zoom(.5, box.clientWidth / 2, box.clientHeight / 2);
+  document.getElementById("centro").onclick = centra;
+  const bt = document.getElementById("chunks");
+  bt.onclick = () => { chunks = !chunks; bt.setAttribute("aria-pressed", chunks); desenha(); };
+  box.addEventListener("wheel", e => { e.preventDefault(); const r = box.getBoundingClientRect(); zoom(e.deltaY < 0 ? 1.25 : 0.8, e.clientX - r.left, e.clientY - r.top); }, { passive: false });
+  const toques = new Map(); let dist = 0;
+  box.addEventListener("pointerdown", e => { box.setPointerCapture(e.pointerId); toques.set(e.pointerId, e); box.classList.add("arrastando"); });
+  box.addEventListener("pointermove", e => {
+    const r = box.getBoundingClientRect();
+    rato = { x: e.clientX - r.left, y: e.clientY - r.top };
+    const antes = toques.get(e.pointerId);
+    if (antes && toques.size === 1) { ox += e.clientX - antes.clientX; oy += e.clientY - antes.clientY; }
+    if (antes) toques.set(e.pointerId, e);
+    if (toques.size === 2) {
+      const [a, b] = [...toques.values()], d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+      if (dist) zoom(d / dist, (a.clientX + b.clientX) / 2 - r.left, (a.clientY + b.clientY) / 2 - r.top);
+      dist = d;
+    }
+    desenha();
+  });
+  const solta = e => { toques.delete(e.pointerId); dist = 0; if (!toques.size) box.classList.remove("arrastando"); };
+  box.addEventListener("pointerup", solta); box.addEventListener("pointercancel", solta);
+  box.addEventListener("pointerleave", () => { rato = null; if (!toques.size) desenha(); });
+  addEventListener("resize", centra);
+}
+
+const dadosPlacar = pega("placar.json");
+Promise.all([dadosPlacar, pega("estado.json")]).then(([p, e]) => {
+  const tema = temaDe(p);
+  ceu(e, fundos(tema), tema);
+  mapaSpawn = e;
+  placar(p);
+});
+pega(doStatus("historico.json")).then(h => { servidor(h); historico(h); });
+mapa();
+</script>
+</body>
+</html>

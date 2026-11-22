@@ -1,6 +1,7 @@
 # Status do servidor: a cada 10 minutos pergunta ao servidor, pelo tunel da Cloudflare (o mesmo caminho do
-# Modflared no jogo), se ele esta ligado e quantos estao jogando, e publica status.svg (o selo do README) e
-# status.json no branch "status". O programa que pergunta fica em status/ (Sword).
+# Modflared no jogo), se ele esta ligado e quantos estao jogando, e publica no branch "status": status.json (o selo
+# do README, pelo shields.io), historico.txt (uma linha por consulta, 60 dias) e historico.json (horas ligado e
+# pico de jogadores por dia, que a pagina le). Os programas ficam em sword/ (Sword).
 # O playit nao serve aqui: o gratis nao responde de fora do Brasil, e as maquinas do GitHub ficam nos EUA.
 name: Status do servidor
 
@@ -8,9 +9,9 @@ on:
   schedule:
     - cron: '*/10 * * * *'
   push:
-    paths: ['status/**', '.github/workflows/status.yml']
+    paths: ['sword/**', '.github/workflows/status.yml']
   pull_request:
-    paths: ['status/**', '.github/workflows/status.yml']
+    paths: ['sword/**', '.github/workflows/status.yml']
   workflow_dispatch:
 
 permissions:
@@ -23,7 +24,7 @@ env:
   CLOUDFLARED_SHA256: 1f99fb518b83dec2ba8d870a7cc991d82a77e6196295a3d2754ba17ab9f91872
 
 jobs:
-  # A cada mudanca no programa: compila o Sword e roda os testes (um servidor falso na propria maquina).
+  # A cada mudanca nos programas: compila o Sword, roda os testes de todos os pacotes e compila os programas.
   testes:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
     runs-on: ubuntu-latest
@@ -35,18 +36,20 @@ jobs:
       - name: Compilar o Sword
         run: |
           sudo apt-get update -q
-          sudo apt-get install -y -q --no-install-recommends clang
+          sudo apt-get install -y -q --no-install-recommends clang zlib1g-dev
           git clone -q https://github.com/swordlang/sword.git "$HOME/sword"
           git -C "$HOME/sword" checkout -q "$SWORD"
           make -C "$HOME/sword" -j"$(nproc)" SWORD_NO_TLS=1
       - name: Testes
-        working-directory: status
+        working-directory: sword
         run: |
-          "$HOME/sword/shield" test mc
-          "$HOME/sword/shield" . -o status
+          for p in mc estat hist mundo nbt png zlib; do "$HOME/sword/shield" test "$p"; done
+          mkdir -p bin
+          for p in status historico mapa placar estado; do "$HOME/sword/shield" "$p" -o "bin/$p"; done
+          testdata/conferir.sh
           # Sem servidor nenhum: tem que dizer "desligado" e sair com 1.
           set +e
-          ./status 127.0.0.1 1 --json --selo desligado.svg
+          bin/status 127.0.0.1 1 --json --selo desligado.svg
           [ $? -eq 1 ] && grep -q desligado desligado.svg
 
   publicar:
@@ -62,12 +65,12 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      # O programa compilado fica guardado; o Sword so e compilado de novo quando status/ ou a versao mudam.
+      # Os programas compilados ficam guardados; o Sword so e compilado de novo quando sword/ ou a versao mudam.
       - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         id: cache
         with:
-          path: status/status
-          key: status-${{ env.SWORD }}-${{ hashFiles('status/**') }}
+          path: sword/bin
+          key: status-${{ env.SWORD }}-${{ hashFiles('sword/**') }}
       - name: Compilar
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
@@ -76,7 +79,9 @@ jobs:
           git clone -q https://github.com/swordlang/sword.git "$HOME/sword"
           git -C "$HOME/sword" checkout -q "$SWORD"
           make -C "$HOME/sword" -j"$(nproc)" SWORD_NO_TLS=1
-          cd status && "$HOME/sword/shield" . -o status
+          cd sword
+          mkdir -p bin
+          for p in status historico; do "$HOME/sword/shield" "$p" -o "bin/$p"; done
       # cloudflared oficial, versao fixa e SHA-256 conferido (como no iniciar). "access tcp" abre na porta local
       # a ponta do tunel, igual o Modflared faz no jogo.
       - name: Ligar a ponta do tunel
@@ -89,10 +94,11 @@ jobs:
       - name: Perguntar ao servidor
         run: |
           mkdir -p saida
+          date -u +%Y-%m-%dT%H:%M:%SZ > agora.txt
           # Duas tentativas: uma falha de rede so nao pinta o selo de vermelho.
           for tentativa in 1 2; do
             set +e
-            status/status 127.0.0.1 25565 --json --selo saida/status.svg > bruto.json
+            sword/bin/status 127.0.0.1 25565 --json --selo saida/status.svg > bruto.json
             code=$?
             set -e
             [ $code -le 1 ] || exit $code
@@ -101,7 +107,7 @@ jobs:
           done
           cat bruto.json
           # Os nicks ficam de fora: o branch e publico, e daria para ver quem joga e quando.
-          jq -c --arg t "$(date -u +%Y-%m-%dT%H:%M:%SZ)" '
+          jq -c --arg t "$(cat agora.txt)" '
             del(.nomes)
             + {
               atualizado: $t,
@@ -111,6 +117,24 @@ jobs:
               color: (if .online then "2e7d32" else "b91c1c" end)
             }
           ' bruto.json > saida/status.json
+      # O historico ja publicado vem pela API (sem o cache de 5 minutos do link raw). Se ele ainda nao existe, comeca
+      # vazio; qualquer outro erro para aqui, sem publicar, para um tropeco da rede nao apagar 60 dias de historico.
+      - name: Historico
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          code="$(curl -sS -o historico.txt -w '%{http_code}' -H "Authorization: Bearer $GH_TOKEN" \
+            -H 'Accept: application/vnd.github.raw' \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/contents/historico.txt?ref=status")"
+          case "$code" in
+            200) ;;
+            404) : > historico.txt ;;
+            *) echo "::error::historico.txt nao veio (HTTP $code)"; exit 1 ;;
+          esac
+          echo "$(cat agora.txt) $(jq -r 'if .online then 1 else 0 end' bruto.json) $(jq -r '.jogadores // 0' bruto.json)" >> historico.txt
+          # 60 dias de consultas a cada 10 minutos.
+          tail -n 8640 historico.txt > saida/historico.txt
+          sword/bin/historico saida/historico.txt saida/historico.json 30
       # Um commit so, trocado a cada vez (force push): o branch nao cresce. Nao dispara nenhuma outra Action.
       - name: Publicar no branch status
         working-directory: saida
@@ -118,7 +142,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           git init -q -b status
-          git add status.json status.svg
+          git add status.json status.svg historico.txt historico.json
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
             commit -q -m "status $(jq -r .atualizado status.json)"
           git push -q --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" status

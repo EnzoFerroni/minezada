@@ -1,0 +1,272 @@
+// mapa: desenha o mundo visto de cima, um pixel por bloco, num PNG.
+//
+//   mapa <pasta da dimensao> <saida.png> [saida.json] [--teto Y]
+//
+// O JSON diz em que bloco do mundo fica o canto de cima a esquerda da imagem, para a pagina mostrar coordenadas.
+// Le <pasta>/region/r.X.Z.mca: world para a Superficie, world/DIM-1 para o Nether, world/DIM1 para o End. No Nether
+// vai --teto (por exemplo 118): cada coluna e lida dali para baixo, por baixo do teto de bedrock. Cada regiao e desenhada num pedaco proprio de uma memoria so,
+// todos ao mesmo tempo, e o resultado nao depende de quantos nucleos a maquina tem: cada pedaco e escrito por
+// uma volta so do laco, e o compilador confere isso.
+
+import "std/bytes"
+import "std/fs"
+import "std/io"
+import "std/json"
+import "std/mem"
+import "std/os"
+import "std/strings"
+import "minezada/mundo"
+import "minezada/png"
+
+struct Coord {
+    x i64
+    z i64
+}
+
+// "r.-2.1.mca" -> (-2, 1). false para qualquer outro nome.
+func parse(name string, mut c *Coord) bool {
+    if !strings.HasPrefix(name, "r.") || !strings.HasSuffix(name, ".mca") {
+        return false
+    }
+    mut v [2]i64 = [2]i64{}
+    mut k u64 = 0
+    mut i u64 = 2
+    end := name.len - 4
+    for k < 2 {
+        mut neg := false
+        if i < end && name[i] == 45 {
+            neg = true
+            i += 1
+        }
+        mut n i64 = 0
+        mut digits u64 = 0
+        for i < end && name[i] >= 48 && name[i] <= 57 {
+            n = n * 10 + i64(name[i] - 48)
+            i += 1
+            digits += 1
+        }
+        if digits == 0 {
+            return false
+        }
+        if neg {
+            n = -n
+        }
+        v[k] = n
+        k += 1
+        if k == 1 {
+            if i >= end || name[i] != 46 {
+                return false
+            }
+            i += 1
+        }
+    }
+    if i != end {
+        return false
+    }
+    c.x = v[0]
+    c.z = v[1]
+    return true
+}
+
+func sub(a u64, b u64) u64 {
+    if a < b {
+        return 0
+    }
+    return a - b
+}
+
+func min(a u64, b u64) u64 {
+    if a < b {
+        return a
+    }
+    return b
+}
+
+// a vem antes de b na ordem dos bytes.
+func less(a string, b string) bool {
+    mut i u64 = 0
+    for i < a.len && i < b.len {
+        if a[i] != b[i] {
+            return a[i] < b[i]
+        }
+        i += 1
+    }
+    return a.len < b.len
+}
+
+func main() !int {
+    mut room := [8]string{}
+    args := os.Args(room[..])
+    mut ceiling i64 = mundo.NoHeight
+    mut jsonOut := ""
+    mut bad := args.len < 3
+    mut ai u64 = 3
+    for ai < args.len {
+        if strings.Equal(args[ai], "--teto") && ai + 1 < args.len {
+            ceiling = i64(strings.ParseU64(args[ai + 1]) catch 100000)
+            if ceiling > 4096 {
+                bad = true
+            }
+            ai += 2
+        } else if jsonOut.len == 0 && !strings.HasPrefix(args[ai], "--") {
+            jsonOut = args[ai]
+            ai += 1
+        } else {
+            bad = true
+            ai += 1
+        }
+    }
+    if bad {
+        try io.Print("uso: mapa <pasta da dimensao> <saida.png> [saida.json] [--teto Y]\n")
+        return 2
+    }
+    mut sys := mem.NewSystem()
+    dir := try strings.Concat(&sys, args[1], "/region")
+    entries := try fs.ReadDir(dir, &sys)
+
+    // As regioes em ordem de nome, para a lista (e a imagem) sairem iguais em qualquer maquina.
+    mut paths := mem.Alloc[string](&sys, entries.len) orelse return error.OutOfMemory
+    mut coords := mem.Alloc[Coord](&sys, entries.len) orelse return error.OutOfMemory
+    mut n u64 = 0
+    for e in entries {
+        mut c := Coord{x: 0, z: 0}
+        if !e.IsDir && parse(e.Name, &c) {
+            paths[n] = try strings.Concat(&sys, dir, "/", e.Name)
+            coords[n] = c
+            n += 1
+        }
+    }
+    for i in 1..n {
+        mut j := i
+        for j > 0 && less(paths[j], paths[j - 1]) {
+            tp := paths[j]
+            paths[j] = paths[j - 1]
+            paths[j - 1] = tp
+            tc := coords[j]
+            coords[j] = coords[j - 1]
+            coords[j - 1] = tc
+            j -= 1
+        }
+    }
+    if n == 0 {
+        try io.Printf("nenhuma regiao em {}\n", dir)
+        return 1
+    }
+    files := paths[0..n]
+
+    // Um pedaco por regiao: a imagem dela e, nos tres bytes do fim, se deu certo e quantos chunks desenhou.
+    piece := u64(mundo.TileBytes) + 3
+    mut tiles := mem.Alloc[u8](&sys, n * piece) orelse return error.OutOfMemory
+    parallel for off, tile in tiles.chunks(piece) {
+        k := off / piece
+        tile[mundo.TileBytes] = 0
+        drawn := mundo.Region(files[k], ceiling, tile[0..mundo.TileBytes]) catch 2000
+        if drawn <= 1024 {
+            tile[mundo.TileBytes] = 1
+            tile[mundo.TileBytes + 1] = u8(drawn & 255)
+            tile[mundo.TileBytes + 2] = u8(drawn >> 8)
+        }
+    }
+
+    // A imagem inteira cobre de a menor ate a maior regiao nos dois eixos.
+    mut minX := coords[0].x
+    mut maxX := coords[0].x
+    mut minZ := coords[0].z
+    mut maxZ := coords[0].z
+    for i in 0..n {
+        if coords[i].x < minX { minX = coords[i].x }
+        if coords[i].x > maxX { maxX = coords[i].x }
+        if coords[i].z < minZ { minZ = coords[i].z }
+        if coords[i].z > maxZ { maxZ = coords[i].z }
+    }
+    side := u64(mundo.Side)
+    w := u64(maxX - minX + 1) * side
+    h := u64(maxZ - minZ + 1) * side
+    mut img := mem.Alloc[u8](&sys, w * h * 3) orelse return error.OutOfMemory
+    for i in 0..img.len / 3 {
+        img[i * 3] = 0x22
+        img[i * 3 + 1] = 0x26
+        img[i * 3 + 2] = 0x2b
+    }
+    mut failed u64 = 0
+    mut chunks u64 = 0
+    for k in 0..n {
+        t := tiles[k * piece..(k + 1) * piece]
+        if t[mundo.TileBytes] == 0 {
+            failed += 1
+            try io.Printf("AVISO: regiao {} nao foi lida\n", files[k])
+            continue
+        }
+        chunks += u64(t[mundo.TileBytes + 1]) | (u64(t[mundo.TileBytes + 2]) << 8)
+        ox := u64(coords[k].x - minX) * side
+        oz := u64(coords[k].z - minZ) * side
+        for z in 0..side {
+            dst := ((oz + z) * w + ox) * 3
+            src := z * side * 3
+            for i in 0..side * 3 {
+                img[dst + i] = t[src + i]
+            }
+        }
+    }
+    // So a parte com mundo, mais uma borda de 32 blocos: as regioes da beira tem poucos chunks prontos.
+    mut x0 := w
+    mut x1 u64 = 0
+    mut z0 := h
+    mut z1 u64 = 0
+    for z in 0..h {
+        for x in 0..w {
+            at := (z * w + x) * 3
+            if img[at] != 0x22 || img[at + 1] != 0x26 || img[at + 2] != 0x2b {
+                if x < x0 { x0 = x }
+                if x > x1 { x1 = x }
+                if z < z0 { z0 = z }
+                if z > z1 { z1 = z }
+            }
+        }
+    }
+    if x0 > x1 {
+        try io.Print("nenhum chunk pronto para desenhar\n")
+        return 1
+    }
+    x0 = sub(x0, 32)
+    z0 = sub(z0, 32)
+    x1 = min(x1 + 32, w - 1)
+    z1 = min(z1 + 32, h - 1)
+    cw := x1 - x0 + 1
+    ch := z1 - z0 + 1
+    mut crop := mem.Alloc[u8](&sys, cw * ch * 3) orelse return error.OutOfMemory
+    for z in 0..ch {
+        for i in 0..cw * 3 {
+            crop[z * cw * 3 + i] = img[((z0 + z) * w + x0) * 3 + i]
+        }
+    }
+    out := try png.Encode(cw, ch, crop, &sys)
+    try fs.WriteAll(args[2], out)
+    bx := minX * 512 + i64(x0)
+    bz := minZ * 512 + i64(z0)
+    if jsonOut.len > 0 {
+        mut info := try bytes.New(&sys, 128)
+        mut w := json.NewWriter(&info)
+        w.BeginObject()
+        w.Key("x")
+        w.Int(bx)
+        w.Key("z")
+        w.Int(bz)
+        w.Key("largura")
+        w.Int(i64(cw))
+        w.Key("altura")
+        w.Int(i64(ch))
+        w.Key("chunks")
+        w.Int(i64(chunks))
+        w.EndObject()
+        try w.Err()
+        try info.WriteByte(10)
+        try fs.WriteAll(jsonOut, info.Bytes())
+    }
+    try io.Printf("{} regioes, {} chunks desenhados, {} x {} blocos, de x={} z={} ate x={} z={}\n", n, chunks,
+        cw, ch, bx, bz, bx + i64(cw) - 1, bz + i64(ch) - 1)
+    if failed > 0 {
+        return 1
+    }
+    return 0
+}

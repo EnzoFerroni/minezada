@@ -1,4 +1,4 @@
 server/
 tools/
 config.env
-status/status
+sword/bin/

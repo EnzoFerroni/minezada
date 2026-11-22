@@ -1,0 +1,150 @@
+// Resume o historico do selo por dia: horas ligado e o pico de jogadores. Cada linha do historico e uma consulta
+// da Action, "2026-11-22T10:08:28Z 1 3" (hora em UTC, ligado ou nao, quantos jogavam). Os dias sao os de
+// Brasilia (UTC-3, sem horario de verao desde 2019).
+package hist
+
+error BadLine = "linha do historico fora do formato"
+
+const Brasilia = -10800
+
+// Um intervalo maior que isso entre duas consultas e a Action que falhou ou atrasou: nao conta como ligado.
+const MaxGap = 1800
+
+struct Sample {
+    Unix    i64
+    Online  bool
+    Players i64
+}
+
+struct Day {
+    Days    i64 // dias desde 1970-01-01, no horario de Brasilia
+    Seconds i64 // tempo ligado
+    Peak    i64
+}
+
+// Dias desde 1970-01-01 de uma data do calendario (algoritmo de Howard Hinnant).
+func DaysFromCivil(y0 i64, m i64, d i64) i64 {
+    mut y := y0
+    if m <= 2 {
+        y -= 1
+    }
+    mut era := y / 400
+    if y < 0 {
+        era = (y - 399) / 400
+    }
+    yoe := y - era * 400
+    mut mp := m - 3
+    if m <= 2 {
+        mp = m + 9
+    }
+    doy := (153 * mp + 2) / 5 + d - 1
+    doe := yoe * 365 + yoe / 4 - yoe / 100 + doy
+    return era * 146097 + doe - 719468
+}
+
+struct Date {
+    Year  i64
+    Month i64
+    Day   i64
+}
+
+// O contrario de DaysFromCivil.
+func CivilFromDays(z0 i64) Date {
+    z := z0 + 719468
+    mut era := z / 146097
+    if z < 0 {
+        era = (z - 146096) / 146097
+    }
+    doe := z - era * 146097
+    yoe := (doe - doe / 1460 + doe / 36524 - doe / 146096) / 365
+    doy := doe - (365 * yoe + yoe / 4 - yoe / 100)
+    mp := (5 * doy + 2) / 153
+    d := doy - (153 * mp + 2) / 5 + 1
+    mut m := mp + 3
+    if mp >= 10 {
+        m = mp - 9
+    }
+    mut y := yoe + era * 400
+    if m <= 2 {
+        y += 1
+    }
+    return Date{Year: y, Month: m, Day: d}
+}
+
+func digits(s string, at u64, n u64) !i64 {
+    if at + n > s.len {
+        return error.BadLine
+    }
+    mut v i64 = 0
+    for i in 0..n {
+        c := s[at + i]
+        if c < 48 || c > 57 {
+            return error.BadLine
+        }
+        v = v * 10 + i64(c - 48)
+    }
+    return v
+}
+
+// "2026-11-22T10:08:28Z 1 3"
+func Parse(line string) !Sample {
+    if line.len < 24 || line[4] != 45 || line[10] != 84 || line[19] != 90 || line[20] != 32 {
+        return error.BadLine
+    }
+    days := DaysFromCivil(try digits(line, 0, 4), try digits(line, 5, 2), try digits(line, 8, 2))
+    secs := (try digits(line, 11, 2)) * 3600 + (try digits(line, 14, 2)) * 60 + (try digits(line, 17, 2))
+    on := line[21] == 49
+    mut players i64 = 0
+    if line.len > 23 {
+        players = try digits(line, 23, line.len - 23)
+    }
+    return Sample{Unix: days * 86400 + secs, Online: on, Players: players}
+}
+
+func LocalDay(unix i64) i64 {
+    t := unix + Brasilia
+    if t >= 0 {
+        return t / 86400
+    }
+    return (t - 86399) / 86400
+}
+
+// Soma em out (um Day por dia, do primeiro ao ultimo, out[0] sendo o dia first) o tempo ligado e o pico. Cada
+// consulta ligada vale ate a proxima (no maximo MaxGap); um intervalo que passa da meia-noite e dividido entre
+// os dois dias.
+func Sum(samples []Sample, first i64, mut out []Day) {
+    for i in 0..out.len {
+        out[i] = Day{Days: first + i64(i), Seconds: 0, Peak: 0}
+    }
+    for i in 0..samples.len {
+        s := samples[i]
+        if !s.Online {
+            continue
+        }
+        d := LocalDay(s.Unix) - first
+        if d >= 0 && d < i64(out.len) && s.Players > out[u64(d)].Peak {
+            out[u64(d)].Peak = s.Players
+        }
+        if i + 1 == samples.len {
+            continue
+        }
+        mut from := s.Unix
+        mut to := samples[i + 1].Unix
+        if to - from > MaxGap {
+            to = from + MaxGap
+        }
+        for from < to {
+            day := LocalDay(from)
+            end := (day + 1) * 86400 - Brasilia
+            mut piece := to
+            if end < piece {
+                piece = end
+            }
+            k := day - first
+            if k >= 0 && k < i64(out.len) {
+                out[u64(k)].Seconds += piece - from
+            }
+            from = piece
+        }
+    }
+}

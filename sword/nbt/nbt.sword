@@ -1,0 +1,209 @@
+// Leitor do NBT, o formato binario em que o Minecraft guarda o mundo: cada valor tem um tipo de um byte e, dentro
+// de um compound, um nome. Nada e copiado nem montado em arvore: um Tag e so o tipo e onde o valor comeca nos
+// bytes, e cada busca anda por eles. Para tirar meia duzia de campos de um chunk e o que basta.
+package nbt
+
+error Bad = "NBT invalido ou cortado"
+
+const End      = 0
+const Byte     = 1
+const Short    = 2
+const Int      = 3
+const Long     = 4
+const Float    = 5
+const Double   = 6
+const Bytes    = 7
+const Str      = 8
+const List     = 9
+const Compound = 10
+const Ints     = 11
+const Longs    = 12
+
+// kind 0 (End) quer dizer "nao existe".
+struct Tag {
+    Kind u8
+    At   u64
+}
+
+func be(b []u8, at u64, n u64) !u64 {
+    if at + n > b.len {
+        return error.Bad
+    }
+    mut v u64 = 0
+    for i in 0..n {
+        v = (v << 8) | u64(b[at + i])
+    }
+    return v
+}
+
+func count(b []u8, at u64) !u64 {
+    v := try be(b, at, 4)
+    if v >= 2147483648 {
+        return error.Bad
+    }
+    return v
+}
+
+// Onde termina o valor de tipo kind que comeca em at.
+func Skip(b []u8, kind u8, at u64) !u64 {
+    switch kind {
+    case 1:
+        return at + 1
+    case 2:
+        return at + 2
+    case 3, 5:
+        return at + 4
+    case 4, 6:
+        return at + 8
+    case 7:
+        return at + 4 + (try count(b, at))
+    case 8:
+        return at + 2 + (try be(b, at, 2))
+    case 11:
+        return at + 4 + 4 * (try count(b, at))
+    case 12:
+        return at + 4 + 8 * (try count(b, at))
+    case 9:
+        if at >= b.len {
+            return error.Bad
+        }
+        elem := b[at]
+        n := try count(b, at + 1)
+        mut p := at + 5
+        for _ in 0..n {
+            p = try Skip(b, elem, p)
+        }
+        return p
+    case 10:
+        mut p := at
+        for {
+            if p >= b.len {
+                return error.Bad
+            }
+            t := b[p]
+            if t == 0 {
+                return p + 1
+            }
+            nl := try be(b, p + 1, 2)
+            p = try Skip(b, t, p + 3 + nl)
+        }
+    default:
+        return error.Bad
+    }
+}
+
+// O compound de fora de um arquivo NBT (tipo 10 com um nome, em geral vazio).
+func Root(b []u8) !Tag {
+    if b.len < 3 || b[0] != 10 {
+        return error.Bad
+    }
+    nl := try be(b, 1, 2)
+    return Tag{Kind: 10, At: 3 + nl}
+}
+
+// O campo name do compound c, ou um Tag de kind 0 quando ele nao tem.
+func Find(b []u8, c Tag, name string) !Tag {
+    if c.Kind != 10 {
+        return Tag{Kind: 0, At: 0}
+    }
+    mut p := c.At
+    for {
+        if p >= b.len {
+            return error.Bad
+        }
+        t := b[p]
+        if t == 0 {
+            return Tag{Kind: 0, At: 0}
+        }
+        nl := try be(b, p + 1, 2)
+        if p + 3 + nl > b.len {
+            return error.Bad
+        }
+        if nl == name.len && same(b[p + 3..p + 3 + nl], name) {
+            return Tag{Kind: t, At: p + 3 + nl}
+        }
+        p = try Skip(b, t, p + 3 + nl)
+    }
+}
+
+func same(a []u8, s string) bool {
+    for i in 0..a.len {
+        if a[i] != s[i] {
+            return false
+        }
+    }
+    return true
+}
+
+// O texto de um Str, que e um pedaco de b.
+func Text(b []u8, t Tag) !string {
+    if t.Kind != 8 {
+        return ""
+    }
+    n := try be(b, t.At, 2)
+    if t.At + 2 + n > b.len {
+        return error.Bad
+    }
+    return string(b[t.At + 2..t.At + 2 + n])
+}
+
+// Um numero inteiro de qualquer largura (Byte, Short, Int, Long), com sinal.
+func Number(b []u8, t Tag) !i64 {
+    switch t.Kind {
+    case 1:
+        return i64(i8(try be(b, t.At, 1)))
+    case 2:
+        return i64(i16(try be(b, t.At, 2)))
+    case 3:
+        return i64(i32(try be(b, t.At, 4)))
+    case 4:
+        return i64(try be(b, t.At, 8))
+    default:
+        return 0
+    }
+}
+
+// Um numero com virgula (Float ou Double, como a posicao e a vida de um jogador); um inteiro tambem serve.
+func Real(b []u8, t Tag) !f64 {
+    switch t.Kind {
+    case 5:
+        mut x := u32(try be(b, t.At, 4))
+        p := [*]f32(&x)
+        return f64(p[0])
+    case 6:
+        mut x := try be(b, t.At, 8)
+        p := [*]f64(&x)
+        return p[0]
+    default:
+        return f64(try Number(b, t))
+    }
+}
+
+// Quantos elementos tem uma lista ou um array.
+func Len(b []u8, t Tag) !u64 {
+    switch t.Kind {
+    case 9:
+        return try count(b, t.At + 1)
+    case 7, 11, 12:
+        return try count(b, t.At)
+    default:
+        return 0
+    }
+}
+
+// O elemento i de um array de Long.
+func LongAt(b []u8, t Tag, i u64) !u64 {
+    return try be(b, t.At + 4 + 8 * i, 8)
+}
+
+// O primeiro elemento de uma lista e o tipo dos elementos; Next anda para o seguinte.
+func First(b []u8, t Tag) !Tag {
+    if t.Kind != 9 || t.At >= b.len {
+        return Tag{Kind: 0, At: 0}
+    }
+    return Tag{Kind: b[t.At], At: t.At + 5}
+}
+
+func Next(b []u8, t Tag) !Tag {
+    return Tag{Kind: t.Kind, At: try Skip(b, t.Kind, t.At)}
+}

@@ -1,0 +1,249 @@
+// placar: junta as estatisticas de todos os jogadores num JSON para a pagina.
+//
+//   placar <pasta do servidor> <saida.json> [--posicoes]
+//
+// A pasta e a que o mundo.tar.gz traz: world/stats/<uuid>.json e, ao lado, whitelist.json e ops.json, de onde
+// sai o nick de cada UUID. Jogador em ordem de tempo de jogo, do que mais jogou para o que menos jogou.
+// De world/playerdata/<uuid>.dat vem como cada um saiu do jogo: vida, fome, nivel e a dimensao. A posicao (x, y, z)
+// so entra com --posicoes: no mapa publico ela mostra onde fica a base de cada um.
+
+import "std/bytes"
+import "std/fs"
+import "std/io"
+import "std/json"
+import "std/mem"
+import "std/os"
+import "std/strings"
+import "minezada/estat"
+import "minezada/nbt"
+import "minezada/zlib"
+
+struct Entry {
+    nick string
+    uuid string
+    p    estat.Player
+    at   Where
+}
+
+// Como o jogador saiu do jogo. found e false quando nao ha playerdata (ou ele nao foi lido).
+struct Where {
+    found  bool
+    dim    string
+    x      f64
+    y      f64
+    z      f64
+    health f64
+    food   i64
+    level  i64
+}
+
+func whereOf(dir string, uuid string, mut a mem.Allocator) Where {
+    none := Where{found: false, dim: "", x: 0.0, y: 0.0, z: 0.0, health: 0.0, food: 0, level: 0}
+    path := strings.Concat(a, dir, "/world/playerdata/", uuid, ".dat") catch return none
+    b := zlib.ReadGzip(path, a) catch return none
+    return readWhere(b) catch none
+}
+
+// O bloco em que o jogador esta: -0.5 e o bloco -1, nao o 0.
+func floor(v f64) i64 {
+    t := i64(v)
+    if f64(t) > v {
+        return t - 1
+    }
+    return t
+}
+
+func readWhere(b []u8) !Where {
+    root := try nbt.Root(b)
+    pos := try nbt.Find(b, root, "Pos")
+    if (try nbt.Len(b, pos)) != 3 {
+        return error.Bad
+    }
+    px := try nbt.First(b, pos)
+    py := try nbt.Next(b, px)
+    pz := try nbt.Next(b, py)
+    return Where{
+        found: true,
+        dim: try nbt.Text(b, try nbt.Find(b, root, "Dimension")),
+        x: try nbt.Real(b, px),
+        y: try nbt.Real(b, py),
+        z: try nbt.Real(b, pz),
+        health: try nbt.Real(b, try nbt.Find(b, root, "Health")),
+        food: try nbt.Number(b, try nbt.Find(b, root, "foodLevel")),
+        level: try nbt.Number(b, try nbt.Find(b, root, "XpLevel")),
+    }
+}
+
+// O nick de uuid em whitelist.json ou ops.json; vazio quando nao esta em nenhum.
+func nickOf(dir string, uuid string, mut a mem.Allocator) !string {
+    files := [2]string{"whitelist.json", "ops.json"}
+    for f in files {
+        path := try strings.Concat(a, dir, "/", f)
+        text := fs.ReadAll(path, a) catch continue
+        d := json.Parse(text, a) catch continue
+        root := d.Root()
+        for i in 0..d.Len(root) {
+            if e := d.At(root, i) {
+                if strings.Equal(d.GetText(e, "uuid"), uuid) {
+                    return try strings.Concat(a, d.GetText(e, "name"))
+                }
+            }
+        }
+    }
+    return ""
+}
+
+func before(a *Entry, b *Entry) bool {
+    if a.p.Ticks != b.p.Ticks {
+        return a.p.Ticks > b.p.Ticks
+    }
+    return less(a.nick, b.nick)
+}
+
+func less(a string, b string) bool {
+    mut i u64 = 0
+    for i < a.len && i < b.len {
+        if a[i] != b[i] {
+            return a[i] < b[i]
+        }
+        i += 1
+    }
+    return a.len < b.len
+}
+
+func top(mut w *json.Writer, key string, t estat.Top) {
+    w.Key(key)
+    if t.Count == 0 {
+        w.Null()
+        return
+    }
+    w.BeginObject()
+    w.Key("nome")
+    w.Str(t.Name)
+    w.Key("n")
+    w.Int(t.Count)
+    w.EndObject()
+}
+
+func main() !int {
+    mut room := [4]string{}
+    args := os.Args(room[..])
+    positions := args.len == 4 && strings.Equal(args[3], "--posicoes")
+    if args.len != 3 && !positions {
+        try io.Print("uso: placar <pasta do servidor> <saida.json> [--posicoes]\n")
+        return 2
+    }
+    mut sys := mem.NewSystem()
+    dir := try strings.Concat(&sys, args[1], "/world/stats")
+    files := try fs.ReadDir(dir, &sys)
+    mut list := mem.Alloc[Entry](&sys, files.len) orelse return error.OutOfMemory
+    mut n u64 = 0
+    for f in files {
+        if f.IsDir || !strings.HasSuffix(f.Name, ".json") {
+            continue
+        }
+        uuid := f.Name[0..f.Name.len - 5]
+        text := try fs.ReadAll(try strings.Concat(&sys, dir, "/", f.Name), &sys)
+        p := estat.Read(text, &sys) catch {
+            try io.Printf("AVISO: {} nao foi lido\n", f.Name)
+            continue
+        }
+        list[n] = Entry{nick: try nickOf(args[1], uuid, &sys), uuid: uuid, p: p, at: whereOf(args[1], uuid, &sys)}
+        n += 1
+    }
+    for i in 1..n {
+        mut j := i
+        for j > 0 && before(&list[j], &list[j - 1]) {
+            tmp := list[j]
+            list[j] = list[j - 1]
+            list[j - 1] = tmp
+            j -= 1
+        }
+    }
+
+    mut out := try bytes.New(&sys, 4096)
+    mut w := json.NewWriter(&out)
+    w.BeginObject()
+    w.Key("jogadores")
+    w.BeginArray()
+    for i in 0..n {
+        e := list[i]
+        p := e.p
+        w.BeginObject()
+        w.Key("nick")
+        w.Str(e.nick)
+        w.Key("uuid")
+        w.Str(e.uuid)
+        w.Key("horas")
+        w.Number(f64(p.Ticks) / 72000.0, 1)
+        w.Key("mortes")
+        w.Int(p.Deaths)
+        w.Key("mobs")
+        w.Int(p.MobKills)
+        w.Key("jogadores_mortos")
+        w.Int(p.PvpKills)
+        w.Key("km_a_pe")
+        w.Number(f64(p.WalkCm) / 100000.0, 1)
+        w.Key("km_total")
+        w.Number(f64(p.TotalCm) / 100000.0, 1)
+        w.Key("minerados")
+        w.Int(p.Mined)
+        w.Key("diamantes")
+        w.Int(p.Diamonds)
+        w.Key("fabricados")
+        w.Int(p.Crafted)
+        w.Key("pulos")
+        w.Int(p.Jumps)
+        // decimos de meio coracao -> coracoes
+        w.Key("coracoes_causados")
+        w.Number(f64(p.DealtTen) / 20.0, 0)
+        w.Key("coracoes_recebidos")
+        w.Number(f64(p.TakenTen) / 20.0, 0)
+        w.Key("peixes")
+        w.Int(p.Fish)
+        w.Key("animais_cruzados")
+        w.Int(p.Bred)
+        w.Key("trocas")
+        w.Int(p.Trades)
+        w.Key("dormiu")
+        w.Int(p.Slept)
+        w.Key("baus_abertos")
+        w.Int(p.Chests)
+        top(&w, "mais_minerado", p.MostMined)
+        top(&w, "mais_matou", p.MostKill)
+        top(&w, "mais_morreu_para", p.KilledBy)
+        at := e.at
+        w.Key("saiu")
+        if at.found {
+            w.BeginObject()
+            w.Key("dimensao")
+            w.Str(at.dim)
+            // meios coracoes -> coracoes, como na barra do jogo
+            w.Key("vida")
+            w.Number(at.health / 2.0, 1)
+            w.Key("fome")
+            w.Int(at.food)
+            w.Key("nivel")
+            w.Int(at.level)
+            if positions {
+                w.Key("x")
+                w.Int(floor(at.x))
+                w.Key("y")
+                w.Int(floor(at.y))
+                w.Key("z")
+                w.Int(floor(at.z))
+            }
+            w.EndObject()
+        } else {
+            w.Null()
+        }
+        w.EndObject()
+    }
+    w.EndArray()
+    w.EndObject()
+    try w.Err()
+    try out.WriteByte(10)
+    try fs.WriteAll(args[2], out.Bytes())
+    try io.Printf("{} jogadores\n", n)
+    return 0
+}

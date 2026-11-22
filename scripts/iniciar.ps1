@@ -352,6 +352,8 @@ finally {
             Get-ChildItem $bk -Filter 'mundo-*.tar.gz' | Sort-Object Name -Descending | Select-Object -Skip 5 | Remove-Item
             Remove-Item $lock
             Write-Host 'Pronto. Outro host ja pode iniciar.'
+            # Depois da trava: um envio lento ao GitHub nao segura o proximo host. Sem github.txt, nao faz nada.
+            & $cfg.JAVA (Join-Path $PSScriptRoot 'MundoGithub.java') $estado $sync | ForEach-Object { Write-Host $_ }
         }
     }
 }
