@@ -53,7 +53,7 @@ jobs:
         run: |
           for p in mc estat hist mundo nbt png zlib poi; do "$HOME/sword/shield" test "$p"; done
           mkdir -p bin
-          for p in status historico mapa placar estado pontos; do "$HOME/sword/shield" "$p" -o "bin/$p"; done
+          for p in status historico mapa placar estado pontos calor mortes; do "$HOME/sword/shield" "$p" -o "bin/$p"; done
           testdata/conferir.sh
           # Sem servidor nenhum: tem que dizer "desligado" e sair com 1.
           set +e

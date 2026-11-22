@@ -1,0 +1,68 @@
+import "std/fs"
+import "std/mem"
+import "minezada/nbt"
+import "minezada/zlib"
+
+// Quanto tempo um chunk teve jogador por perto: o InhabitedTime do jogo, em ticks (20 por segundo). O jogo usa
+// para a dificuldade local; aqui ele mostra onde o pessoal passa o tempo.
+struct Heat {
+    X     i64
+    Z     i64
+    Ticks i64
+}
+
+func inhabited(b []u8) !Heat {
+    root := try nbt.Root(b)
+    return Heat{
+        X: try nbt.Number(b, try nbt.Find(b, root, "xPos")),
+        Z: try nbt.Number(b, try nbt.Find(b, root, "zPos")),
+        Ticks: try nbt.Number(b, try nbt.Find(b, root, "InhabitedTime")),
+    }
+}
+
+// Os chunks do arquivo de regiao path com pelo menos min ticks, em out (ate 1024, um por chunk), na ordem do
+// arquivo. Diz quantos. Chunk ilegivel fica de fora; a regiao ilegivel e erro. Toda a memoria e da propria
+// chamada, como em Region, para varias regioes serem lidas ao mesmo tempo.
+func Heats(path string, min i64, mut out []Heat) !u64 {
+    mut sys := mem.NewSystem()
+    data := try fs.ReadAll(path, &sys)
+    if data.len < 8192 {
+        mem.Free[u8](&sys, data)
+        return 0
+    }
+    mut room := mem.Alloc[u8](&sys, 2 << 20) orelse return error.OutOfMemory
+    mut k u64 = 0
+    chunks u64 = 1024
+    for i in 0..chunks {
+        off := be(data, i * 4, 3) * 4096
+        if off == 0 || off + 5 > data.len {
+            continue
+        }
+        n := be(data, off, 4)
+        if data[off + 4] != 2 || n < 1 || off + 4 + n > data.len {
+            continue
+        }
+        src := data[off + 5..off + 4 + n]
+        mut plain := room[0..0]
+        for {
+            plain = zlib.Uncompress(src, room) catch |e| {
+                if nameof(e) == "TooSmall" && room.len < (64 << 20) {
+                    big := room.len * 2
+                    mem.Free[u8](&sys, room)
+                    room = mem.Alloc[u8](&sys, big) orelse return error.OutOfMemory
+                    continue
+                }
+                return e
+            }
+            break
+        }
+        h := inhabited(plain) catch Heat{X: 0, Z: 0, Ticks: -1}
+        if h.Ticks >= min && k < out.len {
+            out[k] = h
+            k += 1
+        }
+    }
+    mem.Free[u8](&sys, room)
+    mem.Free[u8](&sys, data)
+    return k
+}

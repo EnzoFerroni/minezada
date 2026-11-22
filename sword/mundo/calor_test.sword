@@ -1,0 +1,26 @@
+import "std/mem"
+import "std/testing"
+
+// testdata/servidor/world/region/r.0.0.mca: o chunk (0, 0) com 3 minutos de jogador por perto, o (1, 0) com
+// 30 segundos e o (2, 1) com 10 minutos e meio.
+const heats = "testdata/servidor/world/region/r.0.0.mca"
+
+func TestHeats(mut t *testing.T) !void {
+    mut out := [1024]Heat{}
+    t.Equal(try Heats(heats, 0, out[..]), 3)
+    t.Equal(out[0].X, 0)
+    t.Equal(out[0].Ticks, 3600)
+    t.Equal(out[1].X, 1)
+    t.Equal(out[2].Z, 1)
+    t.Equal(out[2].Ticks, 12599)
+    // So os de pelo menos um minuto.
+    n := try Heats(heats, 1200, out[..])
+    t.Equal(n, 2)
+    t.Equal(out[1].X, 2)
+}
+
+func TestHeatsSmall(mut t *testing.T) !void {
+    // Espaco para um so: o resto fica de fora, sem escrever alem do fim.
+    mut out := [1]Heat{}
+    t.Equal(try Heats(heats, 0, out[..]), 1)
+}
