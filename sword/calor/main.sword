@@ -1,0 +1,116 @@
+// calor: onde o pessoal passa o tempo, num JSON para o mapa da pagina.
+//
+//   calor <pasta da dimensao> <saida.json>
+//
+// Le <pasta>/region/r.X.Z.mca e escreve {"chunks": [[x, z, minutos], ...]}, em coordenadas de chunk, so os
+// chunks com pelo menos um minuto de jogador por perto, em ordem de x e depois z. Cada regiao e lida num pedaco
+// proprio de uma memoria so, todas ao mesmo tempo, como no mapa.
+
+import "std/bytes"
+import "std/fs"
+import "std/io"
+import "std/json"
+import "std/mem"
+import "std/os"
+import "std/strings"
+import "minezada/mundo"
+
+const Minute = 1200
+
+func before(a mundo.Heat, b mundo.Heat) bool {
+    if a.X != b.X {
+        return a.X < b.X
+    }
+    return a.Z < b.Z
+}
+
+func main() !int {
+    mut room := [4]string{}
+    args := os.Args(room[..])
+    if args.len != 3 {
+        try io.Print("uso: calor <pasta da dimensao> <saida.json>\n")
+        return 2
+    }
+    mut sys := mem.NewSystem()
+    dir := try strings.Concat(&sys, args[1], "/region")
+    // Dimensao onde ninguem foi ainda: sai o JSON vazio.
+    none := [0]fs.Entry{}
+    entries := fs.ReadDir(dir, &sys) catch none[..]
+    mut paths := mem.Alloc[string](&sys, entries.len + 1) orelse return error.OutOfMemory
+    mut n u64 = 0
+    for e in entries {
+        if !e.IsDir && strings.HasPrefix(e.Name, "r.") && strings.HasSuffix(e.Name, ".mca") {
+            paths[n] = try strings.Concat(&sys, dir, "/", e.Name)
+            n += 1
+        }
+    }
+    files := paths[0..n]
+
+    // Um pedaco por regiao: os 1024 chunks possiveis e, no fim, quantos entraram (Ticks -1 se a regiao falhou).
+    // O pedaco a mais, sem regiao, fica vazio; ele so deixa a memoria com algum tamanho quando n e 0.
+    piece u64 = 1025
+    mut all := mem.Alloc[mundo.Heat](&sys, (n + 1) * piece) orelse return error.OutOfMemory
+    parallel for off, part in all.chunks(piece) {
+        k := off / piece
+        mut got u64 = 0
+        if k < files.len {
+            got = mundo.Heats(files[k], Minute, part[0..1024]) catch 2000
+        }
+        if got <= 1024 {
+            part[1024] = mundo.Heat{X: 0, Z: 0, Ticks: i64(got)}
+        } else {
+            part[1024] = mundo.Heat{X: 0, Z: 0, Ticks: -1}
+        }
+    }
+    mut hot := mem.Alloc[mundo.Heat](&sys, n * 1024 + 1) orelse return error.OutOfMemory
+    mut m u64 = 0
+    mut failed u64 = 0
+    for k in 0..n {
+        got := all[k * piece + 1024].Ticks
+        if got < 0 {
+            failed += 1
+            try io.Printf("AVISO: regiao {} nao foi lida\n", files[k])
+            continue
+        }
+        for i in 0..u64(got) {
+            hot[m] = all[k * piece + i]
+            m += 1
+        }
+    }
+    for i in 1..m {
+        mut j := i
+        for j > 0 && before(hot[j], hot[j - 1]) {
+            tmp := hot[j]
+            hot[j] = hot[j - 1]
+            hot[j - 1] = tmp
+            j -= 1
+        }
+    }
+
+    mut out := try bytes.New(&sys, 4096)
+    mut w := json.NewWriter(&out)
+    w.BeginObject()
+    w.Key("chunks")
+    w.BeginArray()
+    mut most i64 = 0
+    for i in 0..m {
+        w.BeginArray()
+        w.Int(hot[i].X)
+        w.Int(hot[i].Z)
+        w.Int(hot[i].Ticks / Minute)
+        w.EndArray()
+        if hot[i].Ticks > most {
+            most = hot[i].Ticks
+        }
+    }
+    w.EndArray()
+    w.EndObject()
+    try w.Err()
+    try out.WriteByte(10)
+    try fs.WriteAll(args[2], out.Bytes())
+    try io.Printf("{} chunks com jogador por perto, o mais visitado com {} minutos\n", m, most / Minute)
+    if failed > 0 {
+        return 1
+    }
+    return 0
+}
