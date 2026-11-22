@@ -1,0 +1,33 @@
+package mundo
+
+import "std/mem"
+import "std/testing"
+
+// testdata/nether.mca: uma regiao com um chunk so, montado como o Nether. Bedrock em y 0 e 127, netherrack de 100
+// a 126 e de 1 a 39, ar de 40 a 99, e lava em y 39 nas colunas x < 8. Roda de sword/, como nas Actions.
+const nether = "mundo/testdata/nether.mca"
+
+func pixel(px []u8, x u64, z u64) u32 {
+    at := (z * Side + x) * 3
+    return (u32(px[at]) << 16) | (u32(px[at + 1]) << 8) | u32(px[at + 2])
+}
+
+// Pelo heightmap o de cima e o teto de bedrock; plano, entao a 90 %.
+func TestHeightmap(mut t *testing.T) !void {
+    mut sys := mem.NewSystem()
+    mut px := mem.Alloc[u8](&sys, TileBytes) orelse return error.OutOfMemory
+    t.Equal(try Region(nether, NoHeight, px), 1)
+    t.Equal(pixel(px, 2, 5), shade(0x555555, 90))
+    t.Equal(pixel(px, 12, 5), shade(0x555555, 90))
+    t.Equal(pixel(px, 20, 5), u32(Empty))
+}
+
+// Com teto, cada coluna e lida de y 118 para baixo: passa pela netherrack, pelo ar, e para no chao em y 39.
+func TestCeiling(mut t *testing.T) !void {
+    mut sys := mem.NewSystem()
+    mut px := mem.Alloc[u8](&sys, TileBytes) orelse return error.OutOfMemory
+    t.Equal(try Region(nether, 118, px), 1)
+    t.Equal(pixel(px, 2, 5), shade(0xd25a12, 90))
+    t.Equal(pixel(px, 12, 5), shade(0x6f3534, 90))
+    t.Equal(pixel(px, 20, 5), u32(Empty))
+}

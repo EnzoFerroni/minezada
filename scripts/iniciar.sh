@@ -189,6 +189,8 @@ enviar_mundo() {
     ls -1 "$SYNC_DIR"/backups/mundo-*.tar.gz | sort -r | tail -n +6 | while read -r f; do rm -f "$f"; done
     rm -f "$SYNC_DIR/host.lock"
     echo "Pronto. Outro host ja pode iniciar."
+    # Depois da trava: um envio lento ao GitHub nao segura o proximo host. Sem github.txt, nao faz nada.
+    "${JAVA:-java}" "$(dirname "${BASH_SOURCE[0]}")/MundoGithub.java" "$estado" "$SYNC_DIR" || true
   else
     echo "AVISO: falha ao enviar o mundo. Trava mantida em $eu; rode de novo nesta maquina." >&2
   fi

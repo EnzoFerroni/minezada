@@ -1,0 +1,35 @@
+package zlib
+
+import "std/testing"
+
+func TestCrc(mut t *testing.T) !void {
+    t.Equal(Crc(0, []u8("123456789")), 0xCBF43926)
+    // Em dois pedacos da o mesmo.
+    t.Equal(Crc(Crc(0, []u8("1234")), []u8("56789")), 0xCBF43926)
+}
+
+func TestRoundTrip(mut t *testing.T) !void {
+    text := "o mundo da minezada o mundo da minezada o mundo da minezada"
+    packed := try Compress([]u8(text), t.Mem)
+    t.Check(packed.len < text.len)
+    mut room := [128]u8{}
+    t.Equal(string(try Uncompress(packed, room[..])), text)
+}
+
+func small(src []u8) bool {
+    mut room := [8]u8{}
+    _ := Uncompress(src, room[..]) catch |e| {
+        return nameof(e) == "TooSmall"
+    }
+    return false
+}
+
+func TestTooSmall(mut t *testing.T) !void {
+    packed := try Compress([]u8("mais de oito bytes aqui"), t.Mem)
+    t.Check(small(packed))
+}
+
+// testdata/oi.gz e "ola mundo\n" em gzip. Roda de sword/, como nas Actions.
+func TestReadGzip(mut t *testing.T) !void {
+    t.Equal(string(try ReadGzip("zlib/testdata/oi.gz", t.Mem)), "ola mundo\n")
+}

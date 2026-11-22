@@ -1,0 +1,51 @@
+// Grava uma imagem RGB como PNG: assinatura, cabecalho, os pixels comprimidos com zlib e o fim, cada bloco com o
+// seu CRC. Sem filtro por linha: a libz comprime bem o bastante para um mapa.
+package png
+
+import "std/bytes"
+import "std/mem"
+import "minezada/zlib"
+
+func put32(mut b *bytes.Buffer, v u64) !void {
+    try b.WriteByte(u8((v >> 24) & 255))
+    try b.WriteByte(u8((v >> 16) & 255))
+    try b.WriteByte(u8((v >> 8) & 255))
+    try b.WriteByte(u8(v & 255))
+}
+
+func block(mut out *bytes.Buffer, kind string, data []u8) !void {
+    try put32(out, data.len)
+    start := out.Len()
+    try out.WriteString(kind)
+    try out.Write(data)
+    crc := zlib.Crc(0, out.Bytes()[start..])
+    try put32(out, u64(crc))
+}
+
+// rgb tem w*h*3 bytes, linha por linha de cima para baixo. A imagem fica em memoria nova de a.
+func Encode(w u64, h u64, rgb []u8, mut a mem.Allocator) ![]u8 {
+    row := 1 + w * 3
+    mut raw := mem.Alloc[u8](a, h * row) orelse return error.OutOfMemory
+    for y in 0..h {
+        raw[y * row] = 0
+        for i in 0..w * 3 {
+            raw[y * row + 1 + i] = rgb[y * w * 3 + i]
+        }
+    }
+    packed := try zlib.Compress(raw, a)
+    mem.Free[u8](a, raw)
+
+    mut out := try bytes.New(a, packed.len + 64)
+    try out.Write([]u8("\x89PNG\r\n\x1a\n"))
+    mut head := [13]u8{}
+    for i in 0..4 {
+        head[i] = u8((w >> u64(24 - 8 * i)) & 255)
+        head[4 + i] = u8((h >> u64(24 - 8 * i)) & 255)
+    }
+    head[8] = 8  // 8 bits por cor
+    head[9] = 2  // RGB
+    try block(&out, "IHDR", head[..])
+    try block(&out, "IDAT", packed)
+    try block(&out, "IEND", head[0..0])
+    return out.Bytes()
+}

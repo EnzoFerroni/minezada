@@ -1,6 +1,7 @@
 # Testa os scripts de hospedar a cada push que mexe neles, sem Minecraft de verdade:
 # - Mac (bash 3.2 do macOS) e Linux: stop, Ctrl+C e janela fechada salvam, enviam o mundo e liberam a trava (issue #7)
 # - whitelist (scripts/Whitelist.java, a mesma no Mac, no Linux e no Windows)
+# - envio do mundo ao GitHub (scripts/MundoGithub.java), contra um GitHub falso
 # - Windows: sintaxe dos .ps1 no PowerShell 5.1 e BOM em .ps1 com acento; shellcheck nos .sh
 # - Windows: desinstalar.ps1 em uma arvore falsa (issue #25)
 name: Testes dos scripts
@@ -40,6 +41,8 @@ jobs:
         run: /bin/bash scripts/testes/desligar.sh
       - name: Whitelist
         run: java scripts/testes/WhitelistTeste.java
+      - name: Mundo no GitHub (GitHub falso, local)
+        run: java scripts/testes/MundoGithubTeste.java
 
   windows:
     runs-on: windows-latest
@@ -76,3 +79,5 @@ jobs:
           java-version: '21'
       - name: Whitelist
         run: java scripts/testes/WhitelistTeste.java
+      - name: Mundo no GitHub (GitHub falso, local)
+        run: java scripts/testes/MundoGithubTeste.java

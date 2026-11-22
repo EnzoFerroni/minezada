@@ -1,0 +1,322 @@
+// Desenha uma regiao do mundo (um arquivo r.X.Z.mca, 32 x 32 chunks) vista de cima: um pixel por bloco, 512 x 512.
+// Na Superficie e no End o bloco de cima de cada coluna vem do heightmap. No Nether o de cima e o teto de bedrock,
+// entao a coluna e lida de uma altura para baixo (o teto): passa pela pedra ate o primeiro ar e desenha o primeiro
+// bloco abaixo dele, o chao que se ve andando por la.
+package mundo
+
+import "std/fs"
+import "std/mem"
+import "minezada/nbt"
+import "minezada/zlib"
+
+// Lado da regiao em blocos, e bytes da imagem dela (RGB).
+const Side = 512
+const TileBytes = 786432
+
+// Fundo onde nao ha chunk gerado.
+const Empty = 0x22262b
+
+// Altura de quem nao tem chunk: nada e sombreado contra ela. Como teto, quer dizer "use o heightmap".
+const NoHeight = -100000
+
+struct Section {
+    y      i64
+    colors []u32
+    water  []bool
+    air    []bool
+    data   nbt.Tag
+    bits   u64
+}
+
+func floor16(y i64) i64 {
+    if y >= 0 {
+        return y / 16
+    }
+    return -((15 - y) / 16)
+}
+
+func bitsFor(n u64) u64 {
+    mut b u64 = 4
+    for (u64(1) << b) < n {
+        b += 1
+    }
+    return b
+}
+
+// Valor idx de um array de Long com bits por valor, sem valor dividido entre dois Long (formato desde a 1.16).
+func packed(b []u8, t nbt.Tag, idx u64, bits u64) !u64 {
+    per := 64 / bits
+    l := try nbt.LongAt(b, t, idx / per)
+    return (l >> ((idx % per) * bits)) & ((u64(1) << bits) - 1)
+}
+
+// O heightmap tem 256 valores; quantos bits cada um usa depende da altura do mundo e se descobre pelo tamanho.
+func heightBits(longs u64) u64 {
+    mut bits u64 = 1
+    for bits <= 32 {
+        per := 64 / bits
+        if (256 + per - 1) / per == longs {
+            return bits
+        }
+        bits += 1
+    }
+    return 0
+}
+
+// Le as secoes de um chunk: de cada uma, a cor e se e agua para cada bloco da paleta. Fica em a.
+func sections(b []u8, root nbt.Tag, mut a mem.Allocator) ![]Section {
+    list := try nbt.Find(b, root, "sections")
+    n := try nbt.Len(b, list)
+    mut out := mem.Alloc[Section](a, n) orelse return error.OutOfMemory
+    mut e := try nbt.First(b, list)
+    for i in 0..n {
+        y := try nbt.Number(b, try nbt.Find(b, e, "Y"))
+        states := try nbt.Find(b, e, "block_states")
+        pal := try nbt.Find(b, states, "palette")
+        np := try nbt.Len(b, pal)
+        mut colors := mem.Alloc[u32](a, np) orelse return error.OutOfMemory
+        mut water := mem.Alloc[bool](a, np) orelse return error.OutOfMemory
+        mut air := mem.Alloc[bool](a, np) orelse return error.OutOfMemory
+        mut p := try nbt.First(b, pal)
+        for j in 0..np {
+            name := try nbt.Text(b, try nbt.Find(b, p, "Name"))
+            colors[j] = ColorOf(name)
+            water[j] = isWater(name)
+            air[j] = isAir(name)
+            p = try nbt.Next(b, p)
+        }
+        out[i] = Section{y: y, colors: colors, water: water, air: air, data: try nbt.Find(b, states, "data"), bits: bitsFor(np)}
+        e = try nbt.Next(b, e)
+    }
+    return out
+}
+
+struct Block {
+    found bool
+    color u32
+    water bool
+    air   bool
+}
+
+// O bloco em y da coluna (x, z) do chunk: a cor e se e agua; found false quando a secao nao existe.
+func blockAt(b []u8, secs []Section, x u64, y i64, z u64) !Block {
+    sy := floor16(y)
+    for s in secs {
+        if s.y != sy || s.colors.len == 0 {
+            continue
+        }
+        mut k u64 = 0
+        if s.colors.len > 1 && s.data.Kind == nbt.Longs {
+            idx := u64(y - sy * 16) * 256 + z * 16 + x
+            k = try packed(b, s.data, idx, s.bits)
+            if k >= s.colors.len {
+                return Block{found: false, color: 0, water: false, air: true}
+            }
+        }
+        return Block{found: true, color: s.colors[k], water: s.water[k], air: s.air[k]}
+    }
+    return Block{found: false, color: 0, water: false, air: true}
+}
+
+// A altura do chao da coluna (x, z) debaixo de um teto: de ceiling para baixo, passa pelo que e solido ate o
+// primeiro ar e devolve o primeiro bloco abaixo dele. NoHeight quando a coluna nao tem chao assim.
+func under(b []u8, secs []Section, x u64, z u64, ceiling i64, minY i64) !i64 {
+    mut y := ceiling
+    mut open := false
+    for y >= minY {
+        blk := try blockAt(b, secs, x, y, z)
+        if blk.air {
+            open = true
+        } else if open {
+            return y
+        }
+        y -= 1
+    }
+    return NoHeight
+}
+
+// Desenha um chunk ja descomprimido no lugar (cx, cz) da regiao. Guarda a altura de cada coluna em heights
+// para o sombreado. Chunk ainda em geracao (Status diferente de full) fica de fora.
+func chunk(b []u8, cx u64, cz u64, ceiling i64, mut px []u8, mut heights []i64, mut a mem.Allocator) !bool {
+    root := try nbt.Root(b)
+    status := try nbt.Text(b, try nbt.Find(b, root, "Status"))
+    if status.len > 0 && !strEq(status, "minecraft:full") {
+        return false
+    }
+    minY := 16 * (try nbt.Number(b, try nbt.Find(b, root, "yPos")))
+    hm := try nbt.Find(b, root, "Heightmaps")
+    top := try nbt.Find(b, hm, "WORLD_SURFACE")
+    floor := try nbt.Find(b, hm, "OCEAN_FLOOR")
+    if top.Kind != nbt.Longs && ceiling == NoHeight {
+        return false
+    }
+    bits := heightBits(try nbt.Len(b, top))
+    fbits := heightBits(try nbt.Len(b, floor))
+    if bits == 0 && ceiling == NoHeight {
+        return false
+    }
+    secs := try sections(b, root, a)
+    sixteen u64 = 16
+    for z in 0..sixteen {
+        for x in 0..sixteen {
+            i := z * 16 + x
+            mut h i64 = 0
+            mut y i64 = NoHeight
+            if ceiling == NoHeight {
+                h = i64(try packed(b, top, i, bits))
+                y = minY + h - 1
+            } else {
+                y = try under(b, secs, x, z, ceiling, minY)
+                if y != NoHeight {
+                    h = y - minY + 1
+                }
+            }
+            mut color u32 = Empty
+            mut water := false
+            if h > 0 {
+                blk := try blockAt(b, secs, x, y, z)
+                if blk.found {
+                    color = blk.color
+                    water = blk.water
+                }
+            }
+            if water && fbits > 0 && ceiling == NoHeight {
+                // Mais fundo, mais escuro: ate 60 % mais escuro a 12 blocos.
+                depth := h - i64(try packed(b, floor, i, fbits))
+                mut d := depth
+                if d > 12 {
+                    d = 12
+                }
+                if d < 0 {
+                    d = 0
+                }
+                color = shade(color, u32(100 - d * 5))
+            }
+            gx := cx * 16 + x
+            gz := cz * 16 + z
+            at := (gz * Side + gx) * 3
+            px[at] = u8((color >> 16) & 255)
+            px[at + 1] = u8((color >> 8) & 255)
+            px[at + 2] = u8(color & 255)
+            if water || h <= 0 {
+                heights[gz * Side + gx] = NoHeight
+            } else {
+                heights[gz * Side + gx] = y
+            }
+        }
+    }
+    return true
+}
+
+func strEq(a string, b string) bool {
+    if a.len != b.len {
+        return false
+    }
+    for i in 0..a.len {
+        if a[i] != b[i] {
+            return false
+        }
+    }
+    return true
+}
+
+// color com cada componente a pct por cento.
+func shade(color u32, pct u32) u32 {
+    r := ((color >> 16) & 255) * pct / 100
+    g := ((color >> 8) & 255) * pct / 100
+    b := (color & 255) * pct / 100
+    return (r << 16) | (g << 8) | b
+}
+
+func be(b []u8, at u64, n u64) u64 {
+    mut v u64 = 0
+    for i in 0..n {
+        v = (v << 8) | u64(b[at + i])
+    }
+    return v
+}
+
+// Desenha a regiao do arquivo path em px (TileBytes bytes) e diz quantos chunks desenhou. ceiling e NoHeight
+// para usar o heightmap, ou a altura de onde ler cada coluna para baixo (no Nether). Toda a memoria e da propria
+// chamada, para varias regioes serem desenhadas ao mesmo tempo sem dividir nada.
+func Region(path string, ceiling i64, mut px []u8) !u64 {
+    bg u32 = Empty
+    for i in 0..Side * Side {
+        px[i * 3] = u8((bg >> 16) & 255)
+        px[i * 3 + 1] = u8((bg >> 8) & 255)
+        px[i * 3 + 2] = u8(bg & 255)
+    }
+    mut sys := mem.NewSystem()
+    data := try fs.ReadAll(path, &sys)
+    if data.len < 8192 {
+        mem.Free[u8](&sys, data)
+        return 0
+    }
+    mut heights := mem.Alloc[i64](&sys, Side * Side) orelse return error.OutOfMemory
+    for i in 0..heights.len {
+        heights[i] = NoHeight
+    }
+    mut room := mem.Alloc[u8](&sys, 2 << 20) orelse return error.OutOfMemory
+    mut scratch := mem.Alloc[u8](&sys, 1 << 20) orelse return error.OutOfMemory
+    mut drawn u64 = 0
+    chunks u64 = 1024
+    for i in 0..chunks {
+        off := be(data, i * 4, 3) * 4096
+        if off == 0 || off + 5 > data.len {
+            continue
+        }
+        n := be(data, off, 4)
+        if data[off + 4] != 2 || n < 1 || off + 4 + n > data.len {
+            continue
+        }
+        src := data[off + 5..off + 4 + n]
+        // Chunk maior que o espaco: dobra e tenta de novo, ate 64 MB.
+        mut plain := room[0..0]
+        for {
+            plain = zlib.Uncompress(src, room) catch |e| {
+                if nameof(e) == "TooSmall" && room.len < (64 << 20) {
+                    big := room.len * 2
+                    mem.Free[u8](&sys, room)
+                    room = mem.Alloc[u8](&sys, big) orelse return error.OutOfMemory
+                    continue
+                }
+                return e
+            }
+            break
+        }
+        mut arena := mem.NewArena(scratch)
+        full := chunk(plain, i % 32, i / 32, ceiling, px, heights, &arena) catch false
+        if full {
+            drawn += 1
+        }
+    }
+    // Relevo como nos mapas do jogo: mais claro onde sobe em relacao ao vizinho do norte, mais escuro onde desce.
+    // Sem vizinho (primeira linha da regiao, ou agua ao norte) conta como plano, senao vira uma linha clara.
+    for z in 0..Side {
+        for x in 0..Side {
+            h := heights[z * Side + x]
+            if h == NoHeight {
+                continue
+            }
+            mut n := h
+            if z > 0 && heights[(z - 1) * Side + x] != NoHeight {
+                n = heights[(z - 1) * Side + x]
+            }
+            mut pct u32 = 100
+            if h < n {
+                pct = 78
+            } else if h == n {
+                pct = 90
+            }
+            at := (z * Side + x) * 3
+            px[at] = u8(u32(px[at]) * pct / 100)
+            px[at + 1] = u8(u32(px[at + 1]) * pct / 100)
+            px[at + 2] = u8(u32(px[at + 2]) * pct / 100)
+        }
+    }
+    mem.Free[u8](&sys, scratch)
+    mem.Free[u8](&sys, room)
+    mem.Free[i64](&sys, heights)
+    mem.Free[u8](&sys, data)
+    return drawn
+}

@@ -1,0 +1,92 @@
+package mundo
+
+import "std/strings"
+
+// A cor de um bloco visto de cima, 0xRRGGBB. Primeiro os blocos mais comuns pelo nome exato, depois pedacos do
+// nome, que pegam tambem os blocos dos mods (quase todo mod chama folha de "leaves" e tronco de "log"). O que
+// sobra fica cinza. Sem a cor do bioma: grama e folha tem um verde so.
+func ColorOf(full string) u32 {
+    i := strings.IndexByte(full, 58)
+    mut n := full
+    if i < full.len {
+        n = full[i + 1..]
+    }
+    if strings.Equal(n, "grass_block") { return 0x6f9a3c }
+    if strings.Equal(n, "short_grass") || strings.Equal(n, "tall_grass") || strings.Equal(n, "fern") || strings.Equal(n, "large_fern") { return 0x6b9b37 }
+    if strings.Equal(n, "dirt") || strings.Equal(n, "coarse_dirt") || strings.Equal(n, "rooted_dirt") { return 0x8b6646 }
+    if strings.Equal(n, "podzol") { return 0x7a5530 }
+    if strings.Equal(n, "mycelium") { return 0x76666f }
+    if strings.Equal(n, "dirt_path") { return 0x9a7f4c }
+    if strings.Equal(n, "farmland") { return 0x7d5a3a }
+    if strings.Equal(n, "mud") { return 0x3c3a3d }
+    if strings.Equal(n, "clay") { return 0xa1a6b4 }
+    if strings.Equal(n, "gravel") { return 0x857f7c }
+    if strings.Equal(n, "red_sand") { return 0xbe6621 }
+    if strings.Equal(n, "calcite") { return 0xdfe0dc }
+    if strings.Equal(n, "granite") { return 0x95674f }
+    if strings.Equal(n, "diorite") { return 0xbcbcbc }
+    if strings.Equal(n, "andesite") { return 0x888888 }
+    if strings.Equal(n, "tuff") { return 0x6c6c5f }
+    if strings.Equal(n, "netherrack") { return 0x6f3534 }
+    if strings.Equal(n, "end_stone") { return 0xdbde9e }
+    if strings.Equal(n, "obsidian") { return 0x1a1527 }
+    if strings.Equal(n, "bedrock") { return 0x555555 }
+    if strings.Equal(n, "pumpkin") { return 0xc87818 }
+    if strings.Equal(n, "melon") { return 0x7a9b2a }
+    if strings.Equal(n, "cactus") { return 0x5a8a2c }
+    if strings.Equal(n, "bamboo") { return 0x5d8a26 }
+    if strings.Equal(n, "sugar_cane") { return 0x8fbf5a }
+    if strings.Equal(n, "wheat") || strings.Equal(n, "carrots") || strings.Equal(n, "potatoes") { return 0xa8a23c }
+    if strings.Equal(n, "cherry_leaves") { return 0xe8b0c4 }
+    if strings.Equal(n, "birch_leaves") { return 0x6f9a45 }
+    if strings.Equal(n, "spruce_leaves") { return 0x3d5e3a }
+    if strings.Equal(n, "azalea_leaves") || strings.Equal(n, "flowering_azalea_leaves") { return 0x5f7a2e }
+
+    if strings.Contains(n, "water") || strings.Contains(n, "kelp") || strings.Contains(n, "seagrass") || strings.Contains(n, "bubble") { return 0x3f6fd8 }
+    if strings.Contains(n, "lava") || strings.Contains(n, "magma") { return 0xd25a12 }
+    if strings.Contains(n, "snow") || strings.Contains(n, "powder") { return 0xf4f8fa }
+    if strings.Contains(n, "ice") { return 0x9cb8f0 }
+    if strings.Contains(n, "leaves") || strings.Contains(n, "moss") || strings.Contains(n, "vine") || strings.Contains(n, "bush") || strings.Contains(n, "sapling") || strings.Contains(n, "lily") { return 0x3f7a2a }
+    if strings.Contains(n, "grass") || strings.Contains(n, "fern") || strings.Contains(n, "flower") || strings.Contains(n, "tulip") || strings.Contains(n, "orchid") || strings.Contains(n, "daisy") || strings.Contains(n, "poppy") || strings.Contains(n, "dandelion") || strings.Contains(n, "allium") || strings.Contains(n, "bluet") || strings.Contains(n, "lilac") || strings.Contains(n, "peony") || strings.Contains(n, "rose") { return 0x6b9b37 }
+    if strings.Contains(n, "sandstone") { return 0xd8c98f }
+    if strings.Contains(n, "sand") { return 0xe3d6a0 }
+    if strings.Contains(n, "terracotta") { return dyed(n, 0x9e624b) }
+    if strings.Contains(n, "wool") || strings.Contains(n, "concrete") || strings.Contains(n, "carpet") || strings.Contains(n, "glass") { return dyed(n, 0xd8dde0) }
+    if strings.Contains(n, "planks") || strings.Contains(n, "slab") || strings.Contains(n, "stairs") || strings.Contains(n, "fence") || strings.Contains(n, "door") || strings.Contains(n, "chest") || strings.Contains(n, "barrel") || strings.Contains(n, "crafting") { return 0xa2824e }
+    if strings.Contains(n, "log") || strings.Contains(n, "wood") || strings.Contains(n, "stem") || strings.Contains(n, "hyphae") { return 0x6b5332 }
+    if strings.Contains(n, "dirt") || strings.Contains(n, "soil") || strings.Contains(n, "mud") { return 0x8b6646 }
+    if strings.Contains(n, "deepslate") || strings.Contains(n, "basalt") || strings.Contains(n, "blackstone") { return 0x585860 }
+    if strings.Contains(n, "stone") || strings.Contains(n, "cobble") || strings.Contains(n, "brick") || strings.Contains(n, "ore") || strings.Contains(n, "rock") { return 0x7d7d7d }
+    return 0x9a9a9a
+}
+
+// Lã, concreto, vidro e terracota tingidos: a cor do corante no comeco do nome.
+func dyed(n string, plain u32) u32 {
+    if strings.HasPrefix(n, "white") { return 0xe9ecec }
+    if strings.HasPrefix(n, "orange") { return 0xf07613 }
+    if strings.HasPrefix(n, "magenta") { return 0xbd44b3 }
+    if strings.HasPrefix(n, "light_blue") { return 0x3aafd9 }
+    if strings.HasPrefix(n, "yellow") { return 0xf8c527 }
+    if strings.HasPrefix(n, "lime") { return 0x70b919 }
+    if strings.HasPrefix(n, "pink") { return 0xed8dac }
+    if strings.HasPrefix(n, "light_gray") { return 0x8e8e86 }
+    if strings.HasPrefix(n, "gray") { return 0x3e4447 }
+    if strings.HasPrefix(n, "cyan") { return 0x158991 }
+    if strings.HasPrefix(n, "purple") { return 0x792aac }
+    if strings.HasPrefix(n, "blue") { return 0x35399d }
+    if strings.HasPrefix(n, "brown") { return 0x724728 }
+    if strings.HasPrefix(n, "green") { return 0x546d1b }
+    if strings.HasPrefix(n, "red") { return 0xa12722 }
+    if strings.HasPrefix(n, "black") { return 0x141519 }
+    return plain
+}
+
+// Ar de qualquer tipo: o das cavernas e o do vazio tambem.
+func isAir(full string) bool {
+    return strings.Equal(full, "minecraft:air") || strings.Equal(full, "minecraft:cave_air") || strings.Equal(full, "minecraft:void_air")
+}
+
+// Agua e lava sao vistas pela cor delas, e o resto pelo bloco de cima.
+func isWater(full string) bool {
+    return strings.Contains(full, "water") || strings.Contains(full, "kelp") || strings.Contains(full, "seagrass") || strings.Contains(full, "bubble_column")
+}

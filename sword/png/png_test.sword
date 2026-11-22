@@ -1,0 +1,35 @@
+package png
+
+import "std/testing"
+import "minezada/zlib"
+
+func be32(b []u8, at u64) u64 {
+    return (u64(b[at]) << 24) | (u64(b[at + 1]) << 16) | (u64(b[at + 2]) << 8) | u64(b[at + 3])
+}
+
+// Uma imagem de 2 x 1: assinatura, IHDR com o tamanho, IDAT que descomprime na linha com o filtro 0 na frente, e o
+// IEND com o CRC que todo PNG tem.
+func TestEncode(mut t *testing.T) !void {
+    rgb := [6]u8{255, 0, 0, 0, 128, 255}
+    out := try Encode(2, 1, rgb[..], t.Mem)
+    sig := [8]u8{137, 80, 78, 71, 13, 10, 26, 10}
+    for i in 0..8 {
+        t.Equal(out[i], sig[i])
+    }
+    t.Equal(string(out[12..16]), "IHDR")
+    t.Equal(be32(out, 16), 2)
+    t.Equal(be32(out, 20), 1)
+    t.Equal(string(out[37..41]), "IDAT")
+    n := be32(out, 33)
+    mut room := [64]u8{}
+    row := try zlib.Uncompress(out[41..41 + n], room[..])
+    t.Equal(row.len, 7)
+    t.Equal(row[0], 0)
+    for i in 0..6 {
+        t.Equal(row[i + 1], rgb[i])
+    }
+    end := out[out.len - 12..]
+    t.Equal(be32(end, 0), 0)
+    t.Equal(string(end[4..8]), "IEND")
+    t.Equal(be32(end, 8), 0xAE426082)
+}

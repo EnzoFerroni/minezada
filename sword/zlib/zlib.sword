@@ -1,0 +1,93 @@
+// A libz, que ja vem no macOS e no Linux: descomprime os chunks do mundo (o Minecraft guarda cada um em zlib) e
+// comprime as imagens PNG, que usam o mesmo formato.
+package zlib
+
+import "std/mem"
+
+error TooSmall = "o espaco de saida e pequeno demais para o que foi descomprimido"
+error Failed   = "a libz recusou os dados"
+
+extern "z" func uncompress(dest [*]u8, destLen [*]u64, src [*]u8, srcLen u64) i32
+extern "z" func compress2(dest [*]u8, destLen [*]u64, src [*]u8, srcLen u64, level i32) i32
+extern "z" func compressBound(n u64) u64
+extern "z" func crc32(crc u64, buf [*]u8, n u32) u64
+
+extern "z" func gzopen(path [*]u8, mode [*]u8) ?[*]u8
+extern "z" func gzread(file [*]u8, buf [*]u8, n u32) i32
+extern "z" func gzclose(file [*]u8) i32
+
+// Le um arquivo .gz inteiro (o level.dat e um), descomprimido, em memoria nova de a.
+func ReadGzip(path string, mut a mem.Allocator) ![]u8 {
+    mut name := mem.Alloc[u8](a, path.len + 1) orelse return error.OutOfMemory
+    for i in 0..path.len {
+        name[i] = path[i]
+    }
+    name[path.len] = 0
+    mode := [3]u8{114, 98, 0}
+    f := gzopen(name.ptr, mode[..].ptr) orelse return error.Failed
+    mut cap u64 = 65536
+    mut out := mem.Alloc[u8](a, cap) orelse return error.OutOfMemory
+    mut n u64 = 0
+    for {
+        if n == cap {
+            mut bigger := mem.Alloc[u8](a, cap * 2) orelse return error.OutOfMemory
+            for i in 0..n {
+                bigger[i] = out[i]
+            }
+            mem.Free[u8](a, out)
+            out = bigger
+            cap = cap * 2
+        }
+        got := gzread(f, out[n..].ptr, u32(cap - n))
+        if got < 0 {
+            gzclose(f)
+            return error.Failed
+        }
+        if got == 0 {
+            break
+        }
+        n += u64(got)
+    }
+    gzclose(f)
+    return out[0..n]
+}
+
+// Descomprime src em out e devolve a parte de out que foi usada. TooSmall quando nao coube: quem chama tenta
+// de novo com mais espaco.
+func Uncompress(src []u8, mut out []u8) ![]u8 {
+    mut n := out.len
+    r := uncompress(out.ptr, [*]u64(&n), src.ptr, src.len)
+    if r == -5 {
+        return error.TooSmall
+    }
+    if r != 0 {
+        return error.Failed
+    }
+    return out[0..n]
+}
+
+// Comprime src (nivel 6, o padrao da libz) em memoria nova de a.
+func Compress(src []u8, mut a mem.Allocator) ![]u8 {
+    mut n := compressBound(src.len)
+    mut out := mem.Alloc[u8](a, n) orelse return error.OutOfMemory
+    r := compress2(out.ptr, [*]u64(&n), src.ptr, src.len, 6)
+    if r != 0 {
+        return error.Failed
+    }
+    return out[0..n]
+}
+
+// CRC-32 de data continuando de crc (0 para comecar), como o PNG pede em cada bloco.
+func Crc(crc u32, data []u8) u32 {
+    mut c := u64(crc)
+    mut at u64 = 0
+    for at < data.len {
+        mut n := data.len - at
+        if n > 1073741824 {
+            n = 1073741824
+        }
+        c = crc32(c, data[at..at + n].ptr, u32(n))
+        at += n
+    }
+    return u32(c)
+}
