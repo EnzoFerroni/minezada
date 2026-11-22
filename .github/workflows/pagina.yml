@@ -85,7 +85,7 @@ jobs:
           make -C "$HOME/sword" -j"$(nproc)" SWORD_NO_TLS=1
           cd sword
           mkdir -p bin
-          for p in mapa placar estado; do "$HOME/sword/shield" "$p" -o "bin/$p"; done
+          for p in mapa placar estado pontos; do "$HOME/sword/shield" "$p" -o "bin/$p"; done
       # O mundo baixado fica so nesta maquina: o que vai para a pagina e o que os programas tiram dele.
       - name: Desenhar
         if: steps.mundo.outputs.pular != 'true'
@@ -113,8 +113,12 @@ jobs:
               sword/bin/mapa "$RUNNER_TEMP/mundo/world/DIM1" _site/end.png _site/end.json
             fi
             # Onde cada um saiu do jogo so vai para o mapa com a variavel MOSTRAR_POSICOES = sim: mostra a base de cada um.
-            if [ "$POSICOES" = sim ]; then pos=--posicoes; else pos=; fi
+            if [ "$POSICOES" = sim ]; then pos=--posicoes; portais=--portais; else pos=; portais=; fi
             sword/bin/placar "$RUNNER_TEMP/mundo" _site/placar.json $pos
+            # Vilas sempre; portais so com as posicoes, porque o de quem joga costuma ficar na base.
+            sword/bin/pontos "$RUNNER_TEMP/mundo/world" _site/mapa-pontos.json $portais
+            sword/bin/pontos "$RUNNER_TEMP/mundo/world/DIM-1" _site/nether-pontos.json $portais
+            sword/bin/pontos "$RUNNER_TEMP/mundo/world/DIM1" _site/end-pontos.json $portais
             sword/bin/estado "$RUNNER_TEMP/mundo/world" _site/estado.json
           fi
           echo "$NOME" > _site/mundo.txt
