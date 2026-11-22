@@ -213,7 +213,7 @@ $rpMods = @('naturalist:custom_spawn_eggs', 'supplementaries:darker_ropes', 'bui
 $rpIncompativeis = @('3d-crops')
 $rp = ($rpLigados | ForEach-Object { $s = $_; $m = $pwMods | Where-Object slug -eq $s; if (-not $m) { throw "Pacote ligado $s nao esta no pack" }; ",`"file/$($m.arquivo)`"" }) -join ''
 $rp += ($rpMods | ForEach-Object { ",`"$_`"" }) -join ''
-$rpInc = ($rpIncompativeis | ForEach-Object { $s = $_; $m = $pwMods | Where-Object slug -eq $s; "`"file/$($m.arquivo)`"" }) -join ','
+$rpInc = (@($rpIncompativeis | ForEach-Object { $s = $_; $m = $pwMods | Where-Object slug -eq $s; "`"file/$($m.arquivo)`"" }) + '"builtin/client/deep_aether_tooltips"') -join ','
 Escrever (Join-Path $inst '.minecraft/options.txt') "lang:pt_br`nrenderDistance:10`nsimulationDistance:8`nresourcePacks:[`"vanilla`"$rp]`nincompatibleResourcePacks:[$rpInc]`nonboardAccessibility:false`ntutorialStep:none`njoinedFirstServer:true`nskipMultiplayerWarning:true`n"
 Escrever (Join-Path $inst 'mmc-pack.json') "{`"formatVersion`":1,`"components`":[{`"uid`":`"net.minecraft`",`"version`":`"$mc`",`"important`":true},{`"uid`":`"net.neoforged`",`"version`":`"$neo`"}]}`n"
 $zipPrism = Join-Path $root 'modpack/minezada-prism.zip'

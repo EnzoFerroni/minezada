@@ -41,14 +41,16 @@ if (Test-Path options.txt) {
         $n = $o.FindIndex({ param($l) $l -like "$($t[0]):*" })
         if ($n -lt 0) { $o.Add("$($t[0]):$($t[2])") } elseif ($o[$n] -eq "$($t[0]):$($t[1])") { $o[$n] = "$($t[0]):$($t[2])" }
     }
-    # Pacotes feitos para um Minecraft mais novo (3D Crops, pack_format 55): o jogo tira da lista a cada abertura, a
-    # menos que o nome conste tambem em incompatibleResourcePacks. Garante o pacote nas duas listas.
-    $crops = 'file/crops-3d(2).zip'
+    # Pacotes feitos para outra versao do Minecraft (3D Crops, pack_format 55; Deep Aether Tooltips): o jogo tira da
+    # lista a cada abertura, a menos que o nome conste tambem em incompatibleResourcePacks. Garante nas duas listas.
+    $forcados = 'file/crops-3d(2).zip', 'builtin/client/deep_aether_tooltips'
     foreach ($k in 'resourcePacks', 'incompatibleResourcePacks') {
         $n = $o.FindIndex({ param($l) $l -like "${k}:*" })
-        $lista = if ($n -ge 0) { @(($o[$n] -replace "^${k}:", '') | ConvertFrom-Json | ForEach-Object { $_ }) } else { @() }
-        if ($lista -ccontains $crops) { continue }
-        $linha = "${k}:" + (ConvertTo-Json -InputObject @($lista + $crops) -Compress)
+        # @(if ...): sem o @() de fora, uma lista de um item so vira texto solto e o + junta as strings.
+        $lista = @(if ($n -ge 0) { ($o[$n] -replace "^${k}:", '') | ConvertFrom-Json | ForEach-Object { $_ } })
+        $falta = @($forcados | Where-Object { $lista -cnotcontains $_ })
+        if ($falta.Count -eq 0) { continue }
+        $linha = "${k}:" + (ConvertTo-Json -InputObject @($lista + $falta) -Compress)
         if ($n -ge 0) { $o[$n] = $linha } else { $o.Add($linha) }
     }
     [IO.File]::WriteAllLines("$PWD\options.txt", $o)
