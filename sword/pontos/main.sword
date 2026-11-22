@@ -1,0 +1,109 @@
+// pontos: as vilas (um sino cada) e, com --portais, os portais do Nether de uma dimensao, num JSON para o mapa.
+//
+//   pontos <pasta da dimensao> <saida.json> [--portais]
+//
+// Le <pasta>/poi/r.X.Z.mca. Portal fica de fora sem --portais: o de quem joga costuma ficar na base.
+
+import "std/bytes"
+import "std/fs"
+import "std/io"
+import "std/json"
+import "std/mem"
+import "std/os"
+import "std/strings"
+import "minezada/poi"
+
+func point(mut w *json.Writer, p poi.Point, y bool) {
+    w.BeginObject()
+    w.Key("x")
+    w.Int(p.X)
+    if y {
+        w.Key("y")
+        w.Int(p.Y)
+    }
+    w.Key("z")
+    w.Int(p.Z)
+    w.EndObject()
+}
+
+// Ordem fixa (x, depois z): a saida nao depende da ordem em que o sistema lista os arquivos.
+func before(a poi.Point, b poi.Point) bool {
+    if a.X != b.X {
+        return a.X < b.X
+    }
+    return a.Z < b.Z
+}
+
+func sort(mut ps []poi.Point) {
+    for i in 1..ps.len {
+        mut j := i
+        for j > 0 && before(ps[j], ps[j - 1]) {
+            tmp := ps[j]
+            ps[j] = ps[j - 1]
+            ps[j - 1] = tmp
+            j -= 1
+        }
+    }
+}
+
+func main() !int {
+    mut room := [4]string{}
+    args := os.Args(room[..])
+    portals := args.len == 4 && strings.Equal(args[3], "--portais")
+    if args.len != 3 && !portals {
+        try io.Print("uso: pontos <pasta da dimensao> <saida.json> [--portais]\n")
+        return 2
+    }
+    mut sys := mem.NewSystem()
+    dir := try strings.Concat(&sys, args[1], "/poi")
+    mut all := mem.Alloc[poi.Point](&sys, 1 << 16) orelse return error.OutOfMemory
+    mut n u64 = 0
+    // Dimensao sem pontos ainda (ninguem andou por la): sai o JSON vazio.
+    none := [0]fs.Entry{}
+    entries := fs.ReadDir(dir, &sys) catch none[..]
+    for e in entries {
+        if e.IsDir || !strings.HasPrefix(e.Name, "r.") || !strings.HasSuffix(e.Name, ".mca") {
+            continue
+        }
+        n = poi.Region(try strings.Concat(&sys, dir, "/", e.Name), all, n, &sys) catch |err| {
+            try io.Printf("AVISO: {} nao foi lido: {}\n", e.Name, err.Message())
+            continue
+        }
+    }
+    mut bells := mem.Alloc[poi.Point](&sys, n + 1) orelse return error.OutOfMemory
+    mut nb u64 = 0
+    for i in 0..n {
+        if all[i].Kind == poi.Bell {
+            bells[nb] = all[i]
+            nb += 1
+        }
+    }
+    sort(bells[0..nb])
+    mut gates := mem.Alloc[poi.Point](&sys, 1024) orelse return error.OutOfMemory
+    np := try poi.Portals(all[0..n], gates, &sys)
+    sort(gates[0..np])
+
+    mut out := try bytes.New(&sys, 1024)
+    mut w := json.NewWriter(&out)
+    w.BeginObject()
+    w.Key("vilas")
+    w.BeginArray()
+    for i in 0..nb {
+        point(&w, bells[i], false)
+    }
+    w.EndArray()
+    if portals {
+        w.Key("portais")
+        w.BeginArray()
+        for i in 0..np {
+            point(&w, gates[i], true)
+        }
+        w.EndArray()
+    }
+    w.EndObject()
+    try w.Err()
+    try out.WriteByte(10)
+    try fs.WriteAll(args[2], out.Bytes())
+    try io.Printf("{} vilas, {} portais\n", nb, np)
+    return 0
+}

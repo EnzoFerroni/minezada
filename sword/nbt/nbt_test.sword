@@ -3,7 +3,8 @@ package nbt
 import "std/testing"
 
 // Um compound sem nome com um campo de cada tipo que o mapa, o placar e o estado leem:
-// n Int -5, s Str "oi", d Double 1.5, f Float -2.25, l List de Double [1, -0.5], L Longs [7, -1] e c Compound {b Byte -1}.
+// n Int -5, s Str "oi", d Double 1.5, f Float -2.25, l List de Double [1, -0.5], L Longs [7, -1], c Compound {b Byte -1}
+// e p Ints [3, -4].
 const sample = "\x0a\x00\x00" +
     "\x03\x00\x01n\xff\xff\xff\xfb" +
     "\x08\x00\x01s\x00\x02oi" +
@@ -12,9 +13,10 @@ const sample = "\x0a\x00\x00" +
     "\x09\x00\x01l\x06\x00\x00\x00\x02\x3f\xf0\x00\x00\x00\x00\x00\x00\xbf\xe0\x00\x00\x00\x00\x00\x00" +
     "\x0c\x00\x01L\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x07\xff\xff\xff\xff\xff\xff\xff\xff" +
     "\x0a\x00\x01c\x01\x00\x01b\xff\x00" +
+    "\x0b\x00\x01p\x00\x00\x00\x02\x00\x00\x00\x03\xff\xff\xff\xfc" +
     "\x00"
 
-func TestFields(mut t *testing.T) !void {
+func TestNamed(mut t *testing.T) !void {
     b := []u8(sample)
     root := try Root(b)
     t.Equal(try Number(b, try Find(b, root, "n")), -5)
@@ -55,4 +57,24 @@ func TestCut(mut t *testing.T) !void {
     t.Check(cut(b[0..20]))
     t.Check(cut(b[0..2]))
     t.Check(!cut(b))
+}
+
+func TestInts(mut t *testing.T) !void {
+    b := []u8(sample)
+    p := try Find(b, try Root(b), "p")
+    t.Equal(try Len(b, p), 2)
+    t.Equal(try IntAt(b, p, 0), 3)
+    t.Equal(try IntAt(b, p, 1), -4)
+}
+
+// Os campos em ordem, sem saber os nomes: os tipos de cada um, e o fim com kind 0.
+func TestFields(mut t *testing.T) !void {
+    b := []u8(sample)
+    mut f := try FirstIn(b, try Root(b))
+    kinds := [8]u8{Int, Str, Double, Float, List, Longs, Compound, Ints}
+    for k in kinds {
+        t.Equal(f.Kind, k)
+        f = try After(b, f)
+    }
+    t.Equal(f.Kind, u8(End))
 }

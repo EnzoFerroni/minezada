@@ -196,6 +196,35 @@ func LongAt(b []u8, t Tag, i u64) !u64 {
     return try be(b, t.At + 4 + 8 * i, 8)
 }
 
+// O elemento i de um array de Int.
+func IntAt(b []u8, t Tag, i u64) !i64 {
+    return i64(i32(try be(b, t.At + 4 + 4 * i, 4)))
+}
+
+// O primeiro campo de um compound, qualquer que seja o nome; After anda para o seguinte. Kind 0 quando acabou.
+// Para compounds cujos nomes sao dados, como as secoes do arquivo de pontos de interesse ("-4", "0", "5"...).
+func FirstIn(b []u8, c Tag) !Tag {
+    if c.Kind != 10 {
+        return Tag{Kind: 0, At: 0}
+    }
+    return try field(b, c.At)
+}
+
+func After(b []u8, t Tag) !Tag {
+    return try field(b, try Skip(b, t.Kind, t.At))
+}
+
+func field(b []u8, p u64) !Tag {
+    if p >= b.len {
+        return error.Bad
+    }
+    if b[p] == 0 {
+        return Tag{Kind: 0, At: 0}
+    }
+    nl := try be(b, p + 1, 2)
+    return Tag{Kind: b[p], At: p + 3 + nl}
+}
+
 // O primeiro elemento de uma lista e o tipo dos elementos; Next anda para o seguinte.
 func First(b []u8, t Tag) !Tag {
     if t.Kind != 9 || t.At >= b.len {
