@@ -1,6 +1,6 @@
 # Status do servidor: a cada 10 minutos pergunta ao servidor, pelo tunel da Cloudflare (o mesmo caminho do
 # Modflared no jogo), se ele esta ligado e quantos estao jogando, e publica status.svg (o selo do README) e
-# status.json no branch "status". O programa que pergunta fica em status/ (Sword).
+# status.json no branch "status". O programa que pergunta fica em sword/status/ (Sword).
 # O playit nao serve aqui: o gratis nao responde de fora do Brasil, e as maquinas do GitHub ficam nos EUA.
 name: Status do servidor
 
@@ -8,9 +8,9 @@ on:
   schedule:
     - cron: '*/10 * * * *'
   push:
-    paths: ['status/**', '.github/workflows/status.yml']
+    paths: ['sword/**', '.github/workflows/status.yml']
   pull_request:
-    paths: ['status/**', '.github/workflows/status.yml']
+    paths: ['sword/**', '.github/workflows/status.yml']
   workflow_dispatch:
 
 permissions:
@@ -40,13 +40,14 @@ jobs:
           git -C "$HOME/sword" checkout -q "$SWORD"
           make -C "$HOME/sword" -j"$(nproc)" SWORD_NO_TLS=1
       - name: Testes
-        working-directory: status
+        working-directory: sword
         run: |
           "$HOME/sword/shield" test mc
-          "$HOME/sword/shield" . -o status
+          mkdir -p bin
+          "$HOME/sword/shield" status -o bin/status
           # Sem servidor nenhum: tem que dizer "desligado" e sair com 1.
           set +e
-          ./status 127.0.0.1 1 --json --selo desligado.svg
+          bin/status 127.0.0.1 1 --json --selo desligado.svg
           [ $? -eq 1 ] && grep -q desligado desligado.svg
 
   publicar:
@@ -62,12 +63,12 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      # O programa compilado fica guardado; o Sword so e compilado de novo quando status/ ou a versao mudam.
+      # O programa compilado fica guardado; o Sword so e compilado de novo quando sword/ ou a versao mudam.
       - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         id: cache
         with:
-          path: status/status
-          key: status-${{ env.SWORD }}-${{ hashFiles('status/**') }}
+          path: sword/bin
+          key: status-${{ env.SWORD }}-${{ hashFiles('sword/**') }}
       - name: Compilar
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
@@ -76,7 +77,9 @@ jobs:
           git clone -q https://github.com/swordlang/sword.git "$HOME/sword"
           git -C "$HOME/sword" checkout -q "$SWORD"
           make -C "$HOME/sword" -j"$(nproc)" SWORD_NO_TLS=1
-          cd status && "$HOME/sword/shield" . -o status
+          cd sword
+          mkdir -p bin
+          "$HOME/sword/shield" status -o bin/status
       # cloudflared oficial, versao fixa e SHA-256 conferido (como no iniciar). "access tcp" abre na porta local
       # a ponta do tunel, igual o Modflared faz no jogo.
       - name: Ligar a ponta do tunel
@@ -92,7 +95,7 @@ jobs:
           # Duas tentativas: uma falha de rede so nao pinta o selo de vermelho.
           for tentativa in 1 2; do
             set +e
-            status/status 127.0.0.1 25565 --json --selo saida/status.svg > bruto.json
+            sword/bin/status 127.0.0.1 25565 --json --selo saida/status.svg > bruto.json
             code=$?
             set -e
             [ $code -le 1 ] || exit $code
