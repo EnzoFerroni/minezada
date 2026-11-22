@@ -108,6 +108,14 @@ h2 { margin: 0 0 12px; font-size: 22px; font-weight: 600; color: var(--texto); }
 #tooltip .c { color: var(--cinza); }
 
 /* conquistas */
+.diario { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 6px; }
+.diario li { display: grid; grid-template-columns: 32px 1fr auto; gap: 10px; align-items: center; padding: 6px 10px; background: #1e1e1e; border: 2px solid #000; color: var(--branco); text-shadow: 2px 2px 0 #000; }
+.diario li.dificil { background: #2a1838; border-color: #6a1fb0; }
+.diario li.dificil .feito { color: #e0a8ff; }
+.diario img { width: 32px; height: 32px; image-rendering: pixelated; }
+.diario b { color: var(--amarelo); font-weight: normal; }
+.diario .quando { color: #bdbdbd; font-size: 14px; white-space: nowrap; }
+@media (max-width: 560px) { .diario li { grid-template-columns: 28px 1fr; } .diario img { width: 28px; height: 28px; } .diario .quando { grid-column: 2; } }
 .conquistas { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
 .conquista { display: grid; grid-template-columns: 52px 1fr; gap: 10px; align-items: center; padding: 10px; background: #1e1e1e; border: 2px solid #000; color: var(--branco); text-shadow: 2px 2px 0 #000; }
 .conquista .icone { width: 52px; height: 52px; display: grid; place-items: center; background: #c6a24a; box-shadow: inset 2px 2px 0 #f5d77a, inset -2px -2px 0 #7a5d1a; }
@@ -178,6 +186,12 @@ h2 { margin: 0 0 12px; font-size: 22px; font-weight: 600; color: var(--texto); }
     <div id="grafico" class="slot"><canvas id="barras"></canvas></div>
     <div class="eixo"><span id="eixo-ini"></span><span id="eixo-fim"></span></div>
     <p class="nota" id="hist-nota"></p>
+  </section>
+
+  <section class="painel" id="diario-painel" hidden>
+    <h2>Diário</h2>
+    <ol class="diario" id="diario"></ol>
+    <button class="botao" id="diario-mais" hidden>Ver tudo</button>
   </section>
 
   <section class="painel">
@@ -536,6 +550,166 @@ const cama = new Image(); cama.src = svg("cama");
 // Mapa num canvas sem suavizacao: cada bloco e um quadrado nitido em qualquer zoom e em qualquer navegador.
 // Uma aba por dimensao que ja tem mapa; o Nether e o End so aparecem depois que alguem andou por la.
 const dimensoes = [["mapa", "Superfície", "minecraft:overworld"], ["nether", "Nether", "minecraft:the_nether"], ["end", "End", "minecraft:the_end"]];
+// O que cada conquista conta, numa frase minha depois do nick ("Fulano entrou no Nether"). As do jogo e as dos mods
+// do pack que ja apareceram; conquista fora daqui nao entra no diario. As marcadas com ! sao desafios.
+const feitos = {
+  "minecraft:story/mine_stone": "minerou a primeira pedra",
+  "minecraft:story/upgrade_tools": "fez uma picareta melhor",
+  "minecraft:story/smelt_iron": "derreteu ferro",
+  "minecraft:story/obtain_armor": "vestiu a primeira armadura de ferro",
+  "minecraft:story/lava_bucket": "encheu um balde de lava",
+  "minecraft:story/iron_tools": "fez uma picareta de ferro",
+  "minecraft:story/deflect_arrow": "bloqueou uma flecha com o escudo",
+  "minecraft:story/form_obsidian": "fez obsidiana",
+  "minecraft:story/mine_diamond": "achou diamante",
+  "minecraft:story/enter_the_nether": "entrou no Nether",
+  "minecraft:story/shiny_gear": "vestiu armadura de diamante",
+  "minecraft:story/enchant_item": "encantou um item",
+  "minecraft:story/cure_zombie_villager": "curou um aldeão zumbi",
+  "minecraft:story/follow_ender_eye": "achou o portal do End",
+  "minecraft:story/enter_the_end": "entrou no End",
+  "minecraft:nether/return_to_sender": "!matou um Ghast com a própria bola de fogo",
+  "minecraft:nether/find_bastion": "achou um bastião",
+  "minecraft:nether/obtain_ancient_debris": "achou detrito ancestral",
+  "minecraft:nether/fast_travel": "!viajou 7 km pelo Nether",
+  "minecraft:nether/find_fortress": "achou uma fortaleza do Nether",
+  "minecraft:nether/obtain_crying_obsidian": "pegou obsidiana chorona",
+  "minecraft:nether/distract_piglin": "distraiu um piglin com ouro",
+  "minecraft:nether/ride_strider": "montou num strider",
+  "minecraft:nether/uneasy_alliance": "!trouxe um Ghast para a superfície e matou ele lá",
+  "minecraft:nether/loot_bastion": "saqueou um baú de bastião",
+  "minecraft:nether/use_lodestone": "ligou uma bússola a uma magnetita",
+  "minecraft:nether/netherite_armor": "!fez a armadura inteira de netherite",
+  "minecraft:nether/get_wither_skull": "pegou um crânio de esqueleto wither",
+  "minecraft:nether/obtain_blaze_rod": "pegou uma vara de blaze",
+  "minecraft:nether/charge_respawn_anchor": "carregou uma âncora de renascimento",
+  "minecraft:nether/ride_strider_in_overworld_lava": "levou um strider para passear na lava da superfície",
+  "minecraft:nether/explore_nether": "!andou por todos os biomas do Nether",
+  "minecraft:nether/summon_wither": "invocou o Wither",
+  "minecraft:nether/brew_potion": "fez uma poção",
+  "minecraft:nether/create_beacon": "montou um sinalizador",
+  "minecraft:nether/all_potions": "!ficou com todos os efeitos de poção ao mesmo tempo",
+  "minecraft:nether/create_full_beacon": "montou um sinalizador completo",
+  "minecraft:nether/all_effects": "!ficou com todos os efeitos do jogo ao mesmo tempo",
+  "minecraft:end/kill_dragon": "!matou o Dragão do Ender",
+  "minecraft:end/dragon_egg": "pegou o ovo do dragão",
+  "minecraft:end/enter_end_gateway": "atravessou um portal do fim do End",
+  "minecraft:end/respawn_dragon": "trouxe o dragão de volta",
+  "minecraft:end/dragon_breath": "guardou bafo de dragão num frasco",
+  "minecraft:end/find_end_city": "achou uma cidade do End",
+  "minecraft:end/elytra": "pegou uma elytra",
+  "minecraft:end/levitate": "!levitou 50 blocos com um shulker",
+  "minecraft:adventure/voluntary_exile": "matou o capitão de uma patrulha de saqueadores",
+  "minecraft:adventure/spyglass_at_parrot": "olhou um papagaio pela luneta",
+  "minecraft:adventure/kill_a_mob": "matou o primeiro monstro",
+  "minecraft:adventure/read_power_of_chiseled_bookshelf": "leu a força de uma estante entalhada",
+  "minecraft:adventure/trade": "fez a primeira troca com um aldeão",
+  "minecraft:adventure/trim_with_any_armor_pattern": "enfeitou uma armadura",
+  "minecraft:adventure/honey_block_slide": "escorregou num bloco de mel",
+  "minecraft:adventure/ol_betsy": "atirou com uma besta",
+  "minecraft:adventure/lightning_rod_with_villager_no_fire": "salvou um aldeão de um raio com um para-raios",
+  "minecraft:adventure/fall_from_world_height": "caiu do topo do mundo até o fundo",
+  "minecraft:adventure/salvage_sherd": "desenterrou um caco de cerâmica",
+  "minecraft:adventure/avoid_vibration": "passou agachado por um sensor de sculk",
+  "minecraft:adventure/sleep_in_bed": "dormiu numa cama",
+  "minecraft:adventure/hero_of_the_village": "!defendeu uma vila de uma invasão",
+  "minecraft:adventure/spyglass_at_ghast": "olhou um Ghast pela luneta",
+  "minecraft:adventure/throw_trident": "jogou um tridente",
+  "minecraft:adventure/kill_mob_near_sculk_catalyst": "matou um monstro perto de um catalisador de sculk",
+  "minecraft:adventure/shoot_arrow": "acertou uma flecha",
+  "minecraft:adventure/kill_all_mobs": "!matou um de cada monstro",
+  "minecraft:adventure/totem_of_undying": "escapou da morte com um totem",
+  "minecraft:adventure/summon_iron_golem": "construiu um golem de ferro",
+  "minecraft:adventure/trade_at_world_height": "negociou com um aldeão no teto do mundo",
+  "minecraft:adventure/trim_with_all_exclusive_armor_patterns": "!usou todos os enfeites raros de armadura",
+  "minecraft:adventure/two_birds_one_arrow": "!matou dois phantoms com uma flecha só",
+  "minecraft:adventure/whos_the_pillager_now": "matou um saqueador com a própria arma dele",
+  "minecraft:adventure/arbalistic": "!matou cinco bichos diferentes com um tiro de besta",
+  "minecraft:adventure/craft_decorated_pot_using_only_sherds": "fez um vaso só com cacos",
+  "minecraft:adventure/adventuring_time": "!passou por todos os biomas",
+  "minecraft:adventure/play_jukebox_in_meadows": "tocou música num prado",
+  "minecraft:adventure/walk_on_powder_snow_with_leather_boots": "andou sobre neve fofa de bota de couro",
+  "minecraft:adventure/spyglass_at_dragon": "olhou o dragão pela luneta",
+  "minecraft:adventure/very_very_frightening": "acertou um aldeão com um raio",
+  "minecraft:adventure/sniper_duel": "!matou um esqueleto a 50 blocos",
+  "minecraft:adventure/bullseye": "!acertou o meio de um alvo de longe",
+  "minecraft:adventure/minecraft_trials_edition": "entrou numa câmara de provação",
+  "minecraft:adventure/under_lock_and_key": "abriu um cofre com uma chave de provação",
+  "minecraft:adventure/revaulting": "!abriu um cofre sinistro",
+  "minecraft:adventure/blowback": "!matou um breeze com o próprio vento",
+  "minecraft:adventure/who_needs_rockets": "subiu 8 blocos com uma carga de vento",
+  "minecraft:adventure/crafters_crafting_crafters": "fez um fabricador com um fabricador",
+  "minecraft:adventure/lighten_up": "raspou uma lâmpada de cobre",
+  "minecraft:adventure/overoverkill": "!deu 50 de dano com uma maça",
+  "minecraft:husbandry/safely_harvest_honey": "pegou mel sem irritar as abelhas",
+  "minecraft:husbandry/breed_an_animal": "cruzou dois animais",
+  "minecraft:husbandry/allay_deliver_item_to_player": "ganhou um item de um allay",
+  "minecraft:husbandry/ride_a_boat_with_a_goat": "andou de barco com uma cabra",
+  "minecraft:husbandry/tame_an_animal": "domesticou um animal",
+  "minecraft:husbandry/make_a_sign_glow": "fez uma placa brilhar",
+  "minecraft:husbandry/fishy_business": "pescou um peixe",
+  "minecraft:husbandry/silk_touch_nest": "mudou uma colmeia de lugar com as abelhas dentro",
+  "minecraft:husbandry/tadpole_in_a_bucket": "pegou um girino num balde",
+  "minecraft:husbandry/obtain_sniffer_egg": "pegou um ovo de farejador",
+  "minecraft:husbandry/plant_seed": "plantou uma semente",
+  "minecraft:husbandry/wax_on": "encerou um bloco de cobre",
+  "minecraft:husbandry/bred_all_animals": "!cruzou todos os tipos de animal",
+  "minecraft:husbandry/allay_deliver_cake_to_note_block": "fez um allay entregar bolo num bloco musical",
+  "minecraft:husbandry/complete_catalogue": "!domesticou todos os tipos de gato",
+  "minecraft:husbandry/tactical_fishing": "pescou um peixe sem vara",
+  "minecraft:husbandry/leash_all_frog_variants": "juntou os três tipos de sapo na guia",
+  "minecraft:husbandry/feed_snifflet": "alimentou um filhote de farejador",
+  "minecraft:husbandry/balanced_diet": "!comeu de tudo que dá para comer",
+  "minecraft:husbandry/obtain_netherite_hoe": "!fez uma enxada de netherite",
+  "minecraft:husbandry/wax_off": "tirou a cera de um bloco de cobre",
+  "minecraft:husbandry/axolotl_in_a_bucket": "pegou um axolote num balde",
+  "minecraft:husbandry/froglights": "juntou as três luzes de sapo",
+  "minecraft:husbandry/plant_any_sniffer_seed": "plantou uma semente antiga",
+  "minecraft:husbandry/kill_axolotl_target": "ajudou um axolote numa briga",
+  "minecraft:husbandry/repair_wolf_armor": "consertou a armadura de um lobo",
+  "minecraft:husbandry/remove_wolf_armor": "tirou a armadura de um lobo",
+  "minecraft:husbandry/whole_pack": "!domesticou todos os tipos de lobo",
+  "mowziesmobs:kill_frostmaw": "!matou o Frostmaw",
+  "mowziesmobs:steal_ice_crystal": "roubou o cristal de gelo do Frostmaw",
+  "dungeons_arise:find_bathhouse": "achou uma casa de banhos",
+  "dungeons_arise:find_small_blimp": "achou um dirigível",
+  "artifacts:amateur_archaeologist": "achou um artefato",
+  "create:copper": "pegou cobre para o Create",
+  "farmersdelight:main/get_fd_seed": "colheu uma semente selvagem",
+  "farmersdelight:main/eat_nourishing_food": "comeu uma refeição de verdade",
+  "naturescompass:natures_compass": "fez uma bússola da natureza",
+  "supplementaries:adventure/road_sign": "pôs uma placa de estrada",
+  "toms_storage:unlock_chest": "montou um armazém",
+  "lootr:1chest": "abriu o primeiro baú de saque",
+  "lootr:10loot": "abriu 10 baús de saque",
+  "lootr:25loot": "abriu 25 baús de saque",
+  "adorablehamsterpets:husbandry/seed_money": "ganhou um hamster",
+};
+
+function diario(d) {
+  const lista = ((d || {}).conquistas || []).filter(c => feitos[c.id]);
+  if (!lista.length) return;
+  const ol = document.getElementById("diario"), mais = document.getElementById("diario-mais");
+  const linha = c => {
+    const li = document.createElement("li"), f = feitos[c.id], dificil = f[0] === "!";
+    if (dificil) li.className = "dificil";
+    const img = document.createElement("img"); img.alt = ""; img.src = cabeca(c.nick); img.loading = "lazy";
+    const txt = document.createElement("span"), b = document.createElement("b"), feito = document.createElement("span");
+    b.textContent = c.nick; feito.className = "feito"; feito.textContent = " " + (dificil ? f.slice(1) : f);
+    txt.append(b, feito);
+    const q = document.createElement("span"); q.className = "quando"; q.textContent = ha(c.quando_ms);
+    q.title = new Date(c.quando_ms).toLocaleString("pt-BR");
+    li.append(img, txt, q);
+    return li;
+  };
+  ol.append(...lista.slice(0, 10).map(linha));
+  if (lista.length > 10) {
+    mais.hidden = false; mais.textContent = `Ver tudo (${lista.length})`;
+    mais.onclick = () => { ol.append(...lista.slice(10).map(linha)); mais.hidden = true; };
+  }
+  document.getElementById("diario-painel").hidden = false;
+}
+
 // Ha quanto tempo, a partir de uma hora em ms: "ha 5 min", "ha 3 h", "ha 2 dias".
 const ha = ms => {
   const m = Math.max(0, Math.round((Date.now() - ms) / 60000));
@@ -722,6 +896,7 @@ Promise.all([dadosPlacar, pega("estado.json")]).then(([p, e]) => {
   placar(p);
 });
 pega(doStatus("historico.json")).then(h => { servidor(h); historico(h); });
+pega("conquistas.json").then(diario);
 mapa();
 </script>
 </body>
