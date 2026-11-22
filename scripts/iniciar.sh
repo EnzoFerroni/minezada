@@ -125,6 +125,7 @@ main() {
   rodar_servidor "$JAVA" "-Xms$RAM" "-Xmx$RAM" $flags "@libraries/net/neoforged/neoforge/$neo/unix_args.txt" nogui
 
   kill $tunel_pid $cf_pid 2>/dev/null || true
+  avisar_selo desligou
 
   [ -z "$SYNC_DIR" ] || enviar_mundo
 }
@@ -150,6 +151,7 @@ rodar_servidor() {
   # Escrever no console depois que o java saiu daria SIGPIPE e mataria o script antes de enviar o mundo.
   trap '' PIPE
   lista_visto="$(modificado "${lista:-}")"; jogo_visto="$(datas_jogo)"
+  inicio="$(date +%s)"; pronto=""
   # caffeinate -w (Mac acordado enquanto o java viver) fica ao lado, nao na frente do java: na frente, o SIGTERM
   # matava o caffeinate e o java seguia rodando com a trava presa.
   if command -v caffeinate >/dev/null; then caffeinate -i -w "$java_pid" & fi
@@ -165,6 +167,7 @@ rodar_servidor() {
     # || true: o Ctrl+C tambem mata o $(...) que estiver rodando na conferencia, e com set -e o script saia sem
     # enviar o mundo (o java morria pelo fim da sessao e a trava ficava presa).
     n=$((n + 1)); [ $((n % ${intervalo:-30})) -ne 0 ] || recarregar_whitelist || true
+    durante_sessao "$n" || true
   done
   wait "$java_pid" 2>/dev/null || true
   kill "$teclado_pid" 2>/dev/null || true
@@ -172,6 +175,49 @@ rodar_servidor() {
   trap - INT TERM PIPE
   # Janela fechada durante o envio do mundo: o envio termina, com a saida no registro.
   trap 'exec >>"$server/logs/iniciar.log" 2>&1' HUP
+}
+
+# Com o servidor ligado: avisa o selo quando ele termina de abrir e depois a cada 10 minutos, e a cada 30 minutos
+# manda uma foto do mundo para a pagina. Em segundo plano: o laco que espera o java nao pode parar.
+# O latest.log da sessao anterior ainda tem o "Done": so conta o log escrito depois do start.
+durante_sessao() {
+  local n=$1 t log="$server/logs/latest.log"
+  if [ -z "$pronto" ]; then
+    [ "$(modificado "$log")" -ge "$inicio" ] 2>/dev/null && grep -qs 'Done (' "$log" || return 0
+    pronto=$n
+    avisar_selo ligou &
+    return 0
+  fi
+  t=$((n - pronto))
+  [ $((t % 600)) -ne 0 ] || avisar_selo ligado &
+  [ $((t % 1800)) -ne 0 ] || [ $t -eq 0 ] || foto_do_mundo &
+}
+
+# Pede a consulta do selo agora (scripts/Selo.java). Sem dispatch.txt no Drive, nada.
+avisar_selo() {
+  [ -n "${SYNC_DIR:-}" ] && [ -f "$SYNC_DIR/dispatch.txt" ] || return 0
+  "${JAVA:-java}" "$(dirname "${BASH_SOURCE[0]}")/Selo.java" "$SYNC_DIR" "$1" || true
+}
+
+# Copia do mundo com o servidor ligado, para a pagina (o do Drive so muda no stop). save-off para o jogo nao
+# gravar no meio da copia, save-all flush para o que esta na memoria ir para o disco; sem a confirmacao
+# "Saved the game" em um minuto, desiste. Sem github.txt no Drive, nada.
+foto_do_mundo() {
+  [ -n "${SYNC_DIR:-}" ] && [ -f "$SYNC_DIR/github.txt" ] || return 0
+  local log="$server/logs/latest.log" foto="$server/logs/mundo-agora.tar.gz" antes f itens=() ok=1
+  antes="$(grep -c 'Saved the game' "$log" 2>/dev/null)" || true
+  { echo "save-off"; echo "save-all flush"; } >&4 2>/dev/null || return 0
+  for _ in $(seq 1 60); do
+    [ "$(grep -c 'Saved the game' "$log" 2>/dev/null)" -gt "${antes:-0}" ] && { ok=0; break; }
+    sleep 1
+  done
+  if [ $ok -eq 0 ]; then
+    for f in world ops.json whitelist.json banned-players.json banned-ips.json; do [ -e "$server/$f" ] && itens+=("$f"); done
+    COPYFILE_DISABLE=1 tar -czf "$foto.tmp" -C "$server" "${itens[@]}" || ok=1
+  fi
+  echo "save-on" >&4 2>/dev/null || true
+  [ $ok -eq 0 ] && mv -f "$foto.tmp" "$foto" || { rm -f "$foto.tmp"; return 0; }
+  "${JAVA:-java}" "$(dirname "${BASH_SOURCE[0]}")/MundoGithub.java" "$foto" "$SYNC_DIR" > /dev/null || true
 }
 
 # Envia o mundo para a pasta sincronizada, guarda os 5 ultimos e libera a trava.

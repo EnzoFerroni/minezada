@@ -2,6 +2,8 @@
 # Modflared no jogo), se ele esta ligado e quantos estao jogando, e publica no branch "status": status.json (o selo
 # do README, pelo shields.io), historico.txt (uma linha por consulta, 60 dias) e historico.json (horas ligado e
 # pico de jogadores por dia, que a pagina le). Os programas ficam em sword/ (Sword).
+# O horario de 10 em 10 minutos o GitHub roda quando quer (ja passou horas sem rodar); por isso o iniciar tambem
+# pede esta consulta ao ligar, a cada 10 minutos com o servidor ligado e depois do stop (scripts/Selo.java).
 # O playit nao serve aqui: o gratis nao responde de fora do Brasil, e as maquinas do GitHub ficam nos EUA.
 name: Status do servidor
 
@@ -13,6 +15,12 @@ on:
   pull_request:
     paths: ['sword/**', '.github/workflows/status.yml']
   workflow_dispatch:
+    inputs:
+      motivo:
+        description: Quem pediu (o iniciar diz ligou, ligado ou desligou)
+        type: choice
+        options: [manual, ligou, ligado, desligou]
+        default: manual
 
 permissions:
   contents: read
@@ -92,17 +100,21 @@ jobs:
           "$RUNNER_TEMP/cloudflared" access tcp --hostname mc.minezada.dpdns.org --url 127.0.0.1:25565 > "$RUNNER_TEMP/cloudflared.log" 2>&1 &
           for _ in $(seq 1 20); do ss -ltn | grep -q '127.0.0.1:25565' && break; sleep 0.5; done
       - name: Perguntar ao servidor
+        env:
+          MOTIVO: ${{ inputs.motivo }}
         run: |
           mkdir -p saida
           date -u +%Y-%m-%dT%H:%M:%SZ > agora.txt
-          # Duas tentativas: uma falha de rede so nao pinta o selo de vermelho.
-          for tentativa in 1 2; do
+          # Duas tentativas: uma falha de rede so nao pinta o selo de vermelho. Logo depois de ligar, seis (um
+          # minuto): o tunel pode subir uns segundos depois do servidor.
+          vezes=2; [ "$MOTIVO" != ligou ] || vezes=6
+          for tentativa in $(seq 1 "$vezes"); do
             set +e
             sword/bin/status 127.0.0.1 25565 --json --selo saida/status.svg > bruto.json
             code=$?
             set -e
             [ $code -le 1 ] || exit $code
-            [ $code -eq 1 ] && [ $tentativa -eq 1 ] && { sleep 10; continue; }
+            [ $code -eq 1 ] && [ "$tentativa" -lt "$vezes" ] && { sleep 10; continue; }
             break
           done
           cat bruto.json
