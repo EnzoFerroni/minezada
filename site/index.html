@@ -541,7 +541,11 @@ async function mapa() {
   const prontos = (await Promise.all(dimensoes.map(async d => [d, await pega(`${d[0]}.json`)]))).filter(([, i]) => i);
   if (!prontos.length) { box.style.display = "none"; document.getElementById("mapa-nota").textContent = "O mapa ainda não foi gerado."; return; }
   let [dim, info] = prontos[0];
-  let img = new Image(); img.src = `${dim[0]}.png`;
+  // Os .json vem sem cache, mas a imagem o navegador guarda por 10 minutos: com o nome do mundo no endereco, cada
+  // mundo novo e uma imagem nova, e o desenho nunca sai com as medidas de um mundo e a imagem do outro.
+  const versao = await fetch("mundo.txt", { cache: "no-store" }).then(r => r.ok ? r.text() : "").catch(() => "");
+  const png = d => `${d[0]}.png?m=${encodeURIComponent(versao.trim())}`;
+  let img = new Image(); img.src = png(dim);
   await img.decode().catch(() => {});
   let s = 1, ox = 0, oy = 0, chunks = false, rato = null;
   const p = await dadosPlacar;
@@ -616,7 +620,7 @@ async function mapa() {
       const b = document.createElement("button");
       b.className = "botao"; b.textContent = d[1]; b.setAttribute("aria-pressed", d === dim);
       b.onclick = async () => {
-        const novo = new Image(); novo.src = `${d[0]}.png`; await novo.decode().catch(() => {});
+        const novo = new Image(); novo.src = png(d); await novo.decode().catch(() => {});
         dim = d; info = i; img = novo; cabecas = todas.filter(c => c.dim === dim[2]);
         abas.forEach(a => a.setAttribute("aria-pressed", a === b)); centra();
       };
