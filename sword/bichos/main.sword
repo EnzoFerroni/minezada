@@ -1,0 +1,195 @@
+// bichos: os animais que alguem domesticou (lobo, gato, papagaio, cavalo...), num JSON para a pagina.
+//
+//   bichos <pasta do servidor> <saida.json> [--posicoes]
+//
+// Le as entidades de cada dimensao (world/entities, world/DIM-1/entities, world/DIM1/entities) e o bicho no
+// ombro de cada jogador (world/playerdata). Escreve {"bichos": [{tipo, nome, dono, dimensao}, ...]}, em ordem de
+// dono, tipo e nome; o nome e o CustomName do jogo, um texto em JSON que a pagina le. Onde cada um esta (x, y, z)
+// so entra com --posicoes: o bicho costuma ficar na base.
+
+import "std/bytes"
+import "std/fs"
+import "std/io"
+import "std/json"
+import "std/mem"
+import "std/os"
+import "std/strings"
+import "minezada/estat"
+import "minezada/mundo"
+import "minezada/nbt"
+import "minezada/zlib"
+
+func less(a string, b string) bool {
+    mut i u64 = 0
+    for i < a.len && i < b.len {
+        if a[i] != b[i] {
+            return a[i] < b[i]
+        }
+        i += 1
+    }
+    return a.len < b.len
+}
+
+func floor(v f64) i64 {
+    t := i64(v)
+    if f64(t) > v {
+        return t - 1
+    }
+    return t
+}
+
+// Os bichos nos ombros do jogador do arquivo playerdata/<uuid>.dat, em out a partir de from.
+func shoulders(path string, uuid string, mut out []mundo.Pet, from u64, mut a mem.Allocator) !u64 {
+    b := try zlib.ReadGzip(path, a)
+    root := try nbt.Root(b)
+    dim := try nbt.Text(b, try nbt.Find(b, root, "Dimension"))
+    mut d u8 = 0
+    if strings.Equal(dim, "minecraft:the_nether") {
+        d = 1
+    } else if strings.Equal(dim, "minecraft:the_end") {
+        d = 2
+    }
+    mut xyz := [3]i64{}
+    pos := try nbt.Find(b, root, "Pos")
+    if pos.Kind == nbt.List && (try nbt.Len(b, pos)) == 3 {
+        mut c := try nbt.First(b, pos)
+        for i in 0..xyz.len {
+            xyz[i] = floor(try nbt.Real(b, c))
+            c = try nbt.Next(b, c)
+        }
+    }
+    sides := [2]string{"ShoulderEntityLeft", "ShoulderEntityRight"}
+    mut k := from
+    for side in sides {
+        e := try nbt.Find(b, root, side)
+        if e.Kind == nbt.Compound && k < out.len {
+            mut p := mundo.NewPet()
+            if try mundo.Shoulder(b, e, uuid, xyz[0], xyz[1], xyz[2], &p) {
+                p.Dim = d
+                out[k] = p
+                k += 1
+            }
+        }
+    }
+    return k
+}
+
+func main() !int {
+    mut room := [4]string{}
+    args := os.Args(room[..])
+    where := args.len == 4 && strings.Equal(args[3], "--posicoes")
+    if args.len != 3 && !where {
+        try io.Print("uso: bichos <pasta do servidor> <saida.json> [--posicoes]\n")
+        return 2
+    }
+    mut sys := mem.NewSystem()
+    mut all := mem.Alloc[mundo.Pet](&sys, 4096) orelse return error.OutOfMemory
+    mut n u64 = 0
+    mut bad u64 = 0
+    none := [0]fs.Entry{}
+    dims := [3]string{"/world/entities", "/world/DIM-1/entities", "/world/DIM1/entities"}
+    for di in 0..dims.len {
+        dir := try strings.Concat(&sys, args[1], dims[di])
+        entries := fs.ReadDir(dir, &sys) catch none[..]
+        for e in entries {
+            if e.IsDir || !strings.HasPrefix(e.Name, "r.") || !strings.HasSuffix(e.Name, ".mca") {
+                continue
+            }
+            from := n
+            n = mundo.Pets(try strings.Concat(&sys, dir, "/", e.Name), all, n) catch |err| {
+                try io.Printf("AVISO: {}/{} nao foi lido: {}\n", dims[di], e.Name, err.Message())
+                bad += 1
+                continue
+            }
+            for i in from..n {
+                all[i].Dim = u8(di)
+            }
+        }
+    }
+    pdir := try strings.Concat(&sys, args[1], "/world/playerdata")
+    players := fs.ReadDir(pdir, &sys) catch none[..]
+    for e in players {
+        if e.IsDir || !strings.HasSuffix(e.Name, ".dat") || e.Name.len != 40 {
+            continue
+        }
+        n = shoulders(try strings.Concat(&sys, pdir, "/", e.Name), e.Name[0..36], all, n, &sys) catch |err| {
+            try io.Printf("AVISO: playerdata/{} nao foi lido: {}\n", e.Name, err.Message())
+            bad += 1
+            continue
+        }
+    }
+
+    // O nick de cada dono; quem nao esta na whitelist fica com o comeco do UUID.
+    mut owners := mem.Alloc[string](&sys, n + 1) orelse return error.OutOfMemory
+    for i in 0..n {
+        id := all[i].OwnerId()
+        mut nick := try estat.Nick(args[1], id, &sys)
+        if nick.len == 0 {
+            nick = try strings.Concat(&sys, id[0..8])
+        }
+        owners[i] = nick
+    }
+    mut order := mem.Alloc[u64](&sys, n + 1) orelse return error.OutOfMemory
+    for i in 0..n {
+        order[i] = i
+    }
+    for i in 1..n {
+        mut j := i
+        for j > 0 {
+            a := order[j]
+            b := order[j - 1]
+            mut first := false
+            if !strings.Equal(owners[a], owners[b]) {
+                first = less(owners[a], owners[b])
+            } else if !strings.Equal(all[a].KindName(), all[b].KindName()) {
+                first = less(all[a].KindName(), all[b].KindName())
+            } else {
+                first = less(all[a].Custom(), all[b].Custom())
+            }
+            if !first {
+                break
+            }
+            order[j] = b
+            order[j - 1] = a
+            j -= 1
+        }
+    }
+
+    names := [3]string{"minecraft:overworld", "minecraft:the_nether", "minecraft:the_end"}
+    mut out := try bytes.New(&sys, 4096)
+    mut w := json.NewWriter(&out)
+    w.BeginObject()
+    w.Key("bichos")
+    w.BeginArray()
+    for k in 0..n {
+        i := order[k]
+        w.BeginObject()
+        w.Key("tipo")
+        w.Str(all[i].KindName())
+        w.Key("nome")
+        w.Str(all[i].Custom())
+        w.Key("dono")
+        w.Str(owners[i])
+        w.Key("dimensao")
+        w.Str(names[all[i].Dim])
+        if where {
+            w.Key("x")
+            w.Int(all[i].X)
+            w.Key("y")
+            w.Int(all[i].Y)
+            w.Key("z")
+            w.Int(all[i].Z)
+        }
+        w.EndObject()
+    }
+    w.EndArray()
+    w.EndObject()
+    try w.Err()
+    try out.WriteByte(10)
+    try fs.WriteAll(args[2], out.Bytes())
+    try io.Printf("{} bichos\n", n)
+    if bad > 0 {
+        return 1
+    }
+    return 0
+}
