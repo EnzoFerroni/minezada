@@ -1,0 +1,158 @@
+import "minezada/nbt"
+
+// Um bicho com dono: o tipo ("minecraft:wolf"), o nome que ganhou (o CustomName do jogo, um texto em JSON; vazio
+// se nao tem), o UUID do dono e onde esta (Dim: 0 Superficie, 1 Nether, 2 End, quem le e que diz). Os textos sao copiados para dentro, porque o chunk lido some na
+// proxima leitura.
+struct Pet {
+    Kind  [64]u8
+    KLen  u64
+    Name  [256]u8
+    NLen  u64
+    Owner [36]u8
+    Dim   u8
+    X     i64
+    Y     i64
+    Z     i64
+}
+
+func (p *Pet) KindName() string {
+    return string(p.Kind[0..p.KLen])
+}
+
+func (p *Pet) Custom() string {
+    return string(p.Name[0..p.NLen])
+}
+
+func (p *Pet) OwnerId() string {
+    return string(p.Owner[0..36])
+}
+
+// O UUID que o jogo guarda como quatro Ints, no texto de sempre ("4e1adaea-852f-4490-ba56-3ea6c8837061").
+func uuidText(b []u8, t nbt.Tag, mut out []u8) !void {
+    digits := "0123456789abcdef"
+    four u64 = 4
+    eight u64 = 8
+    mut k u64 = 0
+    for i in 0..four {
+        mut w := try nbt.IntAt(b, t, i)
+        if w < 0 {
+            w += 4294967296
+        }
+        v := u64(w)
+        for j in 0..eight {
+            if k == 8 || k == 13 || k == 18 || k == 23 {
+                out[k] = 45
+                k += 1
+            }
+            out[k] = digits[(v >> (28 - j * 4)) & 15]
+            k += 1
+        }
+    }
+}
+
+func floorOf(v f64) i64 {
+    t := i64(v)
+    if f64(t) > v {
+        return t - 1
+    }
+    return t
+}
+
+// A entidade e, se tem dono e vida (uma flecha tambem tem dono, quem atirou), o bicho. ok diz se e.
+func petOf(b []u8, e nbt.Tag, mut p *Pet) !bool {
+    owner := try nbt.Find(b, e, "Owner")
+    if owner.Kind != nbt.Ints || (try nbt.Len(b, owner)) != 4 || (try nbt.Find(b, e, "Health")).Kind == 0 {
+        return false
+    }
+    kind := try nbt.Text(b, try nbt.Find(b, e, "id"))
+    name := try nbt.Text(b, try nbt.Find(b, e, "CustomName"))
+    if kind.len == 0 || kind.len > 64 || name.len > 256 {
+        return false
+    }
+    p.KLen = kind.len
+    for i in 0..kind.len {
+        p.Kind[i] = kind[i]
+    }
+    p.NLen = name.len
+    for i in 0..name.len {
+        p.Name[i] = name[i]
+    }
+    try uuidText(b, owner, p.Owner[..])
+    pos := try nbt.Find(b, e, "Pos")
+    if pos.Kind == nbt.List && (try nbt.Len(b, pos)) == 3 {
+        mut c := try nbt.First(b, pos)
+        p.X = floorOf(try nbt.Real(b, c))
+        c = try nbt.Next(b, c)
+        p.Y = floorOf(try nbt.Real(b, c))
+        c = try nbt.Next(b, c)
+        p.Z = floorOf(try nbt.Real(b, c))
+    }
+    return true
+}
+
+func NewPet() Pet {
+    return Pet{Kind: [64]u8{}, KLen: 0, Name: [256]u8{}, NLen: 0, Owner: [36]u8{}, Dim: 0, X: 0, Y: 0, Z: 0}
+}
+
+// Os bichos com dono do arquivo de entidades path (world/entities/r.X.Z.mca, o mesmo formato das regioes), em out
+// a partir de from. Diz ate onde out ficou cheio.
+func Pets(path string, mut out []Pet, from u64) !u64 {
+    mut r := try Open(path)
+    mut k := from
+    chunks u64 = 1024
+    for i in 0..chunks {
+        plain := r.Chunk(i) catch |e| {
+            r.Close()
+            return e
+        }
+        if plain.len > 0 {
+            k = pets(plain, out, k) catch k
+        }
+    }
+    r.Close()
+    return k
+}
+
+func pets(b []u8, mut out []Pet, from u64) !u64 {
+    root := try nbt.Root(b)
+    list := try nbt.Find(b, root, "Entities")
+    n := try nbt.Len(b, list)
+    mut k := from
+    mut e := try nbt.First(b, list)
+    for _ in 0..n {
+        if k < out.len {
+            mut p := NewPet()
+            if try petOf(b, e, &p) {
+                out[k] = p
+                k += 1
+            }
+        }
+        e = try nbt.Next(b, e)
+    }
+    return k
+}
+
+// O bicho no ombro de um jogador (ShoulderEntityLeft ou Right do playerdata): sai do mundo enquanto esta la, entao
+// fica com a posicao do dono. ok diz se tinha.
+func Shoulder(b []u8, e nbt.Tag, owner string, x i64, y i64, z i64, mut p *Pet) !bool {
+    kind := try nbt.Text(b, try nbt.Find(b, e, "id"))
+    name := try nbt.Text(b, try nbt.Find(b, e, "CustomName"))
+    if kind.len == 0 || kind.len > 64 || name.len > 256 || owner.len != 36 {
+        return false
+    }
+    p.KLen = kind.len
+    for i in 0..kind.len {
+        p.Kind[i] = kind[i]
+    }
+    p.NLen = name.len
+    for i in 0..name.len {
+        p.Name[i] = name[i]
+    }
+    for i in 0..36 {
+        p.Owner[i] = owner[i]
+    }
+    p.X = x
+    p.Y = y
+    p.Z = z
+    return true
+}
