@@ -41,6 +41,16 @@ if (Test-Path options.txt) {
         $n = $o.FindIndex({ param($l) $l -like "$($t[0]):*" })
         if ($n -lt 0) { $o.Add("$($t[0]):$($t[2])") } elseif ($o[$n] -eq "$($t[0]):$($t[1])") { $o[$n] = "$($t[0]):$($t[2])" }
     }
+    # Pacotes feitos para um Minecraft mais novo (3D Crops, pack_format 55): o jogo tira da lista a cada abertura, a
+    # menos que o nome conste tambem em incompatibleResourcePacks. Garante o pacote nas duas listas.
+    $crops = 'file/crops-3d(2).zip'
+    foreach ($k in 'resourcePacks', 'incompatibleResourcePacks') {
+        $n = $o.FindIndex({ param($l) $l -like "${k}:*" })
+        $lista = if ($n -ge 0) { @(($o[$n] -replace "^${k}:", '') | ConvertFrom-Json | ForEach-Object { $_ }) } else { @() }
+        if ($lista -ccontains $crops) { continue }
+        $linha = "${k}:" + (ConvertTo-Json -InputObject @($lista + $crops) -Compress)
+        if ($n -ge 0) { $o[$n] = $linha } else { $o.Add($linha) }
+    }
     [IO.File]::WriteAllLines("$PWD\options.txt", $o)
 }
 # Avisos dos mods que so atrapalham (arquivo, opcao, valor). O servidor tem os mesmos em server-config.
