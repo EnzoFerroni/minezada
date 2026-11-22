@@ -1,0 +1,139 @@
+# Pagina (GitHub Pages): o site de site/ com o mapa do mundo, o placar e o ceu do ultimo salvamento.
+# O mundo vem do repositorio privado do mundo (MUNDO_REPO, por padrao PedroTessaro/minezada-mundo), onde o
+# iniciar sobe o mundo.tar.gz a cada stop (scripts/MundoGithub.java). O segredo MUNDO_TOKEN le esse
+# repositorio. A cada meia hora olha se chegou mundo novo; so desenha e publica de novo quando chegou, ou quando site/ ou sword/ mudam.
+# O estado e o historico do servidor a pagina le direto do branch status, entao andam sem publicar de novo.
+# Sem MUNDO_TOKEN a pagina sai sem mapa e sem placar.
+name: Pagina
+
+on:
+  schedule:
+    - cron: '7,37 * * * *'
+  push:
+    branches: [main]
+    paths: ['site/**', 'sword/**', '.github/workflows/pagina.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pagina
+  cancel-in-progress: false
+
+env:
+  # Sword 0.4.4, fixado por commit como as Actions.
+  SWORD: 2ff3160055bb2e02f133228924ed04e04ec53d75
+  MUNDO_REPO: ${{ vars.MUNDO_REPO || 'PedroTessaro/minezada-mundo' }}
+
+jobs:
+  montar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      pular: ${{ steps.mundo.outputs.pular }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # O mundo mais novo do release "mundo" (o nome tem a data). A pagina publicada guarda em mundo.txt de qual
+      # mundo ela saiu: se e o mesmo e nada mais mudou, nao ha o que publicar.
+      - name: Mundo mais novo
+        id: mundo
+        env:
+          GH_TOKEN: ${{ secrets.MUNDO_TOKEN }}
+          EVENTO: ${{ github.event_name }}
+        run: |
+          echo "pular=false" >> "$GITHUB_OUTPUT"
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::warning::Sem o segredo MUNDO_TOKEN: a pagina sai sem mapa e sem placar."
+            [ "$EVENTO" != schedule ] || echo "pular=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          code="$(curl -sS -o rel.json -w '%{http_code}' -H "Authorization: Bearer $GH_TOKEN" \
+            -H 'Accept: application/vnd.github+json' "https://api.github.com/repos/$MUNDO_REPO/releases/tags/mundo")"
+          case "$code" in
+            200) ;;
+            404) echo "::warning::$MUNDO_REPO ainda nao tem mundo (ou o token nao enxerga o repositorio)."; : > nenhum ;;
+            *) echo "::error::GitHub respondeu HTTP $code para $MUNDO_REPO"; exit 1 ;;
+          esac
+          nome=""; id=""
+          if [ ! -e nenhum ]; then
+            jq -r '[.assets[] | select(.name | test("^mundo-[0-9]{8}-[0-9]{6}\\.tar\\.gz$"))] | sort_by(.name) | last
+              | if . then "\(.name) \(.id)" else "" end' rel.json > ultimo.txt
+            read -r nome id < ultimo.txt || true
+          fi
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+          echo "nome=$nome" >> "$GITHUB_OUTPUT"
+          dono="${GITHUB_REPOSITORY%%/*}"; repo="${GITHUB_REPOSITORY#*/}"
+          publicado="$(curl -fsS "https://${dono,,}.github.io/$repo/mundo.txt" 2>/dev/null || true)"
+          echo "Mundo mais novo: ${nome:-nenhum}; publicado: ${publicado:-nenhum}"
+          if [ "$EVENTO" = schedule ] && [ "$publicado" = "$nome" ]; then echo "pular=true" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        if: steps.mundo.outputs.pular != 'true'
+        id: cache
+        with:
+          path: sword/bin
+          key: pagina-${{ env.SWORD }}-${{ hashFiles('sword/**') }}
+      - name: Compilar
+        if: steps.mundo.outputs.pular != 'true' && steps.cache.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q --no-install-recommends clang zlib1g-dev
+          git clone -q https://github.com/swordlang/sword.git "$HOME/sword"
+          git -C "$HOME/sword" checkout -q "$SWORD"
+          make -C "$HOME/sword" -j"$(nproc)" SWORD_NO_TLS=1
+          cd sword
+          mkdir -p bin
+          for p in mapa placar estado; do "$HOME/sword/shield" "$p" -o "bin/$p"; done
+      # O mundo baixado fica so nesta maquina: o que vai para a pagina e o que os programas tiram dele.
+      - name: Desenhar
+        if: steps.mundo.outputs.pular != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.MUNDO_TOKEN }}
+          ID: ${{ steps.mundo.outputs.id }}
+          NOME: ${{ steps.mundo.outputs.nome }}
+          POSICOES: ${{ vars.MOSTRAR_POSICOES }}
+        run: |
+          mkdir -p _site
+          cp -R site/. _site/
+          if [ -n "$ID" ]; then
+            # O link de download leva ao armazenamento do GitHub; o curl nao repassa o token para outro endereco.
+            curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H 'Accept: application/octet-stream' \
+              "https://api.github.com/repos/$MUNDO_REPO/releases/assets/$ID" -o "$RUNNER_TEMP/mundo.tar.gz"
+            mkdir -p "$RUNNER_TEMP/mundo"
+            tar -xzf "$RUNNER_TEMP/mundo.tar.gz" -C "$RUNNER_TEMP/mundo"
+            sword/bin/mapa "$RUNNER_TEMP/mundo/world" _site/mapa.png _site/mapa.json
+            # Nether e End so quando alguem ja foi: sem regiao, a pagina nao mostra a aba. No Nether cada coluna e
+            # lida de y 118 para baixo, por baixo do teto de bedrock.
+            if ls "$RUNNER_TEMP"/mundo/world/DIM-1/region/r.*.mca >/dev/null 2>&1; then
+              sword/bin/mapa "$RUNNER_TEMP/mundo/world/DIM-1" _site/nether.png _site/nether.json --teto 118
+            fi
+            if ls "$RUNNER_TEMP"/mundo/world/DIM1/region/r.*.mca >/dev/null 2>&1; then
+              sword/bin/mapa "$RUNNER_TEMP/mundo/world/DIM1" _site/end.png _site/end.json
+            fi
+            # Onde cada um saiu do jogo so vai para o mapa com a variavel MOSTRAR_POSICOES = sim: mostra a base de cada um.
+            if [ "$POSICOES" = sim ]; then pos=--posicoes; else pos=; fi
+            sword/bin/placar "$RUNNER_TEMP/mundo" _site/placar.json $pos
+            sword/bin/estado "$RUNNER_TEMP/mundo/world" _site/estado.json
+          fi
+          echo "$NOME" > _site/mundo.txt
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        if: steps.mundo.outputs.pular != 'true'
+        with:
+          path: _site
+
+  publicar:
+    needs: montar
+    if: needs.montar.outputs.pular != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+        id: deploy

@@ -135,6 +135,26 @@ O `iniciar` acha a pasta sozinho em `X:\Meu Drive\minezada` (Windows) ou
 `~/Library/CloudStorage/GoogleDrive-*/Meu Drive/minezada` (Mac). Pasta em outro lugar: edite
 `SYNC_DIR` no `config.env`.
 
+## Página (mapa e placar)
+
+A página do GitHub Pages mostra o mapa do mundo, o placar e o céu como o mundo ficou. Ela sai do mundo que o
+`iniciar` sobe para o GitHub a cada `stop`, depois de mandar para o Drive. Sem `github.txt` na pasta do Drive o
+`iniciar` não sobe nada, e a página fica sem mapa e sem placar; o resto funciona igual. Configurado uma vez só:
+
+1. O mundo vai para o repositório privado `PedroTessaro/minezada-mundo` (criado com um README; sem nenhum
+   commit o GitHub não aceita o release).
+2. Token: https://github.com/settings/personal-access-tokens/new, com **Only select repositories** →
+   `minezada-mundo` e **Repository permissions → Contents: Read and write**. Nada mais.
+3. Na pasta `minezada` do Drive, um arquivo `github.txt` com o token na primeira linha. Todo host usa o mesmo.
+4. No repositório do pack: Settings → Secrets and variables → Actions → **New repository secret**, nome
+   `MUNDO_TOKEN`, o mesmo token.
+5. Settings → Pages → Source: **GitHub Actions**.
+
+A Action **Pagina** olha a cada meia hora se chegou mundo novo. Token vencido: o `iniciar` avisa no fim
+("mundo não enviado para o GitHub") e o mundo do Drive continua salvo; gere outro e troque nos passos 3 e 4.
+Para mostrar no mapa onde cada um saiu do jogo: Settings → Secrets and variables → Actions → Variables,
+`MOSTRAR_POSICOES` = `sim`.
+
 ## Trocar de host
 
 - Espere o Drive sincronizar antes de iniciar em outra máquina.
