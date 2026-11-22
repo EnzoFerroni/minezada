@@ -1,0 +1,53 @@
+import "std/fs"
+import "std/mem"
+import "minezada/zlib"
+
+// Os chunks de um arquivo de regiao (r.X.Z.mca), um de cada vez, ja descomprimidos. O espaco para o chunk dobra
+// quando ele nao cabe, ate 64 MB. Toda a memoria e do proprio leitor, para varias regioes serem lidas ao mesmo
+// tempo sem dividir nada; Close devolve.
+struct Reader {
+    sys  mem.System
+    data []u8
+    room []u8
+}
+
+func Open(path string) !Reader {
+    mut sys := mem.NewSystem()
+    data := try fs.ReadAll(path, &sys)
+    room := mem.Alloc[u8](&sys, 2 << 20) orelse return error.OutOfMemory
+    return Reader{sys: sys, data: data, room: room}
+}
+
+// O chunk i (0 a 1023, i = z * 32 + x) descomprimido, ou vazio quando o arquivo nao tem esse chunk. O pedaco
+// devolvido vale ate a proxima chamada.
+func (mut r *Reader) Chunk(i u64) ![]u8 {
+    if r.data.len < 8192 {
+        return r.room[0..0]
+    }
+    off := be(r.data, i * 4, 3) * 4096
+    if off == 0 || off + 5 > r.data.len {
+        return r.room[0..0]
+    }
+    n := be(r.data, off, 4)
+    if r.data[off + 4] != 2 || n < 1 || off + 4 + n > r.data.len {
+        return r.room[0..0]
+    }
+    src := r.data[off + 5..off + 4 + n]
+    for {
+        plain := zlib.Uncompress(src, r.room) catch |e| {
+            if nameof(e) == "TooSmall" && r.room.len < (64 << 20) {
+                big := r.room.len * 2
+                mem.Free[u8](&r.sys, r.room)
+                r.room = mem.Alloc[u8](&r.sys, big) orelse return error.OutOfMemory
+                continue
+            }
+            return e
+        }
+        return plain
+    }
+}
+
+func (mut r *Reader) Close() {
+    mem.Free[u8](&r.sys, r.room)
+    mem.Free[u8](&r.sys, r.data)
+}
