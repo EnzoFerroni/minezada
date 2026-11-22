@@ -53,6 +53,21 @@ key_key.corpse.death_history key.keyboard.u key.keyboard.u:ALT
 key_iris.keybind.toggleShaders key.keyboard.k:ALT key.keyboard.k
 key_key.veinminer_client.config key.keyboard.o key.keyboard.o:SHIFT
 FIM
+  # Pacotes feitos para um Minecraft mais novo (3D Crops, pack_format 55): o jogo tira da lista a cada abertura, a
+  # menos que o nome conste tambem em incompatibleResourcePacks. Garante o pacote nas duas listas.
+  for k in resourcePacks incompatibleResourcePacks; do
+    atual="$(grep -m 1 "^$k:" options.txt || true)"
+    if [ -z "$atual" ]; then
+      echo "$k:[\"file/crops-3d(2).zip\"]" >> options.txt
+    else
+      case "$atual" in
+        *'"file/crops-3d(2).zip"'*) ;;
+        *) grep -v "^$k:" options.txt > options.txt.novo || true
+           echo "$atual" | sed -e '/\[\]$/!s|\]$|,"file/crops-3d(2).zip"]|' -e 's|\[\]$|["file/crops-3d(2).zip"]|' >> options.txt.novo
+           mv options.txt.novo options.txt ;;
+      esac
+    fi
+  done
 fi
 # Avisos dos mods que so atrapalham (arquivo, opcao, valor). O servidor tem os mesmos em server-config.
 # Distant Horizons: avisos no chat de garbage collector (o ZGC que ele sugere gasta mais memoria nos PCs fracos),
