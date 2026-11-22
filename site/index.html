@@ -194,6 +194,11 @@ h2 { margin: 0 0 12px; font-size: 22px; font-weight: 600; color: var(--texto); }
     <button class="botao" id="diario-mais" hidden>Ver tudo</button>
   </section>
 
+  <section class="painel" id="bichos-painel" hidden>
+    <h2>Bichos da galera</h2>
+    <div class="conquistas" id="bichos"></div>
+  </section>
+
   <section class="painel">
     <h2>Conquistas</h2>
     <div class="conquistas" id="conquistas"></div>
@@ -235,6 +240,7 @@ const icones = {
   bandeira: ["kk..........", "kkkkkkkkkk..", "kkwwwwwwwk..", "kkwwGGGwwk..", "kkwGwwwGwk..", "kkwwGGGwwk..", "kkwwwGwwwk..", "kkwwwwwwwk..", "kkkkkkkkkk..", "kk..........", "kk..........", "kk.........."],
   iglu: ["............", "............", "....kkkk....", "..kkwwwwkk..", ".kwwswwswwk.", ".kwwwwwwwwk.", "kwswwwwwswwk", "kwwwkkkkwwwk", "kwswkkkkwswk", "kwwwkkkkwwwk", "kkkkkkkkkkkk", "............"],
   ruina: ["............", ".kkk........", ".kgk....kkk.", ".kgk....kgk.", ".kgk.kk.kgk.", ".kGk.kk.kgk.", ".kgk.kgkkGk.", ".kgk.kgkkgk.", ".kGkkkGkkgk.", "kkkkkkkkkkkk", "kggGggggGggk", "kkkkkkkkkkkk"],
+  pata: ["............", ".kk..kk..kk.", "kbbkkbbkkbbk", "kbbkkbbkkbbk", ".kk..kk..kk.", "....kkkk....", "...kbbbbk...", "..kbbbbbbk..", "..kbbbbbbk..", "...kbbbbk...", "....kkkk....", "............"],
   grama: ["llllllllllll", "lLllllLlllll", "lLlLllLllLll", "bLbLbbLbbLbb", "bbbLbbbbbbBb", "bBbbbbbBbbbb", "bbbbBbbbbbbb", "bbbbbbbbBbbb", "bBbbbbbbbbBb", "bbbbbBbbbbbb", "bbBbbbbbbBbb", "bbbbbbbbbbbb"]
 };
 const svg = nome => {
@@ -751,6 +757,37 @@ const tiposDeEstrutura = [
 ];
 const tipoDe = id => { const t = tiposDeEstrutura.find(([re]) => re.test(id)); return t && t[1] ? t : null; };
 
+// O nome de cada especie que alguem pode domesticar; o resto sai do id ("minecraft:snow_fox" -> "snow fox").
+const especies = {
+  "minecraft:wolf": "lobo", "minecraft:cat": "gato", "minecraft:parrot": "papagaio", "minecraft:horse": "cavalo",
+  "minecraft:donkey": "burro", "minecraft:mule": "mula", "minecraft:llama": "lhama", "minecraft:trader_llama": "lhama",
+  "minecraft:skeleton_horse": "cavalo esqueleto", "minecraft:zombie_horse": "cavalo zumbi", "minecraft:camel": "camelo",
+  "adorablehamsterpets:hamster": "hamster",
+};
+const especie = t => especies[t] || t.split(":").pop().replace(/_/g, " ");
+// O CustomName vem em JSON: "\"Rex\"" ou {"text": "Rex"}.
+const nomeDoBicho = n => { try { const v = JSON.parse(n); return typeof v === "string" ? v : (v.text || ""); } catch { return ""; } };
+const nomeCompleto = b => { const n = nomeDoBicho(b.nome); return n ? `${n}, ${especie(b.tipo)} de ${b.dono}` : `${especie(b.tipo)} de ${b.dono}`; };
+
+function bichos(d) {
+  const lista = (d || {}).bichos || [];
+  if (!lista.length) return;
+  document.getElementById("bichos").append(...lista.map(b => {
+    const card = document.createElement("div"); card.className = "conquista";
+    const ic = document.createElement("div"); ic.className = "icone";
+    const im = document.createElement("img"); im.alt = ""; im.src = svg("pata"); ic.append(im);
+    const txt = document.createElement("div"), titulo = document.createElement("div"), lider = document.createElement("div");
+    const n = nomeDoBicho(b.nome), e = especie(b.tipo);
+    titulo.className = "titulo"; titulo.textContent = n || e[0].toUpperCase() + e.slice(1);
+    lider.className = "lider";
+    const cab = document.createElement("img"); cab.alt = ""; cab.src = cabeca(b.dono);
+    const quem = document.createElement("span"); quem.textContent = n ? `${e} de ${b.dono}` : `de ${b.dono}`;
+    lider.append(cab, quem); txt.append(titulo, lider); card.append(ic, txt);
+    return card;
+  }));
+  document.getElementById("bichos-painel").hidden = false;
+}
+
 // Ha quanto tempo, a partir de uma hora em ms: "ha 5 min", "ha 3 h", "ha 2 dias".
 const ha = ms => {
   const m = Math.max(0, Math.round((Date.now() - ms) / 60000));
@@ -788,6 +825,10 @@ async function mapa() {
       .map(([e, t]) => { if (!desenhos[t[2]]) { desenhos[t[2]] = new Image(); desenhos[t[2]].src = svg(t[2]); desenhos[t[2]].onload = () => redesenha(); } return { x: e.x, z: e.z, img: desenhos[t[2]], nome: t[1] }; });
   }
   let comEstruturas = false;
+  // Os bichos com posicao (so vem com as posicoes ligadas), marcados com uma pata.
+  const pata = new Image(); pata.src = svg("pata"); pata.onload = () => redesenha();
+  const bichosNoMapa = (((await dadosBichos) || {}).bichos || []).filter(b => b.x != null)
+    .map(b => ({ x: b.x, z: b.z, dim: b.dimensao, img: pata, nome: nomeCompleto(b) }));
   // Onde cada um morreu (o mod Corpse guarda), tambem so com as posicoes ligadas.
   const obitos = ((await pega("mortes.json")) || {}).mortes || [];
   let caveiras = false;
@@ -802,7 +843,7 @@ async function mapa() {
   const portal = new Image(); portal.src = svg("portal"); portal.onload = () => redesenha();
   const pontos = () => [...(marcas[dim[0]].vilas || []).map(v => ({ ...v, img: sino, nome: "Vila" })),
     ...(marcas[dim[0]].portais || []).map(v => ({ ...v, img: portal, nome: `Portal do Nether (y ${v.y})` })),
-    ...(comEstruturas ? estruturas[dim[0]] : [])];
+    ...(comEstruturas ? estruturas[dim[0]] : []), ...bichosNoMapa.filter(b => b.dim === dim[2])];
   const caveira = new Image(); caveira.src = svg("caveira"); caveira.onload = () => redesenha();
   const mortesAqui = () => obitos.filter(o => o.dimensao === dim[2]);
   const ctx = cv.getContext("2d");
@@ -944,6 +985,7 @@ async function mapa() {
 }
 
 const dadosPlacar = pega("placar.json");
+const dadosBichos = pega("bichos.json");
 Promise.all([dadosPlacar, pega("estado.json")]).then(([p, e]) => {
   const tema = temaDe(p);
   ceu(e, fundos(tema), tema);
@@ -952,6 +994,7 @@ Promise.all([dadosPlacar, pega("estado.json")]).then(([p, e]) => {
 });
 pega(doStatus("historico.json")).then(h => { servidor(h); historico(h); });
 pega("conquistas.json").then(diario);
+dadosBichos.then(bichos);
 mapa();
 </script>
 </body>
