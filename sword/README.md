@@ -7,7 +7,7 @@ mexer, é preciso o compilador (`shield`), o `clang` e a libz (já vem no Mac; n
 git clone https://github.com/swordlang/sword ~/sword && make -C ~/sword
 cd sword && mkdir -p bin
 for p in mc estat hist mundo nbt png zlib poi; do ~/sword/shield test $p; done
-for p in status historico mapa placar estado pontos calor; do ~/sword/shield $p -o bin/$p; done
+for p in status historico mapa placar estado pontos calor mortes; do ~/sword/shield $p -o bin/$p; done
 testdata/conferir.sh
 ```
 
@@ -19,6 +19,7 @@ testdata/conferir.sh
 | `placar <pasta do servidor> <saída.json> [--posicoes]` | as estatísticas de cada jogador (`world/stats`), com o nick tirado da whitelist, e como saiu do jogo (`world/playerdata`: vida, fome, nível, dimensão; a posição só com `--posicoes`) | Action da página |
 | `estado <pasta do mundo> <saída.json>` | dia do mundo, hora do jogo, fase da lua, chuva, spawn e se o dragão caiu (`level.dat`) | Action da página |
 | `calor <pasta da dimensão> <saída.json>` | quanto tempo cada chunk teve gente por perto (o `InhabitedTime` do jogo), os de pelo menos um minuto | Action da página, só com `MOSTRAR_POSICOES` |
+| `mortes <pasta do mundo> <saída.json>` | onde e quando cada um morreu, dos arquivos que o mod Corpse grava em `deaths/` (a causa ele não guarda) | Action da página, só com `MOSTRAR_POSICOES` |
 | `pontos <pasta da dimensão> <saída.json> [--portais]` | as vilas (pelo sino) e, com `--portais`, os portais do Nether acesos, do arquivo de pontos de interesse (`poi/`); camas ficam de fora | Action da página |
 
 `status` sai com 0 quando o servidor respondeu, 1 quando não respondeu e 2 para comando errado. O endereço do playit
@@ -40,4 +41,4 @@ primeiro ar e desenha o chão abaixo dele.
 | `estat/` | resume o arquivo de estatísticas de um jogador |
 | `hist/` | calendário e soma do histórico por dia |
 | `poi/` | lê os pontos de interesse (sinos, portais) e junta os blocos de um portal num ponto só |
-| `testdata/` | um servidor de mentira (um jogador, no Nether) e o que `estado`, `placar`, `pontos` e `calor` têm que tirar dele; `conferir.sh` compara |
+| `testdata/` | um servidor de mentira (um jogador, no Nether) e o que `estado`, `placar`, `pontos`, `calor` e `mortes` têm que tirar dele; `conferir.sh` compara |

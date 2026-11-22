@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Roda estado, placar, pontos e calor no servidor de mentira de testdata/servidor (um jogador, no Nether, com o
-# dragao derrotado; uma vila, uma cama e um portal; tres chunks com tempo de jogador por perto) e compara com o que tem que sair. Da pasta sword/, com os programas
+# dragao derrotado; uma vila, uma cama e um portal; tres chunks com tempo de jogador por perto; tres mortes) e compara com o que tem que sair. Da pasta sword/, com os programas
 # em bin/.
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -11,7 +11,8 @@ bin/placar testdata/servidor "$t/placar.json" > /dev/null
 bin/placar testdata/servidor "$t/placar-posicoes.json" --posicoes > /dev/null
 bin/pontos testdata/servidor/world "$t/pontos.json" --portais > /dev/null
 bin/calor testdata/servidor/world "$t/calor.json" > /dev/null
-for f in estado placar placar-posicoes pontos calor; do
+bin/mortes testdata/servidor/world "$t/mortes.json" > /dev/null
+for f in estado placar placar-posicoes pontos calor mortes; do
   diff -u "testdata/$f.json" "$t/$f.json" || { echo "FALHA $f"; exit 1; }
 done
-echo "ok    estado, placar, pontos e calor"
+echo "ok    estado, placar, pontos, calor e mortes"
