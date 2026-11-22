@@ -155,6 +155,8 @@ Configurado uma vez só:
 A Action **Pagina** olha a cada meia hora se chegou mundo novo, e o envio ainda pede ela na hora quando existe o
 `dispatch.txt` do selo (seção abaixo). Token vencido: o `iniciar` avisa no fim
 ("mundo não enviado para o GitHub") e o mundo do Drive continua salvo; gere outro e troque nos passos 3 e 4.
+O mapa tem uma aba para cada dimensão onde alguém já foi: Superfície, Nether, End e as dos mods (o Aether, a Lua,
+Marte, Vênus, Mercúrio e Glacio do Ad Astra, as órbitas, o Undergarden), sozinhas a partir da primeira visita.
 O mapa marca as vilas (pelo sino). O resto mostra as bases e fica desligado: onde cada um saiu do jogo, os
 portais do Nether acesos, onde o pessoal passa mais tempo (o botão "Onde o pessoal fica") e onde cada um
 morreu (o botão "Mortes", dos registros do mod Corpse). Para ligar: Settings → Secrets and variables → Actions
