@@ -186,6 +186,8 @@ durante_sessao() {
     [ "$(modificado "$log")" -ge "$inicio" ] 2>/dev/null && grep -qs 'Done (' "$log" || return 0
     pronto=$n
     avisar_selo ligou &
+    # Explosao dropa tudo que quebra (creeper, TNT, cama no Nether). Vale no mundo; reaplicado a cada partida.
+    { echo "gamerule mobExplosionDropDecay false"; echo "gamerule tntExplosionDropDecay false"; echo "gamerule blockExplosionDropDecay false"; } >&4 2>/dev/null || true
     return 0
   fi
   t=$((n - pronto))

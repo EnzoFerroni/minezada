@@ -361,6 +361,9 @@ try {
             if ((Test-Path $wlog) -and (Get-Item $wlog).LastWriteTime -ge $inicio -and (Select-String -Quiet -SimpleMatch 'Done (' $wlog)) {
                 $pronto = $voltas
                 Avisar-Selo 'ligou'
+                # Explosao dropa tudo que quebra (creeper, TNT, cama no Nether). Vale no mundo; reaplicado a cada partida.
+                try { foreach ($r in 'mobExplosionDropDecay', 'tntExplosionDropDecay', 'blockExplosionDropDecay') { $proc.StandardInput.WriteLine("gamerule $r false") } }
+                catch { Write-Warning "Nao apliquei as regras de explosao: $($_.Exception.Message)" }
             }
         }
         else {
