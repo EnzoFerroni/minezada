@@ -294,6 +294,36 @@ if (-not ($cf -or $tunel)) { Write-Warning 'Nenhum tunel conectou: so esta maqui
 Add-Type -Name Energia -Namespace Minezada -MemberDefinition '[DllImport("kernel32.dll")] public static extern uint SetThreadExecutionState(uint f);'
 [void][Minezada.Energia]::SetThreadExecutionState(2147483649)  # 0x80000001 = ES_CONTINUOUS | ES_SYSTEM_REQUIRED (hex vira negativo no PS 5.1)
 
+# Pede a consulta do selo agora (scripts/Selo.java), sem esperar o horario do GitHub. Sem dispatch.txt no Drive, nada.
+function Avisar-Selo($motivo) {
+    if (-not $sync -or -not (Test-Path (Join-Path $sync 'dispatch.txt'))) { return }
+    Start-Process -WindowStyle Hidden -FilePath $cfg.JAVA -ArgumentList @("`"$(Join-Path $PSScriptRoot 'Selo.java')`"", "`"$sync`"", $motivo)
+}
+
+# Copia do mundo com o servidor ligado, para a pagina (o do Drive so muda no stop). save-off para o jogo nao gravar
+# no meio da copia, save-all flush para o que esta na memoria ir para o disco; sem "Saved the game" em um minuto,
+# desiste. O envio roda escondido, fora deste laco. Sem github.txt no Drive, nada.
+function Foto-Do-Mundo {
+    if (-not $sync -or -not (Test-Path (Join-Path $sync 'github.txt'))) { return }
+    $wlog = Join-Path $server 'logs\latest.log'
+    $salvos = { @(Select-String -SimpleMatch 'Saved the game' $wlog -ErrorAction SilentlyContinue).Count }
+    $antes = & $salvos
+    try { $proc.StandardInput.WriteLine('save-off'); $proc.StandardInput.WriteLine('save-all flush') } catch { return }
+    $ok = $false
+    for ($i = 0; $i -lt 60; $i++) { Start-Sleep 1; if ((& $salvos) -gt $antes) { $ok = $true; break } }
+    $foto = Join-Path $server 'logs\mundo-agora.tar.gz'
+    if ($ok) {
+        $itens = @('world', 'ops.json', 'whitelist.json', 'banned-players.json', 'banned-ips.json') |
+            Where-Object { Test-Path (Join-Path $server $_) }
+        & $tar -czf "$foto.tmp" -C $server @itens
+        if ($LASTEXITCODE) { $ok = $false }
+    }
+    try { $proc.StandardInput.WriteLine('save-on') } catch { }
+    if (-not $ok) { Remove-Item -Force "$foto.tmp" -ErrorAction SilentlyContinue; return }
+    Move-Item -Force "$foto.tmp" $foto
+    Start-Process -WindowStyle Hidden -FilePath $cfg.JAVA -ArgumentList @("`"$(Join-Path $PSScriptRoot 'MundoGithub.java')`"", "`"$foto`"", "`"$sync`"")
+}
+
 Push-Location $server
 try {
     Write-Host "Iniciando servidor com $($cfg.RAM) de RAM, na janela propria (fechar ela ou digitar stop salva e desliga)."
@@ -313,7 +343,23 @@ try {
     $datas = { param($arqs) ($arqs | ForEach-Object { if (Test-Path $_) { (Get-Item $_).LastWriteTimeUtc.Ticks } }) -join ',' }
     $jsons = (Join-Path $server 'whitelist.json'), (Join-Path $server 'ops.json')
     $visto = & $datas $lista; $vistoJogo = & $datas $jsons
+    # Selo avisado quando o servidor termina de abrir e a cada 10 minutos; foto do mundo a cada 30. O latest.log da
+    # sessao anterior ainda tem o "Done": so conta o log escrito depois do start.
+    $inicio = Get-Date; $pronto = 0; $voltas = 0
+    $wlog = Join-Path $server 'logs\latest.log'
     while (-not $proc.WaitForExit(30000)) {
+        $voltas++
+        if (-not $pronto) {
+            if ((Test-Path $wlog) -and (Get-Item $wlog).LastWriteTime -ge $inicio -and (Select-String -Quiet -SimpleMatch 'Done (' $wlog)) {
+                $pronto = $voltas
+                Avisar-Selo 'ligou'
+            }
+        }
+        else {
+            $t = $voltas - $pronto
+            if ($t % 20 -eq 0) { Avisar-Selo 'ligado' }
+            if ($t % 60 -eq 0) { Foto-Do-Mundo }
+        }
         $jogo = & $datas $jsons
         if ($jogo -ne $vistoJogo) {
             $vistoJogo = $jogo
@@ -335,6 +381,9 @@ finally {
     Pop-Location
     [void][Minezada.Energia]::SetThreadExecutionState(2147483648)  # 0x80000000 = volta ao normal
     foreach ($t in $cf, $tunel) { if ($t) { Stop-Process -Id $t.Id -Force -ErrorAction SilentlyContinue } }
+    if ($sync -and (Test-Path (Join-Path $sync 'dispatch.txt'))) {
+        & $cfg.JAVA (Join-Path $PSScriptRoot 'Selo.java') $sync 'desligou' | ForEach-Object { Write-Host $_ }
+    }
     if ($sync) {
         Write-Host 'Enviando mundo para a pasta sincronizada...'
         $itens = @('world', 'ops.json', 'whitelist.json', 'banned-players.json', 'banned-ips.json') |

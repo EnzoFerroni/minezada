@@ -138,8 +138,10 @@ O `iniciar` acha a pasta sozinho em `X:\Meu Drive\minezada` (Windows) ou
 ## Página (mapa e placar)
 
 A página do GitHub Pages mostra o mapa do mundo, o placar e o céu como o mundo ficou. Ela sai do mundo que o
-`iniciar` sobe para o GitHub a cada `stop`, depois de mandar para o Drive. Sem `github.txt` na pasta do Drive o
-`iniciar` não sobe nada, e a página fica sem mapa e sem placar; o resto funciona igual. Configurado uma vez só:
+`iniciar` sobe para o GitHub a cada `stop`, depois de mandar para o Drive, e a cada 30 minutos com o servidor
+ligado (um `save-off` e `save-all flush` no console antes da cópia, e `save-on` depois). Sem `github.txt` na
+pasta do Drive o `iniciar` não sobe nada, e a página fica sem mapa e sem placar; o resto funciona igual.
+Configurado uma vez só:
 
 1. O mundo vai para o repositório privado `PedroTessaro/minezada-mundo` (criado com um README; sem nenhum
    commit o GitHub não aceita o release).
@@ -154,6 +156,21 @@ A Action **Pagina** olha a cada meia hora se chegou mundo novo. Token vencido: o
 ("mundo não enviado para o GitHub") e o mundo do Drive continua salvo; gere outro e troque nos passos 3 e 4.
 Para mostrar no mapa onde cada um saiu do jogo: Settings → Secrets and variables → Actions → Variables,
 `MOSTRAR_POSICOES` = `sim`.
+
+## Selo do README
+
+A Action **Status do servidor** pergunta ao servidor se ele está ligado. O horário dela (de 10 em 10 minutos) o
+GitHub roda quando quer, e já passou horas sem rodar; por isso o `iniciar` pede a consulta na hora quando o
+servidor termina de abrir, a cada 10 minutos com ele ligado e depois do `stop`. O selo muda de 1 a 6 minutos
+depois (o resto é o cache do GitHub e do shields.io). Configurado uma vez só:
+
+1. Token do dono do repositório: https://github.com/settings/personal-access-tokens/new, com **Only select
+   repositories** → `minezada` e **Repository permissions → Actions: Read and write**. Só isso: ele pede
+   rodadas de Action e não mexe em arquivo nenhum.
+2. Na pasta `minezada` do Drive, um arquivo `dispatch.txt` com o token na primeira linha.
+
+Sem `dispatch.txt` o selo fica só com o horário do GitHub. Host que cai sem `stop` (falta de luz) não avisa: o
+selo fica "ligado" até a próxima consulta do horário.
 
 ## Trocar de host
 
