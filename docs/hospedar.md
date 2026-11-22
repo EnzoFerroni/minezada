@@ -155,9 +155,9 @@ Configurado uma vez só:
 A Action **Pagina** olha a cada meia hora se chegou mundo novo, e o envio ainda pede ela na hora quando existe o
 `dispatch.txt` do selo (seção abaixo). Token vencido: o `iniciar` avisa no fim
 ("mundo não enviado para o GitHub") e o mundo do Drive continua salvo; gere outro e troque nos passos 3 e 4.
-O mapa marca as vilas (pelo sino). Para mostrar também onde cada um saiu do jogo e os portais do Nether acesos
-(o de quem joga costuma ficar na base): Settings → Secrets and variables → Actions → Variables,
-`MOSTRAR_POSICOES` = `sim`.
+O mapa marca as vilas (pelo sino). Para mostrar também onde cada um saiu do jogo, os portais do Nether acesos e
+onde o pessoal passa mais tempo (o botão "Onde o pessoal fica"), tudo isso mostra as bases: Settings → Secrets
+and variables → Actions → Variables, `MOSTRAR_POSICOES` = `sim`.
 
 ## Selo do README
 
