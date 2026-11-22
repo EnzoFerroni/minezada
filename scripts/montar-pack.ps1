@@ -206,8 +206,15 @@ Escrever (Join-Path $inst 'instance.cfg') "[General]`nInstanceType=OneSix`nname=
 # Opcoes iniciais (o jogo completa o resto); o jogar so copia se o jogador ainda nao tiver.
 # Pacotes de $rpLigados ja vem ligados. As quatro ultimas opcoes pulam as telas de primeira abertura:
 # acessibilidade, tutorial de movimento e avisos de multiplayer.
+# Pacotes embutidos em mods (ids do jogo, conferidos no log do cliente): ficam por cima dos de arquivo. Id desconhecido o
+# jogo tira da lista sem erro. Emissivity do Deep Aether so existe com o mod aether_emissivity, que o pack nao tem.
+$rpMods = @('naturalist:custom_spawn_eggs', 'supplementaries:darker_ropes', 'builtin/overrides/deep_aether_additional_assets', 'builtin/client/deep_aether_tooltips')
+# Feitos para um Minecraft mais novo: o jogo so os mantem se constarem em incompatibleResourcePacks.
+$rpIncompativeis = @('3d-crops')
 $rp = ($rpLigados | ForEach-Object { $s = $_; $m = $pwMods | Where-Object slug -eq $s; if (-not $m) { throw "Pacote ligado $s nao esta no pack" }; ",`"file/$($m.arquivo)`"" }) -join ''
-Escrever (Join-Path $inst '.minecraft/options.txt') "lang:pt_br`nrenderDistance:10`nsimulationDistance:8`nresourcePacks:[`"vanilla`"$rp]`nonboardAccessibility:false`ntutorialStep:none`njoinedFirstServer:true`nskipMultiplayerWarning:true`n"
+$rp += ($rpMods | ForEach-Object { ",`"$_`"" }) -join ''
+$rpInc = ($rpIncompativeis | ForEach-Object { $s = $_; $m = $pwMods | Where-Object slug -eq $s; "`"file/$($m.arquivo)`"" }) -join ','
+Escrever (Join-Path $inst '.minecraft/options.txt') "lang:pt_br`nrenderDistance:10`nsimulationDistance:8`nresourcePacks:[`"vanilla`"$rp]`nincompatibleResourcePacks:[$rpInc]`nonboardAccessibility:false`ntutorialStep:none`njoinedFirstServer:true`nskipMultiplayerWarning:true`n"
 Escrever (Join-Path $inst 'mmc-pack.json') "{`"formatVersion`":1,`"components`":[{`"uid`":`"net.minecraft`",`"version`":`"$mc`",`"important`":true},{`"uid`":`"net.neoforged`",`"version`":`"$neo`"}]}`n"
 $zipPrism = Join-Path $root 'modpack/minezada-prism.zip'
 if (Test-Path $zipPrism) { Remove-Item $zipPrism }
