@@ -536,6 +536,11 @@ const cama = new Image(); cama.src = svg("cama");
 // Mapa num canvas sem suavizacao: cada bloco e um quadrado nitido em qualquer zoom e em qualquer navegador.
 // Uma aba por dimensao que ja tem mapa; o Nether e o End so aparecem depois que alguem andou por la.
 const dimensoes = [["mapa", "Superfície", "minecraft:overworld"], ["nether", "Nether", "minecraft:the_nether"], ["end", "End", "minecraft:the_end"]];
+// Ha quanto tempo, a partir de uma hora em ms: "ha 5 min", "ha 3 h", "ha 2 dias".
+const ha = ms => {
+  const m = Math.max(0, Math.round((Date.now() - ms) / 60000));
+  return m < 60 ? `há ${m} min` : m < 48 * 60 ? `há ${Math.round(m / 60)} h` : `há ${Math.round(m / 1440)} dias`;
+};
 // 75 -> "1 h 15 min"
 const tempo = m => m < 60 ? `${m} min` : `${Math.floor(m / 60)} h${m % 60 ? ` ${m % 60} min` : ""}`;
 async function mapa() {
@@ -553,6 +558,9 @@ async function mapa() {
     calor[d[0]] = { lista, max: Math.max(1, ...lista.map(c => c[2])), onde: new Map(lista.map(c => [`${c[0]},${c[1]}`, c[2]])) };
   }
   let quente = false;
+  // Onde cada um morreu (o mod Corpse guarda), tambem so com as posicoes ligadas.
+  const obitos = ((await pega("mortes.json")) || {}).mortes || [];
+  let caveiras = false;
   const p = await dadosPlacar;
   const todas = (p ? p.jogadores : []).filter(j => j.saiu && j.saiu.x != null)
     .map(j => { const img = new Image(); img.crossOrigin = "anonymous"; img.src = cabeca(j.nick); img.onload = () => desenha(); return { x: j.saiu.x, z: j.saiu.z, dim: j.saiu.dimensao, nick: j.nick || j.uuid.slice(0, 8), img }; });
@@ -564,6 +572,8 @@ async function mapa() {
   const portal = new Image(); portal.src = svg("portal"); portal.onload = () => desenha();
   const pontos = () => [...(marcas[dim[0]].vilas || []).map(v => ({ ...v, img: sino, nome: "Vila" })),
     ...(marcas[dim[0]].portais || []).map(v => ({ ...v, img: portal, nome: `Portal do Nether (y ${v.y})` }))];
+  const caveira = new Image(); caveira.src = svg("caveira"); caveira.onload = () => desenha();
+  const mortesAqui = () => obitos.filter(o => o.dimensao === dim[2]);
   const ctx = cv.getContext("2d");
   const desenha = () => {
     const dpr = devicePixelRatio || 1, W = box.clientWidth, H = box.clientHeight;
@@ -596,6 +606,13 @@ async function mapa() {
         ctx.fillRect((ox + (x * 16 - info.x) * s) * dpr, (oy + (z * 16 - info.z) * s) * dpr, l, l);
       }
     }
+    if (caveiras && caveira.complete) {
+      for (const o of mortesAqui()) {
+        const mx = (ox + (o.x - info.x + .5) * s) * dpr, mz = (oy + (o.z - info.z + .5) * s) * dpr, l = 14 * dpr;
+        ctx.fillStyle = "rgba(0,0,0,.6)"; ctx.fillRect(mx - l / 2 - dpr, mz - l / 2 - dpr, l + 2 * dpr, l + 2 * dpr);
+        ctx.drawImage(caveira, mx - l / 2, mz - l / 2, l, l);
+      }
+    }
     for (const m of pontos()) {
       if (!m.img.complete) continue;
       const mx = (ox + (m.x - info.x + .5) * s) * dpr, mz = (oy + (m.z - info.z + .5) * s) * dpr, l = 20 * dpr;
@@ -617,10 +634,13 @@ async function mapa() {
     if (rato) {
       const bx = Math.floor((rato.x - ox) / s) + info.x, bz = Math.floor((rato.y - oy) / s) + info.z;
       const raio = 12 / s + 1, ali = c => Math.abs(c.x - bx) <= raio && Math.abs(c.z - bz) <= raio;
-      const perto = cabecas.find(ali), marca = pontos().find(ali);
+      const perto = cabecas.find(ali), marca = pontos().find(ali), aqui = caveiras ? mortesAqui().filter(ali) : [];
+      const morte = aqui.length === 1 ? `\n${aqui[0].nick} morreu aqui ${ha(aqui[0].quando_ms)}`
+        : aqui.length ? `\n${aqui.length} mortes aqui (${[...new Set(aqui.map(o => o.nick))].join(", ")})` : "";
       const min = quente ? calor[dim[0]].onde.get(`${Math.floor(bx / 16)},${Math.floor(bz / 16)}`) : null;
-      f3.textContent = `XZ: ${bx} / ${bz}\nChunk: ${Math.floor(bx / 16)} ${Math.floor(bz / 16)}${min ? `\n${tempo(min)} com gente por perto` : ""}${perto ? `\n${perto.nick} saiu aqui` : ""}${marca ? `\n${marca.nome}` : ""}`;
-    } else if (quente) f3.textContent = `${num(calor[dim[0]].lista.length)} chunks com gente por perto\no mais visitado: ${tempo(calor[dim[0]].max)}`;
+      f3.textContent = `XZ: ${bx} / ${bz}\nChunk: ${Math.floor(bx / 16)} ${Math.floor(bz / 16)}${min ? `\n${tempo(min)} com gente por perto` : ""}${perto ? `\n${perto.nick} saiu aqui` : ""}${marca ? `\n${marca.nome}` : ""}${morte}`;
+    } else if (caveiras) f3.textContent = mortesAqui().length === 1 ? "1 morte nesta dimensão" : `${mortesAqui().length} mortes nesta dimensão`;
+    else if (quente) f3.textContent = `${num(calor[dim[0]].lista.length)} chunks com gente por perto\no mais visitado: ${tempo(calor[dim[0]].max)}`;
     else f3.textContent = info.chunks === 1 ? "1 chunk explorado" : `${num(info.chunks)} chunks explorados`;
   };
   const centra = () => {
@@ -656,6 +676,12 @@ async function mapa() {
     bc.className = "botao"; bc.textContent = "Onde o pessoal fica"; bc.setAttribute("aria-pressed", "false");
     bc.onclick = () => { quente = !quente; bc.setAttribute("aria-pressed", quente); desenha(); };
     bt.after(bc);
+  }
+  if (obitos.length) {
+    const bm = document.createElement("button");
+    bm.className = "botao"; bm.textContent = "Mortes"; bm.setAttribute("aria-pressed", "false");
+    bm.onclick = () => { caveiras = !caveiras; bm.setAttribute("aria-pressed", caveiras); desenha(); };
+    document.querySelector(".controles").append(bm);
   }
   box.addEventListener("wheel", e => { e.preventDefault(); const r = box.getBoundingClientRect(); zoom(e.deltaY < 0 ? 1.25 : 0.8, e.clientX - r.left, e.clientY - r.top); }, { passive: false });
   const toques = new Map(); let dist = 0;

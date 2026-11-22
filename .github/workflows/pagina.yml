@@ -85,7 +85,7 @@ jobs:
           make -C "$HOME/sword" -j"$(nproc)" SWORD_NO_TLS=1
           cd sword
           mkdir -p bin
-          for p in mapa placar estado pontos calor; do "$HOME/sword/shield" "$p" -o "bin/$p"; done
+          for p in mapa placar estado pontos calor mortes; do "$HOME/sword/shield" "$p" -o "bin/$p"; done
       # O mundo baixado fica so nesta maquina: o que vai para a pagina e o que os programas tiram dele.
       - name: Desenhar
         if: steps.mundo.outputs.pular != 'true'
@@ -119,11 +119,12 @@ jobs:
             sword/bin/pontos "$RUNNER_TEMP/mundo/world" _site/mapa-pontos.json $portais
             sword/bin/pontos "$RUNNER_TEMP/mundo/world/DIM-1" _site/nether-pontos.json $portais
             sword/bin/pontos "$RUNNER_TEMP/mundo/world/DIM1" _site/end-pontos.json $portais
-            # Onde o pessoal passa o tempo mostra as bases tambem: so com MOSTRAR_POSICOES.
+            # Onde o pessoal passa o tempo e onde morreu mostram as bases tambem: so com MOSTRAR_POSICOES.
             if [ "$POSICOES" = sim ]; then
               sword/bin/calor "$RUNNER_TEMP/mundo/world" _site/mapa-calor.json
               sword/bin/calor "$RUNNER_TEMP/mundo/world/DIM-1" _site/nether-calor.json
               sword/bin/calor "$RUNNER_TEMP/mundo/world/DIM1" _site/end-calor.json
+              sword/bin/mortes "$RUNNER_TEMP/mundo/world" _site/mortes.json
             fi
             sword/bin/estado "$RUNNER_TEMP/mundo/world" _site/estado.json
           fi
