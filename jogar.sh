@@ -144,7 +144,7 @@ want="$(sed -n 's/^resourcePacks:\[\(.*\)\]$/\1/p' "$tmp/x/.minecraft/options.tx
 have="$(sed -n 's/^resourcePacks:\[\(.*\)\]$/\1/p' "$opt")"
 [ -n "$have" ] || have='"vanilla"'
 # Mantem os pacotes do jogador na ordem dele e poe os do pack por cima, na ordem do pack (Fresh
-# Animations precisa ficar acima do Faithful). "vanilla" fica onde estava, na base.
+# Animations precisa ficar acima dos outros). "vanilla" fica onde estava, na base.
 wcsv=",$(printf '%s' "$want" | tr '\n' ','),"
 nova=""
 while IFS= read -r p; do
