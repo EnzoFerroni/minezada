@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Roda estado, placar, pontos e calor no servidor de mentira de testdata/servidor (um jogador, no Nether, com o
 # dragao derrotado; uma vila, uma cama e um portal; tres chunks com tempo de jogador por perto; tres mortes;
-# conquistas feitas, por fazer, receitas e de um jogador fora da whitelist) e compara com o que tem que sair. Da pasta sword/, com os programas
+# conquistas feitas, por fazer, receitas e de um jogador fora da whitelist; estruturas em chunks prontos e
+# em geracao) e compara com o que tem que sair. Da pasta sword/, com os programas
 # em bin/.
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -14,7 +15,8 @@ bin/pontos testdata/servidor/world "$t/pontos.json" --portais > /dev/null
 bin/calor testdata/servidor/world "$t/calor.json" > /dev/null
 bin/mortes testdata/servidor/world "$t/mortes.json" > /dev/null
 bin/conquistas testdata/servidor "$t/conquistas.json" > /dev/null
-for f in estado placar placar-posicoes pontos calor mortes conquistas; do
+bin/estruturas testdata/servidor/world "$t/estruturas.json" > /dev/null
+for f in estado placar placar-posicoes pontos calor mortes conquistas estruturas; do
   diff -u "testdata/$f.json" "$t/$f.json" || { echo "FALHA $f"; exit 1; }
 done
-echo "ok    estado, placar, pontos, calor, mortes e conquistas"
+echo "ok    estado, placar, pontos, calor, mortes, conquistas e estruturas"
