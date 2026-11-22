@@ -710,6 +710,11 @@ hash = "5c5c0468a62ce1cb09763855823bea730d056fce7a6f840550f511c238b9acf4"
 preserve = true
 
 [[files]]
+file = "config/xaero/minimap/default_radar_categories_client.json"
+hash = "dadd81c730e1f9d9a1edeff72fed046e521e73c01f03df7ff90bfed7f1d10c02"
+preserve = true
+
+[[files]]
 file = "minezada.ps1"
 hash = "05d97c57ef94cbe928920ce4d3ccb8fb7a948066bcaf6bd0cfec72e6083fb27b"
 
