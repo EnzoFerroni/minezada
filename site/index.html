@@ -227,6 +227,14 @@ const icones = {
   coxaVazia: ["............", ".......kkk..", "......kGGGk.", ".....kGgggGk", "....kGggggGk", "...kGgggggGk", "..kGggggGGk.", ".kGkGGGGGk..", "kGGkkkkkk...", "kGk.........", ".k..........", "............"],
   sino: ["....kkkk....", "...kyyyyk...", "..kyyyyyYk..", "..kyyyyyYk..", "..kyyyyyYk..", ".kyyyyyyyYk.", ".kyyyyyyyYk.", "kyyyyyyyyyYk", "kkkkkkkkkkkk", ".....kk.....", ".....kk.....", "............"],
   portal: ["kkkkkkkkkkkk", "kppPPpPPpppk", "kpPPpPPpPPpk", "kPPpPPpPpPPk", "kpPpPPpPPpPk", "kPpPPpPPpPPk", "kpPPpPpPPpPk", "kPPpPPpPpPPk", "kpPpPPpPPpPk", "kPpPPpPPpPPk", "kpPPpPpPPpPk", "kkkkkkkkkkkk"],
+  piramide: ["............", ".....kk.....", "....khhk....", "...khhhhk...", "...kkkkkk...", "..khhhhhhk..", "..khhkkhhk..", ".kkkkkkkkkk.", ".khhhkkhhhk.", "khhhhkkhhhhk", "kkkkkkkkkkkk", "............"],
+  barco: ["......k.....", "......kw....", "......kww...", "......kwww..", "......kwwww.", "......k.....", "kkkkkkkkkkkk", "kbbbbbbbbbbk", ".kbbbbbbbbk.", "..kBBBBBBk..", "...kkkkkk...", "............"],
+  jaula: ["kkkkkkkkkkkk", "kGkGkGkGkGkk", "kk.k.k.k.kGk", "kGkrrrrrrkkk", "kk.rRrrRr.Gk", "kGkrrrrrrkkk", "kk.rrRRrr.Gk", "kGkrrrrrrkkk", "kk.k.k.k.kGk", "kGkGkGkGkGkk", "kkkkkkkkkkkk", "............"],
+  coroa: ["............", "............", "k....kk....k", "kk..kyyk..kk", "kyk.kyyk.kyk", "kyykyyyykyyk", "kyyyyryyyyyk", "kyyyrrryyyyk", "kyyyyryyyyyk", "kYYYYYYYYYYk", "kkkkkkkkkkkk", "............"],
+  torre: ["kk.kk.kk.kk.", "kgkkgkkgkkgk", "kggggggggggk", "kkkkkkkkkkkk", ".kggggggggk.", ".kgGggggGgk.", ".kggggggggk.", ".kgggkkgggk.", ".kggkRRkggk.", ".kggkRRkggk.", ".kkkkkkkkkk.", "............"],
+  bandeira: ["kk..........", "kkkkkkkkkk..", "kkwwwwwwwk..", "kkwwGGGwwk..", "kkwGwwwGwk..", "kkwwGGGwwk..", "kkwwwGwwwk..", "kkwwwwwwwk..", "kkkkkkkkkk..", "kk..........", "kk..........", "kk.........."],
+  iglu: ["............", "............", "....kkkk....", "..kkwwwwkk..", ".kwwswwswwk.", ".kwwwwwwwwk.", "kwswwwwwswwk", "kwwwkkkkwwwk", "kwswkkkkwswk", "kwwwkkkkwwwk", "kkkkkkkkkkkk", "............"],
+  ruina: ["............", ".kkk........", ".kgk....kkk.", ".kgk....kgk.", ".kgk.kk.kgk.", ".kGk.kk.kgk.", ".kgk.kgkkGk.", ".kgk.kgkkgk.", ".kGkkkGkkgk.", "kkkkkkkkkkkk", "kggGggggGggk", "kkkkkkkkkkkk"],
   grama: ["llllllllllll", "lLllllLlllll", "lLlLllLllLll", "bLbLbbLbbLbb", "bbbLbbbbbbBb", "bBbbbbbBbbbb", "bbbbBbbbbbbb", "bbbbbbbbBbbb", "bBbbbbbbbbBb", "bbbbbBbbbbbb", "bbBbbbbbbBbb", "bbbbbbbbbbbb"]
 };
 const svg = nome => {
@@ -710,6 +718,39 @@ function diario(d) {
   document.getElementById("diario-painel").hidden = false;
 }
 
+// As estruturas que vao para o mapa: a primeira regra que casa com o id decide o nome e o icone; nome vazio fica
+// de fora. As regras olham o nome depois do ":" quando o do mod engana (dungeons_arise nao e masmorra). Vilas ja tem o sino; tesouro enterrado entregaria o bau; fosseis, arcos e placas sao enfeite.
+const tiposDeEstrutura = [
+  [/village|buried_treasure|fossil|aquamirae:surface|road_sign|oil_well|terralith:underground|black_spiral|mineshaft/, ""],
+  [/mowziesmobs:frostmaw/, "Covil do Frostmaw", "coroa"],
+  [/mowziesmobs:wrought_chamber/, "Câmara do Wroughtnaut", "coroa"],
+  [/ancient_city/, "Cidade antiga", "ruina"],
+  [/trial_chambers/, "Câmara de provação", "jaula"],
+  [/:.*dungeon/, "Masmorra", "jaula"],
+  [/stronghold/, "Fortaleza com o portal do End", "torre"],
+  [/fortress/, "Fortaleza do Nether", "torre"],
+  [/bastion/, "Bastião", "torre"],
+  [/end_city/, "Cidade do End", "torre"],
+  [/mansion/, "Mansão", "torre"],
+  [/watchtower/, "Torre de vigia", "torre"],
+  [/pirate_outpost|pirate_shelter/, "Esconderijo pirata", "bandeira"],
+  [/pillager_outpost/, "Posto de saqueadores", "bandeira"],
+  [/undead_pirate_ship/, "Navio pirata assombrado", "barco"],
+  [/blimp/, "Dirigível", "barco"],
+  [/shipwreck|wreckage/, "Navio naufragado", "barco"],
+  [/desert_pyramid|desert_temple/, "Templo do deserto", "piramide"],
+  [/jungle_pyramid|jungle_temple/, "Templo da selva", "piramide"],
+  [/bathhouse/, "Casa de banhos", "piramide"],
+  [/monument/, "Monumento do oceano", "piramide"],
+  [/ruined_portal/, "Portal em ruínas", "ruina"],
+  [/ocean_ruin/, "Ruína submersa", "ruina"],
+  [/igloo/, "Iglu", "iglu"],
+  [/swamp_hut|witch/, "Cabana de bruxa", "ruina"],
+  [/quartz_kitchen/, "Cozinha de quartzo", "ruina"],
+  [/ruined_lab/, "Laboratório em ruínas", "ruina"],
+];
+const tipoDe = id => { const t = tiposDeEstrutura.find(([re]) => re.test(id)); return t && t[1] ? t : null; };
+
 // Ha quanto tempo, a partir de uma hora em ms: "ha 5 min", "ha 3 h", "ha 2 dias".
 const ha = ms => {
   const m = Math.max(0, Math.round((Date.now() - ms) / 60000));
@@ -740,6 +781,13 @@ async function mapa() {
     calor[d[0]] = { lista, max: Math.max(1, ...lista.map(c => c[2])), onde: new Map(lista.map(c => [`${c[0]},${c[1]}`, c[2]])) };
   }
   let quente = false;
+  // As estruturas de cada dimensao que estao na tabela, com o icone de cada tipo.
+  const desenhos = {}, estruturas = {};
+  for (const [d] of prontos) {
+    estruturas[d[0]] = (((await pega(`${d[0]}-estruturas.json`)) || {}).estruturas || []).map(e => [e, tipoDe(e.id)]).filter(([, t]) => t)
+      .map(([e, t]) => { if (!desenhos[t[2]]) { desenhos[t[2]] = new Image(); desenhos[t[2]].src = svg(t[2]); desenhos[t[2]].onload = () => redesenha(); } return { x: e.x, z: e.z, img: desenhos[t[2]], nome: t[1] }; });
+  }
+  let comEstruturas = false;
   // Onde cada um morreu (o mod Corpse guarda), tambem so com as posicoes ligadas.
   const obitos = ((await pega("mortes.json")) || {}).mortes || [];
   let caveiras = false;
@@ -753,7 +801,8 @@ async function mapa() {
   const sino = new Image(); sino.src = svg("sino"); sino.onload = () => redesenha();
   const portal = new Image(); portal.src = svg("portal"); portal.onload = () => redesenha();
   const pontos = () => [...(marcas[dim[0]].vilas || []).map(v => ({ ...v, img: sino, nome: "Vila" })),
-    ...(marcas[dim[0]].portais || []).map(v => ({ ...v, img: portal, nome: `Portal do Nether (y ${v.y})` }))];
+    ...(marcas[dim[0]].portais || []).map(v => ({ ...v, img: portal, nome: `Portal do Nether (y ${v.y})` })),
+    ...(comEstruturas ? estruturas[dim[0]] : [])];
   const caveira = new Image(); caveira.src = svg("caveira"); caveira.onload = () => redesenha();
   const mortesAqui = () => obitos.filter(o => o.dimensao === dim[2]);
   const ctx = cv.getContext("2d");
@@ -859,6 +908,12 @@ async function mapa() {
     bc.className = "botao"; bc.textContent = "Onde o pessoal fica"; bc.setAttribute("aria-pressed", "false");
     bc.onclick = () => { quente = !quente; bc.setAttribute("aria-pressed", quente); desenha(); };
     bt.after(bc);
+  }
+  if (Object.values(estruturas).some(l => l.length)) {
+    const be = document.createElement("button");
+    be.className = "botao"; be.textContent = "Estruturas"; be.setAttribute("aria-pressed", "false");
+    be.onclick = () => { comEstruturas = !comEstruturas; be.setAttribute("aria-pressed", comEstruturas); desenha(); };
+    document.querySelector(".controles").append(be);
   }
   if (obitos.length) {
     const bm = document.createElement("button");

@@ -85,7 +85,7 @@ jobs:
           make -C "$HOME/sword" -j"$(nproc)" SWORD_NO_TLS=1
           cd sword
           mkdir -p bin
-          for p in mapa placar estado pontos calor mortes conquistas; do "$HOME/sword/shield" "$p" -o "bin/$p"; done
+          for p in mapa placar estado pontos calor mortes conquistas estruturas; do "$HOME/sword/shield" "$p" -o "bin/$p"; done
       # O mundo baixado fica so nesta maquina: o que vai para a pagina e o que os programas tiram dele.
       - name: Desenhar
         if: steps.mundo.outputs.pular != 'true'
@@ -128,6 +128,10 @@ jobs:
             fi
             sword/bin/estado "$RUNNER_TEMP/mundo/world" _site/estado.json
             sword/bin/conquistas "$RUNNER_TEMP/mundo" _site/conquistas.json
+            # Estruturas so dos chunks ja explorados: nao entregam nada que ninguem viu.
+            sword/bin/estruturas "$RUNNER_TEMP/mundo/world" _site/mapa-estruturas.json
+            sword/bin/estruturas "$RUNNER_TEMP/mundo/world/DIM-1" _site/nether-estruturas.json
+            sword/bin/estruturas "$RUNNER_TEMP/mundo/world/DIM1" _site/end-estruturas.json
           fi
           echo "$NOME" > _site/mundo.txt
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
