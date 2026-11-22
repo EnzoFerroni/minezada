@@ -186,6 +186,11 @@ hash = "6cc162fb00a9c1b742c55963086994ee327099dbaea65bc0d33851c8c8c083a7"
 metafile = true
 
 [[files]]
+file = "mods/cubes-without-borders.pw.toml"
+hash = "8e862fb675ee652337871212cfdb85b9e6a6e1bb146082560a80ddb8bc67fe00"
+metafile = true
+
+[[files]]
 file = "mods/customskinloader.pw.toml"
 hash = "8d15318523406a483f40baaa25fc74b541413b5bb7a6a821481b6b2e4bf209ff"
 metafile = true
@@ -393,6 +398,11 @@ metafile = true
 [[files]]
 file = "mods/nullscape.pw.toml"
 hash = "07e7b871ed4aeefbb72793dd94ac9cfb75001b78434dee69f8f02d960c640f85"
+metafile = true
+
+[[files]]
+file = "mods/ok-zoomer.pw.toml"
+hash = "9a77f5ca66772fdd637adedd97313f9c6d6cab1b720f235917b9c1f90b9bb731"
 metafile = true
 
 [[files]]
@@ -711,7 +721,7 @@ preserve = true
 
 [[files]]
 file = "config/xaero/minimap/default_radar_categories_client.json"
-hash = "dadd81c730e1f9d9a1edeff72fed046e521e73c01f03df7ff90bfed7f1d10c02"
+hash = "79e823deb141130c6615b5298f8f0e99c1d2dae6f4aa7eab94a9200d7193d32e"
 preserve = true
 
 [[files]]
@@ -1010,6 +1020,11 @@ preserve = true
 [[files]]
 file = "options-profiles/Shader - BSL/options.txt"
 hash = "5ee97850177de705028382af752df868f5b2787738c4848de3bdbe99b1a445a1"
+preserve = true
+
+[[files]]
+file = "shaderpacks/ComplementaryReimagined_r5.10.zip.txt"
+hash = "09b30665396edd77f48c8b4ba53d68dd3a1e99d2323d76c51d5b351fb10193b4"
 preserve = true
 
 [[files]]
