@@ -31,3 +31,31 @@ func TestCeiling(mut t *testing.T) !void {
     t.Equal(pixel(px, 12, 5), shade(0x6f3534, 90))
     t.Equal(pixel(px, 20, 5), u32(Empty))
 }
+
+// testdata/biomas.mca: grama em y 64, folha de carvalho por cima em x 12..15, agua em z 12..15. As celulas de
+// bioma com x < 8 sao planicie e o resto neve. Tudo plano, entao o relevo deixa cada cor de terra a 90 %.
+const biomes = "mundo/testdata/biomas.mca"
+
+func TestBiomes(mut t *testing.T) !void {
+    mut sys := mem.NewSystem()
+    mut px := mem.Alloc[u8](&sys, TileBytes) orelse return error.OutOfMemory
+    t.Equal(try Region(biomes, NoHeight, px), 1)
+    plains := BiomeTints("minecraft:plains")
+    snowy := BiomeTints("minecraft:snowy_plains")
+    t.Equal(pixel(px, 2, 3), shade(Tinted(plains, Grass), 90))
+    t.Equal(pixel(px, 9, 3), shade(Tinted(snowy, Grass), 90))
+    t.Equal(pixel(px, 13, 4), shade(Tinted(snowy, Foliage), 90))
+    // Agua com 1 bloco de fundo: 5 % mais escura, e sem relevo.
+    t.Equal(pixel(px, 2, 14), shade(Tinted(plains, Water), 95))
+    t.Equal(pixel(px, 9, 14), shade(Tinted(snowy, Water), 95))
+}
+
+func TestBiomeNames(mut t *testing.T) !void {
+    t.Equal(BiomeTints("terralith:cold_shrubland").Grass, 0x80b497)
+    t.Equal(BiomeTints("terralith:gravel_desert").Grass, 0xbfb755)
+    t.Equal(BiomeTints("minecraft:swamp").Water, 0x617b64)
+    t.Equal(BiomeTints("minecraft:frozen_river").Water, 0x3938c9)
+    t.Equal(TintOf("minecraft:spruce_leaves"), u8(0))
+    t.Equal(TintOf("minecraft:oak_leaves"), u8(Foliage))
+    t.Equal(TintOf("minecraft:water"), u8(Water))
+}
