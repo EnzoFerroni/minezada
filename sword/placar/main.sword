@@ -74,25 +74,6 @@ func readWhere(b []u8) !Where {
     }
 }
 
-// O nick de uuid em whitelist.json ou ops.json; vazio quando nao esta em nenhum.
-func nickOf(dir string, uuid string, mut a mem.Allocator) !string {
-    files := [2]string{"whitelist.json", "ops.json"}
-    for f in files {
-        path := try strings.Concat(a, dir, "/", f)
-        text := fs.ReadAll(path, a) catch continue
-        d := json.Parse(text, a) catch continue
-        root := d.Root()
-        for i in 0..d.Len(root) {
-            if e := d.At(root, i) {
-                if strings.Equal(d.GetText(e, "uuid"), uuid) {
-                    return try strings.Concat(a, d.GetText(e, "name"))
-                }
-            }
-        }
-    }
-    return ""
-}
-
 func before(a *Entry, b *Entry) bool {
     if a.p.Ticks != b.p.Ticks {
         return a.p.Ticks > b.p.Ticks
@@ -148,7 +129,7 @@ func main() !int {
             try io.Printf("AVISO: {} nao foi lido\n", f.Name)
             continue
         }
-        list[n] = Entry{nick: try nickOf(args[1], uuid, &sys), uuid: uuid, p: p, at: whereOf(args[1], uuid, &sys)}
+        list[n] = Entry{nick: try estat.Nick(args[1], uuid, &sys), uuid: uuid, p: p, at: whereOf(args[1], uuid, &sys)}
         n += 1
     }
     for i in 1..n {
