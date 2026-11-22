@@ -4,7 +4,7 @@ import "std/strings"
 
 // A cor de um bloco visto de cima, 0xRRGGBB. Primeiro os blocos mais comuns pelo nome exato, depois pedacos do
 // nome, que pegam tambem os blocos dos mods (quase todo mod chama folha de "leaves" e tronco de "log"). O que
-// sobra fica cinza. Sem a cor do bioma: grama e folha tem um verde so.
+// sobra fica cinza. Grama, folhas e agua ganham depois a cor do bioma (TintOf, BiomeTints).
 func ColorOf(full string) u32 {
     i := strings.IndexByte(full, 58)
     mut n := full
@@ -89,4 +89,106 @@ func isAir(full string) bool {
 // Agua e lava sao vistas pela cor delas, e o resto pelo bloco de cima.
 func isWater(full string) bool {
     return strings.Contains(full, "water") || strings.Contains(full, "kelp") || strings.Contains(full, "seagrass") || strings.Contains(full, "bubble_column")
+}
+
+// Blocos que o jogo pinta com a cor do bioma: a grama, as folhas das arvores comuns e a agua. Folha de pinheiro,
+// de betula e de cerejeira tem cor propria e fica de fora, como no jogo.
+const Grass = 1
+const Foliage = 2
+const Water = 3
+
+func TintOf(full string) u8 {
+    if isWater(full) {
+        return Water
+    }
+    i := strings.IndexByte(full, 58)
+    mut n := full
+    if i < full.len {
+        n = full[i + 1..]
+    }
+    if !strings.HasPrefix(full, "minecraft:") {
+        return 0
+    }
+    if strings.Equal(n, "grass_block") || strings.Equal(n, "short_grass") || strings.Equal(n, "tall_grass") || strings.Equal(n, "fern") || strings.Equal(n, "large_fern") {
+        return Grass
+    }
+    if strings.Equal(n, "oak_leaves") || strings.Equal(n, "jungle_leaves") || strings.Equal(n, "acacia_leaves") || strings.Equal(n, "dark_oak_leaves") || strings.Equal(n, "mangrove_leaves") || strings.Equal(n, "vine") {
+        return Foliage
+    }
+    return 0
+}
+
+struct Tints {
+    Grass   u32
+    Foliage u32
+    Water   u32
+}
+
+// As cores de grama, folha e agua de um bioma. Os do jogo e os de mod (o Terralith tem dezenas) entram pelo
+// nome: um bioma "snowy", "frozen" ou "alpine" e frio, "swamp" ou "bog" e pantano, e assim por diante. O resto
+// fica com as cores de uma planicie.
+func BiomeTints(full string) Tints {
+    i := strings.IndexByte(full, 58)
+    mut n := full
+    if i < full.len {
+        n = full[i + 1..]
+    }
+    mut water u32 = 0x3f76e4
+    if strings.Contains(n, "warm_ocean") {
+        water = 0x43d5ee
+    } else if strings.Contains(n, "lukewarm") {
+        water = 0x45adf2
+    } else if strings.Contains(n, "frozen") || strings.Contains(n, "ice") || strings.Contains(n, "snowy") || strings.Contains(n, "glacier") {
+        water = 0x3938c9
+    } else if strings.Contains(n, "cold") {
+        water = 0x3d57d6
+    }
+    if strings.Contains(n, "swamp") || strings.Contains(n, "bog") || strings.Contains(n, "marsh") {
+        return Tints{Grass: 0x6a7039, Foliage: 0x6a7039, Water: 0x617b64}
+    }
+    if strings.Contains(n, "mushroom") {
+        return Tints{Grass: 0x55c93f, Foliage: 0x2bbb0f, Water: water}
+    }
+    if strings.Contains(n, "badlands") || strings.Contains(n, "mesa") {
+        return Tints{Grass: 0x90814d, Foliage: 0x9e814d, Water: water}
+    }
+    if strings.Contains(n, "desert") || strings.Contains(n, "savanna") || strings.Contains(n, "arid") || strings.Contains(n, "dune") || strings.Contains(n, "steppe") {
+        return Tints{Grass: 0xbfb755, Foliage: 0xaea42a, Water: water}
+    }
+    if strings.Contains(n, "jungle") || strings.Contains(n, "tropical") || strings.Contains(n, "rainforest") {
+        return Tints{Grass: 0x59c93c, Foliage: 0x30bb0b, Water: water}
+    }
+    if strings.Contains(n, "snow") || strings.Contains(n, "frozen") || strings.Contains(n, "ice") || strings.Contains(n, "tundra") || strings.Contains(n, "alpine") || strings.Contains(n, "glacier") || strings.Contains(n, "cold") || strings.Contains(n, "grove") || strings.Contains(n, "peaks") {
+        return Tints{Grass: 0x80b497, Foliage: 0x60a17b, Water: water}
+    }
+    if strings.Contains(n, "taiga") || strings.Contains(n, "spruce") || strings.Contains(n, "pine") || strings.Contains(n, "boreal") {
+        return Tints{Grass: 0x86b783, Foliage: 0x68a464, Water: water}
+    }
+    if strings.Contains(n, "dark_forest") || strings.Contains(n, "roofed") {
+        return Tints{Grass: 0x507a32, Foliage: 0x59ae30, Water: water}
+    }
+    if strings.Contains(n, "birch") {
+        return Tints{Grass: 0x88bb67, Foliage: 0x6ba941, Water: water}
+    }
+    if strings.Contains(n, "cherry") || strings.Contains(n, "sakura") {
+        return Tints{Grass: 0xb6db61, Foliage: 0xb6db61, Water: 0x5db7ef}
+    }
+    if strings.Contains(n, "forest") || strings.Contains(n, "woods") {
+        return Tints{Grass: 0x79c05a, Foliage: 0x59ae30, Water: water}
+    }
+    return Tints{Grass: 0x91bd59, Foliage: 0x77ab2f, Water: water}
+}
+
+// A cor do bloco tingido visto de cima: a do bioma, escurecida pela textura (a grama e mais clara que a folha).
+func Tinted(t Tints, kind u8) u32 {
+    switch kind {
+    case 1:
+        return shade(t.Grass, 76)
+    case 2:
+        return shade(t.Foliage, 60)
+    case 3:
+        return shade(t.Water, 95)
+    default:
+        return 0
+    }
 }

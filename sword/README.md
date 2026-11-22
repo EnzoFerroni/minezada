@@ -25,9 +25,10 @@ usa registro SRV, então precisa da porta escrita.
 
 O `mapa` desenha cada região (`r.X.Z.mca`) ao mesmo tempo, uma por núcleo, e a imagem sai igual byte a byte com
 qualquer número de núcleos. Só entram chunks completos; os da borda, que o jogo gerou pela metade, ficam de fora.
-Blocos de mod ganham cor pelo nome (`leaves`, `log`, `stone`...), e o que não dá para adivinhar fica cinza. No
-Nether o bloco de cima é o teto de bedrock: com `--teto` cada coluna é lida dali para baixo, passa pela pedra até o
-primeiro ar e desenha o chão abaixo dele.
+Blocos de mod ganham cor pelo nome (`leaves`, `log`, `stone`...), e o que não dá para adivinhar fica cinza. Grama,
+folhas e água têm a cor do bioma em que estão, como no jogo; os biomas de mod entram pelo nome (`snowy`, `swamp`,
+`desert`...). No Nether o bloco de cima é o teto de bedrock: com `--teto` cada coluna é lida dali para baixo, passa
+pela pedra até o primeiro ar e desenha o chão abaixo dele.
 
 | Pasta | O que tem |
 |---|---|
