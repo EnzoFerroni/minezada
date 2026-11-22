@@ -53,8 +53,6 @@ better-lanterns | https://cdn.modrinth.com/data/PGGrfcvL/images/44a3d8e75a253801
 cubic-sun-moon | https://cdn.modrinth.com/data/g4bSYbrU/images/60a70d9d2efc665ed5cde1d0c464c0e698648aea_350.webp
 fresh-waystones-texture | https://cdn.modrinth.com/data/BcyGAwlg/images/ff3cdd5d6bc89e1a4539a35da95601700890b694_350.webp
 low-shield-pack | https://imgur.com/E7tzOar.png
-default-dark-mode | https://cdn.modrinth.com/data/6SLU7tS5/images/72dad114b1d88964780d933d83e31e382c37cc48_350.webp
-faithful-32x | https://cdn.modrinth.com/data/w0TnApzs/images/8326664336340fe1919056f86d8d6009d06ad2e8_350.webp
 complementary-reimagined | https://cdn.modrinth.com/data/HVnmMxH1/images/111e76bfa966c68b3581a93f7322588e642ce4db_350.webp
 complementary-unbound | https://cdn.modrinth.com/data/R6NEzAwj/images/a5a420ab1668bcfe47a76a812eede7056c45fe31_350.webp
 makeup-ultra-fast-shaders | https://cdn.modrinth.com/data/izsIPI7a/images/26ccbdd7f0bb3b55829e0c3ba4c82f487a1f6774_350.webp

@@ -35,9 +35,9 @@ $soCliente = @('distanthorizons')
 # Opcionais: o packwiz mostra uma janela na primeira abertura para cada um marcar (vem desmarcado). O Iris
 # reserva as texturas do Distant Horizons so por ele estar instalado, e no Mac (16 texturas) o shader nao abre.
 $opcionais = @{ 'distanthorizons' = 'Ver muito mais longe (montanhas no horizonte). Funciona junto com shader. No Mac ele fica desligado.' }
-# Pacotes de recursos que ja vem ligados, nesta ordem (o ultimo tem prioridade: Faithful embaixo como base,
+# Pacotes de recursos que ja vem ligados, nesta ordem (o ultimo tem prioridade:
 # Fresh Animations em cima para os mobs). O jogar liga os desta lista ate em quem ja tinha options.txt.
-$rpLigados = @('faithful-32x', 'default-dark-mode', 'fast-better-grass', 'simple-grass-flowers', 'better-leaves',
+$rpLigados = @('fast-better-grass', 'simple-grass-flowers', 'better-leaves',
     '3d-crops', 'better-lanterns', 'cubic-sun-moon', 'fresh-waystones-texture', 'low-shield-pack', 'low-on-fire',
     'fresh-animations', 'fresh-animations-extensions')
 # Versao presa (id da versao no Modrinth), vale ate com -Atualizar.

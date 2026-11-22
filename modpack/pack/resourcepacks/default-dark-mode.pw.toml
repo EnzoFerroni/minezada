@@ -1,8 +1,0 @@
-name = "Default Dark Mode"
-filename = "Default-Dark-Mode-1.20.2+-2025.5.0.zip"
-side = "client"
-
-[download]
-url = "https://cdn.modrinth.com/data/6SLU7tS5/versions/S7URnfmp/Default-Dark-Mode-1.20.2%2B-2025.5.0.zip"
-hash-format = "sha1"
-hash = "176424b313f5cc70cdcf37f4cf55af3bab95dc50"

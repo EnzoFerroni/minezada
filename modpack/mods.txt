@@ -93,8 +93,6 @@ better-lanterns | Lanternas e correntes com modelos mais detalhados.
 cubic-sun-moon | Sol e lua em 3D, com fases da lua de verdade.
 fresh-waystones-texture | Waystones com visual novo, no estilo do jogo.
 low-shield-pack | Escudo mais baixo na tela: enxerga melhor enquanto defende.
-default-dark-mode | Menus e inventários escuros, inclusive os de vários mods.
-faithful-32x | Texturas com o dobro de detalhe, mantendo o visual do Minecraft. Pesa um pouco mais.
 
 ## Shaders (vêm desligados; ligue pelos perfis ou em Opções → Vídeo → Shader Packs)
 complementary-reimagined | Bonito e leve, o mais testado no Mac. Perfis 5, 6, 7 e Mac 5.

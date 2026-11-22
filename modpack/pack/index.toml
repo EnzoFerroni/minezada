@@ -646,16 +646,6 @@ hash = "2c5f16e96c78d8fbebbf46cb8e3c6ded87bf474d09834e39d17dcddd6d6d56f8"
 metafile = true
 
 [[files]]
-file = "resourcepacks/default-dark-mode.pw.toml"
-hash = "f00ddf2e6e77f94276413933c238db5655e6b750c16a63383667b903246da1a1"
-metafile = true
-
-[[files]]
-file = "resourcepacks/faithful-32x.pw.toml"
-hash = "63b205f25098cd2979755501f7764cecfc39ce6274fef18b3585d928914fc303"
-metafile = true
-
-[[files]]
 file = "resourcepacks/fast-better-grass.pw.toml"
 hash = "81d0311c42ca8e1692878e3feaa750948cfa22460053d6f3f0b645a2a9e493e9"
 metafile = true
