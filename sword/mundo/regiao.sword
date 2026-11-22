@@ -24,8 +24,12 @@ struct Section {
     colors []u32
     water  []bool
     air    []bool
+    tint   []u8
     data   nbt.Tag
     bits   u64
+    biomes []Tints
+    bdata  nbt.Tag
+    bbits  u64
 }
 
 func floor16(y i64) i64 {
@@ -77,15 +81,32 @@ func sections(b []u8, root nbt.Tag, mut a mem.Allocator) ![]Section {
         mut colors := mem.Alloc[u32](a, np) orelse return error.OutOfMemory
         mut water := mem.Alloc[bool](a, np) orelse return error.OutOfMemory
         mut air := mem.Alloc[bool](a, np) orelse return error.OutOfMemory
+        mut tint := mem.Alloc[u8](a, np) orelse return error.OutOfMemory
         mut p := try nbt.First(b, pal)
         for j in 0..np {
             name := try nbt.Text(b, try nbt.Find(b, p, "Name"))
             colors[j] = ColorOf(name)
             water[j] = isWater(name)
             air[j] = isAir(name)
+            tint[j] = TintOf(name)
             p = try nbt.Next(b, p)
         }
-        out[i] = Section{y: y, colors: colors, water: water, air: air, data: try nbt.Find(b, states, "data"), bits: bitsFor(np)}
+        // Os biomas vem em celulas de 4 x 4 x 4 blocos, 64 por secao, com a paleta de nomes ao lado.
+        bio := try nbt.Find(b, e, "biomes")
+        bpal := try nbt.Find(b, bio, "palette")
+        nb := try nbt.Len(b, bpal)
+        mut biomes := mem.Alloc[Tints](a, nb) orelse return error.OutOfMemory
+        mut bp := try nbt.First(b, bpal)
+        for j in 0..nb {
+            biomes[j] = BiomeTints(try nbt.Text(b, bp))
+            bp = try nbt.Next(b, bp)
+        }
+        mut bb u64 = 0
+        for (u64(1) << bb) < nb {
+            bb += 1
+        }
+        out[i] = Section{y: y, colors: colors, water: water, air: air, tint: tint, data: try nbt.Find(b, states, "data"),
+            bits: bitsFor(np), biomes: biomes, bdata: try nbt.Find(b, bio, "data"), bbits: bb}
         e = try nbt.Next(b, e)
     }
     return out
@@ -96,6 +117,7 @@ struct Block {
     color u32
     water bool
     air   bool
+    tint  u8
 }
 
 // O bloco em y da coluna (x, z) do chunk: a cor e se e agua; found false quando a secao nao existe.
@@ -110,12 +132,32 @@ func blockAt(b []u8, secs []Section, x u64, y i64, z u64) !Block {
             idx := u64(y - sy * 16) * 256 + z * 16 + x
             k = try packed(b, s.data, idx, s.bits)
             if k >= s.colors.len {
-                return Block{found: false, color: 0, water: false, air: true}
+                return Block{found: false, color: 0, water: false, air: true, tint: 0}
             }
         }
-        return Block{found: true, color: s.colors[k], water: s.water[k], air: s.air[k]}
+        return Block{found: true, color: s.colors[k], water: s.water[k], air: s.air[k], tint: s.tint[k]}
     }
-    return Block{found: false, color: 0, water: false, air: true}
+    return Block{found: false, color: 0, water: false, air: true, tint: 0}
+}
+
+// As cores do bioma no bloco (x, y, z) do chunk; sem bioma conhecido, as de uma planicie.
+func biomeAt(b []u8, secs []Section, x u64, y i64, z u64) !Tints {
+    sy := floor16(y)
+    for s in secs {
+        if s.y != sy || s.biomes.len == 0 {
+            continue
+        }
+        mut k u64 = 0
+        if s.biomes.len > 1 && s.bdata.Kind == nbt.Longs {
+            idx := (u64(y - sy * 16) / 4) * 16 + (z / 4) * 4 + x / 4
+            k = try packed(b, s.bdata, idx, s.bbits)
+            if k >= s.biomes.len {
+                k = 0
+            }
+        }
+        return s.biomes[k]
+    }
+    return BiomeTints("")
 }
 
 // A altura do chao da coluna (x, z) debaixo de um teto: de ceiling para baixo, passa pelo que e solido ate o
@@ -178,6 +220,9 @@ func chunk(b []u8, cx u64, cz u64, ceiling i64, mut px []u8, mut heights []i64, 
                 if blk.found {
                     color = blk.color
                     water = blk.water
+                    if blk.tint != 0 {
+                        color = Tinted(try biomeAt(b, secs, x, y, z), blk.tint)
+                    }
                 }
             }
             if water && fbits > 0 && ceiling == NoHeight {
