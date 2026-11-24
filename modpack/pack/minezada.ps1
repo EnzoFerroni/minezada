@@ -43,7 +43,10 @@ if (Test-Path options.txt) {
     }
     # Pacotes feitos para outra versao do Minecraft (3D Crops, pack_format 55; Deep Aether Tooltips): o jogo tira da
     # lista a cada abertura, a menos que o nome conste tambem em incompatibleResourcePacks. Garante nas duas listas.
-    $forcados = 'file/crops-3d(2).zip', 'builtin/client/deep_aether_tooltips'
+    # Nome do zip do 3D Crops pelo packwiz.json, porque ele muda quando o mod atualiza.
+    # shortcut: o packwiz.json e da abertura anterior; quando o nome muda, o pacote volta so na abertura seguinte.
+    $crops = try { (Get-Content packwiz.json -Raw -ErrorAction Stop | ConvertFrom-Json).cachedFiles.'resourcepacks/3d-crops.pw.toml'.cachedLocation } catch { $null }
+    $forcados = @(if ($crops) { 'file/' + ($crops -replace '^resourcepacks/', '') }) + 'builtin/client/deep_aether_tooltips'
     foreach ($k in 'resourcePacks', 'incompatibleResourcePacks') {
         $n = $o.FindIndex({ param($l) $l -like "${k}:*" })
         # @(if ...): sem o @() de fora, uma lista de um item so vira texto solto e o + junta as strings.
