@@ -235,6 +235,15 @@ if (-not $Rodar) {
     # 5. Mundo da pasta sincronizada, com trava para so um host por vez.
     $sync = $cfg.SYNC_DIR
     if ($sync) {
+        # Drive fechado: a pasta some ou fica com a copia velha, e o servidor abriria o mundo antigo e depois
+        # o enviaria por cima do bom. Igual ao iniciar.sh: abre o Drive e espera o Enter.
+        $app = "$env:ProgramFiles\Google\Drive File Stream\launch.bat"
+        if ($sync -match '\\(Meu|My) Drive\\' -and (Test-Path $app) -and -not (Get-Process GoogleDriveFS -ErrorAction SilentlyContinue)) {
+            Write-Host 'O Google Drive estava fechado. Abrindo agora...'
+            Start-Process $app
+            for ($i = 0; $i -lt 120 -and -not (Test-Path $sync); $i++) { Start-Sleep 1 }
+            Read-Host 'Espere o icone do Drive na bandeja parar de sincronizar e aperte Enter' | Out-Null
+        }
         if (-not (Test-Path $sync)) { throw "SYNC_DIR nao existe: $sync" }
         $lock = Join-Path $sync 'host.lock'
         $estado = Join-Path $sync 'mundo.tar.gz'
