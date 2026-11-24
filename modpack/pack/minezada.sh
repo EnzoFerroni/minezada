@@ -55,8 +55,11 @@ key_key.veinminer_client.config key.keyboard.o key.keyboard.o:SHIFT
 FIM
   # Pacotes feitos para outra versao do Minecraft (3D Crops, pack_format 55; Deep Aether Tooltips): o jogo tira da
   # lista a cada abertura, a menos que o nome conste tambem em incompatibleResourcePacks. Garante nas duas listas.
+  # Nome do zip do 3D Crops pelo packwiz.json, porque ele muda quando o mod atualiza.
+  # shortcut: o packwiz.json e da abertura anterior; quando o nome muda, o pacote volta so na abertura seguinte.
+  crops="$(sed -nE 's#.*"resourcepacks/3d-crops\.pw\.toml":\{([^{}]|\{[^}]*\})*"cachedLocation":"resourcepacks/([^"]*)".*#\2#p' packwiz.json 2>/dev/null)" || true
   for k in resourcePacks incompatibleResourcePacks; do
-    for p in 'file/crops-3d(2).zip' 'builtin/client/deep_aether_tooltips'; do
+    for p in ${crops:+"file/$crops"} 'builtin/client/deep_aether_tooltips'; do
       atual="$(grep -m 1 "^$k:" options.txt || true)"
       if [ -z "$atual" ]; then
         echo "$k:[\"$p\"]" >> options.txt
