@@ -135,6 +135,10 @@ O `iniciar` acha a pasta sozinho em `X:\Meu Drive\minezada` (Windows) ou
 `~/Library/CloudStorage/GoogleDrive-*/Meu Drive/minezada` (Mac). Pasta em outro lugar: edite
 `SYNC_DIR` no `config.env`.
 
+No Mac, a pasta off-line continua no disco com o Drive fechado, mas com a cópia velha do mundo. Por isso o
+`iniciar` abre o Google Drive se ele estiver fechado e espera você apertar Enter quando ele terminar de
+sincronizar.
+
 ## Página (mapa e placar)
 
 A página do GitHub Pages mostra o mapa do mundo, o placar e o céu como o mundo ficou. Ela sai do mundo que o
