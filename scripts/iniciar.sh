@@ -105,10 +105,16 @@ main() {
     # Trava ja era desta maquina = ultima sessao caiu sem enviar; o mundo local e o mais novo.
     if [ "$dono" != "$eu" ] && [ -f "$estado" ]; then
       echo "Baixando mundo da pasta sincronizada..."
+      # Copia da sessao (a cada 30 min) mais nova que o mundo.tar.gz = o ultimo host caiu antes do stop.
+      origem="$estado"; sessao="$SYNC_DIR/backups/sessao-atual.tar.gz"
+      if [ -f "$sessao" ] && [ "$sessao" -nt "$estado" ]; then
+        echo "O ultimo host caiu sem salvar: usando a copia da sessao de $(date -r "$sessao" '+%d/%m %H:%M' 2>/dev/null)."
+        origem="$sessao"
+      fi
       # Extrai a parte e confere antes de mexer no mundo local ou pegar a trava: um arquivo corrompido
       # nao pode virar o mundo desta maquina (ele seria enviado por cima do bom no proximo stop).
       novo="$server/.mundo-novo"; rm -rf "$novo"; mkdir -p "$novo"
-      if ! tar -xzf "$estado" -C "$novo" || [ ! -d "$novo/world" ]; then
+      if ! tar -xzf "$origem" -C "$novo" || [ ! -d "$novo/world" ]; then
         rm -rf "$novo"
         die "mundo.tar.gz corrompido. Copie o mais novo de $SYNC_DIR/backups por cima dele e rode de novo."
       fi

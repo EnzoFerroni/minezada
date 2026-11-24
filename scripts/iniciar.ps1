@@ -254,12 +254,19 @@ if (-not $Rodar) {
         # Trava ja era desta maquina = ultima sessao caiu sem enviar; o mundo local e o mais novo.
         if ($dono -ne $eu -and (Test-Path $estado)) {
             Write-Host 'Baixando mundo da pasta sincronizada...'
+            # Copia da sessao (a cada 30 min) mais nova que o mundo.tar.gz = o ultimo host caiu antes do stop.
+            $origem = $estado
+            $sessao = Join-Path $sync 'backups\sessao-atual.tar.gz'
+            if ((Test-Path $sessao) -and (Get-Item $sessao).LastWriteTimeUtc -gt (Get-Item $estado).LastWriteTimeUtc) {
+                Write-Host "O ultimo host caiu sem salvar: usando a copia da sessao de $((Get-Item $sessao).LastWriteTime)."
+                $origem = $sessao
+            }
             # Extrai a parte e confere antes de mexer no mundo local ou pegar a trava: um arquivo corrompido
             # nao pode virar o mundo desta maquina (ele seria enviado por cima do bom no proximo stop).
             $novo = Join-Path $server '.mundo-novo'
             Remove-Item -Recurse -Force $novo -ErrorAction SilentlyContinue
             New-Item -ItemType Directory -Force $novo | Out-Null
-            & $tar -xzf $estado -C $novo
+            & $tar -xzf $origem -C $novo
             if ($LASTEXITCODE -or -not (Test-Path (Join-Path $novo 'world'))) {
                 Remove-Item -Recurse -Force $novo
                 throw "mundo.tar.gz corrompido. Copie o mais novo de $sync\backups por cima dele e rode de novo."
@@ -311,34 +318,51 @@ function Avisar-Selo($motivo) {
 
 # Copia do mundo com o servidor ligado, para a pagina (o do Drive so muda no stop). save-off para o jogo nao gravar
 # no meio da copia, save-all flush para o que esta na memoria ir para o disco; sem "Saved the game" em um minuto,
-# desiste. O envio roda escondido, fora deste laco. Sem github.txt no Drive, nada.
-function Foto-Do-Mundo {
-    if (-not $sync -or -not (Test-Path (Join-Path $sync 'github.txt'))) { return }
+# desiste. Anda um passo a cada volta do laco (30 s) e o tar roda escondido: o laco nao para. Sem github.txt, nada.
+$foto = @{ Fase = ''; Antes = 0; Volta = 0; Tar = $null }
+function Foto-Passo([switch]$Comecar) {
     $wlog = Join-Path $server 'logs\latest.log'
-    $salvos = { @(Select-String -SimpleMatch 'Saved the game' $wlog -ErrorAction SilentlyContinue).Count }
-    $antes = & $salvos
-    try { $proc.StandardInput.WriteLine('save-off'); $proc.StandardInput.WriteLine('save-all flush') } catch { return }
-    $ok = $false
-    for ($i = 0; $i -lt 60; $i++) { Start-Sleep 1; if ((& $salvos) -gt $antes) { $ok = $true; break } }
-    $foto = Join-Path $server 'logs\mundo-agora.tar.gz'
-    if ($ok) {
-        $itens = @('world', 'ops.json', 'whitelist.json', 'banned-players.json', 'banned-ips.json') |
-            Where-Object { Test-Path (Join-Path $server $_) }
-        # session.lock fica travado pelo servidor ligado no Windows e o tar falha com "(null)" sem este exclude.
-        & $tar -czf "$foto.tmp" --exclude session.lock -C $server @itens
-        if ($LASTEXITCODE) { $ok = $false }
+    $arq = Join-Path $server 'logs\mundo-agora.tar.gz'
+    $salvos = @(Select-String -SimpleMatch 'Saved the game' $wlog -ErrorAction SilentlyContinue).Count
+    if ($Comecar) {
+        if ($foto.Fase -or -not $sync -or -not (Test-Path (Join-Path $sync 'github.txt'))) { return }
+        try { $proc.StandardInput.WriteLine('save-off'); $proc.StandardInput.WriteLine('save-all flush') } catch { return }
+        $foto.Fase = 'salvando'; $foto.Antes = $salvos; $foto.Volta = $voltas
+        return
     }
+    if ($foto.Fase -eq 'salvando') {
+        if ($salvos -gt $foto.Antes) {
+            $itens = @('world', 'ops.json', 'whitelist.json', 'banned-players.json', 'banned-ips.json') |
+                Where-Object { Test-Path (Join-Path $server $_) }
+            # session.lock fica travado pelo servidor ligado no Windows e o tar falha com "(null)" sem este exclude.
+            try {
+                $foto.Tar = Start-Process -PassThru -WindowStyle Hidden -FilePath $tar -ErrorAction Stop -ArgumentList (@('-czf', "`"$arq.tmp`"", '--exclude', 'session.lock', '-C', "`"$server`"") + $itens)
+                $null = $foto.Tar.Handle  # sem pegar o Handle antes de sair, o ExitCode do Start-Process vem vazio
+                $foto.Fase = 'tar'
+                return
+            }
+            catch { Write-Warning "Foto do mundo sem tar: $($_.Exception.Message)" }
+        }
+        # Sem tar ou sem "Saved the game" em um minuto: volta a salvar e desiste desta foto.
+        if ($salvos -gt $foto.Antes -or $voltas - $foto.Volta -ge 2) {
+            try { $proc.StandardInput.WriteLine('save-on') } catch { }
+            $foto.Fase = ''
+        }
+        return
+    }
+    if ($foto.Fase -ne 'tar' -or -not $foto.Tar.HasExited) { return }
     try { $proc.StandardInput.WriteLine('save-on') } catch { }
-    if (-not $ok) { Remove-Item -Force "$foto.tmp" -ErrorAction SilentlyContinue; return }
-    Move-Item -Force "$foto.tmp" $foto
+    $foto.Fase = ''
+    if ($foto.Tar.ExitCode) { Remove-Item -Force "$arq.tmp" -ErrorAction SilentlyContinue; return }
+    Move-Item -Force "$arq.tmp" $arq
     # Copia de seguranca no Drive (backups\sessao-atual.tar.gz): se o PC cair, outro host ainda tem a sessao. O
     # mundo.tar.gz e a trava continuam so do stop.
     try {
         $bk = Join-Path $sync 'backups'
         New-Item -ItemType Directory -Force $bk | Out-Null
-        Copy-Item -Force $foto (Join-Path $bk 'sessao-atual.tar.gz')
+        Copy-Item -Force $arq (Join-Path $bk 'sessao-atual.tar.gz')
     } catch { Write-Warning "Nao copiei a sessao para o Drive: $($_.Exception.Message)" }
-    Start-Process -WindowStyle Hidden -FilePath $cfg.JAVA -ArgumentList @("`"$(Join-Path $PSScriptRoot 'MundoGithub.java')`"", "`"$foto`"", "`"$sync`"")
+    Start-Process -WindowStyle Hidden -FilePath $cfg.JAVA -ArgumentList @("`"$(Join-Path $PSScriptRoot 'MundoGithub.java')`"", "`"$arq`"", "`"$sync`"")
 }
 
 Push-Location $server
@@ -378,7 +402,7 @@ try {
         else {
             $t = $voltas - $pronto
             if ($t % 20 -eq 0) { Avisar-Selo 'ligado' }
-            if ($t % 60 -eq 0) { Foto-Do-Mundo }
+            if ($t % 60 -eq 0) { Foto-Passo -Comecar } else { Foto-Passo }
         }
         $jogo = & $datas $jsons
         if ($jogo -ne $vistoJogo) {
