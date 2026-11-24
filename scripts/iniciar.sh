@@ -85,6 +85,17 @@ main() {
   # 5. Mundo da pasta sincronizada, com trava para so um host por vez.
   if [ -n "$SYNC_DIR" ]; then
     [ -d "$SYNC_DIR" ] || die "SYNC_DIR nao existe: $SYNC_DIR"
+    # Drive fechado: a pasta off-line continua no disco com a copia velha (mundo, trava, dispatch.txt), e o
+    # servidor abriria o mundo antigo e depois o enviaria por cima do bom.
+    case "$SYNC_DIR" in
+      */CloudStorage/GoogleDrive-*)
+        if ! pgrep -x "Google Drive" > /dev/null; then
+          echo "O Google Drive estava fechado. Abrindo agora..."
+          open -a "Google Drive" || die "Nao deu para abrir o Google Drive. Abra ele e rode de novo."
+          echo "Espere o icone do Drive na barra de menus parar de sincronizar e aperte Enter."
+          read -r _ < /dev/tty
+        fi ;;
+    esac
     lock="$SYNC_DIR/host.lock"
     estado="$SYNC_DIR/mundo.tar.gz"
     dono=""; [ -f "$lock" ] && dono="$(tr -d '[:space:]' < "$lock")"
