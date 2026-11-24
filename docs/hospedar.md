@@ -180,14 +180,14 @@ depois (o resto é o cache do GitHub e do shields.io). Configurado uma vez só:
 Sem `dispatch.txt` o selo fica só com o horário do GitHub. Host que cai sem `stop` (falta de luz) não avisa: o
 selo fica "ligado" até a próxima consulta do horário.
 
-A cada 30 minutos com o servidor ligado, a cópia do mundo vai também para `backups/sessao-atual.tar.gz` no Drive (segurança se o host cair). O `mundo.tar.gz` e a trava só mudam no `stop`. Para recuperar uma sessão que caiu, extraia essa cópia por cima do mundo, no lugar do `mundo.tar.gz`.
+A cada 30 minutos com o servidor ligado, a cópia do mundo vai também para `backups/sessao-atual.tar.gz` no Drive (segurança se o host cair). O `mundo.tar.gz` e a trava só mudam no `stop`. Se essa cópia for mais nova que o `mundo.tar.gz` (o último host caiu antes do `stop`), o próximo `iniciar` usa ela sozinho.
 
 ## Trocar de host
 
 - Espere o Drive sincronizar antes de iniciar em outra máquina.
 - Máquina caiu sem `stop`? Rode de novo nela: o mundo local é mantido e enviado no próximo `stop`.
 - Só use `iniciar.bat -Forcar` / `iniciar.command --forcar` em outra máquina se a original não tiver
-  volta (perde o que não foi enviado).
+  volta (perde no máximo os 30 minutos desde a última cópia da sessão).
 
 ## Segurança
 
