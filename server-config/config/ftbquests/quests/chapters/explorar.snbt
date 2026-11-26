@@ -4,38 +4,38 @@
 	filename: "explorar"
 	group: "0723197381022D89"
 	icon: { id: "naturescompass:naturescompass" }
-	id: "ABBF7954E151BB6E"
+	id: "2BBF7954E151BB6E"
 	order_index: 9
 	quest_links: [ ]
 	quests: [
 		{
-			id: "876BEA6CFE9209A1"
-			rewards: [{ id: "3F6C1290A8E18BA5", type: "xp", xp: 20 }]
-			tasks: [{ id: "9A2F325A91090ECF", item: { count: 1, id: "naturescompass:naturescompass" }, type: "item" }]
+			id: "076BEA6CFE9209A1"
+			rewards: [{ id: "792D1269EB56B841", type: "xp", xp: 20 }]
+			tasks: [{ id: "1CA2EA610578DF67", item: { count: 1, id: "naturescompass:naturescompass" }, type: "item" }]
 			x: 0d
 			y: 0d
 		}
 		{
-			dependencies: ["876BEA6CFE9209A1"]
+			dependencies: ["076BEA6CFE9209A1"]
 			id: "3062EA0B7042C34D"
 			rewards: [{ id: "69D89FCDA80F9D6E", type: "xp", xp: 20 }]
-			tasks: [{ id: "D08E13BD258E98B8", item: { count: 1, id: "explorerscompass:explorerscompass" }, type: "item" }]
+			tasks: [{ id: "508E13BD258E98B8", item: { count: 1, id: "explorerscompass:explorerscompass" }, type: "item" }]
 			x: 1.5d
 			y: 0d
 		}
 		{
 			dependencies: ["3062EA0B7042C34D"]
-			id: "B33B894B34D3932D"
-			rewards: [{ id: "7E06C8D2CE82F3AE", type: "xp", xp: 20 }]
-			tasks: [{ id: "90D788BAB53E48B1", item: { count: 1, id: "map_atlases:atlas" }, type: "item" }]
+			id: "333B894B34D3932D"
+			rewards: [{ id: "2EC54BEB7C6DA1D2", type: "xp", xp: 20 }]
+			tasks: [{ id: "380B469D7D30E15C", item: { count: 1, id: "map_atlases:atlas" }, type: "item" }]
 			x: 3d
 			y: 0d
 		}
 		{
-			dependencies: ["B33B894B34D3932D"]
-			id: "E181CF23667BE12E"
-			rewards: [{ id: "BAE2F90BFF6CF21E", type: "xp", xp: 20 }]
-			tasks: [{ id: "D40100A224059F53", item: { count: 1, id: "waystones:return_scroll" }, type: "item" }]
+			dependencies: ["333B894B34D3932D"]
+			id: "6181CF23667BE12E"
+			rewards: [{ id: "19CE4767B8F209CE", type: "xp", xp: 20 }]
+			tasks: [{ id: "1CA6DA17954FCD5C", item: { count: 1, id: "waystones:return_scroll" }, type: "item" }]
 			x: 4.5d
 			y: 0d
 		}

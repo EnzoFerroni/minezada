@@ -4,36 +4,36 @@
 	filename: "colecionador"
 	group: "0723197381022D89"
 	icon: { id: "minecraft:diamond" }
-	id: "CED654CD8429AD9B"
+	id: "4ED654CD8429AD9B"
 	order_index: 22
 	quest_links: [ ]
 	quests: [
 		{
 			id: "030337DA57D9612C"
-			rewards: [{ id: "E16627A61AA63246", type: "xp", xp: 20 }, { id: "698A3902F94D106F", item: { count: 2, id: "minecraft:diamond_block" }, type: "item" }]
-			tasks: [{ id: "CC5707AC1B0C5CEE", item: { count: 64, id: "minecraft:diamond" }, type: "item" }]
+			rewards: [{ id: "616627A61AA63246", type: "xp", xp: 20 }, { id: "698A3902F94D106F", item: { count: 2, id: "minecraft:diamond_block" }, type: "item" }]
+			tasks: [{ id: "4C5707AC1B0C5CEE", item: { count: 64, id: "minecraft:diamond" }, type: "item" }]
 			x: 0d
 			y: 0d
 		}
 		{
 			dependencies: ["030337DA57D9612C"]
-			id: "B70E650A8D2869D1"
-			rewards: [{ id: "1E618DD3A3B129D4", type: "xp", xp: 20 }]
-			tasks: [{ id: "E1EBA5FCB9F2E9D2", item: { count: 1, id: "minecraft:netherite_ingot" }, type: "item" }]
+			id: "370E650A8D2869D1"
+			rewards: [{ id: "210295768A7E5A0D", type: "xp", xp: 20 }]
+			tasks: [{ id: "5C555C39F07BCD30", item: { count: 1, id: "minecraft:netherite_ingot" }, type: "item" }]
 			x: 1.5d
 			y: 0d
 		}
 		{
-			id: "FD39318A46A4A28E"
-			rewards: [{ id: "C8CDD494F5767D00", type: "xp", xp: 20 }]
-			tasks: [{ id: "E629C2CDB014656C", item: { count: 1, id: "minecraft:totem_of_undying" }, type: "item" }]
+			id: "7D39318A46A4A28E"
+			rewards: [{ id: "07F534798537817F", type: "xp", xp: 20 }]
+			tasks: [{ id: "09748917084AEB02", item: { count: 1, id: "minecraft:totem_of_undying" }, type: "item" }]
 			x: 3d
 			y: 0d
 		}
 		{
 			id: "7A5E4996923A7CA6"
 			rewards: [{ id: "29698A48CBD38911", type: "xp", xp: 20 }]
-			tasks: [{ id: "9E3C14AF5B54450A", item: { count: 1, id: "minecraft:trident" }, type: "item" }]
+			tasks: [{ id: "1E3C14AF5B54450A", item: { count: 1, id: "minecraft:trident" }, type: "item" }]
 			x: 4.5d
 			y: 0d
 		}
@@ -46,22 +46,22 @@
 		}
 		{
 			id: "2E2F0B64C34BD002"
-			rewards: [{ id: "9E4CB7ACF01A0CD4", type: "xp", xp: 20 }]
+			rewards: [{ id: "1E4CB7ACF01A0CD4", type: "xp", xp: 20 }]
 			tasks: [{ id: "7D91CA2794C1947E", item: { count: 1, id: "minecraft:dragon_head" }, type: "item" }]
 			x: 1.5d
 			y: 1.5d
 		}
 		{
-			id: "8009A0ADFF3F42CE"
-			rewards: [{ id: "364FC335361EF89B", type: "xp", xp: 20 }]
-			tasks: [{ id: "8FAB9A380861ED18", item: { count: 1, id: "minecraft:nether_star" }, type: "item" }]
+			id: "0009A0ADFF3F42CE"
+			rewards: [{ id: "274B1BE3807989A9", type: "xp", xp: 20 }]
+			tasks: [{ id: "3435D5B61B601D3C", item: { count: 1, id: "minecraft:nether_star" }, type: "item" }]
 			x: 3d
 			y: 1.5d
 		}
 		{
 			id: "33C97891F98C6AEA"
 			rewards: [{ id: "382FF8E3371854AD", type: "xp", xp: 20 }]
-			tasks: [{ id: "C1D4A18EF074F55E", item: { count: 1, id: "minecraft:beacon" }, type: "item" }]
+			tasks: [{ id: "41D4A18EF074F55E", item: { count: 1, id: "minecraft:beacon" }, type: "item" }]
 			x: 4.5d
 			y: 1.5d
 		}

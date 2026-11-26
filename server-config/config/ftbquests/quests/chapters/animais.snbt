@@ -9,38 +9,38 @@
 	quest_links: [ ]
 	quests: [
 		{
-			id: "F09A1A630889A48A"
-			rewards: [{ id: "4223D4B06A42CA54", type: "xp", xp: 20 }]
-			tasks: [{ id: "E9D1B16248C7A71A", item: { count: 1, id: "alexsmobs:animal_dictionary" }, type: "item" }]
+			id: "709A1A630889A48A"
+			rewards: [{ id: "6FA6D048FEA823AB", type: "xp", xp: 20 }]
+			tasks: [{ id: "15C2D2BC9DEB8974", item: { count: 1, id: "alexsmobs:animal_dictionary" }, type: "item" }]
 			x: 0d
 			y: 0d
 		}
 		{
-			dependencies: ["F09A1A630889A48A"]
+			dependencies: ["709A1A630889A48A"]
 			id: "06C980678102C2D1"
-			rewards: [{ id: "D2B7922C4927A0AA", type: "xp", xp: 20 }]
-			tasks: [{ id: "C84863208DB4A241", item: { count: 1, id: "alexsmobs:banana" }, type: "item" }]
+			rewards: [{ id: "52B7922C4927A0AA", type: "xp", xp: 20 }]
+			tasks: [{ id: "484863208DB4A241", item: { count: 1, id: "alexsmobs:banana" }, type: "item" }]
 			x: 1.5d
 			y: 0d
 		}
 		{
 			id: "4ADAEBCD1EB47A95"
-			rewards: [{ id: "EA8DF806CAEE5CE3", type: "xp", xp: 20 }]
-			tasks: [{ id: "989ADEBE60CE4380", type: "checkmark" }]
+			rewards: [{ id: "6A8DF806CAEE5CE3", type: "xp", xp: 20 }]
+			tasks: [{ id: "189ADEBE60CE4380", type: "checkmark" }]
 			x: 3d
 			y: 0d
 		}
 		{
-			id: "91870977C3D93740"
-			rewards: [{ id: "FC82FF7B27CDF786", type: "xp", xp: 20 }]
-			tasks: [{ id: "76BF52BDC2F8EE6E", type: "checkmark" }]
+			id: "11870977C3D93740"
+			rewards: [{ id: "09C76458452DE515", type: "xp", xp: 20 }]
+			tasks: [{ id: "2C6F2AF43EABA714", type: "checkmark" }]
 			x: 4.5d
 			y: 0d
 		}
 		{
 			id: "673908041A368C98"
-			rewards: [{ id: "C0E80F93D378B6B9", type: "xp", xp: 20 }]
-			tasks: [{ id: "D6F1D06027CF6480", type: "checkmark" }]
+			rewards: [{ id: "40E80F93D378B6B9", type: "xp", xp: 20 }]
+			tasks: [{ id: "56F1D06027CF6480", type: "checkmark" }]
 			x: 0d
 			y: 1.5d
 		}

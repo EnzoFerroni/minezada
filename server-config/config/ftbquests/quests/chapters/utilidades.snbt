@@ -16,22 +16,22 @@
 			y: 0.0d
 		}
 		{
-			id: "E469C52CE8ED6032"
-			rewards: [{ id: "4CCFC21005512B30", type: "xp", xp: 20 }]
-			tasks: [{ id: "B29CDBA307BFDDE1", type: "checkmark" }]
+			id: "6469C52CE8ED6032"
+			rewards: [{ id: "135D1F479C0B048F", type: "xp", xp: 20 }]
+			tasks: [{ id: "2F4ABB6F54A8E0DF", type: "checkmark" }]
 			x: 1.5d
 			y: 0d
 		}
 		{
 			id: "114B01E7B50BF062"
 			rewards: [{ id: "296F40E8D2C85BE3", type: "xp", xp: 20 }]
-			tasks: [{ id: "EF9B3E22ACF9E300", type: "checkmark" }]
+			tasks: [{ id: "6F9B3E22ACF9E300", type: "checkmark" }]
 			x: 3d
 			y: 0d
 		}
 		{
 			id: "44D6D9BE5B35C3AF"
-			rewards: [{ id: "CF09B5467EB7159B", type: "xp", xp: 20 }]
+			rewards: [{ id: "4F09B5467EB7159B", type: "xp", xp: 20 }]
 			tasks: [{ id: "5D37E5FF99F736B0", item: { count: 1, id: "justhammers:iron_hammer" }, type: "item" }]
 			x: 4.5d
 			y: 0d
@@ -44,23 +44,23 @@
 			y: 1.5d
 		}
 		{
-			id: "851B132375F0969D"
-			rewards: [{ id: "B06F1B09431FE764", type: "xp", xp: 20 }]
-			tasks: [{ id: "7A792010AFD892BA", type: "checkmark" }]
+			id: "051B132375F0969D"
+			rewards: [{ id: "04C1425AE4D3F381", type: "xp", xp: 20 }]
+			tasks: [{ id: "4712901379BC13EE", type: "checkmark" }]
 			x: 1.5d
 			y: 1.5d
 		}
 		{
 			id: "737CADF831F74384"
 			rewards: [{ id: "2816B936290ECDE2", type: "xp", xp: 20 }]
-			tasks: [{ id: "AB777EFD4ABF1713", type: "checkmark" }]
+			tasks: [{ id: "2B777EFD4ABF1713", type: "checkmark" }]
 			x: 3d
 			y: 1.5d
 		}
 		{
-			id: "AC23A23D6D3A08C6"
-			rewards: [{ id: "676A0E08BEDE14A0", type: "xp", xp: 20 }]
-			tasks: [{ id: "7C93C401D8FD13B2", item: { count: 1, id: "toms_storage:storage_terminal" }, type: "item" }]
+			id: "2C23A23D6D3A08C6"
+			rewards: [{ id: "529689208A50FD87", type: "xp", xp: 20 }]
+			tasks: [{ id: "5DB3CC656B4FA3D4", item: { count: 1, id: "toms_storage:storage_terminal" }, type: "item" }]
 			x: 4.5d
 			y: 1.5d
 		}
@@ -72,9 +72,9 @@
 			y: 3.0d
 		}
 		{
-			id: "88B06B2679D02B1D"
-			rewards: [{ id: "68A3337CE40CC95A", type: "xp", xp: 20 }]
-			tasks: [{ id: "409AE4F315BF76AB", type: "checkmark" }]
+			id: "08B06B2679D02B1D"
+			rewards: [{ id: "2F1D94242BCC2C17", type: "xp", xp: 20 }]
+			tasks: [{ id: "6D90F169A510EFA5", type: "checkmark" }]
 			x: 1.5d
 			y: 3d
 		}

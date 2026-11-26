@@ -10,8 +10,8 @@
 	quests: [
 		{
 			id: "6490CA6149519CDC"
-			rewards: [{ id: "BAEC49F65C9670EB", type: "xp", xp: 20 }]
-			tasks: [{ entity: "twilightforest:naga", id: "A5389F12C0498DBC", type: "kill", value: 1L }]
+			rewards: [{ id: "3AEC49F65C9670EB", type: "xp", xp: 20 }]
+			tasks: [{ entity: "twilightforest:naga", id: "25389F12C0498DBC", type: "kill", value: 1L }]
 			x: 0d
 			y: 0d
 		}
@@ -25,32 +25,32 @@
 		}
 		{
 			dependencies: ["116977F2BD1CE274"]
-			id: "D9A47017C31FA7E8"
-			rewards: [{ id: "BE344FF0BD392992", type: "xp", xp: 20 }]
-			tasks: [{ entity: "twilightforest:minoshroom", id: "72F1D2F63615405B", type: "kill", value: 1L }]
+			id: "59A47017C31FA7E8"
+			rewards: [{ id: "3435501A23D20958", type: "xp", xp: 20 }]
+			tasks: [{ entity: "twilightforest:minoshroom", id: "723A9D804350BF3C", type: "kill", value: 1L }]
 			x: 3d
 			y: 0d
 		}
 		{
-			dependencies: ["D9A47017C31FA7E8"]
-			id: "CAE3826881F9D457"
-			rewards: [{ id: "A8B829C1D02A03FA", type: "xp", xp: 20 }]
-			tasks: [{ entity: "twilightforest:hydra", id: "307945B396732028", type: "kill", value: 1L }]
+			dependencies: ["59A47017C31FA7E8"]
+			id: "4AE3826881F9D457"
+			rewards: [{ id: "3F896D77CC1EC64F", type: "xp", xp: 20 }]
+			tasks: [{ entity: "twilightforest:hydra", id: "65069A2973E08799", type: "kill", value: 1L }]
 			x: 4.5d
 			y: 0d
 		}
 		{
-			dependencies: ["CAE3826881F9D457"]
-			id: "ABDAC0BBD460038C"
-			rewards: [{ id: "FBAF081A1F43F768", type: "xp", xp: 20 }]
-			tasks: [{ entity: "twilightforest:knight_phantom", id: "82C6416019893E96", type: "kill", value: 1L }]
+			dependencies: ["4AE3826881F9D457"]
+			id: "2BDAC0BBD460038C"
+			rewards: [{ id: "2D1DDA125C63AEA3", type: "xp", xp: 20 }]
+			tasks: [{ entity: "twilightforest:knight_phantom", id: "29C34DED16A9CB19", type: "kill", value: 1L }]
 			x: 6d
 			y: 0d
 		}
 		{
-			dependencies: ["ABDAC0BBD460038C"]
+			dependencies: ["2BDAC0BBD460038C"]
 			id: "325DB48F631D47C8"
-			rewards: [{ id: "DA44A3960B0FE2F3", type: "xp", xp: 20 }]
+			rewards: [{ id: "5A44A3960B0FE2F3", type: "xp", xp: 20 }]
 			tasks: [{ entity: "twilightforest:ur_ghast", id: "5CEB38427FCDC88B", type: "kill", value: 1L }]
 			x: 7.5d
 			y: 0d
@@ -59,15 +59,15 @@
 			dependencies: ["325DB48F631D47C8"]
 			id: "2BDDBDCF337F9D0E"
 			rewards: [{ id: "0EE565C5E8EB9420", type: "xp", xp: 20 }]
-			tasks: [{ entity: "twilightforest:alpha_yeti", id: "A2E8AD69EB8240C9", type: "kill", value: 1L }]
+			tasks: [{ entity: "twilightforest:alpha_yeti", id: "22E8AD69EB8240C9", type: "kill", value: 1L }]
 			x: 9d
 			y: 0d
 		}
 		{
 			dependencies: ["2BDDBDCF337F9D0E"]
-			id: "8074CD0979FCF7F9"
-			rewards: [{ id: "308CE6DC964F2227", type: "xp", xp: 20 }]
-			tasks: [{ entity: "twilightforest:snow_queen", id: "FA536006CB753EF4", type: "kill", value: 1L }]
+			id: "0074CD0979FCF7F9"
+			rewards: [{ id: "258156755AA4A5AA", type: "xp", xp: 20 }]
+			tasks: [{ entity: "twilightforest:snow_queen", id: "774D8DA0E0FC0FB2", type: "kill", value: 1L }]
 			x: 10.5d
 			y: 0d
 		}
