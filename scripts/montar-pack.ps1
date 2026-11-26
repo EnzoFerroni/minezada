@@ -47,6 +47,7 @@ $rpLigados = @('fast-better-grass', 'simple-grass-flowers', 'better-leaves',
 # Accessories 1.1.0-beta.53: minimo que o Hamster aceita. O Aether embute a beta.48, que impede o
 # servidor de abrir; a avulsa tem prioridade sobre a embutida.
 # CustomSkinLoader 14.21.1-ForgeV3: testado no NeoForge 1.21.1; a Universal 15.x derruba o jogo (MCCustomSkinLoader#387).
+# Structory e Towers: as versoes 26.x vem marcadas para 1.21.1 no Modrinth, mas o jogo recusa o jar.
 $presas = @{ 'accessories' = 'Fb55Fgjz'; 'customskinloader' = '9B1Mb9IZ'; 'structory' = 'MXU49bpN'; 'structory-towers' = 'lefqbuOP' }
 # Dependencias que o jar exige mas a versao no Modrinth nao declara (ids de projeto do Modrinth).
 # Hamster 3.7.0: architectury, geckolib, fzzy-config, patchouli e accessories (ver acima).
@@ -209,8 +210,9 @@ if (Test-Path $soltos) {
         $dest = Join-Path $pw $rel
         New-Item -ItemType Directory -Force (Split-Path $dest) | Out-Null
         Copy-Item $a.FullName $dest
-        # minezada.ps1/.sh (rodam antes de abrir) e as regras do VeinMiner (mundo de um jogador so) sempre atualizam: sem preserve.
-        $pres = if ($rel -like 'minezada.*' -or $rel -like 'config/Veinminer/*') { '' } else { "preserve = true`n" }
+        # minezada.ps1/.sh (rodam antes de abrir), as regras do VeinMiner (mundo de um jogador so) e os pacotes de
+        # recursos proprios (resourcepacks/) sempre atualizam: sem preserve.
+        $pres = if ($rel -like 'minezada.*' -or $rel -like 'config/Veinminer/*' -or $rel -like 'resourcepacks/*') { '' } else { "preserve = true`n" }
         $idx += "`n[[files]]`nfile = $(Toml $rel)`nhash = `"$(Sha256 $dest)`"`n$pres"
     }
 }

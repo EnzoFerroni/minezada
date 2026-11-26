@@ -501,6 +501,11 @@ hash = "3bc3599cc95c8b326a5744ec720f31d0141764addfca8d8e8f239359b9817f2d"
 metafile = true
 
 [[files]]
+file = "mods/hats-renewed.pw.toml"
+hash = "c98a6d22edc05607e28053274bfbcfa60b74dc6f85ac9a4cbe262068759087a3"
+metafile = true
+
+[[files]]
 file = "mods/immediatelyfast.pw.toml"
 hash = "d9833d26e9dcd87f67ffb5c7c9edb8a98e21fb1919bf30f695e386e5fe5598ca"
 metafile = true
@@ -1281,6 +1286,110 @@ preserve = true
 file = "options-profiles/7 - Ultra/options.txt"
 hash = "8bade7ae05147635e3a277c588ecab63154665256e1a5eb5fcfb61f515993ff0"
 preserve = true
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/alexsmobs/models/item/comb_jelly_bucket.json"
+hash = "10be24352c6a8455188b92ca262b864cea26ad481e2f3411d60bb123f8da76b8"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/comb_jelly_blue.png"
+hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/comb_jelly_green.png"
+hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/comb_jelly_overlay.png"
+hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/comb_jelly_red.png"
+hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_ace.png"
+hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_bi.png"
+hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_brazil.png"
+hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_nonbi.png"
+hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_rainbow.png"
+hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_trans.png"
+hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_weezer.png"
+hash = "3c6c50f94ab35e9f96c772731fe6b7950048179bc81b8ab0396cc1edbde89163"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/aquamirae/models/item/jellyfish_jelly.json"
+hash = "f9a19ae4ad3c25c933a4a110cde5f333de763c1563560630f256d54badec0a4c"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/minecraft/lang/pt_br.json"
+hash = "56c5c60de7d16d51a80b4ab107a0b4a49fe7f8c5b5c9eb577db5e2f97d19f377"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/naturalist/models/item/jellyfish_bucket.json"
+hash = "10be24352c6a8455188b92ca262b864cea26ad481e2f3411d60bb123f8da76b8"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/naturalist/models/item/variant/jellyfish_bucket/blue.json"
+hash = "10be24352c6a8455188b92ca262b864cea26ad481e2f3411d60bb123f8da76b8"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/naturalist/models/item/variant/jellyfish_bucket/green.json"
+hash = "10be24352c6a8455188b92ca262b864cea26ad481e2f3411d60bb123f8da76b8"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/naturalist/models/item/variant/jellyfish_bucket/orange.json"
+hash = "10be24352c6a8455188b92ca262b864cea26ad481e2f3411d60bb123f8da76b8"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/naturalist/models/item/variant/jellyfish_bucket/pink.json"
+hash = "10be24352c6a8455188b92ca262b864cea26ad481e2f3411d60bb123f8da76b8"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/naturalist/models/item/variant/jellyfish_bucket/white.json"
+hash = "10be24352c6a8455188b92ca262b864cea26ad481e2f3411d60bb123f8da76b8"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/naturalist/textures/entity/jellyfish/blue.png"
+hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/naturalist/textures/entity/jellyfish/green.png"
+hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/naturalist/textures/entity/jellyfish/orange.png"
+hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/naturalist/textures/entity/jellyfish/pink.png"
+hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/assets/naturalist/textures/entity/jellyfish/white.png"
+hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
+
+[[files]]
+file = "resourcepacks/sem-agua-viva/pack.mcmeta"
+hash = "64a38d06d6c1c0c62aae8e325b2bd8e28a7e462d4d7303797a81b076f9e2bc83"
 
 [[files]]
 file = "shaderpacks/ComplementaryReimagined_r5.10.zip.txt"
