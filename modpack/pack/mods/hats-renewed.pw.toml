@@ -1,0 +1,8 @@
+name = "Hats Renewed"
+filename = "HatsRenewed-21.1.3-mc1.21.1-neoforge.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/G7zR9HGM/versions/w2L6Xp7S/HatsRenewed-21.1.3-mc1.21.1-neoforge.jar"
+hash-format = "sha1"
+hash = "a04e14931f77bc1d9dd7fe852c8fb193fb01483a"

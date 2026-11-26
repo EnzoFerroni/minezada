@@ -176,6 +176,7 @@ easy-anvils | Bigorna sem o limite de "Caro demais" e com nomes coloridos.
 corpse | Ao morrer, seus itens ficam guardados num corpo no lugar da morte, sem sumir.
 
 ## Visual e ambiente
+hats-renewed | Mais de 430 chapéus cosméticos: os mobs andam com chapéu e, ao derrotar um, você desbloqueia o dele. Escolha qual usar no menu de chapéus (só visual, não muda a armadura).
 travelers-titles | Título na tela ao entrar em um bioma ou dimensão novo, estilo RPG.
 fresh-animations | Pacote de recursos (já vem ligado): mobs com animações muito mais vivas, piscando e se mexendo.
 entity-model-features | Necessário para o Fresh Animations funcionar.
