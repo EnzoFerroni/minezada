@@ -60,6 +60,31 @@ Lista completa com versões e links: [mods.md](mods.md).
 - Mods marcados "server unsupported" no Modrinth (Sodium, Iris, minimapa de cliente...) ficam só no
   cliente; o servidor pula eles (packwiz `-s server`).
 
+## Launcher: Prism em vez do oficial
+
+O launcher oficial da Mojang roda NeoForge, mas não sabe instalar nem atualizar um modpack. O Prism Launcher (grátis, código aberto) faz isso:
+
+- **Atualiza sozinho.** A cada abertura o Prism roda o packwiz, que baixa do GitHub o pack atual: mod novo, removido ou com versão nova chega a todos sem ninguém fazer nada. No oficial, cada jogador teria que trocar os jars na mão a cada mudança, e um mod diferente do servidor impede a entrada.
+- **Um comando instala tudo.** O `jogar` instala o Prism, cria a instância com o NeoForge certo, escolhe o Java e a memória pelo tamanho da RAM, liga os pacotes de recursos, cria o atalho e abre o jogo.
+- **Ajustes antes de abrir.** O `minezada.ps1`/`.sh` roda antes de cada abertura: acerta teclas em conflito, desliga avisos de mods, troca shader que saiu do pack e, no Mac com chip Apple, deixa o túnel (Modflared) usar o `cloudflared` ARM.
+- **Instâncias separadas.** O pack fica na própria pasta e não mexe no `.minecraft` de quem já joga vanilla ou outros packs.
+- **Sem original.** Quem não tem a conta da Microsoft joga pelo fork do Prism. O launcher oficial só abre com conta original.
+
+A conta original funciona igual no Prism: o login é o da Microsoft.
+
+### Jogar pelo launcher oficial (sem suporte)
+
+Dá, mas fica tudo na mão e sem os ajustes acima. Precisa de conta original.
+
+1. Instale o Java 21 e rode o instalador do NeoForge da mesma versão do pack (está em `modpack/pack/pack.toml`, linha `neoforge`), opção "Install client". Ele cria o perfil NeoForge no launcher oficial.
+2. No launcher, em Instalações, crie uma instalação nova com essa versão do NeoForge e uma pasta de jogo própria (por exemplo `minezada`), para não misturar com o `.minecraft`.
+3. Em "Mais opções", troque `-Xmx2G` por pelo menos `-Xmx6G` (o pack tem mais de 170 mods).
+4. Baixe o [packwiz-installer-bootstrap.jar](https://github.com/packwiz/packwiz-installer-bootstrap/releases) para essa pasta de jogo e, dentro dela, rode:
+   `java -jar packwiz-installer-bootstrap.jar https://raw.githubusercontent.com/EnzoFerroni/minezada/main/modpack/pack/pack.toml`
+   Ele baixa os mods, configs e pacotes de recursos. Repita esse comando antes de cada sessão, senão o pack fica velho e o servidor recusa a entrada.
+5. Abra a instalação e entre em `minezada.dpdns.org`.
+
+Fica faltando o que o Prism e o `minezada` fazem sozinhos: perfis de gráfico já escolhidos, teclas sem conflito, avisos desligados e, no Mac com chip Apple, o `cloudflared` ARM para o túnel (sem ele, só com a Rosetta instalada). Problema nesse caminho: volte para o comando de jogar do README.
 ## Hospedagem e rede
 
 | Tema | Decisão | Alternativas descartadas |
