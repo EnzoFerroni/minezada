@@ -1,0 +1,63 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "cozinha_e_fazenda"
+	group: ""
+	icon: { id: "farmersdelight:cooking_pot" }
+	id: "C5E0B2A3B1354CC1"
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			id: "444ED84B583BF94C"
+			tasks: [{ id: "7B5220A577D226F5", item: { count: 1, id: "farmersdelight:flint_knife" }, type: "item" }]
+			x: 0d
+			y: 0d
+		}
+		{
+			dependencies: ["444ED84B583BF94C"]
+			id: "F6DC6C83A5F3D648"
+			tasks: [{ id: "98A6299C87C10407", item: { count: 1, id: "farmersdelight:cutting_board" }, type: "item" }]
+			x: 1.5d
+			y: 0d
+		}
+		{
+			dependencies: ["F6DC6C83A5F3D648"]
+			id: "AE7513D1359CBC3D"
+			tasks: [{ id: "BD3481D9833CED09", item: { count: 1, id: "farmersdelight:stove" }, type: "item" }]
+			x: 3d
+			y: 0d
+		}
+		{
+			dependencies: ["AE7513D1359CBC3D"]
+			id: "5FD2BAC2E30B4AA8"
+			tasks: [{ id: "84F852F67DBEBA99", item: { count: 1, id: "farmersdelight:rich_soil" }, type: "item" }]
+			x: 4.5d
+			y: 0d
+		}
+		{
+			id: "CB167245EDBCA310"
+			tasks: [{ id: "4B372496B70686CB", item: { count: 1, id: "cookingforblockheads:cooking_table" }, type: "item" }]
+			x: 0d
+			y: 1.5d
+		}
+		{
+			id: "877424323BC65D3B"
+			tasks: [{ id: "A3743C9BCA255D7C", item: { count: 1, id: "botanypots:terracotta_botany_pot" }, type: "item" }]
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			id: "53E0B8503D6C72E2"
+			tasks: [{ id: "67478E9FA5B9DB5A", item: { count: 1, id: "mysticalagriculture:inferium_essence" }, type: "item" }]
+			x: 3d
+			y: 1.5d
+		}
+		{
+			id: "569DF5B660B84CED"
+			tasks: [{ id: "626E1611AFC0CCB6", type: "checkmark" }]
+			x: 4.5d
+			y: 1.5d
+		}
+	]
+}

@@ -1,0 +1,39 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "twilight_forest"
+	group: ""
+	icon: { id: "twilightforest:naga_scale" }
+	id: "58CDF0B4C55394C9"
+	order_index: 11
+	quest_links: [ ]
+	quests: [
+		{
+			id: "820B1BDC21D32332"
+			tasks: [{ dimension: "twilightforest:twilight_forest", id: "FEBCF7CCA2E973B5", type: "dimension" }]
+			x: 0d
+			y: 0d
+		}
+		{
+			dependencies: ["820B1BDC21D32332"]
+			id: "FDF21F3AFD83BEBE"
+			tasks: [{ id: "425F5A6574CE280B", item: { count: 1, id: "twilightforest:naga_scale" }, type: "item" }]
+			x: 1.5d
+			y: 0d
+		}
+		{
+			dependencies: ["FDF21F3AFD83BEBE"]
+			id: "3C11C6E6C0EA5EDF"
+			tasks: [{ id: "310D0B2B91236CF8", item: { count: 1, id: "twilightforest:magic_map_focus" }, type: "item" }]
+			x: 3d
+			y: 0d
+		}
+		{
+			dependencies: ["3C11C6E6C0EA5EDF"]
+			id: "40E733CE9055A8C2"
+			tasks: [{ id: "0AD38A27ED6495D3", type: "checkmark" }]
+			x: 4.5d
+			y: 0d
+		}
+	]
+}

@@ -1,0 +1,43 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "animais"
+	group: ""
+	icon: { id: "alexsmobs:animal_dictionary" }
+	id: "0681A168F2C7C697"
+	order_index: 6
+	quest_links: [ ]
+	quests: [
+		{
+			id: "F09A1A630889A48A"
+			tasks: [{ id: "E9D1B16248C7A71A", item: { count: 1, id: "alexsmobs:animal_dictionary" }, type: "item" }]
+			x: 0d
+			y: 0d
+		}
+		{
+			dependencies: ["F09A1A630889A48A"]
+			id: "06C980678102C2D1"
+			tasks: [{ id: "C84863208DB4A241", item: { count: 1, id: "alexsmobs:banana" }, type: "item" }]
+			x: 1.5d
+			y: 0d
+		}
+		{
+			id: "4ADAEBCD1EB47A95"
+			tasks: [{ id: "989ADEBE60CE4380", type: "checkmark" }]
+			x: 3d
+			y: 0d
+		}
+		{
+			id: "91870977C3D93740"
+			tasks: [{ id: "76BF52BDC2F8EE6E", type: "checkmark" }]
+			x: 4.5d
+			y: 0d
+		}
+		{
+			id: "673908041A368C98"
+			tasks: [{ id: "D6F1D06027CF6480", type: "checkmark" }]
+			x: 0d
+			y: 1.5d
+		}
+	]
+}

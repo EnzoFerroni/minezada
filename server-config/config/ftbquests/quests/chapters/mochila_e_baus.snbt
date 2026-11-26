@@ -1,0 +1,58 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "mochila_e_baus"
+	group: ""
+	icon: { id: "sophisticatedbackpacks:backpack" }
+	id: "A5D41E448E070155"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			id: "30E1A058E28935C6"
+			tasks: [{ id: "BC98606DEFF08870", item: { count: 1, id: "sophisticatedbackpacks:upgrade_base" }, type: "item" }]
+			x: 0d
+			y: 0d
+		}
+		{
+			dependencies: ["30E1A058E28935C6"]
+			id: "0DECF1890C3ABC0D"
+			tasks: [{ id: "80D208EBD25BB201", item: { count: 1, id: "sophisticatedbackpacks:pickup_upgrade" }, type: "item" }]
+			x: 1.5d
+			y: 0d
+		}
+		{
+			dependencies: ["0DECF1890C3ABC0D"]
+			id: "A7310D6F4793230C"
+			tasks: [{ id: "D77B63FDE1D45EE3", item: { count: 1, id: "sophisticatedbackpacks:magnet_upgrade" }, type: "item" }]
+			x: 3d
+			y: 0d
+		}
+		{
+			dependencies: ["A7310D6F4793230C"]
+			id: "CCDCCCF2E465DD33"
+			tasks: [{ id: "F302AB42C9D98DE0", item: { count: 1, id: "sophisticatedbackpacks:feeding_upgrade" }, type: "item" }]
+			x: 4.5d
+			y: 0d
+		}
+		{
+			dependencies: ["CCDCCCF2E465DD33"]
+			id: "4017C33CC6FCB89A"
+			tasks: [{ id: "027DC2D96E87F2B7", item: { count: 1, id: "sophisticatedbackpacks:iron_backpack" }, type: "item" }]
+			x: 6d
+			y: 0d
+		}
+		{
+			id: "4DD8BD036B5EA3BE"
+			tasks: [{ id: "8AE358CED0498334", item: { count: 1, id: "ironchest:iron_chest" }, type: "item" }]
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			id: "3B2B5BF9EDC02132"
+			tasks: [{ id: "38E0B1822239A6D3", item: { count: 1, id: "sophisticatedstorage:chest" }, type: "item" }]
+			x: 3d
+			y: 1.5d
+		}
+	]
+}
