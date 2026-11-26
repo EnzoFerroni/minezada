@@ -18,15 +18,15 @@ versao() { APPIMAGE_EXTRACT_AND_RUN=1 QT_QPA_PLATFORM=offscreen timeout 120 "$1"
 mkdir -p "$tmp/oficial"
 confere "jogar.sh baixa o Prism oficial" 'roda "$tmp/oficial"'
 a="$tmp/oficial/.local/share/minezada/PrismLauncher.AppImage"
-confere "AppImage oficial executavel" '[ -x "$a" ] && head -c4 "$a" | grep -q ELF'
-confere "AppImage oficial roda (--version)" 'versao "$a"'
+confere "AppImage oficial executavel" "[ -x '$a' ] && head -c4 '$a' | grep -q ELF"
+confere "AppImage oficial roda (--version)" "versao '$a'"
 
 # Offline: um fork.AppImage velho na pasta faz o jogar.sh tratar como conta offline e baixar a versao fixa.
 mkdir -p "$tmp/offline/.local/share/minezada"
 : > "$tmp/offline/.local/share/minezada/fork.AppImage"
 confere "jogar.sh baixa o launcher offline e o checksum confere" 'roda "$tmp/offline"'
 b="$tmp/offline/.local/share/minezada/fork.AppImage"
-confere "AppImage offline executavel" '[ -x "$b" ] && head -c4 "$b" | grep -q ELF'
-confere "AppImage offline roda (--version)" 'versao "$b"'
+confere "AppImage offline executavel" "[ -x '$b' ] && head -c4 '$b' | grep -q ELF"
+confere "AppImage offline roda (--version)" "versao '$b'"
 
 exit $falhou
