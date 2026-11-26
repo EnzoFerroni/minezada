@@ -17,7 +17,7 @@
 - **Distant Horizons (ver longe):** opcional, marcado na janela da primeira abertura. No Mac fica sempre desligado (fechava o jogo).
 - **Servidores:** em **Multijogador** aparecem **Minezada** (principal, funciona até em rede de faculdade), **Minezada (playit)** (outro caminho, se o principal não conectar) e **Minezada (neste computador)** (só para quem hospeda).
 <!-- mods:inicio -->
-<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.26` · 231 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
+<sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.26.5` · 231 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
 
 [Aprender e guias](#aprender-e-guias) · [Mapas e viagem](#mapas-e-viagem) · [Construção e decoração](#construção-e-decoração) · [Comida e fazenda](#comida-e-fazenda) · [Tecnologia](#tecnologia) · [Create: addons](#create-addons) · [Baús e armazenamento](#baús-e-armazenamento) · [Ferramentas](#ferramentas) · [Mobs e animais](#mobs-e-animais) · [Dimensões](#dimensões) · [Aventura e chefes](#aventura-e-chefes) · [Estruturas](#estruturas) · [Biomas, terreno e cavernas](#biomas-terreno-e-cavernas) · [Interface e controles](#interface-e-controles) · [Qualidade de vida](#qualidade-de-vida) · [Visual e ambiente](#visual-e-ambiente) · [Pacotes de recursos](#pacotes-de-recursos-todos-vêm-ligados-desligue-em-opções--pacotes-de-recursos) · [Shaders](#shaders-vêm-desligados-ligue-pelos-perfis-ou-em-opções--vídeo--shader-packs) · [Servidor e login](#servidor-e-login) · [Desempenho](#desempenho)
 

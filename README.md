@@ -41,6 +41,7 @@ Na primeira vez, o jogo pede a sua conta. **Tem Minecraft original?** Entre com 
 1. Abra sempre pelo atalho **Minezada** na Área de Trabalho. Ele atualiza tudo sozinho a cada abertura.
 2. No menu do jogo, clique em **Multijogador** e entre em **Minezada**.
 3. Perdido? Abra o **livro de missões** pelo botão no inventário: ele ensina o pack passo a passo.
+4. Medo de água-viva? Ligue o pacote **modo-patinho** em Opções → Pacotes de recursos: elas viram patinhos de borracha e bolinhas felizes.
 
 ## Deu problema?
 
