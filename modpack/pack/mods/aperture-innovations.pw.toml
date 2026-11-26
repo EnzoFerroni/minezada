@@ -1,0 +1,8 @@
+name = "Aperture Innovations - Portal Gun"
+filename = "aperture_innovations-neoforge-3.0.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/GsmkmPdY/versions/WZlEFPsg/aperture_innovations-neoforge-3.0.1.jar"
+hash-format = "sha1"
+hash = "7f5ccdbb9323d9651590497c6ba983d3bf39873f"

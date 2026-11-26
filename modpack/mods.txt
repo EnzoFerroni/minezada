@@ -136,6 +136,9 @@ customskinloader | Busca a skin de cada jogador direto no jogo. Se o servidor n�
 ## Mundo e facilidade
 cf:298187 | Building Gadgets: ferramentas para construir grande (vários blocos de uma vez, copiar e colar construções, trocar blocos em área).
 effortless-building | Espelho, repetição e formas ao construir. Funciona no modo sobrevivência.
+biomes-o-plenty | Dezenas de biomas novos no mundo, com árvores, flores e plantas próprias.
+cf:897116 | Furniture Refurbished: móveis que funcionam, como cozinha, geladeira, fogão, TV e portas.
+aperture-innovations | Portal gun do jogo Portal: atire um portal azul e um laranja e atravesse.
 macaws-furniture | Móveis: guarda-roupas, gavetas, cadeiras, mesas, sofás, pias.
 macaws-roofs | Telhados de verdade no lugar de escadas.
 macaws-windows | Janelas, vitrais, persianas, venezianas e cortinas.

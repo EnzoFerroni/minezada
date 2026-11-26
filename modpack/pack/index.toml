@@ -46,6 +46,11 @@ hash = "a52eb46acf25c03c1968d17adaea5d47ee86da588cac6e22e95a7c7175ef8c8f"
 metafile = true
 
 [[files]]
+file = "mods/aperture-innovations.pw.toml"
+hash = "7bdd7128f59c186da441283c7ffb1f9b1ee3ae1df29c56fe3fc340c0ceb3f573"
+metafile = true
+
+[[files]]
 file = "mods/appleskin.pw.toml"
 hash = "e057e81006a8710e67e30bd83a06b3fb4340590394fe54e6269e3a5a48c46f76"
 metafile = true
@@ -103,6 +108,11 @@ metafile = true
 [[files]]
 file = "mods/bettersearch.pw.toml"
 hash = "49f25a6dfce4910b7065cf38fb75f92a37c7e566db63f14d2158f380d946195c"
+metafile = true
+
+[[files]]
+file = "mods/biomes-o-plenty.pw.toml"
+hash = "a87d279e84e6abc8b7d682ce806235c3338b1a8c459bc219178051c99b748571"
 metafile = true
 
 [[files]]
@@ -403,6 +413,11 @@ metafile = true
 [[files]]
 file = "mods/fragmentum.pw.toml"
 hash = "4433b33f668d46f316d95f1910559c8c6b52a755765ab562ea4c2a66eead2831"
+metafile = true
+
+[[files]]
+file = "mods/framework.pw.toml"
+hash = "da50db6bf7e3228fa6b991a1508a388beb7174eb6f4ca5d12fc13e7635caf42f"
 metafile = true
 
 [[files]]
@@ -708,6 +723,11 @@ metafile = true
 [[files]]
 file = "mods/puzzles-lib.pw.toml"
 hash = "ecf7d4e751ebdb6e41c5bcebe222cffff2ef272f67662cc1f975d8b6c3db9ecb"
+metafile = true
+
+[[files]]
+file = "mods/refurbished-furniture.pw.toml"
+hash = "f83daec2cd4cb474d41205f11728b945516555e0b5c7fd9fcb4698e6d51ccc9f"
 metafile = true
 
 [[files]]
