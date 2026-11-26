@@ -64,7 +64,7 @@ main() {
   if [ ! -f "$server/libraries/net/neoforged/neoforge/$neo/unix_args.txt" ]; then
     echo "Instalando NeoForge $neo..."
     curl -fsSL "https://maven.neoforged.net/releases/net/neoforged/neoforge/$neo/neoforge-$neo-installer.jar" \
-      -o "$server/neoforge-installer.jar"
+      -o "$server/neoforge-installer.jar" || die "Download do NeoForge falhou (sem internet?)."
     (cd "$server" && "$JAVA" -jar neoforge-installer.jar --installServer . >/dev/null) || die "Instalacao do NeoForge falhou."
     rm -f "$server/neoforge-installer.jar" "$server/neoforge-installer.jar.log"
   fi
@@ -94,6 +94,8 @@ main() {
           open -a "Google Drive" || die "Nao deu para abrir o Google Drive. Abra ele e rode de novo."
           echo "Espere o icone do Drive na barra de menus parar de sincronizar e aperte Enter."
           read -r _ < /dev/tty
+          # A trava e o mundo precisam estar baixados de verdade antes de decidir (cat forca o download).
+          cat "$SYNC_DIR/host.lock" > /dev/null 2>&1 || true
         fi ;;
     esac
     lock="$SYNC_DIR/host.lock"
@@ -114,16 +116,24 @@ main() {
       # Extrai a parte e confere antes de mexer no mundo local ou pegar a trava: um arquivo corrompido
       # nao pode virar o mundo desta maquina (ele seria enviado por cima do bom no proximo stop).
       novo="$server/.mundo-novo"; rm -rf "$novo"; mkdir -p "$novo"
-      if ! tar -xzf "$origem" -C "$novo" || [ ! -d "$novo/world" ]; then
-        rm -rf "$novo"
+      # cat forca o Drive a baixar arquivo que so esta na nuvem (o cp e o tar direto davam "Operation timed out").
+      if ! cat "$origem" > "$server/.mundo.tar.gz"; then
+        rm -rf "$novo" "$server/.mundo.tar.gz"
+        die "O Drive ainda esta baixando o mundo. Espere o icone parar de sincronizar e rode de novo."
+      fi
+      if ! tar -xzf "$server/.mundo.tar.gz" -C "$novo" || [ ! -d "$novo/world" ]; then
+        rm -rf "$novo" "$server/.mundo.tar.gz"
         die "mundo.tar.gz corrompido. Copie o mais novo de $SYNC_DIR/backups por cima dele e rode de novo."
       fi
       if [ -d "$server/world" ]; then rm -rf "$server/world.bak"; mv "$server/world" "$server/world.bak"; fi
       for f in "$novo"/*; do rm -rf "${server:?}/$(basename "$f")"; mv "$f" "$server/"; done
-      rm -rf "$novo"
+      rm -rf "$novo" "$server/.mundo.tar.gz"
     fi
     # shortcut: a trava depende da nuvem ja ter sincronizado; dois hosts iniciando no mesmo minuto podem passar os dois.
     echo "$eu" > "$lock"
+    # Janela fechada ou Ctrl+C antes do servidor abrir: solta a trava e os tuneis. Trava que ja era desta maquina fica
+    # (o mundo local e o mais novo). O rodar_servidor troca este trap.
+    trap '[ "$dono" = "$eu" ] || rm -f "$lock"; kill ${tunel_pid:-} ${cf_pid:-} 2>/dev/null; exit 1' INT HUP TERM
   fi
   # Whitelist e admins: lista na pasta do Drive (vale para todos os hosts) ou, sem Drive, no servidor.
   lista="$server/jogadores.txt"; [ -z "$SYNC_DIR" ] || lista="$SYNC_DIR/jogadores.txt"
@@ -209,7 +219,10 @@ durante_sessao() {
   fi
   t=$((n - pronto))
   [ $((t % 600)) -ne 0 ] || avisar_selo ligado &
-  [ $((t % 1800)) -ne 0 ] || [ $t -eq 0 ] || foto_do_mundo &
+  # foto_pid: o envio do mundo espera a foto acabar (senao a sessao-atual sairia mais nova que o mundo do stop).
+  # Uma foto por vez: com a anterior ainda rodando, pula esta.
+  [ $((t % ${intervalo_foto:-1800})) -ne 0 ] || [ $t -eq 0 ] || kill -0 "${foto_pid:-x}" 2>/dev/null \
+    || { foto_do_mundo & foto_pid=$!; }
 }
 
 # Pede a consulta do selo agora (scripts/Selo.java). Sem dispatch.txt no Drive, nada.
@@ -245,6 +258,7 @@ foto_do_mundo() {
 enviar_mundo() {
   local estado="$SYNC_DIR/mundo.tar.gz" f itens
   itens=()
+  [ -z "${foto_pid:-}" ] || wait "$foto_pid" 2>/dev/null || true
   echo "Enviando mundo para a pasta sincronizada..."
   for f in world ops.json whitelist.json banned-players.json banned-ips.json; do [ -e "$server/$f" ] && itens+=("$f"); done
   # COPYFILE_DISABLE: o tar do macOS nao embute arquivos ._* (metadados) que iriam parar no Windows.
