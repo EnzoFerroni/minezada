@@ -110,14 +110,12 @@ a última linha da saída é o segredo novo.
 casa entra pelo túnel, como todo mundo (**Minezada**).
 
 **Lista de servidores do jogo.** Vem pronta e se atualiza a cada abertura (packwiz): Minezada
-(Cloudflare), Minezada (playit) e Minezada (neste computador). Servidor adicionado
+(principal, pelo túnel da Cloudflare), Minezada (playit) e Minezada (neste computador). Servidor adicionado
 à mão some na próxima abertura. Mudou algum endereço? Troque `$servidor` ou `$tunel` em
 `scripts/montar-pack.ps1` e gere o pack.
 
 **Dicas.**
 - Windows: deixe a rede de casa como **Privada**; em rede pública o túnel funciona igual.
-- VPNs (Radmin, Hamachi, ZeroTier) ligadas podem atrapalhar o IP local detectado.
-
 ## Google Drive
 
 Sem a pasta, o `iniciar` oferece configurar: instala o Google Drive, abre o login e a pasta no
@@ -163,7 +161,7 @@ O mapa tem uma aba para cada dimensão onde alguém já foi: Superfície, Nether
 Marte, Vênus, Mercúrio e Glacio do Ad Astra, as órbitas, o Undergarden), sozinhas a partir da primeira visita.
 O mapa marca as vilas (pelo sino). O resto mostra as bases e fica desligado: onde cada um saiu do jogo, os
 portais do Nether acesos, onde o pessoal passa mais tempo (o botão "Onde o pessoal fica") e onde cada um
-morreu (o botão "Mortes", dos registros do mod Corpse). Para ligar: Settings → Secrets and variables → Actions
+morreu (o botão "Mortes", dos registros do mod Corpse). O botão "Estruturas" mostra as estruturas já encontradas. Para ligar: Settings → Secrets and variables → Actions
 → Variables, `MOSTRAR_POSICOES` = `sim`.
 
 ## Selo do README

@@ -4,18 +4,18 @@
 
 ## Primeiros passos
 
+- **Livro de missões:** botão do livro no inventário. Ele explica os mods do começo ao fim e dá prêmios.
 - **Sem Minecraft original:** na primeira vez digite `/register senha senha`; nas outras, `/login senha`. Use uma senha só daqui.
 - **Receitas:** no inventário, passe o mouse num item e aperte `R` (como fazer) ou `U` (onde usar).
 - **Tutorial do Create:** segure `W` com o mouse em cima de um item do Create.
-- **Mapa:** `M`. Minimapa e marcadores ficam no canto da tela.
-- **Morreu?** Volte ao local: seus itens estão num corpo.
-- **Skin:** quem tem original já aparece com a sua. Para trocar: `/skin set web classic <link da imagem>` (`slim` para braço fino).
-- **Gráficos:** Opções → **Perfis**. Mac (M1 ou mais novo; com 8 GB, o **Mac 1**): use os **Mac 1** a **Mac 7** (do 8 GB ao shader realista, mais bateria). PC: do 1 - Minimo ao 7 - Ultra Shader, 8 - FPS Maximo e 9 - Bateria; os **PC -** usam shaders que não rodam no Mac. Os **Shader -** servem para experimentar cada shader. Aplicar um perfil troca distância de renderização, qualidade e shader na hora. **Não use Salvar nem Criar perfil**: o mod copia a configuração do Sodium e o jogo fecha ao aplicar esse perfil. Ajuste fino fica em Opções → Vídeo.
-- **Distant Horizons (ver longe):** é opcional. Na primeira abertura aparece uma janela para marcar. No Mac ele fica desligado (fechou o jogo em um M4 e impede os shaders de abrir). Mudou de ideia? Apague `packwiz.json` na pasta do jogo e a janela aparece de novo.
-- **Servidores:** em **Multijogador** a lista mostra quais estão no ar. O principal é o **Minezada**, que funciona até em rede de faculdade (o mod Modflared liga sozinho o túnel da Cloudflare). A lista também traz Minezada (playit), Minezada (reserva) e Minezada (neste computador, para quem joga na máquina do host). Não conectou? Tente a próxima.
-- **Minerar o veio inteiro:** segure `'` (apóstrofo) e quebre o minério ou tronco.
+- **Mapa:** `M`. `N` marca um ponto. Minimapa no canto da tela.
+- **Morreu?** Seus itens ficam em um corpo no lugar da morte. `Alt + U` mostra onde.
+- **Minerar o veio inteiro ou derrubar a árvore:** segure a tecla ao lado do `1` e quebre o bloco.
 - **Viajar:** ative as Waystones que encontrar e teleporte entre elas.
-
+- **Skin:** quem tem original já aparece com a sua. Para trocar: `/skin set web classic <link da imagem>` (`slim` para braço fino).
+- **Gráficos:** Opções → **Perfis**, do **1 - Mínimo** ao **7 - Ultra** (iguais no PC e no Mac; 5 a 7 usam shader). `K` liga e desliga o shader. **Não use Salvar nem Criar perfil**: o jogo pode fechar. Ajuste fino em Opções → Vídeo.
+- **Distant Horizons (ver longe):** opcional, marcado na janela da primeira abertura. No Mac fica sempre desligado (fechava o jogo).
+- **Servidores:** em **Multijogador** aparecem **Minezada** (principal, funciona até em rede de faculdade), **Minezada (playit)** (outro caminho, se o principal não conectar) e **Minezada (neste computador)** (só para quem hospeda).
 <!-- mods:inicio -->
 <sub>Minecraft 1.21.1 · NeoForge 21.1.267 · pack `2026.11.26.3` · 214 mods. Gerado por `scripts/montar-pack.ps1`.</sub>
 

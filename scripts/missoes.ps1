@@ -171,15 +171,144 @@ $capitulos = @(
         @{ t = 'Bau de ferro'; d = 'Iron Chests: baus maiores que o normal. Ferro, ouro, diamante e outros.'; item = 'ironchest:iron_chest'; solta = $true }
         @{ t = 'Bau grande do Sophisticated'; d = 'Sophisticated Storage: baus e barris com melhorias, como a mochila.'; item = 'sophisticatedstorage:chest'; solta = $true }
     ) }
-    @{ t = 'Cozinha e fazenda'; g = 'Começo'; icone = 'farmersdelight:cooking_pot'; m = @(
-        @{ t = 'Faca'; d = 'A faca colhe palha e corta comida na tabua.'; item = 'farmersdelight:flint_knife' }
-        @{ t = 'Tabua de corte'; d = 'Coloque um ingrediente na tabua e clique com a faca para cortar.'; item = 'farmersdelight:cutting_board' }
-        @{ t = 'Fogao'; d = 'O fogao cozinha em cima e aquece a panela e a frigideira.'; item = 'farmersdelight:stove' }
-        @{ t = 'Terra rica'; d = 'Composto organico vira terra rica, onde as plantas crescem mais rapido.'; item = 'farmersdelight:rich_soil' }
-        @{ t = 'Cozinha montada'; d = 'Cooking for Blockheads: a mesa de cozinha mostra tudo que da para fazer com o que esta na geladeira e nos baus ao lado.'; item = 'cookingforblockheads:cooking_table'; solta = $true }
-        @{ t = 'Vaso que planta sozinho'; d = 'Botany Pots: coloque terra e uma semente; com funil embaixo ele colhe sozinho.'; item = 'botanypots:terracotta_botany_pot'; solta = $true }
-        @{ t = 'Plantacao de minerio'; d = 'Mystical Agriculture: essencia de inferium sai do minerio de inferium e vira sementes que dao materiais.'; item = 'mysticalagriculture:inferium_essence'; solta = $true }
-        @{ t = 'Estacoes do ano'; d = 'Serene Seasons: o ano tem primavera, verao, outono e inverno. Cada planta cresce melhor em certas estacoes; o JEI mostra quais.'; solta = $true }
+    @{ t = 'Cozinha e fazenda'; g = 'Começo'; icone = 'farmersdelight:cooking_pot'; sub = 'Comer bem deixa você mais forte'; m = @(
+        @{ t = 'Variedade dá vida'; marco = $true; sub = 'Spice of Life'; d = @(
+            'Comer sempre a mesma coisa não compensa: cada comida &enova&r que você prova pela primeira vez dá &acorações extras para sempre&r.'
+            ''
+            'Passe o mouse em uma comida: o texto diz se você já comeu. Segure uma comida para ver na barra de fome quanto ela enche (&eAppleSkin&r).'
+            ''
+            'Duas receitas com os mesmos ingredientes? Um botão aparece em cima do resultado para escolher qual fazer (&ePolymorph&r).'
+        ) }
+        @{ t = 'Faca'; sub = 'Farmer''s Delight'; d = @(
+            'A cozinha do &eFarmer''s Delight&r começa com uma &efaca&r. A mais simples é de sílex e graveto.'
+            ''
+            'Segredo: quebre &egrama alta&r, trigo ou arroz com a faca para ganhar &apalha&r. Com a mão não cai.'
+        ); item = 'farmersdelight:flint_knife'; p = 'farmersdelight:straw'; n = 8 }
+        @{ t = 'Tábua de corte'; d = @(
+            'Coloque um ingrediente na &etábua de corte&r com o botão direito e clique de novo com a &efaca&r para fatiar carne, peixe e verdura.'
+            ''
+            'Funciona com outras ferramentas: um &emachado&r em um tronco na tábua dá tábuas e &acasca de árvore&r.'
+        ); item = 'farmersdelight:cutting_board'; p = 'farmersdelight:iron_knife' }
+        @{ t = 'Fogão'; d = @(
+            'O &efogão&r assa até 6 comidas na chapa de cima, sem gastar carvão.'
+            ''
+            'É também a melhor fonte de calor para colocar a &epanela&r ou a &efrigideira&r em cima.'
+        ); item = 'farmersdelight:stove'; p = 'minecraft:coal'; n = 8 }
+        @{ t = 'Cozinha'; sub = 'A panela'; d = @(
+            'Coloque a &epanela&r em cima de uma fonte de calor (fogão, fogueira ou magma) para cozinhar até 6 ingredientes juntos.'
+            ''
+            'Alguns pratos pedem &etigela&r ou &egarrafa&r no espaço do recipiente.'
+            ''
+            'Quebrou a panela com comida dentro? &aA comida vai junto&r: dá para levar em viagens.'
+        ); item = 'farmersdelight:cooking_pot'; p = 'minecraft:bowl'; n = 8 }
+        @{ t = 'Frigideira'; d = @(
+            'A &efrigideira&r frita uma comida por vez.'
+            ''
+            'No chão: coloque em cima de um fogão ou fogueira e clique com a comida.'
+            'Na mão: perto de um fogo, segure a frigideira em uma mão e a comida crua na outra, e segure o botão direito.'
+        ); item = 'farmersdelight:skillet'; p = 'farmersdelight:bacon_and_eggs'; n = 2 }
+        @{ t = 'Banquete'; opcional = $true; d = @(
+            'Vários pratos grandes, como o &efrango assado&r, viram um &ebloco&r na mesa.'
+            ''
+            'Clique com uma &etigela&r vazia para servir uma porção. Bolos e tortas se cortam com a &efaca&r. Ótimo para dividir com os amigos.'
+        ); item = 'farmersdelight:roast_chicken_block'; p = 'farmersdelight:sweet_berry_cheesecake' }
+        @{ t = 'Terra rica'; sub = 'Plantas crescem mais rápido'; d = @(
+            'O &ecomposto orgânico&r colocado no chão vira &aterra rica&r com o tempo. Fica mais rápido no sol, perto de água ou de cogumelos.'
+            ''
+            'Are a terra rica com a enxada: as plantas crescem &amais rápido&r e ela &anão estraga&r se alguém pular em cima.'
+        ); item = 'farmersdelight:organic_compost'; p = 'farmersdelight:rich_soil'; n = 4 }
+        @{ t = 'Colônia de cogumelos'; opcional = $true; d = @(
+            'Plante um cogumelo em cima de &eterra rica&r em lugar escuro: ele vira uma &ecolônia&r.'
+            ''
+            'Use a &etesoura&r nela para colher cogumelos sem destruir a colônia.'
+        ); item = 'farmersdelight:brown_mushroom_colony'; p = 'farmersdelight:red_mushroom_colony' }
+        @{ t = 'Arroz e tomate'; sub = 'Plantas diferentes'; d = @(
+            'O &earroz&r se planta na terra &edebaixo de um bloco de água&r, nunca em terra arada seca.'
+            ''
+            'O &etomate&r sobe por &ecorda&r: pendure corda em cima do pé para ele crescer e dar mais tomates.'
+        ); item = 'farmersdelight:rice'; q = 4; p = 'farmersdelight:rope'; n = 8 }
+        @{ t = 'Estações do ano'; marco = $true; sub = 'Serene Seasons'; d = @(
+            'O mundo tem &eprimavera, verão, outono e inverno&r. No inverno os dias são mais curtos e neva.'
+            ''
+            'Cada planta cresce bem só em certas estações. Passe o mouse na semente para ver quais.'
+            ''
+            'Truque: plantação com &evidro&r em cima (estufa) ou no subsolo cresce o ano inteiro.'
+            ''
+            'O &ecalendário&r mostra a estação e quantos dias faltam para a próxima.'
+        ); item = 'sereneseasons:calendar'; p = 'minecraft:glass'; n = 16 }
+        @{ t = 'Sensor de estação'; opcional = $true; d = @(
+            'O &esensor de estação&r manda sinal de &eredstone&r conforme a estação. Serve para ligar luzes ou máquinas na época certa.'
+        ); item = 'sereneseasons:season_sensor'; p = 'minecraft:redstone'; n = 8 }
+        @{ t = 'Frutas do mundo'; sub = 'Croptopia'; d = @(
+            'O &eCroptopia&r espalha dezenas de frutas, verduras e árvores frutíferas pelos biomas.'
+            ''
+            'Achou uma planta nova? Coloque a fruta na mesa de trabalho para fazer &asementes&r. Nas árvores frutíferas, clique nas folhas maduras.'
+            ''
+            'O &esal&r aparece em muitas receitas: veja como fazer com &eR&r em cima dele.'
+        ); item = 'croptopia:salt'; q = 4; p = 'croptopia:cooking_pot' }
+        @{ t = 'Utensílios que não quebram'; sub = 'Croptopia'; d = @(
+            'O Croptopia cozinha na &emesa de trabalho&r com 5 utensílios: pilão, prensa, panela, frigideira e faca.'
+            ''
+            'Eles &anunca quebram&r: ficam na mesa depois de cada receita.'
+        ); item = 'croptopia:mortar_and_pestle'; p = 'croptopia:frying_pan' }
+        @{ t = 'Comida do mundo todo'; sub = 'Cultural Delights'; d = @(
+            'O &eCultural Delights&r traz milho, pepino, berinjela e abacate, espalhados por planícies, pântanos e selvas.'
+            ''
+            'O &ebarril&r do mod fermenta comidas como picles e queijo. Veja as receitas com &eU&r em cima dele.'
+        ); item = 'culturaldelights:vat'; p = 'culturaldelights:corn_cob'; n = 4 }
+        @{ t = 'Armários de cozinha'; opcional = $true; sub = 'Storage Delight'; d = @(
+            'Gavetas, armários com porta de vidro e balcões em todas as madeiras, para a cozinha ficar organizada e bonita.'
+        ); item = 'storagedelight:oak_drawer'; p = 'storagedelight:oak_cabinet_with_glass_doors'; n = 2 }
+        @{ t = 'Cozinha montada'; marco = $true; sub = 'Cooking for Blockheads'; d = @(
+            'A &emesa de cozinha&r mostra tudo o que dá para cozinhar com o que você tem no inventário e nos blocos ligados a ela.'
+            ''
+            'Encoste &egeladeira, armários, balcões e forno&r do mod na mesa (ou ligue com &episo de cozinha&r) para formar uma cozinha só.'
+            ''
+            'Clique em um prato da lista e ele é feito na hora, sem procurar ingrediente baú por baú.'
+        ); item = 'cookingforblockheads:cooking_table'; p = 'cookingforblockheads:fridge' }
+        @{ t = 'Água e leite sem fim'; d = @(
+            'A &epia&r ligada à cozinha dá &aágua infinita&r para as receitas.'
+            ''
+            'Leite infinito: coloque um &epote de leite&r no chão, leve uma vaca para cima e derrube uma &ebigorna&r nela. Ela vira uma &evaca no pote&r.'
+        ); item = 'cookingforblockheads:sink'; p = 'cookingforblockheads:milk_jar' }
+        @{ t = 'Melhorias da geladeira'; opcional = $true; d = @(
+            'Clique na geladeira com a &eunidade de gelo&r para ter gelo e neve infinitos nas receitas.'
+            ''
+            'Veja as outras melhorias do forno e da geladeira com &eU&r em cima delas.'
+        ); item = 'cookingforblockheads:ice_unit'; p = 'cookingforblockheads:heating_unit' }
+        @{ t = 'Vaso de planta'; sub = 'Botany Pots'; d = @(
+            'O &evaso&r planta lavoura e até árvore em &aum bloco só&r, dentro de casa e sem água.'
+            ''
+            'Coloque terra dentro (areia para cacto), depois a semente. Quando crescer, clique para colher.'
+            ''
+            'Terra rica dentro do vaso faz crescer mais rápido.'
+        ); item = 'botanypots:terracotta_botany_pot'; p = 'farmersdelight:rich_soil'; n = 2 }
+        @{ t = 'Vaso que colhe sozinho'; marco = $true; sub = 'Botany Pots'; d = @(
+            'O &evaso com funil&r colhe e replanta &asozinho para sempre&r. Coloque em cima de um baú: a colheita vai para dentro.'
+            ''
+            'Dez vasos desses em cima de baús viram uma fazenda que nunca para.'
+        ); item = 'botanypots:terracotta_hopper_botany_pot'; p = 'minecraft:hopper'; n = 2 }
+        @{ t = 'Comida de viagem'; opcional = $true; sub = 'Ocean''s, End''s e Twilight Delight'; d = @(
+            'Explorar libera pratos novos com efeitos bons:'
+            '&eOcean''s Delight&r: lula, baiacu e sopas do mar.'
+            '&eEnd''s Delight&r: fruta do coro e pratos do End.'
+            '&eTwilight Delight&r: comidas da Twilight Forest.'
+        ); item = 'oceansdelight:squid_rings' }
+        @{ t = 'Cortadora do Create'; opcional = $true; sub = 'Slice & Dice'; d = @(
+            'A &ecortadora&r faz o trabalho da tábua de corte com a rotação do Create. Dê uma &efaca&r para ela e mande os ingredientes por baixo.'
+            ''
+            'O &easpersor&r embaixo de um cano com água molha a plantação. Segure &eW&r em cima das peças para ver a animação.'
+        ); item = 'sliceanddice:slicer'; p = 'sliceanddice:sprinkler'; n = 2 }
+        @{ t = 'Cozinha automática'; opcional = $true; sub = 'Create: Central Kitchen'; d = @(
+            'Com o &eCentral Kitchen&r, as máquinas do Create (braço mecânico, depositante) cozinham as receitas do Farmer''s Delight sozinhas.'
+            ''
+            'Um &equeimador de blaze&r embaixo da panela acelera o cozimento. Segure &eW&r nos itens para ver como montar.'
+        ) }
+        @{ t = 'Plantar minério'; opcional = $true; sub = 'Mystical Agriculture'; d = @(
+            'O &eMystical Agriculture&r planta minério como se fosse trigo.'
+            ''
+            'Comece minerando &einferium&r nas cavernas. A essência dele faz as primeiras sementes. Veja o caminho todo com &eU&r em cima da essência.'
+        ); item = 'mysticalagriculture:inferium_essence'; q = 8; p = 'mysticalagriculture:prosperity_seed_base'; n = 2 }
     ) }
     @{ t = 'Construir'; g = 'Começo'; icone = 'buildinggadgets2:gadget_building'; m = @(
         @{ t = 'Ferramenta de construir'; d = 'Building Gadgets: coloca varios blocos de uma vez. Precisa de energia (carregue em um carregador de energia).'; item = 'buildinggadgets2:gadget_building' }

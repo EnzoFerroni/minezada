@@ -63,7 +63,7 @@ Ele manda os registros do jogo para o site [mclo.gs](https://mclo.gs) e copia os
 irm https://raw.githubusercontent.com/EnzoFerroni/minezada/main/logs.ps1 | iex
 ```
 
-**Mac** (no Terminal):
+**Mac** ou **Linux** (no Terminal):
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/logs.sh | bash
@@ -82,7 +82,7 @@ Remove a Minezada, o atalho e o launcher (o Prism só sai se não tiver outras i
 irm https://raw.githubusercontent.com/EnzoFerroni/minezada/main/desinstalar.ps1 | iex
 ```
 
-**Mac** (no Terminal):
+**Mac** ou **Linux** (no Terminal):
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/desinstalar.sh | bash
@@ -93,7 +93,7 @@ curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/desinstal
 <details>
 <summary><b>Usar outro launcher (Modrinth App, ATLauncher)</b></summary>
 
-Cada [versão](https://github.com/EnzoFerroni/minezada/releases/latest) traz o arquivo `.mrpack` para importar. Por ele o pack não se atualiza sozinho e o Distant Horizons vem ligado (no Mac, desligue).
+Cada [versão](https://github.com/EnzoFerroni/minezada/releases/latest) traz o arquivo `.mrpack` para importar. Por ele o pack não se atualiza sozinho. O Distant Horizons é opcional: no Mac, deixe desligado.
 
 </details>
 
