@@ -143,3 +143,5 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
   atalho vê o "Update" do packwiz quando ele muda.
 - **Testar Ctrl+C num script**: o que roda em segundo plano num bash não interativo nasce ignorando SIGINT, e aí
   nem o trap é instalado. Ligar `set -m` antes (como em `scripts/testes/desligar.sh`), senão o teste falha à toa.
+
+Mod pedido sem versao para o Minecraft do pack: `powershell -ExecutionPolicy Bypass -File scripts/comparar-versoes.ps1 <slug>` mostra, para cada versao do jogo, quantos mods do pack tem versao NeoForge no Modrinth e quais faltam.
