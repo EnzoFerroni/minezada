@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/EnzoFerroni/minezada/blob/status/status.json"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FEnzoFerroni%2Fminezada%2Fstatus%2Fstatus.json&cacheSeconds=60&style=for-the-badge" alt="Servidor"></a>
   <a href="https://enzoferroni.github.io/minezada/"><img src="https://img.shields.io/badge/p%C3%A1gina-mapa%20e%20placar-5d9b3a?style=for-the-badge" alt="Página"></a>
-  <a href="docs/mods.md"><img src="https://img.shields.io/badge/mods-ver%20a%20lista-79553a?style=for-the-badge" alt="Mods"></a>
+  <a href="https://enzoferroni.github.io/minezada/mods.html"><img src="https://img.shields.io/badge/mods-ver%20a%20lista-79553a?style=for-the-badge" alt="Mods"></a>
 </p>
 
 <p align="center">

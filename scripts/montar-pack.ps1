@@ -290,7 +290,7 @@ $fotos = @{}
 $arqFotos = Join-Path $root 'modpack/fotos.txt'
 if (Test-Path $arqFotos) { foreach ($l in Get-Content $arqFotos -Encoding UTF8) { if ($l -match '^\s*([a-z0-9_-]+)\s*\|\s*(.*?)\s*$') { $fotos[$matches[1]] = $matches[2] } } }
 # Cada categoria e uma grade de cartoes (3 por linha): foto, icone com nome (link) e a primeira frase.
-$cartoes = @()
+$cartoes = @(); $site = @(); $catAtual = ''
 $fechar = { if ($cartoes) { $script:md += '<table>'; for ($k = 0; $k -lt $cartoes.Count; $k += 3) { $script:md += '<tr>' + (($cartoes[$k..([Math]::Min($k + 2, $cartoes.Count - 1))]) -join '') + '</tr>' }; $script:md += '</table>' }; $script:cartoes = @() }
 foreach ($l in $linhas) {
     if ($l -match '^## (.+)') { & $fechar; $md += '', "## $($matches[1])", '' }
@@ -302,9 +302,14 @@ foreach ($l in $linhas) {
         $topo = if ($fotos[$slug]) { "<a href=`"$link`"><img src=`"$($fotos[$slug])`" width=`"100%`"></a>" } elseif ($i.icone) { "<a href=`"$link`"><img src=`"$($i.icone)`" width=`"64`"></a>" } else { '' }
         $ico = if ($i.icone) { "<img src=`"$($i.icone)`" width=`"16`"> " } else { '' }
         $cartoes += "<td width=`"33%`" valign=`"top`">$topo<br>$ico<a href=`"$link`"><b>$($i.titulo)</b></a><br><sub>$resumo</sub></td>"
+        $site += [ordered]@{ cat = $catAtual; nome = $i.titulo; desc = $desc; link = $link; icone = "$($i.icone)"; foto = "$($fotos[$slug])" }
     }
+    if ($l -match '^## (.+)') { $catAtual = $matches[1] }
 }
 & $fechar
+# Mesma lista para a pagina de mods do site (site/mods.html), um mod por linha.
+$json = "{`"versao`":`"$Versao`",`"mc`":`"$mc`",`"neoforge`":`"$neo`",`"total`":$($info.Count),`"mods`":[`n" + (($site | ForEach-Object { ConvertTo-Json $_ -Compress }) -join ",`n") + "`n]}`n"
+[IO.File]::WriteAllText((Join-Path $root 'site/mods.json'), $json, (New-Object Text.UTF8Encoding $false))
 $extras = $info.Keys | Where-Object { $_ -notin $pedidos -and $_ -notin $cfPedidos } | Sort-Object
 if ($extras) { $md += '', '## Dependências (entram sozinhas)', '', (($extras | ForEach-Object { "[$($info[$_].titulo)]($($info[$_].link))" }) -join ' · ') }
 $doc = Join-Path $root 'docs/mods.md'

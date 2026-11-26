@@ -1,5 +1,7 @@
 # Mods da Minezada
 
+> Versão mais visual, com busca: **[lista de mods no site](https://enzoferroni.github.io/minezada/mods.html)**.
+
 ## Primeiros passos
 
 - **Sem Minecraft original:** na primeira vez digite `/register senha senha`; nas outras, `/login senha`. Use uma senha só daqui.

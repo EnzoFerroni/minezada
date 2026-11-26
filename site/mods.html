@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mods da Minezada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+/* mesmas cores e pecas da pagina principal (index.html) */
+:root {
+  --gui: #c6c6c6; --gui-claro: #ffffff; --gui-escuro: #555555; --borda: #000000;
+  --texto: #3f3f3f; --branco: #ffffff; --sombra: #3f3f3f; --cinza: #a8a8a8;
+  --amarelo: #ffff55; --fundo: #2b1d14;
+}
+* { box-sizing: border-box; }
+html { background: var(--fundo); }
+body {
+  margin: 0; color: var(--texto); background-color: var(--fundo);
+  font: 18px/1.35 "Pixelify Sans", ui-monospace, monospace;
+  -webkit-font-smoothing: none;
+}
+main { max-width: 1080px; margin: 0 auto; padding: 0 16px 48px; }
+a { color: inherit; }
+
+/* topo: ceu com faixa de grama e terra */
+.topo {
+  text-align: center; color: #fff; text-shadow: 2px 2px 0 #1e1e1e; padding: 40px 16px 34px;
+  background: linear-gradient(#78a7ff, #a9c8ff 70%);
+  border-bottom: 12px solid #5d9b3a; box-shadow: 0 12px 0 #79553a;
+  margin-bottom: 34px;
+}
+h1 { margin: 0 0 12px; font: 400 clamp(24px, 6vw, 46px)/1.1 "Press Start 2P", monospace; color: #f4f4f4; text-shadow: 4px 4px 0 #2a2a2a; }
+.topo p { margin: 4px auto 0; display: table; padding: 0 6px; background: rgba(0, 0, 0, .35); font-size: 17px; }
+
+.painel {
+  background: var(--gui); border: 3px solid var(--borda); border-radius: 6px;
+  box-shadow: inset 3px 3px 0 var(--gui-claro), inset -3px -3px 0 var(--gui-escuro);
+  padding: 16px 18px 18px; margin-bottom: 22px;
+}
+h2 { margin: 0 0 12px; font-size: 22px; font-weight: 600; scroll-margin-top: 12px; }
+.nota { margin: 0; font-size: 16px; color: #555; }
+
+.botao {
+  display: inline-block; font: inherit; font-size: 16px; color: var(--branco); text-shadow: 2px 2px 0 var(--sombra); text-decoration: none;
+  background: #727272; border: 2px solid var(--borda); padding: 5px 10px; cursor: pointer; border-radius: 0;
+  box-shadow: inset 2px 2px 0 #aaaaaa, inset -2px -3px 0 #4a4a4a;
+}
+.botao:hover, .botao:focus-visible { background: #7f8cbf; box-shadow: inset 2px 2px 0 #b5c0ee, inset -2px -3px 0 #4f5a8a; outline: none; }
+.botao[aria-pressed="true"] { background: #5d8a3a; box-shadow: inset 2px 2px 0 #8fc068, inset -2px -3px 0 #3c5d22; }
+
+/* busca: campo de texto do jogo */
+.busca { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+#q {
+  flex: 1 1 260px; font: inherit; font-size: 18px; color: var(--branco); background: #000;
+  border: 2px solid #a0a0a0; padding: 7px 10px; border-radius: 0; outline: none;
+}
+#q:focus { border-color: #fff; }
+#q::placeholder { color: #8a8a8a; }
+.cats { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* cartao: tooltip do jogo (fundo escuro, borda roxa), nome em amarelo */
+.grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+.mod {
+  display: flex; flex-direction: column; text-decoration: none; overflow: hidden;
+  background: #1b1022; color: var(--branco); text-shadow: 2px 2px 0 #000;
+  border: 2px solid #000; box-shadow: inset 0 0 0 2px #3b1478;
+}
+.mod:hover, .mod:focus-visible { box-shadow: inset 0 0 0 2px #8a4cff; outline: none; transform: translateY(-2px); }
+.mod .foto { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; background: #000; border-bottom: 2px solid #000; }
+.mod .corpo { padding: 10px 12px 12px; display: grid; grid-template-columns: 40px 1fr; gap: 4px 10px; }
+.mod .icone { width: 40px; height: 40px; image-rendering: pixelated; background: #000; }
+.mod b { color: var(--amarelo); font-weight: 600; font-size: 18px; align-self: center; }
+.mod p { grid-column: 1 / -1; margin: 6px 0 0; font-size: 16px; color: #e4e4e4; }
+.vazio { color: var(--branco); text-align: center; padding: 20px; }
+footer { text-align: center; color: #bfa58e; font-size: 15px; }
+@media (prefers-reduced-motion: reduce) { .mod:hover { transform: none; } }
+</style>
+</head>
+<body>
+<header class="topo">
+  <h1>MODS</h1>
+  <p id="resumo">Carregando a lista...</p>
+  <p><a href="./">Voltar para o mapa e o placar</a></p>
+</header>
+<main>
+  <section class="painel">
+    <div class="busca">
+      <input id="q" type="search" placeholder="Procurar mod (nome ou o que ele faz)" aria-label="Procurar mod">
+      <button class="botao" id="todos" aria-pressed="true">Todos</button>
+    </div>
+    <div class="cats" id="cats"></div>
+  </section>
+  <div id="lista"></div>
+  <footer>Clique em um mod para ver fotos e detalhes no site dele. Lista gerada a cada versão do pack.</footer>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const sem = (t) => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+let dados = { mods: [] }, cat = '';
+
+function el(tag, attrs, ...filhos) {
+  const e = document.createElement(tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  for (const f of filhos) e.append(f);
+  return e;
+}
+
+function cartao(m) {
+  const a = el('a', { class: 'mod', href: m.link, target: '_blank', rel: 'noopener' });
+  if (m.foto) a.append(el('img', { class: 'foto', src: m.foto, alt: '', loading: 'lazy' }));
+  const corpo = el('div', { class: 'corpo' });
+  corpo.append(m.icone ? el('img', { class: 'icone', src: m.icone, alt: '', loading: 'lazy' }) : el('span', { class: 'icone' }));
+  corpo.append(el('b', {}, m.nome), el('p', {}, m.desc));
+  a.append(corpo);
+  return a;
+}
+
+function desenhar() {
+  const q = sem($('q').value.trim());
+  const lista = $('lista'); lista.textContent = '';
+  const porCat = new Map();
+  for (const m of dados.mods) {
+    if (cat && m.cat !== cat) continue;
+    if (q && !sem(m.nome + ' ' + m.desc).includes(q)) continue;
+    if (!porCat.has(m.cat)) porCat.set(m.cat, []);
+    porCat.get(m.cat).push(m);
+  }
+  if (!porCat.size) { lista.append(el('p', { class: 'vazio' }, 'Nenhum mod com esse nome.')); return; }
+  for (const [c, mods] of porCat) {
+    const [titulo, obs] = c.split(' (');
+    const sec = el('section', { class: 'painel' }, el('h2', {}, `${titulo} (${mods.length})`));
+    if (obs) sec.append(el('p', { class: 'nota', style: 'margin-bottom:12px' }, obs.replace(/\)$/, '')));
+    const grade = el('div', { class: 'grade' });
+    mods.forEach((m) => grade.append(cartao(m)));
+    sec.append(grade);
+    lista.append(sec);
+  }
+}
+
+function escolher(c, botao) {
+  cat = c;
+  document.querySelectorAll('.busca .botao, .cats .botao').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+  botao.setAttribute('aria-pressed', 'true');
+  desenhar();
+}
+
+fetch('mods.json', { cache: 'no-cache' }).then((r) => r.json()).then((d) => {
+  dados = d;
+  $('resumo').textContent = `${d.total} mods · Minecraft ${d.mc} · pack ${d.versao}`;
+  const cats = [...new Set(d.mods.map((m) => m.cat))];
+  for (const c of cats) {
+    const b = el('button', { class: 'botao', 'aria-pressed': 'false' }, c.split(' (')[0]);
+    b.onclick = () => escolher(c, b);
+    $('cats').append(b);
+  }
+  $('todos').onclick = () => escolher('', $('todos'));
+  $('q').oninput = desenhar;
+  desenhar();
+}).catch(() => { $('resumo').textContent = 'Não foi possível carregar a lista.'; });
+</script>
+</body>
+</html>
