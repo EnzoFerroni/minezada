@@ -1171,16 +1171,20 @@ preserve = true
 
 [[files]]
 file = "minezada.ps1"
-hash = "672ce1f6313739ceb0717cb281ff6afdd91e9ca872c8bbea366b49937cc320c9"
+hash = "4c95e805df8c83a200f0c72b2ad34a15bf61cb5a0cfd5188a6d790227446e6d8"
 
 [[files]]
 file = "minezada.sh"
-hash = "9a5e3f0b9a88e7ce6428215f743804447c7e06f06c954e0244bb5d5040d8f5ef"
+hash = "c6e158cebd5090551ed41f988f553abf18b517ba68428c98bb6cfca88eb68638"
 
 [[files]]
 file = "modflared/forced_tunnels.json"
 hash = "8a13467bbf686a8cb225d9adecbe040d935fd8521cc162cf9600fa32d7177dda"
 preserve = true
+
+[[files]]
+file = "mundo-id.txt"
+hash = "ebaf060f3452ac3c799f59ef933c2eb3a783e97597be61af6dbafc6b03bdcef7"
 
 [[files]]
 file = "options-profiles/1 - Minimo/configuration.json"

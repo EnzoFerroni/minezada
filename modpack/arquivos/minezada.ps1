@@ -108,6 +108,17 @@ if (-not $env:MINEZADA_SEM_PACKWIZ) {
     # Sem internet ou GitHub fora: abre com os mods de antes (mundo sozinho funciona; servidor recusa se mudou).
     if ($LASTEXITCODE) { Write-Warning 'Pack nao atualizado (sem internet?): abrindo com os mods de antes.' }
 }
+# Mundo novo no servidor (scripts/resetar troca o mundo-id.txt): mapas e marcadores do Xaero e cache do DH do
+# mundo velho saem, senao aparecem por cima do novo. Na primeira vez so grava o id.
+# shortcut: apaga os mapas de todo servidor (Multiplayer_*), nao so o Minezada; serve enquanto o pack e so dele.
+if (Test-Path mundo-id.txt) {
+    $id = ([IO.File]::ReadAllText((Resolve-Path mundo-id.txt))).Trim()
+    $idSalvo = if (Test-Path .minezada-mundo-id) { ([IO.File]::ReadAllText((Resolve-Path .minezada-mundo-id))).Trim() } else { '' }
+    if ($idSalvo -and $id -ne $idSalvo) {
+        Remove-Item -Recurse -Force xaero/world-map/Multiplayer_*, xaero/minimap/Multiplayer_*, Distant_Horizons_server_data -ErrorAction SilentlyContinue
+    }
+    [IO.File]::WriteAllText((Join-Path (Get-Location) '.minezada-mundo-id'), "$id`n")
+}
 # Shader atualizado muda o nome do zip: o iris.properties atual e o dos perfis (preserve) passam para o zip novo.
 foreach ($f in @(Get-ChildItem config/iris.properties, options-profiles/*/iris.properties -ErrorAction SilentlyContinue)) {
     $t = [IO.File]::ReadAllText($f.FullName)

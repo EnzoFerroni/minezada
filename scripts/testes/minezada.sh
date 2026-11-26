@@ -28,6 +28,8 @@ touch "$mc/mods/DistantHorizons-2.0.jar" "$mc/shaderpacks/ComplementaryReimagine
 printf 'enableShaders=true\nshaderPack=ComplementaryUnbound_r5.9.3.zip\n' > "$mc/config/iris.properties"
 printf 'shaderPack=BSL_v8.2.zip\n' > "$mc/options-profiles/6 - Shader/iris.properties"
 
+mkdir -p "$mc/xaero/world-map/Multiplayer_minezada.dpdns.org" "$mc/xaero/minimap/Multiplayer_minezada.dpdns.org" "$mc/xaero/world-map/Novo mundo"
+printf 'mundo-1\n' > "$mc/mundo-id.txt"
 (cd "$mc" && MINEZADA_SEM_PACKWIZ=1 INST_JAVA=/nada /bin/bash minezada.sh) || { echo "FALHOU: minezada.sh saiu com erro"; exit 1; }
 
 # shellcheck disable=SC2034 # usado dentro do eval do confere
@@ -53,5 +55,14 @@ fi
 (cd "$mc" && MINEZADA_SEM_PACKWIZ=1 INST_JAVA=/nada /bin/bash minezada.sh)
 confere "segunda vez nao duplica o 3D Crops" '[ "$(grep -o "crops-3d(2).zip" "$o" | wc -l | tr -d " ")" = 2 ]'
 confere "segunda vez nao duplica teclas" '[ "$(grep -c "^key_key.pingwheel.ping_location:" "$o")" = 1 ]'
+
+confere "primeira vez: mapas do Xaero mantidos e id gravado" '[ -d "$mc/xaero/world-map/Multiplayer_minezada.dpdns.org" ] && grep -qx mundo-1 "$mc/.minezada-mundo-id"'
+
+# Mundo novo (resetar troca o mundo-id.txt): mapas de servidor saem, mundo sozinho fica.
+mkdir -p "$mc/Distant_Horizons_server_data/x"
+printf 'mundo-2\n' > "$mc/mundo-id.txt"
+(cd "$mc" && MINEZADA_SEM_PACKWIZ=1 INST_JAVA=/nada /bin/bash minezada.sh)
+confere "mundo novo: mapas e marcadores do servidor apagados" '[ ! -e "$mc/xaero/world-map/Multiplayer_minezada.dpdns.org" ] && [ ! -e "$mc/xaero/minimap/Multiplayer_minezada.dpdns.org" ] && [ ! -e "$mc/Distant_Horizons_server_data" ]'
+confere "mundo novo: mapa de mundo sozinho mantido e id novo" '[ -d "$mc/xaero/world-map/Novo mundo" ] && grep -qx mundo-2 "$mc/.minezada-mundo-id"'
 
 exit $falhou
