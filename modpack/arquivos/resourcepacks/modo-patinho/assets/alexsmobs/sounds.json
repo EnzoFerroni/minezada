@@ -1,0 +1,11 @@
+{
+  "comb_jelly_hurt": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "minecraft:entity.slime.squish_small",
+        "type": "event"
+      }
+    ]
+  }
+}
