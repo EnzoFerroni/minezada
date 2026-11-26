@@ -226,7 +226,7 @@ if (Test-Path $soltos) {
         Copy-Item $a.FullName $dest
         # minezada.ps1/.sh (rodam antes de abrir), as regras do VeinMiner (mundo de um jogador so) e os pacotes de
         # recursos proprios (resourcepacks/) sempre atualizam: sem preserve.
-        $pres = if ($rel -like 'minezada.*' -or $rel -like 'config/Veinminer/*' -or $rel -like 'resourcepacks/*') { '' } else { "preserve = true`n" }
+        $pres = if ($rel -like 'minezada.*' -or $rel -like 'config/Veinminer/*' -or $rel -like 'resourcepacks/*' -or $rel -eq 'mundo-id.txt') { '' } else { "preserve = true`n" }
         $idx += "`n[[files]]`nfile = $(Toml $rel)`nhash = `"$(Sha256 $dest)`"`n$pres"
     }
 }

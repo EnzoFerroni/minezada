@@ -40,6 +40,8 @@ jobs:
         run: /bin/bash scripts/testes/desinstalar.sh
       - name: minezada.sh (antes de abrir o jogo, .minecraft falsa)
         run: /bin/bash scripts/testes/minezada.sh
+      - name: resetar.sh (repo, servidor e Drive falsos)
+        run: /bin/bash scripts/testes/resetar.sh
       - name: jogar.sh no Linux (HOME falso, launcher falso)
         if: runner.os == 'Linux'
         run: bash scripts/testes/jogar.sh
@@ -92,6 +94,9 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+      - name: Resetar (repo, servidor e Drive falsos)
+        shell: powershell
+        run: scripts/testes/resetar.ps1
       - name: Whitelist
         run: java scripts/testes/WhitelistTeste.java
       - name: Mundo no GitHub (GitHub falso, local)

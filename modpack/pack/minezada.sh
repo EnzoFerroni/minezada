@@ -114,6 +114,17 @@ pack="https://raw.githubusercontent.com/EnzoFerroni/minezada/$ref/modpack/pack/p
 # Sem internet o jogo abre com os mods que ja tem (com erro aqui o Prism cancelaria a abertura).
 [ -n "${MINEZADA_SEM_PACKWIZ:-}" ] || "$java" -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -t 0 "$pack" \
   || echo "AVISO: pack nao atualizado (sem internet?). Abrindo com os mods atuais." >&2
+# Mundo novo no servidor (scripts/resetar troca o mundo-id.txt): mapas e marcadores do Xaero e cache do DH do
+# mundo velho saem, senao aparecem por cima do novo. Na primeira vez so grava o id.
+# shortcut: apaga os mapas de todo servidor (Multiplayer_*), nao so o Minezada; serve enquanto o pack e so dele.
+if [ -f mundo-id.txt ]; then
+  id="$(tr -d '[:space:]' < mundo-id.txt)"
+  id_salvo="$(tr -d '[:space:]' < .minezada-mundo-id 2>/dev/null || true)"
+  if [ -n "$id_salvo" ] && [ "$id" != "$id_salvo" ]; then
+    rm -rf xaero/world-map/Multiplayer_* xaero/minimap/Multiplayer_* Distant_Horizons_server_data
+  fi
+  printf '%s\n' "$id" > .minezada-mundo-id
+fi
 # Perfis que sairam do pack (o packwiz nao apaga arquivo com preserve). Em 26/11 a escala virou 1 a 7 para PC e Mac.
 for p in "Shader - Sildurs Vibrant" "Shader - Super Duper Vanilla" "Shader - Miniature" "PC - Solas" "PC - Rethinking Voxels" \
   "3 - Equilibrado" "5 - Bonito Shader" "6 - Muito Alto Shader" "7 - Ultra Shader" "8 - FPS Maximo" "9 - Bateria" \

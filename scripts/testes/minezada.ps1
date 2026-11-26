@@ -14,6 +14,8 @@ Gravar 'config\xaero\minimap\client.cfg' "update_notifications = true`n"
 Gravar 'shaderpacks\ComplementaryReimagined_r5.10.zip' ''
 Gravar 'config\iris.properties' "enableShaders=true`nshaderPack=ComplementaryUnbound_r5.9.3.zip`n"
 Gravar 'options-profiles\6 - Shader\iris.properties' "shaderPack=ComplementaryReimagined_r5.10.zip`n"
+New-Item -ItemType Directory -Force "$d\xaero\world-map\Multiplayer_minezada.dpdns.org", "$d\xaero\minimap\Multiplayer_minezada.dpdns.org", "$d\xaero\world-map\Novo mundo", "$d\Distant_Horizons_server_data\x" | Out-Null
+Gravar 'mundo-id.txt' "mundo-1`n"
 
 $erros = 0
 function Conferir($nome, $ok) { if (-not $ok) { Write-Host "FALHOU: $nome"; $script:erros++ } }
@@ -33,6 +35,14 @@ try {
     Conferir 'tecla do Ping Wheel trocada' ($o -match 'key_key.pingwheel.ping_location:key.mouse.middle')
     Conferir 'Deep Aether Tooltips ligado' ($o -match 'resourcePacks:\[.*builtin/client/deep_aether_tooltips')
     Conferir 'Deep Aether Tooltips aceito como incompativel' ($o -match 'incompatibleResourcePacks:\[.*builtin/client/deep_aether_tooltips')
+    Conferir 'primeira vez: mapas mantidos' (Test-Path 'xaero\world-map\Multiplayer_minezada.dpdns.org')
+    Conferir 'primeira vez: id gravado' ((Get-Content .minezada-mundo-id -Raw).Trim() -eq 'mundo-1')
+    # Mundo novo (resetar troca o mundo-id.txt): mapas de servidor saem, mundo sozinho fica.
+    Gravar 'mundo-id.txt' "mundo-2`n"
+    & powershell -NoProfile -ExecutionPolicy Bypass -File $script | Out-Null
+    Conferir 'mundo novo: mapas do servidor apagados' (-not (Test-Path 'xaero\world-map\Multiplayer_minezada.dpdns.org') -and -not (Test-Path 'xaero\minimap\Multiplayer_minezada.dpdns.org') -and -not (Test-Path 'Distant_Horizons_server_data'))
+    Conferir 'mundo novo: mapa de mundo sozinho mantido' (Test-Path 'xaero\world-map\Novo mundo')
+    Conferir 'mundo novo: id novo' ((Get-Content .minezada-mundo-id -Raw).Trim() -eq 'mundo-2')
 }
 finally {
     Pop-Location

@@ -53,6 +53,17 @@ depois (o resto é o cache do GitHub e do shields.io). Configurado uma vez só:
 Sem `dispatch.txt` o selo fica só com o horário do GitHub. Host que cai sem `stop` (falta de luz) não avisa: o
 selo fica "ligado" até a próxima consulta do horário.
 
+## Recomeçar o mundo do zero
+
+Para abrir o servidor para todos com mundo novo e progresso zerado (inventários, missões, conquistas, waystones):
+
+1. Desligue o servidor com `stop` e espere o envio do mundo terminar.
+2. Rode `bash scripts/resetar.sh` (Mac) ou `powershell -ExecutionPolicy Bypass -File scripts\resetar.ps1` (Windows) e digite `RESETAR`. Ele recusa se o servidor estiver ligado em algum host. Guarda o mundo atual em `arquivo/` no Drive, apaga `mundo.tar.gz`, `backups/` e o `server/world` da máquina e troca o `modpack/arquivos/mundo-id.txt`.
+3. Rode `scripts/montar-pack.ps1`, faça commit e push. Na próxima abertura, o jogo de cada um apaga os mapas do Xaero e o cache do Distant Horizons do mundo velho (o `minezada.ps1`/`.sh` compara o `mundo-id.txt` com o último que viu).
+4. Ligue pelo `iniciar`: sem `mundo.tar.gz` no Drive, ele cria um mundo novo.
+5. Pré-gere no console: `chunky radius 1500` e `chunky start`. Leva horas; deixe ligado até `Task finished`.
+6. Desligue com `stop`: o mundo pré-gerado vai para o Drive. Entre pelo túnel para conferir e crie a Release do dia.
+
 ## Segurança do repositório
 
 - O repositório é público e os comandos de jogar e hospedar rodam direto dele no PC de todos: **mantenha a
