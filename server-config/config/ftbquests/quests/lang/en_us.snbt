@@ -150,22 +150,74 @@
 	quest.3B2B5BF9EDC02132.title: "Bau grande do Sophisticated"
 	quest.3B2B5BF9EDC02132.quest_desc: ["Sophisticated Storage: baus e barris com melhorias, como a mochila."]
 	chapter.45E0B2A3B1354CC1.title: "Cozinha e fazenda"
+	chapter.45E0B2A3B1354CC1.chapter_subtitle: ["Comer bem deixa você mais forte"]
+	quest.1A06C261319C8017.title: "Variedade dá vida"
+	quest.1A06C261319C8017.quest_subtitle: "Spice of Life"
+	quest.1A06C261319C8017.quest_desc: ["Comer sempre a mesma coisa não compensa: cada comida &enova&r que você prova pela primeira vez dá &acorações extras para sempre&r.", "", "Passe o mouse em uma comida: o texto diz se você já comeu. Segure uma comida para ver na barra de fome quanto ela enche (&eAppleSkin&r).", "", "Duas receitas com os mesmos ingredientes? Um botão aparece em cima do resultado para escolher qual fazer (&ePolymorph&r)."]
 	quest.444ED84B583BF94C.title: "Faca"
-	quest.444ED84B583BF94C.quest_desc: ["A faca colhe palha e corta comida na tabua."]
-	quest.76DC6C83A5F3D648.title: "Tabua de corte"
-	quest.76DC6C83A5F3D648.quest_desc: ["Coloque um ingrediente na tabua e clique com a faca para cortar."]
-	quest.2E7513D1359CBC3D.title: "Fogao"
-	quest.2E7513D1359CBC3D.quest_desc: ["O fogao cozinha em cima e aquece a panela e a frigideira."]
+	quest.444ED84B583BF94C.quest_subtitle: "Farmer's Delight"
+	quest.444ED84B583BF94C.quest_desc: ["A cozinha do &eFarmer's Delight&r começa com uma &efaca&r. A mais simples é de sílex e graveto.", "", "Segredo: quebre &egrama alta&r, trigo ou arroz com a faca para ganhar &apalha&r. Com a mão não cai."]
+	quest.76DC6C83A5F3D648.title: "Tábua de corte"
+	quest.76DC6C83A5F3D648.quest_desc: ["Coloque um ingrediente na &etábua de corte&r com o botão direito e clique de novo com a &efaca&r para fatiar carne, peixe e verdura.", "", "Funciona com outras ferramentas: um &emachado&r em um tronco na tábua dá tábuas e &acasca de árvore&r."]
+	quest.2E7513D1359CBC3D.title: "Fogão"
+	quest.2E7513D1359CBC3D.quest_desc: ["O &efogão&r assa até 6 comidas na chapa de cima, sem gastar carvão.", "", "É também a melhor fonte de calor para colocar a &epanela&r ou a &efrigideira&r em cima."]
+	quest.0A7828646B97BEF9.title: "Cozinha"
+	quest.0A7828646B97BEF9.quest_subtitle: "A panela"
+	quest.0A7828646B97BEF9.quest_desc: ["Coloque a &epanela&r em cima de uma fonte de calor (fogão, fogueira ou magma) para cozinhar até 6 ingredientes juntos.", "", "Alguns pratos pedem &etigela&r ou &egarrafa&r no espaço do recipiente.", "", "Quebrou a panela com comida dentro? &aA comida vai junto&r: dá para levar em viagens."]
+	quest.681E9E63CB9E3256.title: "Frigideira"
+	quest.681E9E63CB9E3256.quest_desc: ["A &efrigideira&r frita uma comida por vez.", "", "No chão: coloque em cima de um fogão ou fogueira e clique com a comida.", "Na mão: perto de um fogo, segure a frigideira em uma mão e a comida crua na outra, e segure o botão direito."]
+	quest.1FD0527105F03C4B.title: "Banquete"
+	quest.1FD0527105F03C4B.quest_desc: ["Vários pratos grandes, como o &efrango assado&r, viram um &ebloco&r na mesa.", "", "Clique com uma &etigela&r vazia para servir uma porção. Bolos e tortas se cortam com a &efaca&r. Ótimo para dividir com os amigos."]
 	quest.5FD2BAC2E30B4AA8.title: "Terra rica"
-	quest.5FD2BAC2E30B4AA8.quest_desc: ["Composto organico vira terra rica, onde as plantas crescem mais rapido."]
+	quest.5FD2BAC2E30B4AA8.quest_subtitle: "Plantas crescem mais rápido"
+	quest.5FD2BAC2E30B4AA8.quest_desc: ["O &ecomposto orgânico&r colocado no chão vira &aterra rica&r com o tempo. Fica mais rápido no sol, perto de água ou de cogumelos.", "", "Are a terra rica com a enxada: as plantas crescem &amais rápido&r e ela &anão estraga&r se alguém pular em cima."]
+	quest.37A3ECE29F59CBA3.title: "Colônia de cogumelos"
+	quest.37A3ECE29F59CBA3.quest_desc: ["Plante um cogumelo em cima de &eterra rica&r em lugar escuro: ele vira uma &ecolônia&r.", "", "Use a &etesoura&r nela para colher cogumelos sem destruir a colônia."]
+	quest.14EA467B6FBF8668.title: "Arroz e tomate"
+	quest.14EA467B6FBF8668.quest_subtitle: "Plantas diferentes"
+	quest.14EA467B6FBF8668.quest_desc: ["O &earroz&r se planta na terra &edebaixo de um bloco de água&r, nunca em terra arada seca.", "", "O &etomate&r sobe por &ecorda&r: pendure corda em cima do pé para ele crescer e dar mais tomates."]
+	quest.569DF5B660B84CED.title: "Estações do ano"
+	quest.569DF5B660B84CED.quest_subtitle: "Serene Seasons"
+	quest.569DF5B660B84CED.quest_desc: ["O mundo tem &eprimavera, verão, outono e inverno&r. No inverno os dias são mais curtos e neva.", "", "Cada planta cresce bem só em certas estações. Passe o mouse na semente para ver quais.", "", "Truque: plantação com &evidro&r em cima (estufa) ou no subsolo cresce o ano inteiro.", "", "O &ecalendário&r mostra a estação e quantos dias faltam para a próxima."]
+	quest.58F6C1361EC81ECA.title: "Sensor de estação"
+	quest.58F6C1361EC81ECA.quest_desc: ["O &esensor de estação&r manda sinal de &eredstone&r conforme a estação. Serve para ligar luzes ou máquinas na época certa."]
+	quest.4EBD5BC9FC0C21E4.title: "Frutas do mundo"
+	quest.4EBD5BC9FC0C21E4.quest_subtitle: "Croptopia"
+	quest.4EBD5BC9FC0C21E4.quest_desc: ["O &eCroptopia&r espalha dezenas de frutas, verduras e árvores frutíferas pelos biomas.", "", "Achou uma planta nova? Coloque a fruta na mesa de trabalho para fazer &asementes&r. Nas árvores frutíferas, clique nas folhas maduras.", "", "O &esal&r aparece em muitas receitas: veja como fazer com &eR&r em cima dele."]
+	quest.6B2F90350C948BE0.title: "Utensílios que não quebram"
+	quest.6B2F90350C948BE0.quest_subtitle: "Croptopia"
+	quest.6B2F90350C948BE0.quest_desc: ["O Croptopia cozinha na &emesa de trabalho&r com 5 utensílios: pilão, prensa, panela, frigideira e faca.", "", "Eles &anunca quebram&r: ficam na mesa depois de cada receita."]
+	quest.69A299D53718CCB7.title: "Comida do mundo todo"
+	quest.69A299D53718CCB7.quest_subtitle: "Cultural Delights"
+	quest.69A299D53718CCB7.quest_desc: ["O &eCultural Delights&r traz milho, pepino, berinjela e abacate, espalhados por planícies, pântanos e selvas.", "", "O &ebarril&r do mod fermenta comidas como picles e queijo. Veja as receitas com &eU&r em cima dele."]
+	quest.230395E0CA029A36.title: "Armários de cozinha"
+	quest.230395E0CA029A36.quest_subtitle: "Storage Delight"
+	quest.230395E0CA029A36.quest_desc: ["Gavetas, armários com porta de vidro e balcões em todas as madeiras, para a cozinha ficar organizada e bonita."]
 	quest.4B167245EDBCA310.title: "Cozinha montada"
-	quest.4B167245EDBCA310.quest_desc: ["Cooking for Blockheads: a mesa de cozinha mostra tudo que da para fazer com o que esta na geladeira e nos baus ao lado."]
-	quest.077424323BC65D3B.title: "Vaso que planta sozinho"
-	quest.077424323BC65D3B.quest_desc: ["Botany Pots: coloque terra e uma semente; com funil embaixo ele colhe sozinho."]
-	quest.53E0B8503D6C72E2.title: "Plantacao de minerio"
-	quest.53E0B8503D6C72E2.quest_desc: ["Mystical Agriculture: essencia de inferium sai do minerio de inferium e vira sementes que dao materiais."]
-	quest.569DF5B660B84CED.title: "Estacoes do ano"
-	quest.569DF5B660B84CED.quest_desc: ["Serene Seasons: o ano tem primavera, verao, outono e inverno. Cada planta cresce melhor em certas estacoes; o JEI mostra quais."]
+	quest.4B167245EDBCA310.quest_subtitle: "Cooking for Blockheads"
+	quest.4B167245EDBCA310.quest_desc: ["A &emesa de cozinha&r mostra tudo o que dá para cozinhar com o que você tem no inventário e nos blocos ligados a ela.", "", "Encoste &egeladeira, armários, balcões e forno&r do mod na mesa (ou ligue com &episo de cozinha&r) para formar uma cozinha só.", "", "Clique em um prato da lista e ele é feito na hora, sem procurar ingrediente baú por baú."]
+	quest.46998D37F658FFCC.title: "Água e leite sem fim"
+	quest.46998D37F658FFCC.quest_desc: ["A &epia&r ligada à cozinha dá &aágua infinita&r para as receitas.", "", "Leite infinito: coloque um &epote de leite&r no chão, leve uma vaca para cima e derrube uma &ebigorna&r nela. Ela vira uma &evaca no pote&r."]
+	quest.331FAE9299EA6A9F.title: "Melhorias da geladeira"
+	quest.331FAE9299EA6A9F.quest_desc: ["Clique na geladeira com a &eunidade de gelo&r para ter gelo e neve infinitos nas receitas.", "", "Veja as outras melhorias do forno e da geladeira com &eU&r em cima delas."]
+	quest.560E86939E9F32B8.title: "Vaso de planta"
+	quest.560E86939E9F32B8.quest_subtitle: "Botany Pots"
+	quest.560E86939E9F32B8.quest_desc: ["O &evaso&r planta lavoura e até árvore em &aum bloco só&r, dentro de casa e sem água.", "", "Coloque terra dentro (areia para cacto), depois a semente. Quando crescer, clique para colher.", "", "Terra rica dentro do vaso faz crescer mais rápido."]
+	quest.06056D73419282AF.title: "Vaso que colhe sozinho"
+	quest.06056D73419282AF.quest_subtitle: "Botany Pots"
+	quest.06056D73419282AF.quest_desc: ["O &evaso com funil&r colhe e replanta &asozinho para sempre&r. Coloque em cima de um baú: a colheita vai para dentro.", "", "Dez vasos desses em cima de baús viram uma fazenda que nunca para."]
+	quest.1FF26F89EA731135.title: "Comida de viagem"
+	quest.1FF26F89EA731135.quest_subtitle: "Ocean's, End's e Twilight Delight"
+	quest.1FF26F89EA731135.quest_desc: ["Explorar libera pratos novos com efeitos bons:", "&eOcean's Delight&r: lula, baiacu e sopas do mar.", "&eEnd's Delight&r: fruta do coro e pratos do End.", "&eTwilight Delight&r: comidas da Twilight Forest."]
+	quest.7CE52A154AEA62ED.title: "Cortadora do Create"
+	quest.7CE52A154AEA62ED.quest_subtitle: "Slice & Dice"
+	quest.7CE52A154AEA62ED.quest_desc: ["A &ecortadora&r faz o trabalho da tábua de corte com a rotação do Create. Dê uma &efaca&r para ela e mande os ingredientes por baixo.", "", "O &easpersor&r embaixo de um cano com água molha a plantação. Segure &eW&r em cima das peças para ver a animação."]
+	quest.7D237BC6C11B4564.title: "Cozinha automática"
+	quest.7D237BC6C11B4564.quest_subtitle: "Create: Central Kitchen"
+	quest.7D237BC6C11B4564.quest_desc: ["Com o &eCentral Kitchen&r, as máquinas do Create (braço mecânico, depositante) cozinham as receitas do Farmer's Delight sozinhas.", "", "Um &equeimador de blaze&r embaixo da panela acelera o cozimento. Segure &eW&r nos itens para ver como montar."]
+	quest.12B3F56B552344DD.title: "Plantar minério"
+	quest.12B3F56B552344DD.quest_subtitle: "Mystical Agriculture"
+	quest.12B3F56B552344DD.quest_desc: ["O &eMystical Agriculture&r planta minério como se fosse trigo.", "", "Comece minerando &einferium&r nas cavernas. A essência dele faz as primeiras sementes. Veja o caminho todo com &eU&r em cima da essência."]
 	chapter.1CC3B8CA7BE5A04E.title: "Construir"
 	quest.379468DB3455A8B2.title: "Ferramenta de construir"
 	quest.379468DB3455A8B2.quest_desc: ["Building Gadgets: coloca varios blocos de uma vez. Precisa de energia (carregue em um carregador de energia)."]

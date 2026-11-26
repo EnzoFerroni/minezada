@@ -26,7 +26,7 @@
     `scripts/missoes.ps1`: edite a tabela no script, não os `.snbt`.
   - `scripts/`: o que monta e roda tudo (pack, perfis, livro, servidor) e `testes/`.
   - `site/`: a página do GitHub Pages. `site/mods.json` é gerado pelo `montar-pack.ps1`.
-  - `sword/`: programas em Go que leem o mundo e desenham o mapa, o placar e as conquistas da página.
+  - `sword/`: programas em [Sword](https://swordlang.com) que leem o mundo e desenham o mapa, o placar e as conquistas da página.
   - `docs/`: guias e decisões.
 - **Testes**: `scripts/testes/` (desligar o servidor por stop, Ctrl+C e janela fechada; whitelist, que é um arquivo
   só para Windows e Mac: `scripts/Whitelist.java`). A Action **Testes dos scripts** roda tudo no macOS, Linux e

@@ -15,5 +15,5 @@ labels: bug
 **Mensagem de erro ou print:**
 
 
-<!-- Jogo fechou sozinho? Anexe o arquivo mais novo de crash-reports ou o logs/latest.log da pasta do jogo
-(Prism > Minezada > botão direito > Pasta > .minecraft). Servidor: server/logs/latest.log. -->
+<!-- Jogo fechou ou não conecta? Rode o comando de enviar os registros do jogo (README, seção Deu problema?)
+e cole aqui os links que ele copia. Servidor: anexe server/logs/latest.log. -->
