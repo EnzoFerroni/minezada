@@ -9,34 +9,34 @@
 	quest_links: [ ]
 	quests: [
 		{
-			id: "E92EB052F9F3B141"
-			rewards: [{ id: "535ACDA14A1B1FCC", type: "xp", xp: 100 }]
+			id: "692EB052F9F3B141"
+			rewards: [{ id: "6F89CA7C2B0A76A0", type: "xp", xp: 100 }]
 			shape: "gear"
 			size: 1.5d
-			tasks: [{ id: "0520B69D185A8095", type: "checkmark" }]
+			tasks: [{ id: "6C0DB349B0CAD7CB", type: "checkmark" }]
 			x: 0d
 			y: 0d
 		}
 		{
-			dependencies: ["E92EB052F9F3B141"]
-			id: "A83402502454BC29"
-			rewards: [{ id: "DF26963654EEF289", type: "xp", xp: 20 }]
-			tasks: [{ id: "5E035FB5C32099E1", type: "checkmark" }]
+			dependencies: ["692EB052F9F3B141"]
+			id: "283402502454BC29"
+			rewards: [{ id: "368781D8DA3337FD", type: "xp", xp: 20 }]
+			tasks: [{ id: "435DBB4E0ECAEC0E", type: "checkmark" }]
 			x: 1.5d
 			y: 0d
 		}
 		{
-			dependencies: ["A83402502454BC29"]
-			id: "983B6AD51D05073B"
-			rewards: [{ id: "34C2F537C0EB7417", type: "xp", xp: 20 }]
-			tasks: [{ id: "6EA4002872DA1A5F", type: "checkmark" }]
+			dependencies: ["283402502454BC29"]
+			id: "183B6AD51D05073B"
+			rewards: [{ id: "56CA60737AA7C4DE", type: "xp", xp: 20 }]
+			tasks: [{ id: "5B4E6378A634F3E8", type: "checkmark" }]
 			x: 3d
 			y: 0d
 		}
 		{
-			dependencies: ["983B6AD51D05073B"]
+			dependencies: ["183B6AD51D05073B"]
 			id: "0003CE0F6AE91DC0"
-			rewards: [{ id: "D925ABDBC4C6FA57", type: "xp", xp: 20 }, { id: "8D09399AEDFDE912", item: { count: 4, id: "minecraft:bread" }, type: "item" }]
+			rewards: [{ id: "5925ABDBC4C6FA57", type: "xp", xp: 20 }, { id: "0D09399AEDFDE912", item: { count: 4, id: "minecraft:bread" }, type: "item" }]
 			tasks: [{ id: "78901D46E741DF0A", item: { count: 1, id: "minecraft:crafting_table" }, type: "item" }]
 			x: 4.5d
 			y: 0d
@@ -51,17 +51,17 @@
 		}
 		{
 			dependencies: ["0E19EE28A91186E6"]
-			id: "B6952285DC2B5452"
-			rewards: [{ id: "9AC550C04C595DA7", type: "xp", xp: 20 }, { id: "F02A39839B21FACA", item: { count: 4, id: "minecraft:leather" }, type: "item" }]
-			tasks: [{ id: "345B810F0B320B30", item: { count: 1, id: "sophisticatedbackpacks:backpack" }, type: "item" }]
+			id: "36952285DC2B5452"
+			rewards: [{ id: "5C3D60933BD8C10C", type: "xp", xp: 20 }, { id: "324C3E145C0C7EE9", item: { count: 4, id: "minecraft:leather" }, type: "item" }]
+			tasks: [{ id: "5862A3E7AB633C7E", item: { count: 1, id: "sophisticatedbackpacks:backpack" }, type: "item" }]
 			x: 7.5d
 			y: 0d
 		}
 		{
-			dependencies: ["B6952285DC2B5452"]
+			dependencies: ["36952285DC2B5452"]
 			id: "50A4703D190E18DE"
 			rewards: [{ id: "7E4D018A3C00BDB3", type: "xp", xp: 20 }, { id: "69B5EFC819B2DF1C", item: { count: 2, id: "minecraft:ender_pearl" }, type: "item" }]
-			tasks: [{ id: "F76F6F755B0BB8E1", item: { count: 1, id: "waystones:waystone" }, type: "item" }]
+			tasks: [{ id: "776F6F755B0BB8E1", item: { count: 1, id: "waystones:waystone" }, type: "item" }]
 			x: 9d
 			y: 0d
 		}
@@ -75,27 +75,27 @@
 		}
 		{
 			dependencies: ["712E2F6300ED0812"]
-			id: "B772DD21EE451560"
-			rewards: [{ id: "B2DDD082095111BF", type: "xp", xp: 20 }, { id: "81E38928F8754892", item: { count: 4, id: "minecraft:golden_carrot" }, type: "item" }]
-			tasks: [{ id: "77A9F9674A73871C", item: { count: 1, id: "farmersdelight:cooking_pot" }, type: "item" }]
+			id: "3772DD21EE451560"
+			rewards: [{ id: "0CB58CB6D329182C", type: "xp", xp: 20 }, { id: "0F1AFD786C6AAB8E", item: { count: 4, id: "minecraft:golden_carrot" }, type: "item" }]
+			tasks: [{ id: "4EF0CFA010AAF91C", item: { count: 1, id: "farmersdelight:cooking_pot" }, type: "item" }]
 			x: 12d
 			y: 0d
 		}
 		{
-			dependencies: ["B772DD21EE451560"]
-			id: "E11F5DC7B7E656E5"
-			rewards: [{ id: "0913EA5787FD00F2", type: "xp", xp: 20 }]
+			dependencies: ["3772DD21EE451560"]
+			id: "611F5DC7B7E656E5"
+			rewards: [{ id: "757CB4F2D813C65A", type: "xp", xp: 20 }]
 			optional: true
-			tasks: [{ id: "B96A29DF162A8750", type: "checkmark" }]
+			tasks: [{ id: "3A77372E749DCC2F", type: "checkmark" }]
 			x: 13.5d
 			y: 0d
 		}
 		{
-			dependencies: ["E11F5DC7B7E656E5"]
+			dependencies: ["611F5DC7B7E656E5"]
 			id: "6234896076A0B526"
-			rewards: [{ id: "A7BD4076D32DE8DE", type: "xp", xp: 20 }]
+			rewards: [{ id: "27BD4076D32DE8DE", type: "xp", xp: 20 }]
 			optional: true
-			tasks: [{ id: "AF365E15A3AABDA3", type: "checkmark" }]
+			tasks: [{ id: "2F365E15A3AABDA3", type: "checkmark" }]
 			x: 15d
 			y: 0d
 		}
@@ -104,7 +104,7 @@
 			id: "35B5A51B8EC8B211"
 			rewards: [{ id: "63C3FEB8714FBD50", type: "xp", xp: 20 }]
 			optional: true
-			tasks: [{ id: "FBC69337705E367E", type: "checkmark" }]
+			tasks: [{ id: "7BC69337705E367E", type: "checkmark" }]
 			x: 16.5d
 			y: 0d
 		}
@@ -113,7 +113,7 @@
 			id: "1C9212BF4A3DD9BC"
 			rewards: [{ id: "1F8F09359EE01AC0", type: "xp", xp: 20 }]
 			optional: true
-			tasks: [{ id: "9B4A9430915598F5", type: "checkmark" }]
+			tasks: [{ id: "1B4A9430915598F5", type: "checkmark" }]
 			x: 18d
 			y: 0d
 		}

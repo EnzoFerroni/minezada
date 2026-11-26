@@ -4,55 +4,55 @@
 	filename: "explorador"
 	group: "0723197381022D89"
 	icon: { id: "explorerscompass:explorerscompass" }
-	id: "B99D037DDCE38331"
+	id: "399D037DDCE38331"
 	order_index: 20
 	quest_links: [ ]
 	quests: [
 		{
-			id: "FC444AD0D6718BCE"
-			rewards: [{ id: "F919EFDC40C7A547", type: "xp", xp: 20 }]
-			tasks: [{ id: "498A2F01BBEDE5C2", structure: "minecraft:ancient_city", type: "structure" }]
+			id: "7C444AD0D6718BCE"
+			rewards: [{ id: "6C699B445CFB35DD", type: "xp", xp: 20 }]
+			tasks: [{ id: "4B507CDFC8A6379B", structure: "minecraft:ancient_city", type: "structure" }]
 			x: 0d
 			y: 0.0d
 		}
 		{
 			id: "386B8F653AF78C9F"
 			rewards: [{ id: "6EA7F303C15F3D62", type: "xp", xp: 20 }]
-			tasks: [{ id: "D36F93934442DB18", structure: "minecraft:trial_chambers", type: "structure" }]
+			tasks: [{ id: "536F93934442DB18", structure: "minecraft:trial_chambers", type: "structure" }]
 			x: 1.5d
 			y: 0d
 		}
 		{
-			id: "D61B7CF1CFD769E2"
-			rewards: [{ id: "FA046BF0F93E4269", type: "xp", xp: 20 }]
-			tasks: [{ id: "8371CE955BECB7B3", structure: "minecraft:mansion", type: "structure" }]
+			id: "561B7CF1CFD769E2"
+			rewards: [{ id: "4B93F634A532D032", type: "xp", xp: 20 }]
+			tasks: [{ id: "36EC20A4A106278B", structure: "minecraft:mansion", type: "structure" }]
 			x: 3d
 			y: 0d
 		}
 		{
 			id: "4DA558A35B923119"
 			rewards: [{ id: "77F978A589BABCD5", type: "xp", xp: 20 }]
-			tasks: [{ id: "E4965E665BAC82C5", structure: "betterstrongholds:stronghold", type: "structure" }]
+			tasks: [{ id: "64965E665BAC82C5", structure: "betterstrongholds:stronghold", type: "structure" }]
 			x: 4.5d
 			y: 0d
 		}
 		{
-			id: "B9E1CD7CB12EDA6F"
-			rewards: [{ id: "B666D9C9C85F3F38", type: "xp", xp: 20 }]
-			tasks: [{ id: "B381C9A36C74C7F7", structure: "betterfortresses:fortress", type: "structure" }]
+			id: "39E1CD7CB12EDA6F"
+			rewards: [{ id: "4DF0DCB4470E4C99", type: "xp", xp: 20 }]
+			tasks: [{ id: "6DC4C0CC71F29ED7", structure: "betterfortresses:fortress", type: "structure" }]
 			x: 0d
 			y: 1.5d
 		}
 		{
-			id: "CBF994F1CA99747B"
-			rewards: [{ id: "F27AF191B9161C69", type: "xp", xp: 20 }]
-			tasks: [{ id: "6816111CD771C73C", structure: "betteroceanmonuments:ocean_monument", type: "structure" }]
+			id: "4BF994F1CA99747B"
+			rewards: [{ id: "61D11B3D287433CD", type: "xp", xp: 20 }]
+			tasks: [{ id: "7B97AB2890FE3391", structure: "betteroceanmonuments:ocean_monument", type: "structure" }]
 			x: 1.5d
 			y: 1.5d
 		}
 		{
 			id: "7E4A666B5BBF16D1"
-			rewards: [{ id: "BC21960EE2AE55BC", type: "xp", xp: 20 }]
+			rewards: [{ id: "3C21960EE2AE55BC", type: "xp", xp: 20 }]
 			tasks: [{ id: "57C136BD0EF3B36A", structure: "dungeons_arise:coliseum", type: "structure" }]
 			x: 3d
 			y: 1.5d
@@ -60,28 +60,28 @@
 		{
 			id: "558BFAC6C1C4221A"
 			rewards: [{ id: "464BB00EDB499F90", type: "xp", xp: 20 }]
-			tasks: [{ id: "D20CCC2D4E5E75EC", structure: "dungeons_arise:illager_fort", type: "structure" }]
+			tasks: [{ id: "520CCC2D4E5E75EC", structure: "dungeons_arise:illager_fort", type: "structure" }]
 			x: 4.5d
 			y: 1.5d
 		}
 		{
 			id: "2EA4A33F6B692D20"
-			rewards: [{ id: "AF687819E02A47C9", type: "xp", xp: 20 }]
+			rewards: [{ id: "2F687819E02A47C9", type: "xp", xp: 20 }]
 			tasks: [{ id: "1BCCF321D9398970", structure: "dungeons_arise:undead_pirate_ship", type: "structure" }]
 			x: 0d
 			y: 3.0d
 		}
 		{
 			id: "296357EC3B8AF529"
-			rewards: [{ id: "9599A5EF9EB194A7", type: "xp", xp: 20 }]
+			rewards: [{ id: "1599A5EF9EB194A7", type: "xp", xp: 20 }]
 			tasks: [{ id: "6B921FA8A0F9C176", structure: "dungeons_arise:shiraz_palace", type: "structure" }]
 			x: 1.5d
 			y: 3d
 		}
 		{
 			id: "350F6088D3D05B53"
-			rewards: [{ id: "DF743048902F2B8E", type: "xp", xp: 20 }]
-			tasks: [{ id: "8BA01094A5F1F004", structure: "dungeons_arise:plague_asylum", type: "structure" }]
+			rewards: [{ id: "5F743048902F2B8E", type: "xp", xp: 20 }]
+			tasks: [{ id: "0BA01094A5F1F004", structure: "dungeons_arise:plague_asylum", type: "structure" }]
 			x: 3d
 			y: 3d
 		}
@@ -93,9 +93,9 @@
 			y: 3d
 		}
 		{
-			id: "C0FDDDFE5251C5BF"
-			rewards: [{ id: "7A924C60C24FA928", type: "xp", xp: 20 }]
-			tasks: [{ id: "2B11E661211C0C7D", structure: "aquamirae:pirate_ship", type: "structure" }]
+			id: "40FDDDFE5251C5BF"
+			rewards: [{ id: "0127AB8DC4268917", type: "xp", xp: 20 }]
+			tasks: [{ id: "34CAC394E7A045A8", structure: "aquamirae:pirate_ship", type: "structure" }]
 			x: 0d
 			y: 4.5d
 		}
@@ -108,50 +108,50 @@
 		}
 		{
 			id: "6C1B45322779964A"
-			rewards: [{ id: "D17AEFAE5F16A826", type: "xp", xp: 20 }]
+			rewards: [{ id: "517AEFAE5F16A826", type: "xp", xp: 20 }]
 			tasks: [{ id: "7DBB3636B3180DCE", structure: "ribbits:ribbit_village", type: "structure" }]
 			x: 3d
 			y: 4.5d
 		}
 		{
-			id: "BE785FE65989A919"
-			rewards: [{ id: "6D27FDC9C352CAA1", type: "xp", xp: 20 }]
-			tasks: [{ id: "E4DE0B2AB9F409A6", structure: "incendium:forbidden_castle", type: "structure" }]
+			id: "3E785FE65989A919"
+			rewards: [{ id: "4F0CC3DFEBECC3A0", type: "xp", xp: 20 }]
+			tasks: [{ id: "7EB35CD2CC2F8199", structure: "incendium:forbidden_castle", type: "structure" }]
 			x: 4.5d
 			y: 4.5d
 		}
 		{
 			id: "6476BB4EF3352AB9"
-			rewards: [{ id: "DDF82DDC8588917B", type: "xp", xp: 20 }]
-			tasks: [{ id: "8C21FC57EF2F443B", structure: "incendium:piglin_village", type: "structure" }]
+			rewards: [{ id: "5DF82DDC8588917B", type: "xp", xp: 20 }]
+			tasks: [{ id: "0C21FC57EF2F443B", structure: "incendium:piglin_village", type: "structure" }]
 			x: 0d
 			y: 6.0d
 		}
 		{
-			id: "D2132A11A04149AA"
-			rewards: [{ id: "EE279F9EA87CC100", type: "xp", xp: 20 }]
-			tasks: [{ id: "300D036A7C8EE013", structure: "explorify:tavern", type: "structure" }]
+			id: "52132A11A04149AA"
+			rewards: [{ id: "62B9D1F22B2BE1BE", type: "xp", xp: 20 }]
+			tasks: [{ id: "6017C68B93832318", structure: "explorify:tavern", type: "structure" }]
 			x: 1.5d
 			y: 6d
 		}
 		{
 			id: "34ECE984C788A76B"
 			rewards: [{ id: "10879D60D4126394", type: "xp", xp: 20 }]
-			tasks: [{ id: "F5C389A5FCC896D3", structure: "friendsandfoes:citadel", type: "structure" }]
+			tasks: [{ id: "75C389A5FCC896D3", structure: "friendsandfoes:citadel", type: "structure" }]
 			x: 3d
 			y: 6d
 		}
 		{
-			id: "FEDA6475F8D84E20"
-			rewards: [{ id: "4F3EC0F5987EB6AB", type: "xp", xp: 20 }]
-			tasks: [{ id: "3C54F7DB6EC80E1E", structure: "ec_ad:big_crater", type: "structure" }]
+			id: "7EDA6475F8D84E20"
+			rewards: [{ id: "1A7CD5A3611E437D", type: "xp", xp: 20 }]
+			tasks: [{ id: "5AB1A8695DD74D20", structure: "ec_ad:big_crater", type: "structure" }]
 			x: 4.5d
 			y: 6d
 		}
 		{
-			id: "E98AD54E6122D0FB"
-			rewards: [{ id: "F3224708CED619BF", type: "xp", xp: 20 }]
-			tasks: [{ id: "9E75159D73F365BB", structure: "nullscape:dragon_skeleton", type: "structure" }]
+			id: "698AD54E6122D0FB"
+			rewards: [{ id: "0892442075BA1B33", type: "xp", xp: 20 }]
+			tasks: [{ id: "36ABDB22C27BB485", structure: "nullscape:dragon_skeleton", type: "structure" }]
 			x: 0d
 			y: 7.5d
 		}

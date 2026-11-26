@@ -1,36 +1,36 @@
 {
 	chapter_group.2A64FDD2182C23F1.title: "Começo"
 	chapter_group.75C4FBF5BDDE1148.title: "Tecnologia"
-	chapter_group.8B7482EA7957301C.title: "Dimensões"
+	chapter_group.0B7482EA7957301C.title: "Dimensões"
 	chapter_group.0723197381022D89.title: "Aventura"
 	chapter.7219E05592DE0419.title: "Primeiros passos"
 	chapter.7219E05592DE0419.chapter_subtitle: ["O que muda neste Minecraft e as teclas que ajudam"]
-	quest.E92EB052F9F3B141.title: "Bem-vindo ao Minezada"
-	quest.E92EB052F9F3B141.quest_subtitle: "Comece por aqui"
-	quest.E92EB052F9F3B141.quest_desc: ["Este é o &elivro de missões&r. Ele mostra o que fazer, explica cada mod e dá prêmios: toda missão dá &aXP&r e algumas dão itens.", "", "Abra quando quiser pelo &ebotão do livro&r no canto do inventário (tecla &eE&r).", "", "Cada bolinha é uma missão. Clique nela para ler. Quando você cumpre o pedido, ela fica verde e o prêmio aparece para pegar.", "{@pagebreak}", "Os capítulos ficam na &eesquerda&r, em grupos: &aComeço&r, &aTecnologia&r, &aDimensões&r e &aAventura&r.", "", "Não precisa seguir na ordem. Quer só construir e explorar? Tudo bem. As missões são um guia, não uma obrigação.", "", "&7Clique em &fConcluir&7 para marcar esta como lida."]
-	quest.A83402502454BC29.title: "Receitas: R e U"
-	quest.A83402502454BC29.quest_subtitle: "A tecla mais importante"
-	quest.A83402502454BC29.quest_desc: ["O pack tem centenas de itens novos. Ninguém decora receita: use o &eJEI&r, a lista de itens na direita do inventário.", "", "&eR&r com o mouse em cima de um item: mostra &acomo fazer&r.", "&eU&r com o mouse em cima de um item: mostra &aonde ele é usado&r.", "", "A barra de busca embaixo da lista aceita nome em português ou inglês, e entende erro de digitação. Comece o texto com &e@&r para ver os itens de um mod (exemplo: &e@create&r)."]
-	quest.983B6AD51D05073B.title: "O que é isso?"
-	quest.983B6AD51D05073B.quest_subtitle: "Jade"
-	quest.983B6AD51D05073B.quest_desc: ["Mire em qualquer bloco ou bicho: o nome, o mod de onde ele vem e informações úteis aparecem no &etopo da tela&r.", "", "Serve para saber a vida de um bicho, quanto falta para uma planta crescer ou o que tem dentro de uma máquina."]
+	quest.692EB052F9F3B141.title: "Bem-vindo ao Minezada"
+	quest.692EB052F9F3B141.quest_subtitle: "Comece por aqui"
+	quest.692EB052F9F3B141.quest_desc: ["Este é o &elivro de missões&r. Ele mostra o que fazer, explica cada mod e dá prêmios: toda missão dá &aXP&r e algumas dão itens.", "", "Abra quando quiser pelo &ebotão do livro&r no canto do inventário (tecla &eE&r).", "", "Cada bolinha é uma missão. Clique nela para ler. Quando você cumpre o pedido, ela fica verde e o prêmio aparece para pegar.", "{@pagebreak}", "Os capítulos ficam na &eesquerda&r, em grupos: &aComeço&r, &aTecnologia&r, &aDimensões&r e &aAventura&r.", "", "Não precisa seguir na ordem. Quer só construir e explorar? Tudo bem. As missões são um guia, não uma obrigação.", "", "&7Clique em &fConcluir&7 para marcar esta como lida."]
+	quest.283402502454BC29.title: "Receitas: R e U"
+	quest.283402502454BC29.quest_subtitle: "A tecla mais importante"
+	quest.283402502454BC29.quest_desc: ["O pack tem centenas de itens novos. Ninguém decora receita: use o &eJEI&r, a lista de itens na direita do inventário.", "", "&eR&r com o mouse em cima de um item: mostra &acomo fazer&r.", "&eU&r com o mouse em cima de um item: mostra &aonde ele é usado&r.", "", "A barra de busca embaixo da lista aceita nome em português ou inglês, e entende erro de digitação. Comece o texto com &e@&r para ver os itens de um mod (exemplo: &e@create&r)."]
+	quest.183B6AD51D05073B.title: "O que é isso?"
+	quest.183B6AD51D05073B.quest_subtitle: "Jade"
+	quest.183B6AD51D05073B.quest_desc: ["Mire em qualquer bloco ou bicho: o nome, o mod de onde ele vem e informações úteis aparecem no &etopo da tela&r.", "", "Serve para saber a vida de um bicho, quanto falta para uma planta crescer ou o que tem dentro de uma máquina."]
 	quest.0003CE0F6AE91DC0.title: "Mesa de trabalho"
 	quest.0003CE0F6AE91DC0.quest_desc: ["O começo de sempre: junte madeira e faça uma &emesa de trabalho&r.", "", "Dica: segure a tecla &eao lado do 1&r (acento grave) enquanto quebra um tronco para derrubar a árvore inteira de uma vez. Funciona com minério também (&eVeinMiner&r)."]
 	quest.0E19EE28A91186E6.title: "Mapa"
 	quest.0E19EE28A91186E6.quest_subtitle: "Nunca mais se perca"
 	quest.0E19EE28A91186E6.quest_desc: ["O &eminimapa&r fica no canto da tela. A tecla &eM&r abre o mapa do mundo, com tudo que você já explorou.", "", "A tecla &eN&r cria um ponto marcado (waypoint) onde você está. Marque a sua casa!", "", "Outros jogadores aparecem no minimapa como cabecinhas."]
-	quest.B6952285DC2B5452.title: "Mochila"
-	quest.B6952285DC2B5452.quest_desc: ["Faça uma &emochila&r: ela guarda muito mais que o inventário. Clique com o botão direito segurando ela, ou coloque nas costas e abra pela tecla &eB&r.", "", "Ela ganha &aupgrades&r: coletar itens do chão, separar o que você pega, alimentar você sozinha e ficar maior (ferro, ouro, diamante). Veja no JEI com &eU&r em cima da mochila."]
+	quest.36952285DC2B5452.title: "Mochila"
+	quest.36952285DC2B5452.quest_desc: ["Faça uma &emochila&r: ela guarda muito mais que o inventário. Clique com o botão direito segurando ela, ou coloque nas costas e abra pela tecla &eB&r.", "", "Ela ganha &aupgrades&r: coletar itens do chão, separar o que você pega, alimentar você sozinha e ficar maior (ferro, ouro, diamante). Veja no JEI com &eU&r em cima da mochila."]
 	quest.50A4703D190E18DE.title: "Waystone"
 	quest.50A4703D190E18DE.quest_subtitle: "Teleporte"
 	quest.50A4703D190E18DE.quest_desc: ["Waystones são &epedras de teleporte&r. Elas aparecem nas vilas e pelo mundo.", "", "Clique em uma para &aativar&r. Depois, de qualquer waystone, você viaja para as que já ativou.", "", "Faça a sua e coloque perto de casa: assim você sempre volta rápido."]
 	quest.712E2F6300ED0812.title: "Se você morrer"
 	quest.712E2F6300ED0812.quest_desc: ["Morreu? Seus itens &enão somem&r: ficam guardados em um &ecorpo&r no lugar da morte.", "", "Volte lá e clique no corpo para pegar tudo. O lugar aparece no mapa.", "", "Esqueceu onde foi? &eAlt + U&r mostra o histórico de mortes."]
-	quest.B772DD21EE451560.title: "Cozinha"
-	quest.B772DD21EE451560.quest_desc: ["&eFarmer's Delight&r traz panela, frigideira, tábua de corte e dezenas de comidas.", "", "Importante: cada comida &enova&r que você prova pela primeira vez dá &acorações extras de vida&r (Spice of Life). Variar a comida deixa você mais forte!", "", "O capítulo &eCozinha e fazenda&r explica tudo."]
-	quest.E11F5DC7B7E656E5.title: "Carregar baús e bichos"
-	quest.E11F5DC7B7E656E5.quest_subtitle: "Carry On"
-	quest.E11F5DC7B7E656E5.quest_desc: ["Com as &emãos vazias&r, segure &eShift&r e clique com o botão direito em um baú: você carrega ele inteiro, com os itens dentro.", "", "Funciona com bichos também. Ótimo para mudar de casa."]
+	quest.3772DD21EE451560.title: "Cozinha"
+	quest.3772DD21EE451560.quest_desc: ["&eFarmer's Delight&r traz panela, frigideira, tábua de corte e dezenas de comidas.", "", "Importante: cada comida &enova&r que você prova pela primeira vez dá &acorações extras de vida&r (Spice of Life). Variar a comida deixa você mais forte!", "", "O capítulo &eCozinha e fazenda&r explica tudo."]
+	quest.611F5DC7B7E656E5.title: "Carregar baús e bichos"
+	quest.611F5DC7B7E656E5.quest_subtitle: "Carry On"
+	quest.611F5DC7B7E656E5.quest_desc: ["Com as &emãos vazias&r, segure &eShift&r e clique com o botão direito em um baú: você carrega ele inteiro, com os itens dentro.", "", "Funciona com bichos também. Ótimo para mudar de casa."]
 	quest.6234896076A0B526.title: "Avisar os amigos"
 	quest.6234896076A0B526.quest_subtitle: "Ping Wheel"
 	quest.6234896076A0B526.quest_desc: ["Clique com o &ebotão do meio do mouse&r para marcar um ponto que todos veem: \"olha aqui\", \"perigo\", \"vem cá\"."]
@@ -40,133 +40,133 @@
 	quest.1C9212BF4A3DD9BC.title: "Achar uma tecla"
 	quest.1C9212BF4A3DD9BC.quest_subtitle: "Controles"
 	quest.1C9212BF4A3DD9BC.quest_desc: ["Em &eOpções > Controles > Teclas&r tem uma &abusca&r: digite o nome da ação (ou do mod) para ver e trocar a tecla.", "", "Tecla em vermelho está em conflito com outra."]
-	chapter.BBA9B6DE266CCBFE.title: "Create 1: o basico"
-	quest.F43F2D5CC50C160E.title: "O que e o Create"
-	quest.F43F2D5CC50C160E.quest_desc: ["Create e um mod de maquinas que funcionam com rotacao, como um moinho de verdade: algo gira (agua, vento, vapor) e eixos levam o giro ate as maquinas.", "Segure W com o mouse em cima de qualquer item do Create para ver uma animacao explicando ele (Ponder)."]
-	quest.B4E5D9F83BA191B7.title: "Liga de andesito"
-	quest.B4E5D9F83BA191B7.quest_desc: ["O material de quase tudo no comeco: andesito com pepitas de ferro (ou zinco). Receita no JEI (tecla R)."]
+	chapter.3BA9B6DE266CCBFE.title: "Create 1: o basico"
+	quest.743F2D5CC50C160E.title: "O que e o Create"
+	quest.743F2D5CC50C160E.quest_desc: ["Create e um mod de maquinas que funcionam com rotacao, como um moinho de verdade: algo gira (agua, vento, vapor) e eixos levam o giro ate as maquinas.", "Segure W com o mouse em cima de qualquer item do Create para ver uma animacao explicando ele (Ponder)."]
+	quest.34E5D9F83BA191B7.title: "Liga de andesito"
+	quest.34E5D9F83BA191B7.quest_desc: ["O material de quase tudo no comeco: andesito com pepitas de ferro (ou zinco). Receita no JEI (tecla R)."]
 	quest.4E782FDC8A29C55F.title: "Revestimento de andesito"
 	quest.4E782FDC8A29C55F.quest_desc: ["Clique com a liga de andesito em um tronco descascado. O revestimento e a base de varias maquinas."]
 	quest.713CA83B402B1EBB.title: "Eixos"
 	quest.713CA83B402B1EBB.quest_desc: ["O eixo leva a rotacao em linha reta."]
-	quest.F69C72DE12C48B1B.title: "Engrenagens"
-	quest.F69C72DE12C48B1B.quest_desc: ["Engrenagens passam o giro para os lados. Duas engrenagens encostadas giram em sentidos opostos.", "Engrenagem grande ligada a pequena muda a velocidade: pequena para grande diminui, grande para pequena aumenta."]
+	quest.769C72DE12C48B1B.title: "Engrenagens"
+	quest.769C72DE12C48B1B.quest_desc: ["Engrenagens passam o giro para os lados. Duas engrenagens encostadas giram em sentidos opostos.", "Engrenagem grande ligada a pequena muda a velocidade: pequena para grande diminui, grande para pequena aumenta."]
 	quest.06EC2EE31BBAEFB3.title: "Engrenagem grande"
 	quest.06EC2EE31BBAEFB3.quest_desc: ["Junto com a pequena, ela faz curvas e muda a velocidade (RPM)."]
-	quest.C95B4DD49D945339.title: "Caixa de engrenagens"
-	quest.C95B4DD49D945339.quest_desc: ["Faz curvas de 90 graus em pouco espaco."]
-	quest.A09FC078EB5E2BD0.title: "Manivela"
-	quest.A09FC078EB5E2BD0.quest_desc: ["Gira as maquinas com a mao, para testar. Cansa: gasta fome."]
+	quest.495B4DD49D945339.title: "Caixa de engrenagens"
+	quest.495B4DD49D945339.quest_desc: ["Faz curvas de 90 graus em pouco espaco."]
+	quest.209FC078EB5E2BD0.title: "Manivela"
+	quest.209FC078EB5E2BD0.quest_desc: ["Gira as maquinas com a mao, para testar. Cansa: gasta fome."]
 	quest.15DA37216A7BAE21.title: "Roda d'agua"
 	quest.15DA37216A7BAE21.quest_desc: ["Coloque na beira de agua corrente: a agua empurra a roda e ela gira o eixo. Agua dos dois lados trava a roda."]
-	quest.87DF67DB2ED1D8B5.title: "Oculos de engenheiro"
-	quest.87DF67DB2ED1D8B5.quest_desc: ["Com os oculos voce olha uma maquina e ve a velocidade e o esforco (stress) dela."]
+	quest.07DF67DB2ED1D8B5.title: "Oculos de engenheiro"
+	quest.07DF67DB2ED1D8B5.quest_desc: ["Com os oculos voce olha uma maquina e ve a velocidade e o esforco (stress) dela."]
 	quest.40E31D6C06C810D7.title: "Stress"
 	quest.40E31D6C06C810D7.quest_desc: ["Cada maquina gasta esforco (SU). Cada fonte de giro tem um limite de SU. Passou do limite, tudo para (overstressed): coloque mais fontes ou baixe a velocidade.", "O medidor de stress mostra quanto da rede esta em uso."]
 	chapter.544787426C85E4FA.title: "Create 2: primeiras maquinas"
-	quest.8E9234D0A775C532.title: "Deposito"
-	quest.8E9234D0A775C532.quest_desc: ["O deposito segura itens embaixo das maquinas, como uma mesa."]
-	quest.A4D45AE531CC8DD4.title: "Prensa"
-	quest.A4D45AE531CC8DD4.quest_desc: ["A prensa em cima de um deposito amassa lingotes em chapas. Chapas de ferro aparecem em muitas receitas."]
+	quest.0E9234D0A775C532.title: "Deposito"
+	quest.0E9234D0A775C532.quest_desc: ["O deposito segura itens embaixo das maquinas, como uma mesa."]
+	quest.24D45AE531CC8DD4.title: "Prensa"
+	quest.24D45AE531CC8DD4.quest_desc: ["A prensa em cima de um deposito amassa lingotes em chapas. Chapas de ferro aparecem em muitas receitas."]
 	quest.0FFB8A4F6D765047.title: "Chapa de ferro"
 	quest.0FFB8A4F6D765047.quest_desc: ["Faca suas primeiras chapas com a prensa."]
-	quest.88A9F0D3CB4E4ADF.title: "Esteira"
-	quest.88A9F0D3CB4E4ADF.quest_desc: ["Feita de alga seca. Clique em dois eixos para ligar: leva itens de uma maquina para outra e tambem passa o giro."]
-	quest.F7552730F917B3A2.title: "Moedor"
-	quest.F7552730F917B3A2.quest_desc: ["O moedor transforma trigo em farinha e pedregulho em cascalho."]
-	quest.F1902CE9B4233470.title: "Ventilador"
-	quest.F1902CE9B4233470.quest_desc: ["O ventilador sopra itens. Com fogo atras ele cozinha, com lava ele derrete, com agua ele lava os itens no caminho."]
+	quest.08A9F0D3CB4E4ADF.title: "Esteira"
+	quest.08A9F0D3CB4E4ADF.quest_desc: ["Feita de alga seca. Clique em dois eixos para ligar: leva itens de uma maquina para outra e tambem passa o giro."]
+	quest.77552730F917B3A2.title: "Moedor"
+	quest.77552730F917B3A2.quest_desc: ["O moedor transforma trigo em farinha e pedregulho em cascalho."]
+	quest.71902CE9B4233470.title: "Ventilador"
+	quest.71902CE9B4233470.quest_desc: ["O ventilador sopra itens. Com fogo atras ele cozinha, com lava ele derrete, com agua ele lava os itens no caminho."]
 	quest.5D406386B77211CF.title: "Serra"
 	quest.5D406386B77211CF.quest_desc: ["A serra corta madeira. Numa estrutura que anda, derruba arvores inteiras."]
 	quest.6D0020FF08FE30D0.title: "Broca"
 	quest.6D0020FF08FE30D0.quest_desc: ["A broca quebra o bloco da frente. Com rolamentos e pistoes vira uma maquina de minerar."]
-	quest.D9A226648CAE99CA.title: "Moinho de vento"
-	quest.D9A226648CAE99CA.quest_desc: ["O rolamento de moinho com velas em volta gira sem agua. Mais velas, mais forca. Clique no rolamento para comecar."]
-	quest.B27AE96A1893C2F8.title: "Velas"
-	quest.B27AE96A1893C2F8.quest_desc: ["As velas do moinho. La tambem serve."]
-	quest.AB88F26A795CAB85.title: "Cola"
-	quest.AB88F26A795CAB85.quest_desc: ["A super cola junta blocos para que se movam juntos numa estrutura."]
-	quest.BE0E9C0DF135D391.title: "Pistao mecanico"
-	quest.BE0E9C0DF135D391.quest_desc: ["Empurra uma estrutura inteira para frente e para tras."]
+	quest.59A226648CAE99CA.title: "Moinho de vento"
+	quest.59A226648CAE99CA.quest_desc: ["O rolamento de moinho com velas em volta gira sem agua. Mais velas, mais forca. Clique no rolamento para comecar."]
+	quest.327AE96A1893C2F8.title: "Velas"
+	quest.327AE96A1893C2F8.quest_desc: ["As velas do moinho. La tambem serve."]
+	quest.2B88F26A795CAB85.title: "Cola"
+	quest.2B88F26A795CAB85.quest_desc: ["A super cola junta blocos para que se movam juntos numa estrutura."]
+	quest.3E0E9C0DF135D391.title: "Pistao mecanico"
+	quest.3E0E9C0DF135D391.quest_desc: ["Empurra uma estrutura inteira para frente e para tras."]
 	quest.6E18F7126D48DC9D.title: "Rolamento mecanico"
 	quest.6E18F7126D48DC9D.quest_desc: ["Gira uma estrutura inteira, como uma roda gigante ou uma porta."]
-	chapter.D484F5C3EA822981.title: "Create 3: era do latao"
-	quest.8600E8BC2C175FA0.title: "Bacia"
-	quest.8600E8BC2C175FA0.quest_desc: ["A bacia guarda os ingredientes para o misturador e a prensa."]
+	chapter.5484F5C3EA822981.title: "Create 3: era do latao"
+	quest.0600E8BC2C175FA0.title: "Bacia"
+	quest.0600E8BC2C175FA0.quest_desc: ["A bacia guarda os ingredientes para o misturador e a prensa."]
 	quest.13D65DA105B6DC8C.title: "Misturador"
 	quest.13D65DA105B6DC8C.quest_desc: ["Em cima da bacia, com um bloco de espaco, ele mistura os ingredientes."]
 	quest.35CF7E0EF578B3D8.title: "Queimador de blaze"
 	quest.35CF7E0EF578B3D8.quest_desc: ["Faca o queimador vazio e clique com ele em um blaze. Embaixo da bacia ele aquece as receitas; alimente com carvao."]
-	quest.B96A729DC1F49665.title: "Latao"
-	quest.B96A729DC1F49665.quest_desc: ["Cobre e zinco na bacia aquecida viram latao."]
+	quest.396A729DC1F49665.title: "Latao"
+	quest.396A729DC1F49665.quest_desc: ["Cobre e zinco na bacia aquecida viram latao."]
 	quest.4586EE64BB7E2CB4.title: "Revestimento de latao"
 	quest.4586EE64BB7E2CB4.quest_desc: ["Latao em tronco descascado. Base das maquinas avancadas."]
-	quest.FE1B436601F36D12.title: "Quartzo rosa"
-	quest.FE1B436601F36D12.quest_desc: ["Quartzo rosa polido vira tubo de eletrons, a peca eletronica do Create."]
+	quest.7E1B436601F36D12.title: "Quartzo rosa"
+	quest.7E1B436601F36D12.quest_desc: ["Quartzo rosa polido vira tubo de eletrons, a peca eletronica do Create."]
 	quest.5D8954105C424FBC.title: "Deployer"
 	quest.5D8954105C424FBC.quest_desc: ["O deployer usa o item da mao dele no bloco da frente, como um jogador. Base da montagem automatica."]
 	quest.7C28ABE1AD660519.title: "Mecanismo de precisao"
 	quest.7C28ABE1AD660519.quest_desc: ["Feito em varias etapas numa esteira com deployers (montagem em sequencia). Veja o passo a passo no JEI."]
 	quest.7BC3C4803FA3464F.title: "Funil de latao"
 	quest.7BC3C4803FA3464F.quest_desc: ["Funis colocam e tiram itens das esteiras e baus. O de latao tem filtro."]
-	quest.E8EB7FC2303C16F5.title: "Tunel de latao"
-	quest.E8EB7FC2303C16F5.quest_desc: ["Divide os itens de uma esteira entre varias saidas."]
+	quest.68EB7FC2303C16F5.title: "Tunel de latao"
+	quest.68EB7FC2303C16F5.quest_desc: ["Divide os itens de uma esteira entre varias saidas."]
 	quest.2FFCD2A06A46A4AE.title: "Crafter mecanico"
 	quest.2FFCD2A06A46A4AE.quest_desc: ["Varios crafters juntos fazem receitas grandes sozinhos."]
-	quest.A3F4045B66346133.title: "Britadores"
-	quest.A3F4045B66346133.quest_desc: ["Duas rodas trituradoras girando para dentro moem minerio e dao mais material."]
+	quest.23F4045B66346133.title: "Britadores"
+	quest.23F4045B66346133.quest_desc: ["Duas rodas trituradoras girando para dentro moem minerio e dao mais material."]
 	chapter.194556CE7AC2ADF2.title: "Create 4: vapor, fluidos e trens"
-	quest.8DE1EED07292296C.title: "Tubos"
-	quest.8DE1EED07292296C.quest_desc: ["Tubos levam liquidos."]
-	quest.BE62D397BC09BE53.title: "Bomba"
-	quest.BE62D397BC09BE53.quest_desc: ["A bomba gira e empurra o liquido pelos tubos. A chave inglesa inverte o sentido."]
+	quest.0DE1EED07292296C.title: "Tubos"
+	quest.0DE1EED07292296C.quest_desc: ["Tubos levam liquidos."]
+	quest.3E62D397BC09BE53.title: "Bomba"
+	quest.3E62D397BC09BE53.quest_desc: ["A bomba gira e empurra o liquido pelos tubos. A chave inglesa inverte o sentido."]
 	quest.65A359F59A05965E.title: "Tanque"
 	quest.65A359F59A05965E.quest_desc: ["Tanques guardam liquido. Varios juntos fazem um tanque grande."]
 	quest.798026F49712E18E.title: "Bico"
 	quest.798026F49712E18E.quest_desc: ["O bico (spout) enche itens com liquido, como garrafas e baldes."]
-	quest.8C36E8C89CCC2873.title: "Motor a vapor"
-	quest.8C36E8C89CCC2873.quest_desc: ["Tanque com agua em cima de queimadores de blaze vira caldeira; o motor a vapor no tanque da muita forca."]
+	quest.0C36E8C89CCC2873.title: "Motor a vapor"
+	quest.0C36E8C89CCC2873.quest_desc: ["Tanque com agua em cima de queimadores de blaze vira caldeira; o motor a vapor no tanque da muita forca."]
 	quest.460D354F7E365880.title: "Trilhos"
 	quest.460D354F7E365880.quest_desc: ["Os trilhos do Create fazem curvas grandes e subidas."]
-	quest.C6081E1978904BB1.title: "Estacao"
-	quest.C6081E1978904BB1.quest_desc: ["A estacao e onde o trem para e e montado."]
-	quest.AC8228681581CCD1.title: "Controles"
-	quest.AC8228681581CCD1.quest_desc: ["Os controles dirigem o trem. Com um horario, ele anda sozinho entre estacoes."]
+	quest.46081E1978904BB1.title: "Estacao"
+	quest.46081E1978904BB1.quest_desc: ["A estacao e onde o trem para e e montado."]
+	quest.2C8228681581CCD1.title: "Controles"
+	quest.2C8228681581CCD1.quest_desc: ["Os controles dirigem o trem. Com um horario, ele anda sozinho entre estacoes."]
 	quest.41487192176AFECF.title: "Construcoes prontas"
 	quest.41487192176AFECF.quest_desc: ["A mesa de esquemas e o canhao de esquemas montam uma construcao inteira a partir de um arquivo. Coloque arquivos .nbt na pasta schematics do jogo; ha muitos prontos no site createmod.com."]
-	chapter.A5D41E448E070155.title: "Mochila e baus"
+	chapter.25D41E448E070155.title: "Mochila e baus"
 	quest.30E1A058E28935C6.title: "Base de melhoria"
 	quest.30E1A058E28935C6.quest_desc: ["As melhorias da mochila partem desta base. Clique com o botao direito na mochila e coloque nas casas de melhoria."]
 	quest.0DECF1890C3ABC0D.title: "Coletar sozinho"
 	quest.0DECF1890C3ABC0D.quest_desc: ["A melhoria de coleta guarda direto na mochila o que voce pega do chao."]
-	quest.A7310D6F4793230C.title: "Ima"
-	quest.A7310D6F4793230C.quest_desc: ["A melhoria de ima puxa os itens de perto para a mochila."]
-	quest.CCDCCCF2E465DD33.title: "Comer sozinho"
-	quest.CCDCCCF2E465DD33.quest_desc: ["A melhoria de alimentacao come a comida da mochila quando voce fica com fome."]
+	quest.27310D6F4793230C.title: "Ima"
+	quest.27310D6F4793230C.quest_desc: ["A melhoria de ima puxa os itens de perto para a mochila."]
+	quest.4CDCCCF2E465DD33.title: "Comer sozinho"
+	quest.4CDCCCF2E465DD33.quest_desc: ["A melhoria de alimentacao come a comida da mochila quando voce fica com fome."]
 	quest.4017C33CC6FCB89A.title: "Mochila de ferro"
 	quest.4017C33CC6FCB89A.quest_desc: ["Mochila maior, com mais espaco e mais casas de melhoria. Depois vem ouro, diamante e netherite."]
 	quest.4DD8BD036B5EA3BE.title: "Bau de ferro"
 	quest.4DD8BD036B5EA3BE.quest_desc: ["Iron Chests: baus maiores que o normal. Ferro, ouro, diamante e outros."]
 	quest.3B2B5BF9EDC02132.title: "Bau grande do Sophisticated"
 	quest.3B2B5BF9EDC02132.quest_desc: ["Sophisticated Storage: baus e barris com melhorias, como a mochila."]
-	chapter.C5E0B2A3B1354CC1.title: "Cozinha e fazenda"
+	chapter.45E0B2A3B1354CC1.title: "Cozinha e fazenda"
 	quest.444ED84B583BF94C.title: "Faca"
 	quest.444ED84B583BF94C.quest_desc: ["A faca colhe palha e corta comida na tabua."]
-	quest.F6DC6C83A5F3D648.title: "Tabua de corte"
-	quest.F6DC6C83A5F3D648.quest_desc: ["Coloque um ingrediente na tabua e clique com a faca para cortar."]
-	quest.AE7513D1359CBC3D.title: "Fogao"
-	quest.AE7513D1359CBC3D.quest_desc: ["O fogao cozinha em cima e aquece a panela e a frigideira."]
+	quest.76DC6C83A5F3D648.title: "Tabua de corte"
+	quest.76DC6C83A5F3D648.quest_desc: ["Coloque um ingrediente na tabua e clique com a faca para cortar."]
+	quest.2E7513D1359CBC3D.title: "Fogao"
+	quest.2E7513D1359CBC3D.quest_desc: ["O fogao cozinha em cima e aquece a panela e a frigideira."]
 	quest.5FD2BAC2E30B4AA8.title: "Terra rica"
 	quest.5FD2BAC2E30B4AA8.quest_desc: ["Composto organico vira terra rica, onde as plantas crescem mais rapido."]
-	quest.CB167245EDBCA310.title: "Cozinha montada"
-	quest.CB167245EDBCA310.quest_desc: ["Cooking for Blockheads: a mesa de cozinha mostra tudo que da para fazer com o que esta na geladeira e nos baus ao lado."]
-	quest.877424323BC65D3B.title: "Vaso que planta sozinho"
-	quest.877424323BC65D3B.quest_desc: ["Botany Pots: coloque terra e uma semente; com funil embaixo ele colhe sozinho."]
+	quest.4B167245EDBCA310.title: "Cozinha montada"
+	quest.4B167245EDBCA310.quest_desc: ["Cooking for Blockheads: a mesa de cozinha mostra tudo que da para fazer com o que esta na geladeira e nos baus ao lado."]
+	quest.077424323BC65D3B.title: "Vaso que planta sozinho"
+	quest.077424323BC65D3B.quest_desc: ["Botany Pots: coloque terra e uma semente; com funil embaixo ele colhe sozinho."]
 	quest.53E0B8503D6C72E2.title: "Plantacao de minerio"
 	quest.53E0B8503D6C72E2.quest_desc: ["Mystical Agriculture: essencia de inferium sai do minerio de inferium e vira sementes que dao materiais."]
 	quest.569DF5B660B84CED.title: "Estacoes do ano"
 	quest.569DF5B660B84CED.quest_desc: ["Serene Seasons: o ano tem primavera, verao, outono e inverno. Cada planta cresce melhor em certas estacoes; o JEI mostra quais."]
-	chapter.9CC3B8CA7BE5A04E.title: "Construir"
+	chapter.1CC3B8CA7BE5A04E.title: "Construir"
 	quest.379468DB3455A8B2.title: "Ferramenta de construir"
 	quest.379468DB3455A8B2.quest_desc: ["Building Gadgets: coloca varios blocos de uma vez. Precisa de energia (carregue em um carregador de energia)."]
 	quest.09486C4E6AFA0424.title: "Copiar e colar"
@@ -175,37 +175,37 @@
 	quest.0F7DF596AAA40A64.quest_desc: ["Effortless Building: segure Alt para escolher modos como parede, linha, espelho e repeticao."]
 	quest.168A3A22661A0A48.title: "Telhados de verdade"
 	quest.168A3A22661A0A48.quest_desc: ["Macaw's Roofs, Windows, Doors, Fences e Furniture: blocos de telhado, janelas, portas, cercas e moveis. Procure por mcw no JEI."]
-	quest.94BD5A02E592B8A1.title: "Moveis"
-	quest.94BD5A02E592B8A1.quest_desc: ["Handcrafted, Beautify, Supplementaries e Bubblellaneous trazem moveis e decoracao. Procure pelo nome do mod no JEI com @."]
+	quest.14BD5A02E592B8A1.title: "Moveis"
+	quest.14BD5A02E592B8A1.quest_desc: ["Handcrafted, Beautify, Supplementaries e Bubblellaneous trazem moveis e decoracao. Procure pelo nome do mod no JEI com @."]
 	chapter.0681A168F2C7C697.title: "Animais"
-	quest.F09A1A630889A48A.title: "Dicionario animal"
-	quest.F09A1A630889A48A.quest_desc: ["Alex's Mobs tem um livro que explica cada bicho, o que ele come e como domesticar."]
+	quest.709A1A630889A48A.title: "Dicionario animal"
+	quest.709A1A630889A48A.quest_desc: ["Alex's Mobs tem um livro que explica cada bicho, o que ele come e como domesticar."]
 	quest.06C980678102C2D1.title: "Banana"
 	quest.06C980678102C2D1.quest_desc: ["Bananas caem das folhas de selva. Varios bichos do Alex's Mobs gostam delas, como os macacos."]
 	quest.4ADAEBCD1EB47A95.title: "Hamster"
 	quest.4ADAEBCD1EB47A95.quest_desc: ["Adorable Hamster Pets: hamsters de estimacao que seguem voce e cabem no ombro."]
-	quest.91870977C3D93740.title: "Dragao"
-	quest.91870977C3D93740.quest_desc: ["Dragon Mounts: ovos de dragao chocam um dragao que voce cria e monta."]
+	quest.11870977C3D93740.title: "Dragao"
+	quest.11870977C3D93740.quest_desc: ["Dragon Mounts: ovos de dragao chocam um dragao que voce cria e monta."]
 	quest.673908041A368C98.title: "Mais bichos"
 	quest.673908041A368C98.quest_desc: ["Naturalist, Critters and Companions, Friends&Foes, Wilder Nature e Archie's Dinosaurs espalham bichos pelos biomas. O Jade mostra o nome de cada um."]
-	chapter.ABBF7954E151BB6E.title: "Explorar"
-	quest.876BEA6CFE9209A1.title: "Bussola de biomas"
-	quest.876BEA6CFE9209A1.quest_desc: ["Nature's Compass aponta para o bioma que voce escolher."]
+	chapter.2BBF7954E151BB6E.title: "Explorar"
+	quest.076BEA6CFE9209A1.title: "Bussola de biomas"
+	quest.076BEA6CFE9209A1.quest_desc: ["Nature's Compass aponta para o bioma que voce escolher."]
 	quest.3062EA0B7042C34D.title: "Bussola de estruturas"
 	quest.3062EA0B7042C34D.quest_desc: ["Explorer's Compass aponta para vilas, templos, masmorras e outras estruturas."]
-	quest.B33B894B34D3932D.title: "Atlas"
-	quest.B33B894B34D3932D.quest_desc: ["Map Atlases junta mapas de papel em um livro. Na mao secundaria vira minimapa."]
-	quest.E181CF23667BE12E.title: "Pergaminho de volta"
-	quest.E181CF23667BE12E.quest_desc: ["O pergaminho de retorno leva de volta para a ultima waystone ou cama."]
+	quest.333B894B34D3932D.title: "Atlas"
+	quest.333B894B34D3932D.quest_desc: ["Map Atlases junta mapas de papel em um livro. Na mao secundaria vira minimapa."]
+	quest.6181CF23667BE12E.title: "Pergaminho de volta"
+	quest.6181CF23667BE12E.quest_desc: ["O pergaminho de retorno leva de volta para a ultima waystone ou cama."]
 	chapter.59AADA362CD5A80D.title: "Mekanism"
-	quest.F90F2B514D6ED05C.title: "Infusor metalurgico"
-	quest.F90F2B514D6ED05C.quest_desc: ["A primeira maquina: mistura ferro com carvao para fazer aco e outras ligas. Precisa de energia."]
-	quest.A8B3969DA2CBC5F3.title: "Energia"
-	quest.A8B3969DA2CBC5F3.quest_desc: ["O Mekanism do pack nao tem geradores proprios: o alternador do Create Crafts & Additions transforma a rotacao do Create em energia para as maquinas."]
+	quest.790F2B514D6ED05C.title: "Infusor metalurgico"
+	quest.790F2B514D6ED05C.quest_desc: ["A primeira maquina: mistura ferro com carvao para fazer aco e outras ligas. Precisa de energia."]
+	quest.28B3969DA2CBC5F3.title: "Energia"
+	quest.28B3969DA2CBC5F3.quest_desc: ["O Mekanism do pack nao tem geradores proprios: o alternador do Create Crafts & Additions transforma a rotacao do Create em energia para as maquinas."]
 	quest.453A0736B216E094.title: "Camara de enriquecimento"
 	quest.453A0736B216E094.quest_desc: ["Transforma um minerio em dois montes de po: o dobro de lingotes."]
-	quest.993CC4C2D0BF0A31.title: "Cabos"
-	quest.993CC4C2D0BF0A31.quest_desc: ["Cabos universais levam energia do gerador para as maquinas."]
+	quest.193CC4C2D0BF0A31.title: "Cabos"
+	quest.193CC4C2D0BF0A31.quest_desc: ["Cabos universais levam energia do gerador para as maquinas."]
 	chapter.3AFA20A348928003.title: "Dimensoes"
 	quest.29026A4FF6CEB946.title: "Nether"
 	quest.29026A4FF6CEB946.quest_desc: ["Portal de obsidiana aceso com isqueiro."]
@@ -215,92 +215,92 @@
 	quest.2F383471F920B013.quest_desc: ["Poca de agua 2x2 cercada de flores; jogue um diamante dentro."]
 	quest.7B3BE44F6DE1B8AD.title: "Undergarden"
 	quest.7B3BE44F6DE1B8AD.quest_desc: ["Moldura de tijolos de pedra ativada com o catalisador do Undergarden (receita no JEI)."]
-	quest.932C1D9BA47BE4F2.title: "Eternal Starlight"
-	quest.932C1D9BA47BE4F2.quest_desc: ["Dimensao das estrelas: procure as ruinas de portal pelo mundo e veja no JEI como ativar."]
+	quest.132C1D9BA47BE4F2.title: "Eternal Starlight"
+	quest.132C1D9BA47BE4F2.quest_desc: ["Dimensao das estrelas: procure as ruinas de portal pelo mundo e veja no JEI como ativar."]
 	quest.12578001AE3297C2.title: "Masmorras infinitas"
 	quest.12578001AE3297C2.quest_desc: ["Dimensional Dungeons: a chave de portal abre masmorras que se renovam (receita no JEI)."]
 	quest.009843D988A83261.title: "Lua"
 	quest.009843D988A83261.quest_desc: ["Ad Astra: monte um foguete na bancada da NASA e voe para a Lua."]
-	quest.F8BEFEA816B93AB6.title: "End"
-	quest.F8BEFEA816B93AB6.quest_desc: ["Olhos de ender levam ao portal do End e ao dragao."]
+	quest.78BEFEA816B93AB6.title: "End"
+	quest.78BEFEA816B93AB6.quest_desc: ["Olhos de ender levam ao portal do End e ao dragao."]
 	chapter.62BEA1E66A80BAE3.title: "Aether"
-	quest.EB1A452EC3CA1779.title: "Chegar no Aether"
-	quest.EB1A452EC3CA1779.quest_desc: ["Moldura de glowstone acesa com um balde de agua. Leve o paraquedas dourado que o mod da na primeira visita."]
-	quest.8D2620E5B1473973.title: "Ambrosium"
-	quest.8D2620E5B1473973.quest_desc: ["Fragmentos de ambrosium curam e servem de combustivel no Aether."]
-	quest.BB79E945D837AB5A.title: "Zanite"
-	quest.BB79E945D837AB5A.quest_desc: ["Gema azul para ferramentas e armadura do Aether."]
-	quest.BEDEF2172CD2B905.title: "Primeira masmorra"
-	quest.BEDEF2172CD2B905.quest_desc: ["Venca o Slider na masmorra de bronze e pegue a chave de bronze."]
+	quest.6B1A452EC3CA1779.title: "Chegar no Aether"
+	quest.6B1A452EC3CA1779.quest_desc: ["Moldura de glowstone acesa com um balde de agua. Leve o paraquedas dourado que o mod da na primeira visita."]
+	quest.0D2620E5B1473973.title: "Ambrosium"
+	quest.0D2620E5B1473973.quest_desc: ["Fragmentos de ambrosium curam e servem de combustivel no Aether."]
+	quest.3B79E945D837AB5A.title: "Zanite"
+	quest.3B79E945D837AB5A.quest_desc: ["Gema azul para ferramentas e armadura do Aether."]
+	quest.3EDEF2172CD2B905.title: "Primeira masmorra"
+	quest.3EDEF2172CD2B905.quest_desc: ["Venca o Slider na masmorra de bronze e pegue a chave de bronze."]
 	quest.4AF87777C727F2E1.title: "Rainha Valquiria"
 	quest.4AF87777C727F2E1.quest_desc: ["A masmorra de prata guarda a Rainha Valquiria e a chave de prata."]
-	quest.A696EF3E0D6E89B7.title: "Espirito do Sol"
-	quest.A696EF3E0D6E89B7.quest_desc: ["A masmorra de ouro e o fim do Aether: venca o Espirito do Sol."]
+	quest.2696EF3E0D6E89B7.title: "Espirito do Sol"
+	quest.2696EF3E0D6E89B7.quest_desc: ["A masmorra de ouro e o fim do Aether: venca o Espirito do Sol."]
 	chapter.58CDF0B4C55394C9.title: "Twilight Forest"
-	quest.820B1BDC21D32332.title: "Entrar"
-	quest.820B1BDC21D32332.quest_desc: ["Poca de agua 2x2 cercada de flores; jogue um diamante dentro."]
-	quest.FDF21F3AFD83BEBE.title: "Naga"
-	quest.FDF21F3AFD83BEBE.quest_desc: ["O primeiro chefe vive no patio de pedra. Ele deixa escamas para armadura."]
+	quest.020B1BDC21D32332.title: "Entrar"
+	quest.020B1BDC21D32332.quest_desc: ["Poca de agua 2x2 cercada de flores; jogue um diamante dentro."]
+	quest.7DF21F3AFD83BEBE.title: "Naga"
+	quest.7DF21F3AFD83BEBE.quest_desc: ["O primeiro chefe vive no patio de pedra. Ele deixa escamas para armadura."]
 	quest.3C11C6E6C0EA5EDF.title: "Mapa magico"
 	quest.3C11C6E6C0EA5EDF.quest_desc: ["Com o foco de mapa magico voce faz um mapa que mostra os biomas e as estruturas dos chefes."]
 	quest.40E733CE9055A8C2.title: "Proximos chefes"
 	quest.40E733CE9055A8C2.quest_desc: ["A progressao segue: Lich, Hidra, Ur-Ghast e outros. Cada chefe libera a regiao seguinte; tentar pular da efeitos ruins."]
 	chapter.52600FF197F42E06.title: "Undergarden"
-	quest.C9ABA829AA40AE05.title: "Catalisador"
-	quest.C9ABA829AA40AE05.quest_desc: ["O catalisador ativa o portal de tijolos de pedra."]
+	quest.49ABA829AA40AE05.title: "Catalisador"
+	quest.49ABA829AA40AE05.quest_desc: ["O catalisador ativa o portal de tijolos de pedra."]
 	quest.7F65FA3D01E0FE56.title: "Entrar"
 	quest.7F65FA3D01E0FE56.quest_desc: ["Undergarden e um mundo escuro e perigoso embaixo da terra. Leve tochas."]
-	quest.89912EE1CD8CCEEA.title: "Cloggrum"
-	quest.89912EE1CD8CCEEA.quest_desc: ["O primeiro metal do Undergarden, para ferramentas."]
+	quest.09912EE1CD8CCEEA.title: "Cloggrum"
+	quest.09912EE1CD8CCEEA.quest_desc: ["O primeiro metal do Undergarden, para ferramentas."]
 	quest.2B4732C93C19A1AF.title: "Froststeel"
 	quest.2B4732C93C19A1AF.quest_desc: ["Metal gelado que deixa os inimigos mais lentos."]
-	quest.C92E6A440E59C51C.title: "Utherium"
-	quest.C92E6A440E59C51C.quest_desc: ["Cristal forte contra as criaturas do Undergarden."]
-	chapter.ECDFF22C3CFE2200.title: "Espaco"
-	quest.DAD3F903CD78E4F3.title: "Aco"
-	quest.DAD3F903CD78E4F3.quest_desc: ["Ad Astra comeca com aco."]
-	quest.F8643149D88DB1BF.title: "Bancada da NASA"
-	quest.F8643149D88DB1BF.quest_desc: ["A bancada da NASA monta as pecas do foguete."]
-	quest.FB3831876F704DD4.title: "Traje espacial"
-	quest.FB3831876F704DD4.quest_desc: ["Capacete e traje espacial com oxigenio sao obrigatorios fora da Terra."]
-	quest.9E0708B7EA09C5FA.title: "Foguete"
-	quest.9E0708B7EA09C5FA.quest_desc: ["Foguete nivel 1: leva ate a Lua. Abasteca com combustivel e coloque na plataforma de lancamento."]
+	quest.492E6A440E59C51C.title: "Utherium"
+	quest.492E6A440E59C51C.quest_desc: ["Cristal forte contra as criaturas do Undergarden."]
+	chapter.6CDFF22C3CFE2200.title: "Espaco"
+	quest.5AD3F903CD78E4F3.title: "Aco"
+	quest.5AD3F903CD78E4F3.quest_desc: ["Ad Astra comeca com aco."]
+	quest.78643149D88DB1BF.title: "Bancada da NASA"
+	quest.78643149D88DB1BF.quest_desc: ["A bancada da NASA monta as pecas do foguete."]
+	quest.7B3831876F704DD4.title: "Traje espacial"
+	quest.7B3831876F704DD4.quest_desc: ["Capacete e traje espacial com oxigenio sao obrigatorios fora da Terra."]
+	quest.1E0708B7EA09C5FA.title: "Foguete"
+	quest.1E0708B7EA09C5FA.quest_desc: ["Foguete nivel 1: leva ate a Lua. Abasteca com combustivel e coloque na plataforma de lancamento."]
 	quest.72366A0DEA4B1515.title: "Lua"
 	quest.72366A0DEA4B1515.quest_desc: ["Na Lua tem desh, o metal do foguete seguinte."]
-	quest.CA989F85660C8492.title: "Desh"
-	quest.CA989F85660C8492.quest_desc: ["Com desh voce faz o foguete nivel 2 e chega em Marte."]
+	quest.4A989F85660C8492.title: "Desh"
+	quest.4A989F85660C8492.quest_desc: ["Com desh voce faz o foguete nivel 2 e chega em Marte."]
 	quest.6C64252B40CD4F10.title: "Marte"
 	quest.6C64252B40CD4F10.quest_desc: ["Marte e o caminho para Venus, Mercurio e Glacio."]
-	quest.C25B42F224DFA666.title: "Venus"
-	quest.C25B42F224DFA666.quest_desc: ["Venus e quente e acida: va com o traje certo."]
+	quest.425B42F224DFA666.title: "Venus"
+	quest.425B42F224DFA666.quest_desc: ["Venus e quente e acida: va com o traje certo."]
 	quest.07CDDF90A2B8F066.title: "Mercurio"
 	quest.07CDDF90A2B8F066.quest_desc: ["O planeta mais perto do Sol."]
-	quest.ED006D3D25BE95FA.title: "Glacio"
-	quest.ED006D3D25BE95FA.quest_desc: ["O planeta gelado, o mais longe de todos."]
-	quest.E24E7920FAAD6862.title: "Vila lunar"
-	quest.E24E7920FAAD6862.quest_desc: ["Os lunarianos tem vilas na Lua e trocam itens como os aldeoes."]
+	quest.6D006D3D25BE95FA.title: "Glacio"
+	quest.6D006D3D25BE95FA.quest_desc: ["O planeta gelado, o mais longe de todos."]
+	quest.624E7920FAAD6862.title: "Vila lunar"
+	quest.624E7920FAAD6862.quest_desc: ["Os lunarianos tem vilas na Lua e trocam itens como os aldeoes."]
 	chapter.1EDB32752725DDCA.title: "Utilidades"
 	quest.493065C7669E9089.title: "Minerar em bloco"
 	quest.493065C7669E9089.quest_desc: ["VeinMiner: segure a tecla ao lado do 1 e quebre um minerio para levar o veio inteiro."]
-	quest.E469C52CE8ED6032.title: "Marcar no mapa"
-	quest.E469C52CE8ED6032.quest_desc: ["Ping Wheel: o botao do meio do mouse marca um ponto para todo mundo ver."]
+	quest.6469C52CE8ED6032.title: "Marcar no mapa"
+	quest.6469C52CE8ED6032.quest_desc: ["Ping Wheel: o botao do meio do mouse marca um ponto para todo mundo ver."]
 	quest.114B01E7B50BF062.title: "Carregar bau"
 	quest.114B01E7B50BF062.quest_desc: ["Carry On: agache com a mao vazia e clique em um bau para levar ele inteiro, com tudo dentro."]
 	quest.44D6D9BE5B35C3AF.title: "Martelo"
 	quest.44D6D9BE5B35C3AF.quest_desc: ["Just Hammers: o martelo quebra uma area 3x3 de uma vez."]
 	quest.1DF15A7537E1459C.title: "Saco de dormir"
 	quest.1DF15A7537E1459C.quest_desc: ["Comforts: o saco de dormir passa a noite sem mudar o seu ponto de nascer."]
-	quest.851B132375F0969D.title: "Zoom"
-	quest.851B132375F0969D.quest_desc: ["Ok Zoomer: segure C para dar zoom; a roda do mouse ajusta."]
+	quest.051B132375F0969D.title: "Zoom"
+	quest.051B132375F0969D.quest_desc: ["Ok Zoomer: segure C para dar zoom; a roda do mouse ajusta."]
 	quest.737CADF831F74384.title: "Baus de saque"
 	quest.737CADF831F74384.quest_desc: ["Lootr: cada jogador abre o seu proprio saque nos baus das estruturas. Ninguem fica sem."]
-	quest.AC23A23D6D3A08C6.title: "Terminal de armazenamento"
-	quest.AC23A23D6D3A08C6.quest_desc: ["Tom's Storage: liga varios baus em um terminal so, com busca."]
+	quest.2C23A23D6D3A08C6.title: "Terminal de armazenamento"
+	quest.2C23A23D6D3A08C6.quest_desc: ["Tom's Storage: liga varios baus em um terminal so, com busca."]
 	quest.205E6C0F5C30753E.title: "Netherite melhor"
 	quest.205E6C0F5C30753E.quest_desc: ["Advanced Netherite: ferramentas e armaduras alem da netherite, com ferro, ouro, esmeralda e diamante."]
-	quest.88B06B2679D02B1D.title: "Fumar"
-	quest.88B06B2679D02B1D.quest_desc: ["Smoking Pipe, CiggyCraft e Tobacconist: plante tabaco e fume. So por diversao."]
-	chapter.B52FDEAA5730E688.title: "Create: addons"
+	quest.08B06B2679D02B1D.title: "Fumar"
+	quest.08B06B2679D02B1D.quest_desc: ["Smoking Pipe, CiggyCraft e Tobacconist: plante tabaco e fume. So por diversao."]
+	chapter.352FDEAA5730E688.title: "Create: addons"
 	quest.07F95DF54233143C.title: "Jetpack"
 	quest.07F95DF54233143C.quest_desc: ["Create Jetpack: voa com ar comprimido de um tanque."]
 	quest.38B4B8D64B859B04.title: "Escavadeira de minerio"
@@ -309,21 +309,21 @@
 	quest.6B817114074B4272.quest_desc: ["Create Enchantment Industry: transforma experiencia em liquido e encanta itens com maquinas."]
 	quest.325CB21188010A9A.title: "Energia"
 	quest.325CB21188010A9A.quest_desc: ["Create Crafts & Additions: o alternador gera energia e o motor eletrico gira as maquinas."]
-	quest.D77B50F4C3ED884A.title: "Cozinha automatica"
-	quest.D77B50F4C3ED884A.quest_desc: ["Create Central Kitchen: as maquinas do Create fazem as comidas do Farmer's Delight."]
-	chapter.E71D011D2029328F.title: "Cacador de chefes"
+	quest.577B50F4C3ED884A.title: "Cozinha automatica"
+	quest.577B50F4C3ED884A.quest_desc: ["Create Central Kitchen: as maquinas do Create fazem as comidas do Farmer's Delight."]
+	chapter.671D011D2029328F.title: "Cacador de chefes"
 	quest.62726123703DF347.title: "Wither"
 	quest.62726123703DF347.quest_desc: ["Tres cranios de esqueleto wither em cima de areia das almas em T. Faca longe de casa."]
 	quest.14A09DB6CD3C9668.title: "Dragao do Ender"
 	quest.14A09DB6CD3C9668.quest_desc: ["O chefe do End."]
 	quest.3B675ADFEB3DC4A5.title: "Warden"
 	quest.3B675ADFEB3DC4A5.quest_desc: ["Mora nas cidades antigas do subsolo escuro. Sem barulho, ele nao aparece."]
-	quest.D42C1529514AFB08.title: "Guardiao anciao"
-	quest.D42C1529514AFB08.quest_desc: ["Mora no monumento do oceano."]
-	quest.EEAA7D65C829EAEC.title: "Cavaleiro de ferro"
-	quest.EEAA7D65C829EAEC.quest_desc: ["Mowzie's Mobs: o Ferrous Wroughtnaut guarda uma camara no subsolo. Acerte as costas depois que ele erra o golpe."]
-	quest.8D06AEA7DF8858A2.title: "Frostmaw"
-	quest.8D06AEA7DF8858A2.quest_desc: ["Mowzie's Mobs: um gigante de gelo que dorme nos biomas de neve."]
+	quest.542C1529514AFB08.title: "Guardiao anciao"
+	quest.542C1529514AFB08.quest_desc: ["Mora no monumento do oceano."]
+	quest.6EAA7D65C829EAEC.title: "Cavaleiro de ferro"
+	quest.6EAA7D65C829EAEC.quest_desc: ["Mowzie's Mobs: o Ferrous Wroughtnaut guarda uma camara no subsolo. Acerte as costas depois que ele erra o golpe."]
+	quest.0D06AEA7DF8858A2.title: "Frostmaw"
+	quest.0D06AEA7DF8858A2.quest_desc: ["Mowzie's Mobs: um gigante de gelo que dorme nos biomas de neve."]
 	quest.308D71C4D5520C9A.title: "Umvuthi"
 	quest.308D71C4D5520C9A.quest_desc: ["Mowzie's Mobs: o passaro do sol que lidera o povo da savana."]
 	quest.36E81DAF9E4A2C77.title: "Escultor"
@@ -334,10 +334,10 @@
 	quest.6A04EA7B733F51D5.quest_desc: ["Aquamirae: monstro das aguas geladas."]
 	quest.657F017E8BAA19B7.title: "Guardiao esquecido"
 	quest.657F017E8BAA19B7.quest_desc: ["Undergarden: o chefe das catacumbas."]
-	quest.88B95201CB94C70C.title: "Guardiao do portao"
-	quest.88B95201CB94C70C.quest_desc: ["Eternal Starlight: The Gatekeeper."]
-	quest.8264C648566DCAFE.title: "Golem estelar"
-	quest.8264C648566DCAFE.quest_desc: ["Eternal Starlight: o golem da forja."]
+	quest.08B95201CB94C70C.title: "Guardiao do portao"
+	quest.08B95201CB94C70C.quest_desc: ["Eternal Starlight: The Gatekeeper."]
+	quest.0264C648566DCAFE.title: "Golem estelar"
+	quest.0264C648566DCAFE.quest_desc: ["Eternal Starlight: o golem da forja."]
 	quest.69CAAB8AFFAD3256.title: "Monstro lunar"
 	quest.69CAAB8AFFAD3256.quest_desc: ["Eternal Starlight: a Lunar Monstrosity."]
 	chapter.00768C72EAFD4EA3.title: "Chefes da Twilight"
@@ -345,31 +345,31 @@
 	quest.6490CA6149519CDC.quest_desc: ["O primeiro chefe, no patio de pedra."]
 	quest.116977F2BD1CE274.title: "Lich"
 	quest.116977F2BD1CE274.quest_desc: ["A torre do Lich. Quebre os escudos dele antes de atacar."]
-	quest.D9A47017C31FA7E8.title: "Minoshroom"
-	quest.D9A47017C31FA7E8.quest_desc: ["No fundo do labirinto do pantano."]
-	quest.CAE3826881F9D457.title: "Hidra"
-	quest.CAE3826881F9D457.quest_desc: ["No covil de fogo. Leve resistencia ao fogo."]
-	quest.ABDAC0BBD460038C.title: "Cavaleiros fantasmas"
-	quest.ABDAC0BBD460038C.quest_desc: ["Na fortaleza dos cavaleiros, na floresta escura."]
+	quest.59A47017C31FA7E8.title: "Minoshroom"
+	quest.59A47017C31FA7E8.quest_desc: ["No fundo do labirinto do pantano."]
+	quest.4AE3826881F9D457.title: "Hidra"
+	quest.4AE3826881F9D457.quest_desc: ["No covil de fogo. Leve resistencia ao fogo."]
+	quest.2BDAC0BBD460038C.title: "Cavaleiros fantasmas"
+	quest.2BDAC0BBD460038C.quest_desc: ["Na fortaleza dos cavaleiros, na floresta escura."]
 	quest.325DB48F631D47C8.title: "Ur-Ghast"
 	quest.325DB48F631D47C8.quest_desc: ["No topo da torre escura."]
 	quest.2BDDBDCF337F9D0E.title: "Yeti alfa"
 	quest.2BDDBDCF337F9D0E.quest_desc: ["Na caverna dos yetis, na floresta de neve."]
-	quest.8074CD0979FCF7F9.title: "Rainha da Neve"
-	quest.8074CD0979FCF7F9.quest_desc: ["No palacio da aurora, no glaciar."]
-	chapter.B99D037DDCE38331.title: "Explorador"
-	quest.FC444AD0D6718BCE.title: "Cidade antiga"
-	quest.FC444AD0D6718BCE.quest_desc: ["No subsolo escuro. Cuidado com o Warden."]
+	quest.0074CD0979FCF7F9.title: "Rainha da Neve"
+	quest.0074CD0979FCF7F9.quest_desc: ["No palacio da aurora, no glaciar."]
+	chapter.399D037DDCE38331.title: "Explorador"
+	quest.7C444AD0D6718BCE.title: "Cidade antiga"
+	quest.7C444AD0D6718BCE.quest_desc: ["No subsolo escuro. Cuidado com o Warden."]
 	quest.386B8F653AF78C9F.title: "Camaras de desafio"
 	quest.386B8F653AF78C9F.quest_desc: ["Salas com geradores de desafio e o cofre das chaves."]
-	quest.D61B7CF1CFD769E2.title: "Mansao da floresta"
-	quest.D61B7CF1CFD769E2.quest_desc: ["Na floresta escura, cheia de illagers."]
+	quest.561B7CF1CFD769E2.title: "Mansao da floresta"
+	quest.561B7CF1CFD769E2.quest_desc: ["Na floresta escura, cheia de illagers."]
 	quest.4DA558A35B923119.title: "Fortaleza"
 	quest.4DA558A35B923119.quest_desc: ["Onde fica o portal do End. Os olhos de ender apontam para ela."]
-	quest.B9E1CD7CB12EDA6F.title: "Fortaleza do Nether"
-	quest.B9E1CD7CB12EDA6F.quest_desc: ["Onde nascem os blazes e os esqueletos wither."]
-	quest.CBF994F1CA99747B.title: "Monumento do oceano"
-	quest.CBF994F1CA99747B.quest_desc: ["Debaixo do mar, com os guardioes."]
+	quest.39E1CD7CB12EDA6F.title: "Fortaleza do Nether"
+	quest.39E1CD7CB12EDA6F.quest_desc: ["Onde nascem os blazes e os esqueletos wither."]
+	quest.4BF994F1CA99747B.title: "Monumento do oceano"
+	quest.4BF994F1CA99747B.quest_desc: ["Debaixo do mar, com os guardioes."]
 	quest.7E4A666B5BBF16D1.title: "Coliseu"
 	quest.7E4A666B5BBF16D1.quest_desc: ["When Dungeons Arise: uma arena enorme cheia de inimigos."]
 	quest.558BFAC6C1C4221A.title: "Fortaleza illager"
@@ -382,27 +382,27 @@
 	quest.350F6088D3D05B53.quest_desc: ["When Dungeons Arise: o lugar mais assustador do pack."]
 	quest.6E9F2E9155DD6AE9.title: "Dirigivel"
 	quest.6E9F2E9155DD6AE9.quest_desc: ["When Dungeons Arise: um dirigivel no ceu."]
-	quest.C0FDDDFE5251C5BF.title: "Navio pirata"
-	quest.C0FDDDFE5251C5BF.quest_desc: ["Aquamirae: navio pirata no oceano gelado, onde mora a Capita Cornelia."]
+	quest.40FDDDFE5251C5BF.title: "Navio pirata"
+	quest.40FDDDFE5251C5BF.quest_desc: ["Aquamirae: navio pirata no oceano gelado, onde mora a Capita Cornelia."]
 	quest.079C05DAA7488BAE.title: "Camara de ferro"
 	quest.079C05DAA7488BAE.quest_desc: ["Mowzie's Mobs: a camara do Ferrous Wroughtnaut."]
 	quest.6C1B45322779964A.title: "Vila dos sapos"
 	quest.6C1B45322779964A.quest_desc: ["Ribbits: vila de sapos no pantano."]
-	quest.BE785FE65989A919.title: "Castelo proibido"
-	quest.BE785FE65989A919.quest_desc: ["Incendium: o castelo do Nether."]
+	quest.3E785FE65989A919.title: "Castelo proibido"
+	quest.3E785FE65989A919.quest_desc: ["Incendium: o castelo do Nether."]
 	quest.6476BB4EF3352AB9.title: "Vila piglin"
 	quest.6476BB4EF3352AB9.quest_desc: ["Incendium: uma vila de piglins no Nether."]
-	quest.D2132A11A04149AA.title: "Taverna"
-	quest.D2132A11A04149AA.quest_desc: ["Explorify: uma taverna na estrada."]
+	quest.52132A11A04149AA.title: "Taverna"
+	quest.52132A11A04149AA.quest_desc: ["Explorify: uma taverna na estrada."]
 	quest.34ECE984C788A76B.title: "Cidadela"
 	quest.34ECE984C788A76B.quest_desc: ["Friends&Foes: a cidadela dos illagers."]
-	quest.FEDA6475F8D84E20.title: "Ninho de dinossauro"
-	quest.FEDA6475F8D84E20.quest_desc: ["Archie's Dinosaurs: uma cratera com fosseis."]
-	quest.E98AD54E6122D0FB.title: "Esqueleto de dragao"
-	quest.E98AD54E6122D0FB.quest_desc: ["Nullscape: um esqueleto gigante no End."]
-	chapter.EE3919EFC5A2EEF7.title: "Volta ao mundo"
-	quest.AD8F878CD7BC1FBE.title: "Cerejeiras"
-	quest.AD8F878CD7BC1FBE.quest_desc: ["Um vale de cerejeiras rosa."]
+	quest.7EDA6475F8D84E20.title: "Ninho de dinossauro"
+	quest.7EDA6475F8D84E20.quest_desc: ["Archie's Dinosaurs: uma cratera com fosseis."]
+	quest.698AD54E6122D0FB.title: "Esqueleto de dragao"
+	quest.698AD54E6122D0FB.quest_desc: ["Nullscape: um esqueleto gigante no End."]
+	chapter.6E3919EFC5A2EEF7.title: "Volta ao mundo"
+	quest.2D8F878CD7BC1FBE.title: "Cerejeiras"
+	quest.2D8F878CD7BC1FBE.quest_desc: ["Um vale de cerejeiras rosa."]
 	quest.21DD0E73C9F46759.title: "Canion vermelho"
 	quest.21DD0E73C9F46759.quest_desc: ["O canion de pedra vermelha."]
 	quest.03E2F1D49DC8D627.title: "Vulcao"
@@ -423,21 +423,21 @@
 	quest.6841C627B5ED58C3.quest_desc: ["Incendium: no Nether, uma floresta de cabeca para baixo."]
 	quest.40C014566C6CA7D2.title: "Vale do choro"
 	quest.40C014566C6CA7D2.quest_desc: ["Incendium: um vale do Nether."]
-	chapter.CED654CD8429AD9B.title: "Colecionador"
+	chapter.4ED654CD8429AD9B.title: "Colecionador"
 	quest.030337DA57D9612C.title: "Montinho de diamante"
 	quest.030337DA57D9612C.quest_desc: ["Junte 64 diamantes. O VeinMiner ajuda."]
-	quest.B70E650A8D2869D1.title: "Netherite"
-	quest.B70E650A8D2869D1.quest_desc: ["Restos antigos no fundo do Nether viram netherite."]
-	quest.FD39318A46A4A28E.title: "Totem"
-	quest.FD39318A46A4A28E.quest_desc: ["O totem da imortalidade vem dos evocadores das mansoes e cidadelas."]
+	quest.370E650A8D2869D1.title: "Netherite"
+	quest.370E650A8D2869D1.quest_desc: ["Restos antigos no fundo do Nether viram netherite."]
+	quest.7D39318A46A4A28E.title: "Totem"
+	quest.7D39318A46A4A28E.quest_desc: ["O totem da imortalidade vem dos evocadores das mansoes e cidadelas."]
 	quest.7A5E4996923A7CA6.title: "Tridente"
 	quest.7A5E4996923A7CA6.quest_desc: ["Os afogados as vezes deixam cair."]
 	quest.2A1B99114C0C5D62.title: "Elytra"
 	quest.2A1B99114C0C5D62.quest_desc: ["Nos navios das cidades do End. Conserte com membrana de phantom na bigorna."]
 	quest.2E2F0B64C34BD002.title: "Cabeca de dragao"
 	quest.2E2F0B64C34BD002.quest_desc: ["Na proa dos navios do End."]
-	quest.8009A0ADFF3F42CE.title: "Estrela do Nether"
-	quest.8009A0ADFF3F42CE.quest_desc: ["O premio do Wither, para fazer um sinalizador."]
+	quest.0009A0ADFF3F42CE.title: "Estrela do Nether"
+	quest.0009A0ADFF3F42CE.quest_desc: ["O premio do Wither, para fazer um sinalizador."]
 	quest.33C97891F98C6AEA.title: "Sinalizador"
 	quest.33C97891F98C6AEA.quest_desc: ["Um sinalizador em cima de uma piramide de blocos de ferro, ouro ou diamante da efeitos bons."]
 }

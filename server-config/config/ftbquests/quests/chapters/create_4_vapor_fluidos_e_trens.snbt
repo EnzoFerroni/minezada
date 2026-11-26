@@ -9,22 +9,22 @@
 	quest_links: [ ]
 	quests: [
 		{
-			id: "8DE1EED07292296C"
-			rewards: [{ id: "22D8A8EB2325933F", type: "xp", xp: 20 }]
-			tasks: [{ id: "7F6F70192BDD2AFE", item: { count: 8, id: "create:fluid_pipe" }, type: "item" }]
+			id: "0DE1EED07292296C"
+			rewards: [{ id: "49F54CDFFADA698C", type: "xp", xp: 20 }]
+			tasks: [{ id: "56E64F56D5D884E0", item: { count: 8, id: "create:fluid_pipe" }, type: "item" }]
 			x: 0d
 			y: 0d
 		}
 		{
-			dependencies: ["8DE1EED07292296C"]
-			id: "BE62D397BC09BE53"
-			rewards: [{ id: "D13EBD4FBE3BB001", type: "xp", xp: 20 }]
-			tasks: [{ id: "ECBBDE4E98D5762B", item: { count: 1, id: "create:mechanical_pump" }, type: "item" }]
+			dependencies: ["0DE1EED07292296C"]
+			id: "3E62D397BC09BE53"
+			rewards: [{ id: "090D7EEC079D95F4", type: "xp", xp: 20 }]
+			tasks: [{ id: "5218B458E35CFD66", item: { count: 1, id: "create:mechanical_pump" }, type: "item" }]
 			x: 1.5d
 			y: 0d
 		}
 		{
-			dependencies: ["BE62D397BC09BE53"]
+			dependencies: ["3E62D397BC09BE53"]
 			id: "65A359F59A05965E"
 			rewards: [{ id: "475DE6C2720AADFE", type: "xp", xp: 20 }]
 			tasks: [{ id: "33B8A694337A7451", item: { count: 4, id: "create:fluid_tank" }, type: "item" }]
@@ -35,20 +35,20 @@
 			dependencies: ["65A359F59A05965E"]
 			id: "798026F49712E18E"
 			rewards: [{ id: "0BD18563AA627DBD", type: "xp", xp: 20 }]
-			tasks: [{ id: "F2944F81B47B6015", item: { count: 1, id: "create:spout" }, type: "item" }]
+			tasks: [{ id: "72944F81B47B6015", item: { count: 1, id: "create:spout" }, type: "item" }]
 			x: 4.5d
 			y: 0d
 		}
 		{
 			dependencies: ["798026F49712E18E"]
-			id: "8C36E8C89CCC2873"
-			rewards: [{ id: "D594541B57599274", type: "xp", xp: 20 }]
-			tasks: [{ id: "EDBD9EDDB498E703", item: { count: 1, id: "create:steam_engine" }, type: "item" }]
+			id: "0C36E8C89CCC2873"
+			rewards: [{ id: "29F71A578C443EB5", type: "xp", xp: 20 }]
+			tasks: [{ id: "48EB9D551943D274", item: { count: 1, id: "create:steam_engine" }, type: "item" }]
 			x: 6d
 			y: 0d
 		}
 		{
-			dependencies: ["8C36E8C89CCC2873"]
+			dependencies: ["0C36E8C89CCC2873"]
 			id: "460D354F7E365880"
 			rewards: [{ id: "5102922E8DDDC26E", type: "xp", xp: 20 }]
 			tasks: [{ id: "5DD2ED086C517288", item: { count: 32, id: "create:track" }, type: "item" }]
@@ -57,24 +57,24 @@
 		}
 		{
 			dependencies: ["460D354F7E365880"]
-			id: "C6081E1978904BB1"
-			rewards: [{ id: "B48F60506857E17D", type: "xp", xp: 20 }]
-			tasks: [{ id: "885324F152979E80", item: { count: 1, id: "create:track_station" }, type: "item" }]
+			id: "46081E1978904BB1"
+			rewards: [{ id: "779293F7CBE0DD5E", type: "xp", xp: 20 }]
+			tasks: [{ id: "2FA2791D60FF9554", item: { count: 1, id: "create:track_station" }, type: "item" }]
 			x: 9d
 			y: 0d
 		}
 		{
-			dependencies: ["C6081E1978904BB1"]
-			id: "AC8228681581CCD1"
-			rewards: [{ id: "AC8E0B0DB0062425", type: "xp", xp: 20 }]
-			tasks: [{ id: "4C6EE7F2D295454C", item: { count: 1, id: "create:controls" }, type: "item" }]
+			dependencies: ["46081E1978904BB1"]
+			id: "2C8228681581CCD1"
+			rewards: [{ id: "6D36AE04CF522A14", type: "xp", xp: 20 }]
+			tasks: [{ id: "51FB2F9B13A420BF", item: { count: 1, id: "create:controls" }, type: "item" }]
 			x: 10.5d
 			y: 0d
 		}
 		{
-			dependencies: ["AC8228681581CCD1"]
+			dependencies: ["2C8228681581CCD1"]
 			id: "41487192176AFECF"
-			rewards: [{ id: "82C1C3AA1795F20B", type: "xp", xp: 20 }]
+			rewards: [{ id: "02C1C3AA1795F20B", type: "xp", xp: 20 }]
 			tasks: [{ id: "5F1EACF258CE0965", item: { count: 1, id: "create:schematicannon" }, type: "item" }]
 			x: 12d
 			y: 0d

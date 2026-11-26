@@ -9,22 +9,22 @@
 	quest_links: [ ]
 	quests: [
 		{
-			id: "F90F2B514D6ED05C"
-			rewards: [{ id: "421953829AF0CBF5", type: "xp", xp: 20 }]
-			tasks: [{ id: "964F60B1361754DC", item: { count: 1, id: "mekanism:metallurgic_infuser" }, type: "item" }]
+			id: "790F2B514D6ED05C"
+			rewards: [{ id: "4F552A250DF9E367", type: "xp", xp: 20 }]
+			tasks: [{ id: "041708F66AAF4CEE", item: { count: 1, id: "mekanism:metallurgic_infuser" }, type: "item" }]
 			x: 0d
 			y: 0d
 		}
 		{
-			dependencies: ["F90F2B514D6ED05C"]
-			id: "A8B3969DA2CBC5F3"
-			rewards: [{ id: "BDFBEA4233E48449", type: "xp", xp: 20 }]
-			tasks: [{ id: "0B4C0312A5D6ACEA", item: { count: 1, id: "createaddition:alternator" }, type: "item" }]
+			dependencies: ["790F2B514D6ED05C"]
+			id: "28B3969DA2CBC5F3"
+			rewards: [{ id: "754D572DA55D255B", type: "xp", xp: 20 }]
+			tasks: [{ id: "45104795F0AF849F", item: { count: 1, id: "createaddition:alternator" }, type: "item" }]
 			x: 1.5d
 			y: 0d
 		}
 		{
-			dependencies: ["A8B3969DA2CBC5F3"]
+			dependencies: ["28B3969DA2CBC5F3"]
 			id: "453A0736B216E094"
 			rewards: [{ id: "0222417508EE341E", type: "xp", xp: 20 }]
 			tasks: [{ id: "40D3ECE8B5A1A803", item: { count: 1, id: "mekanism:enrichment_chamber" }, type: "item" }]
@@ -33,9 +33,9 @@
 		}
 		{
 			dependencies: ["453A0736B216E094"]
-			id: "993CC4C2D0BF0A31"
-			rewards: [{ id: "CDEE5454D1E6C0A7", type: "xp", xp: 20 }]
-			tasks: [{ id: "CB138C2F7BE38E69", item: { count: 1, id: "mekanism:basic_universal_cable" }, type: "item" }]
+			id: "193CC4C2D0BF0A31"
+			rewards: [{ id: "27930EEEA8680CF3", type: "xp", xp: 20 }]
+			tasks: [{ id: "775417B0AB9D9072", item: { count: 1, id: "mekanism:basic_universal_cable" }, type: "item" }]
 			x: 4.5d
 			y: 0d
 		}

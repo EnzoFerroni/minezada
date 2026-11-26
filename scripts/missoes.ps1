@@ -373,7 +373,8 @@ else { Write-Warning 'Sem tools/jars (rode o montar-pack): ids nao conferidos.' 
 # O nome entra sem acento: acentuar um titulo antigo nao muda o id.
 $md5 = [Security.Cryptography.MD5]::Create()
 function Sem($s) { -join ($s.Normalize([Text.NormalizationForm]::FormD).ToCharArray() | Where-Object { [Globalization.CharUnicodeInfo]::GetUnicodeCategory($_) -ne 'NonSpacingMark' }) }
-function Id($s) { -join ($md5.ComputeHash([Text.Encoding]::UTF8.GetBytes((Sem $s)))[0..7] | ForEach-Object { $_.ToString('X2') }) }
+# Primeiro byte abaixo de 0x80: id que comeca com 8 a F vira numero negativo e o jogo nao acha o texto dele no lang.
+function Id($s) { $h = $md5.ComputeHash([Text.Encoding]::UTF8.GetBytes((Sem $s)))[0..7]; $h[0] = $h[0] -band 0x7F; -join ($h | ForEach-Object { $_.ToString('X2') }) }
 function Txt($s) { '"' + $s.Replace('\', '\\').Replace('"', '\"') + '"' }
 
 $utf8 = New-Object Text.UTF8Encoding $false

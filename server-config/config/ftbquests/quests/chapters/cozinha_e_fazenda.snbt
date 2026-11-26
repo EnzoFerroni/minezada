@@ -4,52 +4,52 @@
 	filename: "cozinha_e_fazenda"
 	group: "2A64FDD2182C23F1"
 	icon: { id: "farmersdelight:cooking_pot" }
-	id: "C5E0B2A3B1354CC1"
+	id: "45E0B2A3B1354CC1"
 	order_index: 6
 	quest_links: [ ]
 	quests: [
 		{
 			id: "444ED84B583BF94C"
-			rewards: [{ id: "BAE060897B2F7A35", type: "xp", xp: 20 }]
+			rewards: [{ id: "3AE060897B2F7A35", type: "xp", xp: 20 }]
 			tasks: [{ id: "7B5220A577D226F5", item: { count: 1, id: "farmersdelight:flint_knife" }, type: "item" }]
 			x: 0d
 			y: 0d
 		}
 		{
 			dependencies: ["444ED84B583BF94C"]
-			id: "F6DC6C83A5F3D648"
-			rewards: [{ id: "A49470469C12224A", type: "xp", xp: 20 }]
-			tasks: [{ id: "98A6299C87C10407", item: { count: 1, id: "farmersdelight:cutting_board" }, type: "item" }]
+			id: "76DC6C83A5F3D648"
+			rewards: [{ id: "66F5411B8F2B909E", type: "xp", xp: 20 }]
+			tasks: [{ id: "66CB2E589BAC3C01", item: { count: 1, id: "farmersdelight:cutting_board" }, type: "item" }]
 			x: 1.5d
 			y: 0d
 		}
 		{
-			dependencies: ["F6DC6C83A5F3D648"]
-			id: "AE7513D1359CBC3D"
-			rewards: [{ id: "575CFBBB5BFAE17B", type: "xp", xp: 20 }]
-			tasks: [{ id: "BD3481D9833CED09", item: { count: 1, id: "farmersdelight:stove" }, type: "item" }]
+			dependencies: ["76DC6C83A5F3D648"]
+			id: "2E7513D1359CBC3D"
+			rewards: [{ id: "393304E977D17968", type: "xp", xp: 20 }]
+			tasks: [{ id: "290CBBBD201757DB", item: { count: 1, id: "farmersdelight:stove" }, type: "item" }]
 			x: 3d
 			y: 0d
 		}
 		{
-			dependencies: ["AE7513D1359CBC3D"]
+			dependencies: ["2E7513D1359CBC3D"]
 			id: "5FD2BAC2E30B4AA8"
 			rewards: [{ id: "126DB3482B79AF31", type: "xp", xp: 20 }]
-			tasks: [{ id: "84F852F67DBEBA99", item: { count: 1, id: "farmersdelight:rich_soil" }, type: "item" }]
+			tasks: [{ id: "04F852F67DBEBA99", item: { count: 1, id: "farmersdelight:rich_soil" }, type: "item" }]
 			x: 4.5d
 			y: 0d
 		}
 		{
-			id: "CB167245EDBCA310"
-			rewards: [{ id: "0DC57FF1024F5625", type: "xp", xp: 20 }]
-			tasks: [{ id: "4B372496B70686CB", item: { count: 1, id: "cookingforblockheads:cooking_table" }, type: "item" }]
+			id: "4B167245EDBCA310"
+			rewards: [{ id: "2371AFDDBBCC56F6", type: "xp", xp: 20 }]
+			tasks: [{ id: "6F98832948D3BE0A", item: { count: 1, id: "cookingforblockheads:cooking_table" }, type: "item" }]
 			x: 0d
 			y: 1.5d
 		}
 		{
-			id: "877424323BC65D3B"
-			rewards: [{ id: "F107C7A48D2623FC", type: "xp", xp: 20 }]
-			tasks: [{ id: "A3743C9BCA255D7C", item: { count: 1, id: "botanypots:terracotta_botany_pot" }, type: "item" }]
+			id: "077424323BC65D3B"
+			rewards: [{ id: "6EC762014406747A", type: "xp", xp: 20 }]
+			tasks: [{ id: "15D13265030CD122", item: { count: 1, id: "botanypots:terracotta_botany_pot" }, type: "item" }]
 			x: 1.5d
 			y: 1.5d
 		}
