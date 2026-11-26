@@ -39,6 +39,7 @@ veinminer-client | Tecla do VeinMiner e contorno do que vai quebrar. Segure a te
 dmr | Dragões soltos pelo mundo (no mundo normal, no Nether e no End). Dome dando peixe, monte e voe. Faça um apito para chamar o seu dragão de qualquer lugar; ele também carrega baú. Ovo: coloque no chão e clique com o botão direito para chocar. Dragões de biomas diferentes cruzam e geram híbridos.
 
 ## Dimensões
+cf:227639 | Twilight Forest: dimensão mágica de floresta eterna, com chefes e uma progressão de aventura.
 aether | Uma dimensão no céu, com ilhas flutuantes, mobs, chefes e itens novos. Portal: moldura de glowstone e um balde de água dentro.
 deep-aether | Mais biomas, mobs, chefe e itens dentro do Aether.
 the-undergarden | Dimensão subterrânea escura com minérios, mobs e chefe próprios. Portal: moldura de pedra-abismal (deepslate) acesa com o Catalisador.
@@ -126,6 +127,12 @@ skinrestorer | Mostra a skin de cada um no servidor, mesmo em rede que bloqueia 
 customskinloader | Busca a skin de cada jogador direto no jogo. Se o servidor não conseguir as skins (limite da Mojang em rede compartilhada, como na faculdade), elas continuam aparecendo.
 
 ## Mundo e facilidade
+cf:289412 | FTB Quests: livro de missões para guiar a progressão.
+cf:404465 | FTB Library: biblioteca do FTB Quests.
+cf:404468 | FTB Teams: times do FTB Quests (missões em grupo).
+cf:228756 | Iron Chests: baús de ferro, ouro, diamante e outros, maiores que o normal.
+cf:415438 | Croptopia: muitas plantações e comidas novas.
+cf:885449 | EpheroLib: biblioteca do Croptopia.
 iron-furnaces | Fornalhas de ferro, ouro, diamante e mais: cozinham e derretem mais rápido.
 bubblellaneous | Móveis, tecnologia, comidas e blocos variados. Datapack: o servidor carrega sozinho e o pacote de recursos já vem ligado.
 botany-pots | Vasos que plantam e colhem sozinhos: fazenda compacta em um bloco.
@@ -140,6 +147,7 @@ dynamic-torches | Luz dinâmica: tocha, lanterna e outros itens iluminam ao redo
 map-atlases-forge | Atlas que junta seus mapas de papel em um livro. Receita: mapa preenchido, livro e slime ou garrafa de mel. Na hotbar ou na mão secundária, mostra os mapas como minimapa.
 corpse | Ao morrer, seus itens ficam guardados num corpo no lugar da morte, sem sumir.
 cultural-delights | Addon do Farmer's Delight: comidas de vários lugares do mundo.
+twilight-delight | Addon do Farmer's Delight: comidas e sobremesas da Twilight Forest.
 ends-delight | Addon do Farmer's Delight: comidas com coisas do End.
 oceans-delight | Addon do Farmer's Delight: comidas com coisas do mar.
 storage-delight | Addon do Farmer's Delight: móveis para a cozinha e outros cantos.
