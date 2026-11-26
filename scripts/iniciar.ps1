@@ -127,7 +127,7 @@ function Configurar-Drive {
     Start-Process $driveUrl
     Write-Host ''
     Write-Host '1. Entre com a sua conta Google no Google Drive que abriu.'
-    Write-Host "2. No navegador, abra a pasta 'minezada' e clique em 'Adicionar atalho ao Drive' > 'Meu Drive'."
+    Write-Host "2. No navegador: clique com o botao direito na pasta 'minezada' > Organizar > Adicionar atalho > Meu Drive. Se a pasta e sua, pule este passo."
     Write-Host "   Sem acesso? Clique em 'Solicitar acesso' e avise o Enzo."
     Write-Host 'Esperando a pasta aparecer neste PC (Enter para pular e jogar com o mundo so aqui)...'
     while ($true) {

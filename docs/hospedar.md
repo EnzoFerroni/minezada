@@ -127,7 +127,7 @@ mais. Os passos manuais:
 2. Dono: a pasta é `Meu Drive/minezada`, com acesso **restrito** (guarda o mundo e os segredos dos
    túneis). Quem vai hospedar clica em "Solicitar acesso" no link que o `iniciar` abre
    e o dono aprova como editor. Jogador não usa o Drive.
-3. Convidado: em drive.google.com → Compartilhados comigo → `minezada` → **Adicionar atalho ao Drive**
+3. Convidado: em drive.google.com → Compartilhados comigo → botão direito em `minezada` → **Organizar** → **Adicionar atalho** → **Meu Drive**
    (em "Meu Drive"). Sem o atalho a pasta não aparece no computador.
 4. Mac: botão direito na pasta → **Disponível off-line**.
 

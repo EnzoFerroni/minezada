@@ -412,7 +412,7 @@ configurar_drive() {
   open "$drive_url"
   echo
   echo "1. Entre com a sua conta Google no Google Drive que abriu."
-  echo "2. No navegador, abra a pasta 'minezada' e clique em 'Adicionar atalho ao Drive' > 'Meu Drive'."
+  echo "2. No navegador: clique com o botao direito na pasta 'minezada' > Organizar > Adicionar atalho > Meu Drive. Se a pasta e sua, pule este passo."
   echo "   Sem acesso? Clique em 'Solicitar acesso' e avise o Enzo."
   echo "Esperando a pasta aparecer neste Mac (Enter para pular e jogar com o mundo so aqui)..."
   while :; do
