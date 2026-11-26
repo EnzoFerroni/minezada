@@ -1,0 +1,43 @@
+{
+	chapter.7219E05592DE0419.title: "Primeiros passos"
+	quest.E92EB052F9F3B141.title: "Bem-vindo ao Minezada"
+	quest.E92EB052F9F3B141.quest_desc: ["Este livro guia o comeco. Abra quando quiser pelo botao do livro no inventario.", "Tecla R em cima de um item mostra a receita; U mostra para que ele serve (JEI, na direita do inventario).", "Mire em um bloco ou bicho para ver o nome e o mod no topo da tela (Jade).", "Jogo lento? Opcoes > Perfis > 1 - Minimo. Os perfis vao de 1 - Minimo a 7 - Ultra."]
+	quest.0003CE0F6AE91DC0.title: "Mesa de trabalho"
+	quest.0003CE0F6AE91DC0.quest_desc: ["Junte madeira e faca uma mesa de trabalho."]
+	quest.0E19EE28A91186E6.title: "Mapa"
+	quest.0E19EE28A91186E6.quest_desc: ["O minimapa fica no canto da tela. Tecla M abre o mapa do mundo que voce ja explorou."]
+	quest.B6952285DC2B5452.title: "Mochila"
+	quest.B6952285DC2B5452.quest_desc: ["Faca uma mochila: ela guarda muito mais que o inventario e pode ser melhorada."]
+	quest.50A4703D190E18DE.title: "Waystone"
+	quest.50A4703D190E18DE.quest_desc: ["Waystones sao pedras de teleporte. Ative uma clicando nela e depois viaje entre as que voce ativou.", "Faca a sua para colocar perto de casa."]
+	quest.712E2F6300ED0812.title: "Se voce morrer"
+	quest.712E2F6300ED0812.quest_desc: ["Seus itens ficam guardados em um corpo no lugar da morte. Volte la e clique nele para pegar tudo.", "O lugar da morte aparece no mapa."]
+	quest.B772DD21EE451560.title: "Cozinha"
+	quest.B772DD21EE451560.quest_desc: ["Farmer's Delight traz panela, tabua de corte e dezenas de comidas.", "Cada comida nova que voce prova pela primeira vez da coracoes extras de vida (Spice of Life)."]
+	chapter.0196B79DB1F5EAED.title: "Create"
+	quest.0BA2E8742481F590.title: "Ponder"
+	quest.0BA2E8742481F590.quest_desc: ["O Create ensina cada bloco com animacoes: segure W com o mouse em cima de um item do Create."]
+	quest.51E8ADCD97480966.title: "Roda d'agua"
+	quest.51E8ADCD97480966.quest_desc: ["A roda d'agua gira com agua corrente e gera forca para as maquinas."]
+	quest.7E848A2FACB995C9.title: "Eixos e engrenagens"
+	quest.7E848A2FACB995C9.quest_desc: ["Eixos e engrenagens levam a forca da roda ate as maquinas."]
+	quest.222D1DA14549BD8E.title: "Prensa"
+	quest.222D1DA14549BD8E.quest_desc: ["A prensa mecanica transforma lingotes em chapas, que muitas receitas pedem."]
+	chapter.3AFA20A348928003.title: "Dimensoes"
+	quest.29026A4FF6CEB946.title: "Nether"
+	quest.29026A4FF6CEB946.quest_desc: ["Portal de obsidiana aceso com isqueiro."]
+	quest.7155CC138F6A4CDC.title: "Aether"
+	quest.7155CC138F6A4CDC.quest_desc: ["O ceu do Minecraft: moldura de pedra luminosa (glowstone) acesa com um balde de agua."]
+	quest.2F383471F920B013.title: "Twilight Forest"
+	quest.2F383471F920B013.quest_desc: ["Poca de agua 2x2 cercada de flores; jogue um diamante dentro."]
+	quest.7B3BE44F6DE1B8AD.title: "Undergarden"
+	quest.7B3BE44F6DE1B8AD.quest_desc: ["Moldura de tijolos de pedra ativada com o catalisador do Undergarden (receita no JEI)."]
+	quest.932C1D9BA47BE4F2.title: "Eternal Starlight"
+	quest.932C1D9BA47BE4F2.quest_desc: ["Dimensao das estrelas: procure as ruinas de portal pelo mundo e veja no JEI como ativar."]
+	quest.12578001AE3297C2.title: "Masmorras infinitas"
+	quest.12578001AE3297C2.quest_desc: ["Dimensional Dungeons: a chave de portal abre masmorras que se renovam (receita no JEI)."]
+	quest.009843D988A83261.title: "Lua"
+	quest.009843D988A83261.quest_desc: ["Ad Astra: monte um foguete na bancada da NASA e voe para a Lua."]
+	quest.F8BEFEA816B93AB6.title: "End"
+	quest.F8BEFEA816B93AB6.quest_desc: ["Olhos de ender levam ao portal do End e ao dragao."]
+}
