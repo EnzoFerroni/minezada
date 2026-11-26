@@ -20,7 +20,7 @@
 			id: "24D45AE531CC8DD4"
 			rewards: [{ id: "0FCAD2150AF12E8C", type: "xp", xp: 20 }]
 			tasks: [{ id: "463F5966456D68E9", item: { count: 1, id: "create:mechanical_press" }, type: "item" }]
-			x: 1.5d
+			x: 2.5d
 			y: 0d
 		}
 		{
@@ -28,7 +28,7 @@
 			id: "0FFB8A4F6D765047"
 			rewards: [{ id: "733B52F45FC64A92", type: "xp", xp: 20 }, { id: "46423D92E5B0ED5B", item: { count: 16, id: "minecraft:iron_ingot" }, type: "item" }]
 			tasks: [{ id: "5D7293C06EFCEAD8", item: { count: 16, id: "create:iron_sheet" }, type: "item" }]
-			x: 3d
+			x: 5d
 			y: 0d
 		}
 		{
@@ -36,7 +36,7 @@
 			id: "08A9F0D3CB4E4ADF"
 			rewards: [{ id: "2E5FD74E8333C3C1", type: "xp", xp: 20 }]
 			tasks: [{ id: "0E641DE24165110B", item: { count: 1, id: "create:belt_connector" }, type: "item" }]
-			x: 4.5d
+			x: 7.5d
 			y: 0d
 		}
 		{
@@ -44,7 +44,7 @@
 			id: "77552730F917B3A2"
 			rewards: [{ id: "6240BB9BF258DF5F", type: "xp", xp: 20 }]
 			tasks: [{ id: "0CE420144D833386", item: { count: 1, id: "create:millstone" }, type: "item" }]
-			x: 6d
+			x: 10d
 			y: 0d
 		}
 		{
@@ -52,7 +52,7 @@
 			id: "71902CE9B4233470"
 			rewards: [{ id: "57D2AE362B41F45F", type: "xp", xp: 20 }]
 			tasks: [{ id: "40C7DA0A84EB644B", item: { count: 1, id: "create:encased_fan" }, type: "item" }]
-			x: 7.5d
+			x: 12.5d
 			y: 0d
 		}
 		{
@@ -60,7 +60,7 @@
 			id: "5D406386B77211CF"
 			rewards: [{ id: "52C20B7FE3E16E8A", type: "xp", xp: 20 }]
 			tasks: [{ id: "2E19E7A157A355D4", item: { count: 1, id: "create:mechanical_saw" }, type: "item" }]
-			x: 9d
+			x: 15d
 			y: 0d
 		}
 		{
@@ -68,7 +68,7 @@
 			id: "6D0020FF08FE30D0"
 			rewards: [{ id: "65AA2ADA54A45F45", type: "xp", xp: 20 }]
 			tasks: [{ id: "152D59CB481E211F", item: { count: 1, id: "create:mechanical_drill" }, type: "item" }]
-			x: 10.5d
+			x: 17.5d
 			y: 0d
 		}
 		{
@@ -76,7 +76,7 @@
 			id: "59A226648CAE99CA"
 			rewards: [{ id: "40106640CC130943", type: "xp", xp: 20 }]
 			tasks: [{ id: "17A0C2061CDB8E1D", item: { count: 1, id: "create:windmill_bearing" }, type: "item" }]
-			x: 12d
+			x: 20d
 			y: 0d
 		}
 		{
@@ -84,7 +84,7 @@
 			id: "327AE96A1893C2F8"
 			rewards: [{ id: "0F36B7AB0476799B", type: "xp", xp: 20 }]
 			tasks: [{ id: "1E3588B1D5307BF5", item: { count: 8, id: "create:white_sail" }, type: "item" }]
-			x: 13.5d
+			x: 22.5d
 			y: 0d
 		}
 		{
@@ -92,7 +92,7 @@
 			id: "2B88F26A795CAB85"
 			rewards: [{ id: "66EDC52C6F1CFAA3", type: "xp", xp: 20 }]
 			tasks: [{ id: "0DA0E7A6382846B5", item: { count: 1, id: "create:super_glue" }, type: "item" }]
-			x: 15d
+			x: 25d
 			y: 0d
 		}
 		{
@@ -100,7 +100,7 @@
 			id: "3E0E9C0DF135D391"
 			rewards: [{ id: "29FB001D085553FB", type: "xp", xp: 20 }]
 			tasks: [{ id: "0387E999AE2D1339", item: { count: 1, id: "create:mechanical_piston" }, type: "item" }]
-			x: 16.5d
+			x: 27.5d
 			y: 0d
 		}
 		{
@@ -108,7 +108,7 @@
 			id: "6E18F7126D48DC9D"
 			rewards: [{ id: "459BC9231ED54E11", type: "xp", xp: 20 }]
 			tasks: [{ id: "2CBC11067EFCC3E0", item: { count: 1, id: "create:mechanical_bearing" }, type: "item" }]
-			x: 18d
+			x: 30d
 			y: 0d
 		}
 	]

@@ -13,35 +13,35 @@
 			rewards: [{ id: "324B9208D1B9A969", type: "xp", xp: 20 }]
 			tasks: [{ id: "53CA3A6BF5CE0020", item: { count: 1, id: "create_jetpack:jetpack" }, type: "item" }]
 			x: 0d
-			y: 0.0d
+			y: 1.00d
 		}
 		{
 			id: "38B4B8D64B859B04"
 			rewards: [{ id: "49769181C40A7FB5", type: "xp", xp: 20 }]
 			tasks: [{ id: "2525B69EDA944C67", type: "checkmark" }]
-			x: 1.5d
-			y: 0d
+			x: 2d
+			y: 1d
 		}
 		{
 			id: "6B817114074B4272"
 			rewards: [{ id: "1E51A5FAADB95AC2", type: "xp", xp: 20 }]
 			tasks: [{ id: "70C665D15F211C17", type: "checkmark" }]
-			x: 3d
-			y: 0d
+			x: 4d
+			y: 1d
 		}
 		{
 			id: "325CB21188010A9A"
 			rewards: [{ id: "68D263C289BED95E", type: "xp", xp: 20 }]
 			tasks: [{ id: "61E2A89B63117772", item: { count: 1, id: "createaddition:electric_motor" }, type: "item" }]
-			x: 4.5d
-			y: 0d
+			x: 6d
+			y: 1d
 		}
 		{
 			id: "577B50F4C3ED884A"
 			rewards: [{ id: "1EA6483FBAABB52C", type: "xp", xp: 20 }]
 			tasks: [{ id: "78ECE4BE4F469AAA", type: "checkmark" }]
-			x: 6d
-			y: 0d
+			x: 8d
+			y: 1d
 		}
 	]
 }

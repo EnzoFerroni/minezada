@@ -20,7 +20,7 @@
 			id: "0D2620E5B1473973"
 			rewards: [{ id: "3A9B26D3F091CBE6", type: "xp", xp: 20 }]
 			tasks: [{ id: "0DFC71E867B33A79", item: { count: 1, id: "aether:ambrosium_shard" }, type: "item" }]
-			x: 1.5d
+			x: 2.5d
 			y: 0d
 		}
 		{
@@ -28,7 +28,7 @@
 			id: "3B79E945D837AB5A"
 			rewards: [{ id: "785F0AAF5E721F3B", type: "xp", xp: 20 }]
 			tasks: [{ id: "5AD55A6F016A8567", item: { count: 1, id: "aether:zanite_gemstone" }, type: "item" }]
-			x: 3d
+			x: 5d
 			y: 0d
 		}
 		{
@@ -36,7 +36,7 @@
 			id: "3EDEF2172CD2B905"
 			rewards: [{ id: "251AAFF3ECFF3BC3", type: "xp", xp: 20 }]
 			tasks: [{ id: "0D5E657EA065D03A", item: { count: 1, id: "aether:bronze_dungeon_key" }, type: "item" }]
-			x: 4.5d
+			x: 7.5d
 			y: 0d
 		}
 		{
@@ -44,7 +44,7 @@
 			id: "4AF87777C727F2E1"
 			rewards: [{ id: "0AB637D3A4839E09", type: "xp", xp: 20 }]
 			tasks: [{ id: "2FD1817A323AFC80", item: { count: 1, id: "aether:silver_dungeon_key" }, type: "item" }]
-			x: 6d
+			x: 10d
 			y: 0d
 		}
 		{
@@ -52,7 +52,7 @@
 			id: "2696EF3E0D6E89B7"
 			rewards: [{ id: "40A7E62E3D4A4A6B", type: "xp", xp: 20 }]
 			tasks: [{ id: "64450036483C1F2E", item: { count: 1, id: "aether:gold_dungeon_key" }, type: "item" }]
-			x: 7.5d
+			x: 12.5d
 			y: 0d
 		}
 	]

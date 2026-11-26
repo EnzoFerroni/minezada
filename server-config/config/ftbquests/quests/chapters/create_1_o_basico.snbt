@@ -20,7 +20,7 @@
 			id: "34E5D9F83BA191B7"
 			rewards: [{ id: "004C27B59C689F31", type: "xp", xp: 20 }, { id: "2FCB898CD1EBC5F9", item: { count: 16, id: "create:andesite_alloy" }, type: "item" }]
 			tasks: [{ id: "060C798C7F7D7BA4", item: { count: 16, id: "create:andesite_alloy" }, type: "item" }]
-			x: 1.5d
+			x: 2.5d
 			y: 0d
 		}
 		{
@@ -28,7 +28,7 @@
 			id: "4E782FDC8A29C55F"
 			rewards: [{ id: "0188E5E20E3D9F3B", type: "xp", xp: 20 }]
 			tasks: [{ id: "0C7A30D80C0FB5DB", item: { count: 1, id: "create:andesite_casing" }, type: "item" }]
-			x: 3d
+			x: 5d
 			y: 0d
 		}
 		{
@@ -36,7 +36,7 @@
 			id: "713CA83B402B1EBB"
 			rewards: [{ id: "38BB41A0BF1BC09E", type: "xp", xp: 20 }]
 			tasks: [{ id: "1A18A32F018990F4", item: { count: 8, id: "create:shaft" }, type: "item" }]
-			x: 4.5d
+			x: 7.5d
 			y: 0d
 		}
 		{
@@ -44,7 +44,7 @@
 			id: "769C72DE12C48B1B"
 			rewards: [{ id: "3E204DB4866344D7", type: "xp", xp: 20 }]
 			tasks: [{ id: "07A2C45AD6CF7626", item: { count: 4, id: "create:cogwheel" }, type: "item" }]
-			x: 6d
+			x: 10d
 			y: 0d
 		}
 		{
@@ -52,7 +52,7 @@
 			id: "06EC2EE31BBAEFB3"
 			rewards: [{ id: "07C1492B44E2D733", type: "xp", xp: 20 }]
 			tasks: [{ id: "4E359D849A856809", item: { count: 1, id: "create:large_cogwheel" }, type: "item" }]
-			x: 7.5d
+			x: 12.5d
 			y: 0d
 		}
 		{
@@ -60,7 +60,7 @@
 			id: "495B4DD49D945339"
 			rewards: [{ id: "69255B1A29D832D8", type: "xp", xp: 20 }]
 			tasks: [{ id: "60E99090F1DF773C", item: { count: 1, id: "create:gearbox" }, type: "item" }]
-			x: 9d
+			x: 15d
 			y: 0d
 		}
 		{
@@ -68,7 +68,7 @@
 			id: "209FC078EB5E2BD0"
 			rewards: [{ id: "61794C0C38D4A8AA", type: "xp", xp: 20 }]
 			tasks: [{ id: "42636590F25A1EFB", item: { count: 1, id: "create:hand_crank" }, type: "item" }]
-			x: 10.5d
+			x: 17.5d
 			y: 0d
 		}
 		{
@@ -76,7 +76,7 @@
 			id: "15DA37216A7BAE21"
 			rewards: [{ id: "41F89D07FF3ED39A", type: "xp", xp: 20 }, { id: "6A979C4E8D1D4E1A", item: { count: 8, id: "create:shaft" }, type: "item" }]
 			tasks: [{ id: "4861C3E2AB931E40", item: { count: 1, id: "create:water_wheel" }, type: "item" }]
-			x: 12d
+			x: 20d
 			y: 0d
 		}
 		{
@@ -84,7 +84,7 @@
 			id: "07DF67DB2ED1D8B5"
 			rewards: [{ id: "2E3F1741235F96C9", type: "xp", xp: 20 }]
 			tasks: [{ id: "164FB72644777180", item: { count: 1, id: "create:goggles" }, type: "item" }]
-			x: 13.5d
+			x: 22.5d
 			y: 0d
 		}
 		{
@@ -92,7 +92,7 @@
 			id: "40E31D6C06C810D7"
 			rewards: [{ id: "5654D34BF0ADD3FA", type: "xp", xp: 20 }]
 			tasks: [{ id: "21973C319A04113C", item: { count: 1, id: "create:stressometer" }, type: "item" }]
-			x: 15d
+			x: 25d
 			y: 0d
 		}
 	]

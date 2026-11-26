@@ -20,7 +20,7 @@
 			id: "7F65FA3D01E0FE56"
 			rewards: [{ id: "2DEF643E1651BC82", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "undergarden:undergarden", id: "782BE18BD1F5AC44", type: "dimension" }]
-			x: 1.5d
+			x: 2.5d
 			y: 0d
 		}
 		{
@@ -28,7 +28,7 @@
 			id: "09912EE1CD8CCEEA"
 			rewards: [{ id: "44D1A67E8F7AEB65", type: "xp", xp: 20 }]
 			tasks: [{ id: "3113A8487CFCCB82", item: { count: 1, id: "undergarden:cloggrum_ingot" }, type: "item" }]
-			x: 3d
+			x: 5d
 			y: 0d
 		}
 		{
@@ -36,7 +36,7 @@
 			id: "2B4732C93C19A1AF"
 			rewards: [{ id: "0274CB69D69283DC", type: "xp", xp: 20 }]
 			tasks: [{ id: "591612BDFD1F4BF2", item: { count: 1, id: "undergarden:froststeel_ingot" }, type: "item" }]
-			x: 4.5d
+			x: 7.5d
 			y: 0d
 		}
 		{
@@ -44,7 +44,7 @@
 			id: "492E6A440E59C51C"
 			rewards: [{ id: "0558DC6791503814", type: "xp", xp: 20 }]
 			tasks: [{ id: "7A6F4C42CC17EC55", item: { count: 1, id: "undergarden:utherium_crystal" }, type: "item" }]
-			x: 6d
+			x: 10d
 			y: 0d
 		}
 	]
