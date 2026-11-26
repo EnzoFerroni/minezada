@@ -1,0 +1,72 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "utilidades"
+	group: ""
+	icon: { id: "justhammers:iron_hammer" }
+	id: "1EDB32752725DDCA"
+	order_index: 14
+	quest_links: [ ]
+	quests: [
+		{
+			id: "493065C7669E9089"
+			tasks: [{ id: "187A5B13C1AE7DBA", type: "checkmark" }]
+			x: 0d
+			y: 0.0d
+		}
+		{
+			id: "E469C52CE8ED6032"
+			tasks: [{ id: "B29CDBA307BFDDE1", type: "checkmark" }]
+			x: 1.5d
+			y: 0d
+		}
+		{
+			id: "114B01E7B50BF062"
+			tasks: [{ id: "EF9B3E22ACF9E300", type: "checkmark" }]
+			x: 3d
+			y: 0d
+		}
+		{
+			id: "44D6D9BE5B35C3AF"
+			tasks: [{ id: "5D37E5FF99F736B0", item: { count: 1, id: "justhammers:iron_hammer" }, type: "item" }]
+			x: 4.5d
+			y: 0d
+		}
+		{
+			id: "1DF15A7537E1459C"
+			tasks: [{ id: "07E2160D858A684F", item: { count: 1, id: "comforts:sleeping_bag_white" }, type: "item" }]
+			x: 0d
+			y: 1.5d
+		}
+		{
+			id: "851B132375F0969D"
+			tasks: [{ id: "7A792010AFD892BA", type: "checkmark" }]
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			id: "737CADF831F74384"
+			tasks: [{ id: "AB777EFD4ABF1713", type: "checkmark" }]
+			x: 3d
+			y: 1.5d
+		}
+		{
+			id: "AC23A23D6D3A08C6"
+			tasks: [{ id: "7C93C401D8FD13B2", item: { count: 1, id: "toms_storage:storage_terminal" }, type: "item" }]
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			id: "205E6C0F5C30753E"
+			tasks: [{ id: "6D7BB6CDA133F496", item: { count: 1, id: "advancednetherite:netherite_diamond_ingot" }, type: "item" }]
+			x: 0d
+			y: 3.0d
+		}
+		{
+			id: "88B06B2679D02B1D"
+			tasks: [{ id: "409AE4F315BF76AB", type: "checkmark" }]
+			x: 1.5d
+			y: 3d
+		}
+	]
+}

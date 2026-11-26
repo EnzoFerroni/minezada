@@ -56,5 +56,29 @@
 			x: 9d
 			y: 0d
 		}
+		{
+			id: "C25B42F224DFA666"
+			tasks: [{ dimension: "ad_astra:venus", id: "C8E9F88498F6541A", type: "dimension" }]
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			id: "07CDDF90A2B8F066"
+			tasks: [{ dimension: "ad_astra:mercury", id: "421A0DCF46EB8B7C", type: "dimension" }]
+			x: 0d
+			y: 3.0d
+		}
+		{
+			id: "ED006D3D25BE95FA"
+			tasks: [{ dimension: "ad_astra:glacio", id: "EFFB098C0AAA2B02", type: "dimension" }]
+			x: 1.5d
+			y: 3d
+		}
+		{
+			id: "E24E7920FAAD6862"
+			tasks: [{ id: "E0DA4296D63DA7CD", structure: "ad_astra:lunarian_village", type: "structure" }]
+			x: 3d
+			y: 3d
+		}
 	]
 }

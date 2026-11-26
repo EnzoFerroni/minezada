@@ -1,0 +1,78 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "volta_ao_mundo"
+	group: ""
+	icon: { id: "naturescompass:naturescompass" }
+	id: "EE3919EFC5A2EEF7"
+	order_index: 19
+	quest_links: [ ]
+	quests: [
+		{
+			id: "AD8F878CD7BC1FBE"
+			tasks: [{ biome: "terralith:sakura_valley", id: "15ECFDCC2824BA70", type: "biome" }]
+			x: 0d
+			y: 0.0d
+		}
+		{
+			id: "21DD0E73C9F46759"
+			tasks: [{ biome: "terralith:bryce_canyon", id: "71DAE8670850D902", type: "biome" }]
+			x: 1.5d
+			y: 0d
+		}
+		{
+			id: "03E2F1D49DC8D627"
+			tasks: [{ biome: "terralith:volcanic_crater", id: "46F0F624E2BDF0BD", type: "biome" }]
+			x: 3d
+			y: 0d
+		}
+		{
+			id: "3A84C45EED62EAFB"
+			tasks: [{ biome: "terralith:skylands_summer", id: "A4FADF19A8B084B2", type: "biome" }]
+			x: 4.5d
+			y: 0d
+		}
+		{
+			id: "43BF5C538206D1B5"
+			tasks: [{ biome: "terralith:lavender_forest", id: "01961FE2D31FE533", type: "biome" }]
+			x: 0d
+			y: 1.5d
+		}
+		{
+			id: "401E53260B046572"
+			tasks: [{ biome: "terralith:white_cliffs", id: "06097BB613525445", type: "biome" }]
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			id: "09D5A586382C5BAE"
+			tasks: [{ biome: "terralith:desert_oasis", id: "1931B9A292FDB115", type: "biome" }]
+			x: 3d
+			y: 1.5d
+		}
+		{
+			id: "3B3207C8DEDCCC12"
+			tasks: [{ biome: "terralith:cave/underground_jungle", id: "29B6045B4877DC5C", type: "biome" }]
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			id: "3467848BE62720A8"
+			tasks: [{ biome: "terralith:amethyst_canyon", id: "4ED225F4F017DA6E", type: "biome" }]
+			x: 0d
+			y: 3.0d
+		}
+		{
+			id: "6841C627B5ED58C3"
+			tasks: [{ biome: "incendium:inverted_forest", id: "E745A1E322EA08E6", type: "biome" }]
+			x: 1.5d
+			y: 3d
+		}
+		{
+			id: "40C014566C6CA7D2"
+			tasks: [{ biome: "incendium:weeping_valley", id: "C7B34BB1E1B1F28B", type: "biome" }]
+			x: 3d
+			y: 3d
+		}
+	]
+}
