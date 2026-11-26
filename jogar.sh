@@ -12,13 +12,19 @@ zip_url="https://github.com/EnzoFerroni/minezada/raw/main/modpack/minezada-prism
 fork_repo="Diegiwg/PrismLauncher-Cracked"
 fork_url="https://github.com/$fork_repo/releases/download/11.1.1/PrismLauncher-macOS-11.1.1.zip"
 fork_sha="f99e61328f1c9ed07788badc0e67277481309a0a2b97b8583bba4f89143aeb6c"
+# Linux: AppImage do fork (mesma versao) e pasta onde o jogar.sh guarda os launchers que baixa.
+case "$(uname -m)" in aarch64|arm64) lx_arch=aarch64; fork_sha_linux="ed2545077823e9fc851c7d7d255ad0c50281633ae52c16e69513a1c9d11ad97b" ;;
+  *) lx_arch=x86_64; fork_sha_linux="653e05238b93b784f3ebb766c5ca348a100a9d6c256435684f1412eb0b292c7c" ;; esac
+lx_dir="$HOME/.local/share/minezada"
+flatpak_id="org.prismlauncher.PrismLauncher"
 
 # 0. Conta. Launcher ja instalado responde sozinho (reparar nao pergunta de novo). stdin e o
 # proprio script (curl | bash), por isso a resposta vem do terminal.
-if [ -d "$HOME/Applications/Minezada/Prism Launcher.app" ]; then
+if [ -d "$HOME/Applications/Minezada/Prism Launcher.app" ] || [ -f "$lx_dir/fork.AppImage" ]; then
   original=0
 elif [ -d "/Applications/Prism Launcher.app" ] || [ -d "$HOME/Applications/Prism Launcher.app" ] \
-  || command -v prismlauncher >/dev/null; then
+  || command -v prismlauncher >/dev/null || [ -f "$lx_dir/PrismLauncher.AppImage" ] \
+  || { command -v flatpak >/dev/null && flatpak info "$flatpak_id" >/dev/null 2>&1; }; then
   original=1
 else
   printf 'Voce tem Minecraft original (conta Microsoft)? [s/n] '
@@ -70,12 +76,44 @@ if [ "$(uname -s)" = "Darwin" ]; then
   # Contents/MacOS tambem tem a pasta jars: o executavel certo vem do Info.plist.
   prism="$app/Contents/MacOS/$(/usr/libexec/PlistBuddy -c 'Print CFBundleExecutable' "$app/Contents/Info.plist")"
 else
+  # Linux: Prism do sistema (prismlauncher no PATH), Flatpak ou o AppImage que este script baixa.
   dados="$HOME/.local/share/PrismLauncher"
-  prism="$(command -v prismlauncher || true)"
-  site="https://prismlauncher.org/download/"
-  [ $original = 1 ] || site="https://github.com/$fork_repo/releases/latest"
-  [ -n "$prism" ] || { echo "Instale o launcher ($site) como prismlauncher e rode de novo."; exit 1; }
+  prism=""
+  if [ $original = 0 ]; then
+    prism="$lx_dir/fork.AppImage"
+    if [ $atalho = 0 ] || [ ! -f "$prism" ] || [ "$(cat "$lx_dir/fork-versao.txt" 2>/dev/null)" != "$fork_sha_linux" ]; then
+      echo "Instalando o launcher para conta offline..."
+      mkdir -p "$lx_dir"
+      curl -fsSL "https://github.com/$fork_repo/releases/download/11.1.1/PrismLauncher-Linux-$lx_arch.AppImage" -o "$prism.tmp"
+      [ "$(sha256sum "$prism.tmp" | awk '{print $1}')" = "$fork_sha_linux" ] \
+        || { rm -f "$prism.tmp"; echo "ERRO: o launcher baixado nao confere (checksum). Avise o Enzo."; exit 1; }
+      mv -f "$prism.tmp" "$prism"; chmod +x "$prism"; echo "$fork_sha_linux" > "$lx_dir/fork-versao.txt"
+    fi
+  elif command -v prismlauncher >/dev/null; then
+    prism="$(command -v prismlauncher)"
+  elif command -v flatpak >/dev/null && flatpak info "$flatpak_id" >/dev/null 2>&1; then
+    prism="flatpak"; dados="$HOME/.var/app/$flatpak_id/data/PrismLauncher"
+  else
+    prism="$lx_dir/PrismLauncher.AppImage"
+    if [ ! -f "$prism" ]; then
+      echo "Instalando o Prism Launcher..."
+      url="$(curl -fsSL https://api.github.com/repos/PrismLauncher/PrismLauncher/releases/latest \
+        | grep -o "https://[^\"]*PrismLauncher-Linux-$lx_arch\.AppImage\"" | head -n 1 | tr -d '"')" || true
+      [ -n "$url" ] || { echo "ERRO: o GitHub nao respondeu (limite de acessos da rede). Espere uns minutos e rode de novo."; exit 1; }
+      mkdir -p "$lx_dir"
+      curl -fsSL "$url" -o "$prism.tmp"; mv -f "$prism.tmp" "$prism"; chmod +x "$prism"
+    fi
+  fi
+  # AppImage sem FUSE (comum em distro nova): extrai e roda.
+  command -v fusermount >/dev/null || command -v fusermount3 >/dev/null || export APPIMAGE_EXTRACT_AND_RUN=1
 fi
+# Abre o Prism ($@ = argumentos) sem prender o terminal.
+abrir_prism() {
+  if [ "$(uname -s)" = "Darwin" ]; then open -n -a "$app" --args "$@"
+  elif [ "$prism" = flatpak ]; then nohup flatpak run "$flatpak_id" "$@" >/dev/null 2>&1 &
+  else nohup "$prism" "$@" >/dev/null 2>&1 &
+  fi
+}
 
 # 2. Primeira vez: idioma, tema e Java automatico, para o assistente do Prism so pedir o login.
 cfg="$dados/prismlauncher.cfg"
@@ -198,8 +236,15 @@ if [ "$(uname -s)" = "Darwin" ] && [ $atalho = 0 ]; then
       ;;
   esac
 fi
+# Linux: atalho no menu de aplicativos (arquivo .desktop), que roda o jogar.sh --abrir como no Mac.
+if [ "$(uname -s)" != "Darwin" ] && [ $atalho = 0 ]; then
+  mkdir -p "$HOME/.local/share/applications"
+  printf '[Desktop Entry]\nType=Application\nName=Minezada\nComment=Abrir o Minezada\nTerminal=false\nIcon=applications-games\nExec=bash -c "curl -fsSL --max-time 20 https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.sh | bash -s -- --abrir"\n' \
+    > "$HOME/.local/share/applications/minezada.desktop"
+  abrir="abrir 'Minezada' no menu de aplicativos"
+fi
 
-if [ "$(uname -s)" = "Darwin" ]; then open -n -a "$app" --args --launch Minezada; else nohup "$prism" --launch Minezada >/dev/null 2>&1 & fi
+abrir_prism --launch Minezada
 [ $atalho = 0 ] || exit 0
 echo
 if [ $original = 1 ]; then

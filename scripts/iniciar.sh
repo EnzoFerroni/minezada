@@ -283,20 +283,26 @@ enviar_mundo() {
 iniciar_cloudflare() {
   local tok="$SYNC_DIR/cloudflare.txt" dir="$tools/cloudflared" log="$server/logs/cloudflared.log" arq sha
   if [ -z "$SYNC_DIR" ] || [ ! -f "$tok" ]; then echo "Sem tunel da Cloudflare (precisa de cloudflare.txt na pasta do Drive)."; return 1; fi
-  if [ "$(uname -s)" != "Darwin" ]; then echo "Tunel da Cloudflare automatico so no Mac e no Windows."; return 1; fi
   # Versao fixa com o SHA-256 do release oficial. Atualizar: trocar a versao e os hashes (campo digest da API).
-  case "$(uname -m)" in
-    arm64) arq=arm64; sha=3586ccf397e98e5f437e60e7c307ca6ac463e110580503af8bb8e6f9ebf831bd ;;
-    *) arq=amd64; sha=02f3edfd87684dd5b705607688e4eb4b323f6e777b81e7b3a85af556aa356848 ;;
+  # Mac: .tgz; Linux: o binario direto.
+  case "$(uname -s)-$(uname -m)" in
+    Darwin-arm64) arq=darwin-arm64.tgz; sha=3586ccf397e98e5f437e60e7c307ca6ac463e110580503af8bb8e6f9ebf831bd ;;
+    Darwin-*) arq=darwin-amd64.tgz; sha=02f3edfd87684dd5b705607688e4eb4b323f6e777b81e7b3a85af556aa356848 ;;
+    *-aarch64|*-arm64) arq=linux-arm64; sha=3df43aedc9ff291d1735b5cb576cb97e0b157488796db2e32b28aecabb445775 ;;
+    *) arq=linux-amd64; sha=1f99fb518b83dec2ba8d870a7cc991d82a77e6196295a3d2754ba17ab9f91872 ;;
   esac
   if [ ! -x "$dir/cloudflared" ] || [ "$(cat "$dir/versao" 2>/dev/null)" != "2026.10.7-$arq" ]; then
     echo "Baixando o cloudflared..."
     mkdir -p "$dir"
-    curl -fsSL "https://github.com/cloudflare/cloudflared/releases/download/2026.10.7/cloudflared-darwin-$arq.tgz" -o "$dir/cf.tgz"
-    if [ "$(shasum -a 256 "$dir/cf.tgz" | awk '{print $1}')" != "$sha" ]; then
-      rm -f "$dir/cf.tgz"; echo "AVISO: checksum do cloudflared nao confere; tunel nao ligado." >&2; return 1
+    curl -fsSL "https://github.com/cloudflare/cloudflared/releases/download/2026.10.7/cloudflared-$arq" -o "$dir/cf.baixado"
+    if [ "$(sha256 "$dir/cf.baixado")" != "$sha" ]; then
+      rm -f "$dir/cf.baixado"; echo "AVISO: checksum do cloudflared nao confere; tunel nao ligado." >&2; return 1
     fi
-    tar -xzf "$dir/cf.tgz" -C "$dir" && rm -f "$dir/cf.tgz" && chmod +x "$dir/cloudflared" && echo "2026.10.7-$arq" > "$dir/versao"
+    case "$arq" in
+      *.tgz) tar -xzf "$dir/cf.baixado" -C "$dir" && rm -f "$dir/cf.baixado" ;;
+      *) mv -f "$dir/cf.baixado" "$dir/cloudflared" ;;
+    esac
+    chmod +x "$dir/cloudflared" && echo "2026.10.7-$arq" > "$dir/versao"
   fi
   pkill -f "$dir/cloudflared" 2>/dev/null || true
   mkdir -p "$server/logs"; rm -f "$log"
@@ -322,16 +328,23 @@ iniciar_tunel() {
     echo "Sem tunel playit.gg (precisa da pasta do Drive)."
     return 1
   fi
-  if [ "$(uname -s)" != "Darwin" ]; then echo "Tunel playit.gg automatico so no Mac e no Windows."; return 1; fi
   if [ ! -x "$dir/playitd" ]; then
     echo "Baixando o playit.gg..."
-    mkdir -p "$dir"; tgz="$dir/playit.tar.gz"
-    curl -fsSL "https://github.com/playit-cloud/playit-agent/releases/download/v2.0.2/playit-macos-universal.tar.gz" -o "$tgz"
-    # SHA-256 publicado na release: so roda o binario se bater.
-    if [ "$(shasum -a 256 "$tgz" | awk '{print $1}')" != d3da262f8c58bfc13797a1bbf2e3fcc6d487e4e6832f54b35c00daeb59e1cce2 ]; then
+    # SHA-256 publicado na release: so roda o binario se bater. Mac: .tar.gz com o playitd; Linux: o playitd direto.
+    case "$(uname -s)-$(uname -m)" in
+      Darwin-*) arq=macos-universal.tar.gz; sha=d3da262f8c58bfc13797a1bbf2e3fcc6d487e4e6832f54b35c00daeb59e1cce2 ;;
+      *-aarch64|*-arm64) arq=linux-aarch64; sha=aed86fc2b82a772ca0e1d5cddec6c3123f96e12a099f7ae45aaa59a9a430a2cd ;;
+      *) arq=linux-amd64; sha=9d27a8dbb4d2d8a7107fcabfa33028c789a30a64c97a36447fe4afb94e08dde9 ;;
+    esac
+    mkdir -p "$dir"; tgz="$dir/playit.baixado"
+    curl -fsSL "https://github.com/playit-cloud/playit-agent/releases/download/v2.0.2/playit-$arq" -o "$tgz"
+    if [ "$(sha256 "$tgz")" != "$sha" ]; then
       rm -f "$tgz"; echo "AVISO: checksum do playit.gg nao confere; tunel nao ligado." >&2; return 1
     fi
-    tar -xzf "$tgz" -C "$dir" --strip-components 1; rm -f "$tgz"
+    case "$arq" in
+      *.tar.gz) tar -xzf "$tgz" -C "$dir" --strip-components 1; rm -f "$tgz" ;;
+      *) mv -f "$tgz" "$dir/playitd"; chmod +x "$dir/playitd" ;;
+    esac
   fi
   # Agente que sobrou de uma sessao fechada sem stop (janela fechada).
   pkill -f "$dir/playitd" 2>/dev/null || true
@@ -359,6 +372,9 @@ drive_url="https://drive.google.com/drive/folders/1Kw45U0B-b906dnDsUH8bLy9nDg7Hf
 sincronizar_whitelist() {
   "${JAVA:-java}" "$(dirname "${BASH_SOURCE[0]}")/Whitelist.java" "$1" "$2" || echo "AVISO: falha ao atualizar a whitelist." >&2
 }
+
+# SHA-256 de um arquivo (shasum no Mac, sha256sum no Linux).
+sha256() { { shasum -a 256 "$1" 2>/dev/null || sha256sum "$1"; } | awk '{print $1}'; }
 
 # Data de modificacao em segundos (vazio se o arquivo nao existe). stat do Linux antes: no Linux o "stat -f" e outra
 # coisa (sistema de arquivos) e nao falha.
