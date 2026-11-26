@@ -3,12 +3,67 @@
 # Dependências obrigatórias entram sozinhas.
 
 ## Aprender e guias
-create | Engrenagens, esteiras, moinhos e máquinas que automatizam fazendas e fábricas. Segure W com o mouse em cima de qualquer item do Create para ver um tutorial animado de como ele funciona.
 jei | Mostra a receita de qualquer item. No inventário, passe o mouse num item e aperte R para ver como fazer ou U para ver onde ele é usado.
 bettersearch | Pesquisa que entende erro de digitação e nome em inglês ou português (JEI, inventário criativo e comandos).
 jade | Olhe para um bloco ou mob e aparece no topo da tela o que ele é, de qual mod vem e informações úteis (vida, progresso de crescimento, conteúdo).
 appleskin | Mostra na barra de fome quanto cada comida vai encher e a saturação, para saber o que vale a pena comer.
 better-advancements | Tela de conquistas (tecla L) mais clara. Serve de guia do que fazer a seguir.
+enchantment-descriptions | Mostra o que cada encantamento faz ao passar o mouse no livro.
+just-enough-resources-jer | No JEI, mostra em que altura cada minério aparece e o que cada mob dropa.
+cf:289412 | FTB Quests: livro de missões para guiar a progressão.
+cf:404465 | FTB Library: biblioteca do FTB Quests.
+cf:404468 | FTB Teams: times do FTB Quests (missões em grupo).
+cf:889915 | FTB XMod Compat: clique no item de uma missão para ver a receita no JEI.
+cf:943925 | FTB Filter System: missões que aceitam qualquer madeira, qualquer cobre e afins.
+
+## Mapas e viagem
+xaeros-minimap | Minimapa no canto da tela, com marcadores (waypoints) e marcação de onde você morreu.
+xaeros-world-map | Mapa do mundo inteiro que você já explorou. Tecla M.
+xaeros-minimap-world-map-waystones-compatibility-forge | Ao ativar uma waystone, ela vira um marcador (waypoint) no minimapa e no mapa do Xaero.
+waystones | Pedras de teleporte: ative nas suas bases e em vilas e viaje entre elas.
+map-atlases-forge | Atlas que junta seus mapas de papel em um livro. Receita: mapa preenchido, livro e slime ou garrafa de mel. Na hotbar ou na mão secundária, mostra os mapas como minimapa.
+natures-compass | Bússola que encontra qualquer bioma (ótimo com os biomas novos do Terralith).
+explorers-compass | Bússola que encontra estruturas (vilas, templos, masmorras dos mods).
+ping-wheel | Clique com o botão do meio do mouse (o scroll) para marcar um lugar ou item para os amigos verem. Segure para escolher o tipo de marca.
+
+## Construção e decoração
+cf:298187 | Building Gadgets: ferramentas para construir grande (vários blocos de uma vez, copiar e colar construções, trocar blocos em área).
+effortless-building | Espelho, repetição e formas ao construir. Funciona no modo sobrevivência.
+macaws-furniture | Móveis: guarda-roupas, gavetas, cadeiras, mesas, sofás, pias.
+macaws-roofs | Telhados de verdade no lugar de escadas.
+macaws-windows | Janelas, vitrais, persianas, venezianas e cortinas.
+macaws-doors | Portas de todas as madeiras e portas diferentes (faroeste, garagem, shoji).
+macaws-bridges | Pontes.
+macaws-fences-and-walls | Cercas, muros e portões no estilo vanilla.
+handcrafted | Móveis no estilo vanilla para deixar a casa com cara de lar.
+cf:897116 | Furniture Refurbished: móveis que funcionam, como cozinha, geladeira, fogão, TV e portas.
+supplementaries | Blocos no estilo vanilla: potes, placas de direção, cata-vento, lanternas de parede e muito mais para construir.
+supplementaries-squared | Conteúdo extra do Supplementaries que não coube no mod principal.
+amendments | Do autor do Supplementaries: muda vários blocos vanilla.
+beautify | Decoração no estilo vanilla com modelos próprios para enfeitar as construções.
+bubblellaneous | Móveis, tecnologia, comidas e blocos variados. Datapack: o servidor carrega sozinho e o pacote de recursos já vem ligado.
+
+## Comida e fazenda
+farmers-delight | Culinária: plantações, panela, tábua de corte e dezenas de comidas novas.
+cultural-delights | Addon do Farmer's Delight: comidas de vários lugares do mundo.
+twilight-delight | Addon do Farmer's Delight: comidas e sobremesas da Twilight Forest.
+ends-delight | Addon do Farmer's Delight: comidas com coisas do End.
+oceans-delight | Addon do Farmer's Delight: comidas com coisas do mar.
+storage-delight | Addon do Farmer's Delight: móveis para a cozinha e outros cantos.
+cf:415438 | Croptopia: muitas plantações e comidas novas.
+cf:885449 | EpheroLib: biblioteca do Croptopia.
+cf:231484 | Cooking for Blockheads: cozinha montada em blocos que mostra o que dá para fazer com o que você tem.
+cf:277616 | Spice of Life Carrot Edition: cada comida nova que você prova dá corações extras de vida.
+botany-pots | Vasos que plantam e colhem sozinhos: fazenda compacta em um bloco.
+mystical-agriculture | Plantações que dão minérios e materiais (mais de 150 tipos).
+cf:1410391 | Smoking Pipe: cachimbo para fumar, que ainda dá um pouco de experiência.
+ciggycraft | Tabaco que vira cigarro para fumar.
+cf:896915 | Tobacconist: plantar, curar, misturar e fumar tabaco.
+
+## Tecnologia
+create | Engrenagens, esteiras, moinhos e máquinas que automatizam fazendas e fábricas. Segure W com o mouse em cima de qualquer item do Create para ver um tutorial animado de como ele funciona.
+cf:268560 | Mekanism: tecnologia com máquinas, energia e processamento de minérios. Mais complexo que o Create.
+iron-furnaces | Fornalhas de ferro, ouro, diamante e mais: cozinham e derretem mais rápido.
 
 ## Create: addons
 create-contraption-terminals | O terminal do Tom's Storage funciona em máquinas móveis do Create (trens, elevadores).
@@ -33,15 +88,27 @@ interiors | Móveis novos no estilo do Create.
 sophisticated-storage | Baús, barris e caixas que ganham upgrades: viram maiores (ferro, ouro, diamante, netherite) sem tirar os itens, organizam sozinhos, filtram e puxam itens.
 sophisticated-backpacks | Mochilas com upgrades: coletam itens do chão, organizam, alimentam você e podem ficar maiores.
 toms-storage | Liga todos os baús da base num terminal: uma tela só com busca para achar e pegar qualquer item.
+cf:228756 | Iron Chests: baús de ferro, ouro, diamante e outros, maiores que o normal.
 
 ## Ferramentas
 just-hammers | Martelos que quebram uma área 3x3 de uma vez. Ótimos para cavar túneis e minas.
 advanced-netherite | Ferramentas e armaduras ainda melhores que netherite, feitas com materiais do jogo. Progressão no estilo vanilla.
 veinminer | Segure a tecla ao lado do 1 e quebre um bloco: os blocos iguais grudados vêm junto (até 64). Funciona com qualquer bloco: minério, tronco, terra, pedra.
 veinminer-client | Tecla do VeinMiner e contorno do que vai quebrar. Segure a tecla e role o scroll para trocar o formato. Troque a tecla em Opções → Controles (busque "vein").
+aperture-innovations | Portal gun do jogo Portal: atire um portal azul e um laranja e atravesse.
 
-## Dragões
+## Mobs e animais
 dmr | Dragões soltos pelo mundo (no mundo normal, no Nether e no End). Dome dando peixe, monte e voe. Faça um apito para chamar o seu dragão de qualquer lugar; ele também carrega baú. Ovo: coloque no chão e clique com o botão direito para chocar. Dragões de biomas diferentes cruzam e geram híbridos.
+cf:1635121 | Alex's Mobs Continued: mais de 85 bichos novos, incluindo gorila e macaco-prego.
+cf:602059 | Friends&Foes: bichos que perderam as votações da Mojang, como o golem de cobre e o moobloom.
+critters-and-companions | Bichinhos novos para o mundo.
+lets-do-wildernature | Animais selvagens, caça, recompensas e troféus.
+archies-dinosaurs | Dinossauros pelo mundo, de herbívoros grandes a predadores.
+ribbits | Vilas de sapos nos pântanos, com sapos músicos.
+naturalist | Dezenas de animais realistas (urso, cervo, leão, elefante, borboletas, cobras) pelo mundo.
+mowzies-mobs | Mobs e mini-chefes únicos e bem animados, com recompensas ótimas.
+aquamirae | Aventura no oceano congelado: navios, mobs aquáticos, chefe e armaduras.
+adorable-hamster-pets | Hamsters fofos. Domestique com pepino fatiado, carregue até três nos ombros (eles farejam creeper e diamante) e aperte G para arremessar. Tem livro guia no jogo.
 
 ## Dimensões
 eternal-starlight | Dimensão mágica e misteriosa sob a luz das estrelas.
@@ -54,31 +121,10 @@ ad-astra | Foguetes e planetas (Lua, Marte, Vênus, Mercúrio) com minérios nov
 incendium | Nether renovado: biomas, estruturas, mobs e chefes novos.
 nullscape | End renovado: ilhas e terreno novos depois do dragão.
 
-## Cavernas e minérios
-galosphere | Cavernas de cristal com minérios e minerais novos (prata, cristais) e itens de exploração.
-
-## Mobs e animais
-cf:1635121 | Alex's Mobs Continued: mais de 85 bichos novos, incluindo gorila e macaco-prego.
-cf:602059 | Friends&Foes: bichos que perderam as votações da Mojang, como o golem de cobre e o moobloom.
-critters-and-companions | Bichinhos novos para o mundo.
-lets-do-wildernature | Animais selvagens, caça, recompensas e troféus.
-archies-dinosaurs | Dinossauros pelo mundo, de herbívoros grandes a predadores.
-ribbits | Vilas de sapos nos pântanos, com sapos músicos.
-naturalist | Dezenas de animais realistas (urso, cervo, leão, elefante, borboletas, cobras) pelo mundo.
-mowzies-mobs | Mobs e mini-chefes únicos e bem animados, com recompensas ótimas.
-aquamirae | Aventura no oceano congelado: navios, mobs aquáticos, chefe e armaduras.
-adorable-hamster-pets | Hamsters fofos. Domestique com pepino fatiado, carregue até três nos ombros (eles farejam creeper e diamante) e aperte G para arremessar. Tem livro guia no jogo.
-
 ## Aventura e chefes
 when-dungeons-arise | Masmorras e estruturas gigantes (castelos, navios voadores, torres) cheias de mobs e tesouros.
 artifacts | Itens mágicos achados em baús de estruturas: asas de pena, bota de velocidade, anel de fogo.
 lootr | Cada jogador tem o próprio loot nos baús de estruturas: quem chega depois também ganha o tesouro.
-
-## Biomas e terreno
-serene-seasons-plus | Addon do Serene Seasons: o dia e a noite mudam de tamanho com a estação, e a neve acumula e derrete de um jeito mais natural.
-serene-seasons | Estações do ano: neve e lagos congelados no inverno, plantas que crescem melhor em certas estações.
-terralith | Quase 100 biomas novos no estilo vanilla: desfiladeiros, ilhas, florestas de cerejeira gigantes, cavernas novas.
-tectonic | Terreno mais bonito e variado: montanhas altas, vales, rios largos e litoral mais natural.
 
 ## Estruturas
 yungs-better-dungeons | Masmorras reformuladas: maiores, com armadilhas e tesouros melhores.
@@ -92,6 +138,32 @@ yungs-better-nether-fortresses | Fortalezas do Nether reformuladas, mais bonitas
 towns-and-towers | Vilas novas por bioma, torres de saqueadores e navios pelo mundo.
 explorify | Estruturas pequenas espalhadas pelo mundo (ruínas, acampamentos, poços) para dar vontade de explorar.
 
+## Biomas, terreno e cavernas
+biomes-o-plenty | Dezenas de biomas novos no mundo, com árvores, flores e plantas próprias.
+galosphere | Cavernas de cristal com minérios e minerais novos (prata, cristais) e itens de exploração.
+serene-seasons-plus | Addon do Serene Seasons: o dia e a noite mudam de tamanho com a estação, e a neve acumula e derrete de um jeito mais natural.
+serene-seasons | Estações do ano: neve e lagos congelados no inverno, plantas que crescem melhor em certas estações.
+terralith | Quase 100 biomas novos no estilo vanilla: desfiladeiros, ilhas, florestas de cerejeira gigantes, cavernas novas.
+tectonic | Terreno mais bonito e variado: montanhas altas, vales, rios largos e litoral mais natural.
+
+## Interface e controles
+controlling | Busca nas teclas: em Opções → Controles, digite o nome da ação ou aperte a tecla para achar o que ela faz.
+mouse-tweaks | Arraste o mouse com o botão apertado para mover vários itens de uma vez.
+inventory-essentials | Organizar inventário e baús (botão do meio do mouse) e mover itens rápido com Shift.
+pick-up-notifier | Mostra no canto da tela os itens que você pegou.
+chat-heads | Mostra a cabeça do jogador ao lado das mensagens do chat.
+polymorph | Quando duas receitas usam os mesmos ingredientes, aparece um botão para escolher qual item fazer.
+ok-zoomer | Zoom da câmera como no OptiFine: segure C e use a roda do mouse para ajustar.
+cubes-without-borders | Tela cheia sem bordas: em Opções → Vídeo, escolha o modo sem bordas em vez da tela cheia exclusiva.
+
+## Qualidade de vida
+carry-on | Pegue baús e animais no colo (Shift + botão direito com as mãos vazias) e leve para outro lugar.
+clumps | Junta as bolinhas de XP em uma só: menos lag.
+comforts | Saco de dormir e rede: dormir sem mudar o ponto de renascimento.
+trade-cycling | Botão para trocar as ofertas de um aldeão que ainda não negociou.
+easy-anvils | Bigorna sem o limite de "Caro demais" e com nomes coloridos.
+corpse | Ao morrer, seus itens ficam guardados num corpo no lugar da morte, sem sumir.
+
 ## Visual e ambiente
 fresh-animations | Pacote de recursos (já vem ligado): mobs com animações muito mais vivas, piscando e se mexendo.
 entity-model-features | Necessário para o Fresh Animations funcionar.
@@ -99,6 +171,8 @@ entity-model-features | Necessário para o Fresh Animations funcionar.
 ambientsounds | Sons de ambiente: vento, pássaros, grilos, água, cavernas.
 sound-physics-remastered | Som com eco e abafamento realistas em cavernas e salas fechadas.
 distanthorizons | Enxerga muito mais longe (montanhas no horizonte) desenhando o terreno distante em versão simplificada e leve. No servidor mostra os lugares por onde você já passou. **Opcional**: na primeira abertura aparece uma janela para marcar. No PC funciona junto com Complementary, BSL, Photon e Bliss; **no Mac ele fica desligado**: fechou o jogo em um M4 e impede os shaders de abrir (limite de texturas do Mac).
+not-enough-animations | Animações em terceira pessoa: segurar mapa, comer, subir escada e mais aparecem para os outros jogadores.
+dynamic-torches | Luz dinâmica: tocha, lanterna e outros itens iluminam ao redor quando você os segura, com ou sem shader.
 
 ## Pacotes de recursos (todos vêm ligados; desligue em Opções → Pacotes de recursos)
 fresh-animations-extensions | Extensões oficiais do Fresh Animations: mais animações em mobs e jogadores.
@@ -119,79 +193,11 @@ bsl-shaders | Clássico e equilibrado: bonito sem pesar muito. Escolha em Opçõ
 photon-shader | O mais bonito da lista, para PCs fortes. **Só PC: não roda no Mac.** Escolha em Opções → Vídeo → Shader Packs.
 bliss-shader | Céu e nuvens impressionantes, para PCs fortes. No Mac abre (testado num M4), mas pode ter defeitos e pesa. Escolha em Opções → Vídeo → Shader Packs.
 
-## Qualidade de vida
+## Servidor e login
 modflared | Liga sozinho o túnel da Cloudflare ao entrar no servidor. A conexão vai como site seguro (HTTPS), então funciona em rede de faculdade, empresa e Wi-Fi público.
-controlling | Busca nas teclas: em Opções → Controles, digite o nome da ação ou aperte a tecla para achar o que ela faz.
-natures-compass | Bússola que encontra qualquer bioma (ótimo com os biomas novos do Terralith).
-explorers-compass | Bússola que encontra estruturas (vilas, templos, masmorras dos mods).
-ping-wheel | Clique com o botão do meio do mouse (o scroll) para marcar um lugar ou item para os amigos verem. Segure para escolher o tipo de marca.
-carry-on | Pegue baús e animais no colo (Shift + botão direito com as mãos vazias) e leve para outro lugar.
-clumps | Junta as bolinhas de XP em uma só: menos lag.
-pick-up-notifier | Mostra no canto da tela os itens que você pegou.
-chat-heads | Mostra a cabeça do jogador ao lado das mensagens do chat.
-comforts | Saco de dormir e rede: dormir sem mudar o ponto de renascimento.
-trade-cycling | Botão para trocar as ofertas de um aldeão que ainda não negociou.
-polymorph | Quando duas receitas usam os mesmos ingredientes, aparece um botão para escolher qual item fazer.
-easy-anvils | Bigorna sem o limite de "Caro demais" e com nomes coloridos.
 mixauth | Login no servidor. Com Minecraft original você entra direto (a Mojang confirma a conta) e com a sua skin. Sem original: na primeira vez /register senha senha, depois /login senha, sempre (protege seu nick).
 skinrestorer | Mostra a skin de cada um no servidor, mesmo em rede que bloqueia a Mojang. Trocar: /skin set nick SeuNick ou /skin set web classic <link da imagem>.
 customskinloader | Busca a skin de cada jogador direto no jogo. Se o servidor não conseguir as skins (limite da Mojang em rede compartilhada, como na faculdade), elas continuam aparecendo.
-
-## Mundo e facilidade
-cf:298187 | Building Gadgets: ferramentas para construir grande (vários blocos de uma vez, copiar e colar construções, trocar blocos em área).
-effortless-building | Espelho, repetição e formas ao construir. Funciona no modo sobrevivência.
-biomes-o-plenty | Dezenas de biomas novos no mundo, com árvores, flores e plantas próprias.
-cf:897116 | Furniture Refurbished: móveis que funcionam, como cozinha, geladeira, fogão, TV e portas.
-aperture-innovations | Portal gun do jogo Portal: atire um portal azul e um laranja e atravesse.
-macaws-furniture | Móveis: guarda-roupas, gavetas, cadeiras, mesas, sofás, pias.
-macaws-roofs | Telhados de verdade no lugar de escadas.
-macaws-windows | Janelas, vitrais, persianas, venezianas e cortinas.
-macaws-doors | Portas de todas as madeiras e portas diferentes (faroeste, garagem, shoji).
-macaws-bridges | Pontes.
-macaws-fences-and-walls | Cercas, muros e portões no estilo vanilla.
-handcrafted | Móveis no estilo vanilla para deixar a casa com cara de lar.
-cf:277616 | Spice of Life Carrot Edition: cada comida nova que você prova dá corações extras de vida.
-cf:1410391 | Smoking Pipe: cachimbo para fumar, que ainda dá um pouco de experiência.
-ciggycraft | Tabaco que vira cigarro para fumar.
-cf:896915 | Tobacconist: plantar, curar, misturar e fumar tabaco.
-mystical-agriculture | Plantações que dão minérios e materiais (mais de 150 tipos).
-cf:231484 | Cooking for Blockheads: cozinha montada em blocos que mostra o que dá para fazer com o que você tem.
-supplementaries-squared | Conteúdo extra do Supplementaries que não coube no mod principal.
-enchantment-descriptions | Mostra o que cada encantamento faz ao passar o mouse no livro.
-just-enough-resources-jer | No JEI, mostra em que altura cada minério aparece e o que cada mob dropa.
-cf:268560 | Mekanism: tecnologia com máquinas, energia e processamento de minérios. Mais complexo que o Create.
-cf:289412 | FTB Quests: livro de missões para guiar a progressão.
-cf:404465 | FTB Library: biblioteca do FTB Quests.
-cf:404468 | FTB Teams: times do FTB Quests (missões em grupo).
-cf:889915 | FTB XMod Compat: clique no item de uma missão para ver a receita no JEI.
-cf:943925 | FTB Filter System: missões que aceitam qualquer madeira, qualquer cobre e afins.
-cf:228756 | Iron Chests: baús de ferro, ouro, diamante e outros, maiores que o normal.
-cf:415438 | Croptopia: muitas plantações e comidas novas.
-cf:885449 | EpheroLib: biblioteca do Croptopia.
-iron-furnaces | Fornalhas de ferro, ouro, diamante e mais: cozinham e derretem mais rápido.
-bubblellaneous | Móveis, tecnologia, comidas e blocos variados. Datapack: o servidor carrega sozinho e o pacote de recursos já vem ligado.
-botany-pots | Vasos que plantam e colhem sozinhos: fazenda compacta em um bloco.
-waystones | Pedras de teleporte: ative nas suas bases e em vilas e viaje entre elas.
-xaeros-minimap | Minimapa no canto da tela, com marcadores (waypoints) e marcação de onde você morreu.
-xaeros-world-map | Mapa do mundo inteiro que você já explorou. Tecla M.
-xaeros-minimap-world-map-waystones-compatibility-forge | Ao ativar uma waystone, ela vira um marcador (waypoint) no minimapa e no mapa do Xaero.
-ok-zoomer | Zoom da câmera como no OptiFine: segure C e use a roda do mouse para ajustar.
-not-enough-animations | Animações em terceira pessoa: segurar mapa, comer, subir escada e mais aparecem para os outros jogadores.
-cubes-without-borders | Tela cheia sem bordas: em Opções → Vídeo, escolha o modo sem bordas em vez da tela cheia exclusiva.
-dynamic-torches | Luz dinâmica: tocha, lanterna e outros itens iluminam ao redor quando você os segura, com ou sem shader.
-map-atlases-forge | Atlas que junta seus mapas de papel em um livro. Receita: mapa preenchido, livro e slime ou garrafa de mel. Na hotbar ou na mão secundária, mostra os mapas como minimapa.
-corpse | Ao morrer, seus itens ficam guardados num corpo no lugar da morte, sem sumir.
-cultural-delights | Addon do Farmer's Delight: comidas de vários lugares do mundo.
-twilight-delight | Addon do Farmer's Delight: comidas e sobremesas da Twilight Forest.
-ends-delight | Addon do Farmer's Delight: comidas com coisas do End.
-oceans-delight | Addon do Farmer's Delight: comidas com coisas do mar.
-storage-delight | Addon do Farmer's Delight: móveis para a cozinha e outros cantos.
-farmers-delight | Culinária: plantações, panela, tábua de corte e dezenas de comidas novas.
-supplementaries | Blocos no estilo vanilla: potes, placas de direção, cata-vento, lanternas de parede e muito mais para construir.
-amendments | Do autor do Supplementaries: muda vários blocos vanilla.
-beautify | Decoração no estilo vanilla com modelos próprios para enfeitar as construções.
-mouse-tweaks | Arraste o mouse com o botão apertado para mover vários itens de uma vez.
-inventory-essentials | Organizar inventário e baús (botão do meio do mouse) e mover itens rápido com Shift.
 
 ## Desempenho
 badoptimizations | Otimiza cálculos fora da renderização (luz, céu, mapa).
