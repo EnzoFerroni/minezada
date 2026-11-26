@@ -14,30 +14,100 @@
 	quest.712E2F6300ED0812.quest_desc: ["Seus itens ficam guardados em um corpo no lugar da morte. Volte la e clique nele para pegar tudo.", "O lugar da morte aparece no mapa."]
 	quest.B772DD21EE451560.title: "Cozinha"
 	quest.B772DD21EE451560.quest_desc: ["Farmer's Delight traz panela, tabua de corte e dezenas de comidas.", "Cada comida nova que voce prova pela primeira vez da coracoes extras de vida (Spice of Life)."]
-	chapter.0196B79DB1F5EAED.title: "Create"
-	quest.0BA2E8742481F590.title: "Ponder"
-	quest.0BA2E8742481F590.quest_desc: ["O Create ensina cada bloco com animacoes: segure W com o mouse em cima de um item do Create."]
-	quest.51E8ADCD97480966.title: "Roda d'agua"
-	quest.51E8ADCD97480966.quest_desc: ["A roda d'agua gira com agua corrente e gera forca para as maquinas."]
-	quest.7E848A2FACB995C9.title: "Eixos e engrenagens"
-	quest.7E848A2FACB995C9.quest_desc: ["Eixos e engrenagens levam a forca da roda ate as maquinas."]
-	quest.222D1DA14549BD8E.title: "Prensa"
-	quest.222D1DA14549BD8E.quest_desc: ["A prensa mecanica transforma lingotes em chapas, que muitas receitas pedem."]
-	chapter.55DC813E26190213.title: "Create avancado"
-	quest.222DA5107B79116F.title: "Moinho de vento"
-	quest.222DA5107B79116F.quest_desc: ["Rolamento de moinho com velas em volta gira sem agua. Mais velas, mais forca."]
-	quest.28F379563F703E5C.title: "Misturador"
-	quest.28F379563F703E5C.quest_desc: ["Misturador mecanico em cima de uma bacia mistura itens. Com aquecimento faz o latao."]
-	quest.24F6C15B95927522.title: "Queimador de blaze"
-	quest.24F6C15B95927522.quest_desc: ["Debaixo da bacia ele aquece as receitas. Alimente com combustivel comum."]
-	quest.79F54EA46B753BB9.title: "Latao"
-	quest.79F54EA46B753BB9.quest_desc: ["Cobre e zinco misturados com calor viram latao, o material das maquinas avancadas."]
-	quest.E69519393E039D59.title: "Mecanismo de precisao"
-	quest.E69519393E039D59.quest_desc: ["Peca das maquinas avancadas. Veja a receita em sequencia no JEI (tecla R)."]
-	quest.59A5190E44EDD984.title: "Construcoes prontas"
-	quest.59A5190E44EDD984.quest_desc: ["A mesa de esquemas e o canhao de esquemas (Schematicannon) montam uma construcao inteira a partir de um arquivo de esquema.", "Coloque arquivos .nbt na pasta schematics do jogo; ha milhares prontos no site createmod.com."]
-	quest.604811EC769B1DFF.title: "Trens"
-	quest.604811EC769B1DFF.quest_desc: ["Trilho, estacao e controles formam um trem. O Ponder (W) mostra a montagem passo a passo."]
+	chapter.BBA9B6DE266CCBFE.title: "Create 1: o basico"
+	quest.F43F2D5CC50C160E.title: "O que e o Create"
+	quest.F43F2D5CC50C160E.quest_desc: ["Create e um mod de maquinas que funcionam com rotacao, como um moinho de verdade: algo gira (agua, vento, vapor) e eixos levam o giro ate as maquinas.", "Segure W com o mouse em cima de qualquer item do Create para ver uma animacao explicando ele (Ponder)."]
+	quest.B4E5D9F83BA191B7.title: "Liga de andesito"
+	quest.B4E5D9F83BA191B7.quest_desc: ["O material de quase tudo no comeco: andesito com pepitas de ferro (ou zinco). Receita no JEI (tecla R)."]
+	quest.4E782FDC8A29C55F.title: "Revestimento de andesito"
+	quest.4E782FDC8A29C55F.quest_desc: ["Clique com a liga de andesito em um tronco descascado. O revestimento e a base de varias maquinas."]
+	quest.713CA83B402B1EBB.title: "Eixos"
+	quest.713CA83B402B1EBB.quest_desc: ["O eixo leva a rotacao em linha reta."]
+	quest.F69C72DE12C48B1B.title: "Engrenagens"
+	quest.F69C72DE12C48B1B.quest_desc: ["Engrenagens passam o giro para os lados. Duas engrenagens encostadas giram em sentidos opostos.", "Engrenagem grande ligada a pequena muda a velocidade: pequena para grande diminui, grande para pequena aumenta."]
+	quest.06EC2EE31BBAEFB3.title: "Engrenagem grande"
+	quest.06EC2EE31BBAEFB3.quest_desc: ["Junto com a pequena, ela faz curvas e muda a velocidade (RPM)."]
+	quest.C95B4DD49D945339.title: "Caixa de engrenagens"
+	quest.C95B4DD49D945339.quest_desc: ["Faz curvas de 90 graus em pouco espaco."]
+	quest.A09FC078EB5E2BD0.title: "Manivela"
+	quest.A09FC078EB5E2BD0.quest_desc: ["Gira as maquinas com a mao, para testar. Cansa: gasta fome."]
+	quest.15DA37216A7BAE21.title: "Roda d'agua"
+	quest.15DA37216A7BAE21.quest_desc: ["Coloque na beira de agua corrente: a agua empurra a roda e ela gira o eixo. Agua dos dois lados trava a roda."]
+	quest.87DF67DB2ED1D8B5.title: "Oculos de engenheiro"
+	quest.87DF67DB2ED1D8B5.quest_desc: ["Com os oculos voce olha uma maquina e ve a velocidade e o esforco (stress) dela."]
+	quest.40E31D6C06C810D7.title: "Stress"
+	quest.40E31D6C06C810D7.quest_desc: ["Cada maquina gasta esforco (SU). Cada fonte de giro tem um limite de SU. Passou do limite, tudo para (overstressed): coloque mais fontes ou baixe a velocidade.", "O medidor de stress mostra quanto da rede esta em uso."]
+	chapter.544787426C85E4FA.title: "Create 2: primeiras maquinas"
+	quest.8E9234D0A775C532.title: "Deposito"
+	quest.8E9234D0A775C532.quest_desc: ["O deposito segura itens embaixo das maquinas, como uma mesa."]
+	quest.A4D45AE531CC8DD4.title: "Prensa"
+	quest.A4D45AE531CC8DD4.quest_desc: ["A prensa em cima de um deposito amassa lingotes em chapas. Chapas de ferro aparecem em muitas receitas."]
+	quest.0FFB8A4F6D765047.title: "Chapa de ferro"
+	quest.0FFB8A4F6D765047.quest_desc: ["Faca suas primeiras chapas com a prensa."]
+	quest.88A9F0D3CB4E4ADF.title: "Esteira"
+	quest.88A9F0D3CB4E4ADF.quest_desc: ["Feita de alga seca. Clique em dois eixos para ligar: leva itens de uma maquina para outra e tambem passa o giro."]
+	quest.F7552730F917B3A2.title: "Moedor"
+	quest.F7552730F917B3A2.quest_desc: ["O moedor transforma trigo em farinha e pedregulho em cascalho."]
+	quest.F1902CE9B4233470.title: "Ventilador"
+	quest.F1902CE9B4233470.quest_desc: ["O ventilador sopra itens. Com fogo atras ele cozinha, com lava ele derrete, com agua ele lava os itens no caminho."]
+	quest.5D406386B77211CF.title: "Serra"
+	quest.5D406386B77211CF.quest_desc: ["A serra corta madeira. Numa estrutura que anda, derruba arvores inteiras."]
+	quest.6D0020FF08FE30D0.title: "Broca"
+	quest.6D0020FF08FE30D0.quest_desc: ["A broca quebra o bloco da frente. Com rolamentos e pistoes vira uma maquina de minerar."]
+	quest.D9A226648CAE99CA.title: "Moinho de vento"
+	quest.D9A226648CAE99CA.quest_desc: ["O rolamento de moinho com velas em volta gira sem agua. Mais velas, mais forca. Clique no rolamento para comecar."]
+	quest.B27AE96A1893C2F8.title: "Velas"
+	quest.B27AE96A1893C2F8.quest_desc: ["As velas do moinho. La tambem serve."]
+	quest.AB88F26A795CAB85.title: "Cola"
+	quest.AB88F26A795CAB85.quest_desc: ["A super cola junta blocos para que se movam juntos numa estrutura."]
+	quest.BE0E9C0DF135D391.title: "Pistao mecanico"
+	quest.BE0E9C0DF135D391.quest_desc: ["Empurra uma estrutura inteira para frente e para tras."]
+	quest.6E18F7126D48DC9D.title: "Rolamento mecanico"
+	quest.6E18F7126D48DC9D.quest_desc: ["Gira uma estrutura inteira, como uma roda gigante ou uma porta."]
+	chapter.D484F5C3EA822981.title: "Create 3: era do latao"
+	quest.8600E8BC2C175FA0.title: "Bacia"
+	quest.8600E8BC2C175FA0.quest_desc: ["A bacia guarda os ingredientes para o misturador e a prensa."]
+	quest.13D65DA105B6DC8C.title: "Misturador"
+	quest.13D65DA105B6DC8C.quest_desc: ["Em cima da bacia, com um bloco de espaco, ele mistura os ingredientes."]
+	quest.35CF7E0EF578B3D8.title: "Queimador de blaze"
+	quest.35CF7E0EF578B3D8.quest_desc: ["Faca o queimador vazio e clique com ele em um blaze. Embaixo da bacia ele aquece as receitas; alimente com carvao."]
+	quest.B96A729DC1F49665.title: "Latao"
+	quest.B96A729DC1F49665.quest_desc: ["Cobre e zinco na bacia aquecida viram latao."]
+	quest.4586EE64BB7E2CB4.title: "Revestimento de latao"
+	quest.4586EE64BB7E2CB4.quest_desc: ["Latao em tronco descascado. Base das maquinas avancadas."]
+	quest.FE1B436601F36D12.title: "Quartzo rosa"
+	quest.FE1B436601F36D12.quest_desc: ["Quartzo rosa polido vira tubo de eletrons, a peca eletronica do Create."]
+	quest.5D8954105C424FBC.title: "Deployer"
+	quest.5D8954105C424FBC.quest_desc: ["O deployer usa o item da mao dele no bloco da frente, como um jogador. Base da montagem automatica."]
+	quest.7C28ABE1AD660519.title: "Mecanismo de precisao"
+	quest.7C28ABE1AD660519.quest_desc: ["Feito em varias etapas numa esteira com deployers (montagem em sequencia). Veja o passo a passo no JEI."]
+	quest.7BC3C4803FA3464F.title: "Funil de latao"
+	quest.7BC3C4803FA3464F.quest_desc: ["Funis colocam e tiram itens das esteiras e baus. O de latao tem filtro."]
+	quest.E8EB7FC2303C16F5.title: "Tunel de latao"
+	quest.E8EB7FC2303C16F5.quest_desc: ["Divide os itens de uma esteira entre varias saidas."]
+	quest.2FFCD2A06A46A4AE.title: "Crafter mecanico"
+	quest.2FFCD2A06A46A4AE.quest_desc: ["Varios crafters juntos fazem receitas grandes sozinhos."]
+	quest.A3F4045B66346133.title: "Britadores"
+	quest.A3F4045B66346133.quest_desc: ["Duas rodas trituradoras girando para dentro moem minerio e dao mais material."]
+	chapter.194556CE7AC2ADF2.title: "Create 4: vapor, fluidos e trens"
+	quest.8DE1EED07292296C.title: "Tubos"
+	quest.8DE1EED07292296C.quest_desc: ["Tubos levam liquidos."]
+	quest.BE62D397BC09BE53.title: "Bomba"
+	quest.BE62D397BC09BE53.quest_desc: ["A bomba gira e empurra o liquido pelos tubos. A chave inglesa inverte o sentido."]
+	quest.65A359F59A05965E.title: "Tanque"
+	quest.65A359F59A05965E.quest_desc: ["Tanques guardam liquido. Varios juntos fazem um tanque grande."]
+	quest.798026F49712E18E.title: "Bico"
+	quest.798026F49712E18E.quest_desc: ["O bico (spout) enche itens com liquido, como garrafas e baldes."]
+	quest.8C36E8C89CCC2873.title: "Motor a vapor"
+	quest.8C36E8C89CCC2873.quest_desc: ["Tanque com agua em cima de queimadores de blaze vira caldeira; o motor a vapor no tanque da muita forca."]
+	quest.460D354F7E365880.title: "Trilhos"
+	quest.460D354F7E365880.quest_desc: ["Os trilhos do Create fazem curvas grandes e subidas."]
+	quest.C6081E1978904BB1.title: "Estacao"
+	quest.C6081E1978904BB1.quest_desc: ["A estacao e onde o trem para e e montado."]
+	quest.AC8228681581CCD1.title: "Controles"
+	quest.AC8228681581CCD1.quest_desc: ["Os controles dirigem o trem. Com um horario, ele anda sozinho entre estacoes."]
+	quest.41487192176AFECF.title: "Construcoes prontas"
+	quest.41487192176AFECF.quest_desc: ["A mesa de esquemas e o canhao de esquemas montam uma construcao inteira a partir de um arquivo. Coloque arquivos .nbt na pasta schematics do jogo; ha muitos prontos no site createmod.com."]
 	chapter.A5D41E448E070155.title: "Mochila e baus"
 	quest.30E1A058E28935C6.title: "Base de melhoria"
 	quest.30E1A058E28935C6.quest_desc: ["As melhorias da mochila partem desta base. Clique com o botao direito na mochila e coloque nas casas de melhoria."]

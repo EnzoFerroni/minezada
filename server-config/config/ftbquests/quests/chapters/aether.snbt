@@ -5,7 +5,7 @@
 	group: ""
 	icon: { id: "aether:ambrosium_shard" }
 	id: "62BEA1E66A80BAE3"
-	order_index: 10
+	order_index: 12
 	quest_links: [ ]
 	quests: [
 		{

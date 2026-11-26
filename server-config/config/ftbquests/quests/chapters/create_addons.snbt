@@ -5,7 +5,7 @@
 	group: ""
 	icon: { id: "create_jetpack:jetpack" }
 	id: "B52FDEAA5730E688"
-	order_index: 15
+	order_index: 17
 	quest_links: [ ]
 	quests: [
 		{
