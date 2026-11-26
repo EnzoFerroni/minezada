@@ -116,6 +116,12 @@ function Configurar-Drive {
     if (-not (Test-Path $app)) {
         Write-Host 'Instalando o Google Drive...'
         winget install -e --id Google.GoogleDrive --silent --accept-source-agreements --accept-package-agreements
+        # 1610/3010: o Windows espera um reinicio (ex: Drive desinstalado ha pouco) e o instalador recusa rodar.
+        if (-not (Test-Path $app)) {
+            Write-Host ''
+            Write-Host 'O Google Drive nao instalou. Reinicie o PC e rode o iniciar de novo, ou baixe em'
+            Write-Host 'https://www.google.com/drive/download/ e instale; depois continue aqui.'
+        }
     }
     if (Test-Path $app) { Start-Process $app }
     Start-Process $driveUrl
