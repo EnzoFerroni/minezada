@@ -138,7 +138,7 @@
 	chapter.25D41E448E070155.chapter_subtitle: ["Guardar muito e achar tudo rápido"]
 	quest.585BC78BCC23604E.title: "Arrumar o inventário"
 	quest.585BC78BCC23604E.quest_subtitle: "Mouse Tweaks e Inventory Essentials"
-	quest.585BC78BCC23604E.quest_desc: ["Truques que economizam muito tempo:", "&eRoda do mouse&r em cima de um item: passa ele para o outro lado (baú e inventário).", "&eSegure o botão direito e arraste&r: espalha um item por várias casas.", "&eShift + clique duplo&r: move todos os itens iguais de uma vez.", "", "&7Clique em Concluir quando tiver testado."]
+	quest.585BC78BCC23604E.quest_desc: ["Truques que economizam muito tempo:", "&eRoda do mouse&r em cima de um item: passa ele para o outro lado (baú e inventário).", "&eSegure o botão direito e arraste&r: espalha um item por várias casas.", "&eShift + clique duplo&r: move todos os itens iguais de uma vez.", "&eBotão do meio do mouse&r dentro de um baú: organiza tudo.", "", "&7Clique em Concluir quando tiver testado."]
 	quest.31630AB2FE4C2B11.title: "Mochila"
 	quest.31630AB2FE4C2B11.quest_subtitle: "Sophisticated Backpacks"
 	quest.31630AB2FE4C2B11.quest_desc: ["A &emochila&r é um baú que vai com você. Faça com couro, um baú e linha.", "", "Abra com o botão direito segurando ela, ou coloque no lugar do &epeitoral&r e abra com a tecla &eB&r.", "", "&eShift + botão direito&r no chão coloca a mochila como bloco. Quebre para pegar de volta: os itens continuam dentro."]
@@ -470,26 +470,49 @@
 	quest.624E7920FAAD6862.title: "Vila lunar"
 	quest.624E7920FAAD6862.quest_desc: ["Os lunarianos tem vilas na Lua e trocam itens como os aldeoes."]
 	chapter.1EDB32752725DDCA.title: "Utilidades"
+	chapter.1EDB32752725DDCA.chapter_subtitle: ["Ferramentas e truques que facilitam a vida"]
 	quest.493065C7669E9089.title: "Minerar em bloco"
-	quest.493065C7669E9089.quest_desc: ["VeinMiner: segure a tecla ao lado do 1 e quebre um minerio para levar o veio inteiro."]
-	quest.6469C52CE8ED6032.title: "Marcar no mapa"
-	quest.6469C52CE8ED6032.quest_desc: ["Ping Wheel: o botao do meio do mouse marca um ponto para todo mundo ver."]
-	quest.114B01E7B50BF062.title: "Carregar bau"
-	quest.114B01E7B50BF062.quest_desc: ["Carry On: agache com a mao vazia e clique em um bau para levar ele inteiro, com tudo dentro."]
+	quest.493065C7669E9089.quest_subtitle: "VeinMiner"
+	quest.493065C7669E9089.quest_desc: ["Segure a &etecla ao lado do 1&r e quebre um bloco: todos os blocos iguais grudados vêm junto (até 64). Funciona com minério, tronco e o que mais quiser.", "", "Um contorno mostra o que vai quebrar. Com a tecla segurada, &erole o mouse&r para trocar o formato (veio, túnel, área).", "", "&7Clique em Concluir quando tiver testado."]
 	quest.44D6D9BE5B35C3AF.title: "Martelo"
-	quest.44D6D9BE5B35C3AF.quest_desc: ["Just Hammers: o martelo quebra uma area 3x3 de uma vez."]
+	quest.44D6D9BE5B35C3AF.quest_subtitle: "Just Hammers"
+	quest.44D6D9BE5B35C3AF.quest_desc: ["O &emartelo&r quebra uma área de &e3x3&r de uma vez. Ótimo para túneis e minas.", "", "Tem martelos de pedra a netherite."]
+	quest.73D4274DF4F494A1.title: "Fornalha rápida"
+	quest.73D4274DF4F494A1.quest_subtitle: "Iron Furnaces"
+	quest.73D4274DF4F494A1.quest_desc: ["Fornalhas de &eferro, ouro, diamante&r e mais: cozinham e derretem &amuito mais rápido&r que a comum.", "", "Dá para melhorar uma fornalha já colocada com os &eupgrades&r do mod, sem perder o que está dentro."]
+	quest.454093E878F435FA.title: "Altura dos minérios"
+	quest.454093E878F435FA.quest_subtitle: "Just Enough Resources"
+	quest.454093E878F435FA.quest_desc: ["No JEI, aperte &eU&r em cima de um minério: uma aba mostra &aem que altura ele aparece mais&r.", "", "Em cima de um bicho ou monstro, mostra o que ele deixa cair."]
+	quest.1486A30A2C662DEA.title: "Encantamentos explicados"
+	quest.1486A30A2C662DEA.quest_subtitle: "Enchantment Descriptions"
+	quest.1486A30A2C662DEA.quest_desc: ["Passe o mouse em um livro encantado: aparece o que &ecada encantamento faz&r.", "", "A bigorna não tem mais o limite de \"Caro demais\" (&eEasy Anvils&r)."]
 	quest.1DF15A7537E1459C.title: "Saco de dormir"
-	quest.1DF15A7537E1459C.quest_desc: ["Comforts: o saco de dormir passa a noite sem mudar o seu ponto de nascer."]
+	quest.1DF15A7537E1459C.quest_subtitle: "Comforts"
+	quest.1DF15A7537E1459C.quest_desc: ["O &esaco de dormir&r passa a noite sem mudar o seu ponto de renascimento. Perfeito para viagens.", "", "A &erede&r faz o contrário: dorme de dia."]
 	quest.051B132375F0969D.title: "Zoom"
-	quest.051B132375F0969D.quest_desc: ["Ok Zoomer: segure C para dar zoom; a roda do mouse ajusta."]
-	quest.737CADF831F74384.title: "Baus de saque"
-	quest.737CADF831F74384.quest_desc: ["Lootr: cada jogador abre o seu proprio saque nos baus das estruturas. Ninguem fica sem."]
-	quest.2C23A23D6D3A08C6.title: "Terminal de armazenamento"
-	quest.2C23A23D6D3A08C6.quest_desc: ["Tom's Storage: liga varios baus em um terminal so, com busca."]
+	quest.051B132375F0969D.quest_subtitle: "Ok Zoomer"
+	quest.051B132375F0969D.quest_desc: ["Segure &eC&r para dar zoom. Role o mouse para ajustar."]
+	quest.7AA61CED22BB0609.title: "Tocha na mão"
+	quest.7AA61CED22BB0609.quest_subtitle: "Dynamic Torches"
+	quest.7AA61CED22BB0609.quest_desc: ["Segurar uma &etocha&r ou lanterna ilumina em volta de você. Ótimo para explorar caverna sem colocar tocha em todo lugar."]
+	quest.737CADF831F74384.title: "Baús de saque"
+	quest.737CADF831F74384.quest_subtitle: "Lootr"
+	quest.737CADF831F74384.quest_desc: ["Baús de estruturas (templos, masmorras, vilas) têm &asaque próprio para cada jogador&r. Todo mundo pode abrir o mesmo baú e ganhar itens.", "", "Esses baús têm um brilho diferente."]
+	quest.1B2A7FBEB0D7E424.title: "Trocar ofertas do aldeão"
+	quest.1B2A7FBEB0D7E424.quest_subtitle: "Trade Cycling"
+	quest.1B2A7FBEB0D7E424.quest_desc: ["Aldeão com ofertas ruins? Na tela de troca tem um &ebotão&r que sorteia ofertas novas, enquanto ele ainda não negociou com ninguém."]
 	quest.205E6C0F5C30753E.title: "Netherite melhor"
-	quest.205E6C0F5C30753E.quest_desc: ["Advanced Netherite: ferramentas e armaduras alem da netherite, com ferro, ouro, esmeralda e diamante."]
+	quest.205E6C0F5C30753E.quest_subtitle: "Advanced Netherite"
+	quest.205E6C0F5C30753E.quest_desc: ["Depois da netherite ainda tem mais: lingotes de netherite com ferro, ouro, esmeralda e diamante. Cada um dá ferramentas e armaduras com bônus próprios.", "", "Veja as receitas com &eU&r em cima do lingote de netherite."]
+	quest.1F472D77AC4B59EA.title: "Construção gigante"
+	quest.1F472D77AC4B59EA.quest_subtitle: "Building Gadgets"
+	quest.1F472D77AC4B59EA.quest_desc: ["O &egadget de construção&r coloca vários blocos de uma vez, e o de cópia copia e cola construções inteiras.", "", "Eles gastam energia (FE). Veja com &eU&r em cima deles como carregar."]
+	quest.029100AF745CC64D.title: "Portal gun"
+	quest.029100AF745CC64D.quest_subtitle: "Aperture Innovations"
+	quest.029100AF745CC64D.quest_desc: ["A &eportal gun&r do jogo Portal: atire um portal &bazul&r e um &6laranja&r e atravesse de um para o outro."]
 	quest.08B06B2679D02B1D.title: "Fumar"
-	quest.08B06B2679D02B1D.quest_desc: ["Smoking Pipe, CiggyCraft e Tobacconist: plante tabaco e fume. So por diversao."]
+	quest.08B06B2679D02B1D.quest_subtitle: "Smoking Pipe e Tobacconist"
+	quest.08B06B2679D02B1D.quest_desc: ["Plante tabaco, seque e fume no cachimbo. É só diversão: dá um pouco de experiência."]
 	chapter.352FDEAA5730E688.title: "Create: addons"
 	quest.07F95DF54233143C.title: "Jetpack"
 	quest.07F95DF54233143C.quest_desc: ["Create Jetpack: voa com ar comprimido de um tanque."]

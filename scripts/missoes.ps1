@@ -168,6 +168,7 @@ $capitulos = @(
             '&eRoda do mouse&r em cima de um item: passa ele para o outro lado (baú e inventário).'
             '&eSegure o botão direito e arraste&r: espalha um item por várias casas.'
             '&eShift + clique duplo&r: move todos os itens iguais de uma vez.'
+            '&eBotão do meio do mouse&r dentro de um baú: organiza tudo.'
             ''
             '&7Clique em Concluir quando tiver testado.'
         ) }
@@ -609,17 +610,69 @@ $capitulos = @(
         @{ t = 'Glacio'; d = 'O planeta gelado, o mais longe de todos.'; dim = 'ad_astra:glacio'; solta = $true }
         @{ t = 'Vila lunar'; d = 'Os lunarianos tem vilas na Lua e trocam itens como os aldeoes.'; estrutura = 'ad_astra:lunarian_village'; solta = $true }
     ) }
-    @{ t = 'Utilidades'; g = 'Começo'; icone = 'justhammers:iron_hammer'; m = @(
-        @{ t = 'Minerar em bloco'; d = 'VeinMiner: segure a tecla ao lado do 1 e quebre um minerio para levar o veio inteiro.'; solta = $true }
-        @{ t = 'Marcar no mapa'; d = 'Ping Wheel: o botao do meio do mouse marca um ponto para todo mundo ver.'; solta = $true }
-        @{ t = 'Carregar bau'; d = 'Carry On: agache com a mao vazia e clique em um bau para levar ele inteiro, com tudo dentro.'; solta = $true }
-        @{ t = 'Martelo'; d = 'Just Hammers: o martelo quebra uma area 3x3 de uma vez.'; item = 'justhammers:iron_hammer'; solta = $true }
-        @{ t = 'Saco de dormir'; d = 'Comforts: o saco de dormir passa a noite sem mudar o seu ponto de nascer.'; item = 'comforts:sleeping_bag_white'; solta = $true }
-        @{ t = 'Zoom'; d = 'Ok Zoomer: segure C para dar zoom; a roda do mouse ajusta.'; solta = $true }
-        @{ t = 'Baus de saque'; d = 'Lootr: cada jogador abre o seu proprio saque nos baus das estruturas. Ninguem fica sem.'; solta = $true }
-        @{ t = 'Terminal de armazenamento'; d = 'Tom''s Storage: liga varios baus em um terminal so, com busca.'; item = 'toms_storage:storage_terminal'; solta = $true }
-        @{ t = 'Netherite melhor'; d = 'Advanced Netherite: ferramentas e armaduras alem da netherite, com ferro, ouro, esmeralda e diamante.'; item = 'advancednetherite:netherite_diamond_ingot'; solta = $true }
-        @{ t = 'Fumar'; d = 'Smoking Pipe, CiggyCraft e Tobacconist: plante tabaco e fume. So por diversao.'; solta = $true }
+    @{ t = 'Utilidades'; g = 'Começo'; icone = 'justhammers:iron_hammer'; sub = 'Ferramentas e truques que facilitam a vida'; m = @(
+        @{ t = 'Minerar em bloco'; marco = $true; sub = 'VeinMiner'; d = @(
+            'Segure a &etecla ao lado do 1&r e quebre um bloco: todos os blocos iguais grudados vêm junto (até 64). Funciona com minério, tronco e o que mais quiser.'
+            ''
+            'Um contorno mostra o que vai quebrar. Com a tecla segurada, &erole o mouse&r para trocar o formato (veio, túnel, área).'
+            ''
+            '&7Clique em Concluir quando tiver testado.'
+        ) }
+        @{ t = 'Martelo'; sub = 'Just Hammers'; d = @(
+            'O &emartelo&r quebra uma área de &e3x3&r de uma vez. Ótimo para túneis e minas.'
+            ''
+            'Tem martelos de pedra a netherite.'
+        ); item = 'justhammers:iron_hammer' }
+        @{ t = 'Fornalha rápida'; sub = 'Iron Furnaces'; d = @(
+            'Fornalhas de &eferro, ouro, diamante&r e mais: cozinham e derretem &amuito mais rápido&r que a comum.'
+            ''
+            'Dá para melhorar uma fornalha já colocada com os &eupgrades&r do mod, sem perder o que está dentro.'
+        ); item = 'ironfurnaces:iron_furnace'; p = 'minecraft:coal'; n = 16 }
+        @{ t = 'Altura dos minérios'; sub = 'Just Enough Resources'; d = @(
+            'No JEI, aperte &eU&r em cima de um minério: uma aba mostra &aem que altura ele aparece mais&r.'
+            ''
+            'Em cima de um bicho ou monstro, mostra o que ele deixa cair.'
+        ) }
+        @{ t = 'Encantamentos explicados'; sub = 'Enchantment Descriptions'; d = @(
+            'Passe o mouse em um livro encantado: aparece o que &ecada encantamento faz&r.'
+            ''
+            'A bigorna não tem mais o limite de "Caro demais" (&eEasy Anvils&r).'
+        ) }
+        @{ t = 'Saco de dormir'; sub = 'Comforts'; d = @(
+            'O &esaco de dormir&r passa a noite sem mudar o seu ponto de renascimento. Perfeito para viagens.'
+            ''
+            'A &erede&r faz o contrário: dorme de dia.'
+        ); item = 'comforts:sleeping_bag_white' }
+        @{ t = 'Zoom'; sub = 'Ok Zoomer'; d = @(
+            'Segure &eC&r para dar zoom. Role o mouse para ajustar.'
+        ) }
+        @{ t = 'Tocha na mão'; sub = 'Dynamic Torches'; d = @(
+            'Segurar uma &etocha&r ou lanterna ilumina em volta de você. Ótimo para explorar caverna sem colocar tocha em todo lugar.'
+        ); item = 'minecraft:torch'; q = 16 }
+        @{ t = 'Baús de saque'; sub = 'Lootr'; d = @(
+            'Baús de estruturas (templos, masmorras, vilas) têm &asaque próprio para cada jogador&r. Todo mundo pode abrir o mesmo baú e ganhar itens.'
+            ''
+            'Esses baús têm um brilho diferente.'
+        ) }
+        @{ t = 'Trocar ofertas do aldeão'; opcional = $true; sub = 'Trade Cycling'; d = @(
+            'Aldeão com ofertas ruins? Na tela de troca tem um &ebotão&r que sorteia ofertas novas, enquanto ele ainda não negociou com ninguém.'
+        ) }
+        @{ t = 'Netherite melhor'; sub = 'Advanced Netherite'; d = @(
+            'Depois da netherite ainda tem mais: lingotes de netherite com ferro, ouro, esmeralda e diamante. Cada um dá ferramentas e armaduras com bônus próprios.'
+            ''
+            'Veja as receitas com &eU&r em cima do lingote de netherite.'
+        ); item = 'advancednetherite:netherite_diamond_ingot' }
+        @{ t = 'Construção gigante'; opcional = $true; sub = 'Building Gadgets'; d = @(
+            'O &egadget de construção&r coloca vários blocos de uma vez, e o de cópia copia e cola construções inteiras.'
+            ''
+            'Eles gastam energia (FE). Veja com &eU&r em cima deles como carregar.'
+        ); item = 'buildinggadgets2:gadget_building' }
+        @{ t = 'Portal gun'; opcional = $true; sub = 'Aperture Innovations'; d = @(
+            'A &eportal gun&r do jogo Portal: atire um portal &bazul&r e um &6laranja&r e atravesse de um para o outro.'
+        ); item = 'aperture_innovations:portal_gun' }
+        @{ t = 'Fumar'; opcional = $true; sub = 'Smoking Pipe e Tobacconist'; d = @(
+            'Plante tabaco, seque e fume no cachimbo. É só diversão: dá um pouco de experiência.'
+        ) }
     ) }
     @{ t = 'Create: addons'; g = 'Tecnologia'; icone = 'create_jetpack:jetpack'; m = @(
         @{ t = 'Jetpack'; d = 'Create Jetpack: voa com ar comprimido de um tanque.'; item = 'create_jetpack:jetpack'; solta = $true }
