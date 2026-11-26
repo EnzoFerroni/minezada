@@ -146,7 +146,10 @@ main() {
   [ -n "$cf_pid$tunel_pid" ] || echo "AVISO: nenhum tunel conectou: so esta maquina consegue entrar (localhost)." >&2
   trap 'kill $tunel_pid $cf_pid 2>/dev/null || true' EXIT
 
-  echo "Iniciando servidor com $RAM de RAM. Para desligar e salvar: digite 'stop', aperte Ctrl+C ou feche esta janela."
+  # Effortless Building: sem mensagem de boas-vindas e dica no chat (a config dele fica dentro do mundo).
+mkdir -p "$server/world/effortlessbuilding"
+echo '{"showWelcomeMessage": false, "showBuildModeHint": false}' > "$server/world/effortlessbuilding/server_config.json"
+echo "Iniciando servidor com $RAM de RAM. Para desligar e salvar: digite 'stop', aperte Ctrl+C ou feche esta janela."
   # Flags do Aikar: coleta de lixo G1 ajustada para servidor de Minecraft (menos travadas).
   flags="-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1"
   rodar_servidor "$JAVA" "-Xms$RAM" "-Xmx$RAM" $flags "@libraries/net/neoforged/neoforge/$neo/unix_args.txt" nogui
