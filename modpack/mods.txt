@@ -22,6 +22,7 @@ create-goggles | Capacetes com os óculos do engenheiro embutidos e backtank que
 create-stuff-additions | Equipamentos com tecnologia do Create.
 createbetterfps | Mais FPS com shader ligado em bases grandes do Create.
 create-central-kitchen | Addon do Create: automatiza com máquinas as comidas de outros mods (Farmer's Delight e addons).
+create-railways-navigator | Addon do Create: painéis de estação melhores e busca de rotas de trem.
 interiors | Móveis novos no estilo do Create.
 
 ## Baús e armazenamento
@@ -127,6 +128,12 @@ skinrestorer | Mostra a skin de cada um no servidor, mesmo em rede que bloqueia 
 customskinloader | Busca a skin de cada jogador direto no jogo. Se o servidor não conseguir as skins (limite da Mojang em rede compartilhada, como na faculdade), elas continuam aparecendo.
 
 ## Mundo e facilidade
+mystical-agriculture | Plantações que dão minérios e materiais (mais de 150 tipos).
+cf:231484 | Cooking for Blockheads: cozinha montada em blocos que mostra o que dá para fazer com o que você tem.
+supplementaries-squared | Conteúdo extra do Supplementaries que não coube no mod principal.
+enchantment-descriptions | Mostra o que cada encantamento faz ao passar o mouse no livro.
+just-enough-resources-jer | No JEI, mostra em que altura cada minério aparece e o que cada mob dropa.
+cf:268560 | Mekanism: tecnologia com máquinas, energia e processamento de minérios. Mais complexo que o Create.
 cf:289412 | FTB Quests: livro de missões para guiar a progressão.
 cf:404465 | FTB Library: biblioteca do FTB Quests.
 cf:404468 | FTB Teams: times do FTB Quests (missões em grupo).

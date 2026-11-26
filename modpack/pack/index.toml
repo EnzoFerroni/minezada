@@ -146,6 +146,11 @@ hash = "aceff9106cdb6f4c20dc0cef4baf6ee9639423f78a52ae64370e367965ccc6ad"
 metafile = true
 
 [[files]]
+file = "mods/cooking-for-blockheads.pw.toml"
+hash = "36998d1469a03cca8d2b78133cdbc37f4f70d3d9ea59dec09ec48df86c9f7943"
+metafile = true
+
+[[files]]
 file = "mods/corpse.pw.toml"
 hash = "3c9a0b51a15af2a39adaa59aa1cc76613e93c29dd8dd14e669bb3dc00af2f632"
 metafile = true
@@ -201,6 +206,11 @@ hash = "46144721aff9c953185bc646506f73d9038619847a0be352076149fd4fa6c837"
 metafile = true
 
 [[files]]
+file = "mods/create-railways-navigator.pw.toml"
+hash = "7e8827ce2b29c01d495060eb90bca47ebf7264682fb387aef3fbe9011a0052f8"
+metafile = true
+
+[[files]]
 file = "mods/create-stuff-additions.pw.toml"
 hash = "54fa68047ff5821a19c167b78fb08953d13c6a352847bf8fccabe790b474c744"
 metafile = true
@@ -236,6 +246,11 @@ hash = "8e862fb675ee652337871212cfdb85b9e6a6e1bb146082560a80ddb8bc67fe00"
 metafile = true
 
 [[files]]
+file = "mods/cucumber.pw.toml"
+hash = "61f81c6cf304d7bf763c2a51457eafa752999bba39f26d46b95bd9e58ac713db"
+metafile = true
+
+[[files]]
 file = "mods/cultural-delights.pw.toml"
 hash = "97b1d64531ba6ea71d138534babc69c5219b78bdaf1832874ade4627ca671598"
 metafile = true
@@ -261,6 +276,11 @@ hash = "985df06834a030a7ea6c35b2c46b7a5ed01e0f99500cb68ca6ac3e3f7f909ec3"
 metafile = true
 
 [[files]]
+file = "mods/dragonlib.pw.toml"
+hash = "b788de2d61c8e4eaa886d2d8539acafd2be6175c6ad5bab7e7b86f6aa2215280"
+metafile = true
+
+[[files]]
 file = "mods/dynamic-fps.pw.toml"
 hash = "54bd36ecf965dee3a068ffc1a55e5c8b82c2daa62be88f51e4f2c9f5945df3f0"
 metafile = true
@@ -273,6 +293,11 @@ metafile = true
 [[files]]
 file = "mods/easy-anvils.pw.toml"
 hash = "9b825405ec04b3b440f657cb1f7ec28875643528f376a6071673792a33c77194"
+metafile = true
+
+[[files]]
+file = "mods/enchantment-descriptions.pw.toml"
+hash = "a75b45d0efec56325e866ed642e2bb12519613b3667303116760e757d70c8da0"
 metafile = true
 
 [[files]]
@@ -411,6 +436,11 @@ hash = "ca41c3edb55636055d18ed98c84805e8d3878399304f55f0e4b550c3b601f1d7"
 metafile = true
 
 [[files]]
+file = "mods/just-enough-resources-jer.pw.toml"
+hash = "d7d1ed62baa783e5bff07390c9a15a0576c29233df0441f485d43c7fa23f6bb5"
+metafile = true
+
+[[files]]
 file = "mods/just-hammers.pw.toml"
 hash = "e09c150b1a1c6c2252b6b372b875fe89eb27872c407ea8511493ba5680d20815"
 metafile = true
@@ -443,6 +473,11 @@ metafile = true
 [[files]]
 file = "mods/map-atlases-forge.pw.toml"
 hash = "5f5855ffacdc26f427f18f6e8c33a8fbc168444ba7efb25e1b72257495dd2ca2"
+metafile = true
+
+[[files]]
+file = "mods/mekanism.pw.toml"
+hash = "f5f3cdc6e6705a4034bc3a9bf4a0e52d6ef00a38969007913fe49b6fd8acfab5"
 metafile = true
 
 [[files]]
@@ -483,6 +518,11 @@ metafile = true
 [[files]]
 file = "mods/mowzies-mobs.pw.toml"
 hash = "a891657362a7bb3ca2eeec1549b4342c274a028a16aea0dc30e8c1dd255a7269"
+metafile = true
+
+[[files]]
+file = "mods/mystical-agriculture.pw.toml"
+hash = "1fcac6e9c0ff0df3f00e3cda0ab1d67391d3bf4d091f0ce0cfffac1a644c73cc"
 metafile = true
 
 [[files]]
@@ -643,6 +683,11 @@ metafile = true
 [[files]]
 file = "mods/supplementaries.pw.toml"
 hash = "52446cd3ddaf5746ca6154fa4910771c976d80a81ecbbcbf8c331d74c5f3a04a"
+metafile = true
+
+[[files]]
+file = "mods/supplementaries-squared.pw.toml"
+hash = "e6e709024243ac626466c64f4887192df08c51c8cf5cade14e008ae375595b37"
 metafile = true
 
 [[files]]

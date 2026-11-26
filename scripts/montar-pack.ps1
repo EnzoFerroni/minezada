@@ -113,7 +113,7 @@ while ($fila.Count) {
     Write-Host ('{0,-30} {1}' -f $p.slug, $v.version_number)
 }
 # Dependencia do CurseForge que o pack ja traz pelo Modrinth (id do CurseForge = id do Modrinth).
-$cfNoModrinth = @{ '419699' = 'lhGA9TYQ' }  # Architectury API
+$cfNoModrinth = @{ '419699' = 'lhGA9TYQ'; '531761' = 'MBAkmtvl' }  # Architectury API, Balm
 $cfIds = @($cfPedidos | ForEach-Object { $_.Substring(3) }) + @($cfNoModrinth.Keys | Where-Object { $projs[$cfNoModrinth[$_]] })
 foreach ($chave in $cfPedidos) {
     $cid = $chave.Substring(3)
@@ -340,6 +340,11 @@ function Ler-Jar($zip, $saida, $embutido) {
 # Compara versoes como o Maven (o NeoForge usa as mesmas regras): numeros por valor, alpha < beta < rc < final.
 # O que vem depois de "+" (ex: 1.0.82+mc1.21.1) e so informacao e nao conta.
 function Comparar-Versao($a, $b) {
+    # Como no Maven, o que vem antes do primeiro "-" decide primeiro: 1.21.1-3.8.5 > 1.21-2.29.17.
+    $pa = (("$a" -split '\+')[0] -split '-', 2)[0]; $pb = (("$b" -split '\+')[0] -split '-', 2)[0]
+    if ($pa -ne $pb -and $pa -match '^\d+(\.\d+)*$' -and $pb -match '^\d+(\.\d+)*$' -and ("$a$b" -match '-')) {
+        $c = Comparar-Versao $pa $pb; if ($c) { return $c }
+    }
     $ta = @([regex]::Matches(("$a" -split '\+')[0].ToLower(), '\d+|[a-z]+') | ForEach-Object Value)
     $tb = @([regex]::Matches(("$b" -split '\+')[0].ToLower(), '\d+|[a-z]+') | ForEach-Object Value)
     $ordem = @{ alpha = 1; a = 1; beta = 2; b = 2; milestone = 3; m = 3; rc = 4; cr = 4; pre = 4; snapshot = 5; final = 6; ga = 6; release = 6 }

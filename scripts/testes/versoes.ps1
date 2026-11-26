@@ -17,6 +17,7 @@ Conferir '1.0 = 1' (Comparar-Versao '1.0' '1') 0
 Conferir '1.0-beta < 1.0' (Comparar-Versao '1.0-beta' '1.0') -1
 Conferir '1.0.1 > 1.0-rc1' (Comparar-Versao '1.0.1' '1.0-rc1') 1
 Conferir 'alpha < rc' (Comparar-Versao '2.0-alpha' '2.0-rc') -1
+Conferir '1.21.1-3.8.5 > 1.21-2.29.17' (Comparar-Versao '1.21.1-3.8.5' '1.21-2.29.17') 1
 Conferir 'beta.53 em [1.1.0-beta.53,)' (Na-Faixa '1.1.0-beta.53' '[1.1.0-beta.53,)') $true
 Conferir 'beta.48 fora de [1.1.0-beta.53,)' (Na-Faixa '1.1.0-beta.48' '[1.1.0-beta.53,)') $false
 Conferir 'limite aberto' (Na-Faixa '2.0' '[1.0,2.0)') $false

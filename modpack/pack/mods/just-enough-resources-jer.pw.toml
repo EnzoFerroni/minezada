@@ -1,0 +1,8 @@
+name = "Just Enough Resources (JER)"
+filename = "JustEnoughResources-NeoForge-1.21.1-1.6.0.57.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/uEfK2CXF/versions/A2G7NFcD/JustEnoughResources-NeoForge-1.21.1-1.6.0.57.jar"
+hash-format = "sha1"
+hash = "f1826764b265e48d6705c223ccdf1e48cddc2a97"
