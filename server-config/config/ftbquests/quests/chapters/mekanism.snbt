@@ -20,7 +20,7 @@
 			id: "28B3969DA2CBC5F3"
 			rewards: [{ id: "754D572DA55D255B", type: "xp", xp: 20 }]
 			tasks: [{ id: "45104795F0AF849F", item: { count: 1, id: "createaddition:alternator" }, type: "item" }]
-			x: 1.5d
+			x: 2.5d
 			y: 0d
 		}
 		{
@@ -28,7 +28,7 @@
 			id: "453A0736B216E094"
 			rewards: [{ id: "0222417508EE341E", type: "xp", xp: 20 }]
 			tasks: [{ id: "40D3ECE8B5A1A803", item: { count: 1, id: "mekanism:enrichment_chamber" }, type: "item" }]
-			x: 3d
+			x: 5d
 			y: 0d
 		}
 		{
@@ -36,7 +36,7 @@
 			id: "193CC4C2D0BF0A31"
 			rewards: [{ id: "27930EEEA8680CF3", type: "xp", xp: 20 }]
 			tasks: [{ id: "775417B0AB9D9072", item: { count: 1, id: "mekanism:basic_universal_cable" }, type: "item" }]
-			x: 4.5d
+			x: 7.5d
 			y: 0d
 		}
 	]

@@ -13,77 +13,77 @@
 			rewards: [{ id: "7804305800D8B11E", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:sakura_valley", id: "0B819CCD88F2F6A5", type: "biome" }]
 			x: 0d
-			y: 0.0d
+			y: 1.00d
 		}
 		{
 			id: "21DD0E73C9F46759"
 			rewards: [{ id: "1CB8871CE40C8383", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:bryce_canyon", id: "71DAE8670850D902", type: "biome" }]
-			x: 1.5d
-			y: 0d
+			x: 2d
+			y: 1d
 		}
 		{
 			id: "03E2F1D49DC8D627"
 			rewards: [{ id: "7ECAE1B87BBE52E6", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:volcanic_crater", id: "46F0F624E2BDF0BD", type: "biome" }]
-			x: 3d
-			y: 0d
+			x: 4d
+			y: 1d
 		}
 		{
 			id: "3A84C45EED62EAFB"
 			rewards: [{ id: "5543287FCAE7ACFE", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:skylands_summer", id: "24FADF19A8B084B2", type: "biome" }]
-			x: 4.5d
-			y: 0d
+			x: 6d
+			y: 1d
 		}
 		{
 			id: "43BF5C538206D1B5"
 			rewards: [{ id: "02D5558F89749567", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:lavender_forest", id: "01961FE2D31FE533", type: "biome" }]
-			x: 6d
-			y: 0d
+			x: 8d
+			y: 1d
 		}
 		{
 			id: "401E53260B046572"
 			rewards: [{ id: "6379E0FCDC139F54", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:white_cliffs", id: "06097BB613525445", type: "biome" }]
 			x: 0d
-			y: 1.5d
+			y: 2.75d
 		}
 		{
 			id: "09D5A586382C5BAE"
 			rewards: [{ id: "0B9F85B7ADD17572", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:desert_oasis", id: "1931B9A292FDB115", type: "biome" }]
-			x: 1.5d
-			y: 1.5d
+			x: 2d
+			y: 2.75d
 		}
 		{
 			id: "3B3207C8DEDCCC12"
 			rewards: [{ id: "194D68EAB74E9E78", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:cave/underground_jungle", id: "29B6045B4877DC5C", type: "biome" }]
-			x: 3d
-			y: 1.5d
+			x: 4d
+			y: 2.75d
 		}
 		{
 			id: "3467848BE62720A8"
 			rewards: [{ id: "54C14DB82211305C", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:amethyst_canyon", id: "4ED225F4F017DA6E", type: "biome" }]
-			x: 4.5d
-			y: 1.5d
+			x: 6d
+			y: 2.75d
 		}
 		{
 			id: "6841C627B5ED58C3"
 			rewards: [{ id: "3E1980C5656E185D", type: "xp", xp: 20 }]
 			tasks: [{ biome: "incendium:inverted_forest", id: "6745A1E322EA08E6", type: "biome" }]
-			x: 6d
-			y: 1.5d
+			x: 8d
+			y: 2.75d
 		}
 		{
 			id: "40C014566C6CA7D2"
 			rewards: [{ id: "613A8362D80183CD", type: "xp", xp: 20 }]
 			tasks: [{ biome: "incendium:weeping_valley", id: "47B34BB1E1B1F28B", type: "biome" }]
 			x: 0d
-			y: 3.0d
+			y: 4.50d
 		}
 	]
 }

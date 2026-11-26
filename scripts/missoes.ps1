@@ -449,7 +449,7 @@ $capitulos = @(
         ); item = 'supplementaries:jar' }
         @{ t = 'Placa de direção'; depois = 'Pote'; sub = 'Supplementaries'; d = @(
             'A &eplaca de direção&r tem duas setas. Escreva nelas o nome dos lugares (casa, mina, vila) e gire para apontar o caminho.'
-        ); item = 'supplementaries:way_sign' }
+        ) }
         @{ t = 'Corda'; depois = 'Pote'; d = @(
             'A &ecorda&r do Supplementaries serve para &asubir e descer&r em buracos fundos. Clique com mais corda nela para ela descer mais.'
         ); item = 'supplementaries:rope'; q = 16 }
@@ -813,9 +813,10 @@ foreach ($c in $capitulos) {
     $grupo = if ($c['g']) { $gids[$c['g']] } else { '' }
     $lang += "`tchapter.$cid.title: $(Txt $c.t)"
     if ($c['sub']) { $lang += "`tchapter.$cid.chapter_subtitle: [$(Txt $c['sub'])]" }
-    # Posicoes em arvore: x pela profundidade (missao depois da outra vai para a direita), y pela proxima linha livre
-    # naquela coluna, sem subir acima do pai. Soltas (sem dependencia) ficam em grade embaixo da arvore.
-    $qs = @(); $antT = $null; $tit = @{}; $prof = @{}; $posY = @{}; $livre = @{}; $soltas = @()
+    # Desenho em arvore: x pela profundidade (missao depois da outra vai para a direita). Cada ramo ganha uma faixa
+    # propria na vertical e o pai fica no meio dos filhos, assim as linhas nao se cruzam. Com mais de um pai, o ramo
+    # segue o primeiro. Soltas (sem dependencia) ficam em grade embaixo da arvore.
+    $qs = @(); $antT = $null; $tit = @{}; $prof = @{}; $posY = @{}; $filhos = @{}; $raizes = @()
     foreach ($m in $c.m) {
         $qid = Id "missao/$($c.t)/$($m.t)"
         $q = if ($m['q']) { $m['q'] } else { 1 }
@@ -833,26 +834,35 @@ foreach ($c in $capitulos) {
         if ($m['marco']) { $extra += "`n`t`t`tshape: `"gear`"`n`t`t`tsize: 1.5d" }
         if ($m['opcional']) { $extra += "`n`t`t`toptional: true" }
         $pais = if ($m.ContainsKey('depois')) { @(@($m['depois']) | Where-Object { $_ }) } elseif ($m['solta'] -or -not $antT) { @() } else { @($antT) }
+        $pais = @($pais)  # um pai so viraria texto, e $pais[0] seria a primeira letra
         foreach ($pai in $pais) { if (-not $tit.ContainsKey($pai)) { throw "Capitulo $($c.t), missao $($m.t): depois de '$pai', que nao vem antes dela" } }
         $lista = ($pais | ForEach-Object { '"' + $tit[$_] + '"' }) -join ', '
         $dep = if ($pais) { "`n`t`t`tdependencies: [$lista]" } else { '' }
         if ($pais -or (-not $m['solta'] -and (-not $tit.Count -or $m.ContainsKey('depois')))) {
-            $d = if ($pais) { 1 + ($pais | ForEach-Object { $prof[$_] } | Measure-Object -Maximum).Maximum } else { 0 }
-            $py = [math]::Max([double]$livre[$d], [double](@($pais | ForEach-Object { $posY[$_] }) + 0 | Measure-Object -Maximum).Maximum)
-            $livre[$d] = $py + 1.5; $prof[$m.t] = $d; $posY[$m.t] = $py; $pos = "$($d * 1.5)d|$($py)d"
+            $prof[$m.t] = if ($pais) { 1 + ($pais | ForEach-Object { $prof[$_] } | Measure-Object -Maximum).Maximum } else { 0 }
+            if ($pais) { $filhos[$pais[0]] = @($filhos[$pais[0]]) + $m.t | Where-Object { $_ } } else { $raizes += $m.t }
+            $pos = "arvore|$($m.t)"
         }
-        else { $prof[$m.t] = 0; $posY[$m.t] = 0; $pos = 'solta'; $soltas += $qs.Count }
+        else { $prof[$m.t] = 0; $pos = 'solta' }
         $qs += "`t`t{$dep`n`t`t`tid: `"$qid`"$extra`n`t`t`ttasks: [$tarefa]`n`t`t`t@POS@`n`t`t}@@SEP@@$pos"
         $lang += "`tquest.$qid.title: $(Txt $m.t)"
         if ($m['sub']) { $lang += "`tquest.$qid.quest_subtitle: $(Txt $m['sub'])" }
         $lang += "`tquest.$qid.quest_desc: [$((@($m.d) | ForEach-Object { Txt $_ }) -join ', ')]"
         $tit[$m.t] = $qid; $antT = $m.t
     }
-    $base = if ($livre.Count) { ($livre.Values | Measure-Object -Maximum).Maximum + 1.5 } else { 0 }
+    $script:proxY = 0
+    function Pos-Ramo($n) {
+        $f = @($filhos[$n])
+        if (-not $filhos[$n]) { $posY[$n] = $script:proxY; $script:proxY += 1.75 }
+        else { foreach ($k in $f) { Pos-Ramo $k }; $posY[$n] = ($posY[$f[0]] + $posY[$f[-1]]) / 2 }
+    }
+    foreach ($r in $raizes) { Pos-Ramo $r; $script:proxY += 0.75 }
+    $base = $script:proxY + 1
     $k = 0
     $qs = for ($i = 0; $i -lt $qs.Count; $i++) {
         $texto, $pos = $qs[$i] -split '@@SEP@@'
-        if ($pos -eq 'solta') { $pos = "$(($k % 5) * 1.5)d|$($base + [math]::Floor($k / 5) * 1.5)d"; $k++ }
+        if ($pos -eq 'solta') { $pos = "$(($k % 5) * 2)d|$($base + [math]::Floor($k / 5) * 1.75)d"; $k++ }
+        elseif ($pos -like 'arvore|*') { $n = $pos.Substring(7); $pos = "$($prof[$n] * 2.5)d|$($posY[$n])d" }
         $px, $py = $pos -split '\|'
         $texto.Replace('@POS@', "x: $px`n`t`t`ty: $py")
     }

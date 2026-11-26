@@ -13,56 +13,56 @@
 			rewards: [{ id: "3DC506297BBD73BF", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "minecraft:the_nether", id: "129763B329EE056D", type: "dimension" }]
 			x: 0d
-			y: 0.0d
+			y: 1.00d
 		}
 		{
 			id: "7155CC138F6A4CDC"
 			rewards: [{ id: "34CE64D2FFCFCCEC", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "aether:the_aether", id: "00974AE67994A467", type: "dimension" }]
-			x: 1.5d
-			y: 0d
+			x: 2d
+			y: 1d
 		}
 		{
 			id: "2F383471F920B013"
 			rewards: [{ id: "5E8C47AA034D2710", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "twilightforest:twilight_forest", id: "6FEFCC486512BB27", type: "dimension" }]
-			x: 3d
-			y: 0d
+			x: 4d
+			y: 1d
 		}
 		{
 			id: "7B3BE44F6DE1B8AD"
 			rewards: [{ id: "344FE9766498A822", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "undergarden:undergarden", id: "0E822EF274A73494", type: "dimension" }]
-			x: 4.5d
-			y: 0d
+			x: 6d
+			y: 1d
 		}
 		{
 			id: "132C1D9BA47BE4F2"
 			rewards: [{ id: "38EA54B6FECC7C22", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "eternal_starlight:starlight", id: "2D2D4E7151275D15", type: "dimension" }]
-			x: 6d
-			y: 0d
+			x: 8d
+			y: 1d
 		}
 		{
 			id: "12578001AE3297C2"
 			rewards: [{ id: "6F8F3987083678D9", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "dimdungeons:dungeon_dimension", id: "55628F32E5D69F42", type: "dimension" }]
 			x: 0d
-			y: 1.5d
+			y: 2.75d
 		}
 		{
 			id: "009843D988A83261"
 			rewards: [{ id: "668AA0CF02087075", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "ad_astra:moon", id: "7D8A20115A811664", type: "dimension" }]
-			x: 1.5d
-			y: 1.5d
+			x: 2d
+			y: 2.75d
 		}
 		{
 			id: "78BEFEA816B93AB6"
 			rewards: [{ id: "10DCDE46FAE283B0", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "minecraft:the_end", id: "0A665287FE2C907B", type: "dimension" }]
-			x: 3d
-			y: 1.5d
+			x: 4d
+			y: 2.75d
 		}
 	]
 }

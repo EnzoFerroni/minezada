@@ -20,7 +20,7 @@
 			id: "370E650A8D2869D1"
 			rewards: [{ id: "210295768A7E5A0D", type: "xp", xp: 20 }]
 			tasks: [{ id: "5C555C39F07BCD30", item: { count: 1, id: "minecraft:netherite_ingot" }, type: "item" }]
-			x: 1.5d
+			x: 2.5d
 			y: 0d
 		}
 		{
@@ -28,42 +28,42 @@
 			rewards: [{ id: "07F534798537817F", type: "xp", xp: 20 }]
 			tasks: [{ id: "09748917084AEB02", item: { count: 1, id: "minecraft:totem_of_undying" }, type: "item" }]
 			x: 0d
-			y: 3.0d
+			y: 3.50d
 		}
 		{
 			id: "7A5E4996923A7CA6"
 			rewards: [{ id: "29698A48CBD38911", type: "xp", xp: 20 }]
 			tasks: [{ id: "1E3C14AF5B54450A", item: { count: 1, id: "minecraft:trident" }, type: "item" }]
-			x: 1.5d
-			y: 3d
+			x: 2d
+			y: 3.5d
 		}
 		{
 			id: "2A1B99114C0C5D62"
 			rewards: [{ id: "2FB5D722D5606E4A", type: "xp", xp: 20 }]
 			tasks: [{ id: "00973F710748F588", item: { count: 1, id: "minecraft:elytra" }, type: "item" }]
-			x: 3d
-			y: 3d
+			x: 4d
+			y: 3.5d
 		}
 		{
 			id: "2E2F0B64C34BD002"
 			rewards: [{ id: "1E4CB7ACF01A0CD4", type: "xp", xp: 20 }]
 			tasks: [{ id: "7D91CA2794C1947E", item: { count: 1, id: "minecraft:dragon_head" }, type: "item" }]
-			x: 4.5d
-			y: 3d
+			x: 6d
+			y: 3.5d
 		}
 		{
 			id: "0009A0ADFF3F42CE"
 			rewards: [{ id: "274B1BE3807989A9", type: "xp", xp: 20 }]
 			tasks: [{ id: "3435D5B61B601D3C", item: { count: 1, id: "minecraft:nether_star" }, type: "item" }]
-			x: 6d
-			y: 3d
+			x: 8d
+			y: 3.5d
 		}
 		{
 			id: "33C97891F98C6AEA"
 			rewards: [{ id: "382FF8E3371854AD", type: "xp", xp: 20 }]
 			tasks: [{ id: "41D4A18EF074F55E", item: { count: 1, id: "minecraft:beacon" }, type: "item" }]
 			x: 0d
-			y: 4.5d
+			y: 5.25d
 		}
 	]
 }

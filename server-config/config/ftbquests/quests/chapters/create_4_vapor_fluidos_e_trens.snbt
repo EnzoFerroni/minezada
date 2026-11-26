@@ -20,7 +20,7 @@
 			id: "3E62D397BC09BE53"
 			rewards: [{ id: "090D7EEC079D95F4", type: "xp", xp: 20 }]
 			tasks: [{ id: "5218B458E35CFD66", item: { count: 1, id: "create:mechanical_pump" }, type: "item" }]
-			x: 1.5d
+			x: 2.5d
 			y: 0d
 		}
 		{
@@ -28,7 +28,7 @@
 			id: "65A359F59A05965E"
 			rewards: [{ id: "475DE6C2720AADFE", type: "xp", xp: 20 }]
 			tasks: [{ id: "33B8A694337A7451", item: { count: 4, id: "create:fluid_tank" }, type: "item" }]
-			x: 3d
+			x: 5d
 			y: 0d
 		}
 		{
@@ -36,7 +36,7 @@
 			id: "798026F49712E18E"
 			rewards: [{ id: "0BD18563AA627DBD", type: "xp", xp: 20 }]
 			tasks: [{ id: "72944F81B47B6015", item: { count: 1, id: "create:spout" }, type: "item" }]
-			x: 4.5d
+			x: 7.5d
 			y: 0d
 		}
 		{
@@ -44,7 +44,7 @@
 			id: "0C36E8C89CCC2873"
 			rewards: [{ id: "29F71A578C443EB5", type: "xp", xp: 20 }]
 			tasks: [{ id: "48EB9D551943D274", item: { count: 1, id: "create:steam_engine" }, type: "item" }]
-			x: 6d
+			x: 10d
 			y: 0d
 		}
 		{
@@ -52,7 +52,7 @@
 			id: "460D354F7E365880"
 			rewards: [{ id: "5102922E8DDDC26E", type: "xp", xp: 20 }]
 			tasks: [{ id: "5DD2ED086C517288", item: { count: 32, id: "create:track" }, type: "item" }]
-			x: 7.5d
+			x: 12.5d
 			y: 0d
 		}
 		{
@@ -60,7 +60,7 @@
 			id: "46081E1978904BB1"
 			rewards: [{ id: "779293F7CBE0DD5E", type: "xp", xp: 20 }]
 			tasks: [{ id: "2FA2791D60FF9554", item: { count: 1, id: "create:track_station" }, type: "item" }]
-			x: 9d
+			x: 15d
 			y: 0d
 		}
 		{
@@ -68,7 +68,7 @@
 			id: "2C8228681581CCD1"
 			rewards: [{ id: "6D36AE04CF522A14", type: "xp", xp: 20 }]
 			tasks: [{ id: "51FB2F9B13A420BF", item: { count: 1, id: "create:controls" }, type: "item" }]
-			x: 10.5d
+			x: 17.5d
 			y: 0d
 		}
 		{
@@ -76,7 +76,7 @@
 			id: "41487192176AFECF"
 			rewards: [{ id: "02C1C3AA1795F20B", type: "xp", xp: 20 }]
 			tasks: [{ id: "5F1EACF258CE0965", item: { count: 1, id: "create:schematicannon" }, type: "item" }]
-			x: 12d
+			x: 20d
 			y: 0d
 		}
 	]
