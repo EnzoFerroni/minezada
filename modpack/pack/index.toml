@@ -186,6 +186,11 @@ hash = "36998d1469a03cca8d2b78133cdbc37f4f70d3d9ea59dec09ec48df86c9f7943"
 metafile = true
 
 [[files]]
+file = "mods/copycats.pw.toml"
+hash = "abf42492de300eb08795656a73176e7855f04fcba55b758d1f8f349bd6191bf9"
+metafile = true
+
+[[files]]
 file = "mods/corpse.pw.toml"
 hash = "3c9a0b51a15af2a39adaa59aa1cc76613e93c29dd8dd14e669bb3dc00af2f632"
 metafile = true
@@ -216,8 +221,18 @@ hash = "0634164be639aad0264cd714cba028636ed9aa66ca7dc794547cd95631602a60"
 metafile = true
 
 [[files]]
+file = "mods/create-deco.pw.toml"
+hash = "86a6be59b38831b5f3d0b1925c15cdfcaa2ddb436f7656d862810cd923143a18"
+metafile = true
+
+[[files]]
 file = "mods/create-dragons-plus.pw.toml"
 hash = "406a19b969a84bb0f7c07f1c62cde296ccfb9aed7240f02f7a7cfeba9940955b"
+metafile = true
+
+[[files]]
+file = "mods/create-dreams-and-desires.pw.toml"
+hash = "a3147fb97106421cc8a904e718f3f43740f7b9ec3dc55d36c40aa4f59a5983d0"
 metafile = true
 
 [[files]]
