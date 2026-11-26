@@ -2,7 +2,7 @@
 	default_hide_dependency_lines: false
 	default_quest_shape: ""
 	filename: "espaco"
-	group: ""
+	group: "8B7482EA7957301C"
 	icon: { id: "ad_astra:tier_1_rocket" }
 	id: "ECDFF22C3CFE2200"
 	order_index: 15
@@ -10,6 +10,7 @@
 	quests: [
 		{
 			id: "DAD3F903CD78E4F3"
+			rewards: [{ id: "5736C9E8127AFE3E", type: "xp", xp: 20 }]
 			tasks: [{ id: "78DDF0F6FA33E0C4", item: { count: 1, id: "ad_astra:steel_ingot" }, type: "item" }]
 			x: 0d
 			y: 0d
@@ -17,6 +18,7 @@
 		{
 			dependencies: ["DAD3F903CD78E4F3"]
 			id: "F8643149D88DB1BF"
+			rewards: [{ id: "C93AFE6BA823736D", type: "xp", xp: 20 }]
 			tasks: [{ id: "B144853266826C8A", item: { count: 1, id: "ad_astra:nasa_workbench" }, type: "item" }]
 			x: 1.5d
 			y: 0d
@@ -24,6 +26,7 @@
 		{
 			dependencies: ["F8643149D88DB1BF"]
 			id: "FB3831876F704DD4"
+			rewards: [{ id: "4E291373BB7D8D21", type: "xp", xp: 20 }]
 			tasks: [{ id: "302BFCA80410B5E7", item: { count: 1, id: "ad_astra:space_suit" }, type: "item" }]
 			x: 3d
 			y: 0d
@@ -31,6 +34,7 @@
 		{
 			dependencies: ["FB3831876F704DD4"]
 			id: "9E0708B7EA09C5FA"
+			rewards: [{ id: "3FBF8DE7554D42B6", type: "xp", xp: 20 }]
 			tasks: [{ id: "542B2B96405F3ED0", item: { count: 1, id: "ad_astra:tier_1_rocket" }, type: "item" }]
 			x: 4.5d
 			y: 0d
@@ -38,6 +42,7 @@
 		{
 			dependencies: ["9E0708B7EA09C5FA"]
 			id: "72366A0DEA4B1515"
+			rewards: [{ id: "CC23266010CF5816", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "ad_astra:moon", id: "6A5D9F836C4598A7", type: "dimension" }]
 			x: 6d
 			y: 0d
@@ -45,6 +50,7 @@
 		{
 			dependencies: ["72366A0DEA4B1515"]
 			id: "CA989F85660C8492"
+			rewards: [{ id: "60C75C5973B95570", type: "xp", xp: 20 }]
 			tasks: [{ id: "5E2AADD2AE7D9886", item: { count: 1, id: "ad_astra:desh_ingot" }, type: "item" }]
 			x: 7.5d
 			y: 0d
@@ -52,30 +58,35 @@
 		{
 			dependencies: ["CA989F85660C8492"]
 			id: "6C64252B40CD4F10"
+			rewards: [{ id: "2C4E6BB7B0734FFD", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "ad_astra:mars", id: "0E4DFC7C9E7DFEFC", type: "dimension" }]
 			x: 9d
 			y: 0d
 		}
 		{
 			id: "C25B42F224DFA666"
+			rewards: [{ id: "412D1D3A543F58A1", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "ad_astra:venus", id: "C8E9F88498F6541A", type: "dimension" }]
 			x: 4.5d
 			y: 1.5d
 		}
 		{
 			id: "07CDDF90A2B8F066"
+			rewards: [{ id: "5C6B0CD6A5D88A43", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "ad_astra:mercury", id: "421A0DCF46EB8B7C", type: "dimension" }]
 			x: 0d
 			y: 3.0d
 		}
 		{
 			id: "ED006D3D25BE95FA"
+			rewards: [{ id: "AC3A9CE7CF8B4897", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "ad_astra:glacio", id: "EFFB098C0AAA2B02", type: "dimension" }]
 			x: 1.5d
 			y: 3d
 		}
 		{
 			id: "E24E7920FAAD6862"
+			rewards: [{ id: "62641B206EEB7411", type: "xp", xp: 20 }]
 			tasks: [{ id: "E0DA4296D63DA7CD", structure: "ad_astra:lunarian_village", type: "structure" }]
 			x: 3d
 			y: 3d

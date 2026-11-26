@@ -1,25 +1,115 @@
-# Gera o livro de missoes (FTB Quests) em server-config/config/ftbquests/quests a partir da tabela abaixo.
+﻿# Gera o livro de missoes (FTB Quests) em server-config/config/ftbquests/quests a partir da tabela abaixo.
 # O servidor manda o livro para cada jogador; o progresso fica no mundo, nao aqui.
 # Uso: powershell -ExecutionPolicy Bypass -File scripts/missoes.ps1 (Mac: pwsh scripts/missoes.ps1)
 # Cada missao: t = titulo, d = texto (uma linha por item), e uma tarefa: item (id do item), dim (id da dimensao)
 # mata (id do bicho), estrutura ou bioma (id do mundo) ou nada (o jogador marca como feito). q = quantidade da
 # tarefa (itens ou abates). p = premio (id do item) e n = quantidade. Cada missao depende da anterior
 # do mesmo capitulo, a menos que solta = $true. Ids conferidos nos jars do pack (26/11).
+# Extras: capitulo g = grupo (da lista $grupos) e sub = subtitulo; missao sub = subtitulo, marco = $true
+# (engrenagem maior, mais XP), opcional = $true (nao conta para completar o capitulo), xp = XP do premio
+# (padrao 20, marco 100). Texto aceita cores do jogo (&e amarelo, &a verde, &b azul, &c vermelho, &l negrito,
+# &r volta ao normal) e "{@pagebreak}" sozinho em uma linha para comecar outra pagina.
+# Este arquivo tem BOM (UTF-8): os textos podem ter acento.
 $ErrorActionPreference = 'Stop'
 $root = Split-Path $PSScriptRoot -Parent
 $destino = Join-Path $root 'server-config/config/ftbquests/quests'
 
+# Grupos da lateral do livro, nesta ordem.
+$grupos = @(
+    @{ t = 'Começo'; icone = 'minecraft:oak_sapling' }
+    @{ t = 'Tecnologia'; icone = 'create:cogwheel' }
+    @{ t = 'Dimensões'; icone = 'minecraft:ender_eye' }
+    @{ t = 'Aventura'; icone = 'minecraft:iron_sword' }
+)
+
 $capitulos = @(
-    @{ t = 'Primeiros passos'; icone = 'minecraft:crafting_table'; m = @(
-        @{ t = 'Bem-vindo ao Minezada'; d = 'Este livro guia o comeco. Abra quando quiser pelo botao do livro no inventario.', 'Tecla R em cima de um item mostra a receita; U mostra para que ele serve (JEI, na direita do inventario).', 'Mire em um bloco ou bicho para ver o nome e o mod no topo da tela (Jade).', 'Jogo lento? Opcoes > Perfis > 1 - Minimo. Os perfis vao de 1 - Minimo a 7 - Ultra.' }
-        @{ t = 'Mesa de trabalho'; d = 'Junte madeira e faca uma mesa de trabalho.'; item = 'minecraft:crafting_table'; p = 'minecraft:bread'; n = 4 }
-        @{ t = 'Mapa'; d = 'O minimapa fica no canto da tela. Tecla M abre o mapa do mundo que voce ja explorou.' }
-        @{ t = 'Mochila'; d = 'Faca uma mochila: ela guarda muito mais que o inventario e pode ser melhorada.'; item = 'sophisticatedbackpacks:backpack'; p = 'minecraft:leather'; n = 4 }
-        @{ t = 'Waystone'; d = 'Waystones sao pedras de teleporte. Ative uma clicando nela e depois viaje entre as que voce ativou.', 'Faca a sua para colocar perto de casa.'; item = 'waystones:waystone'; p = 'minecraft:ender_pearl'; n = 2 }
-        @{ t = 'Se voce morrer'; d = 'Seus itens ficam guardados em um corpo no lugar da morte. Volte la e clique nele para pegar tudo.', 'O lugar da morte aparece no mapa.' }
-        @{ t = 'Cozinha'; d = 'Farmer''s Delight traz panela, tabua de corte e dezenas de comidas.', 'Cada comida nova que voce prova pela primeira vez da coracoes extras de vida (Spice of Life).'; item = 'farmersdelight:cooking_pot'; p = 'minecraft:golden_carrot'; n = 4 }
+    @{ t = 'Primeiros passos'; g = 'Começo'; icone = 'minecraft:crafting_table'; sub = 'O que muda neste Minecraft e as teclas que ajudam'; m = @(
+        @{ t = 'Bem-vindo ao Minezada'; marco = $true; sub = 'Comece por aqui'; d = @(
+            'Este é o &elivro de missões&r. Ele mostra o que fazer, explica cada mod e dá prêmios: toda missão dá &aXP&r e algumas dão itens.'
+            ''
+            'Abra quando quiser pelo &ebotão do livro&r no canto do inventário (tecla &eE&r).'
+            ''
+            'Cada bolinha é uma missão. Clique nela para ler. Quando você cumpre o pedido, ela fica verde e o prêmio aparece para pegar.'
+            '{@pagebreak}'
+            'Os capítulos ficam na &eesquerda&r, em grupos: &aComeço&r, &aTecnologia&r, &aDimensões&r e &aAventura&r.'
+            ''
+            'Não precisa seguir na ordem. Quer só construir e explorar? Tudo bem. As missões são um guia, não uma obrigação.'
+            ''
+            '&7Clique em &fConcluir&7 para marcar esta como lida.'
+        ) }
+        @{ t = 'Receitas: R e U'; sub = 'A tecla mais importante'; d = @(
+            'O pack tem centenas de itens novos. Ninguém decora receita: use o &eJEI&r, a lista de itens na direita do inventário.'
+            ''
+            '&eR&r com o mouse em cima de um item: mostra &acomo fazer&r.'
+            '&eU&r com o mouse em cima de um item: mostra &aonde ele é usado&r.'
+            ''
+            'A barra de busca embaixo da lista aceita nome em português ou inglês, e entende erro de digitação. Comece o texto com &e@&r para ver os itens de um mod (exemplo: &e@create&r).'
+        ) }
+        @{ t = 'O que é isso?'; sub = 'Jade'; d = @(
+            'Mire em qualquer bloco ou bicho: o nome, o mod de onde ele vem e informações úteis aparecem no &etopo da tela&r.'
+            ''
+            'Serve para saber a vida de um bicho, quanto falta para uma planta crescer ou o que tem dentro de uma máquina.'
+        ) }
+        @{ t = 'Mesa de trabalho'; d = @(
+            'O começo de sempre: junte madeira e faça uma &emesa de trabalho&r.'
+            ''
+            'Dica: segure a tecla &eao lado do 1&r (acento grave) enquanto quebra um tronco para derrubar a árvore inteira de uma vez. Funciona com minério também (&eVeinMiner&r).'
+        ); item = 'minecraft:crafting_table'; p = 'minecraft:bread'; n = 4 }
+        @{ t = 'Mapa'; sub = 'Nunca mais se perca'; d = @(
+            'O &eminimapa&r fica no canto da tela. A tecla &eM&r abre o mapa do mundo, com tudo que você já explorou.'
+            ''
+            'A tecla &eN&r cria um ponto marcado (waypoint) onde você está. Marque a sua casa!'
+            ''
+            'Outros jogadores aparecem no minimapa como cabecinhas.'
+        ) }
+        @{ t = 'Mochila'; d = @(
+            'Faça uma &emochila&r: ela guarda muito mais que o inventário. Clique com o botão direito segurando ela, ou coloque nas costas e abra pela tecla &eB&r.'
+            ''
+            'Ela ganha &aupgrades&r: coletar itens do chão, separar o que você pega, alimentar você sozinha e ficar maior (ferro, ouro, diamante). Veja no JEI com &eU&r em cima da mochila.'
+        ); item = 'sophisticatedbackpacks:backpack'; p = 'minecraft:leather'; n = 4 }
+        @{ t = 'Waystone'; sub = 'Teleporte'; d = @(
+            'Waystones são &epedras de teleporte&r. Elas aparecem nas vilas e pelo mundo.'
+            ''
+            'Clique em uma para &aativar&r. Depois, de qualquer waystone, você viaja para as que já ativou.'
+            ''
+            'Faça a sua e coloque perto de casa: assim você sempre volta rápido.'
+        ); item = 'waystones:waystone'; p = 'minecraft:ender_pearl'; n = 2 }
+        @{ t = 'Se você morrer'; d = @(
+            'Morreu? Seus itens &enão somem&r: ficam guardados em um &ecorpo&r no lugar da morte.'
+            ''
+            'Volte lá e clique no corpo para pegar tudo. O lugar aparece no mapa.'
+            ''
+            'Esqueceu onde foi? &eAlt + U&r mostra o histórico de mortes.'
+        ) }
+        @{ t = 'Cozinha'; d = @(
+            '&eFarmer''s Delight&r traz panela, frigideira, tábua de corte e dezenas de comidas.'
+            ''
+            'Importante: cada comida &enova&r que você prova pela primeira vez dá &acorações extras de vida&r (Spice of Life). Variar a comida deixa você mais forte!'
+            ''
+            'O capítulo &eCozinha e fazenda&r explica tudo.'
+        ); item = 'farmersdelight:cooking_pot'; p = 'minecraft:golden_carrot'; n = 4 }
+        @{ t = 'Carregar baús e bichos'; sub = 'Carry On'; opcional = $true; d = @(
+            'Com as &emãos vazias&r, segure &eShift&r e clique com o botão direito em um baú: você carrega ele inteiro, com os itens dentro.'
+            ''
+            'Funciona com bichos também. Ótimo para mudar de casa.'
+        ) }
+        @{ t = 'Avisar os amigos'; sub = 'Ping Wheel'; opcional = $true; d = @(
+            'Clique com o &ebotão do meio do mouse&r para marcar um ponto que todos veem: "olha aqui", "perigo", "vem cá".'
+        ) }
+        @{ t = 'Jogo lento?'; sub = 'Perfis de gráfico'; opcional = $true; d = @(
+            'Em &eOpções > Perfis&r tem 7 perfis prontos: do &e1 - Mínimo&r (computador fraco) ao &e7 - Ultra&r (com shader).'
+            ''
+            'Clique em um e ele muda tudo na hora. Não use &cSalvar&r nem &cCriar perfil&r: pode fechar o jogo.'
+            ''
+            'Tecla &eK&r liga e desliga o shader.'
+        ) }
+        @{ t = 'Achar uma tecla'; sub = 'Controles'; opcional = $true; d = @(
+            'Em &eOpções > Controles > Teclas&r tem uma &abusca&r: digite o nome da ação (ou do mod) para ver e trocar a tecla.'
+            ''
+            'Tecla em vermelho está em conflito com outra.'
+        ) }
     ) }
-    @{ t = 'Create 1: o basico'; icone = 'create:cogwheel'; m = @(
+    @{ t = 'Create 1: o basico'; g = 'Tecnologia'; icone = 'create:cogwheel'; m = @(
         @{ t = 'O que e o Create'; d = 'Create e um mod de maquinas que funcionam com rotacao, como um moinho de verdade: algo gira (agua, vento, vapor) e eixos levam o giro ate as maquinas.', 'Segure W com o mouse em cima de qualquer item do Create para ver uma animacao explicando ele (Ponder).' }
         @{ t = 'Liga de andesito'; d = 'O material de quase tudo no comeco: andesito com pepitas de ferro (ou zinco). Receita no JEI (tecla R).'; item = 'create:andesite_alloy'; q = 16; p = 'create:andesite_alloy'; n = 16 }
         @{ t = 'Revestimento de andesito'; d = 'Clique com a liga de andesito em um tronco descascado. O revestimento e a base de varias maquinas.'; item = 'create:andesite_casing' }
@@ -32,7 +122,7 @@ $capitulos = @(
         @{ t = 'Oculos de engenheiro'; d = 'Com os oculos voce olha uma maquina e ve a velocidade e o esforco (stress) dela.'; item = 'create:goggles' }
         @{ t = 'Stress'; d = 'Cada maquina gasta esforco (SU). Cada fonte de giro tem um limite de SU. Passou do limite, tudo para (overstressed): coloque mais fontes ou baixe a velocidade.', 'O medidor de stress mostra quanto da rede esta em uso.'; item = 'create:stressometer' }
     ) }
-    @{ t = 'Create 2: primeiras maquinas'; icone = 'create:mechanical_press'; m = @(
+    @{ t = 'Create 2: primeiras maquinas'; g = 'Tecnologia'; icone = 'create:mechanical_press'; m = @(
         @{ t = 'Deposito'; d = 'O deposito segura itens embaixo das maquinas, como uma mesa.'; item = 'create:depot' }
         @{ t = 'Prensa'; d = 'A prensa em cima de um deposito amassa lingotes em chapas. Chapas de ferro aparecem em muitas receitas.'; item = 'create:mechanical_press' }
         @{ t = 'Chapa de ferro'; d = 'Faca suas primeiras chapas com a prensa.'; item = 'create:iron_sheet'; q = 16; p = 'minecraft:iron_ingot'; n = 16 }
@@ -47,7 +137,7 @@ $capitulos = @(
         @{ t = 'Pistao mecanico'; d = 'Empurra uma estrutura inteira para frente e para tras.'; item = 'create:mechanical_piston' }
         @{ t = 'Rolamento mecanico'; d = 'Gira uma estrutura inteira, como uma roda gigante ou uma porta.'; item = 'create:mechanical_bearing' }
     ) }
-    @{ t = 'Create 3: era do latao'; icone = 'create:brass_ingot'; m = @(
+    @{ t = 'Create 3: era do latao'; g = 'Tecnologia'; icone = 'create:brass_ingot'; m = @(
         @{ t = 'Bacia'; d = 'A bacia guarda os ingredientes para o misturador e a prensa.'; item = 'create:basin' }
         @{ t = 'Misturador'; d = 'Em cima da bacia, com um bloco de espaco, ele mistura os ingredientes.'; item = 'create:mechanical_mixer' }
         @{ t = 'Queimador de blaze'; d = 'Faca o queimador vazio e clique com ele em um blaze. Embaixo da bacia ele aquece as receitas; alimente com carvao.'; item = 'create:blaze_burner' }
@@ -61,7 +151,7 @@ $capitulos = @(
         @{ t = 'Crafter mecanico'; d = 'Varios crafters juntos fazem receitas grandes sozinhos.'; item = 'create:mechanical_crafter'; q = 9 }
         @{ t = 'Britadores'; d = 'Duas rodas trituradoras girando para dentro moem minerio e dao mais material.'; item = 'create:crushing_wheel'; q = 2 }
     ) }
-    @{ t = 'Create 4: vapor, fluidos e trens'; icone = 'create:steam_engine'; m = @(
+    @{ t = 'Create 4: vapor, fluidos e trens'; g = 'Tecnologia'; icone = 'create:steam_engine'; m = @(
         @{ t = 'Tubos'; d = 'Tubos levam liquidos.'; item = 'create:fluid_pipe'; q = 8 }
         @{ t = 'Bomba'; d = 'A bomba gira e empurra o liquido pelos tubos. A chave inglesa inverte o sentido.'; item = 'create:mechanical_pump' }
         @{ t = 'Tanque'; d = 'Tanques guardam liquido. Varios juntos fazem um tanque grande.'; item = 'create:fluid_tank'; q = 4 }
@@ -72,7 +162,7 @@ $capitulos = @(
         @{ t = 'Controles'; d = 'Os controles dirigem o trem. Com um horario, ele anda sozinho entre estacoes.'; item = 'create:controls' }
         @{ t = 'Construcoes prontas'; d = 'A mesa de esquemas e o canhao de esquemas montam uma construcao inteira a partir de um arquivo. Coloque arquivos .nbt na pasta schematics do jogo; ha muitos prontos no site createmod.com.'; item = 'create:schematicannon' }
     ) }
-    @{ t = 'Mochila e baus'; icone = 'sophisticatedbackpacks:backpack'; m = @(
+    @{ t = 'Mochila e baus'; g = 'Começo'; icone = 'sophisticatedbackpacks:backpack'; m = @(
         @{ t = 'Base de melhoria'; d = 'As melhorias da mochila partem desta base. Clique com o botao direito na mochila e coloque nas casas de melhoria.'; item = 'sophisticatedbackpacks:upgrade_base' }
         @{ t = 'Coletar sozinho'; d = 'A melhoria de coleta guarda direto na mochila o que voce pega do chao.'; item = 'sophisticatedbackpacks:pickup_upgrade' }
         @{ t = 'Ima'; d = 'A melhoria de ima puxa os itens de perto para a mochila.'; item = 'sophisticatedbackpacks:magnet_upgrade' }
@@ -81,7 +171,7 @@ $capitulos = @(
         @{ t = 'Bau de ferro'; d = 'Iron Chests: baus maiores que o normal. Ferro, ouro, diamante e outros.'; item = 'ironchest:iron_chest'; solta = $true }
         @{ t = 'Bau grande do Sophisticated'; d = 'Sophisticated Storage: baus e barris com melhorias, como a mochila.'; item = 'sophisticatedstorage:chest'; solta = $true }
     ) }
-    @{ t = 'Cozinha e fazenda'; icone = 'farmersdelight:cooking_pot'; m = @(
+    @{ t = 'Cozinha e fazenda'; g = 'Começo'; icone = 'farmersdelight:cooking_pot'; m = @(
         @{ t = 'Faca'; d = 'A faca colhe palha e corta comida na tabua.'; item = 'farmersdelight:flint_knife' }
         @{ t = 'Tabua de corte'; d = 'Coloque um ingrediente na tabua e clique com a faca para cortar.'; item = 'farmersdelight:cutting_board' }
         @{ t = 'Fogao'; d = 'O fogao cozinha em cima e aquece a panela e a frigideira.'; item = 'farmersdelight:stove' }
@@ -91,33 +181,33 @@ $capitulos = @(
         @{ t = 'Plantacao de minerio'; d = 'Mystical Agriculture: essencia de inferium sai do minerio de inferium e vira sementes que dao materiais.'; item = 'mysticalagriculture:inferium_essence'; solta = $true }
         @{ t = 'Estacoes do ano'; d = 'Serene Seasons: o ano tem primavera, verao, outono e inverno. Cada planta cresce melhor em certas estacoes; o JEI mostra quais.'; solta = $true }
     ) }
-    @{ t = 'Construir'; icone = 'buildinggadgets2:gadget_building'; m = @(
+    @{ t = 'Construir'; g = 'Começo'; icone = 'buildinggadgets2:gadget_building'; m = @(
         @{ t = 'Ferramenta de construir'; d = 'Building Gadgets: coloca varios blocos de uma vez. Precisa de energia (carregue em um carregador de energia).'; item = 'buildinggadgets2:gadget_building' }
         @{ t = 'Copiar e colar'; d = 'Copia uma area e cola em outro lugar, gastando os blocos do seu inventario.'; item = 'buildinggadgets2:gadget_copy_paste' }
         @{ t = 'Construir com espelho'; d = 'Effortless Building: segure Alt para escolher modos como parede, linha, espelho e repeticao.'; solta = $true }
         @{ t = 'Telhados de verdade'; d = 'Macaw''s Roofs, Windows, Doors, Fences e Furniture: blocos de telhado, janelas, portas, cercas e moveis. Procure por mcw no JEI.'; solta = $true }
         @{ t = 'Moveis'; d = 'Handcrafted, Beautify, Supplementaries e Bubblellaneous trazem moveis e decoracao. Procure pelo nome do mod no JEI com @.'; solta = $true }
     ) }
-    @{ t = 'Animais'; icone = 'alexsmobs:animal_dictionary'; m = @(
+    @{ t = 'Animais'; g = 'Começo'; icone = 'alexsmobs:animal_dictionary'; m = @(
         @{ t = 'Dicionario animal'; d = 'Alex''s Mobs tem um livro que explica cada bicho, o que ele come e como domesticar.'; item = 'alexsmobs:animal_dictionary' }
         @{ t = 'Banana'; d = 'Bananas caem das folhas de selva. Varios bichos do Alex''s Mobs gostam delas, como os macacos.'; item = 'alexsmobs:banana' }
         @{ t = 'Hamster'; d = 'Adorable Hamster Pets: hamsters de estimacao que seguem voce e cabem no ombro.'; solta = $true }
         @{ t = 'Dragao'; d = 'Dragon Mounts: ovos de dragao chocam um dragao que voce cria e monta.'; solta = $true }
         @{ t = 'Mais bichos'; d = 'Naturalist, Critters and Companions, Friends&Foes, Wilder Nature e Archie''s Dinosaurs espalham bichos pelos biomas. O Jade mostra o nome de cada um.'; solta = $true }
     ) }
-    @{ t = 'Explorar'; icone = 'naturescompass:naturescompass'; m = @(
+    @{ t = 'Explorar'; g = 'Aventura'; icone = 'naturescompass:naturescompass'; m = @(
         @{ t = 'Bussola de biomas'; d = 'Nature''s Compass aponta para o bioma que voce escolher.'; item = 'naturescompass:naturescompass' }
         @{ t = 'Bussola de estruturas'; d = 'Explorer''s Compass aponta para vilas, templos, masmorras e outras estruturas.'; item = 'explorerscompass:explorerscompass' }
         @{ t = 'Atlas'; d = 'Map Atlases junta mapas de papel em um livro. Na mao secundaria vira minimapa.'; item = 'map_atlases:atlas' }
         @{ t = 'Pergaminho de volta'; d = 'O pergaminho de retorno leva de volta para a ultima waystone ou cama.'; item = 'waystones:return_scroll' }
     ) }
-    @{ t = 'Mekanism'; icone = 'mekanism:metallurgic_infuser'; m = @(
+    @{ t = 'Mekanism'; g = 'Tecnologia'; icone = 'mekanism:metallurgic_infuser'; m = @(
         @{ t = 'Infusor metalurgico'; d = 'A primeira maquina: mistura ferro com carvao para fazer aco e outras ligas. Precisa de energia.'; item = 'mekanism:metallurgic_infuser' }
         @{ t = 'Energia'; d = 'O Mekanism do pack nao tem geradores proprios: o alternador do Create Crafts & Additions transforma a rotacao do Create em energia para as maquinas.'; item = 'createaddition:alternator' }
         @{ t = 'Camara de enriquecimento'; d = 'Transforma um minerio em dois montes de po: o dobro de lingotes.'; item = 'mekanism:enrichment_chamber' }
         @{ t = 'Cabos'; d = 'Cabos universais levam energia do gerador para as maquinas.'; item = 'mekanism:basic_universal_cable' }
     ) }
-    @{ t = 'Dimensoes'; icone = 'minecraft:ender_eye'; m = @(
+    @{ t = 'Dimensoes'; g = 'Dimensões'; icone = 'minecraft:ender_eye'; m = @(
         @{ t = 'Nether'; d = 'Portal de obsidiana aceso com isqueiro.'; dim = 'minecraft:the_nether'; solta = $true }
         @{ t = 'Aether'; d = 'O ceu do Minecraft: moldura de pedra luminosa (glowstone) acesa com um balde de agua.'; dim = 'aether:the_aether'; solta = $true }
         @{ t = 'Twilight Forest'; d = 'Poca de agua 2x2 cercada de flores; jogue um diamante dentro.'; dim = 'twilightforest:twilight_forest'; solta = $true }
@@ -127,7 +217,7 @@ $capitulos = @(
         @{ t = 'Lua'; d = 'Ad Astra: monte um foguete na bancada da NASA e voe para a Lua.'; dim = 'ad_astra:moon'; solta = $true }
         @{ t = 'End'; d = 'Olhos de ender levam ao portal do End e ao dragao.'; dim = 'minecraft:the_end'; solta = $true }
     ) }
-    @{ t = 'Aether'; icone = 'aether:ambrosium_shard'; m = @(
+    @{ t = 'Aether'; g = 'Dimensões'; icone = 'aether:ambrosium_shard'; m = @(
         @{ t = 'Chegar no Aether'; d = 'Moldura de glowstone acesa com um balde de agua. Leve o paraquedas dourado que o mod da na primeira visita.'; dim = 'aether:the_aether' }
         @{ t = 'Ambrosium'; d = 'Fragmentos de ambrosium curam e servem de combustivel no Aether.'; item = 'aether:ambrosium_shard' }
         @{ t = 'Zanite'; d = 'Gema azul para ferramentas e armadura do Aether.'; item = 'aether:zanite_gemstone' }
@@ -135,20 +225,20 @@ $capitulos = @(
         @{ t = 'Rainha Valquiria'; d = 'A masmorra de prata guarda a Rainha Valquiria e a chave de prata.'; item = 'aether:silver_dungeon_key' }
         @{ t = 'Espirito do Sol'; d = 'A masmorra de ouro e o fim do Aether: venca o Espirito do Sol.'; item = 'aether:gold_dungeon_key' }
     ) }
-    @{ t = 'Twilight Forest'; icone = 'twilightforest:naga_scale'; m = @(
+    @{ t = 'Twilight Forest'; g = 'Dimensões'; icone = 'twilightforest:naga_scale'; m = @(
         @{ t = 'Entrar'; d = 'Poca de agua 2x2 cercada de flores; jogue um diamante dentro.'; dim = 'twilightforest:twilight_forest' }
         @{ t = 'Naga'; d = 'O primeiro chefe vive no patio de pedra. Ele deixa escamas para armadura.'; item = 'twilightforest:naga_scale' }
         @{ t = 'Mapa magico'; d = 'Com o foco de mapa magico voce faz um mapa que mostra os biomas e as estruturas dos chefes.'; item = 'twilightforest:magic_map_focus' }
         @{ t = 'Proximos chefes'; d = 'A progressao segue: Lich, Hidra, Ur-Ghast e outros. Cada chefe libera a regiao seguinte; tentar pular da efeitos ruins.'; }
     ) }
-    @{ t = 'Undergarden'; icone = 'undergarden:catalyst'; m = @(
+    @{ t = 'Undergarden'; g = 'Dimensões'; icone = 'undergarden:catalyst'; m = @(
         @{ t = 'Catalisador'; d = 'O catalisador ativa o portal de tijolos de pedra.'; item = 'undergarden:catalyst' }
         @{ t = 'Entrar'; d = 'Undergarden e um mundo escuro e perigoso embaixo da terra. Leve tochas.'; dim = 'undergarden:undergarden' }
         @{ t = 'Cloggrum'; d = 'O primeiro metal do Undergarden, para ferramentas.'; item = 'undergarden:cloggrum_ingot' }
         @{ t = 'Froststeel'; d = 'Metal gelado que deixa os inimigos mais lentos.'; item = 'undergarden:froststeel_ingot' }
         @{ t = 'Utherium'; d = 'Cristal forte contra as criaturas do Undergarden.'; item = 'undergarden:utherium_crystal' }
     ) }
-    @{ t = 'Espaco'; icone = 'ad_astra:tier_1_rocket'; m = @(
+    @{ t = 'Espaco'; g = 'Dimensões'; icone = 'ad_astra:tier_1_rocket'; m = @(
         @{ t = 'Aco'; d = 'Ad Astra comeca com aco.'; item = 'ad_astra:steel_ingot' }
         @{ t = 'Bancada da NASA'; d = 'A bancada da NASA monta as pecas do foguete.'; item = 'ad_astra:nasa_workbench' }
         @{ t = 'Traje espacial'; d = 'Capacete e traje espacial com oxigenio sao obrigatorios fora da Terra.'; item = 'ad_astra:space_suit' }
@@ -161,7 +251,7 @@ $capitulos = @(
         @{ t = 'Glacio'; d = 'O planeta gelado, o mais longe de todos.'; dim = 'ad_astra:glacio'; solta = $true }
         @{ t = 'Vila lunar'; d = 'Os lunarianos tem vilas na Lua e trocam itens como os aldeoes.'; estrutura = 'ad_astra:lunarian_village'; solta = $true }
     ) }
-    @{ t = 'Utilidades'; icone = 'justhammers:iron_hammer'; m = @(
+    @{ t = 'Utilidades'; g = 'Começo'; icone = 'justhammers:iron_hammer'; m = @(
         @{ t = 'Minerar em bloco'; d = 'VeinMiner: segure a tecla ao lado do 1 e quebre um minerio para levar o veio inteiro.'; solta = $true }
         @{ t = 'Marcar no mapa'; d = 'Ping Wheel: o botao do meio do mouse marca um ponto para todo mundo ver.'; solta = $true }
         @{ t = 'Carregar bau'; d = 'Carry On: agache com a mao vazia e clique em um bau para levar ele inteiro, com tudo dentro.'; solta = $true }
@@ -173,14 +263,14 @@ $capitulos = @(
         @{ t = 'Netherite melhor'; d = 'Advanced Netherite: ferramentas e armaduras alem da netherite, com ferro, ouro, esmeralda e diamante.'; item = 'advancednetherite:netherite_diamond_ingot'; solta = $true }
         @{ t = 'Fumar'; d = 'Smoking Pipe, CiggyCraft e Tobacconist: plante tabaco e fume. So por diversao.'; solta = $true }
     ) }
-    @{ t = 'Create: addons'; icone = 'create_jetpack:jetpack'; m = @(
+    @{ t = 'Create: addons'; g = 'Tecnologia'; icone = 'create_jetpack:jetpack'; m = @(
         @{ t = 'Jetpack'; d = 'Create Jetpack: voa com ar comprimido de um tanque.'; item = 'create_jetpack:jetpack'; solta = $true }
         @{ t = 'Escavadeira de minerio'; d = 'Create Ore Excavation: maquinas que extraem minerio de veios infinitos no subsolo.'; solta = $true }
         @{ t = 'Encantar com maquina'; d = 'Create Enchantment Industry: transforma experiencia em liquido e encanta itens com maquinas.'; solta = $true }
         @{ t = 'Energia'; d = 'Create Crafts & Additions: o alternador gera energia e o motor eletrico gira as maquinas.'; item = 'createaddition:electric_motor'; solta = $true }
         @{ t = 'Cozinha automatica'; d = 'Create Central Kitchen: as maquinas do Create fazem as comidas do Farmer''s Delight.'; solta = $true }
     ) }
-    @{ t = 'Cacador de chefes'; icone = 'minecraft:wither_skeleton_skull'; m = @(
+    @{ t = 'Cacador de chefes'; g = 'Aventura'; icone = 'minecraft:wither_skeleton_skull'; m = @(
         @{ t = 'Wither'; d = 'Tres cranios de esqueleto wither em cima de areia das almas em T. Faca longe de casa.'; mata = 'minecraft:wither'; p = 'minecraft:diamond'; n = 8; solta = $true }
         @{ t = 'Dragao do Ender'; d = 'O chefe do End.'; mata = 'minecraft:ender_dragon'; p = 'minecraft:diamond'; n = 8; solta = $true }
         @{ t = 'Warden'; d = 'Mora nas cidades antigas do subsolo escuro. Sem barulho, ele nao aparece.'; mata = 'minecraft:warden'; p = 'minecraft:diamond'; n = 8; solta = $true }
@@ -196,7 +286,7 @@ $capitulos = @(
         @{ t = 'Golem estelar'; d = 'Eternal Starlight: o golem da forja.'; mata = 'eternal_starlight:starlight_golem'; solta = $true }
         @{ t = 'Monstro lunar'; d = 'Eternal Starlight: a Lunar Monstrosity.'; mata = 'eternal_starlight:lunar_monstrosity'; solta = $true }
     ) }
-    @{ t = 'Chefes da Twilight'; icone = 'twilightforest:naga_scale'; m = @(
+    @{ t = 'Chefes da Twilight'; g = 'Aventura'; icone = 'twilightforest:naga_scale'; m = @(
         @{ t = 'Naga'; d = 'O primeiro chefe, no patio de pedra.'; mata = 'twilightforest:naga' }
         @{ t = 'Lich'; d = 'A torre do Lich. Quebre os escudos dele antes de atacar.'; mata = 'twilightforest:lich' }
         @{ t = 'Minoshroom'; d = 'No fundo do labirinto do pantano.'; mata = 'twilightforest:minoshroom' }
@@ -206,7 +296,7 @@ $capitulos = @(
         @{ t = 'Yeti alfa'; d = 'Na caverna dos yetis, na floresta de neve.'; mata = 'twilightforest:alpha_yeti' }
         @{ t = 'Rainha da Neve'; d = 'No palacio da aurora, no glaciar.'; mata = 'twilightforest:snow_queen' }
     ) }
-    @{ t = 'Explorador'; icone = 'explorerscompass:explorerscompass'; m = @(
+    @{ t = 'Explorador'; g = 'Aventura'; icone = 'explorerscompass:explorerscompass'; m = @(
         @{ t = 'Cidade antiga'; d = 'No subsolo escuro. Cuidado com o Warden.'; estrutura = 'minecraft:ancient_city'; solta = $true }
         @{ t = 'Camaras de desafio'; d = 'Salas com geradores de desafio e o cofre das chaves.'; estrutura = 'minecraft:trial_chambers'; solta = $true }
         @{ t = 'Mansao da floresta'; d = 'Na floresta escura, cheia de illagers.'; estrutura = 'minecraft:mansion'; solta = $true }
@@ -229,7 +319,7 @@ $capitulos = @(
         @{ t = 'Ninho de dinossauro'; d = 'Archie''s Dinosaurs: uma cratera com fosseis.'; estrutura = 'ec_ad:big_crater'; solta = $true }
         @{ t = 'Esqueleto de dragao'; d = 'Nullscape: um esqueleto gigante no End.'; estrutura = 'nullscape:dragon_skeleton'; solta = $true }
     ) }
-    @{ t = 'Volta ao mundo'; icone = 'naturescompass:naturescompass'; m = @(
+    @{ t = 'Volta ao mundo'; g = 'Aventura'; icone = 'naturescompass:naturescompass'; m = @(
         @{ t = 'Cerejeiras'; d = 'Um vale de cerejeiras rosa.'; bioma = 'terralith:sakura_valley'; solta = $true }
         @{ t = 'Canion vermelho'; d = 'O canion de pedra vermelha.'; bioma = 'terralith:bryce_canyon'; solta = $true }
         @{ t = 'Vulcao'; d = 'A cratera de um vulcao.'; bioma = 'terralith:volcanic_crater'; solta = $true }
@@ -242,7 +332,7 @@ $capitulos = @(
         @{ t = 'Floresta invertida'; d = 'Incendium: no Nether, uma floresta de cabeca para baixo.'; bioma = 'incendium:inverted_forest'; solta = $true }
         @{ t = 'Vale do choro'; d = 'Incendium: um vale do Nether.'; bioma = 'incendium:weeping_valley'; solta = $true }
     ) }
-    @{ t = 'Colecionador'; icone = 'minecraft:diamond'; m = @(
+    @{ t = 'Colecionador'; g = 'Aventura'; icone = 'minecraft:diamond'; m = @(
         @{ t = 'Montinho de diamante'; d = 'Junte 64 diamantes. O VeinMiner ajuda.'; item = 'minecraft:diamond'; q = 64; p = 'minecraft:diamond_block'; n = 2 }
         @{ t = 'Netherite'; d = 'Restos antigos no fundo do Nether viram netherite.'; item = 'minecraft:netherite_ingot' }
         @{ t = 'Totem'; d = 'O totem da imortalidade vem dos evocadores das mansoes e cidadelas.'; item = 'minecraft:totem_of_undying'; solta = $true }
@@ -280,8 +370,10 @@ if (Test-Path $jarsDir) {
 else { Write-Warning 'Sem tools/jars (rode o montar-pack): ids nao conferidos.' }
 
 # Id fixo pelo nome (16 hex), para o progresso dos jogadores nao se perder quando o livro for gerado de novo.
+# O nome entra sem acento: acentuar um titulo antigo nao muda o id.
 $md5 = [Security.Cryptography.MD5]::Create()
-function Id($s) { -join ($md5.ComputeHash([Text.Encoding]::UTF8.GetBytes($s))[0..7] | ForEach-Object { $_.ToString('X2') }) }
+function Sem($s) { -join ($s.Normalize([Text.NormalizationForm]::FormD).ToCharArray() | Where-Object { [Globalization.CharUnicodeInfo]::GetUnicodeCategory($_) -ne 'NonSpacingMark' }) }
+function Id($s) { -join ($md5.ComputeHash([Text.Encoding]::UTF8.GetBytes((Sem $s)))[0..7] | ForEach-Object { $_.ToString('X2') }) }
 function Txt($s) { '"' + $s.Replace('\', '\\').Replace('"', '\"') + '"' }
 
 $utf8 = New-Object Text.UTF8Encoding $false
@@ -289,10 +381,17 @@ if (Test-Path $destino) { Remove-Item -Recurse -Force $destino }
 New-Item -ItemType Directory -Force (Join-Path $destino 'chapters'), (Join-Path $destino 'lang') | Out-Null
 [IO.File]::WriteAllText((Join-Path $destino 'data.snbt'), "{`n`tdefault_quest_shape: `"circle`"`n`tdefault_reward_team: false`n`tdisable_gui: false`n`tgrid_scale: 0.5d`n`tpause_game: false`n`tprogression_mode: `"flexible`"`n`tversion: 13`n}`n", $utf8)
 $lang = @()
+# Grupos: titulos na lateral do livro que juntam os capitulos.
+$gids = @{}
+$gs = foreach ($g in $grupos) { $gids[$g.t] = Id "grupo/$($g.t)"; $lang += "`tchapter_group.$($gids[$g.t]).title: $(Txt $g.t)"; "`t`t{ icon: { id: `"$($g.icone)`" }, id: `"$($gids[$g.t])`" }" }
+[IO.File]::WriteAllText((Join-Path $destino 'chapter_groups.snbt'), "{`n`tchapter_groups: [`n$($gs -join "`n")`n`t]`n}`n", $utf8)
 $ordem = 0
 foreach ($c in $capitulos) {
-    $cid = Id "capitulo/$($c.t)"; $nome = ($c.t.ToLower() -replace '[^a-z0-9]+', '_').Trim('_')
+    $cid = Id "capitulo/$($c.t)"; $nome = ((Sem $c.t).ToLower() -replace '[^a-z0-9]+', '_').Trim('_')
+    if ($c['g'] -and -not $gids[$c['g']]) { throw "Capitulo $($c.t): grupo '$($c['g'])' nao esta em `$grupos" }
+    $grupo = if ($c['g']) { $gids[$c['g']] } else { '' }
     $lang += "`tchapter.$cid.title: $(Txt $c.t)"
+    if ($c['sub']) { $lang += "`tchapter.$cid.chapter_subtitle: [$(Txt $c['sub'])]" }
     $qs = @(); $ant = $null; $x = 0
     foreach ($m in $c.m) {
         $qid = Id "missao/$($c.t)/$($m.t)"
@@ -303,15 +402,21 @@ foreach ($c in $capitulos) {
             elseif ($m['bioma']) { "{ biome: `"$($m['bioma'])`", id: `"$(Id "tarefa/$qid")`", type: `"biome`" }" }
             elseif ($m['dim']) { "{ dimension: `"$($m['dim'])`", id: `"$(Id "tarefa/$qid")`", type: `"dimension`" }" }
             else { "{ id: `"$(Id "tarefa/$qid")`", type: `"checkmark`" }" }
-        $premio = if ($m['p']) { "`n`t`t`trewards: [{ id: `"$(Id "premio/$qid")`", item: { count: $(if ($m['n']) { $m['n'] } else { 1 }), id: `"$($m['p'])`" }, type: `"item`" }]" } else { '' }
+        $xp = if ($m['xp']) { $m['xp'] } elseif ($m['marco']) { 100 } else { 20 }
+        $premios = @("{ id: `"$(Id "xp/$qid")`", type: `"xp`", xp: $xp }")
+        if ($m['p']) { $premios += "{ id: `"$(Id "premio/$qid")`", item: { count: $(if ($m['n']) { $m['n'] } else { 1 }), id: `"$($m['p'])`" }, type: `"item`" }" }
+        $extra = "`n`t`t`trewards: [$($premios -join ', ')]"
+        if ($m['marco']) { $extra += "`n`t`t`tshape: `"gear`"`n`t`t`tsize: 1.5d" }
+        if ($m['opcional']) { $extra += "`n`t`t`toptional: true" }
         $dep = if ($ant -and -not $m['solta']) { "`n`t`t`tdependencies: [`"$ant`"]" } else { '' }
         $y = if ($m['solta']) { [math]::Floor($x / 4) * 1.5 } else { 0 }; $px = if ($m['solta']) { ($x % 4) * 1.5 } else { $x * 1.5 }
-        $qs += "`t`t{$dep`n`t`t`tid: `"$qid`"$premio`n`t`t`ttasks: [$tarefa]`n`t`t`tx: $($px)d`n`t`t`ty: $($y)d`n`t`t}"
+        $qs += "`t`t{$dep`n`t`t`tid: `"$qid`"$extra`n`t`t`ttasks: [$tarefa]`n`t`t`tx: $($px)d`n`t`t`ty: $($y)d`n`t`t}"
         $lang += "`tquest.$qid.title: $(Txt $m.t)"
+        if ($m['sub']) { $lang += "`tquest.$qid.quest_subtitle: $(Txt $m['sub'])" }
         $lang += "`tquest.$qid.quest_desc: [$((@($m.d) | ForEach-Object { Txt $_ }) -join ', ')]"
         $ant = $qid; $x++
     }
-    $cap = "{`n`tdefault_hide_dependency_lines: false`n`tdefault_quest_shape: `"`"`n`tfilename: `"$nome`"`n`tgroup: `"`"`n`ticon: { id: `"$($c.icone)`" }`n`tid: `"$cid`"`n`torder_index: $ordem`n`tquest_links: [ ]`n`tquests: [`n$($qs -join "`n")`n`t]`n}`n"
+    $cap = "{`n`tdefault_hide_dependency_lines: false`n`tdefault_quest_shape: `"`"`n`tfilename: `"$nome`"`n`tgroup: `"$grupo`"`n`ticon: { id: `"$($c.icone)`" }`n`tid: `"$cid`"`n`torder_index: $ordem`n`tquest_links: [ ]`n`tquests: [`n$($qs -join "`n")`n`t]`n}`n"
     [IO.File]::WriteAllText((Join-Path $destino "chapters/$nome.snbt"), $cap, $utf8)
     $ordem++
 }

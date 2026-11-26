@@ -2,7 +2,7 @@
 	default_hide_dependency_lines: false
 	default_quest_shape: ""
 	filename: "cacador_de_chefes"
-	group: ""
+	group: "0723197381022D89"
 	icon: { id: "minecraft:wither_skeleton_skull" }
 	id: "E71D011D2029328F"
 	order_index: 18
@@ -10,88 +10,98 @@
 	quests: [
 		{
 			id: "62726123703DF347"
-			rewards: [{ id: "E6132747E96FD806", item: { count: 8, id: "minecraft:diamond" }, type: "item" }]
+			rewards: [{ id: "E70FC966927B63D1", type: "xp", xp: 20 }, { id: "E6132747E96FD806", item: { count: 8, id: "minecraft:diamond" }, type: "item" }]
 			tasks: [{ entity: "minecraft:wither", id: "C8D0049DD50E05D2", type: "kill", value: 1L }]
 			x: 0d
 			y: 0.0d
 		}
 		{
 			id: "14A09DB6CD3C9668"
-			rewards: [{ id: "EFE7215CBB6C31A7", item: { count: 8, id: "minecraft:diamond" }, type: "item" }]
+			rewards: [{ id: "95FDBF4319D0960E", type: "xp", xp: 20 }, { id: "EFE7215CBB6C31A7", item: { count: 8, id: "minecraft:diamond" }, type: "item" }]
 			tasks: [{ entity: "minecraft:ender_dragon", id: "35CDFC3A1B08921D", type: "kill", value: 1L }]
 			x: 1.5d
 			y: 0d
 		}
 		{
 			id: "3B675ADFEB3DC4A5"
-			rewards: [{ id: "3C500F7EE55EE5A7", item: { count: 8, id: "minecraft:diamond" }, type: "item" }]
+			rewards: [{ id: "090FBFFFE3E5E1D3", type: "xp", xp: 20 }, { id: "3C500F7EE55EE5A7", item: { count: 8, id: "minecraft:diamond" }, type: "item" }]
 			tasks: [{ entity: "minecraft:warden", id: "8D2E17092912829F", type: "kill", value: 1L }]
 			x: 3d
 			y: 0d
 		}
 		{
 			id: "D42C1529514AFB08"
-			rewards: [{ id: "43F491995A0E0C57", item: { count: 4, id: "minecraft:sponge" }, type: "item" }]
+			rewards: [{ id: "75226B5D86CAE12F", type: "xp", xp: 20 }, { id: "43F491995A0E0C57", item: { count: 4, id: "minecraft:sponge" }, type: "item" }]
 			tasks: [{ entity: "minecraft:elder_guardian", id: "BCE828142376B902", type: "kill", value: 1L }]
 			x: 4.5d
 			y: 0d
 		}
 		{
 			id: "EEAA7D65C829EAEC"
+			rewards: [{ id: "1F1EBFFCFB1322DD", type: "xp", xp: 20 }]
 			tasks: [{ entity: "mowziesmobs:ferrous_wroughtnaut", id: "C2B512563EA2C2E8", type: "kill", value: 1L }]
 			x: 0d
 			y: 1.5d
 		}
 		{
 			id: "8D06AEA7DF8858A2"
+			rewards: [{ id: "74358AED0A8FC499", type: "xp", xp: 20 }]
 			tasks: [{ entity: "mowziesmobs:frostmaw", id: "B8ADF82EBD5F6528", type: "kill", value: 1L }]
 			x: 1.5d
 			y: 1.5d
 		}
 		{
 			id: "308D71C4D5520C9A"
+			rewards: [{ id: "87E96C5AE6B76548", type: "xp", xp: 20 }]
 			tasks: [{ entity: "mowziesmobs:umvuthi", id: "8022A39B5686BD74", type: "kill", value: 1L }]
 			x: 3d
 			y: 1.5d
 		}
 		{
 			id: "36E81DAF9E4A2C77"
+			rewards: [{ id: "ED74F1BE62321D50", type: "xp", xp: 20 }]
 			tasks: [{ entity: "mowziesmobs:sculptor", id: "136B03C048273A76", type: "kill", value: 1L }]
 			x: 4.5d
 			y: 1.5d
 		}
 		{
 			id: "0E303137846E5107"
+			rewards: [{ id: "3F791E1C5A842336", type: "xp", xp: 20 }]
 			tasks: [{ entity: "aquamirae:captain_cornelia", id: "78BDE3620FF1B0A7", type: "kill", value: 1L }]
 			x: 0d
 			y: 3.0d
 		}
 		{
 			id: "6A04EA7B733F51D5"
+			rewards: [{ id: "F794773F5C86B48F", type: "xp", xp: 20 }]
 			tasks: [{ entity: "aquamirae:maw", id: "43C6A0FCD12B709E", type: "kill", value: 1L }]
 			x: 1.5d
 			y: 3d
 		}
 		{
 			id: "657F017E8BAA19B7"
+			rewards: [{ id: "096BE9EC82C2D095", type: "xp", xp: 20 }]
 			tasks: [{ entity: "undergarden:forgotten_guardian", id: "C8F3FA7171827406", type: "kill", value: 1L }]
 			x: 3d
 			y: 3d
 		}
 		{
 			id: "88B95201CB94C70C"
+			rewards: [{ id: "BD3D11F3797EA0E2", type: "xp", xp: 20 }]
 			tasks: [{ entity: "eternal_starlight:the_gatekeeper", id: "C97DB61197510F76", type: "kill", value: 1L }]
 			x: 4.5d
 			y: 3d
 		}
 		{
 			id: "8264C648566DCAFE"
+			rewards: [{ id: "ED676FDB99B45D64", type: "xp", xp: 20 }]
 			tasks: [{ entity: "eternal_starlight:starlight_golem", id: "364422293AA820BC", type: "kill", value: 1L }]
 			x: 0d
 			y: 4.5d
 		}
 		{
 			id: "69CAAB8AFFAD3256"
+			rewards: [{ id: "E318ACC4D1994102", type: "xp", xp: 20 }]
 			tasks: [{ entity: "eternal_starlight:lunar_monstrosity", id: "7B96E933BB2BD909", type: "kill", value: 1L }]
 			x: 1.5d
 			y: 4.5d

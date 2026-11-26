@@ -2,7 +2,7 @@
 	default_hide_dependency_lines: false
 	default_quest_shape: ""
 	filename: "create_3_era_do_latao"
-	group: ""
+	group: "75C4FBF5BDDE1148"
 	icon: { id: "create:brass_ingot" }
 	id: "D484F5C3EA822981"
 	order_index: 3
@@ -10,6 +10,7 @@
 	quests: [
 		{
 			id: "8600E8BC2C175FA0"
+			rewards: [{ id: "7538DFBFCFE19277", type: "xp", xp: 20 }]
 			tasks: [{ id: "6EEA4CC06869E88D", item: { count: 1, id: "create:basin" }, type: "item" }]
 			x: 0d
 			y: 0d
@@ -17,6 +18,7 @@
 		{
 			dependencies: ["8600E8BC2C175FA0"]
 			id: "13D65DA105B6DC8C"
+			rewards: [{ id: "45EC31B87AC257C6", type: "xp", xp: 20 }]
 			tasks: [{ id: "C87149DE30ACA34A", item: { count: 1, id: "create:mechanical_mixer" }, type: "item" }]
 			x: 1.5d
 			y: 0d
@@ -24,6 +26,7 @@
 		{
 			dependencies: ["13D65DA105B6DC8C"]
 			id: "35CF7E0EF578B3D8"
+			rewards: [{ id: "1D5D36F30DB21B5A", type: "xp", xp: 20 }]
 			tasks: [{ id: "D27710B7FF045108", item: { count: 1, id: "create:blaze_burner" }, type: "item" }]
 			x: 3d
 			y: 0d
@@ -31,7 +34,7 @@
 		{
 			dependencies: ["35CF7E0EF578B3D8"]
 			id: "B96A729DC1F49665"
-			rewards: [{ id: "EA02DE5E3AE44BA3", item: { count: 8, id: "create:brass_ingot" }, type: "item" }]
+			rewards: [{ id: "7A94CA5C98A3B862", type: "xp", xp: 20 }, { id: "EA02DE5E3AE44BA3", item: { count: 8, id: "create:brass_ingot" }, type: "item" }]
 			tasks: [{ id: "43D4490F633266A1", item: { count: 16, id: "create:brass_ingot" }, type: "item" }]
 			x: 4.5d
 			y: 0d
@@ -39,6 +42,7 @@
 		{
 			dependencies: ["B96A729DC1F49665"]
 			id: "4586EE64BB7E2CB4"
+			rewards: [{ id: "C2DC318428B847A2", type: "xp", xp: 20 }]
 			tasks: [{ id: "9F64E50F10DECD3F", item: { count: 1, id: "create:brass_casing" }, type: "item" }]
 			x: 6d
 			y: 0d
@@ -46,6 +50,7 @@
 		{
 			dependencies: ["4586EE64BB7E2CB4"]
 			id: "FE1B436601F36D12"
+			rewards: [{ id: "E12A43F6D48511D5", type: "xp", xp: 20 }]
 			tasks: [{ id: "E2B17C2971EBDCE1", item: { count: 1, id: "create:electron_tube" }, type: "item" }]
 			x: 7.5d
 			y: 0d
@@ -53,6 +58,7 @@
 		{
 			dependencies: ["FE1B436601F36D12"]
 			id: "5D8954105C424FBC"
+			rewards: [{ id: "502D99716CF60CEC", type: "xp", xp: 20 }]
 			tasks: [{ id: "8987070ADA5DA452", item: { count: 1, id: "create:deployer" }, type: "item" }]
 			x: 9d
 			y: 0d
@@ -60,7 +66,7 @@
 		{
 			dependencies: ["5D8954105C424FBC"]
 			id: "7C28ABE1AD660519"
-			rewards: [{ id: "2A06264A7E50727A", item: { count: 2, id: "create:precision_mechanism" }, type: "item" }]
+			rewards: [{ id: "414B92E3D25A4AF7", type: "xp", xp: 20 }, { id: "2A06264A7E50727A", item: { count: 2, id: "create:precision_mechanism" }, type: "item" }]
 			tasks: [{ id: "CA5017D13EA2CEB7", item: { count: 1, id: "create:precision_mechanism" }, type: "item" }]
 			x: 10.5d
 			y: 0d
@@ -68,6 +74,7 @@
 		{
 			dependencies: ["7C28ABE1AD660519"]
 			id: "7BC3C4803FA3464F"
+			rewards: [{ id: "F9D3C18B24177A89", type: "xp", xp: 20 }]
 			tasks: [{ id: "85D77A6EFB814379", item: { count: 1, id: "create:brass_funnel" }, type: "item" }]
 			x: 12d
 			y: 0d
@@ -75,6 +82,7 @@
 		{
 			dependencies: ["7BC3C4803FA3464F"]
 			id: "E8EB7FC2303C16F5"
+			rewards: [{ id: "D8539495FACE2A1C", type: "xp", xp: 20 }]
 			tasks: [{ id: "921E55E7A905B30B", item: { count: 1, id: "create:brass_tunnel" }, type: "item" }]
 			x: 13.5d
 			y: 0d
@@ -82,6 +90,7 @@
 		{
 			dependencies: ["E8EB7FC2303C16F5"]
 			id: "2FFCD2A06A46A4AE"
+			rewards: [{ id: "770A01E1209FBB6F", type: "xp", xp: 20 }]
 			tasks: [{ id: "0EC7C4A607FBD86A", item: { count: 9, id: "create:mechanical_crafter" }, type: "item" }]
 			x: 15d
 			y: 0d
@@ -89,6 +98,7 @@
 		{
 			dependencies: ["2FFCD2A06A46A4AE"]
 			id: "A3F4045B66346133"
+			rewards: [{ id: "0F6E5FDD1C211834", type: "xp", xp: 20 }]
 			tasks: [{ id: "A5B2EAEF173A6C51", item: { count: 2, id: "create:crushing_wheel" }, type: "item" }]
 			x: 16.5d
 			y: 0d

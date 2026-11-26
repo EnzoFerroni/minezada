@@ -2,7 +2,7 @@
 	default_hide_dependency_lines: false
 	default_quest_shape: ""
 	filename: "utilidades"
-	group: ""
+	group: "2A64FDD2182C23F1"
 	icon: { id: "justhammers:iron_hammer" }
 	id: "1EDB32752725DDCA"
 	order_index: 16
@@ -10,60 +10,70 @@
 	quests: [
 		{
 			id: "493065C7669E9089"
+			rewards: [{ id: "20F1AA4BF0F684B2", type: "xp", xp: 20 }]
 			tasks: [{ id: "187A5B13C1AE7DBA", type: "checkmark" }]
 			x: 0d
 			y: 0.0d
 		}
 		{
 			id: "E469C52CE8ED6032"
+			rewards: [{ id: "4CCFC21005512B30", type: "xp", xp: 20 }]
 			tasks: [{ id: "B29CDBA307BFDDE1", type: "checkmark" }]
 			x: 1.5d
 			y: 0d
 		}
 		{
 			id: "114B01E7B50BF062"
+			rewards: [{ id: "296F40E8D2C85BE3", type: "xp", xp: 20 }]
 			tasks: [{ id: "EF9B3E22ACF9E300", type: "checkmark" }]
 			x: 3d
 			y: 0d
 		}
 		{
 			id: "44D6D9BE5B35C3AF"
+			rewards: [{ id: "CF09B5467EB7159B", type: "xp", xp: 20 }]
 			tasks: [{ id: "5D37E5FF99F736B0", item: { count: 1, id: "justhammers:iron_hammer" }, type: "item" }]
 			x: 4.5d
 			y: 0d
 		}
 		{
 			id: "1DF15A7537E1459C"
+			rewards: [{ id: "3FD07BF591497DAC", type: "xp", xp: 20 }]
 			tasks: [{ id: "07E2160D858A684F", item: { count: 1, id: "comforts:sleeping_bag_white" }, type: "item" }]
 			x: 0d
 			y: 1.5d
 		}
 		{
 			id: "851B132375F0969D"
+			rewards: [{ id: "B06F1B09431FE764", type: "xp", xp: 20 }]
 			tasks: [{ id: "7A792010AFD892BA", type: "checkmark" }]
 			x: 1.5d
 			y: 1.5d
 		}
 		{
 			id: "737CADF831F74384"
+			rewards: [{ id: "2816B936290ECDE2", type: "xp", xp: 20 }]
 			tasks: [{ id: "AB777EFD4ABF1713", type: "checkmark" }]
 			x: 3d
 			y: 1.5d
 		}
 		{
 			id: "AC23A23D6D3A08C6"
+			rewards: [{ id: "676A0E08BEDE14A0", type: "xp", xp: 20 }]
 			tasks: [{ id: "7C93C401D8FD13B2", item: { count: 1, id: "toms_storage:storage_terminal" }, type: "item" }]
 			x: 4.5d
 			y: 1.5d
 		}
 		{
 			id: "205E6C0F5C30753E"
+			rewards: [{ id: "12B7E673E097BF3E", type: "xp", xp: 20 }]
 			tasks: [{ id: "6D7BB6CDA133F496", item: { count: 1, id: "advancednetherite:netherite_diamond_ingot" }, type: "item" }]
 			x: 0d
 			y: 3.0d
 		}
 		{
 			id: "88B06B2679D02B1D"
+			rewards: [{ id: "68A3337CE40CC95A", type: "xp", xp: 20 }]
 			tasks: [{ id: "409AE4F315BF76AB", type: "checkmark" }]
 			x: 1.5d
 			y: 3d
