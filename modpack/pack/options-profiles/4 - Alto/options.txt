@@ -1,5 +1,5 @@
 renderDistance:14
-simulationDistance:10
+simulationDistance:8
 graphicsMode:1
 ao:true
 particles:0
@@ -9,4 +9,5 @@ mipmapLevels:4
 entityDistanceScaling:1.0
 renderClouds:"true"
 maxFps:260
-enableVsync:false
+enableVsync:true
+prioritizeChunkUpdates:1

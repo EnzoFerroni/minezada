@@ -10,3 +10,4 @@ entityDistanceScaling:0.5
 renderClouds:"false"
 maxFps:60
 enableVsync:false
+prioritizeChunkUpdates:0

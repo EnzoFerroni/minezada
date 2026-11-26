@@ -78,19 +78,27 @@ fi
 # Distant Horizons: avisos no chat de garbage collector (o ZGC que ele sugere gasta mais memoria nos PCs fracos),
 # distancia de renderizacao alta e pouca memoria. Terralith: mensagem de boas-vindas.
 # Hamster: sino de novidades e livro entregue na mao; o aviso de "sem livro" vem uma vez, no tempo maximo (5 min).
+# Alex's Mobs: livro na mao ao entrar. Aether: Patreon. CodxLib, Xaero: versao nova. Supplementaries: avisos ao abrir.
 # Vale para TOML (opcao = valor) e JSON ("opcao": valor).
-while read -r arq opcao valor; do
+while IFS='|' read -r arq opcao valor; do
   [ ! -f "$arq" ] || OPCAO="$opcao" VALOR="$valor" perl -pi -e 's/^(\s*"?\Q$ENV{OPCAO}\E"?\s*[=:]\s*)[^\r\n,]*/$1$ENV{VALOR}/' "$arq"
 done <<'FIM'
-config/DistantHorizons.toml showGarbageCollectorWarning false
-config/DistantHorizons.toml showHighVanillaRenderDistanceWarning false
-config/DistantHorizons.toml showLowMemoryWarningOnStartup false
-config/terralith.json intro_message false
-config/adorablehamsterpets/ui.toml enableNotificationIcons false
-config/adorablehamsterpets/ui.toml serverDisableAnnouncements true
-config/adorablehamsterpets/ui.toml enableAutoGuidebookDelivery false
-config/adorablehamsterpets/ui.toml enableAutoGuidebookDeliveryFallback false
-config/adorablehamsterpets/ui.toml guidebookWarningTimer 6000
+config/DistantHorizons.toml|showGarbageCollectorWarning|false
+config/DistantHorizons.toml|showHighVanillaRenderDistanceWarning|false
+config/DistantHorizons.toml|showLowMemoryWarningOnStartup|false
+config/DistantHorizons.toml|showPoolInsufficientMemoryWarning|false
+config/terralith.json|intro_message|false
+config/adorablehamsterpets/ui.toml|enableNotificationIcons|false
+config/adorablehamsterpets/ui.toml|serverDisableAnnouncements|true
+config/adorablehamsterpets/ui.toml|enableAutoGuidebookDelivery|false
+config/adorablehamsterpets/ui.toml|enableAutoGuidebookDeliveryFallback|false
+config/adorablehamsterpets/ui.toml|guidebookWarningTimer|6000
+config/amc.json|giveBookOnStartup|false
+config/aether-common.toml|Show Patreon message|false
+config/codxlib.json|updateNotifications|false
+config/supplementaries-common.toml|sanity_checks_messages|false
+config/xaero/minimap/client.cfg|update_notifications|false
+config/xaero/world-map/client.cfg|update_notifications|false
 FIM
 # Na primeira abertura (instancia sem Java escolhido) o Prism passa a pasta de dados dele em INST_JAVA: usa o Java
 # que ele baixou la dentro.
@@ -104,9 +112,13 @@ case "$ref" in *[!0-9a-f]* | "") ref=main ;; esac
 pack="https://raw.githubusercontent.com/EnzoFerroni/minezada/$ref/modpack/pack/pack.toml"
 # -t 0: sem a espera de 10 s do "Reconfigure optional mods?". Opcional novo continua abrindo a lista.
 "$java" -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -t 0 "$pack"
-# Perfis de shaders que sairam do pack (o packwiz nao apaga arquivo com preserve).
-rm -rf "options-profiles/Shader - Sildurs Vibrant" "options-profiles/Shader - Super Duper Vanilla" \
-  "options-profiles/Shader - Miniature" "options-profiles/PC - Solas" "options-profiles/PC - Rethinking Voxels"
+# Perfis que sairam do pack (o packwiz nao apaga arquivo com preserve). Em 26/11 a escala virou 1 a 7 para PC e Mac.
+for p in "Shader - Sildurs Vibrant" "Shader - Super Duper Vanilla" "Shader - Miniature" "PC - Solas" "PC - Rethinking Voxels" \
+  "3 - Equilibrado" "5 - Bonito Shader" "6 - Muito Alto Shader" "7 - Ultra Shader" "8 - FPS Maximo" "9 - Bateria" \
+  "Mac 1 - Leve 8GB" "Mac 2 - Equilibrado" "Mac 3 - Alto Pro Max" "Mac 4 - Shader Leve" "Mac 5 - Shader Bonito" \
+  "Mac 6 - Shader Realista" "Mac 7 - Bateria" "Shader - BSL" "PC - Photon" "PC - Bliss"; do
+  rm -rf "options-profiles/$p"
+done
 # Mac: Distant Horizons sempre desligado (fechou o jogo em um M4 e impede os shaders de abrir), mesmo que
 # alguem marque na lista de opcionais. A escolha salva no packwiz.json evita baixar de novo.
 if [ "$(uname -s)" = "Darwin" ]; then
