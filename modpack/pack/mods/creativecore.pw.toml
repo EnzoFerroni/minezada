@@ -1,8 +1,8 @@
 name = "CreativeCore"
-filename = "CreativeCore_NEOFORGE_v2.13.55_mc1.21.1.jar"
+filename = "CreativeCore_NEOFORGE_v2.13.56_mc1.21.1.jar"
 side = "both"
 
 [download]
-url = "https://cdn.modrinth.com/data/OsZiaDHq/versions/aoWQBRG8/CreativeCore_NEOFORGE_v2.13.55_mc1.21.1.jar"
+url = "https://cdn.modrinth.com/data/OsZiaDHq/versions/addF5vig/CreativeCore_NEOFORGE_v2.13.56_mc1.21.1.jar"
 hash-format = "sha1"
-hash = "5687e0cc21ec86c64688c1e9112d29bca9fcc963"
+hash = "820f9d39efac80b25feb72639dc35e21c748fe71"

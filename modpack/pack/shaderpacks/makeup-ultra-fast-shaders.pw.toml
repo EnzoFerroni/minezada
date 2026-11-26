@@ -1,8 +1,8 @@
 name = "MakeUp - Ultra Fast"
-filename = "MakeUp-UltraFast-9.6.zip"
+filename = "MakeUp-UltraFast-9.6a.zip"
 side = "client"
 
 [download]
-url = "https://cdn.modrinth.com/data/izsIPI7a/versions/t4YRxQug/MakeUp-UltraFast-9.6.zip"
+url = "https://cdn.modrinth.com/data/izsIPI7a/versions/vXV151ey/MakeUp-UltraFast-9.6a.zip"
 hash-format = "sha1"
-hash = "e2a930f1ffb7ca6a56cf466c13c9e36193425a38"
+hash = "15a581d5aa92cad742c079dd768aae59e0cd379a"

@@ -1,0 +1,8 @@
+name = "Bubblellaneous (recursos)"
+filename = "bubblellaneous_2-1-6_resource_pack.zip"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/jDGGUJ9V/versions/KZgWOupz/bubblellaneous_2-1-6_resource_pack.zip"
+hash-format = "sha1"
+hash = "faf420f844c09c04b5acc245784bce2553034f3b"

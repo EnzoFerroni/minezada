@@ -1,0 +1,8 @@
+name = "Bubblellaneous"
+filename = "bubblellaneous_2-1-6_data_pack.zip"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/jDGGUJ9V/versions/KZgWOupz/bubblellaneous_2-1-6_data_pack.zip"
+hash-format = "sha1"
+hash = "f527868af61044540f40ae07497bcf3dbd456fe9"

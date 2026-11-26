@@ -21,6 +21,7 @@ create-ore-excavation | Máquinas que extraem minério de veios no chão usando 
 create-goggles | Capacetes com os óculos do engenheiro embutidos e backtank que serve de armadura.
 create-stuff-additions | Equipamentos com tecnologia do Create.
 createbetterfps | Mais FPS com shader ligado em bases grandes do Create.
+interiors | Móveis novos no estilo do Create.
 
 ## Baús e armazenamento
 sophisticated-storage | Baús, barris e caixas que ganham upgrades: viram maiores (ferro, ouro, diamante, netherite) sem tirar os itens, organizam sozinhos, filtram e puxam itens.
@@ -48,6 +49,8 @@ nullscape | End renovado: ilhas e terreno novos depois do dragão.
 galosphere | Cavernas de cristal com minérios e minerais novos (prata, cristais) e itens de exploração.
 
 ## Mobs e animais
+archies-dinosaurs | Dinossauros pelo mundo, de herbívoros grandes a predadores.
+ribbits | Vilas de sapos nos pântanos, com sapos músicos.
 naturalist | Dezenas de animais realistas (urso, cervo, leão, elefante, borboletas, cobras) pelo mundo.
 mowzies-mobs | Mobs e mini-chefes únicos e bem animados, com recompensas ótimas.
 aquamirae | Aventura no oceano congelado: navios, mobs aquáticos, chefe e armaduras.
@@ -59,6 +62,7 @@ artifacts | Itens mágicos achados em baús de estruturas: asas de pena, bota de
 lootr | Cada jogador tem o próprio loot nos baús de estruturas: quem chega depois também ganha o tesouro.
 
 ## Biomas e terreno
+serene-seasons | Estações do ano: neve e lagos congelados no inverno, plantas que crescem melhor em certas estações.
 terralith | Quase 100 biomas novos no estilo vanilla: desfiladeiros, ilhas, florestas de cerejeira gigantes, cavernas novas.
 tectonic | Terreno mais bonito e variado: montanhas altas, vales, rios largos e litoral mais natural.
 
@@ -120,17 +124,23 @@ skinrestorer | Mostra a skin de cada um no servidor, mesmo em rede que bloqueia 
 customskinloader | Busca a skin de cada jogador direto no jogo. Se o servidor não conseguir as skins (limite da Mojang em rede compartilhada, como na faculdade), elas continuam aparecendo.
 
 ## Mundo e facilidade
+iron-furnaces | Fornalhas de ferro, ouro, diamante e mais: cozinham e derretem mais rápido.
+bubblellaneous | Móveis, tecnologia, comidas e blocos variados. Datapack: o servidor carrega sozinho e o pacote de recursos já vem ligado.
+botany-pots | Vasos que plantam e colhem sozinhos: fazenda compacta em um bloco.
 waystones | Pedras de teleporte: ative nas suas bases e em vilas e viaje entre elas.
 xaeros-minimap | Minimapa no canto da tela, com marcadores (waypoints) e marcação de onde você morreu.
 xaeros-world-map | Mapa do mundo inteiro que você já explorou. Tecla M.
 xaeros-minimap-world-map-waystones-compatibility-forge | Ao ativar uma waystone, ela vira um marcador (waypoint) no minimapa e no mapa do Xaero.
 ok-zoomer | Zoom da câmera como no OptiFine: segure C e use a roda do mouse para ajustar.
+rrls | Tira a tela de carregamento ao trocar pacotes de recursos: o jogo segue aparecendo enquanto recarrega.
+not-enough-animations | Animações em terceira pessoa: segurar mapa, comer, subir escada e mais aparecem para os outros jogadores.
 cubes-without-borders | Tela cheia sem bordas: em Opções → Vídeo, escolha o modo sem bordas em vez da tela cheia exclusiva.
 dynamic-torches | Luz dinâmica: tocha, lanterna e outros itens iluminam ao redor quando você os segura, com ou sem shader.
 map-atlases-forge | Atlas que junta seus mapas de papel em um livro. Receita: mapa preenchido, livro e slime ou garrafa de mel. Na hotbar ou na mão secundária, mostra os mapas como minimapa.
 corpse | Ao morrer, seus itens ficam guardados num corpo no lugar da morte, sem sumir.
 farmers-delight | Culinária: plantações, panela, tábua de corte e dezenas de comidas novas.
 supplementaries | Blocos no estilo vanilla: potes, placas de direção, cata-vento, lanternas de parede e muito mais para construir.
+beautify | Decoração no estilo vanilla com modelos próprios para enfeitar as construções.
 mouse-tweaks | Arraste o mouse com o botão apertado para mover vários itens de uma vez.
 inventory-essentials | Organizar inventário e baús (botão do meio do mouse) e mover itens rápido com Shift.
 
