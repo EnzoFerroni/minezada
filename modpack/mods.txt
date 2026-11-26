@@ -132,7 +132,6 @@ xaeros-minimap | Minimapa no canto da tela, com marcadores (waypoints) e marcaç
 xaeros-world-map | Mapa do mundo inteiro que você já explorou. Tecla M.
 xaeros-minimap-world-map-waystones-compatibility-forge | Ao ativar uma waystone, ela vira um marcador (waypoint) no minimapa e no mapa do Xaero.
 ok-zoomer | Zoom da câmera como no OptiFine: segure C e use a roda do mouse para ajustar.
-rrls | Tira a tela de carregamento ao trocar pacotes de recursos: o jogo segue aparecendo enquanto recarrega.
 not-enough-animations | Animações em terceira pessoa: segurar mapa, comer, subir escada e mais aparecem para os outros jogadores.
 cubes-without-borders | Tela cheia sem bordas: em Opções → Vídeo, escolha o modo sem bordas em vez da tela cheia exclusiva.
 dynamic-torches | Luz dinâmica: tocha, lanterna e outros itens iluminam ao redor quando você os segura, com ou sem shader.

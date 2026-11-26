@@ -511,11 +511,6 @@ hash = "835e44a20a5e6ac6426894cab2b53769010f4efdf9b97f0133efd5699f5129e5"
 metafile = true
 
 [[files]]
-file = "mods/rrls.pw.toml"
-hash = "818634416c675de00c739a4fc75de4843b33341dfc6c2ef6ab118c83d404416d"
-metafile = true
-
-[[files]]
 file = "mods/sable.pw.toml"
 hash = "ac6671f269f12e6bdc06f515363aa02a8f64de233753309402327e25aff5573e"
 metafile = true
