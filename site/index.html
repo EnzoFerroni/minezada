@@ -999,7 +999,7 @@ Promise.all([dadosPlacar, pega("estado.json")]).then(([p, e]) => {
   mapaSpawn = e;
   placar(p);
 });
-pega(doStatus("historico.json")).then(h => { servidor(h); historico(h); });
+pega(doStatus("historico.json")).then(h => { servidor(h); historico(h); setInterval(() => servidor(h), 60000); });
 pega("conquistas.json").then(diario);
 dadosBichos.then(bichos);
 mapa();
