@@ -2,6 +2,8 @@
 
 ## Onde fica cada coisa
 
+- **Mudanças no `main`**: só por pull request com squash, aprovado pelo dono (CODEOWNERS) e com as conversas resolvidas. Force push e apagar o `main` são bloqueados.
+
 - **O que falta fazer**: [issues](https://github.com/EnzoFerroni/minezada/issues), no [quadro do projeto](https://github.com/users/EnzoFerroni/projects/3) (Ideias, A fazer, Fazendo, Feito). Milestone
   **Abrir para os amigos** = o que falta antes de chamar todo mundo; **Depois** = melhorias. Label
   `ideia` = ainda não decidido. Labels de área: `servidor`, `jogo`, `rede`, `mac`, `windows`. Campo
