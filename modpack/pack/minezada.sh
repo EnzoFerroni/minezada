@@ -119,8 +119,9 @@ for f in config/iris.properties options-profiles/*/iris.properties; do
   velho="$(sed -n 's/^shaderPack=//p' "$f" | head -n 1 | tr -d '\r')"
   { [ -n "$velho" ] && [ ! -e "shaderpacks/$velho" ]; } || continue
   base="$(printf '%s' "$velho" | perl -ne 'print $1 if /^(.+?)[_-][vr]?\d/')"
-  [ -n "$base" ] || continue
-  set -- shaderpacks/"$base"*
+  set -- shaderpacks/"${base:-sem-nome}"*
+  # Shader que saiu do pack: vai para o Complementary Reimagined (o mais testado no Mac) em vez de ficar sem shader.
+  { [ $# -eq 1 ] && [ -e "$1" ]; } || set -- shaderpacks/ComplementaryReimagined*.zip
   { [ $# -eq 1 ] && [ -e "$1" ]; } || continue
   VELHO="$velho" NOVO="${1#shaderpacks/}" perl -pi -e 's/^shaderPack=\Q$ENV{VELHO}\E(?=\r?$)/shaderPack=$ENV{NOVO}/' "$f"
 done

@@ -1031,11 +1031,11 @@ preserve = true
 
 [[files]]
 file = "minezada.ps1"
-hash = "787ed78d6fbd22582178999c24b6ef9afe508649507046f51cd6fedcaaa9aa14"
+hash = "44f24745385433f36a66ca86d6bd63ce6a85aa303512d772809170c41f0ce68b"
 
 [[files]]
 file = "minezada.sh"
-hash = "2d32837070e36e884779caf48bae0b621513a6dc3f8eb8759880814e7c645362"
+hash = "d2ec39ee7106a58fdb49f259361e4329cec75c95014b9cb564a9e2983a5b8ba9"
 
 [[files]]
 file = "modflared/forced_tunnels.json"
