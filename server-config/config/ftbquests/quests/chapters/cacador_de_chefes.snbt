@@ -5,7 +5,7 @@
 	group: ""
 	icon: { id: "minecraft:wither_skeleton_skull" }
 	id: "E71D011D2029328F"
-	order_index: 16
+	order_index: 18
 	quest_links: [ ]
 	quests: [
 		{

@@ -5,7 +5,7 @@
 	group: ""
 	icon: { id: "twilightforest:naga_scale" }
 	id: "00768C72EAFD4EA3"
-	order_index: 17
+	order_index: 19
 	quest_links: [ ]
 	quests: [
 		{

@@ -1,0 +1,74 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "create_4_vapor_fluidos_e_trens"
+	group: ""
+	icon: { id: "create:steam_engine" }
+	id: "194556CE7AC2ADF2"
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			id: "8DE1EED07292296C"
+			tasks: [{ id: "7F6F70192BDD2AFE", item: { count: 8, id: "create:fluid_pipe" }, type: "item" }]
+			x: 0d
+			y: 0d
+		}
+		{
+			dependencies: ["8DE1EED07292296C"]
+			id: "BE62D397BC09BE53"
+			tasks: [{ id: "ECBBDE4E98D5762B", item: { count: 1, id: "create:mechanical_pump" }, type: "item" }]
+			x: 1.5d
+			y: 0d
+		}
+		{
+			dependencies: ["BE62D397BC09BE53"]
+			id: "65A359F59A05965E"
+			tasks: [{ id: "33B8A694337A7451", item: { count: 4, id: "create:fluid_tank" }, type: "item" }]
+			x: 3d
+			y: 0d
+		}
+		{
+			dependencies: ["65A359F59A05965E"]
+			id: "798026F49712E18E"
+			tasks: [{ id: "F2944F81B47B6015", item: { count: 1, id: "create:spout" }, type: "item" }]
+			x: 4.5d
+			y: 0d
+		}
+		{
+			dependencies: ["798026F49712E18E"]
+			id: "8C36E8C89CCC2873"
+			tasks: [{ id: "EDBD9EDDB498E703", item: { count: 1, id: "create:steam_engine" }, type: "item" }]
+			x: 6d
+			y: 0d
+		}
+		{
+			dependencies: ["8C36E8C89CCC2873"]
+			id: "460D354F7E365880"
+			tasks: [{ id: "5DD2ED086C517288", item: { count: 32, id: "create:track" }, type: "item" }]
+			x: 7.5d
+			y: 0d
+		}
+		{
+			dependencies: ["460D354F7E365880"]
+			id: "C6081E1978904BB1"
+			tasks: [{ id: "885324F152979E80", item: { count: 1, id: "create:track_station" }, type: "item" }]
+			x: 9d
+			y: 0d
+		}
+		{
+			dependencies: ["C6081E1978904BB1"]
+			id: "AC8228681581CCD1"
+			tasks: [{ id: "4C6EE7F2D295454C", item: { count: 1, id: "create:controls" }, type: "item" }]
+			x: 10.5d
+			y: 0d
+		}
+		{
+			dependencies: ["AC8228681581CCD1"]
+			id: "41487192176AFECF"
+			tasks: [{ id: "5F1EACF258CE0965", item: { count: 1, id: "create:schematicannon" }, type: "item" }]
+			x: 12d
+			y: 0d
+		}
+	]
+}

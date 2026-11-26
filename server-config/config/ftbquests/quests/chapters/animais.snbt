@@ -5,7 +5,7 @@
 	group: ""
 	icon: { id: "alexsmobs:animal_dictionary" }
 	id: "0681A168F2C7C697"
-	order_index: 6
+	order_index: 8
 	quest_links: [ ]
 	quests: [
 		{

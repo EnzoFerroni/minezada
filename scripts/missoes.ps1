@@ -19,20 +19,58 @@ $capitulos = @(
         @{ t = 'Se voce morrer'; d = 'Seus itens ficam guardados em um corpo no lugar da morte. Volte la e clique nele para pegar tudo.', 'O lugar da morte aparece no mapa.' }
         @{ t = 'Cozinha'; d = 'Farmer''s Delight traz panela, tabua de corte e dezenas de comidas.', 'Cada comida nova que voce prova pela primeira vez da coracoes extras de vida (Spice of Life).'; item = 'farmersdelight:cooking_pot'; p = 'minecraft:golden_carrot'; n = 4 }
     ) }
-    @{ t = 'Create'; icone = 'create:cogwheel'; m = @(
-        @{ t = 'Ponder'; d = 'O Create ensina cada bloco com animacoes: segure W com o mouse em cima de um item do Create.'; item = 'create:andesite_alloy'; p = 'create:andesite_alloy'; n = 8 }
-        @{ t = 'Roda d''agua'; d = 'A roda d''agua gira com agua corrente e gera forca para as maquinas.'; item = 'create:water_wheel' }
-        @{ t = 'Eixos e engrenagens'; d = 'Eixos e engrenagens levam a forca da roda ate as maquinas.'; item = 'create:cogwheel'; p = 'create:shaft'; n = 8 }
-        @{ t = 'Prensa'; d = 'A prensa mecanica transforma lingotes em chapas, que muitas receitas pedem.'; item = 'create:mechanical_press'; p = 'minecraft:iron_ingot'; n = 8 }
+    @{ t = 'Create 1: o basico'; icone = 'create:cogwheel'; m = @(
+        @{ t = 'O que e o Create'; d = 'Create e um mod de maquinas que funcionam com rotacao, como um moinho de verdade: algo gira (agua, vento, vapor) e eixos levam o giro ate as maquinas.', 'Segure W com o mouse em cima de qualquer item do Create para ver uma animacao explicando ele (Ponder).' }
+        @{ t = 'Liga de andesito'; d = 'O material de quase tudo no comeco: andesito com pepitas de ferro (ou zinco). Receita no JEI (tecla R).'; item = 'create:andesite_alloy'; q = 16; p = 'create:andesite_alloy'; n = 16 }
+        @{ t = 'Revestimento de andesito'; d = 'Clique com a liga de andesito em um tronco descascado. O revestimento e a base de varias maquinas.'; item = 'create:andesite_casing' }
+        @{ t = 'Eixos'; d = 'O eixo leva a rotacao em linha reta.'; item = 'create:shaft'; q = 8 }
+        @{ t = 'Engrenagens'; d = 'Engrenagens passam o giro para os lados. Duas engrenagens encostadas giram em sentidos opostos.', 'Engrenagem grande ligada a pequena muda a velocidade: pequena para grande diminui, grande para pequena aumenta.'; item = 'create:cogwheel'; q = 4 }
+        @{ t = 'Engrenagem grande'; d = 'Junto com a pequena, ela faz curvas e muda a velocidade (RPM).'; item = 'create:large_cogwheel' }
+        @{ t = 'Caixa de engrenagens'; d = 'Faz curvas de 90 graus em pouco espaco.'; item = 'create:gearbox' }
+        @{ t = 'Manivela'; d = 'Gira as maquinas com a mao, para testar. Cansa: gasta fome.'; item = 'create:hand_crank' }
+        @{ t = 'Roda d''agua'; d = 'Coloque na beira de agua corrente: a agua empurra a roda e ela gira o eixo. Agua dos dois lados trava a roda.'; item = 'create:water_wheel'; p = 'create:shaft'; n = 8 }
+        @{ t = 'Oculos de engenheiro'; d = 'Com os oculos voce olha uma maquina e ve a velocidade e o esforco (stress) dela.'; item = 'create:goggles' }
+        @{ t = 'Stress'; d = 'Cada maquina gasta esforco (SU). Cada fonte de giro tem um limite de SU. Passou do limite, tudo para (overstressed): coloque mais fontes ou baixe a velocidade.', 'O medidor de stress mostra quanto da rede esta em uso.'; item = 'create:stressometer' }
     ) }
-    @{ t = 'Create avancado'; icone = 'create:precision_mechanism'; m = @(
-        @{ t = 'Moinho de vento'; d = 'Rolamento de moinho com velas em volta gira sem agua. Mais velas, mais forca.'; item = 'create:windmill_bearing' }
-        @{ t = 'Misturador'; d = 'Misturador mecanico em cima de uma bacia mistura itens. Com aquecimento faz o latao.'; item = 'create:mechanical_mixer' }
-        @{ t = 'Queimador de blaze'; d = 'Debaixo da bacia ele aquece as receitas. Alimente com combustivel comum.'; item = 'create:blaze_burner' }
-        @{ t = 'Latao'; d = 'Cobre e zinco misturados com calor viram latao, o material das maquinas avancadas.'; item = 'create:brass_ingot'; p = 'create:brass_ingot'; n = 8 }
-        @{ t = 'Mecanismo de precisao'; d = 'Peca das maquinas avancadas. Veja a receita em sequencia no JEI (tecla R).'; item = 'create:precision_mechanism' }
-        @{ t = 'Construcoes prontas'; d = 'A mesa de esquemas e o canhao de esquemas (Schematicannon) montam uma construcao inteira a partir de um arquivo de esquema.', 'Coloque arquivos .nbt na pasta schematics do jogo; ha milhares prontos no site createmod.com.'; item = 'create:schematicannon' }
-        @{ t = 'Trens'; d = 'Trilho, estacao e controles formam um trem. O Ponder (W) mostra a montagem passo a passo.'; item = 'create:controls' }
+    @{ t = 'Create 2: primeiras maquinas'; icone = 'create:mechanical_press'; m = @(
+        @{ t = 'Deposito'; d = 'O deposito segura itens embaixo das maquinas, como uma mesa.'; item = 'create:depot' }
+        @{ t = 'Prensa'; d = 'A prensa em cima de um deposito amassa lingotes em chapas. Chapas de ferro aparecem em muitas receitas.'; item = 'create:mechanical_press' }
+        @{ t = 'Chapa de ferro'; d = 'Faca suas primeiras chapas com a prensa.'; item = 'create:iron_sheet'; q = 16; p = 'minecraft:iron_ingot'; n = 16 }
+        @{ t = 'Esteira'; d = 'Feita de alga seca. Clique em dois eixos para ligar: leva itens de uma maquina para outra e tambem passa o giro.'; item = 'create:belt_connector' }
+        @{ t = 'Moedor'; d = 'O moedor transforma trigo em farinha e pedregulho em cascalho.'; item = 'create:millstone' }
+        @{ t = 'Ventilador'; d = 'O ventilador sopra itens. Com fogo atras ele cozinha, com lava ele derrete, com agua ele lava os itens no caminho.'; item = 'create:encased_fan' }
+        @{ t = 'Serra'; d = 'A serra corta madeira. Numa estrutura que anda, derruba arvores inteiras.'; item = 'create:mechanical_saw' }
+        @{ t = 'Broca'; d = 'A broca quebra o bloco da frente. Com rolamentos e pistoes vira uma maquina de minerar.'; item = 'create:mechanical_drill' }
+        @{ t = 'Moinho de vento'; d = 'O rolamento de moinho com velas em volta gira sem agua. Mais velas, mais forca. Clique no rolamento para comecar.'; item = 'create:windmill_bearing' }
+        @{ t = 'Velas'; d = 'As velas do moinho. La tambem serve.'; item = 'create:white_sail'; q = 8 }
+        @{ t = 'Cola'; d = 'A super cola junta blocos para que se movam juntos numa estrutura.'; item = 'create:super_glue' }
+        @{ t = 'Pistao mecanico'; d = 'Empurra uma estrutura inteira para frente e para tras.'; item = 'create:mechanical_piston' }
+        @{ t = 'Rolamento mecanico'; d = 'Gira uma estrutura inteira, como uma roda gigante ou uma porta.'; item = 'create:mechanical_bearing' }
+    ) }
+    @{ t = 'Create 3: era do latao'; icone = 'create:brass_ingot'; m = @(
+        @{ t = 'Bacia'; d = 'A bacia guarda os ingredientes para o misturador e a prensa.'; item = 'create:basin' }
+        @{ t = 'Misturador'; d = 'Em cima da bacia, com um bloco de espaco, ele mistura os ingredientes.'; item = 'create:mechanical_mixer' }
+        @{ t = 'Queimador de blaze'; d = 'Faca o queimador vazio e clique com ele em um blaze. Embaixo da bacia ele aquece as receitas; alimente com carvao.'; item = 'create:blaze_burner' }
+        @{ t = 'Latao'; d = 'Cobre e zinco na bacia aquecida viram latao.'; item = 'create:brass_ingot'; q = 16; p = 'create:brass_ingot'; n = 8 }
+        @{ t = 'Revestimento de latao'; d = 'Latao em tronco descascado. Base das maquinas avancadas.'; item = 'create:brass_casing' }
+        @{ t = 'Quartzo rosa'; d = 'Quartzo rosa polido vira tubo de eletrons, a peca eletronica do Create.'; item = 'create:electron_tube' }
+        @{ t = 'Deployer'; d = 'O deployer usa o item da mao dele no bloco da frente, como um jogador. Base da montagem automatica.'; item = 'create:deployer' }
+        @{ t = 'Mecanismo de precisao'; d = 'Feito em varias etapas numa esteira com deployers (montagem em sequencia). Veja o passo a passo no JEI.'; item = 'create:precision_mechanism'; p = 'create:precision_mechanism'; n = 2 }
+        @{ t = 'Funil de latao'; d = 'Funis colocam e tiram itens das esteiras e baus. O de latao tem filtro.'; item = 'create:brass_funnel' }
+        @{ t = 'Tunel de latao'; d = 'Divide os itens de uma esteira entre varias saidas.'; item = 'create:brass_tunnel' }
+        @{ t = 'Crafter mecanico'; d = 'Varios crafters juntos fazem receitas grandes sozinhos.'; item = 'create:mechanical_crafter'; q = 9 }
+        @{ t = 'Britadores'; d = 'Duas rodas trituradoras girando para dentro moem minerio e dao mais material.'; item = 'create:crushing_wheel'; q = 2 }
+    ) }
+    @{ t = 'Create 4: vapor, fluidos e trens'; icone = 'create:steam_engine'; m = @(
+        @{ t = 'Tubos'; d = 'Tubos levam liquidos.'; item = 'create:fluid_pipe'; q = 8 }
+        @{ t = 'Bomba'; d = 'A bomba gira e empurra o liquido pelos tubos. A chave inglesa inverte o sentido.'; item = 'create:mechanical_pump' }
+        @{ t = 'Tanque'; d = 'Tanques guardam liquido. Varios juntos fazem um tanque grande.'; item = 'create:fluid_tank'; q = 4 }
+        @{ t = 'Bico'; d = 'O bico (spout) enche itens com liquido, como garrafas e baldes.'; item = 'create:spout' }
+        @{ t = 'Motor a vapor'; d = 'Tanque com agua em cima de queimadores de blaze vira caldeira; o motor a vapor no tanque da muita forca.'; item = 'create:steam_engine' }
+        @{ t = 'Trilhos'; d = 'Os trilhos do Create fazem curvas grandes e subidas.'; item = 'create:track'; q = 32 }
+        @{ t = 'Estacao'; d = 'A estacao e onde o trem para e e montado.'; item = 'create:track_station' }
+        @{ t = 'Controles'; d = 'Os controles dirigem o trem. Com um horario, ele anda sozinho entre estacoes.'; item = 'create:controls' }
+        @{ t = 'Construcoes prontas'; d = 'A mesa de esquemas e o canhao de esquemas montam uma construcao inteira a partir de um arquivo. Coloque arquivos .nbt na pasta schematics do jogo; ha muitos prontos no site createmod.com.'; item = 'create:schematicannon' }
     ) }
     @{ t = 'Mochila e baus'; icone = 'sophisticatedbackpacks:backpack'; m = @(
         @{ t = 'Base de melhoria'; d = 'As melhorias da mochila partem desta base. Clique com o botao direito na mochila e coloque nas casas de melhoria.'; item = 'sophisticatedbackpacks:upgrade_base' }
