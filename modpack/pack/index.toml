@@ -76,6 +76,11 @@ hash = "6a3d75a33f93ae5ef6bfeb0a1b22da6896887d59dca427d6d70a78c8383d52a8"
 metafile = true
 
 [[files]]
+file = "mods/badoptimizations.pw.toml"
+hash = "0188c53073fcb4c85b428e7aa911ceebc50108d5f902f91b8c7a5f49a99f7c41"
+metafile = true
+
+[[files]]
 file = "mods/balm.pw.toml"
 hash = "88215cb6e2dd2f9457d7424e0239c945ea61efa3fe25becc52c1ca04441f2037"
 metafile = true
@@ -386,6 +391,11 @@ hash = "8b102ca83c7f50dc729b206e1bcbe472807d32e8fa2e80165aa4012af2966eb8"
 metafile = true
 
 [[files]]
+file = "mods/fastsuite.pw.toml"
+hash = "5b4d792e0c9a07baa579fd9d7ede6abd814805511d489f7317c8fca690d25489"
+metafile = true
+
+[[files]]
 file = "mods/ferrite-core.pw.toml"
 hash = "4c13074da31dae6cb05af0e0693390f8c20c4b7cf9208b63e7800fffdcaa233e"
 metafile = true
@@ -661,6 +671,11 @@ hash = "0d76c01b16356f56f1b543efe1e3fec448868cea02dfc6d2a0698834e787a36f"
 metafile = true
 
 [[files]]
+file = "mods/particle-core.pw.toml"
+hash = "237011ec6e7d35db1a3c012c72f3a1b6c1630a99071f8e201829c0e1aab15ff9"
+metafile = true
+
+[[files]]
 file = "mods/patchouli.pw.toml"
 hash = "20eef3ccbd2512ec0968d038a17a9d1e1bafa95a31786664d5909aeaf5477058"
 metafile = true
@@ -673,6 +688,11 @@ metafile = true
 [[files]]
 file = "mods/ping-wheel.pw.toml"
 hash = "1d529ffc3a155e666ed26f4b5196bb32e0df8b001e670982cb455e83b8c9f126"
+metafile = true
+
+[[files]]
+file = "mods/placebo.pw.toml"
+hash = "e0a50b7a4ae0e0eb4b2590652b0c62047c3a6360ca9b3d9f8808a2186fa77941"
 metafile = true
 
 [[files]]

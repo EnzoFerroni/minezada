@@ -185,6 +185,9 @@ mouse-tweaks | Arraste o mouse com o botão apertado para mover vários itens de
 inventory-essentials | Organizar inventário e baús (botão do meio do mouse) e mover itens rápido com Shift.
 
 ## Desempenho
+badoptimizations | Otimiza cálculos fora da renderização (luz, céu, mapa).
+fastsuite | Acelera o sistema de receitas, que pesa em pack grande.
+particle-core | Esconde partículas fora da visão e otimiza o desenho delas.
 options-profiles | Perfis de gráfico prontos em Opções → Perfis, iguais para PC e Mac: 1 - Minimo, 2 - Leve, 3 - Medio, 4 - Alto, 5 - Shader Leve, 6 - Shader e 7 - Ultra.
 sodium-extra | Mais opções de vídeo (contador de FPS, neblina, animações) para calibrar o desempenho.
 dynamic-fps | Baixa o FPS quando o jogo está minimizado ou em segundo plano: menos calor e bateria.
