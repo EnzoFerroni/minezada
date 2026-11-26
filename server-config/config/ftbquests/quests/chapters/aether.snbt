@@ -2,7 +2,7 @@
 	default_hide_dependency_lines: false
 	default_quest_shape: ""
 	filename: "aether"
-	group: ""
+	group: "8B7482EA7957301C"
 	icon: { id: "aether:ambrosium_shard" }
 	id: "62BEA1E66A80BAE3"
 	order_index: 12
@@ -10,6 +10,7 @@
 	quests: [
 		{
 			id: "EB1A452EC3CA1779"
+			rewards: [{ id: "CB337917F2EA14D7", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "aether:the_aether", id: "97FB2EEEE76338AF", type: "dimension" }]
 			x: 0d
 			y: 0d
@@ -17,6 +18,7 @@
 		{
 			dependencies: ["EB1A452EC3CA1779"]
 			id: "8D2620E5B1473973"
+			rewards: [{ id: "81B31421B68BAC9B", type: "xp", xp: 20 }]
 			tasks: [{ id: "5FA418AAE49787AF", item: { count: 1, id: "aether:ambrosium_shard" }, type: "item" }]
 			x: 1.5d
 			y: 0d
@@ -24,6 +26,7 @@
 		{
 			dependencies: ["8D2620E5B1473973"]
 			id: "BB79E945D837AB5A"
+			rewards: [{ id: "B136DD24CF9ED051", type: "xp", xp: 20 }]
 			tasks: [{ id: "FF92D2AFEF623609", item: { count: 1, id: "aether:zanite_gemstone" }, type: "item" }]
 			x: 3d
 			y: 0d
@@ -31,6 +34,7 @@
 		{
 			dependencies: ["BB79E945D837AB5A"]
 			id: "BEDEF2172CD2B905"
+			rewards: [{ id: "4417BE450C88CA5D", type: "xp", xp: 20 }]
 			tasks: [{ id: "C1730F5E739CEE66", item: { count: 1, id: "aether:bronze_dungeon_key" }, type: "item" }]
 			x: 4.5d
 			y: 0d
@@ -38,6 +42,7 @@
 		{
 			dependencies: ["BEDEF2172CD2B905"]
 			id: "4AF87777C727F2E1"
+			rewards: [{ id: "0AB637D3A4839E09", type: "xp", xp: 20 }]
 			tasks: [{ id: "2FD1817A323AFC80", item: { count: 1, id: "aether:silver_dungeon_key" }, type: "item" }]
 			x: 6d
 			y: 0d
@@ -45,6 +50,7 @@
 		{
 			dependencies: ["4AF87777C727F2E1"]
 			id: "A696EF3E0D6E89B7"
+			rewards: [{ id: "15D82E5B795A5D76", type: "xp", xp: 20 }]
 			tasks: [{ id: "F81F0889984F3E6E", item: { count: 1, id: "aether:gold_dungeon_key" }, type: "item" }]
 			x: 7.5d
 			y: 0d

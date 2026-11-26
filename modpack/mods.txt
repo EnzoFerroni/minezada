@@ -160,6 +160,8 @@ cf:268560 | Mekanism: tecnologia com máquinas, energia e processamento de miné
 cf:289412 | FTB Quests: livro de missões para guiar a progressão.
 cf:404465 | FTB Library: biblioteca do FTB Quests.
 cf:404468 | FTB Teams: times do FTB Quests (missões em grupo).
+cf:889915 | FTB XMod Compat: clique no item de uma missão para ver a receita no JEI.
+cf:943925 | FTB Filter System: missões que aceitam qualquer madeira, qualquer cobre e afins.
 cf:228756 | Iron Chests: baús de ferro, ouro, diamante e outros, maiores que o normal.
 cf:415438 | Croptopia: muitas plantações e comidas novas.
 cf:885449 | EpheroLib: biblioteca do Croptopia.

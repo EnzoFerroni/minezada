@@ -2,7 +2,7 @@
 	default_hide_dependency_lines: false
 	default_quest_shape: ""
 	filename: "create_2_primeiras_maquinas"
-	group: ""
+	group: "75C4FBF5BDDE1148"
 	icon: { id: "create:mechanical_press" }
 	id: "544787426C85E4FA"
 	order_index: 2
@@ -10,6 +10,7 @@
 	quests: [
 		{
 			id: "8E9234D0A775C532"
+			rewards: [{ id: "9A3A7645E5A98532", type: "xp", xp: 20 }]
 			tasks: [{ id: "F3B0456EDDD8D464", item: { count: 1, id: "create:depot" }, type: "item" }]
 			x: 0d
 			y: 0d
@@ -17,6 +18,7 @@
 		{
 			dependencies: ["8E9234D0A775C532"]
 			id: "A4D45AE531CC8DD4"
+			rewards: [{ id: "4D4D9CA201AF1F77", type: "xp", xp: 20 }]
 			tasks: [{ id: "30F632ECF660850A", item: { count: 1, id: "create:mechanical_press" }, type: "item" }]
 			x: 1.5d
 			y: 0d
@@ -24,7 +26,7 @@
 		{
 			dependencies: ["A4D45AE531CC8DD4"]
 			id: "0FFB8A4F6D765047"
-			rewards: [{ id: "46423D92E5B0ED5B", item: { count: 16, id: "minecraft:iron_ingot" }, type: "item" }]
+			rewards: [{ id: "733B52F45FC64A92", type: "xp", xp: 20 }, { id: "46423D92E5B0ED5B", item: { count: 16, id: "minecraft:iron_ingot" }, type: "item" }]
 			tasks: [{ id: "DD7293C06EFCEAD8", item: { count: 16, id: "create:iron_sheet" }, type: "item" }]
 			x: 3d
 			y: 0d
@@ -32,6 +34,7 @@
 		{
 			dependencies: ["0FFB8A4F6D765047"]
 			id: "88A9F0D3CB4E4ADF"
+			rewards: [{ id: "7C84F4F2576A9A2D", type: "xp", xp: 20 }]
 			tasks: [{ id: "AFA7C4C0505F2822", item: { count: 1, id: "create:belt_connector" }, type: "item" }]
 			x: 4.5d
 			y: 0d
@@ -39,6 +42,7 @@
 		{
 			dependencies: ["88A9F0D3CB4E4ADF"]
 			id: "F7552730F917B3A2"
+			rewards: [{ id: "47F74F763BD07BEA", type: "xp", xp: 20 }]
 			tasks: [{ id: "08778F08D6BB518B", item: { count: 1, id: "create:millstone" }, type: "item" }]
 			x: 6d
 			y: 0d
@@ -46,6 +50,7 @@
 		{
 			dependencies: ["F7552730F917B3A2"]
 			id: "F1902CE9B4233470"
+			rewards: [{ id: "E61E0164831AC75D", type: "xp", xp: 20 }]
 			tasks: [{ id: "B56FFEAECFAE4F4F", item: { count: 1, id: "create:encased_fan" }, type: "item" }]
 			x: 7.5d
 			y: 0d
@@ -53,6 +58,7 @@
 		{
 			dependencies: ["F1902CE9B4233470"]
 			id: "5D406386B77211CF"
+			rewards: [{ id: "52C20B7FE3E16E8A", type: "xp", xp: 20 }]
 			tasks: [{ id: "2E19E7A157A355D4", item: { count: 1, id: "create:mechanical_saw" }, type: "item" }]
 			x: 9d
 			y: 0d
@@ -60,6 +66,7 @@
 		{
 			dependencies: ["5D406386B77211CF"]
 			id: "6D0020FF08FE30D0"
+			rewards: [{ id: "E5AA2ADA54A45F45", type: "xp", xp: 20 }]
 			tasks: [{ id: "152D59CB481E211F", item: { count: 1, id: "create:mechanical_drill" }, type: "item" }]
 			x: 10.5d
 			y: 0d
@@ -67,6 +74,7 @@
 		{
 			dependencies: ["6D0020FF08FE30D0"]
 			id: "D9A226648CAE99CA"
+			rewards: [{ id: "F18EDF3DD8EB536B", type: "xp", xp: 20 }]
 			tasks: [{ id: "0738CA0B602484FE", item: { count: 1, id: "create:windmill_bearing" }, type: "item" }]
 			x: 12d
 			y: 0d
@@ -74,6 +82,7 @@
 		{
 			dependencies: ["D9A226648CAE99CA"]
 			id: "B27AE96A1893C2F8"
+			rewards: [{ id: "25E82969C6F46D5F", type: "xp", xp: 20 }]
 			tasks: [{ id: "9BB9C47FE5332206", item: { count: 8, id: "create:white_sail" }, type: "item" }]
 			x: 13.5d
 			y: 0d
@@ -81,6 +90,7 @@
 		{
 			dependencies: ["B27AE96A1893C2F8"]
 			id: "AB88F26A795CAB85"
+			rewards: [{ id: "27F20AC148755488", type: "xp", xp: 20 }]
 			tasks: [{ id: "D51595C1F6978886", item: { count: 1, id: "create:super_glue" }, type: "item" }]
 			x: 15d
 			y: 0d
@@ -88,6 +98,7 @@
 		{
 			dependencies: ["AB88F26A795CAB85"]
 			id: "BE0E9C0DF135D391"
+			rewards: [{ id: "FF060B544026F388", type: "xp", xp: 20 }]
 			tasks: [{ id: "4DC3C43F8C95A75A", item: { count: 1, id: "create:mechanical_piston" }, type: "item" }]
 			x: 16.5d
 			y: 0d
@@ -95,6 +106,7 @@
 		{
 			dependencies: ["BE0E9C0DF135D391"]
 			id: "6E18F7126D48DC9D"
+			rewards: [{ id: "459BC9231ED54E11", type: "xp", xp: 20 }]
 			tasks: [{ id: "ACBC11067EFCC3E0", item: { count: 1, id: "create:mechanical_bearing" }, type: "item" }]
 			x: 18d
 			y: 0d

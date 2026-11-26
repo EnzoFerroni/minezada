@@ -2,7 +2,7 @@
 	default_hide_dependency_lines: false
 	default_quest_shape: ""
 	filename: "mekanism"
-	group: ""
+	group: "75C4FBF5BDDE1148"
 	icon: { id: "mekanism:metallurgic_infuser" }
 	id: "59AADA362CD5A80D"
 	order_index: 10
@@ -10,6 +10,7 @@
 	quests: [
 		{
 			id: "F90F2B514D6ED05C"
+			rewards: [{ id: "421953829AF0CBF5", type: "xp", xp: 20 }]
 			tasks: [{ id: "964F60B1361754DC", item: { count: 1, id: "mekanism:metallurgic_infuser" }, type: "item" }]
 			x: 0d
 			y: 0d
@@ -17,6 +18,7 @@
 		{
 			dependencies: ["F90F2B514D6ED05C"]
 			id: "A8B3969DA2CBC5F3"
+			rewards: [{ id: "BDFBEA4233E48449", type: "xp", xp: 20 }]
 			tasks: [{ id: "0B4C0312A5D6ACEA", item: { count: 1, id: "createaddition:alternator" }, type: "item" }]
 			x: 1.5d
 			y: 0d
@@ -24,6 +26,7 @@
 		{
 			dependencies: ["A8B3969DA2CBC5F3"]
 			id: "453A0736B216E094"
+			rewards: [{ id: "0222417508EE341E", type: "xp", xp: 20 }]
 			tasks: [{ id: "40D3ECE8B5A1A803", item: { count: 1, id: "mekanism:enrichment_chamber" }, type: "item" }]
 			x: 3d
 			y: 0d
@@ -31,6 +34,7 @@
 		{
 			dependencies: ["453A0736B216E094"]
 			id: "993CC4C2D0BF0A31"
+			rewards: [{ id: "CDEE5454D1E6C0A7", type: "xp", xp: 20 }]
 			tasks: [{ id: "CB138C2F7BE38E69", item: { count: 1, id: "mekanism:basic_universal_cable" }, type: "item" }]
 			x: 4.5d
 			y: 0d

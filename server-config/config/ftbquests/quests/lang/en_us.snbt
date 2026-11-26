@@ -1,19 +1,45 @@
 {
+	chapter_group.2A64FDD2182C23F1.title: "Começo"
+	chapter_group.75C4FBF5BDDE1148.title: "Tecnologia"
+	chapter_group.8B7482EA7957301C.title: "Dimensões"
+	chapter_group.0723197381022D89.title: "Aventura"
 	chapter.7219E05592DE0419.title: "Primeiros passos"
+	chapter.7219E05592DE0419.chapter_subtitle: ["O que muda neste Minecraft e as teclas que ajudam"]
 	quest.E92EB052F9F3B141.title: "Bem-vindo ao Minezada"
-	quest.E92EB052F9F3B141.quest_desc: ["Este livro guia o comeco. Abra quando quiser pelo botao do livro no inventario.", "Tecla R em cima de um item mostra a receita; U mostra para que ele serve (JEI, na direita do inventario).", "Mire em um bloco ou bicho para ver o nome e o mod no topo da tela (Jade).", "Jogo lento? Opcoes > Perfis > 1 - Minimo. Os perfis vao de 1 - Minimo a 7 - Ultra."]
+	quest.E92EB052F9F3B141.quest_subtitle: "Comece por aqui"
+	quest.E92EB052F9F3B141.quest_desc: ["Este é o &elivro de missões&r. Ele mostra o que fazer, explica cada mod e dá prêmios: toda missão dá &aXP&r e algumas dão itens.", "", "Abra quando quiser pelo &ebotão do livro&r no canto do inventário (tecla &eE&r).", "", "Cada bolinha é uma missão. Clique nela para ler. Quando você cumpre o pedido, ela fica verde e o prêmio aparece para pegar.", "{@pagebreak}", "Os capítulos ficam na &eesquerda&r, em grupos: &aComeço&r, &aTecnologia&r, &aDimensões&r e &aAventura&r.", "", "Não precisa seguir na ordem. Quer só construir e explorar? Tudo bem. As missões são um guia, não uma obrigação.", "", "&7Clique em &fConcluir&7 para marcar esta como lida."]
+	quest.A83402502454BC29.title: "Receitas: R e U"
+	quest.A83402502454BC29.quest_subtitle: "A tecla mais importante"
+	quest.A83402502454BC29.quest_desc: ["O pack tem centenas de itens novos. Ninguém decora receita: use o &eJEI&r, a lista de itens na direita do inventário.", "", "&eR&r com o mouse em cima de um item: mostra &acomo fazer&r.", "&eU&r com o mouse em cima de um item: mostra &aonde ele é usado&r.", "", "A barra de busca embaixo da lista aceita nome em português ou inglês, e entende erro de digitação. Comece o texto com &e@&r para ver os itens de um mod (exemplo: &e@create&r)."]
+	quest.983B6AD51D05073B.title: "O que é isso?"
+	quest.983B6AD51D05073B.quest_subtitle: "Jade"
+	quest.983B6AD51D05073B.quest_desc: ["Mire em qualquer bloco ou bicho: o nome, o mod de onde ele vem e informações úteis aparecem no &etopo da tela&r.", "", "Serve para saber a vida de um bicho, quanto falta para uma planta crescer ou o que tem dentro de uma máquina."]
 	quest.0003CE0F6AE91DC0.title: "Mesa de trabalho"
-	quest.0003CE0F6AE91DC0.quest_desc: ["Junte madeira e faca uma mesa de trabalho."]
+	quest.0003CE0F6AE91DC0.quest_desc: ["O começo de sempre: junte madeira e faça uma &emesa de trabalho&r.", "", "Dica: segure a tecla &eao lado do 1&r (acento grave) enquanto quebra um tronco para derrubar a árvore inteira de uma vez. Funciona com minério também (&eVeinMiner&r)."]
 	quest.0E19EE28A91186E6.title: "Mapa"
-	quest.0E19EE28A91186E6.quest_desc: ["O minimapa fica no canto da tela. Tecla M abre o mapa do mundo que voce ja explorou."]
+	quest.0E19EE28A91186E6.quest_subtitle: "Nunca mais se perca"
+	quest.0E19EE28A91186E6.quest_desc: ["O &eminimapa&r fica no canto da tela. A tecla &eM&r abre o mapa do mundo, com tudo que você já explorou.", "", "A tecla &eN&r cria um ponto marcado (waypoint) onde você está. Marque a sua casa!", "", "Outros jogadores aparecem no minimapa como cabecinhas."]
 	quest.B6952285DC2B5452.title: "Mochila"
-	quest.B6952285DC2B5452.quest_desc: ["Faca uma mochila: ela guarda muito mais que o inventario e pode ser melhorada."]
+	quest.B6952285DC2B5452.quest_desc: ["Faça uma &emochila&r: ela guarda muito mais que o inventário. Clique com o botão direito segurando ela, ou coloque nas costas e abra pela tecla &eB&r.", "", "Ela ganha &aupgrades&r: coletar itens do chão, separar o que você pega, alimentar você sozinha e ficar maior (ferro, ouro, diamante). Veja no JEI com &eU&r em cima da mochila."]
 	quest.50A4703D190E18DE.title: "Waystone"
-	quest.50A4703D190E18DE.quest_desc: ["Waystones sao pedras de teleporte. Ative uma clicando nela e depois viaje entre as que voce ativou.", "Faca a sua para colocar perto de casa."]
-	quest.712E2F6300ED0812.title: "Se voce morrer"
-	quest.712E2F6300ED0812.quest_desc: ["Seus itens ficam guardados em um corpo no lugar da morte. Volte la e clique nele para pegar tudo.", "O lugar da morte aparece no mapa."]
+	quest.50A4703D190E18DE.quest_subtitle: "Teleporte"
+	quest.50A4703D190E18DE.quest_desc: ["Waystones são &epedras de teleporte&r. Elas aparecem nas vilas e pelo mundo.", "", "Clique em uma para &aativar&r. Depois, de qualquer waystone, você viaja para as que já ativou.", "", "Faça a sua e coloque perto de casa: assim você sempre volta rápido."]
+	quest.712E2F6300ED0812.title: "Se você morrer"
+	quest.712E2F6300ED0812.quest_desc: ["Morreu? Seus itens &enão somem&r: ficam guardados em um &ecorpo&r no lugar da morte.", "", "Volte lá e clique no corpo para pegar tudo. O lugar aparece no mapa.", "", "Esqueceu onde foi? &eAlt + U&r mostra o histórico de mortes."]
 	quest.B772DD21EE451560.title: "Cozinha"
-	quest.B772DD21EE451560.quest_desc: ["Farmer's Delight traz panela, tabua de corte e dezenas de comidas.", "Cada comida nova que voce prova pela primeira vez da coracoes extras de vida (Spice of Life)."]
+	quest.B772DD21EE451560.quest_desc: ["&eFarmer's Delight&r traz panela, frigideira, tábua de corte e dezenas de comidas.", "", "Importante: cada comida &enova&r que você prova pela primeira vez dá &acorações extras de vida&r (Spice of Life). Variar a comida deixa você mais forte!", "", "O capítulo &eCozinha e fazenda&r explica tudo."]
+	quest.E11F5DC7B7E656E5.title: "Carregar baús e bichos"
+	quest.E11F5DC7B7E656E5.quest_subtitle: "Carry On"
+	quest.E11F5DC7B7E656E5.quest_desc: ["Com as &emãos vazias&r, segure &eShift&r e clique com o botão direito em um baú: você carrega ele inteiro, com os itens dentro.", "", "Funciona com bichos também. Ótimo para mudar de casa."]
+	quest.6234896076A0B526.title: "Avisar os amigos"
+	quest.6234896076A0B526.quest_subtitle: "Ping Wheel"
+	quest.6234896076A0B526.quest_desc: ["Clique com o &ebotão do meio do mouse&r para marcar um ponto que todos veem: \"olha aqui\", \"perigo\", \"vem cá\"."]
+	quest.35B5A51B8EC8B211.title: "Jogo lento?"
+	quest.35B5A51B8EC8B211.quest_subtitle: "Perfis de gráfico"
+	quest.35B5A51B8EC8B211.quest_desc: ["Em &eOpções > Perfis&r tem 7 perfis prontos: do &e1 - Mínimo&r (computador fraco) ao &e7 - Ultra&r (com shader).", "", "Clique em um e ele muda tudo na hora. Não use &cSalvar&r nem &cCriar perfil&r: pode fechar o jogo.", "", "Tecla &eK&r liga e desliga o shader."]
+	quest.1C9212BF4A3DD9BC.title: "Achar uma tecla"
+	quest.1C9212BF4A3DD9BC.quest_subtitle: "Controles"
+	quest.1C9212BF4A3DD9BC.quest_desc: ["Em &eOpções > Controles > Teclas&r tem uma &abusca&r: digite o nome da ação (ou do mod) para ver e trocar a tecla.", "", "Tecla em vermelho está em conflito com outra."]
 	chapter.BBA9B6DE266CCBFE.title: "Create 1: o basico"
 	quest.F43F2D5CC50C160E.title: "O que e o Create"
 	quest.F43F2D5CC50C160E.quest_desc: ["Create e um mod de maquinas que funcionam com rotacao, como um moinho de verdade: algo gira (agua, vento, vapor) e eixos levam o giro ate as maquinas.", "Segure W com o mouse em cima de qualquer item do Create para ver uma animacao explicando ele (Ponder)."]

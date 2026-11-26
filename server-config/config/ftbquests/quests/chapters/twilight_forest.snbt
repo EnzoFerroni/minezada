@@ -2,7 +2,7 @@
 	default_hide_dependency_lines: false
 	default_quest_shape: ""
 	filename: "twilight_forest"
-	group: ""
+	group: "8B7482EA7957301C"
 	icon: { id: "twilightforest:naga_scale" }
 	id: "58CDF0B4C55394C9"
 	order_index: 13
@@ -10,6 +10,7 @@
 	quests: [
 		{
 			id: "820B1BDC21D32332"
+			rewards: [{ id: "92CCC82D46082182", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "twilightforest:twilight_forest", id: "FEBCF7CCA2E973B5", type: "dimension" }]
 			x: 0d
 			y: 0d
@@ -17,6 +18,7 @@
 		{
 			dependencies: ["820B1BDC21D32332"]
 			id: "FDF21F3AFD83BEBE"
+			rewards: [{ id: "803EDE19B72B5F34", type: "xp", xp: 20 }]
 			tasks: [{ id: "425F5A6574CE280B", item: { count: 1, id: "twilightforest:naga_scale" }, type: "item" }]
 			x: 1.5d
 			y: 0d
@@ -24,6 +26,7 @@
 		{
 			dependencies: ["FDF21F3AFD83BEBE"]
 			id: "3C11C6E6C0EA5EDF"
+			rewards: [{ id: "19DA751E4B1823AA", type: "xp", xp: 20 }]
 			tasks: [{ id: "310D0B2B91236CF8", item: { count: 1, id: "twilightforest:magic_map_focus" }, type: "item" }]
 			x: 3d
 			y: 0d
@@ -31,6 +34,7 @@
 		{
 			dependencies: ["3C11C6E6C0EA5EDF"]
 			id: "40E733CE9055A8C2"
+			rewards: [{ id: "1967C9EC11000AA9", type: "xp", xp: 20 }]
 			tasks: [{ id: "0AD38A27ED6495D3", type: "checkmark" }]
 			x: 4.5d
 			y: 0d

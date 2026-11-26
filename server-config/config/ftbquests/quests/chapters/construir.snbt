@@ -2,7 +2,7 @@
 	default_hide_dependency_lines: false
 	default_quest_shape: ""
 	filename: "construir"
-	group: ""
+	group: "2A64FDD2182C23F1"
 	icon: { id: "buildinggadgets2:gadget_building" }
 	id: "9CC3B8CA7BE5A04E"
 	order_index: 7
@@ -10,6 +10,7 @@
 	quests: [
 		{
 			id: "379468DB3455A8B2"
+			rewards: [{ id: "41DA3948C9DE37EB", type: "xp", xp: 20 }]
 			tasks: [{ id: "46A4320866A106D0", item: { count: 1, id: "buildinggadgets2:gadget_building" }, type: "item" }]
 			x: 0d
 			y: 0d
@@ -17,24 +18,28 @@
 		{
 			dependencies: ["379468DB3455A8B2"]
 			id: "09486C4E6AFA0424"
+			rewards: [{ id: "38E01D8F63F3868D", type: "xp", xp: 20 }]
 			tasks: [{ id: "3503EC6D2A87E02F", item: { count: 1, id: "buildinggadgets2:gadget_copy_paste" }, type: "item" }]
 			x: 1.5d
 			y: 0d
 		}
 		{
 			id: "0F7DF596AAA40A64"
+			rewards: [{ id: "C873BB1ED111792B", type: "xp", xp: 20 }]
 			tasks: [{ id: "BBCB2BE1BA10A01C", type: "checkmark" }]
 			x: 3d
 			y: 0d
 		}
 		{
 			id: "168A3A22661A0A48"
+			rewards: [{ id: "CC266F02FD03248A", type: "xp", xp: 20 }]
 			tasks: [{ id: "CBC552107DF741A6", type: "checkmark" }]
 			x: 4.5d
 			y: 0d
 		}
 		{
 			id: "94BD5A02E592B8A1"
+			rewards: [{ id: "3366186CC4D0FC76", type: "xp", xp: 20 }]
 			tasks: [{ id: "0C4560842552C3A8", type: "checkmark" }]
 			x: 0d
 			y: 1.5d

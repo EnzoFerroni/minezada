@@ -426,6 +426,11 @@ hash = "c82c198850baf4abf61ec6ca55db4aa65361766ae1ca90fa7069d02e5a027c09"
 metafile = true
 
 [[files]]
+file = "mods/ftb-filter-system.pw.toml"
+hash = "fa70d76d970c8ec6944d6d45a031a2c71122de1440f5f7ee2cdf3c3ac93b7ee3"
+metafile = true
+
+[[files]]
 file = "mods/ftb-library-forge.pw.toml"
 hash = "5f907415fba5992e045036626e2defdfeaea1f8db2355fb7106b1db734eb586e"
 metafile = true
@@ -438,6 +443,11 @@ metafile = true
 [[files]]
 file = "mods/ftb-teams-forge.pw.toml"
 hash = "1a00da75dde20c6f9d1e938f6f0928b00fbd2891c8cd6b8b1289772971be12ad"
+metafile = true
+
+[[files]]
+file = "mods/ftb-xmod-compat.pw.toml"
+hash = "9e7004d96189ff72c886613d9eb2fda8b084fdb5d2a07cd9b4324f797442bcf9"
 metafile = true
 
 [[files]]
