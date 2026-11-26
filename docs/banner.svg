@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="150" viewBox="0 0 720 150">
+  <!-- Mesmo visual da pagina: painel cinza com borda em relevo, como as janelas do Minecraft. -->
+  <rect x="0" y="0" width="720" height="150" fill="#000"/>
+  <rect x="3" y="3" width="714" height="144" fill="#c6c6c6"/>
+  <rect x="3" y="3" width="714" height="6" fill="#fff"/>
+  <rect x="3" y="3" width="6" height="144" fill="#fff"/>
+  <rect x="3" y="141" width="714" height="6" fill="#555"/>
+  <rect x="711" y="3" width="6" height="144" fill="#555"/>
+  <!-- Faixa de grama em cima de terra, no rodape. -->
+  <g>
+    <rect x="9" y="112" width="702" height="29" fill="#79553a"/>
+    <rect x="9" y="112" width="702" height="9" fill="#5d9b3a"/>
+  </g>
+  <text x="363" y="77" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="58" font-weight="bold" fill="#3f3f3f" letter-spacing="6">MINEZADA</text>
+  <text x="360" y="74" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="58" font-weight="bold" fill="#ffffff" letter-spacing="6">MINEZADA</text>
+  <text x="360" y="102" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="17" fill="#3f3f3f">Minecraft 1.21.1 com mods, pronto para jogar com os amigos</text>
+</svg>
