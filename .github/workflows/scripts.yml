@@ -43,6 +43,9 @@ jobs:
       - name: jogar.sh no Linux (HOME falso, launcher falso)
         if: runner.os == 'Linux'
         run: bash scripts/testes/jogar.sh
+      - name: jogar.sh no Linux baixa e roda os AppImages de verdade
+        if: runner.os == 'Linux'
+        run: bash scripts/testes/jogar-appimage.sh
       # /bin/bash: no macOS e o 3.2, o mesmo que roda o iniciar.command (o do Homebrew pode vir antes no PATH).
       - name: Desligar o servidor (stop, Ctrl+C, janela fechada)
         run: /bin/bash scripts/testes/desligar.sh
