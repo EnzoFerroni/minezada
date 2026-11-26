@@ -124,7 +124,11 @@ while ($cfFila.Count) {
     if (@($projs.Values | Where-Object { $_.p.slug -eq $m.slug -and -not $_.p.chave })) { throw "$($m.name) (cf:$cid) ja vem pelo Modrinth: coloque em `$cfNoModrinth" }
     if (-not $m.allowModDistribution) { throw "$($m.name) (cf:$cid): o autor nao libera download por outros programas; cada jogador teria que baixar na mao" }
     $cf = if ($fixas[$chave] -and -not $Atualizar) { Get-Cf "mods/$cid/files/$($fixas[$chave])" }
-        else { Get-Cf "mods/$cid/files?gameVersion=$mc&modLoaderType=6&pageSize=50" | Where-Object releaseType -eq 1 | Select-Object -First 1 }
+        else {
+            # Release primeiro; beta so quando o mod nao tem release (Framework do MrCrayfish).
+            $arqs = @(Get-Cf "mods/$cid/files?gameVersion=$mc&modLoaderType=6&pageSize=50")
+            @($arqs | Where-Object releaseType -eq 1) + @($arqs | Where-Object releaseType -eq 2) | Select-Object -First 1
+        }
     if (-not $cf) { throw "$($m.name) (cf:$cid): sem arquivo release para $loader $mc" }
     # Dependencia obrigatoria do CurseForge entra sozinha (se ja vem pelo Modrinth, va para $cfNoModrinth).
     $cf.dependencies | Where-Object { $_.relationType -eq 3 -and "$($_.modId)" -notin $cfIds } | ForEach-Object { $cfIds += "$($_.modId)"; $cfFila.Enqueue("cf:$($_.modId)") }
