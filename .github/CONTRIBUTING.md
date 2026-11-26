@@ -58,6 +58,9 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
 
 ## Lições aprendidas (para não repetir erro)
 
+- **Versão errada no Modrinth**: autor pode marcar a versão 26.x do mod como compatível com 1.21.1 (Structory, Structory Towers). O jogo recusa o jar ("is not a valid mod file"). Prenda a última versão certa em `$presas` no `montar-pack.ps1`.
+- **Modelo de mob de mod no pacote de recursos**: o EMF lê `assets/<mod>/emf/cem/<camada>.jem`, com as partes pelo nome do código do modelo. Só funciona com modelo feito pelo sistema de camadas do jogo; Alex's Mobs usa modelo próprio e só aceita troca de textura.
+- **Action Pack com `ratelimit_error`**: limite do Modrinth, não é erro do pack. Rode de novo (`gh run rerun <id> --failed`).
 - **Dependências com o lado errado no Modrinth** (ex: Lithostitched marcado "só servidor"): o
   `montar-pack.ps1` já faz a dependência herdar os lados de quem precisa dela.
 - **Dependência não declarada ou incompatível** (Sodium Dynamic Lights × Reese's Sodium Options):
