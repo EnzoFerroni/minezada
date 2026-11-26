@@ -18,6 +18,16 @@
   Perfis de gráfico: tabela em `scripts/perfis.ps1` (gera `modpack/arquivos/`). Configuração do servidor:
   `server-config/` (copiada para `server/` a cada start). Servidor (Windows e Mac) e jogadores
   instalam pelo `pack/` (packwiz).
+- **Pastas**:
+  - raiz: só o que jogador e host rodam (`jogar`, `desinstalar`, `logs`, `hospedar`, `iniciar`). O atalho do jogo baixa
+    `jogar.ps1`/`jogar.sh` da raiz a cada abertura: não mova nem renomeie esses arquivos.
+  - `modpack/`: lista de mods, pack gerado e arquivos que vão para o jogo (`arquivos/`).
+  - `server-config/`: configs do servidor. O livro de missões (`config/ftbquests/quests`) é gerado pelo
+    `scripts/missoes.ps1`: edite a tabela no script, não os `.snbt`.
+  - `scripts/`: o que monta e roda tudo (pack, perfis, livro, servidor) e `testes/`.
+  - `site/`: a página do GitHub Pages. `site/mods.json` é gerado pelo `montar-pack.ps1`.
+  - `sword/`: programas em Go que leem o mundo e desenham o mapa, o placar e as conquistas da página.
+  - `docs/`: guias e decisões.
 - **Testes**: `scripts/testes/` (desligar o servidor por stop, Ctrl+C e janela fechada; whitelist, que é um arquivo
   só para Windows e Mac: `scripts/Whitelist.java`). A Action **Testes dos scripts** roda tudo no macOS, Linux e
   Windows a cada push que mexe nos scripts. Mudou o `rodar_servidor`/`enviar_mundo` do `iniciar.sh` ou a whitelist?
