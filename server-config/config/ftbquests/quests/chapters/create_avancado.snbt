@@ -1,0 +1,61 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "create_avancado"
+	group: ""
+	icon: { id: "create:precision_mechanism" }
+	id: "55DC813E26190213"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			id: "222DA5107B79116F"
+			tasks: [{ id: "BF7F7E25731B0287", item: { count: 1, id: "create:windmill_bearing" }, type: "item" }]
+			x: 0d
+			y: 0d
+		}
+		{
+			dependencies: ["222DA5107B79116F"]
+			id: "28F379563F703E5C"
+			tasks: [{ id: "B5798870A4A26CEE", item: { count: 1, id: "create:mechanical_mixer" }, type: "item" }]
+			x: 1.5d
+			y: 0d
+		}
+		{
+			dependencies: ["28F379563F703E5C"]
+			id: "24F6C15B95927522"
+			tasks: [{ id: "E1107F84D9E10269", item: { count: 1, id: "create:blaze_burner" }, type: "item" }]
+			x: 3d
+			y: 0d
+		}
+		{
+			dependencies: ["24F6C15B95927522"]
+			id: "79F54EA46B753BB9"
+			rewards: [{ id: "03BC1D1810AD058A", item: { count: 8, id: "create:brass_ingot" }, type: "item" }]
+			tasks: [{ id: "9B82600140CBFD06", item: { count: 1, id: "create:brass_ingot" }, type: "item" }]
+			x: 4.5d
+			y: 0d
+		}
+		{
+			dependencies: ["79F54EA46B753BB9"]
+			id: "E69519393E039D59"
+			tasks: [{ id: "CCB98A0CED9B5687", item: { count: 1, id: "create:precision_mechanism" }, type: "item" }]
+			x: 6d
+			y: 0d
+		}
+		{
+			dependencies: ["E69519393E039D59"]
+			id: "59A5190E44EDD984"
+			tasks: [{ id: "8A6B0DB13A299F97", item: { count: 1, id: "create:schematicannon" }, type: "item" }]
+			x: 7.5d
+			y: 0d
+		}
+		{
+			dependencies: ["59A5190E44EDD984"]
+			id: "604811EC769B1DFF"
+			tasks: [{ id: "5EFD8607527570C8", item: { count: 1, id: "create:controls" }, type: "item" }]
+			x: 9d
+			y: 0d
+		}
+	]
+}

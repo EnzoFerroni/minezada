@@ -1,0 +1,39 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "explorar"
+	group: ""
+	icon: { id: "naturescompass:naturescompass" }
+	id: "ABBF7954E151BB6E"
+	order_index: 7
+	quest_links: [ ]
+	quests: [
+		{
+			id: "876BEA6CFE9209A1"
+			tasks: [{ id: "9A2F325A91090ECF", item: { count: 1, id: "naturescompass:naturescompass" }, type: "item" }]
+			x: 0d
+			y: 0d
+		}
+		{
+			dependencies: ["876BEA6CFE9209A1"]
+			id: "3062EA0B7042C34D"
+			tasks: [{ id: "D08E13BD258E98B8", item: { count: 1, id: "explorerscompass:explorerscompass" }, type: "item" }]
+			x: 1.5d
+			y: 0d
+		}
+		{
+			dependencies: ["3062EA0B7042C34D"]
+			id: "B33B894B34D3932D"
+			tasks: [{ id: "90D788BAB53E48B1", item: { count: 1, id: "map_atlases:atlas" }, type: "item" }]
+			x: 3d
+			y: 0d
+		}
+		{
+			dependencies: ["B33B894B34D3932D"]
+			id: "E181CF23667BE12E"
+			tasks: [{ id: "D40100A224059F53", item: { count: 1, id: "waystones:return_scroll" }, type: "item" }]
+			x: 4.5d
+			y: 0d
+		}
+	]
+}

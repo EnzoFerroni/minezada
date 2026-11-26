@@ -1,0 +1,46 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "undergarden"
+	group: ""
+	icon: { id: "undergarden:catalyst" }
+	id: "52600FF197F42E06"
+	order_index: 12
+	quest_links: [ ]
+	quests: [
+		{
+			id: "C9ABA829AA40AE05"
+			tasks: [{ id: "0D3E342E8DBD2E2C", item: { count: 1, id: "undergarden:catalyst" }, type: "item" }]
+			x: 0d
+			y: 0d
+		}
+		{
+			dependencies: ["C9ABA829AA40AE05"]
+			id: "7F65FA3D01E0FE56"
+			tasks: [{ dimension: "undergarden:undergarden", id: "F82BE18BD1F5AC44", type: "dimension" }]
+			x: 1.5d
+			y: 0d
+		}
+		{
+			dependencies: ["7F65FA3D01E0FE56"]
+			id: "89912EE1CD8CCEEA"
+			tasks: [{ id: "89F111F0F77B1CE2", item: { count: 1, id: "undergarden:cloggrum_ingot" }, type: "item" }]
+			x: 3d
+			y: 0d
+		}
+		{
+			dependencies: ["89912EE1CD8CCEEA"]
+			id: "2B4732C93C19A1AF"
+			tasks: [{ id: "591612BDFD1F4BF2", item: { count: 1, id: "undergarden:froststeel_ingot" }, type: "item" }]
+			x: 4.5d
+			y: 0d
+		}
+		{
+			dependencies: ["2B4732C93C19A1AF"]
+			id: "C92E6A440E59C51C"
+			tasks: [{ id: "8B442E1112D1F6E7", item: { count: 1, id: "undergarden:utherium_crystal" }, type: "item" }]
+			x: 6d
+			y: 0d
+		}
+	]
+}

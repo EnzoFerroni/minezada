@@ -1,0 +1,60 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "espaco"
+	group: ""
+	icon: { id: "ad_astra:tier_1_rocket" }
+	id: "ECDFF22C3CFE2200"
+	order_index: 13
+	quest_links: [ ]
+	quests: [
+		{
+			id: "DAD3F903CD78E4F3"
+			tasks: [{ id: "78DDF0F6FA33E0C4", item: { count: 1, id: "ad_astra:steel_ingot" }, type: "item" }]
+			x: 0d
+			y: 0d
+		}
+		{
+			dependencies: ["DAD3F903CD78E4F3"]
+			id: "F8643149D88DB1BF"
+			tasks: [{ id: "B144853266826C8A", item: { count: 1, id: "ad_astra:nasa_workbench" }, type: "item" }]
+			x: 1.5d
+			y: 0d
+		}
+		{
+			dependencies: ["F8643149D88DB1BF"]
+			id: "FB3831876F704DD4"
+			tasks: [{ id: "302BFCA80410B5E7", item: { count: 1, id: "ad_astra:space_suit" }, type: "item" }]
+			x: 3d
+			y: 0d
+		}
+		{
+			dependencies: ["FB3831876F704DD4"]
+			id: "9E0708B7EA09C5FA"
+			tasks: [{ id: "542B2B96405F3ED0", item: { count: 1, id: "ad_astra:tier_1_rocket" }, type: "item" }]
+			x: 4.5d
+			y: 0d
+		}
+		{
+			dependencies: ["9E0708B7EA09C5FA"]
+			id: "72366A0DEA4B1515"
+			tasks: [{ dimension: "ad_astra:moon", id: "6A5D9F836C4598A7", type: "dimension" }]
+			x: 6d
+			y: 0d
+		}
+		{
+			dependencies: ["72366A0DEA4B1515"]
+			id: "CA989F85660C8492"
+			tasks: [{ id: "5E2AADD2AE7D9886", item: { count: 1, id: "ad_astra:desh_ingot" }, type: "item" }]
+			x: 7.5d
+			y: 0d
+		}
+		{
+			dependencies: ["CA989F85660C8492"]
+			id: "6C64252B40CD4F10"
+			tasks: [{ dimension: "ad_astra:mars", id: "0E4DFC7C9E7DFEFC", type: "dimension" }]
+			x: 9d
+			y: 0d
+		}
+	]
+}
