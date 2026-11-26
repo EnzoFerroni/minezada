@@ -66,7 +66,7 @@ jobs:
           if-no-files-found: ignore
 
   # Abre o jogo com os mods de cliente (HeadlessMC em tela virtual), entra em um mundo novo e fecha: pega mod so de
-  # cliente com dependencia errada, que o servidor nao carrega. Opcionais (Distant Horizons) entram ligados.
+  # cliente com dependencia errada, que o servidor nao carrega. Sem o Distant Horizons (ver o passo abaixo).
   jogo:
     runs-on: ubuntu-latest
     timeout-minutes: 45
@@ -85,6 +85,8 @@ jobs:
           unzip -o -q -j ../modpack/minezada-prism.zip .minecraft/packwiz-installer-bootstrap.jar .minecraft/packwiz-installer.jar -d .
           java -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar \
             -g -s client "file://$GITHUB_WORKSPACE/modpack/pack/pack.toml"
+          # Distant Horizons (opcional, desligado por padrao) as vezes trava no GLProxy da tela virtual (#31).
+          rm -f mods/DistantHorizons*
           ls mods | wc -l
 
       # Sem os GameTests dos mods (/test runall): um teste do Sable falha no CI, o jogo fecha e a action fica presa.

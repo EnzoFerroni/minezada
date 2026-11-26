@@ -97,8 +97,10 @@ foreach ($f in @(Get-ChildItem config/iris.properties, options-profiles/*/iris.p
     $t = [IO.File]::ReadAllText($f.FullName)
     if ($t -notmatch '(?m)^shaderPack=(.+?)\s*$') { continue }
     $velho = $matches[1]
-    if ((Test-Path -LiteralPath "shaderpacks/$velho") -or $velho -notmatch '^(.+?)[_-][vr]?\d') { continue }
-    $novo = @(Get-ChildItem shaderpacks -Filter "$($matches[1])*" -ErrorAction SilentlyContinue)
-    if ($novo.Count -eq 1) { [IO.File]::WriteAllText($f.FullName, $t.Replace("shaderPack=$velho", "shaderPack=$($novo[0].Name)")) }
+    if (Test-Path -LiteralPath "shaderpacks/$velho") { continue }
+    $novo = if ($velho -match '^(.+?)[_-][vr]?\d') { @(Get-ChildItem shaderpacks -Filter "$($matches[1])*" -ErrorAction SilentlyContinue) }
+    # Shader que saiu do pack: vai para o Complementary Reimagined (o mais testado no Mac) em vez de ficar sem shader.
+    if (@($novo).Count -ne 1) { $novo = @(Get-ChildItem shaderpacks -Filter 'ComplementaryReimagined*.zip' -ErrorAction SilentlyContinue) }
+    if (@($novo).Count -eq 1) { [IO.File]::WriteAllText($f.FullName, $t.Replace("shaderPack=$velho", "shaderPack=$($novo[0].Name)")) }
 }
 exit $codigo
