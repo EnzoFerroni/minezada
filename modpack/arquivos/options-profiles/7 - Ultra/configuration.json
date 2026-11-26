@@ -1,0 +1,19 @@
+{
+    "loadOnStartup":  false,
+    "keybindIndex":  0,
+    "optionsToLoad":  [
+                          "renderDistance",
+                          "simulationDistance",
+                          "graphicsMode",
+                          "ao",
+                          "particles",
+                          "entityShadows",
+                          "biomeBlendRadius",
+                          "mipmapLevels",
+                          "entityDistanceScaling",
+                          "renderClouds",
+                          "maxFps",
+                          "enableVsync",
+                          "prioritizeChunkUpdates"
+                      ]
+}

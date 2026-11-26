@@ -109,11 +109,11 @@ fresh-waystones-texture | Waystones com visual novo, no estilo do jogo.
 low-shield-pack | Escudo mais baixo na tela: enxerga melhor enquanto defende.
 
 ## Shaders (vêm desligados; ligue pelos perfis ou em Opções → Vídeo → Shader Packs)
-complementary-reimagined | Bonito e leve, o mais testado no Mac. Perfis 5, 6, 7 e Mac 5.
-makeup-ultra-fast-shaders | Bem leve, para computadores fracos e Macs de 8 GB. Perfil Mac 4.
-bsl-shaders | Clássico e equilibrado: bonito sem pesar muito. Perfis Mac 6 e Shader - BSL.
-photon-shader | O mais bonito da lista, para PCs fortes. **Só PC: não roda no Mac.** Perfil PC - Photon.
-bliss-shader | Céu e nuvens impressionantes, para PCs fortes. No Mac abre (testado num M4), mas pode ter defeitos e pesa. Perfil PC - Bliss.
+complementary-reimagined | Bonito e leve, o mais testado no Mac. Perfis 6 - Shader e 7 - Ultra.
+makeup-ultra-fast-shaders | Bem leve, para computadores fracos e Macs de 8 GB. Perfil 5 - Shader Leve.
+bsl-shaders | Clássico e equilibrado: bonito sem pesar muito. Escolha em Opções → Vídeo → Shader Packs.
+photon-shader | O mais bonito da lista, para PCs fortes. **Só PC: não roda no Mac.** Escolha em Opções → Vídeo → Shader Packs.
+bliss-shader | Céu e nuvens impressionantes, para PCs fortes. No Mac abre (testado num M4), mas pode ter defeitos e pesa. Escolha em Opções → Vídeo → Shader Packs.
 
 ## Qualidade de vida
 modflared | Liga sozinho o túnel da Cloudflare ao entrar no servidor. A conexão vai como site seguro (HTTPS), então funciona em rede de faculdade, empresa e Wi-Fi público.
@@ -185,7 +185,7 @@ mouse-tweaks | Arraste o mouse com o botão apertado para mover vários itens de
 inventory-essentials | Organizar inventário e baús (botão do meio do mouse) e mover itens rápido com Shift.
 
 ## Desempenho
-options-profiles | Perfis de gráfico prontos em Opções → Perfis: de 1 - Minimo a 7 - Ultra Shader, 8 - FPS Maximo, 9 - Bateria, Mac 1 a Mac 7 (Apple Silicon) e um perfil para experimentar cada shader. Ajuste e salve por cima do seu.
+options-profiles | Perfis de gráfico prontos em Opções → Perfis, iguais para PC e Mac: 1 - Minimo, 2 - Leve, 3 - Medio, 4 - Alto, 5 - Shader Leve, 6 - Shader e 7 - Ultra.
 sodium-extra | Mais opções de vídeo (contador de FPS, neblina, animações) para calibrar o desempenho.
 dynamic-fps | Baixa o FPS quando o jogo está minimizado ou em segundo plano: menos calor e bateria.
 moreculling | Deixa de desenhar faces de blocos que você não vê (folhas, vidro): mais FPS.

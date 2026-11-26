@@ -102,11 +102,11 @@ mkdir -p "$tmp/x" "$inst/.minecraft"
 (cd "$tmp/x" && unzip -q ../pack.zip)
 # shortcut: instance.cfg e sobrescrito (zera tempo de jogo do Prism); trocar por merge se incomodar.
 cp "$tmp/x/instance.cfg" "$tmp/x/mmc-pack.json" "$inst/"
-# Memoria do jogo: 6 GB com 24 GB+ de RAM, 3 GB abaixo de 12 GB; senao fica a do zip (4 GB evita o
+# Memoria do jogo: 6 GB com 24 GB+ de RAM, 4 GB abaixo de 12 GB (com 3 GB o pack trava); senao fica a do zip (4 GB evita o
 # aviso do Prism em 16 GB).
 bytes="$(sysctl -n hw.memsize 2>/dev/null || awk '/MemTotal/{print $2*1024}' /proc/meminfo)"
 gb=$((bytes / 1073741824)); mem=""
-if [ $gb -ge 24 ]; then mem=6144; elif [ $gb -lt 12 ]; then mem=3072; fi
+if [ $gb -ge 24 ]; then mem=6144; elif [ $gb -lt 12 ]; then mem=4096; fi
 if [ -n "$mem" ]; then
   sed -i.bak "s/^MaxMemAlloc=.*/MaxMemAlloc=$mem/" "$inst/instance.cfg" && rm -f "$inst/instance.cfg.bak"
 fi

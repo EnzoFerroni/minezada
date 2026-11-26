@@ -3,8 +3,12 @@
 # abertura seguinte, porque o packwiz troca este arquivo enquanto ele roda).
 # java.exe no lugar do javaw.exe: o PowerShell so espera programa de console terminar. (Start-Process -Wait
 # da "Acesso negado" quando o Prism roda este script.)
-# Perfis de shaders que sairam do pack (o packwiz nao apaga arquivo com preserve).
-foreach ($p in 'Shader - Sildurs Vibrant', 'Shader - Super Duper Vanilla', 'Shader - Miniature', 'PC - Solas', 'PC - Rethinking Voxels') {
+# Perfis que sairam do pack (o packwiz nao apaga arquivo com preserve). Em 26/11 a escala virou 1 a 7 para PC e Mac.
+$antigos = 'Shader - Sildurs Vibrant', 'Shader - Super Duper Vanilla', 'Shader - Miniature', 'PC - Solas', 'PC - Rethinking Voxels',
+    '3 - Equilibrado', '5 - Bonito Shader', '6 - Muito Alto Shader', '7 - Ultra Shader', '8 - FPS Maximo', '9 - Bateria',
+    'Mac 1 - Leve 8GB', 'Mac 2 - Equilibrado', 'Mac 3 - Alto Pro Max', 'Mac 4 - Shader Leve', 'Mac 5 - Shader Bonito',
+    'Mac 6 - Shader Realista', 'Mac 7 - Bateria', 'Shader - BSL', 'PC - Photon', 'PC - Bliss'
+foreach ($p in $antigos) {
     Remove-Item -LiteralPath "options-profiles/$p" -Recurse -Force -ErrorAction SilentlyContinue
 }
 # Teclas do pack, trocadas so em quem ainda esta sem a tecla salva ou no padrao do mod (tecla, padroes, nova):
@@ -62,6 +66,7 @@ if (Test-Path options.txt) {
 # Distant Horizons: avisos no chat de garbage collector (o ZGC que ele sugere gasta mais memoria nos PCs fracos),
 # distancia de renderizacao alta e pouca memoria. Terralith: mensagem de boas-vindas.
 # Hamster: sino de novidades e livro entregue na mao; o aviso de "sem livro" vem uma vez, no tempo maximo (5 min).
+# Alex's Mobs: livro na mao ao entrar. Aether: Patreon. CodxLib, Xaero: versao nova. Supplementaries: avisos ao abrir.
 # Vale para TOML (opcao = valor) e JSON ("opcao": valor).
 $ajustes = @(
     @('config/DistantHorizons.toml', 'showGarbageCollectorWarning', 'false'),
@@ -72,7 +77,14 @@ $ajustes = @(
     @('config/adorablehamsterpets/ui.toml', 'serverDisableAnnouncements', 'true'),
     @('config/adorablehamsterpets/ui.toml', 'enableAutoGuidebookDelivery', 'false'),
     @('config/adorablehamsterpets/ui.toml', 'enableAutoGuidebookDeliveryFallback', 'false'),
-    @('config/adorablehamsterpets/ui.toml', 'guidebookWarningTimer', '6000')
+    @('config/adorablehamsterpets/ui.toml', 'guidebookWarningTimer', '6000'),
+    @('config/DistantHorizons.toml', 'showPoolInsufficientMemoryWarning', 'false'),
+    @('config/amc.json', 'giveBookOnStartup', 'false'),
+    @('config/aether-common.toml', 'Show Patreon message', 'false'),
+    @('config/codxlib.json', 'updateNotifications', 'false'),
+    @('config/supplementaries-common.toml', 'sanity_checks_messages', 'false'),
+    @('config/xaero/minimap/client.cfg', 'update_notifications', 'false'),
+    @('config/xaero/world-map/client.cfg', 'update_notifications', 'false')
 )
 foreach ($a in $ajustes) {
     if (-not (Test-Path $a[0])) { continue }

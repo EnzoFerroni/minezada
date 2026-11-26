@@ -1,0 +1,13 @@
+renderDistance:16
+simulationDistance:10
+graphicsMode:1
+ao:true
+particles:0
+entityShadows:true
+biomeBlendRadius:5
+mipmapLevels:4
+entityDistanceScaling:1.25
+renderClouds:"true"
+maxFps:260
+enableVsync:true
+prioritizeChunkUpdates:2
