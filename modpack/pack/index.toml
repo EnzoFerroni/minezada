@@ -346,6 +346,11 @@ hash = "b788de2d61c8e4eaa886d2d8539acafd2be6175c6ad5bab7e7b86f6aa2215280"
 metafile = true
 
 [[files]]
+file = "mods/dungeons-and-taverns.pw.toml"
+hash = "d3c3c8381a390573eab7eee40345330ba156c83458a8d024cb43ef4d9ed50fe0"
+metafile = true
+
+[[files]]
 file = "mods/dynamic-fps.pw.toml"
 hash = "54bd36ecf965dee3a068ffc1a55e5c8b82c2daa62be88f51e4f2c9f5945df3f0"
 metafile = true
@@ -621,6 +626,11 @@ hash = "f5f3cdc6e6705a4034bc3a9bf4a0e52d6ef00a38969007913fe49b6fd8acfab5"
 metafile = true
 
 [[files]]
+file = "mods/mes-moogs-end-structures.pw.toml"
+hash = "53c0a283ddc9c4aff8b3a85a111e47c560e4ce048dd304dbf918c7a3146eac16"
+metafile = true
+
+[[files]]
 file = "mods/mezzconfig.pw.toml"
 hash = "0b4685872feb6558d7299bb406842206721d72826d87b7911909f9760155a4ff"
 metafile = true
@@ -638,6 +648,16 @@ metafile = true
 [[files]]
 file = "mods/modflared.pw.toml"
 hash = "8093c6fa9f1ef586787cc114924876f2f990ffc0ab7a400685ed801c18a7250c"
+metafile = true
+
+[[files]]
+file = "mods/moogs-structure-lib.pw.toml"
+hash = "279b1c1449f56a38bd363dce13222ad3730476c3566649098b6234086162ec2f"
+metafile = true
+
+[[files]]
+file = "mods/moogs-voyager-structures.pw.toml"
+hash = "de7e8641791f70db6409a2b5b127197027913d2b2c3bb94e15f68e39e2e60648"
 metafile = true
 
 [[files]]
@@ -718,6 +738,11 @@ metafile = true
 [[files]]
 file = "mods/patchouli.pw.toml"
 hash = "20eef3ccbd2512ec0968d038a17a9d1e1bafa95a31786664d5909aeaf5477058"
+metafile = true
+
+[[files]]
+file = "mods/philips-ruins.pw.toml"
+hash = "56ee0b7baaba9392b15bfb9b7fabd2ec72216f741a7e3b4e8f059f4f4fa2f843"
 metafile = true
 
 [[files]]
@@ -851,6 +876,16 @@ hash = "01bec1f70a6e49af09a38edafb758a5c183dd73b4750f593085b99165afd308d"
 metafile = true
 
 [[files]]
+file = "mods/structory.pw.toml"
+hash = "9330e17386e58b882c93fe4942ef29f0473ab4f698d9b851f4b28dcdfe907a68"
+metafile = true
+
+[[files]]
+file = "mods/structory-towers.pw.toml"
+hash = "982392c58851f7251fa235ddc8de64cfa143965c0becbcef2ffba474caece4c3"
+metafile = true
+
+[[files]]
 file = "mods/supplementaries.pw.toml"
 hash = "52446cd3ddaf5746ca6154fa4910771c976d80a81ecbbcbf8c331d74c5f3a04a"
 metafile = true
@@ -903,6 +938,11 @@ metafile = true
 [[files]]
 file = "mods/trade-cycling.pw.toml"
 hash = "2352e484e28ebce0fa23b30d2b22f9b9ca67b2a6282448fb92c918fc0345bd7c"
+metafile = true
+
+[[files]]
+file = "mods/travelers-titles.pw.toml"
+hash = "7befe4108bc86dc3ac9519ad425752cfc7c870b107949650042bf064b21b6139"
 metafile = true
 
 [[files]]
@@ -966,6 +1006,11 @@ hash = "1528ef0f771341b825b7446c59b30d3512e814153bcdcb7261c727e47ec50265"
 metafile = true
 
 [[files]]
+file = "mods/yungs-better-end-island.pw.toml"
+hash = "c42e11bfb7dd6ddefaf0af00ee34eeb2e868c6de1068463400ea5021874e3eef"
+metafile = true
+
+[[files]]
 file = "mods/yungs-better-jungle-temples.pw.toml"
 hash = "8467a2937ba8a904f780e43d4601402e986dc8deb7619edd9e22783c80d3fb24"
 metafile = true
@@ -993,6 +1038,26 @@ metafile = true
 [[files]]
 file = "mods/yungs-better-witch-huts.pw.toml"
 hash = "ded6262ae68c764f3cd5bbc02321f17deb93b2b366bb503d7fb1d9597c079fa4"
+metafile = true
+
+[[files]]
+file = "mods/yungs-bridges.pw.toml"
+hash = "73517dbde3c614f7bd0a158d4b4ab31bf9818a14db96361eb0075c4da6c9a695"
+metafile = true
+
+[[files]]
+file = "mods/yungs-cave-biomes.pw.toml"
+hash = "02b22f11fa1777ee275a784766340e35fdf4ff5f8c5c339157fb99c28d21eb1b"
+metafile = true
+
+[[files]]
+file = "mods/yungs-extras.pw.toml"
+hash = "1d808fb42609cd30390366ced222b4e1c34def5ab53d3e4a8787180b0c5e21dd"
+metafile = true
+
+[[files]]
+file = "mods/yungs-menu-tweaks.pw.toml"
+hash = "8ce18265a92e20dd0bd830682f5ae1ed518f220106190a5d7775498d1f3032d7"
 metafile = true
 
 [[files]]
