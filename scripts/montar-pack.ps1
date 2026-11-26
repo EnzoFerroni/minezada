@@ -113,17 +113,21 @@ while ($fila.Count) {
     Write-Host ('{0,-30} {1}' -f $p.slug, $v.version_number)
 }
 # Dependencia do CurseForge que o pack ja traz pelo Modrinth (id do CurseForge = id do Modrinth).
-$cfNoModrinth = @{ '419699' = 'lhGA9TYQ'; '531761' = 'MBAkmtvl' }  # Architectury API, Balm
+$cfNoModrinth = @{ '419699' = 'lhGA9TYQ'; '531761' = 'MBAkmtvl'; '570073' = 'G1hIVOrD' }  # Architectury API, Balm, Resourceful Lib
 $cfIds = @($cfPedidos | ForEach-Object { $_.Substring(3) }) + @($cfNoModrinth.Keys | Where-Object { $projs[$cfNoModrinth[$_]] })
-foreach ($chave in $cfPedidos) {
-    $cid = $chave.Substring(3)
+$cfFila = New-Object System.Collections.Queue
+$cfPedidos | ForEach-Object { $cfFila.Enqueue($_) }
+while ($cfFila.Count) {
+    $chave = $cfFila.Dequeue(); $cid = $chave.Substring(3)
+    if ($projs[$chave]) { continue }
     $m = Get-Cf "mods/$cid"
+    if (@($projs.Values | Where-Object { $_.p.slug -eq $m.slug -and -not $_.p.chave })) { throw "$($m.name) (cf:$cid) ja vem pelo Modrinth: coloque em `$cfNoModrinth" }
     if (-not $m.allowModDistribution) { throw "$($m.name) (cf:$cid): o autor nao libera download por outros programas; cada jogador teria que baixar na mao" }
     $cf = if ($fixas[$chave] -and -not $Atualizar) { Get-Cf "mods/$cid/files/$($fixas[$chave])" }
         else { Get-Cf "mods/$cid/files?gameVersion=$mc&modLoaderType=6&pageSize=50" | Where-Object releaseType -eq 1 | Select-Object -First 1 }
     if (-not $cf) { throw "$($m.name) (cf:$cid): sem arquivo release para $loader $mc" }
-    $faltam = @($cf.dependencies | Where-Object { $_.relationType -eq 3 -and "$($_.modId)" -notin $cfIds } | ForEach-Object modId)
-    if ($faltam) { throw "$($m.name) (cf:$cid) precisa de cf:$($faltam -join ', cf:') no mods.txt (ou do mesmo mod pelo Modrinth)" }
+    # Dependencia obrigatoria do CurseForge entra sozinha (se ja vem pelo Modrinth, va para $cfNoModrinth).
+    $cf.dependencies | Where-Object { $_.relationType -eq 3 -and "$($_.modId)" -notin $cfIds } | ForEach-Object { $cfIds += "$($_.modId)"; $cfFila.Enqueue("cf:$($_.modId)") }
     $url = if ($cf.downloadUrl) { $cf.downloadUrl } else { "https://edge.forgecdn.net/files/$([math]::Floor($cf.id / 1000))/$($cf.id % 1000)/$([uri]::EscapeDataString($cf.fileName))" }
     $projs[$chave] = [pscustomobject]@{ p = [pscustomobject]@{ slug = $m.slug; title = $m.name; icon_url = $m.logo.thumbnailUrl; chave = $chave; link = $m.links.websiteUrl; cf = "$cid $($cf.id)" }
         v = [pscustomobject]@{ version_number = $cf.displayName }; f = [pscustomobject]@{ filename = $cf.fileName; url = $url; hashes = @{ sha1 = ($cf.hashes | Where-Object algo -eq 1).value } }

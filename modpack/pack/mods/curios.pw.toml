@@ -1,0 +1,8 @@
+name = "Curios API"
+filename = "curios-neoforge-9.6.1+1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/vvuO3ImH/versions/8lywiRts/curios-neoforge-9.6.1%2B1.21.1.jar"
+hash-format = "sha1"
+hash = "0655348ff267e114dff016332ea7ed4527b43284"
