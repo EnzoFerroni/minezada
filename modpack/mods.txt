@@ -127,6 +127,15 @@ artifacts | Itens mágicos achados em baús de estruturas: asas de pena, bota de
 lootr | Cada jogador tem o próprio loot nos baús de estruturas: quem chega depois também ganha o tesouro.
 
 ## Estruturas
+dungeons-and-taverns | Tavernas, masmorras, casas de bruxa e mapas de tesouro vendidos por aldeões, no estilo vanilla.
+moogs-voyager-structures | Mais de 130 estruturas pequenas no estilo vanilla espalhadas pelo mundo.
+structory | Ruínas, acampamentos e construções abandonadas com clima e um pouco de história.
+structory-towers | Torres diferentes para cada bioma, com loot.
+philips-ruins | Ruínas antigas pelo mundo, com tesouros.
+yungs-bridges | Pontes de pedra e madeira que surgem sozinhas sobre rios.
+yungs-extras | Enfeites e estruturas pequenas pelo mundo: poços, ruínas de pedra, carroças.
+yungs-better-end-island | Ilha do dragão do End reformulada, com uma luta mais bonita.
+mes-moogs-end-structures | Estruturas no estilo vanilla espalhadas pelo End, que deixa de ser vazio.
 yungs-better-dungeons | Masmorras reformuladas: maiores, com armadilhas e tesouros melhores.
 yungs-better-mineshafts | Minas abandonadas que mudam conforme o bioma, com trilhos, elevadores e baús.
 yungs-better-strongholds | Fortaleza do End maior e mais perigosa, com bibliotecas e salas novas.
@@ -139,6 +148,7 @@ towns-and-towers | Vilas novas por bioma, torres de saqueadores e navios pelo mu
 explorify | Estruturas pequenas espalhadas pelo mundo (ruínas, acampamentos, poços) para dar vontade de explorar.
 
 ## Biomas, terreno e cavernas
+yungs-cave-biomes | Biomas novos de caverna no estilo vanilla, com blocos e coisas próprias no subsolo.
 biomes-o-plenty | Dezenas de biomas novos no mundo, com árvores, flores e plantas próprias.
 galosphere | Cavernas de cristal com minérios e minerais novos (prata, cristais) e itens de exploração.
 serene-seasons-plus | Addon do Serene Seasons: o dia e a noite mudam de tamanho com a estação, e a neve acumula e derrete de um jeito mais natural.
@@ -147,6 +157,7 @@ terralith | Quase 100 biomas novos no estilo vanilla: desfiladeiros, ilhas, flor
 tectonic | Terreno mais bonito e variado: montanhas altas, vales, rios largos e litoral mais natural.
 
 ## Interface e controles
+yungs-menu-tweaks | Menus mais fáceis de navegar (lista de mundos, servidores, pacotes de recursos).
 controlling | Busca nas teclas: em Opções → Controles, digite o nome da ação ou aperte a tecla para achar o que ela faz.
 mouse-tweaks | Arraste o mouse com o botão apertado para mover vários itens de uma vez.
 inventory-essentials | Organizar inventário e baús (botão do meio do mouse) e mover itens rápido com Shift.
@@ -165,6 +176,7 @@ easy-anvils | Bigorna sem o limite de "Caro demais" e com nomes coloridos.
 corpse | Ao morrer, seus itens ficam guardados num corpo no lugar da morte, sem sumir.
 
 ## Visual e ambiente
+travelers-titles | Título na tela ao entrar em um bioma ou dimensão novo, estilo RPG.
 fresh-animations | Pacote de recursos (já vem ligado): mobs com animações muito mais vivas, piscando e se mexendo.
 entity-model-features | Necessário para o Fresh Animations funcionar.
 3dskinlayers | As camadas da skin (jaqueta, chapéu) aparecem em 3D.
