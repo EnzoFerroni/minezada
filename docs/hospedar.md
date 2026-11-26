@@ -152,8 +152,8 @@ Configurado uma vez só:
 2. Token: https://github.com/settings/personal-access-tokens/new, com **Only select repositories** →
    `minezada-mundo` e **Repository permissions → Contents: Read and write**. Nada mais.
 3. Na pasta `minezada` do Drive, um arquivo `github.txt` com o token na primeira linha. Todo host usa o mesmo.
-4. No repositório do pack: Settings → Secrets and variables → Actions → **New repository secret**, nome
-   `MUNDO_TOKEN`, o mesmo token.
+4. No repositório do pack: Settings → Secrets and variables → Actions → aba do environment **producao**
+   (só libera os segredos no `main`), nome `MUNDO_TOKEN`, o mesmo token.
 5. Settings → Pages → Source: **GitHub Actions**.
 
 A Action **Pagina** olha a cada meia hora se chegou mundo novo, e o envio ainda pede ela na hora quando existe o
