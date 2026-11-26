@@ -1,0 +1,8 @@
+name = "Gabou's Libs"
+filename = "gaboulibs-neoforge-1.9.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/N8aGZtvj/versions/wnGOTFh4/gaboulibs-neoforge-1.9.jar"
+hash-format = "sha1"
+hash = "aa39c5645c0479dbd7a485432e9694c78ad6082a"
