@@ -21,6 +21,7 @@ create-ore-excavation | Máquinas que extraem minério de veios no chão usando 
 create-goggles | Capacetes com os óculos do engenheiro embutidos e backtank que serve de armadura.
 create-stuff-additions | Equipamentos com tecnologia do Create.
 createbetterfps | Mais FPS com shader ligado em bases grandes do Create.
+create-central-kitchen | Addon do Create: automatiza com máquinas as comidas de outros mods (Farmer's Delight e addons).
 interiors | Móveis novos no estilo do Create.
 
 ## Baús e armazenamento
@@ -62,6 +63,7 @@ artifacts | Itens mágicos achados em baús de estruturas: asas de pena, bota de
 lootr | Cada jogador tem o próprio loot nos baús de estruturas: quem chega depois também ganha o tesouro.
 
 ## Biomas e terreno
+serene-seasons-plus | Addon do Serene Seasons: o dia e a noite mudam de tamanho com a estação, e a neve acumula e derrete de um jeito mais natural.
 serene-seasons | Estações do ano: neve e lagos congelados no inverno, plantas que crescem melhor em certas estações.
 terralith | Quase 100 biomas novos no estilo vanilla: desfiladeiros, ilhas, florestas de cerejeira gigantes, cavernas novas.
 tectonic | Terreno mais bonito e variado: montanhas altas, vales, rios largos e litoral mais natural.
@@ -137,8 +139,13 @@ cubes-without-borders | Tela cheia sem bordas: em Opções → Vídeo, escolha o
 dynamic-torches | Luz dinâmica: tocha, lanterna e outros itens iluminam ao redor quando você os segura, com ou sem shader.
 map-atlases-forge | Atlas que junta seus mapas de papel em um livro. Receita: mapa preenchido, livro e slime ou garrafa de mel. Na hotbar ou na mão secundária, mostra os mapas como minimapa.
 corpse | Ao morrer, seus itens ficam guardados num corpo no lugar da morte, sem sumir.
+cultural-delights | Addon do Farmer's Delight: comidas de vários lugares do mundo.
+ends-delight | Addon do Farmer's Delight: comidas com coisas do End.
+oceans-delight | Addon do Farmer's Delight: comidas com coisas do mar.
+storage-delight | Addon do Farmer's Delight: móveis para a cozinha e outros cantos.
 farmers-delight | Culinária: plantações, panela, tábua de corte e dezenas de comidas novas.
 supplementaries | Blocos no estilo vanilla: potes, placas de direção, cata-vento, lanternas de parede e muito mais para construir.
+amendments | Do autor do Supplementaries: muda vários blocos vanilla.
 beautify | Decoração no estilo vanilla com modelos próprios para enfeitar as construções.
 mouse-tweaks | Arraste o mouse com o botão apertado para mover vários itens de uma vez.
 inventory-essentials | Organizar inventário e baús (botão do meio do mouse) e mover itens rápido com Shift.

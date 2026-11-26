@@ -1,0 +1,8 @@
+name = "Serene Seasons Plus"
+filename = "NeoForge-Version-Serene Seasons Plus-1.21.1-5.2.4.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/4Al4H3t9/versions/UbZsqCLP/NeoForge-Version-Serene%20Seasons%20Plus-1.21.1-5.2.4.1.jar"
+hash-format = "sha1"
+hash = "2cd61738024e66de8efb5cebe1382e74014b863b"
