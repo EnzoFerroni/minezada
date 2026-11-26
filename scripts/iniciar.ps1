@@ -115,7 +115,8 @@ function Configurar-Drive {
     $app = "$env:ProgramFiles\Google\Drive File Stream\launch.bat"
     if (-not (Test-Path $app)) {
         Write-Host 'Instalando o Google Drive...'
-        winget install -e --id Google.GoogleDrive --silent --accept-source-agreements --accept-package-agreements
+        # Out-Host: sem ele o texto do winget vira parte do caminho que a funcao devolve (e vai para o config.env).
+        winget install -e --id Google.GoogleDrive --silent --accept-source-agreements --accept-package-agreements | Out-Host
         # 1610/3010: o Windows espera um reinicio (ex: Drive desinstalado ha pouco) e o instalador recusa rodar.
         if (-not (Test-Path $app)) {
             Write-Host ''
