@@ -1,8 +1,8 @@
 name = "Geckolib"
-filename = "geckolib-neoforge-1.21.1-4.9.3.jar"
+filename = "geckolib-neoforge-1.21.1-4.9.4.jar"
 side = "both"
 
 [download]
-url = "https://cdn.modrinth.com/data/8BmcQJ2H/versions/Grwn5rUB/geckolib-neoforge-1.21.1-4.9.3.jar"
+url = "https://cdn.modrinth.com/data/8BmcQJ2H/versions/nxAPSFAR/geckolib-neoforge-1.21.1-4.9.4.jar"
 hash-format = "sha1"
-hash = "5cfe835472a5c5457ae9ac192d9d7b317454d5ac"
+hash = "75a73fab57b6bdc667a0d645922c2c5d6b9b77df"

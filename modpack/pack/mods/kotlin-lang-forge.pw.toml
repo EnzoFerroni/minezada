@@ -1,8 +1,8 @@
 name = "KotlinLangForge"
-filename = "KotlinLangForge-2.20.0-k2.4.21-3.0+neoforge.jar"
+filename = "KotlinLangForge-2.20.1-k2.4.21-3.0+neoforge.jar"
 side = "both"
 
 [download]
-url = "https://cdn.modrinth.com/data/1vrSzlao/versions/N9lKQPB3/KotlinLangForge-2.20.0-k2.4.21-3.0%2Bneoforge.jar"
+url = "https://cdn.modrinth.com/data/1vrSzlao/versions/vSEW1q8r/KotlinLangForge-2.20.1-k2.4.21-3.0%2Bneoforge.jar"
 hash-format = "sha1"
-hash = "186a60f9b3c74ce3022bbb2e1d8797096f26dc70"
+hash = "d5f0e1027e276105b3daef7df899aa9bb6336c04"

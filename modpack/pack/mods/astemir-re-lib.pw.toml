@@ -1,0 +1,8 @@
+name = "Astemir Re Lib"
+filename = "astemirlib_re-1.21.1-forge-1.2.988-SNAPSHOT.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/xMZpvyiF/versions/sRcfgtNX/astemirlib_re-1.21.1-forge-1.2.988-SNAPSHOT.jar"
+hash-format = "sha1"
+hash = "71f63725048a167a697f9179a9582d8d7b0bd957"

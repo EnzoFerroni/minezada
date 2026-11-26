@@ -25,7 +25,10 @@ function Get-Api($path) {
 
 $filtroMc = 'game_versions=' + [uri]::EscapeDataString("[`"$mc`"]")
 $filtro = 'loaders=' + [uri]::EscapeDataString("[`"$loader`"]") + "&$filtroMc"
-$pastas = @{ mod = 'mods'; resourcepack = 'resourcepacks'; shader = 'shaderpacks' }
+$pastas = @{ mod = 'mods'; resourcepack = 'resourcepacks'; shader = 'shaderpacks'; datapack = 'moonlight-global-datapacks' }
+# Datapacks (loader "datapack" no Modrinth): o Moonlight carrega a pasta global em todo mundo do servidor. O pacote
+# de recursos que vem junto (required-resource-pack) vai para o jogo como "<slug>-recursos", ja ligado.
+$datapacks = @('bubblellaneous')
 # So de servidor mesmo que o Modrinth aceite no cliente: o Chunky no jogo faz o Distant Horizons chamar a
 # API dele sem servidor rodando (crash ao entrar no mundo).
 $soServidor = @('chunky')
@@ -39,7 +42,7 @@ $opcionais = @{ 'distanthorizons' = 'Ver muito mais longe (montanhas no horizont
 # Fresh Animations em cima para os mobs). O jogar liga os desta lista ate em quem ja tinha options.txt.
 $rpLigados = @('fast-better-grass', 'simple-grass-flowers', 'better-leaves',
     '3d-crops', 'better-lanterns', 'cubic-sun-moon', 'fresh-waystones-texture', 'low-shield-pack', 'low-on-fire',
-    'fresh-animations', 'fresh-animations-extensions')
+    'fresh-animations', 'fresh-animations-extensions', 'bubblellaneous-recursos')
 # Versao presa (id da versao no Modrinth), vale ate com -Atualizar.
 # Accessories 1.1.0-beta.53: minimo que o Hamster aceita. O Aether embute a beta.48, que impede o
 # servidor de abrir; a avulsa tem prioridade sobre a embutida.
@@ -68,13 +71,14 @@ while ($fila.Count) {
     $p = Get-Api "project/$id"
     if ($vistos[$p.id]) { continue }
     $vistos[$p.id] = $true
-    $pasta = $pastas[$p.project_type]
+    $dp = $p.slug -in $datapacks
+    $pasta = $pastas[$(if ($dp) { 'datapack' } else { $p.project_type })]
     if (-not $pasta) { throw "$($p.slug): tipo $($p.project_type) nao suportado" }
     if ($presas[$p.slug]) { $v = Get-Api "version/$($presas[$p.slug])" }
     elseif ($fixas[$p.id] -and -not $Atualizar) { $v = Get-Api "version/$($fixas[$p.id])" }
     else {
         # Pacotes de recursos e shaders nao tem loader NeoForge: filtra so pela versao do jogo.
-        $vs = Get-Api "project/$($p.id)/version?$(if ($p.project_type -eq 'mod') { $filtro } else { $filtroMc })"
+        $vs = Get-Api "project/$($p.id)/version?$(if ($p.project_type -eq 'mod' -and -not $dp) { $filtro } else { $filtroMc })"
         $v = ($vs | Where-Object version_type -eq 'release' | Select-Object -First 1)
         if (-not $v) { $v = $vs | Select-Object -First 1 }
     }
@@ -84,7 +88,12 @@ while ($fila.Count) {
     $deps = @($v.dependencies | Where-Object { $_.dependency_type -eq 'required' -and $_.project_id } | ForEach-Object project_id) + @($depsExtras[$p.slug] | Where-Object { $_ })
     $deps | ForEach-Object { $fila.Enqueue($_) }
     $projs[$p.id] = [pscustomobject]@{ p = $p; v = $v; f = $f; pasta = $pasta; deps = $deps
-        cliente = $p.client_side -ne 'unsupported' -and $p.slug -notin $soServidor; servidor = $p.server_side -ne 'unsupported' -and $p.slug -notin $soCliente }
+        cliente = $p.client_side -ne 'unsupported' -and $p.slug -notin $soServidor -and -not $dp; servidor = $p.server_side -ne 'unsupported' -and $p.slug -notin $soCliente }
+    $rf = if ($dp) { $v.files | Where-Object file_type -eq 'required-resource-pack' | Select-Object -First 1 }
+    if ($rf) {
+        $projs["$($p.id)-recursos"] = [pscustomobject]@{ p = [pscustomobject]@{ slug = "$($p.slug)-recursos"; title = "$($p.title) (recursos)"; icon_url = $p.icon_url }
+            v = $v; f = $rf; pasta = 'resourcepacks'; deps = @(); cliente = $true; servidor = $false }
+    }
     Write-Host ('{0,-30} {1}' -f $p.slug, $v.version_number)
 }
 
