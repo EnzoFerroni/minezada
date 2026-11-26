@@ -1,0 +1,38 @@
+{
+  "entity.jellyfish.idle": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "minecraft:entity.chicken.ambient",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.jellyfish.swim": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "minecraft:entity.generic.swim",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.jellyfish.hurt": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "minecraft:entity.chicken.hurt",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.jellyfish.death": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "minecraft:entity.chicken.death",
+        "type": "event"
+      }
+    ]
+  }
+}

@@ -1288,108 +1288,124 @@ hash = "8bade7ae05147635e3a277c588ecab63154665256e1a5eb5fcfb61f515993ff0"
 preserve = true
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/alexsmobs/models/item/comb_jelly_bucket.json"
+file = "resourcepacks/modo-patinho/assets/alexsmobs/models/item/comb_jelly_bucket.json"
 hash = "10be24352c6a8455188b92ca262b864cea26ad481e2f3411d60bb123f8da76b8"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/comb_jelly_blue.png"
+file = "resourcepacks/modo-patinho/assets/alexsmobs/sounds.json"
+hash = "7799f79f71df3a70754fd9aca9faa22f245992945f6de0690c48cec9b3abf6e9"
+
+[[files]]
+file = "resourcepacks/modo-patinho/assets/alexsmobs/textures/entity/comb_jelly_blue.png"
+hash = "667b079223fb5b16e2fa75a1e431c10a843552d0df700c25de3cefa165754e50"
+
+[[files]]
+file = "resourcepacks/modo-patinho/assets/alexsmobs/textures/entity/comb_jelly_green.png"
+hash = "667b079223fb5b16e2fa75a1e431c10a843552d0df700c25de3cefa165754e50"
+
+[[files]]
+file = "resourcepacks/modo-patinho/assets/alexsmobs/textures/entity/comb_jelly_overlay.png"
 hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/comb_jelly_green.png"
+file = "resourcepacks/modo-patinho/assets/alexsmobs/textures/entity/comb_jelly_red.png"
+hash = "667b079223fb5b16e2fa75a1e431c10a843552d0df700c25de3cefa165754e50"
+
+[[files]]
+file = "resourcepacks/modo-patinho/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_ace.png"
 hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/comb_jelly_overlay.png"
+file = "resourcepacks/modo-patinho/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_bi.png"
 hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/comb_jelly_red.png"
+file = "resourcepacks/modo-patinho/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_brazil.png"
 hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_ace.png"
+file = "resourcepacks/modo-patinho/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_nonbi.png"
 hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_bi.png"
+file = "resourcepacks/modo-patinho/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_rainbow.png"
 hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_brazil.png"
+file = "resourcepacks/modo-patinho/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_trans.png"
 hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_nonbi.png"
-hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
-
-[[files]]
-file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_rainbow.png"
-hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
-
-[[files]]
-file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_trans.png"
-hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
-
-[[files]]
-file = "resourcepacks/sem-agua-viva/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_weezer.png"
+file = "resourcepacks/modo-patinho/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_weezer.png"
 hash = "3c6c50f94ab35e9f96c772731fe6b7950048179bc81b8ab0396cc1edbde89163"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/aquamirae/models/item/jellyfish_jelly.json"
+file = "resourcepacks/modo-patinho/assets/aquamirae/models/item/jellyfish_jelly.json"
 hash = "f9a19ae4ad3c25c933a4a110cde5f333de763c1563560630f256d54badec0a4c"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/minecraft/lang/pt_br.json"
-hash = "56c5c60de7d16d51a80b4ab107a0b4a49fe7f8c5b5c9eb577db5e2f97d19f377"
+file = "resourcepacks/modo-patinho/assets/minecraft/lang/pt_br.json"
+hash = "bf3c1f7021a35574bf701d27c9dbe0a9c9a95202310027e540876b64d15a2697"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/naturalist/models/item/jellyfish_bucket.json"
+file = "resourcepacks/modo-patinho/assets/naturalist/emf/cem/jellyfish.jem"
+hash = "c6f7b38f29124145e0b42b5d2f08b7a00a555f30dd282e8eefba02a79223bf06"
+
+[[files]]
+file = "resourcepacks/modo-patinho/assets/naturalist/models/item/jellyfish_bucket.json"
 hash = "10be24352c6a8455188b92ca262b864cea26ad481e2f3411d60bb123f8da76b8"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/naturalist/models/item/variant/jellyfish_bucket/blue.json"
+file = "resourcepacks/modo-patinho/assets/naturalist/models/item/variant/jellyfish_bucket/blue.json"
 hash = "10be24352c6a8455188b92ca262b864cea26ad481e2f3411d60bb123f8da76b8"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/naturalist/models/item/variant/jellyfish_bucket/green.json"
+file = "resourcepacks/modo-patinho/assets/naturalist/models/item/variant/jellyfish_bucket/green.json"
 hash = "10be24352c6a8455188b92ca262b864cea26ad481e2f3411d60bb123f8da76b8"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/naturalist/models/item/variant/jellyfish_bucket/orange.json"
+file = "resourcepacks/modo-patinho/assets/naturalist/models/item/variant/jellyfish_bucket/orange.json"
 hash = "10be24352c6a8455188b92ca262b864cea26ad481e2f3411d60bb123f8da76b8"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/naturalist/models/item/variant/jellyfish_bucket/pink.json"
+file = "resourcepacks/modo-patinho/assets/naturalist/models/item/variant/jellyfish_bucket/pink.json"
 hash = "10be24352c6a8455188b92ca262b864cea26ad481e2f3411d60bb123f8da76b8"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/naturalist/models/item/variant/jellyfish_bucket/white.json"
+file = "resourcepacks/modo-patinho/assets/naturalist/models/item/variant/jellyfish_bucket/white.json"
 hash = "10be24352c6a8455188b92ca262b864cea26ad481e2f3411d60bb123f8da76b8"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/naturalist/textures/entity/jellyfish/blue.png"
+file = "resourcepacks/modo-patinho/assets/naturalist/sounds.json"
+hash = "1bdf6e9cba93e35ba22a0530b7345e18d6702aa47286f139c8818a5070c10121"
+
+[[files]]
+file = "resourcepacks/modo-patinho/assets/naturalist/textures/entity/jellyfish/blue.png"
 hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/naturalist/textures/entity/jellyfish/green.png"
+file = "resourcepacks/modo-patinho/assets/naturalist/textures/entity/jellyfish/green.png"
 hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/naturalist/textures/entity/jellyfish/orange.png"
+file = "resourcepacks/modo-patinho/assets/naturalist/textures/entity/jellyfish/orange.png"
 hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/naturalist/textures/entity/jellyfish/pink.png"
+file = "resourcepacks/modo-patinho/assets/naturalist/textures/entity/jellyfish/pink.png"
 hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/assets/naturalist/textures/entity/jellyfish/white.png"
+file = "resourcepacks/modo-patinho/assets/naturalist/textures/entity/jellyfish/white.png"
 hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
 
 [[files]]
-file = "resourcepacks/sem-agua-viva/pack.mcmeta"
-hash = "64a38d06d6c1c0c62aae8e325b2bd8e28a7e462d4d7303797a81b076f9e2bc83"
+file = "resourcepacks/modo-patinho/assets/naturalist/textures/entity/patinho.png"
+hash = "71c10e56771c695adc6944c964ce0b6d4b73b5e223769abe73f86965c6131ce0"
+
+[[files]]
+file = "resourcepacks/modo-patinho/pack.mcmeta"
+hash = "0656f5c33b2bf3d4382bf52d3bf5cfaf732c2a7a241973ad10e2ec698343ab45"
 
 [[files]]
 file = "shaderpacks/ComplementaryReimagined_r5.10.zip.txt"
