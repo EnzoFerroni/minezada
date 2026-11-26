@@ -12,7 +12,7 @@ Modpack e servidor de Minecraft 1.21.1. O selo acima diz se tem alguém hospedan
 irm https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.ps1 | iex
 ```
 
-**Mac**: abra o **Terminal** e cole:
+**Mac** ou **Linux** (o Linux ainda não foi testado em uma máquina de verdade): abra o **Terminal** e cole:
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.sh | bash

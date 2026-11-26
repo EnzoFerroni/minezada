@@ -6,7 +6,8 @@
 irm https://raw.githubusercontent.com/EnzoFerroni/minezada/main/hospedar.ps1 | iex
 ```
 
-**Mac** (Terminal)
+**Mac** ou **Linux** (Terminal; no Linux ainda não testado em uma máquina de verdade, e o Google Drive não tem app:
+use uma pasta sincronizada sua em `SYNC_DIR` no `config.env`, ou o mundo fica só nessa máquina)
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/hospedar.sh | bash
