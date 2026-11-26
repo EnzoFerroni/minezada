@@ -9,7 +9,11 @@ dir="$HOME/Minezada-servidor"
 if [ "$(uname -s)" = "Darwin" ] && ! xcode-select -p >/dev/null 2>&1; then
   echo "Instalando as ferramentas de linha de comando da Apple: clique em 'Instalar' na janela que abriu."
   xcode-select --install >/dev/null 2>&1 || true
-  until xcode-select -p >/dev/null 2>&1; do sleep 5; done
+  n=0
+  until xcode-select -p >/dev/null 2>&1; do
+    n=$((n + 1)); [ $n -le 120 ] || { echo "ERRO: ferramentas da Apple nao instaladas. Instale e rode de novo."; exit 1; }
+    sleep 5
+  done
 fi
 
 if [ -d "$dir/.git" ]; then

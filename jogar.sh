@@ -34,9 +34,11 @@ baixar_prism_mac() {
   if [ -n "${3:-}" ] && [ "$(shasum -a 256 "$tmp/prism.zip" | awk '{print $1}')" != "$3" ]; then
     rm -rf "$tmp"; echo "ERRO: o launcher baixado nao confere (checksum). Avise o Enzo."; exit 1
   fi
+  # Extrai antes de apagar o launcher atual: disco cheio ou zip ruim nao deixa o jogador sem nada.
+  ditto -x -k "$tmp/prism.zip" "$tmp/x" || { rm -rf "$tmp"; echo "ERRO: nao deu para extrair o launcher (disco cheio?)."; exit 1; }
   mkdir -p "$2"
   rm -rf "$2/Prism Launcher.app"
-  ditto -x -k "$tmp/prism.zip" "$2"
+  mv "$tmp/x/Prism Launcher.app" "$2/"
   rm -rf "$tmp"
 }
 
@@ -50,7 +52,8 @@ if [ "$(uname -s)" = "Darwin" ]; then
     if [ -z "$app" ]; then
       echo "Instalando o Prism Launcher..."
       url="$(curl -fsSL https://api.github.com/repos/PrismLauncher/PrismLauncher/releases/latest \
-        | grep -o 'https://[^"]*PrismLauncher-macOS-[0-9.]*\.zip' | head -n 1)"
+        | grep -o 'https://[^"]*PrismLauncher-macOS-[0-9.]*\.zip' | head -n 1)" || true
+      [ -n "$url" ] || { echo "ERRO: o GitHub nao respondeu (limite de acessos da rede). Espere uns minutos e rode de novo."; exit 1; }
       baixar_prism_mac "$url" "$HOME/Applications"
       app="$HOME/Applications/Prism Launcher.app"
     fi
@@ -85,7 +88,11 @@ fi
 # (ele regravaria instance.cfg e mmc-pack.json com o que tem na memoria).
 if [ $atalho = 1 ] && [ "$(uname -s)" = "Darwin" ]; then
   if pgrep -f 'java.*instances/Minezada' >/dev/null; then open -n -a "$app" --args --launch Minezada; exit 0; fi
-  if pgrep -f "$app/Contents/MacOS/" >/dev/null; then osascript -e "tell application \"$app\" to quit" >/dev/null 2>&1 || true; fi
+  if pgrep -f "$app/Contents/MacOS/" >/dev/null; then
+    osascript -e "tell application \"$app\" to quit" >/dev/null 2>&1 || true
+    # O quit e assincrono: o Prism regrava a instancia ao sair, entao espera ele fechar.
+    for _ in $(seq 1 20); do pgrep -f "$app/Contents/MacOS/" >/dev/null || break; sleep 0.5; done
+  fi
 fi
 
 # 3. Instancia: extrai direto na pasta do Prism (sem dialogo). Preserva mundo, opcoes e servidores do jogador.
