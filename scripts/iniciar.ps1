@@ -237,6 +237,8 @@ if (-not $Rodar) {
         if ($r -ne 's') { throw 'EULA nao aceito.' }
         Set-Content $eula 'eula=true'
     }
+    # Livro de missoes: apaga o antigo antes de copiar (capitulo que saiu do repo ficava sem nome). O progresso fica no mundo.
+    Remove-Item -Recurse -Force (Join-Path $server 'config\ftbquests\quests') -ErrorAction SilentlyContinue
     Copy-Item (Join-Path $root 'server-config\*') $server -Recurse -Force
 
     # 5. Mundo da pasta sincronizada, com trava para so um host por vez.

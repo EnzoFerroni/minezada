@@ -80,6 +80,8 @@ main() {
     [ "$r" = "s" ] || die "EULA nao aceito."
     echo 'eula=true' > "$server/eula.txt"
   fi
+  # Livro de missoes: apaga o antigo antes de copiar (capitulo que saiu do repo ficava sem nome). O progresso fica no mundo.
+  rm -rf "$server/config/ftbquests/quests"
   cp -R "$root"/server-config/. "$server/"
 
   # 5. Mundo da pasta sincronizada, com trava para so um host por vez.
