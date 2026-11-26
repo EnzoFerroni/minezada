@@ -8,7 +8,7 @@
     {
       "part": "body",
       "id": "patinho",
-      "attach": true,
+      "attach": false,
       "invertAxis": "xy",
       "translate": [
         0,
@@ -129,6 +129,51 @@
           ]
         }
       ]
+    },
+    {
+      "part": "inflation",
+      "id": "esconde_inflation",
+      "attach": false
+    },
+    {
+      "part": "tentacles",
+      "id": "esconde_tentacles",
+      "attach": false
+    },
+    {
+      "part": "skirt",
+      "id": "esconde_skirt",
+      "attach": false
+    },
+    {
+      "part": "front",
+      "id": "esconde_front",
+      "attach": false
+    },
+    {
+      "part": "back",
+      "id": "esconde_back",
+      "attach": false
+    },
+    {
+      "part": "left",
+      "id": "esconde_left",
+      "attach": false
+    },
+    {
+      "part": "right",
+      "id": "esconde_right",
+      "attach": false
+    },
+    {
+      "part": "bone",
+      "id": "esconde_bone",
+      "attach": false
+    },
+    {
+      "part": "bone_r",
+      "id": "esconde_bone_r",
+      "attach": false
     }
   ]
 }
