@@ -1,0 +1,8 @@
+name = "Dimensional Dungeons"
+filename = "dimdungeons-203-neoforge-1.21.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/Q8XlZjYF/versions/mJascdq9/dimdungeons-203-neoforge-1.21.0.jar"
+hash-format = "sha1"
+hash = "e40d7532ab81a06bd21bd4fcede85d6cd83a9e3b"

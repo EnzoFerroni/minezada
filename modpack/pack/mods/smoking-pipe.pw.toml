@@ -1,0 +1,12 @@
+name = "Smoking Pipe"
+filename = "smokingpipe-1.3.0.jar"
+side = "both"
+
+[download]
+url = "https://edge.forgecdn.net/files/9381/474/smokingpipe-1.3.0.jar"
+hash-format = "sha1"
+hash = "bb1a7c803b3094b34a62568c13f3a7786fdfd25f"
+
+[update.curseforge]
+project-id = 1410391
+file-id = 9381474

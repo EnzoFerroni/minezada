@@ -40,6 +40,8 @@ veinminer-client | Tecla do VeinMiner e contorno do que vai quebrar. Segure a te
 dmr | Dragões soltos pelo mundo (no mundo normal, no Nether e no End). Dome dando peixe, monte e voe. Faça um apito para chamar o seu dragão de qualquer lugar; ele também carrega baú. Ovo: coloque no chão e clique com o botão direito para chocar. Dragões de biomas diferentes cruzam e geram híbridos.
 
 ## Dimensões
+eternal-starlight | Dimensão mágica e misteriosa sob a luz das estrelas.
+dimensional-dungeons | Uma dimensão de masmorras infinitas que se renovam.
 cf:227639 | Twilight Forest: dimensão mágica de floresta eterna, com chefes e uma progressão de aventura.
 aether | Uma dimensão no céu, com ilhas flutuantes, mobs, chefes e itens novos. Portal: moldura de glowstone e um balde de água dentro.
 deep-aether | Mais biomas, mobs, chefe e itens dentro do Aether.
@@ -52,6 +54,10 @@ nullscape | End renovado: ilhas e terreno novos depois do dragão.
 galosphere | Cavernas de cristal com minérios e minerais novos (prata, cristais) e itens de exploração.
 
 ## Mobs e animais
+cf:1635121 | Alex's Mobs Continued: mais de 85 bichos novos, incluindo gorila e macaco-prego.
+cf:602059 | Friends&Foes: bichos que perderam as votações da Mojang, como o golem de cobre e o moobloom.
+critters-and-companions | Bichinhos novos para o mundo.
+lets-do-wildernature | Animais selvagens, caça, recompensas e troféus.
 archies-dinosaurs | Dinossauros pelo mundo, de herbívoros grandes a predadores.
 ribbits | Vilas de sapos nos pântanos, com sapos músicos.
 naturalist | Dezenas de animais realistas (urso, cervo, leão, elefante, borboletas, cobras) pelo mundo.
@@ -128,6 +134,19 @@ skinrestorer | Mostra a skin de cada um no servidor, mesmo em rede que bloqueia 
 customskinloader | Busca a skin de cada jogador direto no jogo. Se o servidor não conseguir as skins (limite da Mojang em rede compartilhada, como na faculdade), elas continuam aparecendo.
 
 ## Mundo e facilidade
+cf:298187 | Building Gadgets: ferramentas para construir grande (vários blocos de uma vez, copiar e colar construções, trocar blocos em área).
+effortless-building | Espelho, repetição e formas ao construir. Funciona no modo sobrevivência.
+macaws-furniture | Móveis: guarda-roupas, gavetas, cadeiras, mesas, sofás, pias.
+macaws-roofs | Telhados de verdade no lugar de escadas.
+macaws-windows | Janelas, vitrais, persianas, venezianas e cortinas.
+macaws-doors | Portas de todas as madeiras e portas diferentes (faroeste, garagem, shoji).
+macaws-bridges | Pontes.
+macaws-fences-and-walls | Cercas, muros e portões no estilo vanilla.
+handcrafted | Móveis no estilo vanilla para deixar a casa com cara de lar.
+cf:277616 | Spice of Life Carrot Edition: cada comida nova que você prova dá corações extras de vida.
+cf:1410391 | Smoking Pipe: cachimbo para fumar, que ainda dá um pouco de experiência.
+ciggycraft | Tabaco que vira cigarro para fumar.
+cf:896915 | Tobacconist: plantar, curar, misturar e fumar tabaco.
 mystical-agriculture | Plantações que dão minérios e materiais (mais de 150 tipos).
 cf:231484 | Cooking for Blockheads: cozinha montada em blocos que mostra o que dá para fazer com o que você tem.
 supplementaries-squared | Conteúdo extra do Supplementaries que não coube no mod principal.
