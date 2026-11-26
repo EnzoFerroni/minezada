@@ -771,6 +771,11 @@ hash = "7130772974f1b27e3638182e59cd09773f1fa9a1348d570016a08663260664e2"
 metafile = true
 
 [[files]]
+file = "mods/slice-and-dice.pw.toml"
+hash = "c09806ef5351e665f8580abbf39fe543052ddfd0be8218de06b07d3f4c55fc50"
+metafile = true
+
+[[files]]
 file = "mods/smoking-pipe.pw.toml"
 hash = "c11366dc2acbe78bba7e0e68b925aa57100be32fb63af7885439b7d3eebe5a33"
 metafile = true
