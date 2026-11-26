@@ -1,0 +1,62 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "colecionador"
+	group: ""
+	icon: { id: "minecraft:diamond" }
+	id: "CED654CD8429AD9B"
+	order_index: 20
+	quest_links: [ ]
+	quests: [
+		{
+			id: "030337DA57D9612C"
+			rewards: [{ id: "698A3902F94D106F", item: { count: 2, id: "minecraft:diamond_block" }, type: "item" }]
+			tasks: [{ id: "CC5707AC1B0C5CEE", item: { count: 64, id: "minecraft:diamond" }, type: "item" }]
+			x: 0d
+			y: 0d
+		}
+		{
+			dependencies: ["030337DA57D9612C"]
+			id: "B70E650A8D2869D1"
+			tasks: [{ id: "E1EBA5FCB9F2E9D2", item: { count: 1, id: "minecraft:netherite_ingot" }, type: "item" }]
+			x: 1.5d
+			y: 0d
+		}
+		{
+			id: "FD39318A46A4A28E"
+			tasks: [{ id: "E629C2CDB014656C", item: { count: 1, id: "minecraft:totem_of_undying" }, type: "item" }]
+			x: 3d
+			y: 0d
+		}
+		{
+			id: "7A5E4996923A7CA6"
+			tasks: [{ id: "9E3C14AF5B54450A", item: { count: 1, id: "minecraft:trident" }, type: "item" }]
+			x: 4.5d
+			y: 0d
+		}
+		{
+			id: "2A1B99114C0C5D62"
+			tasks: [{ id: "00973F710748F588", item: { count: 1, id: "minecraft:elytra" }, type: "item" }]
+			x: 0d
+			y: 1.5d
+		}
+		{
+			id: "2E2F0B64C34BD002"
+			tasks: [{ id: "7D91CA2794C1947E", item: { count: 1, id: "minecraft:dragon_head" }, type: "item" }]
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			id: "8009A0ADFF3F42CE"
+			tasks: [{ id: "8FAB9A380861ED18", item: { count: 1, id: "minecraft:nether_star" }, type: "item" }]
+			x: 3d
+			y: 1.5d
+		}
+		{
+			id: "33C97891F98C6AEA"
+			tasks: [{ id: "C1D4A18EF074F55E", item: { count: 1, id: "minecraft:beacon" }, type: "item" }]
+			x: 4.5d
+			y: 1.5d
+		}
+	]
+}

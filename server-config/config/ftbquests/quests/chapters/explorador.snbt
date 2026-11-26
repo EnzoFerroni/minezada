@@ -1,0 +1,138 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "explorador"
+	group: ""
+	icon: { id: "explorerscompass:explorerscompass" }
+	id: "B99D037DDCE38331"
+	order_index: 18
+	quest_links: [ ]
+	quests: [
+		{
+			id: "FC444AD0D6718BCE"
+			tasks: [{ id: "498A2F01BBEDE5C2", structure: "minecraft:ancient_city", type: "structure" }]
+			x: 0d
+			y: 0.0d
+		}
+		{
+			id: "386B8F653AF78C9F"
+			tasks: [{ id: "D36F93934442DB18", structure: "minecraft:trial_chambers", type: "structure" }]
+			x: 1.5d
+			y: 0d
+		}
+		{
+			id: "D61B7CF1CFD769E2"
+			tasks: [{ id: "8371CE955BECB7B3", structure: "minecraft:mansion", type: "structure" }]
+			x: 3d
+			y: 0d
+		}
+		{
+			id: "4DA558A35B923119"
+			tasks: [{ id: "E4965E665BAC82C5", structure: "betterstrongholds:stronghold", type: "structure" }]
+			x: 4.5d
+			y: 0d
+		}
+		{
+			id: "B9E1CD7CB12EDA6F"
+			tasks: [{ id: "B381C9A36C74C7F7", structure: "betterfortresses:fortress", type: "structure" }]
+			x: 0d
+			y: 1.5d
+		}
+		{
+			id: "CBF994F1CA99747B"
+			tasks: [{ id: "6816111CD771C73C", structure: "betteroceanmonuments:ocean_monument", type: "structure" }]
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			id: "7E4A666B5BBF16D1"
+			tasks: [{ id: "57C136BD0EF3B36A", structure: "dungeons_arise:coliseum", type: "structure" }]
+			x: 3d
+			y: 1.5d
+		}
+		{
+			id: "558BFAC6C1C4221A"
+			tasks: [{ id: "D20CCC2D4E5E75EC", structure: "dungeons_arise:illager_fort", type: "structure" }]
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			id: "2EA4A33F6B692D20"
+			tasks: [{ id: "1BCCF321D9398970", structure: "dungeons_arise:undead_pirate_ship", type: "structure" }]
+			x: 0d
+			y: 3.0d
+		}
+		{
+			id: "296357EC3B8AF529"
+			tasks: [{ id: "6B921FA8A0F9C176", structure: "dungeons_arise:shiraz_palace", type: "structure" }]
+			x: 1.5d
+			y: 3d
+		}
+		{
+			id: "350F6088D3D05B53"
+			tasks: [{ id: "8BA01094A5F1F004", structure: "dungeons_arise:plague_asylum", type: "structure" }]
+			x: 3d
+			y: 3d
+		}
+		{
+			id: "6E9F2E9155DD6AE9"
+			tasks: [{ id: "53BE59BB995635D0", structure: "dungeons_arise:small_blimp", type: "structure" }]
+			x: 4.5d
+			y: 3d
+		}
+		{
+			id: "C0FDDDFE5251C5BF"
+			tasks: [{ id: "2B11E661211C0C7D", structure: "aquamirae:pirate_ship", type: "structure" }]
+			x: 0d
+			y: 4.5d
+		}
+		{
+			id: "079C05DAA7488BAE"
+			tasks: [{ id: "702FCCE8232D52EE", structure: "mowziesmobs:wrought_chamber", type: "structure" }]
+			x: 1.5d
+			y: 4.5d
+		}
+		{
+			id: "6C1B45322779964A"
+			tasks: [{ id: "7DBB3636B3180DCE", structure: "ribbits:ribbit_village", type: "structure" }]
+			x: 3d
+			y: 4.5d
+		}
+		{
+			id: "BE785FE65989A919"
+			tasks: [{ id: "E4DE0B2AB9F409A6", structure: "incendium:forbidden_castle", type: "structure" }]
+			x: 4.5d
+			y: 4.5d
+		}
+		{
+			id: "6476BB4EF3352AB9"
+			tasks: [{ id: "8C21FC57EF2F443B", structure: "incendium:piglin_village", type: "structure" }]
+			x: 0d
+			y: 6.0d
+		}
+		{
+			id: "D2132A11A04149AA"
+			tasks: [{ id: "300D036A7C8EE013", structure: "explorify:tavern", type: "structure" }]
+			x: 1.5d
+			y: 6d
+		}
+		{
+			id: "34ECE984C788A76B"
+			tasks: [{ id: "F5C389A5FCC896D3", structure: "friendsandfoes:citadel", type: "structure" }]
+			x: 3d
+			y: 6d
+		}
+		{
+			id: "FEDA6475F8D84E20"
+			tasks: [{ id: "3C54F7DB6EC80E1E", structure: "ec_ad:big_crater", type: "structure" }]
+			x: 4.5d
+			y: 6d
+		}
+		{
+			id: "E98AD54E6122D0FB"
+			tasks: [{ id: "9E75159D73F365BB", structure: "nullscape:dragon_skeleton", type: "structure" }]
+			x: 0d
+			y: 7.5d
+		}
+	]
+}

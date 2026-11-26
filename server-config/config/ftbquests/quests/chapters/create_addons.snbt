@@ -1,0 +1,42 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "create_addons"
+	group: ""
+	icon: { id: "create_jetpack:jetpack" }
+	id: "B52FDEAA5730E688"
+	order_index: 15
+	quest_links: [ ]
+	quests: [
+		{
+			id: "07F95DF54233143C"
+			tasks: [{ id: "D3CA3A6BF5CE0020", item: { count: 1, id: "create_jetpack:jetpack" }, type: "item" }]
+			x: 0d
+			y: 0.0d
+		}
+		{
+			id: "38B4B8D64B859B04"
+			tasks: [{ id: "2525B69EDA944C67", type: "checkmark" }]
+			x: 1.5d
+			y: 0d
+		}
+		{
+			id: "6B817114074B4272"
+			tasks: [{ id: "F0C665D15F211C17", type: "checkmark" }]
+			x: 3d
+			y: 0d
+		}
+		{
+			id: "325CB21188010A9A"
+			tasks: [{ id: "E1E2A89B63117772", item: { count: 1, id: "createaddition:electric_motor" }, type: "item" }]
+			x: 4.5d
+			y: 0d
+		}
+		{
+			id: "D77B50F4C3ED884A"
+			tasks: [{ id: "E9B3B3F484C814CC", type: "checkmark" }]
+			x: 0d
+			y: 1.5d
+		}
+	]
+}
