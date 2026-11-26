@@ -26,104 +26,104 @@
 			y: 0d
 		}
 		{
-			dependencies: ["44D6D9BE5B35C3AF"]
+			dependencies: ["493065C7669E9089"]
 			id: "73D4274DF4F494A1"
 			rewards: [{ id: "5CBC8F3B7E931F3C", type: "xp", xp: 20 }, { id: "2ACF735524A51BDC", item: { count: 16, id: "minecraft:coal" }, type: "item" }]
 			tasks: [{ id: "72725D422ED37694", item: { count: 1, id: "ironfurnaces:iron_furnace" }, type: "item" }]
-			x: 3d
-			y: 0d
+			x: 1.5d
+			y: 1.5d
 		}
 		{
-			dependencies: ["73D4274DF4F494A1"]
+			dependencies: ["493065C7669E9089"]
 			id: "454093E878F435FA"
 			rewards: [{ id: "29AD350C759B8F90", type: "xp", xp: 20 }]
 			tasks: [{ id: "692FF922509582A2", type: "checkmark" }]
-			x: 4.5d
-			y: 0d
+			x: 1.5d
+			y: 3d
 		}
 		{
-			dependencies: ["454093E878F435FA"]
+			dependencies: ["493065C7669E9089"]
 			id: "1486A30A2C662DEA"
 			rewards: [{ id: "1FCD156FFAE431F4", type: "xp", xp: 20 }]
 			tasks: [{ id: "2465699976CE4A92", type: "checkmark" }]
-			x: 6d
-			y: 0d
+			x: 1.5d
+			y: 4.5d
 		}
 		{
-			dependencies: ["1486A30A2C662DEA"]
+			dependencies: ["493065C7669E9089"]
 			id: "1DF15A7537E1459C"
 			rewards: [{ id: "3FD07BF591497DAC", type: "xp", xp: 20 }]
 			tasks: [{ id: "07E2160D858A684F", item: { count: 1, id: "comforts:sleeping_bag_white" }, type: "item" }]
-			x: 7.5d
-			y: 0d
+			x: 1.5d
+			y: 6d
 		}
 		{
-			dependencies: ["1DF15A7537E1459C"]
+			dependencies: ["493065C7669E9089"]
 			id: "051B132375F0969D"
 			rewards: [{ id: "04C1425AE4D3F381", type: "xp", xp: 20 }]
 			tasks: [{ id: "4712901379BC13EE", type: "checkmark" }]
-			x: 9d
-			y: 0d
+			x: 1.5d
+			y: 7.5d
 		}
 		{
-			dependencies: ["051B132375F0969D"]
+			dependencies: ["493065C7669E9089"]
 			id: "7AA61CED22BB0609"
 			rewards: [{ id: "67D9DE4CE03354DE", type: "xp", xp: 20 }]
 			tasks: [{ id: "42D8D66205AAA935", item: { count: 16, id: "minecraft:torch" }, type: "item" }]
-			x: 10.5d
-			y: 0d
+			x: 1.5d
+			y: 9d
 		}
 		{
-			dependencies: ["7AA61CED22BB0609"]
+			dependencies: ["493065C7669E9089"]
 			id: "737CADF831F74384"
 			rewards: [{ id: "2816B936290ECDE2", type: "xp", xp: 20 }]
 			tasks: [{ id: "2B777EFD4ABF1713", type: "checkmark" }]
-			x: 12d
-			y: 0d
+			x: 1.5d
+			y: 10.5d
 		}
 		{
-			dependencies: ["737CADF831F74384"]
+			dependencies: ["493065C7669E9089"]
 			id: "1B2A7FBEB0D7E424"
 			rewards: [{ id: "711971793288C308", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "27AFAE9C2A9CFB54", type: "checkmark" }]
-			x: 13.5d
-			y: 0d
+			x: 1.5d
+			y: 12d
 		}
 		{
-			dependencies: ["1B2A7FBEB0D7E424"]
+			dependencies: ["44D6D9BE5B35C3AF"]
 			id: "205E6C0F5C30753E"
 			rewards: [{ id: "12B7E673E097BF3E", type: "xp", xp: 20 }]
 			tasks: [{ id: "6D7BB6CDA133F496", item: { count: 1, id: "advancednetherite:netherite_diamond_ingot" }, type: "item" }]
-			x: 15d
+			x: 3d
 			y: 0d
 		}
 		{
-			dependencies: ["205E6C0F5C30753E"]
+			dependencies: ["493065C7669E9089"]
 			id: "1F472D77AC4B59EA"
 			rewards: [{ id: "6211ECEF17ED7A47", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "5F769B3B11342D68", item: { count: 1, id: "buildinggadgets2:gadget_building" }, type: "item" }]
-			x: 16.5d
-			y: 0d
+			x: 1.5d
+			y: 13.5d
 		}
 		{
-			dependencies: ["1F472D77AC4B59EA"]
+			dependencies: ["493065C7669E9089"]
 			id: "029100AF745CC64D"
 			rewards: [{ id: "33FBCAC6AF96729F", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "38088248514292A3", item: { count: 1, id: "aperture_innovations:portal_gun" }, type: "item" }]
-			x: 18d
-			y: 0d
+			x: 1.5d
+			y: 15d
 		}
 		{
-			dependencies: ["029100AF745CC64D"]
+			dependencies: ["493065C7669E9089"]
 			id: "08B06B2679D02B1D"
 			rewards: [{ id: "2F1D94242BCC2C17", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "6D90F169A510EFA5", type: "checkmark" }]
-			x: 19.5d
-			y: 0d
+			x: 1.5d
+			y: 16.5d
 		}
 	]
 }

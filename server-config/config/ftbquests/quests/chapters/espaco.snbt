@@ -67,28 +67,28 @@
 			id: "425B42F224DFA666"
 			rewards: [{ id: "408449D5C17D28A2", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "ad_astra:venus", id: "3EAD185B2AF74409", type: "dimension" }]
-			x: 4.5d
-			y: 1.5d
+			x: 0d
+			y: 3.0d
 		}
 		{
 			id: "07CDDF90A2B8F066"
 			rewards: [{ id: "5C6B0CD6A5D88A43", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "ad_astra:mercury", id: "421A0DCF46EB8B7C", type: "dimension" }]
-			x: 0d
-			y: 3.0d
+			x: 1.5d
+			y: 3d
 		}
 		{
 			id: "6D006D3D25BE95FA"
 			rewards: [{ id: "0FC9ECF6913BB7D5", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "ad_astra:glacio", id: "0A9E72C50308DFA5", type: "dimension" }]
-			x: 1.5d
+			x: 3d
 			y: 3d
 		}
 		{
 			id: "624E7920FAAD6862"
 			rewards: [{ id: "0F298E9D06CA1318", type: "xp", xp: 20 }]
 			tasks: [{ id: "4688C831D293633F", structure: "ad_astra:lunarian_village", type: "structure" }]
-			x: 3d
+			x: 4.5d
 			y: 3d
 		}
 	]

@@ -7,7 +7,8 @@
 # do mesmo capitulo, a menos que solta = $true. Ids conferidos nos jars do pack (26/11).
 # Extras: capitulo g = grupo (da lista $grupos) e sub = subtitulo; missao sub = subtitulo, marco = $true
 # (engrenagem maior, mais XP), opcional = $true (nao conta para completar o capitulo), xp = XP do premio
-# (padrao 20, marco 100). Texto aceita cores do jogo (&e amarelo, &a verde, &b azul, &c vermelho, &l negrito,
+# (padrao 20, marco 100). depois = titulo (ou lista de titulos) de que a missao depende; sem depois, ela depende
+# da anterior. O livro e desenhado em arvore a partir disso. Texto aceita cores do jogo (&e amarelo, &a verde, &b azul, &c vermelho, &l negrito,
 # &r volta ao normal) e "{@pagebreak}" sozinho em uma linha para comecar outra pagina.
 # Este arquivo tem BOM (UTF-8): os textos podem ter acento.
 $ErrorActionPreference = 'Stop'
@@ -37,7 +38,7 @@ $capitulos = @(
             ''
             '&7Clique em &fConcluir&7 para marcar esta como lida.'
         ) }
-        @{ t = 'Receitas: R e U'; sub = 'A tecla mais importante'; d = @(
+        @{ t = 'Receitas: R e U'; depois = 'Bem-vindo ao Minezada'; sub = 'A tecla mais importante'; d = @(
             'O pack tem centenas de itens novos. Ninguém decora receita: use o &eJEI&r, a lista de itens na direita do inventário.'
             ''
             '&eR&r com o mouse em cima de um item: mostra &acomo fazer&r.'
@@ -45,65 +46,65 @@ $capitulos = @(
             ''
             'A barra de busca embaixo da lista aceita nome em português ou inglês, e entende erro de digitação. Comece o texto com &e@&r para ver os itens de um mod (exemplo: &e@create&r).'
         ) }
-        @{ t = 'O que é isso?'; sub = 'Jade'; d = @(
+        @{ t = 'O que é isso?'; depois = 'Bem-vindo ao Minezada'; sub = 'Jade'; d = @(
             'Mire em qualquer bloco ou bicho: o nome, o mod de onde ele vem e informações úteis aparecem no &etopo da tela&r.'
             ''
             'Serve para saber a vida de um bicho, quanto falta para uma planta crescer ou o que tem dentro de uma máquina.'
         ) }
-        @{ t = 'Mesa de trabalho'; d = @(
+        @{ t = 'Mesa de trabalho'; depois = 'Bem-vindo ao Minezada'; d = @(
             'O começo de sempre: junte madeira e faça uma &emesa de trabalho&r.'
             ''
             'Dica: segure a tecla &eao lado do 1&r (acento grave) enquanto quebra um tronco para derrubar a árvore inteira de uma vez. Funciona com minério também (&eVeinMiner&r).'
         ); item = 'minecraft:crafting_table'; p = 'minecraft:bread'; n = 4 }
-        @{ t = 'Mapa'; sub = 'Nunca mais se perca'; d = @(
+        @{ t = 'Mapa'; depois = 'Bem-vindo ao Minezada'; sub = 'Nunca mais se perca'; d = @(
             'O &eminimapa&r fica no canto da tela. A tecla &eM&r abre o mapa do mundo, com tudo que você já explorou.'
             ''
             'A tecla &eN&r cria um ponto marcado (waypoint) onde você está. Marque a sua casa!'
             ''
             'Outros jogadores aparecem no minimapa como cabecinhas.'
         ) }
-        @{ t = 'Mochila'; d = @(
+        @{ t = 'Mochila'; depois = 'Mesa de trabalho'; d = @(
             'Faça uma &emochila&r: ela guarda muito mais que o inventário. Clique com o botão direito segurando ela, ou coloque nas costas e abra pela tecla &eB&r.'
             ''
             'Ela ganha &aupgrades&r: coletar itens do chão, separar o que você pega, alimentar você sozinha e ficar maior (ferro, ouro, diamante). Veja no JEI com &eU&r em cima da mochila.'
         ); item = 'sophisticatedbackpacks:backpack'; p = 'minecraft:leather'; n = 4 }
-        @{ t = 'Waystone'; sub = 'Teleporte'; d = @(
+        @{ t = 'Waystone'; depois = 'Mesa de trabalho'; sub = 'Teleporte'; d = @(
             'Waystones são &epedras de teleporte&r. Elas aparecem nas vilas e pelo mundo.'
             ''
             'Clique em uma para &aativar&r. Depois, de qualquer waystone, você viaja para as que já ativou.'
             ''
             'Faça a sua e coloque perto de casa: assim você sempre volta rápido.'
         ); item = 'waystones:waystone'; p = 'minecraft:ender_pearl'; n = 2 }
-        @{ t = 'Se você morrer'; d = @(
+        @{ t = 'Se você morrer'; depois = 'Bem-vindo ao Minezada'; d = @(
             'Morreu? Seus itens &enão somem&r: ficam guardados em um &ecorpo&r no lugar da morte.'
             ''
             'Volte lá e clique no corpo para pegar tudo. O lugar aparece no mapa.'
             ''
             'Esqueceu onde foi? &eAlt + U&r mostra o histórico de mortes.'
         ) }
-        @{ t = 'Cozinha'; d = @(
+        @{ t = 'Cozinha'; depois = 'Mesa de trabalho'; d = @(
             '&eFarmer''s Delight&r traz panela, frigideira, tábua de corte e dezenas de comidas.'
             ''
             'Importante: cada comida &enova&r que você prova pela primeira vez dá &acorações extras de vida&r (Spice of Life). Variar a comida deixa você mais forte!'
             ''
             'O capítulo &eCozinha e fazenda&r explica tudo.'
         ); item = 'farmersdelight:cooking_pot'; p = 'minecraft:golden_carrot'; n = 4 }
-        @{ t = 'Carregar baús e bichos'; sub = 'Carry On'; opcional = $true; d = @(
+        @{ t = 'Carregar baús e bichos'; depois = 'Bem-vindo ao Minezada'; sub = 'Carry On'; opcional = $true; d = @(
             'Com as &emãos vazias&r, segure &eShift&r e clique com o botão direito em um baú: você carrega ele inteiro, com os itens dentro.'
             ''
             'Funciona com bichos também. Ótimo para mudar de casa.'
         ) }
-        @{ t = 'Avisar os amigos'; sub = 'Ping Wheel'; opcional = $true; d = @(
+        @{ t = 'Avisar os amigos'; depois = 'Mapa'; sub = 'Ping Wheel'; opcional = $true; d = @(
             'Clique com o &ebotão do meio do mouse&r para marcar um ponto que todos veem: "olha aqui", "perigo", "vem cá".'
         ) }
-        @{ t = 'Jogo lento?'; sub = 'Perfis de gráfico'; opcional = $true; d = @(
+        @{ t = 'Jogo lento?'; depois = 'Bem-vindo ao Minezada'; sub = 'Perfis de gráfico'; opcional = $true; d = @(
             'Em &eOpções > Perfis&r tem 7 perfis prontos: do &e1 - Mínimo&r (computador fraco) ao &e7 - Ultra&r (com shader).'
             ''
             'Clique em um e ele muda tudo na hora. Não use &cSalvar&r nem &cCriar perfil&r: pode fechar o jogo.'
             ''
             'Tecla &eK&r liga e desliga o shader.'
         ) }
-        @{ t = 'Achar uma tecla'; sub = 'Controles'; opcional = $true; d = @(
+        @{ t = 'Achar uma tecla'; depois = 'Bem-vindo ao Minezada'; sub = 'Controles'; opcional = $true; d = @(
             'Em &eOpções > Controles > Teclas&r tem uma &abusca&r: digite o nome da ação (ou do mod) para ver e trocar a tecla.'
             ''
             'Tecla em vermelho está em conflito com outra.'
@@ -172,84 +173,84 @@ $capitulos = @(
             ''
             '&7Clique em Concluir quando tiver testado.'
         ) }
-        @{ t = 'Mochila'; marco = $true; sub = 'Sophisticated Backpacks'; d = @(
+        @{ t = 'Mochila'; depois = 'Arrumar o inventário'; marco = $true; sub = 'Sophisticated Backpacks'; d = @(
             'A &emochila&r é um baú que vai com você. Faça com couro, um baú e linha.'
             ''
             'Abra com o botão direito segurando ela, ou coloque no lugar do &epeitoral&r e abra com a tecla &eB&r.'
             ''
             '&eShift + botão direito&r no chão coloca a mochila como bloco. Quebre para pegar de volta: os itens continuam dentro.'
         ); item = 'sophisticatedbackpacks:backpack'; p = 'minecraft:leather'; n = 8 }
-        @{ t = 'Base de melhoria'; d = @(
+        @{ t = 'Base de melhoria'; depois = 'Mochila'; d = @(
             'Toda melhoria da mochila parte desta &ebase&r.'
             ''
             'Abra a mochila e coloque a melhoria nas casas da &eesquerda&r. Cada melhoria tem botões próprios para ajustar.'
         ); item = 'sophisticatedbackpacks:upgrade_base'; q = 2 }
-        @{ t = 'Coletar sozinho'; sub = 'Melhoria de coleta'; d = @(
+        @{ t = 'Coletar sozinho'; depois = 'Base de melhoria'; sub = 'Melhoria de coleta'; d = @(
             'Com a &emelhoria de coleta&r, o que você pega do chão vai &adireto para a mochila&r.'
             ''
             'Dá para filtrar: só pedra, só minério, tudo menos lixo.'
         ); item = 'sophisticatedbackpacks:pickup_upgrade' }
-        @{ t = 'Ímã'; d = @(
+        @{ t = 'Ímã'; depois = 'Base de melhoria'; d = @(
             'A &emelhoria de ímã&r puxa os itens de perto para a mochila. Ótima para minerar e caçar.'
         ); item = 'sophisticatedbackpacks:magnet_upgrade' }
-        @{ t = 'Comer sozinho'; d = @(
+        @{ t = 'Comer sozinho'; depois = 'Base de melhoria'; d = @(
             'A &emelhoria de alimentação&r come a comida da mochila quando você fica com fome. Nunca mais morra de fome na caverna.'
         ); item = 'sophisticatedbackpacks:feeding_upgrade' }
-        @{ t = 'Compactar'; opcional = $true; d = @(
+        @{ t = 'Compactar'; depois = 'Base de melhoria'; opcional = $true; d = @(
             'A &emelhoria de compactar&r transforma 9 itens em um bloco sozinha (ferro, carvão, redstone). Economiza muito espaço.'
         ); item = 'sophisticatedbackpacks:compacting_upgrade' }
-        @{ t = 'Lixeira'; opcional = $true; d = @(
+        @{ t = 'Lixeira'; depois = 'Base de melhoria'; opcional = $true; d = @(
             'A &emelhoria de descarte&r apaga o que você escolher (terra, cascalho, pedra) assim que entra na mochila.'
             ''
             '&cCuidado:&r o que ela apaga não volta.'
         ); item = 'sophisticatedbackpacks:void_upgrade' }
-        @{ t = 'Mesa de trabalho na mochila'; opcional = $true; d = @(
+        @{ t = 'Mesa de trabalho na mochila'; depois = 'Base de melhoria'; opcional = $true; d = @(
             'A &emelhoria de mesa de trabalho&r coloca uma mesa de trabalho dentro da mochila. Dá para fazer coisas em qualquer lugar.'
         ); item = 'sophisticatedbackpacks:crafting_upgrade' }
-        @{ t = 'Mochila maior'; d = @(
+        @{ t = 'Mochila maior'; depois = 'Mochila'; d = @(
             'A mochila sobe de nível: &ecobre, ferro, ouro, diamante e netherite&r. Cada nível tem mais espaço e mais casas de melhoria.'
             ''
             'Faça o nível novo em volta da mochila antiga na mesa: &aos itens continuam dentro&r.'
         ); item = 'sophisticatedbackpacks:iron_backpack'; p = 'minecraft:gold_ingot'; n = 4 }
-        @{ t = 'Mochila de diamante'; marco = $true; d = @(
+        @{ t = 'Mochila de diamante'; depois = 'Mochila maior'; marco = $true; d = @(
             'A &emochila de diamante&r já guarda mais que vários baús juntos.'
             ''
             'Dica: a &emelhoria de pilha&r deixa cada casa guardar muito mais itens que 64.'
         ); item = 'sophisticatedbackpacks:diamond_backpack' }
-        @{ t = 'Baú que cresce'; sub = 'Sophisticated Storage'; d = @(
+        @{ t = 'Baú que cresce'; depois = 'Arrumar o inventário'; sub = 'Sophisticated Storage'; d = @(
             'Os &ebaús e barris&r do Sophisticated Storage recebem as mesmas ideias da mochila: melhorias de coleta, compactar, filtrar.'
             ''
             'Eles sobem de nível (ferro, ouro, diamante, netherite) com um &eitem de melhoria de nível&r: clique no baú com ele e &aos itens não saem&r.'
         ); item = 'sophisticatedstorage:chest'; p = 'sophisticatedstorage:basic_to_iron_tier_upgrade' }
-        @{ t = 'Barril de um item só'; opcional = $true; sub = 'Gaveta'; d = @(
+        @{ t = 'Barril de um item só'; depois = 'Baú que cresce'; opcional = $true; sub = 'Gaveta'; d = @(
             'O &ebarril limitado&r guarda muitas unidades de poucos tipos de item, e mostra na frente o que tem dentro.'
             ''
             'Clique na frente para guardar; clique com o botão esquerdo para tirar.'
         ); item = 'sophisticatedstorage:limited_barrel_1' }
-        @{ t = 'Mudar o baú de lugar'; opcional = $true; d = @(
+        @{ t = 'Mudar o baú de lugar'; depois = 'Baú que cresce'; opcional = $true; d = @(
             'A &efita de empacotar&r deixa você quebrar um baú cheio e levar ele com tudo dentro.'
             ''
             'Ou use o &eCarry On&r: mãos vazias, Shift e botão direito no baú.'
         ); item = 'sophisticatedstorage:packing_tape' }
-        @{ t = 'Baú de ferro'; sub = 'Iron Chests'; d = @(
+        @{ t = 'Baú de ferro'; depois = 'Arrumar o inventário'; sub = 'Iron Chests'; d = @(
             'O &eIron Chests&r tem baús maiores: cobre, ferro, ouro, diamante, cristal (mostra os itens por fora) e obsidiana (não explode).'
             ''
             'Use os &eupgrades&r do mod no baú comum para trocar de nível sem tirar os itens.'
         ); item = 'ironchest:iron_chest' }
-        @{ t = 'Terminal de itens'; marco = $true; sub = 'Tom''s Simple Storage'; d = @(
+        @{ t = 'Terminal de itens'; depois = 'Arrumar o inventário'; marco = $true; sub = 'Tom''s Simple Storage'; d = @(
             'Muitos baús? O &eterminal&r mostra &atodos os itens de todos os baús&r em uma tela só, com busca.'
             ''
             'Como montar: um &econector de inventário&r encostado nos baús, ligado por &ecabos&r até o terminal.'
             ''
             'Digite o nome na busca e tire o que quiser, sem abrir baú por baú.'
         ); item = 'toms_storage:storage_terminal'; p = 'toms_storage:inventory_cable'; n = 16 }
-        @{ t = 'Conector de inventário'; d = @(
+        @{ t = 'Conector de inventário'; depois = 'Terminal de itens'; d = @(
             'O &econector&r é o coração da rede: tudo o que encosta nele, ou nos cabos ligados a ele, entra no terminal.'
         ); item = 'toms_storage:inventory_connector' }
-        @{ t = 'Terminal com mesa'; d = @(
+        @{ t = 'Terminal com mesa'; depois = 'Terminal de itens'; d = @(
             'O &eterminal de criação&r junta o terminal com uma mesa de trabalho que &apega os ingredientes direto dos baús&r.'
         ); item = 'toms_storage:crafting_terminal' }
-        @{ t = 'Terminal sem fio'; opcional = $true; d = @(
+        @{ t = 'Terminal sem fio'; depois = 'Terminal de itens'; opcional = $true; d = @(
             'O &eterminal sem fio&r abre a rede de baús de longe. Clique com ele no terminal para ligar.'
             ''
             'A tecla &eAlt + B&r abre o terminal sem fio que está no seu inventário.'
@@ -263,55 +264,55 @@ $capitulos = @(
             ''
             'Duas receitas com os mesmos ingredientes? Um botão aparece em cima do resultado para escolher qual fazer (&ePolymorph&r).'
         ) }
-        @{ t = 'Faca'; sub = 'Farmer''s Delight'; d = @(
+        @{ t = 'Faca'; depois = 'Variedade dá vida'; sub = 'Farmer''s Delight'; d = @(
             'A cozinha do &eFarmer''s Delight&r começa com uma &efaca&r. A mais simples é de sílex e graveto.'
             ''
             'Segredo: quebre &egrama alta&r, trigo ou arroz com a faca para ganhar &apalha&r. Com a mão não cai.'
         ); item = 'farmersdelight:flint_knife'; p = 'farmersdelight:straw'; n = 8 }
-        @{ t = 'Tábua de corte'; d = @(
+        @{ t = 'Tábua de corte'; depois = 'Faca'; d = @(
             'Coloque um ingrediente na &etábua de corte&r com o botão direito e clique de novo com a &efaca&r para fatiar carne, peixe e verdura.'
             ''
             'Funciona com outras ferramentas: um &emachado&r em um tronco na tábua dá tábuas e &acasca de árvore&r.'
         ); item = 'farmersdelight:cutting_board'; p = 'farmersdelight:iron_knife' }
-        @{ t = 'Fogão'; d = @(
+        @{ t = 'Fogão'; depois = 'Variedade dá vida'; d = @(
             'O &efogão&r assa até 6 comidas na chapa de cima, sem gastar carvão.'
             ''
             'É também a melhor fonte de calor para colocar a &epanela&r ou a &efrigideira&r em cima.'
         ); item = 'farmersdelight:stove'; p = 'minecraft:coal'; n = 8 }
-        @{ t = 'Cozinha'; sub = 'A panela'; d = @(
+        @{ t = 'Cozinha'; depois = 'Fogão'; sub = 'A panela'; d = @(
             'Coloque a &epanela&r em cima de uma fonte de calor (fogão, fogueira ou magma) para cozinhar até 6 ingredientes juntos.'
             ''
             'Alguns pratos pedem &etigela&r ou &egarrafa&r no espaço do recipiente.'
             ''
             'Quebrou a panela com comida dentro? &aA comida vai junto&r: dá para levar em viagens.'
         ); item = 'farmersdelight:cooking_pot'; p = 'minecraft:bowl'; n = 8 }
-        @{ t = 'Frigideira'; d = @(
+        @{ t = 'Frigideira'; depois = 'Fogão'; d = @(
             'A &efrigideira&r frita uma comida por vez.'
             ''
             'No chão: coloque em cima de um fogão ou fogueira e clique com a comida.'
             'Na mão: perto de um fogo, segure a frigideira em uma mão e a comida crua na outra, e segure o botão direito.'
         ); item = 'farmersdelight:skillet'; p = 'farmersdelight:bacon_and_eggs'; n = 2 }
-        @{ t = 'Banquete'; opcional = $true; d = @(
+        @{ t = 'Banquete'; depois = 'Cozinha'; opcional = $true; d = @(
             'Vários pratos grandes, como o &efrango assado&r, viram um &ebloco&r na mesa.'
             ''
             'Clique com uma &etigela&r vazia para servir uma porção. Bolos e tortas se cortam com a &efaca&r. Ótimo para dividir com os amigos.'
         ); item = 'farmersdelight:roast_chicken_block'; p = 'farmersdelight:sweet_berry_cheesecake' }
-        @{ t = 'Terra rica'; sub = 'Plantas crescem mais rápido'; d = @(
+        @{ t = 'Terra rica'; depois = 'Variedade dá vida'; sub = 'Plantas crescem mais rápido'; d = @(
             'O &ecomposto orgânico&r colocado no chão vira &aterra rica&r com o tempo. Fica mais rápido no sol, perto de água ou de cogumelos.'
             ''
             'Are a terra rica com a enxada: as plantas crescem &amais rápido&r e ela &anão estraga&r se alguém pular em cima.'
         ); item = 'farmersdelight:organic_compost'; p = 'farmersdelight:rich_soil'; n = 4 }
-        @{ t = 'Colônia de cogumelos'; opcional = $true; d = @(
+        @{ t = 'Colônia de cogumelos'; depois = 'Terra rica'; opcional = $true; d = @(
             'Plante um cogumelo em cima de &eterra rica&r em lugar escuro: ele vira uma &ecolônia&r.'
             ''
             'Use a &etesoura&r nela para colher cogumelos sem destruir a colônia.'
         ); item = 'farmersdelight:brown_mushroom_colony'; p = 'farmersdelight:red_mushroom_colony' }
-        @{ t = 'Arroz e tomate'; sub = 'Plantas diferentes'; d = @(
+        @{ t = 'Arroz e tomate'; depois = 'Faca'; sub = 'Plantas diferentes'; d = @(
             'O &earroz&r se planta na terra &edebaixo de um bloco de água&r, nunca em terra arada seca.'
             ''
             'O &etomate&r sobe por &ecorda&r: pendure corda em cima do pé para ele crescer e dar mais tomates.'
         ); item = 'farmersdelight:rice'; q = 4; p = 'farmersdelight:rope'; n = 8 }
-        @{ t = 'Estações do ano'; marco = $true; sub = 'Serene Seasons'; d = @(
+        @{ t = 'Estações do ano'; depois = 'Variedade dá vida'; marco = $true; sub = 'Serene Seasons'; d = @(
             'O mundo tem &eprimavera, verão, outono e inverno&r. No inverno os dias são mais curtos e neva.'
             ''
             'Cada planta cresce bem só em certas estações. Passe o mouse na semente para ver quais.'
@@ -320,75 +321,75 @@ $capitulos = @(
             ''
             'O &ecalendário&r mostra a estação e quantos dias faltam para a próxima.'
         ); item = 'sereneseasons:calendar'; p = 'minecraft:glass'; n = 16 }
-        @{ t = 'Sensor de estação'; opcional = $true; d = @(
+        @{ t = 'Sensor de estação'; depois = 'Estações do ano'; opcional = $true; d = @(
             'O &esensor de estação&r manda sinal de &eredstone&r conforme a estação. Serve para ligar luzes ou máquinas na época certa.'
         ); item = 'sereneseasons:season_sensor'; p = 'minecraft:redstone'; n = 8 }
-        @{ t = 'Frutas do mundo'; sub = 'Croptopia'; d = @(
+        @{ t = 'Frutas do mundo'; depois = 'Variedade dá vida'; sub = 'Croptopia'; d = @(
             'O &eCroptopia&r espalha dezenas de frutas, verduras e árvores frutíferas pelos biomas.'
             ''
             'Achou uma planta nova? Coloque a fruta na mesa de trabalho para fazer &asementes&r. Nas árvores frutíferas, clique nas folhas maduras.'
             ''
             'O &esal&r aparece em muitas receitas: veja como fazer com &eR&r em cima dele.'
         ); item = 'croptopia:salt'; q = 4; p = 'croptopia:cooking_pot' }
-        @{ t = 'Utensílios que não quebram'; sub = 'Croptopia'; d = @(
+        @{ t = 'Utensílios que não quebram'; depois = 'Frutas do mundo'; sub = 'Croptopia'; d = @(
             'O Croptopia cozinha na &emesa de trabalho&r com 5 utensílios: pilão, prensa, panela, frigideira e faca.'
             ''
             'Eles &anunca quebram&r: ficam na mesa depois de cada receita.'
         ); item = 'croptopia:mortar_and_pestle'; p = 'croptopia:frying_pan' }
-        @{ t = 'Comida do mundo todo'; sub = 'Cultural Delights'; d = @(
+        @{ t = 'Comida do mundo todo'; depois = 'Variedade dá vida'; sub = 'Cultural Delights'; d = @(
             'O &eCultural Delights&r traz milho, pepino, berinjela e abacate, espalhados por planícies, pântanos e selvas.'
             ''
             'O &ebarril&r do mod fermenta comidas como picles e queijo. Veja as receitas com &eU&r em cima dele.'
         ); item = 'culturaldelights:vat'; p = 'culturaldelights:corn_cob'; n = 4 }
-        @{ t = 'Armários de cozinha'; opcional = $true; sub = 'Storage Delight'; d = @(
+        @{ t = 'Armários de cozinha'; depois = 'Cozinha'; opcional = $true; sub = 'Storage Delight'; d = @(
             'Gavetas, armários com porta de vidro e balcões em todas as madeiras, para a cozinha ficar organizada e bonita.'
         ); item = 'storagedelight:oak_drawer'; p = 'storagedelight:oak_cabinet_with_glass_doors'; n = 2 }
-        @{ t = 'Cozinha montada'; marco = $true; sub = 'Cooking for Blockheads'; d = @(
+        @{ t = 'Cozinha montada'; depois = 'Cozinha'; marco = $true; sub = 'Cooking for Blockheads'; d = @(
             'A &emesa de cozinha&r mostra tudo o que dá para cozinhar com o que você tem no inventário e nos blocos ligados a ela.'
             ''
             'Encoste &egeladeira, armários, balcões e forno&r do mod na mesa (ou ligue com &episo de cozinha&r) para formar uma cozinha só.'
             ''
             'Clique em um prato da lista e ele é feito na hora, sem procurar ingrediente baú por baú.'
-        ); item = 'cookingforblockheads:cooking_table'; p = 'cookingforblockheads:fridge' }
-        @{ t = 'Água e leite sem fim'; d = @(
+        ); item = 'cookingforblockheads:cooking_table'; p = 'cookingforblockheads:white_fridge' }
+        @{ t = 'Água e leite sem fim'; depois = 'Cozinha montada'; d = @(
             'A &epia&r ligada à cozinha dá &aágua infinita&r para as receitas.'
             ''
             'Leite infinito: coloque um &epote de leite&r no chão, leve uma vaca para cima e derrube uma &ebigorna&r nela. Ela vira uma &evaca no pote&r.'
         ); item = 'cookingforblockheads:sink'; p = 'cookingforblockheads:milk_jar' }
-        @{ t = 'Melhorias da geladeira'; opcional = $true; d = @(
+        @{ t = 'Melhorias da geladeira'; depois = 'Cozinha montada'; opcional = $true; d = @(
             'Clique na geladeira com a &eunidade de gelo&r para ter gelo e neve infinitos nas receitas.'
             ''
             'Veja as outras melhorias do forno e da geladeira com &eU&r em cima delas.'
         ); item = 'cookingforblockheads:ice_unit'; p = 'cookingforblockheads:heating_unit' }
-        @{ t = 'Vaso de planta'; sub = 'Botany Pots'; d = @(
+        @{ t = 'Vaso de planta'; depois = 'Terra rica'; sub = 'Botany Pots'; d = @(
             'O &evaso&r planta lavoura e até árvore em &aum bloco só&r, dentro de casa e sem água.'
             ''
             'Coloque terra dentro (areia para cacto), depois a semente. Quando crescer, clique para colher.'
             ''
             'Terra rica dentro do vaso faz crescer mais rápido.'
         ); item = 'botanypots:terracotta_botany_pot'; p = 'farmersdelight:rich_soil'; n = 2 }
-        @{ t = 'Vaso que colhe sozinho'; marco = $true; sub = 'Botany Pots'; d = @(
+        @{ t = 'Vaso que colhe sozinho'; depois = 'Vaso de planta'; marco = $true; sub = 'Botany Pots'; d = @(
             'O &evaso com funil&r colhe e replanta &asozinho para sempre&r. Coloque em cima de um baú: a colheita vai para dentro.'
             ''
             'Dez vasos desses em cima de baús viram uma fazenda que nunca para.'
         ); item = 'botanypots:terracotta_hopper_botany_pot'; p = 'minecraft:hopper'; n = 2 }
-        @{ t = 'Comida de viagem'; opcional = $true; sub = 'Ocean''s, End''s e Twilight Delight'; d = @(
+        @{ t = 'Comida de viagem'; depois = 'Cozinha'; opcional = $true; sub = 'Ocean''s, End''s e Twilight Delight'; d = @(
             'Explorar libera pratos novos com efeitos bons:'
             '&eOcean''s Delight&r: lula, baiacu e sopas do mar.'
             '&eEnd''s Delight&r: fruta do coro e pratos do End.'
             '&eTwilight Delight&r: comidas da Twilight Forest.'
         ); item = 'oceansdelight:squid_rings' }
-        @{ t = 'Cortadora do Create'; opcional = $true; sub = 'Slice & Dice'; d = @(
+        @{ t = 'Cortadora do Create'; depois = 'Tábua de corte'; opcional = $true; sub = 'Slice & Dice'; d = @(
             'A &ecortadora&r faz o trabalho da tábua de corte com a rotação do Create. Dê uma &efaca&r para ela e mande os ingredientes por baixo.'
             ''
             'O &easpersor&r embaixo de um cano com água molha a plantação. Segure &eW&r em cima das peças para ver a animação.'
         ); item = 'sliceanddice:slicer'; p = 'sliceanddice:sprinkler'; n = 2 }
-        @{ t = 'Cozinha automática'; opcional = $true; sub = 'Create: Central Kitchen'; d = @(
+        @{ t = 'Cozinha automática'; depois = 'Cortadora do Create'; opcional = $true; sub = 'Create: Central Kitchen'; d = @(
             'Com o &eCentral Kitchen&r, as máquinas do Create (braço mecânico, depositante) cozinham as receitas do Farmer''s Delight sozinhas.'
             ''
             'Um &equeimador de blaze&r embaixo da panela acelera o cozimento. Segure &eW&r nos itens para ver como montar.'
         ) }
-        @{ t = 'Plantar minério'; opcional = $true; sub = 'Mystical Agriculture'; d = @(
+        @{ t = 'Plantar minério'; depois = 'Vaso de planta'; opcional = $true; sub = 'Mystical Agriculture'; d = @(
             'O &eMystical Agriculture&r planta minério como se fosse trigo.'
             ''
             'Comece minerando &einferium&r nas cavernas. A essência dele faz as primeiras sementes. Veja o caminho todo com &eU&r em cima da essência.'
@@ -402,72 +403,72 @@ $capitulos = @(
             ''
             'No mesmo menu tem &eespelho&r (constrói os dois lados iguais) e &erepetição&r. Para desligar, segure Alt e escolha desligar.'
         ) }
-        @{ t = 'Bloco aleatório'; opcional = $true; sub = 'Effortless Building'; d = @(
+        @{ t = 'Bloco aleatório'; depois = 'Construir sem sofrer'; opcional = $true; sub = 'Effortless Building'; d = @(
             'A &esacola de blocos aleatórios&r coloca um bloco sorteado dos que estão dentro dela. Ótima para chão e parede com textura misturada (pedra, cascalho, andesito).'
         ); item = 'effortlessbuilding:randomizer_tool' }
-        @{ t = 'Telhado de verdade'; sub = 'Macaw''s Roofs'; d = @(
+        @{ t = 'Telhado de verdade'; depois = 'Construir sem sofrer'; sub = 'Macaw''s Roofs'; d = @(
             'Chega de telhado de escada: o &eMacaw''s Roofs&r tem telhados com inclinação, cumeeira e beiral em todas as madeiras e pedras.'
             ''
             'Procure &e@mcwroofs&r no JEI para ver todos.'
         ); item = 'mcwroofs:oak_roof'; q = 8 }
-        @{ t = 'Janela'; sub = 'Macaw''s Windows'; d = @(
+        @{ t = 'Janela'; depois = 'Construir sem sofrer'; sub = 'Macaw''s Windows'; d = @(
             'Janelas de verdade, persianas, venezianas e &ecortinas&r (coloque o varão e clique com lã).'
         ); item = 'mcwwindows:oak_window'; q = 4 }
-        @{ t = 'Porta diferente'; sub = 'Macaw''s Doors'; d = @(
+        @{ t = 'Porta diferente'; depois = 'Construir sem sofrer'; sub = 'Macaw''s Doors'; d = @(
             'Portas de celeiro, de vidro, japonesa, de faroeste, de garagem e muitas outras.'
         ); item = 'mcwdoors:oak_barn_door' }
-        @{ t = 'Cerca bonita'; opcional = $true; sub = 'Macaw''s Fences and Walls'; d = @(
+        @{ t = 'Cerca bonita'; depois = 'Construir sem sofrer'; opcional = $true; sub = 'Macaw''s Fences and Walls'; d = @(
             'Cercas de estaca, de fazenda, de arame e portões curvos, todos no estilo do Minecraft.'
         ); item = 'mcwfences:oak_picket_fence'; q = 8 }
-        @{ t = 'Ponte'; opcional = $true; sub = 'Macaw''s Bridges'; d = @(
+        @{ t = 'Ponte'; depois = 'Construir sem sofrer'; opcional = $true; sub = 'Macaw''s Bridges'; d = @(
             'Pontes de corda, de tronco, de ferro e de vidro. Elas se ajustam sozinhas quando você coloca uma do lado da outra.'
         ); item = 'mcwbridges:rope_oak_bridge'; q = 8 }
-        @{ t = 'Primeiros móveis'; sub = 'Macaw''s Furniture'; d = @(
+        @{ t = 'Primeiros móveis'; depois = 'Construir sem sofrer'; sub = 'Macaw''s Furniture'; d = @(
             'Mesas, cadeiras, gavetas, guarda-roupas e armários de cozinha em todas as madeiras.'
             ''
             'Muitos guardam itens: gavetas e guarda-roupas funcionam como baús. Clique com o botão direito numa cadeira para sentar.'
         ); item = 'mcwfurnitures:oak_chair' }
-        @{ t = 'Casa aconchegante'; sub = 'Handcrafted'; d = @(
+        @{ t = 'Casa aconchegante'; depois = 'Primeiros móveis'; sub = 'Handcrafted'; d = @(
             'Sofás, camas bonitas, criados-mudos, prateleiras e almofadas no estilo do Minecraft.'
             ''
             'O &emartelo&r do Handcrafted muda o formato de alguns móveis: clique com ele no bloco.'
         ); item = 'handcrafted:oak_couch'; p = 'handcrafted:hammer' }
-        @{ t = 'Troféu'; opcional = $true; sub = 'Handcrafted'; d = @(
+        @{ t = 'Troféu'; depois = 'Casa aconchegante'; opcional = $true; sub = 'Handcrafted'; d = @(
             'Pendure na parede o troféu de um bicho ou monstro que você venceu: urso, creeper, blaze e outros.'
         ); item = 'handcrafted:creeper_trophy' }
-        @{ t = 'Móveis que funcionam'; marco = $true; sub = 'Furniture Refurbished'; d = @(
+        @{ t = 'Móveis que funcionam'; depois = 'Primeiros móveis'; marco = $true; sub = 'Furniture Refurbished'; d = @(
             'O &eFurniture Refurbished&r tem móveis que fazem coisas: geladeira que guarda comida, fogão que cozinha, pia com água, TV, computador e campainha.'
             ''
             'Os móveis do mod saem da &ebancada&r dele. Alguns, como luzes e TV, precisam de &eenergia&r do próprio mod: veja com &eU&r em cima deles.'
-        ); item = 'refurbished_furniture:fridge' }
-        @{ t = 'Correio'; opcional = $true; sub = 'Furniture Refurbished'; d = @(
+        ); item = 'refurbished_furniture:light_fridge' }
+        @{ t = 'Correio'; depois = 'Móveis que funcionam'; opcional = $true; sub = 'Furniture Refurbished'; d = @(
             'Coloque uma &ecaixa de correio&r na frente de casa e dê um nome a ela. Os amigos podem mandar itens para ela de longe. Veja como com &eU&r em cima da caixa.'
         ); item = 'refurbished_furniture:oak_mail_box' }
-        @{ t = 'Pote'; sub = 'Supplementaries'; d = @(
+        @{ t = 'Pote'; depois = 'Construir sem sofrer'; sub = 'Supplementaries'; d = @(
             'O &epote&r guarda líquidos, biscoitos e até &abichinhos&r: vagalumes, peixes e lesmas. Clique no bicho com o pote vazio.'
         ); item = 'supplementaries:jar' }
-        @{ t = 'Placa de direção'; sub = 'Supplementaries'; d = @(
+        @{ t = 'Placa de direção'; depois = 'Pote'; sub = 'Supplementaries'; d = @(
             'A &eplaca de direção&r tem duas setas. Escreva nelas o nome dos lugares (casa, mina, vila) e gire para apontar o caminho.'
-        ); item = 'supplementaries:way_sign_oak' }
-        @{ t = 'Corda'; d = @(
+        ); item = 'supplementaries:way_sign' }
+        @{ t = 'Corda'; depois = 'Pote'; d = @(
             'A &ecorda&r do Supplementaries serve para &asubir e descer&r em buracos fundos. Clique com mais corda nela para ela descer mais.'
         ); item = 'supplementaries:rope'; q = 16 }
-        @{ t = 'Estilingue'; opcional = $true; sub = 'Supplementaries'; d = @(
+        @{ t = 'Estilingue'; depois = 'Pote'; opcional = $true; sub = 'Supplementaries'; d = @(
             'O &eestilingue&r atira qualquer item. Com tochas, ele ilumina caverna de longe.'
         ); item = 'supplementaries:slingshot' }
-        @{ t = 'Aljava'; opcional = $true; sub = 'Supplementaries'; d = @(
+        @{ t = 'Aljava'; depois = 'Pote'; opcional = $true; sub = 'Supplementaries'; d = @(
             'A &ealjava&r guarda vários tipos de flecha num espaço só. A tecla &eAlt + V&r troca a flecha.'
         ); item = 'supplementaries:quiver' }
-        @{ t = 'Globo e enfeites'; opcional = $true; sub = 'Supplementaries'; d = @(
+        @{ t = 'Globo e enfeites'; depois = 'Pote'; opcional = $true; sub = 'Supplementaries'; d = @(
             'Globo que gira, relógio de parede, fole, torneira, vaso de flor, cofre: o Supplementaries tem dezenas de blocos. Veja com &e@supplementaries&r no JEI.'
         ); item = 'supplementaries:globe' }
-        @{ t = 'Decoração'; sub = 'Beautify'; d = @(
+        @{ t = 'Decoração'; depois = 'Construir sem sofrer'; sub = 'Beautify'; d = @(
             'Persianas, porta-retratos, treliça para plantas, lâmpadas e vasos pendurados.'
         ); item = 'beautify:oak_picture_frame' }
-        @{ t = 'Vaso pendurado'; opcional = $true; sub = 'Beautify'; d = @(
+        @{ t = 'Vaso pendurado'; depois = 'Decoração'; opcional = $true; sub = 'Beautify'; d = @(
             'Pendure no teto e coloque uma flor dentro.'
         ); item = 'beautify:hanging_pot' }
-        @{ t = 'Móveis do Create'; opcional = $true; sub = 'Create: Interiors'; d = @(
+        @{ t = 'Móveis do Create'; depois = 'Primeiros móveis'; opcional = $true; sub = 'Create: Interiors'; d = @(
             'Bancos e cadeiras no estilo do Create. Dá para sentar, inclusive em trens e máquinas que andam.'
         ); item = 'interiors:kelp_chair' }
     ) }
@@ -477,78 +478,78 @@ $capitulos = @(
             ''
             'Mire em qualquer bicho para ver o nome e o mod no topo da tela. Bicho desconhecido? Procure o nome no JEI.'
         ); item = 'alexsmobs:animal_dictionary' }
-        @{ t = 'Hamster'; sub = 'Adorable Hamster Pets'; d = @(
+        @{ t = 'Hamster'; depois = 'Dicionário animal'; sub = 'Adorable Hamster Pets'; d = @(
             'Hamsters vivem nos campos. Para domesticar, dê &epepino fatiado&r (corte o pepino na tábua de corte).'
             ''
             'Dá para carregar até &atrês nos ombros&r: eles avisam quando tem creeper perto e farejam diamante.'
             ''
             'O livro do hamster explica tudo: camas, armadura, comidas.'
         ); conquista = 'adorablehamsterpets:husbandry/tame_hamster'; p = 'adorablehamsterpets:sliced_cucumber'; n = 8 }
-        @{ t = 'Hamster no ombro'; opcional = $true; d = @(
+        @{ t = 'Hamster no ombro'; depois = 'Hamster'; opcional = $true; d = @(
             'Com um hamster domesticado, agache (&eShift&r) e clique nele para colocar no ombro.'
         ); conquista = 'adorablehamsterpets:husbandry/shoulder_hamster' }
-        @{ t = 'Banana'; sub = 'Alex''s Mobs'; d = @(
+        @{ t = 'Banana'; depois = 'Dicionário animal'; sub = 'Alex''s Mobs'; d = @(
             'Bananas caem das &efolhas da selva&r. Elas servem para domesticar macacos e gorilas.'
         ); item = 'alexsmobs:banana'; q = 4 }
-        @{ t = 'Macaco-prego'; sub = 'Alex''s Mobs'; d = @(
+        @{ t = 'Macaco-prego'; depois = 'Banana'; sub = 'Alex''s Mobs'; d = @(
             'O &emacaco-prego&r vive na selva. Dê &ebananas&r para domesticar. Ele senta no ombro e ajuda a atacar.'
         ); conquista = 'alexsmobs:alexsmobs/tame_capuchin' }
-        @{ t = 'Gorila'; sub = 'Alex''s Mobs'; d = @(
+        @{ t = 'Gorila'; depois = 'Banana'; sub = 'Alex''s Mobs'; d = @(
             'O &egorila&r vive em grupos na selva, com um gorila-de-costas-prateadas no comando. Dê &ebananas&r para domesticar.'
         ); conquista = 'alexsmobs:alexsmobs/tame_gorilla' }
-        @{ t = 'Urso amigo'; opcional = $true; sub = 'Alex''s Mobs'; d = @(
+        @{ t = 'Urso amigo'; depois = 'Dicionário animal'; opcional = $true; sub = 'Alex''s Mobs'; d = @(
             'O &eurso-pardo&r é perigoso, mas dá para domesticar com &emel&r e &esalmão&r. Depois ele aceita sela!'
         ); conquista = 'alexsmobs:alexsmobs/tame_grizzly_bear' }
-        @{ t = 'Elefante'; opcional = $true; sub = 'Alex''s Mobs'; d = @(
+        @{ t = 'Elefante'; depois = 'Dicionário animal'; opcional = $true; sub = 'Alex''s Mobs'; d = @(
             'O &eelefante&r vive na savana. Domesticado, carrega você e um baú nas costas. Veja como no Dicionário animal.'
         ); conquista = 'alexsmobs:alexsmobs/tame_elephant' }
-        @{ t = 'Águia caçadora'; opcional = $true; sub = 'Alex''s Mobs'; d = @(
+        @{ t = 'Águia caçadora'; depois = 'Dicionário animal'; opcional = $true; sub = 'Alex''s Mobs'; d = @(
             'A &eáguia-careca&r pode ser treinada para caçar com uma &eluva de falcoaria&r.'
         ); conquista = 'alexsmobs:alexsmobs/tame_bald_eagle' }
-        @{ t = 'Rede de captura'; sub = 'Naturalist'; d = @(
+        @{ t = 'Rede de captura'; depois = 'Dicionário animal'; sub = 'Naturalist'; d = @(
             'O &eNaturalist&r traz bichos realistas: urso, cervo, leão, elefante, cobra, borboleta.'
             ''
             'A &erede de captura&r pega bichinhos (borboletas, vagalumes, caracóis) para levar para casa.'
         ); item = 'naturalist:capture_net' }
-        @{ t = 'Urso com mel'; opcional = $true; sub = 'Naturalist'; d = @(
+        @{ t = 'Urso com mel'; depois = 'Rede de captura'; opcional = $true; sub = 'Naturalist'; d = @(
             'Os ursos do Naturalist adoram mel. Dê um &efavo de mel&r para um urso.'
         ); conquista = 'naturalist:husbandry/feed_bear_honeycomb' }
-        @{ t = 'Hipopótamo'; opcional = $true; sub = 'Naturalist'; d = @(
+        @{ t = 'Hipopótamo'; depois = 'Rede de captura'; opcional = $true; sub = 'Naturalist'; d = @(
             'Dê uma &emelancia&r para um hipopótamo no pântano ou rio.'
         ); conquista = 'naturalist:husbandry/feed_hippo_melon' }
-        @{ t = 'Golem de cobre'; sub = 'Friends&Foes'; d = @(
+        @{ t = 'Golem de cobre'; depois = 'Dicionário animal'; sub = 'Friends&Foes'; d = @(
             'O &egolem de cobre&r aperta botões de cobre sozinho. Ele é montado no mundo com blocos de cobre, como o golem de ferro.'
             ''
             'Cuidado: ele enferruja com o tempo. Encere com favo de mel para parar.'
         ); conquista = 'friendsandfoes:adventure/summon_copper_golem' }
-        @{ t = 'Moobloom'; opcional = $true; sub = 'Friends&Foes'; d = @(
+        @{ t = 'Moobloom'; depois = 'Golem de cobre'; opcional = $true; sub = 'Friends&Foes'; d = @(
             'A &emoobloom&r é uma vaca com flores nas costas. Use a tesoura nela para pegar flores amarelas.'
         ); conquista = 'friendsandfoes:husbandry/shear_a_moobloom' }
-        @{ t = 'Glare'; opcional = $true; sub = 'Friends&Foes'; d = @(
+        @{ t = 'Glare'; depois = 'Golem de cobre'; opcional = $true; sub = 'Friends&Foes'; d = @(
             'O &eglare&r é um bichinho de musgo que mostra os lugares escuros onde monstros podem nascer. Domestique com &ebagas brilhantes&r.'
         ); conquista = 'friendsandfoes:husbandry/tame_a_glare' }
-        @{ t = 'Gancho'; opcional = $true; sub = 'Critters and Companions'; d = @(
+        @{ t = 'Gancho'; depois = 'Dicionário animal'; opcional = $true; sub = 'Critters and Companions'; d = @(
             'O &eCritters and Companions&r traz lontras, libélulas, furões e coelhinhos-do-mar.'
             ''
             'O &egancho&r puxa você até onde ele prender. Ótimo para escalar.'
         ); item = 'crittersandcompanions:grappling_hook' }
-        @{ t = 'Vila dos sapos'; opcional = $true; sub = 'Ribbits'; d = @(
+        @{ t = 'Vila dos sapos'; depois = 'Dicionário animal'; opcional = $true; sub = 'Ribbits'; d = @(
             'Nos &epântanos&r existem vilas de sapos. Os sapos tocam música e trocam itens.'
         ); estrutura = 'ribbits:ribbit_village' }
-        @{ t = 'Troféu de caça'; opcional = $true; sub = 'Wilder Nature'; d = @(
+        @{ t = 'Troféu de caça'; depois = 'Dicionário animal'; opcional = $true; sub = 'Wilder Nature'; d = @(
             'O &eWilder Nature&r traz bisões, cervos e lobos-vermelhos. Os troféus enfeitam a parede.'
         ); item = 'wildernature:deer_trophy' }
-        @{ t = 'Dinossauros'; opcional = $true; sub = 'Archie''s Dinosaurs'; d = @(
+        @{ t = 'Dinossauros'; depois = 'Dicionário animal'; opcional = $true; sub = 'Archie''s Dinosaurs'; d = @(
             'Dinossauros vivem soltos pelo mundo, dos herbívoros grandes aos predadores. &cCuidado&r com os carnívoros.'
             ''
             '&7Clique em Concluir quando vir o primeiro.'
         ) }
-        @{ t = 'Ovo de dragão'; marco = $true; sub = 'Dragon Mounts'; d = @(
+        @{ t = 'Ovo de dragão'; depois = 'Dicionário animal'; marco = $true; sub = 'Dragon Mounts'; d = @(
             'Dragões vivem no mundo normal, no Nether e no End. Também dá para achar &eovos de dragão&r.'
             ''
             'Coloque o ovo no chão e espere chocar: o filhote já nasce seu.'
         ); conquista = 'dmr:hatch_1_dragon_egg' }
-        @{ t = 'Domar um dragão'; marco = $true; sub = 'Dragon Mounts'; d = @(
+        @{ t = 'Domar um dragão'; depois = 'Ovo de dragão'; marco = $true; sub = 'Dragon Mounts'; d = @(
             'Dragão adulto se doma dando &epeixe&r até aparecerem corações.'
             ''
             'Coloque uma &esela&r e monte: &eespaço&r sobe, &eShift&r desce. O &eapito&r chama o dragão de longe.'
@@ -618,59 +619,59 @@ $capitulos = @(
             ''
             '&7Clique em Concluir quando tiver testado.'
         ) }
-        @{ t = 'Martelo'; sub = 'Just Hammers'; d = @(
+        @{ t = 'Martelo'; depois = 'Minerar em bloco'; sub = 'Just Hammers'; d = @(
             'O &emartelo&r quebra uma área de &e3x3&r de uma vez. Ótimo para túneis e minas.'
             ''
             'Tem martelos de pedra a netherite.'
         ); item = 'justhammers:iron_hammer' }
-        @{ t = 'Fornalha rápida'; sub = 'Iron Furnaces'; d = @(
+        @{ t = 'Fornalha rápida'; depois = 'Minerar em bloco'; sub = 'Iron Furnaces'; d = @(
             'Fornalhas de &eferro, ouro, diamante&r e mais: cozinham e derretem &amuito mais rápido&r que a comum.'
             ''
             'Dá para melhorar uma fornalha já colocada com os &eupgrades&r do mod, sem perder o que está dentro.'
         ); item = 'ironfurnaces:iron_furnace'; p = 'minecraft:coal'; n = 16 }
-        @{ t = 'Altura dos minérios'; sub = 'Just Enough Resources'; d = @(
+        @{ t = 'Altura dos minérios'; depois = 'Minerar em bloco'; sub = 'Just Enough Resources'; d = @(
             'No JEI, aperte &eU&r em cima de um minério: uma aba mostra &aem que altura ele aparece mais&r.'
             ''
             'Em cima de um bicho ou monstro, mostra o que ele deixa cair.'
         ) }
-        @{ t = 'Encantamentos explicados'; sub = 'Enchantment Descriptions'; d = @(
+        @{ t = 'Encantamentos explicados'; depois = 'Minerar em bloco'; sub = 'Enchantment Descriptions'; d = @(
             'Passe o mouse em um livro encantado: aparece o que &ecada encantamento faz&r.'
             ''
             'A bigorna não tem mais o limite de "Caro demais" (&eEasy Anvils&r).'
         ) }
-        @{ t = 'Saco de dormir'; sub = 'Comforts'; d = @(
+        @{ t = 'Saco de dormir'; depois = 'Minerar em bloco'; sub = 'Comforts'; d = @(
             'O &esaco de dormir&r passa a noite sem mudar o seu ponto de renascimento. Perfeito para viagens.'
             ''
             'A &erede&r faz o contrário: dorme de dia.'
         ); item = 'comforts:sleeping_bag_white' }
-        @{ t = 'Zoom'; sub = 'Ok Zoomer'; d = @(
+        @{ t = 'Zoom'; depois = 'Minerar em bloco'; sub = 'Ok Zoomer'; d = @(
             'Segure &eC&r para dar zoom. Role o mouse para ajustar.'
         ) }
-        @{ t = 'Tocha na mão'; sub = 'Dynamic Torches'; d = @(
+        @{ t = 'Tocha na mão'; depois = 'Minerar em bloco'; sub = 'Dynamic Torches'; d = @(
             'Segurar uma &etocha&r ou lanterna ilumina em volta de você. Ótimo para explorar caverna sem colocar tocha em todo lugar.'
         ); item = 'minecraft:torch'; q = 16 }
-        @{ t = 'Baús de saque'; sub = 'Lootr'; d = @(
+        @{ t = 'Baús de saque'; depois = 'Minerar em bloco'; sub = 'Lootr'; d = @(
             'Baús de estruturas (templos, masmorras, vilas) têm &asaque próprio para cada jogador&r. Todo mundo pode abrir o mesmo baú e ganhar itens.'
             ''
             'Esses baús têm um brilho diferente.'
         ) }
-        @{ t = 'Trocar ofertas do aldeão'; opcional = $true; sub = 'Trade Cycling'; d = @(
+        @{ t = 'Trocar ofertas do aldeão'; depois = 'Minerar em bloco'; opcional = $true; sub = 'Trade Cycling'; d = @(
             'Aldeão com ofertas ruins? Na tela de troca tem um &ebotão&r que sorteia ofertas novas, enquanto ele ainda não negociou com ninguém.'
         ) }
-        @{ t = 'Netherite melhor'; sub = 'Advanced Netherite'; d = @(
+        @{ t = 'Netherite melhor'; depois = 'Martelo'; sub = 'Advanced Netherite'; d = @(
             'Depois da netherite ainda tem mais: lingotes de netherite com ferro, ouro, esmeralda e diamante. Cada um dá ferramentas e armaduras com bônus próprios.'
             ''
             'Veja as receitas com &eU&r em cima do lingote de netherite.'
         ); item = 'advancednetherite:netherite_diamond_ingot' }
-        @{ t = 'Construção gigante'; opcional = $true; sub = 'Building Gadgets'; d = @(
+        @{ t = 'Construção gigante'; depois = 'Minerar em bloco'; opcional = $true; sub = 'Building Gadgets'; d = @(
             'O &egadget de construção&r coloca vários blocos de uma vez, e o de cópia copia e cola construções inteiras.'
             ''
             'Eles gastam energia (FE). Veja com &eU&r em cima deles como carregar.'
         ); item = 'buildinggadgets2:gadget_building' }
-        @{ t = 'Portal gun'; opcional = $true; sub = 'Aperture Innovations'; d = @(
+        @{ t = 'Portal gun'; depois = 'Minerar em bloco'; opcional = $true; sub = 'Aperture Innovations'; d = @(
             'A &eportal gun&r do jogo Portal: atire um portal &bazul&r e um &6laranja&r e atravesse de um para o outro.'
         ); item = 'aperture_innovations:portal_gun' }
-        @{ t = 'Fumar'; opcional = $true; sub = 'Smoking Pipe e Tobacconist'; d = @(
+        @{ t = 'Fumar'; depois = 'Minerar em bloco'; opcional = $true; sub = 'Smoking Pipe e Tobacconist'; d = @(
             'Plante tabaco, seque e fume no cachimbo. É só diversão: dá um pouco de experiência.'
         ) }
     ) }
@@ -761,21 +762,29 @@ $jarsDir = Join-Path $root 'tools/jars'
 if (Test-Path $jarsDir) {
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     $existe = New-Object 'Collections.Generic.HashSet[string]'
+    # Item vale pelo nome item.<mod>.<id> ou block.<mod>.<id> no idioma do mod (modelo interno, como
+    # refurbished_furniture:fridge, nao e item). Mod sem idioma: vale o modelo.
+    $nomes = New-Object 'Collections.Generic.HashSet[string]'; $comNome = New-Object 'Collections.Generic.HashSet[string]'
     foreach ($j in Get-ChildItem $jarsDir -Filter *.jar) {
         try { $z = [IO.Compression.ZipFile]::OpenRead($j.FullName) } catch { continue }
         foreach ($e in $z.Entries) {
             if ($e.FullName -match '^assets/([a-z0-9_.-]+)/models/item/([a-z0-9_/.-]+)\.json$') { [void]$existe.Add("$($matches[1]):$($matches[2])") }
             elseif ($e.FullName -match '^data/([a-z0-9_.-]+)/(dimension|worldgen/structure|worldgen/biome|advancement)/([a-z0-9_/.-]+)\.json$') { [void]$existe.Add("$($matches[1]):$($matches[3])") }
-            elseif ($e.FullName -match '^assets/[a-z0-9_.-]+/lang/en_us\.json$') {
+            elseif ($e.FullName -match '^assets/([a-z0-9_.-]+)/lang/en_us\.json$') {
                 # Bichos: o id vem das chaves entity.<mod>.<nome> do arquivo de idioma.
+                [void]$comNome.Add($matches[1])
                 $r = New-Object IO.StreamReader $e.Open(); $txt = $r.ReadToEnd(); $r.Dispose()
                 foreach ($k in [regex]::Matches($txt, '"entity\.([a-z0-9_]+)\.([a-z0-9_]+)"')) { [void]$existe.Add("$($k.Groups[1].Value):$($k.Groups[2].Value)") }
+                foreach ($k in [regex]::Matches($txt, '"(?:item|block)\.([a-z0-9_]+)\.([a-z0-9_/]+)"')) { [void]$nomes.Add("$($k.Groups[1].Value):$($k.Groups[2].Value)") }
             }
         }
         $z.Dispose()
     }
-    $faltam = @(foreach ($c in $capitulos) { foreach ($id in @($c.icone) + @($c.m | ForEach-Object { $_['item']; $_['dim']; $_['p']; $_['mata']; $_['estrutura']; $_['bioma']; $_['conquista'] })) {
-        if ($id -and $id -notlike 'minecraft:*' -and -not $existe.Contains($id)) { "$($c.t): $id" } } })
+    $faltam = @(foreach ($c in $capitulos) {
+        foreach ($id in @($c.icone) + @($c.m | ForEach-Object { $_['item']; $_['p'] })) {
+            if ($id -and $id -notlike 'minecraft:*' -and -not $(if ($comNome.Contains($id.Split(':')[0])) { $nomes.Contains($id) } else { $existe.Contains($id) })) { "$($c.t): $id" } }
+        foreach ($id in @($c.m | ForEach-Object { $_['dim']; $_['mata']; $_['estrutura']; $_['bioma']; $_['conquista'] })) {
+            if ($id -and $id -notlike 'minecraft:*' -and -not $existe.Contains($id)) { "$($c.t): $id" } } })
     if ($faltam) { throw "Ids que nao existem no pack:`n$($faltam -join "`n")" }
 }
 else { Write-Warning 'Sem tools/jars (rode o montar-pack): ids nao conferidos.' }
@@ -804,7 +813,9 @@ foreach ($c in $capitulos) {
     $grupo = if ($c['g']) { $gids[$c['g']] } else { '' }
     $lang += "`tchapter.$cid.title: $(Txt $c.t)"
     if ($c['sub']) { $lang += "`tchapter.$cid.chapter_subtitle: [$(Txt $c['sub'])]" }
-    $qs = @(); $ant = $null; $x = 0
+    # Posicoes em arvore: x pela profundidade (missao depois da outra vai para a direita), y pela proxima linha livre
+    # naquela coluna, sem subir acima do pai. Soltas (sem dependencia) ficam em grade embaixo da arvore.
+    $qs = @(); $antT = $null; $tit = @{}; $prof = @{}; $posY = @{}; $livre = @{}; $soltas = @()
     foreach ($m in $c.m) {
         $qid = Id "missao/$($c.t)/$($m.t)"
         $q = if ($m['q']) { $m['q'] } else { 1 }
@@ -821,13 +832,29 @@ foreach ($c in $capitulos) {
         $extra = "`n`t`t`trewards: [$($premios -join ', ')]"
         if ($m['marco']) { $extra += "`n`t`t`tshape: `"gear`"`n`t`t`tsize: 1.5d" }
         if ($m['opcional']) { $extra += "`n`t`t`toptional: true" }
-        $dep = if ($ant -and -not $m['solta']) { "`n`t`t`tdependencies: [`"$ant`"]" } else { '' }
-        $y = if ($m['solta']) { [math]::Floor($x / 4) * 1.5 } else { 0 }; $px = if ($m['solta']) { ($x % 4) * 1.5 } else { $x * 1.5 }
-        $qs += "`t`t{$dep`n`t`t`tid: `"$qid`"$extra`n`t`t`ttasks: [$tarefa]`n`t`t`tx: $($px)d`n`t`t`ty: $($y)d`n`t`t}"
+        $pais = if ($m.ContainsKey('depois')) { @(@($m['depois']) | Where-Object { $_ }) } elseif ($m['solta'] -or -not $antT) { @() } else { @($antT) }
+        foreach ($pai in $pais) { if (-not $tit.ContainsKey($pai)) { throw "Capitulo $($c.t), missao $($m.t): depois de '$pai', que nao vem antes dela" } }
+        $lista = ($pais | ForEach-Object { '"' + $tit[$_] + '"' }) -join ', '
+        $dep = if ($pais) { "`n`t`t`tdependencies: [$lista]" } else { '' }
+        if ($pais -or (-not $m['solta'] -and (-not $tit.Count -or $m.ContainsKey('depois')))) {
+            $d = if ($pais) { 1 + ($pais | ForEach-Object { $prof[$_] } | Measure-Object -Maximum).Maximum } else { 0 }
+            $py = [math]::Max([double]$livre[$d], [double](@($pais | ForEach-Object { $posY[$_] }) + 0 | Measure-Object -Maximum).Maximum)
+            $livre[$d] = $py + 1.5; $prof[$m.t] = $d; $posY[$m.t] = $py; $pos = "$($d * 1.5)d|$($py)d"
+        }
+        else { $prof[$m.t] = 0; $posY[$m.t] = 0; $pos = 'solta'; $soltas += $qs.Count }
+        $qs += "`t`t{$dep`n`t`t`tid: `"$qid`"$extra`n`t`t`ttasks: [$tarefa]`n`t`t`t@POS@`n`t`t}@@SEP@@$pos"
         $lang += "`tquest.$qid.title: $(Txt $m.t)"
         if ($m['sub']) { $lang += "`tquest.$qid.quest_subtitle: $(Txt $m['sub'])" }
         $lang += "`tquest.$qid.quest_desc: [$((@($m.d) | ForEach-Object { Txt $_ }) -join ', ')]"
-        $ant = $qid; $x++
+        $tit[$m.t] = $qid; $antT = $m.t
+    }
+    $base = if ($livre.Count) { ($livre.Values | Measure-Object -Maximum).Maximum + 1.5 } else { 0 }
+    $k = 0
+    $qs = for ($i = 0; $i -lt $qs.Count; $i++) {
+        $texto, $pos = $qs[$i] -split '@@SEP@@'
+        if ($pos -eq 'solta') { $pos = "$(($k % 5) * 1.5)d|$($base + [math]::Floor($k / 5) * 1.5)d"; $k++ }
+        $px, $py = $pos -split '\|'
+        $texto.Replace('@POS@', "x: $px`n`t`t`ty: $py")
     }
     $cap = "{`n`tdefault_hide_dependency_lines: false`n`tdefault_quest_shape: `"`"`n`tfilename: `"$nome`"`n`tgroup: `"$grupo`"`n`ticon: { id: `"$($c.icone)`" }`n`tid: `"$cid`"`n`torder_index: $ordem`n`tquest_links: [ ]`n`tquests: [`n$($qs -join "`n")`n`t]`n}`n"
     [IO.File]::WriteAllText((Join-Path $destino "chapters/$nome.snbt"), $cap, $utf8)

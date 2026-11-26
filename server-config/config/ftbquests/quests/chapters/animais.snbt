@@ -35,63 +35,63 @@
 			y: 0d
 		}
 		{
-			dependencies: ["61C61A081520CB2D"]
+			dependencies: ["709A1A630889A48A"]
 			id: "06C980678102C2D1"
 			rewards: [{ id: "52B7922C4927A0AA", type: "xp", xp: 20 }]
 			tasks: [{ id: "484863208DB4A241", item: { count: 4, id: "alexsmobs:banana" }, type: "item" }]
-			x: 4.5d
-			y: 0d
+			x: 1.5d
+			y: 1.5d
 		}
 		{
 			dependencies: ["06C980678102C2D1"]
 			id: "3849201631781B1D"
 			rewards: [{ id: "324D3B2CE7574ECC", type: "xp", xp: 20 }]
 			tasks: [{ advancement: "alexsmobs:alexsmobs/tame_capuchin", criterion: "", id: "12B7DC60F4299CBA", type: "advancement" }]
-			x: 6d
-			y: 0d
+			x: 3d
+			y: 1.5d
 		}
 		{
-			dependencies: ["3849201631781B1D"]
+			dependencies: ["06C980678102C2D1"]
 			id: "49112F4ACB001628"
 			rewards: [{ id: "094CA5EDAD875CFA", type: "xp", xp: 20 }]
 			tasks: [{ advancement: "alexsmobs:alexsmobs/tame_gorilla", criterion: "", id: "13D8C2617E2B739D", type: "advancement" }]
-			x: 7.5d
-			y: 0d
+			x: 3d
+			y: 3d
 		}
 		{
-			dependencies: ["49112F4ACB001628"]
+			dependencies: ["709A1A630889A48A"]
 			id: "49AB300C67D3AA1F"
 			rewards: [{ id: "569672297C07142F", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ advancement: "alexsmobs:alexsmobs/tame_grizzly_bear", criterion: "", id: "3999EEF5F674670E", type: "advancement" }]
-			x: 9d
-			y: 0d
+			x: 1.5d
+			y: 3d
 		}
 		{
-			dependencies: ["49AB300C67D3AA1F"]
+			dependencies: ["709A1A630889A48A"]
 			id: "097CC09B429254A5"
 			rewards: [{ id: "768303D275CEB7D8", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ advancement: "alexsmobs:alexsmobs/tame_elephant", criterion: "", id: "7CD583BDB92F83D3", type: "advancement" }]
-			x: 10.5d
-			y: 0d
+			x: 1.5d
+			y: 4.5d
 		}
 		{
-			dependencies: ["097CC09B429254A5"]
+			dependencies: ["709A1A630889A48A"]
 			id: "6150E244CB3DEF29"
 			rewards: [{ id: "472779BB11FBC78B", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ advancement: "alexsmobs:alexsmobs/tame_bald_eagle", criterion: "", id: "36D5A71D8D98F041", type: "advancement" }]
-			x: 12d
-			y: 0d
+			x: 1.5d
+			y: 6d
 		}
 		{
-			dependencies: ["6150E244CB3DEF29"]
+			dependencies: ["709A1A630889A48A"]
 			id: "0A838F3BD45A0086"
 			rewards: [{ id: "6D363F96114148C4", type: "xp", xp: 20 }]
 			tasks: [{ id: "76C1451F34634EFB", item: { count: 1, id: "naturalist:capture_net" }, type: "item" }]
-			x: 13.5d
-			y: 0d
+			x: 1.5d
+			y: 7.5d
 		}
 		{
 			dependencies: ["0A838F3BD45A0086"]
@@ -99,25 +99,25 @@
 			rewards: [{ id: "2D57DD81C14DC8FA", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ advancement: "naturalist:husbandry/feed_bear_honeycomb", criterion: "", id: "187BECAA7167DA45", type: "advancement" }]
-			x: 15d
-			y: 0d
+			x: 3d
+			y: 7.5d
 		}
 		{
-			dependencies: ["6D1B85B0167C383F"]
+			dependencies: ["0A838F3BD45A0086"]
 			id: "44B56177CD82D0CA"
 			rewards: [{ id: "21481582174E1218", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ advancement: "naturalist:husbandry/feed_hippo_melon", criterion: "", id: "78CE9DD2335AA11A", type: "advancement" }]
-			x: 16.5d
-			y: 0d
+			x: 3d
+			y: 9d
 		}
 		{
-			dependencies: ["44B56177CD82D0CA"]
+			dependencies: ["709A1A630889A48A"]
 			id: "1BC70B92D74B0EE0"
 			rewards: [{ id: "13015A2454F1D269", type: "xp", xp: 20 }]
 			tasks: [{ advancement: "friendsandfoes:adventure/summon_copper_golem", criterion: "", id: "17C7D4EF87054972", type: "advancement" }]
-			x: 18d
-			y: 0d
+			x: 1.5d
+			y: 9d
 		}
 		{
 			dependencies: ["1BC70B92D74B0EE0"]
@@ -125,63 +125,63 @@
 			rewards: [{ id: "24649CD7030808A1", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ advancement: "friendsandfoes:husbandry/shear_a_moobloom", criterion: "", id: "009D194391EDD249", type: "advancement" }]
-			x: 19.5d
-			y: 0d
+			x: 3d
+			y: 10.5d
 		}
 		{
-			dependencies: ["1327834361AA2D2E"]
+			dependencies: ["1BC70B92D74B0EE0"]
 			id: "0A85DA39533066FF"
 			rewards: [{ id: "792670EC1A99DD26", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ advancement: "friendsandfoes:husbandry/tame_a_glare", criterion: "", id: "6CBBE13AE21583A3", type: "advancement" }]
-			x: 21d
-			y: 0d
+			x: 3d
+			y: 12d
 		}
 		{
-			dependencies: ["0A85DA39533066FF"]
+			dependencies: ["709A1A630889A48A"]
 			id: "22B41F73D0FF5EEC"
 			rewards: [{ id: "537EA8013675BE4B", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "461A221D90E93094", item: { count: 1, id: "crittersandcompanions:grappling_hook" }, type: "item" }]
-			x: 22.5d
-			y: 0d
+			x: 1.5d
+			y: 10.5d
 		}
 		{
-			dependencies: ["22B41F73D0FF5EEC"]
+			dependencies: ["709A1A630889A48A"]
 			id: "7E43CEFFCC4BB081"
 			rewards: [{ id: "625887AACDD664AC", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "397D0CFEF9E4549C", structure: "ribbits:ribbit_village", type: "structure" }]
-			x: 24d
-			y: 0d
+			x: 1.5d
+			y: 12d
 		}
 		{
-			dependencies: ["7E43CEFFCC4BB081"]
+			dependencies: ["709A1A630889A48A"]
 			id: "78FAE471475BB2C4"
 			rewards: [{ id: "5F92384B013622CF", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "586CB946C6876E59", item: { count: 1, id: "wildernature:deer_trophy" }, type: "item" }]
-			x: 25.5d
-			y: 0d
+			x: 1.5d
+			y: 13.5d
 		}
 		{
-			dependencies: ["78FAE471475BB2C4"]
+			dependencies: ["709A1A630889A48A"]
 			id: "59E080926C5F84D3"
 			rewards: [{ id: "680EF3530675B7EA", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "116DCB35DE3CF09E", type: "checkmark" }]
-			x: 27d
-			y: 0d
+			x: 1.5d
+			y: 15d
 		}
 		{
-			dependencies: ["59E080926C5F84D3"]
+			dependencies: ["709A1A630889A48A"]
 			id: "305C7BD83B1F7E76"
 			rewards: [{ id: "4E23621DA244FEE9", type: "xp", xp: 100 }]
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ advancement: "dmr:hatch_1_dragon_egg", criterion: "", id: "5951117BBC7ED161", type: "advancement" }]
-			x: 28.5d
-			y: 0d
+			x: 1.5d
+			y: 16.5d
 		}
 		{
 			dependencies: ["305C7BD83B1F7E76"]
@@ -190,8 +190,8 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ advancement: "dmr:tame_dragon", criterion: "", id: "1928DA00DFE011CA", type: "advancement" }]
-			x: 30d
-			y: 0d
+			x: 3d
+			y: 16.5d
 		}
 	]
 }

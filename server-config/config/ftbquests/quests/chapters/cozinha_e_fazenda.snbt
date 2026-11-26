@@ -34,45 +34,45 @@
 			y: 0d
 		}
 		{
-			dependencies: ["76DC6C83A5F3D648"]
+			dependencies: ["1A06C261319C8017"]
 			id: "2E7513D1359CBC3D"
 			rewards: [{ id: "393304E977D17968", type: "xp", xp: 20 }, { id: "76D7CDCBF42624E6", item: { count: 8, id: "minecraft:coal" }, type: "item" }]
 			tasks: [{ id: "290CBBBD201757DB", item: { count: 1, id: "farmersdelight:stove" }, type: "item" }]
-			x: 4.5d
-			y: 0d
+			x: 1.5d
+			y: 1.5d
 		}
 		{
 			dependencies: ["2E7513D1359CBC3D"]
 			id: "0A7828646B97BEF9"
 			rewards: [{ id: "7731ECEDF85B0E9A", type: "xp", xp: 20 }, { id: "3D0C3748FEFFFCCF", item: { count: 8, id: "minecraft:bowl" }, type: "item" }]
 			tasks: [{ id: "261622CC4B640C0E", item: { count: 1, id: "farmersdelight:cooking_pot" }, type: "item" }]
-			x: 6d
-			y: 0d
+			x: 3d
+			y: 1.5d
 		}
 		{
-			dependencies: ["0A7828646B97BEF9"]
+			dependencies: ["2E7513D1359CBC3D"]
 			id: "681E9E63CB9E3256"
 			rewards: [{ id: "56FA3EE4FAE7E9C6", type: "xp", xp: 20 }, { id: "5D6FB448B6C1A409", item: { count: 2, id: "farmersdelight:bacon_and_eggs" }, type: "item" }]
 			tasks: [{ id: "6F1653F1827549CA", item: { count: 1, id: "farmersdelight:skillet" }, type: "item" }]
-			x: 7.5d
-			y: 0d
+			x: 3d
+			y: 3d
 		}
 		{
-			dependencies: ["681E9E63CB9E3256"]
+			dependencies: ["0A7828646B97BEF9"]
 			id: "1FD0527105F03C4B"
 			rewards: [{ id: "331BB58823511641", type: "xp", xp: 20 }, { id: "0DE779398B655249", item: { count: 1, id: "farmersdelight:sweet_berry_cheesecake" }, type: "item" }]
 			optional: true
 			tasks: [{ id: "2A3E960E354D3286", item: { count: 1, id: "farmersdelight:roast_chicken_block" }, type: "item" }]
-			x: 9d
-			y: 0d
+			x: 4.5d
+			y: 1.5d
 		}
 		{
-			dependencies: ["1FD0527105F03C4B"]
+			dependencies: ["1A06C261319C8017"]
 			id: "5FD2BAC2E30B4AA8"
 			rewards: [{ id: "126DB3482B79AF31", type: "xp", xp: 20 }, { id: "7E5BF66CCF8D4E90", item: { count: 4, id: "farmersdelight:rich_soil" }, type: "item" }]
 			tasks: [{ id: "04F852F67DBEBA99", item: { count: 1, id: "farmersdelight:organic_compost" }, type: "item" }]
-			x: 10.5d
-			y: 0d
+			x: 1.5d
+			y: 3d
 		}
 		{
 			dependencies: ["5FD2BAC2E30B4AA8"]
@@ -80,26 +80,26 @@
 			rewards: [{ id: "3AA5B428E222231C", type: "xp", xp: 20 }, { id: "19E00D261F9352B6", item: { count: 1, id: "farmersdelight:red_mushroom_colony" }, type: "item" }]
 			optional: true
 			tasks: [{ id: "14E64A20F4103636", item: { count: 1, id: "farmersdelight:brown_mushroom_colony" }, type: "item" }]
-			x: 12d
-			y: 0d
+			x: 3d
+			y: 4.5d
 		}
 		{
-			dependencies: ["37A3ECE29F59CBA3"]
+			dependencies: ["444ED84B583BF94C"]
 			id: "14EA467B6FBF8668"
 			rewards: [{ id: "270F1EBBB4AB1711", type: "xp", xp: 20 }, { id: "472308F563F90D46", item: { count: 8, id: "farmersdelight:rope" }, type: "item" }]
 			tasks: [{ id: "71F998EADADC8ADD", item: { count: 4, id: "farmersdelight:rice" }, type: "item" }]
-			x: 13.5d
-			y: 0d
+			x: 3d
+			y: 6d
 		}
 		{
-			dependencies: ["14EA467B6FBF8668"]
+			dependencies: ["1A06C261319C8017"]
 			id: "569DF5B660B84CED"
 			rewards: [{ id: "4F6E4C9F6999BA90", type: "xp", xp: 100 }, { id: "704CD2A4D1BBCCCF", item: { count: 16, id: "minecraft:glass" }, type: "item" }]
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "626E1611AFC0CCB6", item: { count: 1, id: "sereneseasons:calendar" }, type: "item" }]
-			x: 15d
-			y: 0d
+			x: 1.5d
+			y: 4.5d
 		}
 		{
 			dependencies: ["569DF5B660B84CED"]
@@ -107,76 +107,76 @@
 			rewards: [{ id: "0E33E7179F335A39", type: "xp", xp: 20 }, { id: "22A25F8720C51E13", item: { count: 8, id: "minecraft:redstone" }, type: "item" }]
 			optional: true
 			tasks: [{ id: "3E463B5A5515FF50", item: { count: 1, id: "sereneseasons:season_sensor" }, type: "item" }]
-			x: 16.5d
-			y: 0d
+			x: 3d
+			y: 7.5d
 		}
 		{
-			dependencies: ["58F6C1361EC81ECA"]
+			dependencies: ["1A06C261319C8017"]
 			id: "4EBD5BC9FC0C21E4"
 			rewards: [{ id: "547A636B406F0DC2", type: "xp", xp: 20 }, { id: "2B7FA843CE9D7450", item: { count: 1, id: "croptopia:cooking_pot" }, type: "item" }]
 			tasks: [{ id: "5069FCC23DAD0CFD", item: { count: 4, id: "croptopia:salt" }, type: "item" }]
-			x: 18d
-			y: 0d
+			x: 1.5d
+			y: 6d
 		}
 		{
 			dependencies: ["4EBD5BC9FC0C21E4"]
 			id: "6B2F90350C948BE0"
 			rewards: [{ id: "338F250DBB2980BF", type: "xp", xp: 20 }, { id: "1DAD99122D597B9A", item: { count: 1, id: "croptopia:frying_pan" }, type: "item" }]
 			tasks: [{ id: "4923F3CB628D4598", item: { count: 1, id: "croptopia:mortar_and_pestle" }, type: "item" }]
-			x: 19.5d
-			y: 0d
+			x: 3d
+			y: 9d
 		}
 		{
-			dependencies: ["6B2F90350C948BE0"]
+			dependencies: ["1A06C261319C8017"]
 			id: "69A299D53718CCB7"
 			rewards: [{ id: "09802D09C22BDAF8", type: "xp", xp: 20 }, { id: "2B8E99FCFE9C17EF", item: { count: 4, id: "culturaldelights:corn_cob" }, type: "item" }]
 			tasks: [{ id: "70D8193D336D988B", item: { count: 1, id: "culturaldelights:vat" }, type: "item" }]
-			x: 21d
-			y: 0d
+			x: 1.5d
+			y: 7.5d
 		}
 		{
-			dependencies: ["69A299D53718CCB7"]
+			dependencies: ["0A7828646B97BEF9"]
 			id: "230395E0CA029A36"
 			rewards: [{ id: "066D3B1ABCAE7BD6", type: "xp", xp: 20 }, { id: "68D3700AA380A487", item: { count: 2, id: "storagedelight:oak_cabinet_with_glass_doors" }, type: "item" }]
 			optional: true
 			tasks: [{ id: "3538CCFFD3E8F01B", item: { count: 1, id: "storagedelight:oak_drawer" }, type: "item" }]
-			x: 22.5d
-			y: 0d
+			x: 4.5d
+			y: 3d
 		}
 		{
-			dependencies: ["230395E0CA029A36"]
+			dependencies: ["0A7828646B97BEF9"]
 			id: "4B167245EDBCA310"
-			rewards: [{ id: "2371AFDDBBCC56F6", type: "xp", xp: 100 }, { id: "1474E2E3175256EF", item: { count: 1, id: "cookingforblockheads:fridge" }, type: "item" }]
+			rewards: [{ id: "2371AFDDBBCC56F6", type: "xp", xp: 100 }, { id: "1474E2E3175256EF", item: { count: 1, id: "cookingforblockheads:white_fridge" }, type: "item" }]
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "6F98832948D3BE0A", item: { count: 1, id: "cookingforblockheads:cooking_table" }, type: "item" }]
-			x: 24d
-			y: 0d
+			x: 4.5d
+			y: 4.5d
 		}
 		{
 			dependencies: ["4B167245EDBCA310"]
 			id: "46998D37F658FFCC"
 			rewards: [{ id: "710FD11B9B39031E", type: "xp", xp: 20 }, { id: "061486DCA7BB94A6", item: { count: 1, id: "cookingforblockheads:milk_jar" }, type: "item" }]
 			tasks: [{ id: "00D5C8026044816B", item: { count: 1, id: "cookingforblockheads:sink" }, type: "item" }]
-			x: 25.5d
-			y: 0d
+			x: 6d
+			y: 4.5d
 		}
 		{
-			dependencies: ["46998D37F658FFCC"]
+			dependencies: ["4B167245EDBCA310"]
 			id: "331FAE9299EA6A9F"
 			rewards: [{ id: "2A5437EB78FE6AAC", type: "xp", xp: 20 }, { id: "61C6C58BA77CED85", item: { count: 1, id: "cookingforblockheads:heating_unit" }, type: "item" }]
 			optional: true
 			tasks: [{ id: "45DDC7A08EEFE977", item: { count: 1, id: "cookingforblockheads:ice_unit" }, type: "item" }]
-			x: 27d
-			y: 0d
+			x: 6d
+			y: 6d
 		}
 		{
-			dependencies: ["331FAE9299EA6A9F"]
+			dependencies: ["5FD2BAC2E30B4AA8"]
 			id: "560E86939E9F32B8"
 			rewards: [{ id: "1BC34C7BC73741C8", type: "xp", xp: 20 }, { id: "73097042F4C31443", item: { count: 2, id: "farmersdelight:rich_soil" }, type: "item" }]
 			tasks: [{ id: "14184BD8CFE7DA54", item: { count: 1, id: "botanypots:terracotta_botany_pot" }, type: "item" }]
-			x: 28.5d
-			y: 0d
+			x: 3d
+			y: 10.5d
 		}
 		{
 			dependencies: ["560E86939E9F32B8"]
@@ -185,26 +185,26 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "1BF8FFC53D5F5954", item: { count: 1, id: "botanypots:terracotta_hopper_botany_pot" }, type: "item" }]
-			x: 30d
-			y: 0d
+			x: 4.5d
+			y: 10.5d
 		}
 		{
-			dependencies: ["06056D73419282AF"]
+			dependencies: ["0A7828646B97BEF9"]
 			id: "1FF26F89EA731135"
 			rewards: [{ id: "0BF058B5966A9388", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "56B1233ABA33A8E4", item: { count: 1, id: "oceansdelight:squid_rings" }, type: "item" }]
-			x: 31.5d
-			y: 0d
+			x: 4.5d
+			y: 12d
 		}
 		{
-			dependencies: ["1FF26F89EA731135"]
+			dependencies: ["76DC6C83A5F3D648"]
 			id: "7CE52A154AEA62ED"
 			rewards: [{ id: "443DF5F8BBB57C19", type: "xp", xp: 20 }, { id: "23E64942263A77E9", item: { count: 2, id: "sliceanddice:sprinkler" }, type: "item" }]
 			optional: true
 			tasks: [{ id: "5E17A7BDACA45930", item: { count: 1, id: "sliceanddice:slicer" }, type: "item" }]
-			x: 33d
-			y: 0d
+			x: 4.5d
+			y: 13.5d
 		}
 		{
 			dependencies: ["7CE52A154AEA62ED"]
@@ -212,17 +212,17 @@
 			rewards: [{ id: "0AB4C732A46FBC1D", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "6D4553BC51845FEF", type: "checkmark" }]
-			x: 34.5d
-			y: 0d
+			x: 6d
+			y: 13.5d
 		}
 		{
-			dependencies: ["7D237BC6C11B4564"]
+			dependencies: ["560E86939E9F32B8"]
 			id: "12B3F56B552344DD"
 			rewards: [{ id: "358FB0F218E80076", type: "xp", xp: 20 }, { id: "6FB4D952BFA62651", item: { count: 2, id: "mysticalagriculture:prosperity_seed_base" }, type: "item" }]
 			optional: true
 			tasks: [{ id: "56C8AC9E0CF0E3FE", item: { count: 8, id: "mysticalagriculture:inferium_essence" }, type: "item" }]
-			x: 36d
-			y: 0d
+			x: 4.5d
+			y: 15d
 		}
 	]
 }
