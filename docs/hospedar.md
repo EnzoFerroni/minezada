@@ -94,17 +94,12 @@ Modflared (no pack) lê o registro TXT do domínio (`cloudflared-route=mc.mineza
 rede de faculdade, empresa e Wi-Fi público, até nas que inspecionam o tráfego. No host, o `iniciar`
 baixa o `cloudflared` (versão fixa, SHA-256) para `tools/cloudflared` e liga o túnel com o token de
 `cloudflare.txt` na pasta do Drive (`--token-file`, o token não aparece na lista de processos). O host
-precisa de saída na porta 7844 (UDP ou TCP), livre em casa. Painel: conta Cloudflare do dono, domínio
-grátis `minezada.dpdns.org` (DigitalPlat), túnel `minezada` com a rota `mc.minezada.dpdns.org` →
-`tcp://localhost:25565`. Perdeu o token? Painel → Tunnels → `minezada` → gerar de novo e salvar em
-`cloudflare.txt`.
+precisa de saída na porta 7844 (UDP ou TCP), livre em casa.
 
 **2. `molecule-spindle.tun.ply.gg` (túnel playit.gg).** Ligado junto, para quem não conseguir pela
 Cloudflare (entrada **Minezada (playit)**). Usa outra porta, então não passa em rede que só libera
 80/443. O segredo do agente fica em `playit.txt` e o endereço em `playit-endereco.txt`, na pasta do
-Drive. Plano grátis: a rota não é garantida para quem está longe. Perdeu o segredo?
-`playit claim generate`, `playit claim url <código>`, aprove no site e `playit claim exchange <código>`:
-a última linha da saída é o segredo novo.
+Drive. Plano grátis: a rota não é garantida para quem está longe.
 
 **Mesma casa.** O host entra por **Minezada (neste computador)** (`127.0.0.1`). Outro computador da mesma
 casa entra pelo túnel, como todo mundo (**Minezada**).
@@ -116,6 +111,7 @@ casa entra pelo túnel, como todo mundo (**Minezada**).
 
 **Dicas.**
 - Windows: deixe a rede de casa como **Privada**; em rede pública o túnel funciona igual.
+
 ## Google Drive
 
 Sem a pasta, o `iniciar` oferece configurar: instala o Google Drive, abre o login e a pasta no
@@ -139,47 +135,13 @@ abre o Google Drive se ele estiver fechado e espera você apertar Enter quando e
 
 ## Página (mapa e placar)
 
-A página do GitHub Pages mostra o mapa do mundo, o placar e o céu como o mundo ficou. Ela sai do mundo que o
-`iniciar` sobe para o GitHub a cada `stop`, depois de mandar para o Drive, e a cada 30 minutos com o servidor
-ligado (um `save-off` e `save-all flush` no console antes da cópia, e `save-on` depois). Sem `github.txt` na
-pasta do Drive o `iniciar` não sobe nada, e a página fica sem mapa e sem placar; o resto funciona igual.
-Configurado uma vez só:
+A [página](https://enzoferroni.github.io/minezada/) mostra o mapa, o placar e quem está online. O `iniciar` manda o
+mundo para ela sozinho a cada 30 minutos e no `stop`. Quem hospeda não precisa fazer nada; a configuração única
+está em [manutencao.md](manutencao.md).
 
-1. O mundo vai para o repositório privado `PedroTessaro/minezada-mundo` (criado com um README; sem nenhum
-   commit o GitHub não aceita o release).
-2. Token: https://github.com/settings/personal-access-tokens/new, com **Only select repositories** →
-   `minezada-mundo` e **Repository permissions → Contents: Read and write**. Nada mais.
-3. Na pasta `minezada` do Drive, um arquivo `github.txt` com o token na primeira linha. Todo host usa o mesmo.
-4. No repositório do pack: Settings → Secrets and variables → Actions → aba do environment **producao**
-   (só libera os segredos no `main`), nome `MUNDO_TOKEN`, o mesmo token.
-5. Settings → Pages → Source: **GitHub Actions**.
-
-A Action **Pagina** olha a cada meia hora se chegou mundo novo, e o envio ainda pede ela na hora quando existe o
-`dispatch.txt` do selo (seção abaixo). Token vencido: o `iniciar` avisa no fim
-("mundo não enviado para o GitHub") e o mundo do Drive continua salvo; gere outro e troque nos passos 3 e 4.
-O mapa tem uma aba para cada dimensão onde alguém já foi: Superfície, Nether, End e as dos mods (o Aether, a Lua,
-Marte, Vênus, Mercúrio e Glacio do Ad Astra, as órbitas, o Undergarden), sozinhas a partir da primeira visita.
-O mapa marca as vilas (pelo sino). O resto mostra as bases e fica desligado: onde cada um saiu do jogo, os
-portais do Nether acesos, onde o pessoal passa mais tempo (o botão "Onde o pessoal fica") e onde cada um
-morreu (o botão "Mortes", dos registros do mod Corpse). O botão "Estruturas" mostra as estruturas já encontradas. Para ligar: Settings → Secrets and variables → Actions
-→ Variables, `MOSTRAR_POSICOES` = `sim`.
-
-## Selo do README
-
-A Action **Status do servidor** pergunta ao servidor se ele está ligado. O horário dela (de 10 em 10 minutos) o
-GitHub roda quando quer, e já passou horas sem rodar; por isso o `iniciar` pede a consulta na hora quando o
-servidor termina de abrir, a cada 10 minutos com ele ligado e depois do `stop`. O selo muda de 1 a 6 minutos
-depois (o resto é o cache do GitHub e do shields.io). Configurado uma vez só:
-
-1. Token do dono do repositório: https://github.com/settings/personal-access-tokens/new, com **Only select
-   repositories** → `minezada` e **Repository permissions → Actions: Read and write**. Só isso: ele pede
-   rodadas de Action e não mexe em arquivo nenhum.
-2. Na pasta `minezada` do Drive, um arquivo `dispatch.txt` com o token na primeira linha.
-
-Sem `dispatch.txt` o selo fica só com o horário do GitHub. Host que cai sem `stop` (falta de luz) não avisa: o
-selo fica "ligado" até a próxima consulta do horário.
-
-A cada 30 minutos com o servidor ligado, a cópia do mundo vai também para `backups/sessao-atual.tar.gz` no Drive (segurança se o host cair). O `mundo.tar.gz` e a trava só mudam no `stop`. Se essa cópia for mais nova que o `mundo.tar.gz` (o último host caiu antes do `stop`), o próximo `iniciar` usa ela sozinho.
+A cada 30 minutos com o servidor ligado, a cópia do mundo vai também para `backups/sessao-atual.tar.gz` no Drive
+(segurança se o host cair). Se essa cópia for mais nova que o `mundo.tar.gz` (o último host caiu antes do `stop`),
+o próximo `iniciar` usa ela sozinho.
 
 ## Trocar de host
 
@@ -190,26 +152,14 @@ A cada 30 minutos com o servidor ligado, a cópia do mundo vai também para `bac
 
 ## Segurança
 
-- Quem tem original só entra com a conta verificada pela Mojang. Nunca libere o UUID offline de um
-  nick com original: o MixAuth só pede senha a quem chega como offline, e qualquer um poderia
-  registrar uma senha e entrar com aquele nick (e com o op dele). O start já cuida disso.
-- O repositório é público e os comandos de jogar e hospedar rodam direto dele no PC de todos:
-  **mantenha a verificação em duas etapas ligada no GitHub** e não dê acesso de escrita a ninguém.
-  O `main` é protegido: ninguém (nem o dono) consegue force push ou apagar o branch.
-- A pasta `minezada` do Drive guarda o mundo e os segredos dos túneis (`cloudflare.txt`, `playit.txt`). Compartilhe
-  só com quem hospeda (com 2FA na conta Google): quem tem um deles pode apontar o endereço para um
-  servidor falso e pegar as senhas do `/login`. Vazou? Token novo no túnel da Cloudflare e no playit.
-- Contas da Cloudflare (domínio e túnel) e da DigitalPlat (domínio grátis) com 2FA: quem entrar nelas pode
-  redirecionar o endereço.
-- Downloads com checksum e versão fixa: launcher sem original, cloudflared, playit e
-  packwiz-installer. Os mods vêm do Modrinth com hash conferido pelo packwiz. A cada push no pack, a
-  Action **Servidor de teste** sobe o servidor no GitHub e avisa se ele não chegar no `Done`.
-- Com os túneis, nenhuma porta fica aberta no roteador e o IP de casa não aparece (só conexões de saída). Nenhuma regra de
-  firewall é criada: o túnel entrega o jogador em `localhost`. RCON e query ficam desligados.
-- Pelo túnel todos chegam com o mesmo IP: banir por IP não funciona. Use `whitelist remove Nick` e
-  tire o nick do `jogadores.txt`.
-- Mais seguro ainda: desligue o UPnP no roteador. O servidor não precisa dele, e nenhum aparelho da
-  casa consegue abrir porta sozinho.
+- A pasta `minezada` do Drive guarda o mundo e os segredos dos túneis. Não compartilhe com ninguém: quem tem os
+  segredos pode apontar o endereço para um servidor falso e pegar as senhas do `/login`. Use verificação em duas
+  etapas na conta Google.
+- Quem tem original só entra com a conta verificada pela Mojang. Nunca libere o UUID offline de um nick com
+  original: o `iniciar` já cuida disso.
+- Pelo túnel todos chegam com o mesmo IP: banir por IP não funciona. Use `whitelist remove Nick` e tire o nick do
+  `jogadores.txt`.
+- Nenhuma porta fica aberta no roteador e o IP de casa não aparece. Mais seguro ainda: desligue o UPnP no roteador.
 
 ## Comandos úteis (no campo de comando da janela do servidor)
 

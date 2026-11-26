@@ -10,7 +10,7 @@
   **Prioridade** no quadro: **Alta** = jogo fechando ou sem conseguir conectar; **Média** = simplificar instalação e
   configuração; **Baixa** = o resto.
 - **O que mudou em cada versão do pack**: [Releases](https://github.com/EnzoFerroni/minezada/releases)
-  (antes de `2026.11.18.1`: histórico em [docs/decisoes.md](../docs/decisoes.md)).
+  (antes de `2026.11.18.1`: no histórico do git).
 - **Por que cada coisa é assim**: [docs/decisoes.md](../docs/decisoes.md). Mudou uma decisão? Atualize lá.
 - **Como usar**: [README](../README.md) e [docs/](../docs).
 - **Pack**: `modpack/mods.txt` é a lista de mods (fonte da verdade). `modpack/pack/`,
@@ -27,7 +27,8 @@
   - `scripts/`: o que monta e roda tudo (pack, perfis, livro, servidor) e `testes/`.
   - `site/`: a página do GitHub Pages. `site/mods.json` é gerado pelo `montar-pack.ps1`.
   - `sword/`: programas em [Sword](https://swordlang.com) que leem o mundo e desenham o mapa, o placar e as conquistas da página.
-  - `docs/`: guias e decisões.
+  - `docs/`: `hospedar.md` (quem hospeda), `manutencao.md` (configuração única do dono: túneis, página, selo),
+    `decisoes.md` (por que cada coisa é assim) e `mods.md` (gerado).
 - **Testes**: `scripts/testes/` (desligar o servidor por stop, Ctrl+C e janela fechada; whitelist, que é um arquivo
   só para Windows e Mac: `scripts/Whitelist.java`). A Action **Testes dos scripts** roda tudo no macOS, Linux e
   Windows a cada push que mexe nos scripts. Mudou o `rodar_servidor`/`enviar_mundo` do `iniciar.sh` ou a whitelist?
