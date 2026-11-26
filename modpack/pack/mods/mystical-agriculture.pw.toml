@@ -1,0 +1,8 @@
+name = "Mystical Agriculture"
+filename = "MysticalAgriculture-1.21.1-8.0.29.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/C95ReXie/versions/4Wc9oVPI/MysticalAgriculture-1.21.1-8.0.29.jar"
+hash-format = "sha1"
+hash = "4a774506f65899683aa40b92fec972ddcc4fdc4f"

@@ -1,0 +1,12 @@
+name = "Cooking for Blockheads"
+filename = "cookingforblockheads-neoforge-1.21.1-21.1.25.jar"
+side = "both"
+
+[download]
+url = "https://edge.forgecdn.net/files/9647/375/cookingforblockheads-neoforge-1.21.1-21.1.25.jar"
+hash-format = "sha1"
+hash = "8e952262d756b67d2fa2060de4a9921bb475658e"
+
+[update.curseforge]
+project-id = 231484
+file-id = 9647375
