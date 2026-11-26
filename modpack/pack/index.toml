@@ -1297,11 +1297,11 @@ hash = "7799f79f71df3a70754fd9aca9faa22f245992945f6de0690c48cec9b3abf6e9"
 
 [[files]]
 file = "resourcepacks/modo-patinho/assets/alexsmobs/textures/entity/comb_jelly_blue.png"
-hash = "667b079223fb5b16e2fa75a1e431c10a843552d0df700c25de3cefa165754e50"
+hash = "1c07ec014fdc42a1e04cf2bcf891b597b0756b905ae60b5113e48aab235205db"
 
 [[files]]
 file = "resourcepacks/modo-patinho/assets/alexsmobs/textures/entity/comb_jelly_green.png"
-hash = "667b079223fb5b16e2fa75a1e431c10a843552d0df700c25de3cefa165754e50"
+hash = "1c07ec014fdc42a1e04cf2bcf891b597b0756b905ae60b5113e48aab235205db"
 
 [[files]]
 file = "resourcepacks/modo-patinho/assets/alexsmobs/textures/entity/comb_jelly_overlay.png"
@@ -1309,7 +1309,7 @@ hash = "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0"
 
 [[files]]
 file = "resourcepacks/modo-patinho/assets/alexsmobs/textures/entity/comb_jelly_red.png"
-hash = "667b079223fb5b16e2fa75a1e431c10a843552d0df700c25de3cefa165754e50"
+hash = "1c07ec014fdc42a1e04cf2bcf891b597b0756b905ae60b5113e48aab235205db"
 
 [[files]]
 file = "resourcepacks/modo-patinho/assets/alexsmobs/textures/entity/rainbow_jelly_overlays/glint_ace.png"
@@ -1345,11 +1345,11 @@ hash = "f9a19ae4ad3c25c933a4a110cde5f333de763c1563560630f256d54badec0a4c"
 
 [[files]]
 file = "resourcepacks/modo-patinho/assets/minecraft/lang/pt_br.json"
-hash = "bf3c1f7021a35574bf701d27c9dbe0a9c9a95202310027e540876b64d15a2697"
+hash = "01c187d37808b57c420153cb299360544401ddb638466d8655e55bb5660747f4"
 
 [[files]]
 file = "resourcepacks/modo-patinho/assets/naturalist/emf/cem/jellyfish.jem"
-hash = "c6f7b38f29124145e0b42b5d2f08b7a00a555f30dd282e8eefba02a79223bf06"
+hash = "c4500e4c92f668f6b34d4327a4279fc3cb8fac14a1ce9a95375cbc25238fdd11"
 
 [[files]]
 file = "resourcepacks/modo-patinho/assets/naturalist/models/item/jellyfish_bucket.json"
@@ -1405,7 +1405,7 @@ hash = "71c10e56771c695adc6944c964ce0b6d4b73b5e223769abe73f86965c6131ce0"
 
 [[files]]
 file = "resourcepacks/modo-patinho/pack.mcmeta"
-hash = "0656f5c33b2bf3d4382bf52d3bf5cfaf732c2a7a241973ad10e2ec698343ab45"
+hash = "6b9c69bb31b28df2f9fda29f5bc8f00053eff4cf3387f168d9f0386a3775a579"
 
 [[files]]
 file = "shaderpacks/ComplementaryReimagined_r5.10.zip.txt"
