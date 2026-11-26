@@ -877,12 +877,12 @@ metafile = true
 
 [[files]]
 file = "mods/structory.pw.toml"
-hash = "9330e17386e58b882c93fe4942ef29f0473ab4f698d9b851f4b28dcdfe907a68"
+hash = "275373be10486ef98bdde7b95d21fa6231e2df503da789751387fc0233b52cae"
 metafile = true
 
 [[files]]
 file = "mods/structory-towers.pw.toml"
-hash = "982392c58851f7251fa235ddc8de64cfa143965c0becbcef2ffba474caece4c3"
+hash = "f3949d7c1319b8239c53f751dbfc450af11921ec4e98e6826def91972bc2e4e3"
 metafile = true
 
 [[files]]
