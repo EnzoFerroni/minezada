@@ -29,6 +29,7 @@ env:
 jobs:
   montar:
     runs-on: ubuntu-latest
+    environment: producao # segredos so no main
     timeout-minutes: 20
     outputs:
       pular: ${{ steps.mundo.outputs.pular }}

@@ -17,6 +17,7 @@ jobs:
   conferir:
     if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
+    environment: producao # segredos so no main
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -37,6 +38,7 @@ jobs:
   atualizacoes:
     if: github.event_name != 'push'
     runs-on: ubuntu-latest
+    environment: producao # segredos so no main
     timeout-minutes: 30
     permissions:
       contents: read
