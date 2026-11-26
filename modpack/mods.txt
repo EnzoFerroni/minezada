@@ -24,6 +24,9 @@ createbetterfps | Mais FPS com shader ligado em bases grandes do Create.
 slice-and-dice | Addon do Create: a Cortadora corta e prepara comida sozinha (receitas do Farmer's Delight).
 create-central-kitchen | Addon do Create: automatiza com máquinas as comidas de outros mods (Farmer's Delight e addons).
 create-railways-navigator | Addon do Create: painéis de estação melhores e busca de rotas de trem.
+copycats | Addon do Create: blocos que copiam a textura de qualquer outro (degraus, cercas, painéis) para construir.
+create-deco | Addon do Create: blocos industriais de decoração, como tijolos, grades, portas e luzes de metal.
+create-dreams-and-desires | Addon do Create: itens e máquinas variadas no estilo do Create.
 interiors | Móveis novos no estilo do Create.
 
 ## Baús e armazenamento
