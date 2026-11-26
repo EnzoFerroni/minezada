@@ -53,6 +53,11 @@ jobs:
             exit 1
           fi
           grep -E 'Done \(|Stopping the server' logs/latest.log
+          # Livro de missoes (server-config/config/ftbquests): carregou e sem erro do FTB Quests.
+          if ! grep -qE 'FTB Quests/\]: Loaded .* [1-9][0-9]* quests' logs/latest.log || grep -E '/(ERROR|WARN)\] \[FTB Quests' logs/latest.log; then
+            echo "::error::Livro de missoes nao carregou (ou deu erro); veja scripts/missoes.ps1"
+            exit 1
+          fi
 
       - name: Guardar logs
         if: always()

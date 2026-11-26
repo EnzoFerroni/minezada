@@ -102,8 +102,12 @@ $ref = try { "$(Invoke-RestMethod 'https://api.github.com/repos/EnzoFerroni/mine
 if ($ref -notmatch '^[0-9a-f]{40}$') { $ref = 'main' }
 $pack = "https://raw.githubusercontent.com/EnzoFerroni/minezada/$ref/modpack/pack/pack.toml"
 # -t 0: sem a espera de 10 s do "Reconfigure optional mods?". Opcional novo continua abrindo a lista.
-& $java -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -t 0 $pack
-$codigo = $LASTEXITCODE
+# MINEZADA_SEM_PACKWIZ: so nos testes (scripts/testes/minezada.ps1), para conferir o resto sem rede.
+if (-not $env:MINEZADA_SEM_PACKWIZ) {
+    & $java -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -t 0 $pack
+    # Sem internet ou GitHub fora: abre com os mods de antes (mundo sozinho funciona; servidor recusa se mudou).
+    if ($LASTEXITCODE) { Write-Warning 'Pack nao atualizado (sem internet?): abrindo com os mods de antes.' }
+}
 # Shader atualizado muda o nome do zip: o iris.properties atual e o dos perfis (preserve) passam para o zip novo.
 foreach ($f in @(Get-ChildItem config/iris.properties, options-profiles/*/iris.properties -ErrorAction SilentlyContinue)) {
     $t = [IO.File]::ReadAllText($f.FullName)
@@ -115,4 +119,4 @@ foreach ($f in @(Get-ChildItem config/iris.properties, options-profiles/*/iris.p
     if (@($novo).Count -ne 1) { $novo = @(Get-ChildItem shaderpacks -Filter 'ComplementaryReimagined*.zip' -ErrorAction SilentlyContinue) }
     if (@($novo).Count -eq 1) { [IO.File]::WriteAllText($f.FullName, $t.Replace("shaderPack=$velho", "shaderPack=$($novo[0].Name)")) }
 }
-exit $codigo
+exit 0

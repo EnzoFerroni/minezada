@@ -1051,7 +1051,7 @@ preserve = true
 
 [[files]]
 file = "minezada.ps1"
-hash = "ced230e85dfc2c6b5b66b55760c6af625b2b01aac7f3c4fd5cb2b09745900cd9"
+hash = "672ce1f6313739ceb0717cb281ff6afdd91e9ca872c8bbea366b49937cc320c9"
 
 [[files]]
 file = "minezada.sh"

@@ -308,11 +308,6 @@ if (-not $Rodar) {
     exit
 }
 
-# 6. Rede: tuneis da Cloudflare e do playit. Quem esta nesta maquina entra por localhost; o resto, pelo tunel.
-$cf = Iniciar-Cloudflare $cfg.SYNC_DIR
-$tunel = Iniciar-Tunel $cfg.SYNC_DIR
-if (-not ($cf -or $tunel)) { Write-Warning 'Nenhum tunel conectou: so esta maquina consegue entrar (localhost).' }
-
 # Impede o Windows de suspender enquanto o servidor roda (tela pode apagar).
 Add-Type -Name Energia -Namespace Minezada -MemberDefinition '[DllImport("kernel32.dll")] public static extern uint SetThreadExecutionState(uint f);'
 [void][Minezada.Energia]::SetThreadExecutionState(2147483649)  # 0x80000001 = ES_CONTINUOUS | ES_SYSTEM_REQUIRED (hex vira negativo no PS 5.1)
@@ -374,6 +369,11 @@ function Foto-Passo([switch]$Comecar) {
 
 Push-Location $server
 try {
+    # 6. Rede: tuneis da Cloudflare e do playit. Quem esta nesta maquina entra por localhost; o resto, pelo tunel.
+    # Dentro do try: se algo falhar daqui em diante, o finally desliga os tuneis, devolve o mundo e solta a trava.
+    $cf = Iniciar-Cloudflare $cfg.SYNC_DIR
+    $tunel = Iniciar-Tunel $cfg.SYNC_DIR
+    if (-not ($cf -or $tunel)) { Write-Warning 'Nenhum tunel conectou: so esta maquina consegue entrar (localhost).' }
     Write-Host "Iniciando servidor com $($cfg.RAM) de RAM, na janela propria (fechar ela ou digitar stop salva e desliga)."
     # Flags do Aikar: coleta de lixo G1 ajustada para servidor de Minecraft (menos travadas).
     $flags = '-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1' -split ' '
