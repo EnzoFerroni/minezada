@@ -1055,7 +1055,7 @@ hash = "672ce1f6313739ceb0717cb281ff6afdd91e9ca872c8bbea366b49937cc320c9"
 
 [[files]]
 file = "minezada.sh"
-hash = "525e87991b3d14a4c5f85f6b8d4dc69b47daa5b90ab8b4b63b070c19c6928db5"
+hash = "9a5e3f0b9a88e7ce6428215f743804447c7e06f06c954e0244bb5d5040d8f5ef"
 
 [[files]]
 file = "modflared/forced_tunnels.json"

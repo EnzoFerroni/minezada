@@ -111,7 +111,9 @@ case "$ref" in *[!0-9a-f]* | "") ref=main ;; esac
 [ ${#ref} -eq 40 ] || ref=main
 pack="https://raw.githubusercontent.com/EnzoFerroni/minezada/$ref/modpack/pack/pack.toml"
 # -t 0: sem a espera de 10 s do "Reconfigure optional mods?". Opcional novo continua abrindo a lista.
-"$java" -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -t 0 "$pack"
+# Sem internet o jogo abre com os mods que ja tem (com erro aqui o Prism cancelaria a abertura).
+[ -n "${MINEZADA_SEM_PACKWIZ:-}" ] || "$java" -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar -t 0 "$pack" \
+  || echo "AVISO: pack nao atualizado (sem internet?). Abrindo com os mods atuais." >&2
 # Perfis que sairam do pack (o packwiz nao apaga arquivo com preserve). Em 26/11 a escala virou 1 a 7 para PC e Mac.
 for p in "Shader - Sildurs Vibrant" "Shader - Super Duper Vanilla" "Shader - Miniature" "PC - Solas" "PC - Rethinking Voxels" \
   "3 - Equilibrado" "5 - Bonito Shader" "6 - Muito Alto Shader" "7 - Ultra Shader" "8 - FPS Maximo" "9 - Bateria" \
