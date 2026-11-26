@@ -134,21 +134,53 @@
 	quest.2C8228681581CCD1.quest_desc: ["Os controles dirigem o trem. Com um horario, ele anda sozinho entre estacoes."]
 	quest.41487192176AFECF.title: "Construcoes prontas"
 	quest.41487192176AFECF.quest_desc: ["A mesa de esquemas e o canhao de esquemas montam uma construcao inteira a partir de um arquivo. Coloque arquivos .nbt na pasta schematics do jogo; ha muitos prontos no site createmod.com."]
-	chapter.25D41E448E070155.title: "Mochila e baus"
+	chapter.25D41E448E070155.title: "Mochila e baús"
+	chapter.25D41E448E070155.chapter_subtitle: ["Guardar muito e achar tudo rápido"]
+	quest.585BC78BCC23604E.title: "Arrumar o inventário"
+	quest.585BC78BCC23604E.quest_subtitle: "Mouse Tweaks e Inventory Essentials"
+	quest.585BC78BCC23604E.quest_desc: ["Truques que economizam muito tempo:", "&eRoda do mouse&r em cima de um item: passa ele para o outro lado (baú e inventário).", "&eSegure o botão direito e arraste&r: espalha um item por várias casas.", "&eShift + clique duplo&r: move todos os itens iguais de uma vez.", "", "&7Clique em Concluir quando tiver testado."]
+	quest.31630AB2FE4C2B11.title: "Mochila"
+	quest.31630AB2FE4C2B11.quest_subtitle: "Sophisticated Backpacks"
+	quest.31630AB2FE4C2B11.quest_desc: ["A &emochila&r é um baú que vai com você. Faça com couro, um baú e linha.", "", "Abra com o botão direito segurando ela, ou coloque no lugar do &epeitoral&r e abra com a tecla &eB&r.", "", "&eShift + botão direito&r no chão coloca a mochila como bloco. Quebre para pegar de volta: os itens continuam dentro."]
 	quest.30E1A058E28935C6.title: "Base de melhoria"
-	quest.30E1A058E28935C6.quest_desc: ["As melhorias da mochila partem desta base. Clique com o botao direito na mochila e coloque nas casas de melhoria."]
+	quest.30E1A058E28935C6.quest_desc: ["Toda melhoria da mochila parte desta &ebase&r.", "", "Abra a mochila e coloque a melhoria nas casas da &eesquerda&r. Cada melhoria tem botões próprios para ajustar."]
 	quest.0DECF1890C3ABC0D.title: "Coletar sozinho"
-	quest.0DECF1890C3ABC0D.quest_desc: ["A melhoria de coleta guarda direto na mochila o que voce pega do chao."]
-	quest.27310D6F4793230C.title: "Ima"
-	quest.27310D6F4793230C.quest_desc: ["A melhoria de ima puxa os itens de perto para a mochila."]
+	quest.0DECF1890C3ABC0D.quest_subtitle: "Melhoria de coleta"
+	quest.0DECF1890C3ABC0D.quest_desc: ["Com a &emelhoria de coleta&r, o que você pega do chão vai &adireto para a mochila&r.", "", "Dá para filtrar: só pedra, só minério, tudo menos lixo."]
+	quest.27310D6F4793230C.title: "Ímã"
+	quest.27310D6F4793230C.quest_desc: ["A &emelhoria de ímã&r puxa os itens de perto para a mochila. Ótima para minerar e caçar."]
 	quest.4CDCCCF2E465DD33.title: "Comer sozinho"
-	quest.4CDCCCF2E465DD33.quest_desc: ["A melhoria de alimentacao come a comida da mochila quando voce fica com fome."]
-	quest.4017C33CC6FCB89A.title: "Mochila de ferro"
-	quest.4017C33CC6FCB89A.quest_desc: ["Mochila maior, com mais espaco e mais casas de melhoria. Depois vem ouro, diamante e netherite."]
-	quest.4DD8BD036B5EA3BE.title: "Bau de ferro"
-	quest.4DD8BD036B5EA3BE.quest_desc: ["Iron Chests: baus maiores que o normal. Ferro, ouro, diamante e outros."]
-	quest.3B2B5BF9EDC02132.title: "Bau grande do Sophisticated"
-	quest.3B2B5BF9EDC02132.quest_desc: ["Sophisticated Storage: baus e barris com melhorias, como a mochila."]
+	quest.4CDCCCF2E465DD33.quest_desc: ["A &emelhoria de alimentação&r come a comida da mochila quando você fica com fome. Nunca mais morra de fome na caverna."]
+	quest.69D979A64EB526B8.title: "Compactar"
+	quest.69D979A64EB526B8.quest_desc: ["A &emelhoria de compactar&r transforma 9 itens em um bloco sozinha (ferro, carvão, redstone). Economiza muito espaço."]
+	quest.442202DBF99AE899.title: "Lixeira"
+	quest.442202DBF99AE899.quest_desc: ["A &emelhoria de descarte&r apaga o que você escolher (terra, cascalho, pedra) assim que entra na mochila.", "", "&cCuidado:&r o que ela apaga não volta."]
+	quest.56D39669BB9D7774.title: "Mesa de trabalho na mochila"
+	quest.56D39669BB9D7774.quest_desc: ["A &emelhoria de mesa de trabalho&r coloca uma mesa de trabalho dentro da mochila. Dá para fazer coisas em qualquer lugar."]
+	quest.7D754D469A6B4CB2.title: "Mochila maior"
+	quest.7D754D469A6B4CB2.quest_desc: ["A mochila sobe de nível: &ecobre, ferro, ouro, diamante e netherite&r. Cada nível tem mais espaço e mais casas de melhoria.", "", "Faça o nível novo em volta da mochila antiga na mesa: &aos itens continuam dentro&r."]
+	quest.29DEC27A9BCA7414.title: "Mochila de diamante"
+	quest.29DEC27A9BCA7414.quest_desc: ["A &emochila de diamante&r já guarda mais que vários baús juntos.", "", "Dica: a &emelhoria de pilha&r deixa cada casa guardar muito mais itens que 64."]
+	quest.6D93AAA52D2FC80F.title: "Baú que cresce"
+	quest.6D93AAA52D2FC80F.quest_subtitle: "Sophisticated Storage"
+	quest.6D93AAA52D2FC80F.quest_desc: ["Os &ebaús e barris&r do Sophisticated Storage recebem as mesmas ideias da mochila: melhorias de coleta, compactar, filtrar.", "", "Eles sobem de nível (ferro, ouro, diamante, netherite) com um &eitem de melhoria de nível&r: clique no baú com ele e &aos itens não saem&r."]
+	quest.7BC3A5BD3552D288.title: "Barril de um item só"
+	quest.7BC3A5BD3552D288.quest_subtitle: "Gaveta"
+	quest.7BC3A5BD3552D288.quest_desc: ["O &ebarril limitado&r guarda muitas unidades de poucos tipos de item, e mostra na frente o que tem dentro.", "", "Clique na frente para guardar; clique com o botão esquerdo para tirar."]
+	quest.4DDF47459511DAEB.title: "Mudar o baú de lugar"
+	quest.4DDF47459511DAEB.quest_desc: ["A &efita de empacotar&r deixa você quebrar um baú cheio e levar ele com tudo dentro.", "", "Ou use o &eCarry On&r: mãos vazias, Shift e botão direito no baú."]
+	quest.4DD8BD036B5EA3BE.title: "Baú de ferro"
+	quest.4DD8BD036B5EA3BE.quest_subtitle: "Iron Chests"
+	quest.4DD8BD036B5EA3BE.quest_desc: ["O &eIron Chests&r tem baús maiores: cobre, ferro, ouro, diamante, cristal (mostra os itens por fora) e obsidiana (não explode).", "", "Use os &eupgrades&r do mod no baú comum para trocar de nível sem tirar os itens."]
+	quest.14C3543BF6E08B2D.title: "Terminal de itens"
+	quest.14C3543BF6E08B2D.quest_subtitle: "Tom's Simple Storage"
+	quest.14C3543BF6E08B2D.quest_desc: ["Muitos baús? O &eterminal&r mostra &atodos os itens de todos os baús&r em uma tela só, com busca.", "", "Como montar: um &econector de inventário&r encostado nos baús, ligado por &ecabos&r até o terminal.", "", "Digite o nome na busca e tire o que quiser, sem abrir baú por baú."]
+	quest.73EAAF58010A84F3.title: "Conector de inventário"
+	quest.73EAAF58010A84F3.quest_desc: ["O &econector&r é o coração da rede: tudo o que encosta nele, ou nos cabos ligados a ele, entra no terminal."]
+	quest.28315E407FFFB7DB.title: "Terminal com mesa"
+	quest.28315E407FFFB7DB.quest_desc: ["O &eterminal de criação&r junta o terminal com uma mesa de trabalho que &apega os ingredientes direto dos baús&r."]
+	quest.28915A92C10ED59B.title: "Terminal sem fio"
+	quest.28915A92C10ED59B.quest_desc: ["O &eterminal sem fio&r abre a rede de baús de longe. Clique com ele no terminal para ligar.", "", "A tecla &eAlt + B&r abre o terminal sem fio que está no seu inventário."]
 	chapter.45E0B2A3B1354CC1.title: "Cozinha e fazenda"
 	chapter.45E0B2A3B1354CC1.chapter_subtitle: ["Comer bem deixa você mais forte"]
 	quest.1A06C261319C8017.title: "Variedade dá vida"
@@ -219,27 +251,133 @@
 	quest.12B3F56B552344DD.quest_subtitle: "Mystical Agriculture"
 	quest.12B3F56B552344DD.quest_desc: ["O &eMystical Agriculture&r planta minério como se fosse trigo.", "", "Comece minerando &einferium&r nas cavernas. A essência dele faz as primeiras sementes. Veja o caminho todo com &eU&r em cima da essência."]
 	chapter.1CC3B8CA7BE5A04E.title: "Construir"
-	quest.379468DB3455A8B2.title: "Ferramenta de construir"
-	quest.379468DB3455A8B2.quest_desc: ["Building Gadgets: coloca varios blocos de uma vez. Precisa de energia (carregue em um carregador de energia)."]
-	quest.09486C4E6AFA0424.title: "Copiar e colar"
-	quest.09486C4E6AFA0424.quest_desc: ["Copia uma area e cola em outro lugar, gastando os blocos do seu inventario."]
-	quest.0F7DF596AAA40A64.title: "Construir com espelho"
-	quest.0F7DF596AAA40A64.quest_desc: ["Effortless Building: segure Alt para escolher modos como parede, linha, espelho e repeticao."]
-	quest.168A3A22661A0A48.title: "Telhados de verdade"
-	quest.168A3A22661A0A48.quest_desc: ["Macaw's Roofs, Windows, Doors, Fences e Furniture: blocos de telhado, janelas, portas, cercas e moveis. Procure por mcw no JEI."]
-	quest.14BD5A02E592B8A1.title: "Moveis"
-	quest.14BD5A02E592B8A1.quest_desc: ["Handcrafted, Beautify, Supplementaries e Bubblellaneous trazem moveis e decoracao. Procure pelo nome do mod no JEI com @."]
+	chapter.1CC3B8CA7BE5A04E.chapter_subtitle: ["Casas bonitas com móveis de verdade"]
+	quest.147BEF281E8E7856.title: "Construir sem sofrer"
+	quest.147BEF281E8E7856.quest_subtitle: "Effortless Building"
+	quest.147BEF281E8E7856.quest_desc: ["Segure &eAlt&r para abrir o menu de construção. Escolha uma forma: &elinha, parede, chão, cubo, círculo&r.", "", "Com um bloco na mão, clique onde começa, mire onde termina e clique de novo: a forma inteira aparece de uma vez. Funciona no sobrevivência, gastando os blocos do inventário.", "", "No mesmo menu tem &eespelho&r (constrói os dois lados iguais) e &erepetição&r. Para desligar, segure Alt e escolha desligar."]
+	quest.4AA1F0DD4F1E187E.title: "Bloco aleatório"
+	quest.4AA1F0DD4F1E187E.quest_subtitle: "Effortless Building"
+	quest.4AA1F0DD4F1E187E.quest_desc: ["A &esacola de blocos aleatórios&r coloca um bloco sorteado dos que estão dentro dela. Ótima para chão e parede com textura misturada (pedra, cascalho, andesito)."]
+	quest.28C9F0C287082F70.title: "Telhado de verdade"
+	quest.28C9F0C287082F70.quest_subtitle: "Macaw's Roofs"
+	quest.28C9F0C287082F70.quest_desc: ["Chega de telhado de escada: o &eMacaw's Roofs&r tem telhados com inclinação, cumeeira e beiral em todas as madeiras e pedras.", "", "Procure &e@mcwroofs&r no JEI para ver todos."]
+	quest.005A06688AF20F0C.title: "Janela"
+	quest.005A06688AF20F0C.quest_subtitle: "Macaw's Windows"
+	quest.005A06688AF20F0C.quest_desc: ["Janelas de verdade, persianas, venezianas e &ecortinas&r (coloque o varão e clique com lã)."]
+	quest.5BA83E853C28E692.title: "Porta diferente"
+	quest.5BA83E853C28E692.quest_subtitle: "Macaw's Doors"
+	quest.5BA83E853C28E692.quest_desc: ["Portas de celeiro, de vidro, japonesa, de faroeste, de garagem e muitas outras."]
+	quest.6BBB6CBA86C4DF12.title: "Cerca bonita"
+	quest.6BBB6CBA86C4DF12.quest_subtitle: "Macaw's Fences and Walls"
+	quest.6BBB6CBA86C4DF12.quest_desc: ["Cercas de estaca, de fazenda, de arame e portões curvos, todos no estilo do Minecraft."]
+	quest.1C41171CF78F7CDC.title: "Ponte"
+	quest.1C41171CF78F7CDC.quest_subtitle: "Macaw's Bridges"
+	quest.1C41171CF78F7CDC.quest_desc: ["Pontes de corda, de tronco, de ferro e de vidro. Elas se ajustam sozinhas quando você coloca uma do lado da outra."]
+	quest.2273EE0F20F897A0.title: "Primeiros móveis"
+	quest.2273EE0F20F897A0.quest_subtitle: "Macaw's Furniture"
+	quest.2273EE0F20F897A0.quest_desc: ["Mesas, cadeiras, gavetas, guarda-roupas e armários de cozinha em todas as madeiras.", "", "Muitos guardam itens: gavetas e guarda-roupas funcionam como baús. Clique com o botão direito numa cadeira para sentar."]
+	quest.30B02B690AB5AC39.title: "Casa aconchegante"
+	quest.30B02B690AB5AC39.quest_subtitle: "Handcrafted"
+	quest.30B02B690AB5AC39.quest_desc: ["Sofás, camas bonitas, criados-mudos, prateleiras e almofadas no estilo do Minecraft.", "", "O &emartelo&r do Handcrafted muda o formato de alguns móveis: clique com ele no bloco."]
+	quest.221E6B6B9FB62673.title: "Troféu"
+	quest.221E6B6B9FB62673.quest_subtitle: "Handcrafted"
+	quest.221E6B6B9FB62673.quest_desc: ["Pendure na parede o troféu de um bicho ou monstro que você venceu: urso, creeper, blaze e outros."]
+	quest.02065EF22CBA3472.title: "Móveis que funcionam"
+	quest.02065EF22CBA3472.quest_subtitle: "Furniture Refurbished"
+	quest.02065EF22CBA3472.quest_desc: ["O &eFurniture Refurbished&r tem móveis que fazem coisas: geladeira que guarda comida, fogão que cozinha, pia com água, TV, computador e campainha.", "", "Os móveis do mod saem da &ebancada&r dele. Alguns, como luzes e TV, precisam de &eenergia&r do próprio mod: veja com &eU&r em cima deles."]
+	quest.49614AE1A15F40D4.title: "Correio"
+	quest.49614AE1A15F40D4.quest_subtitle: "Furniture Refurbished"
+	quest.49614AE1A15F40D4.quest_desc: ["Coloque uma &ecaixa de correio&r na frente de casa e dê um nome a ela. Os amigos podem mandar itens para ela de longe. Veja como com &eU&r em cima da caixa."]
+	quest.0ABD29E83E16B4DF.title: "Pote"
+	quest.0ABD29E83E16B4DF.quest_subtitle: "Supplementaries"
+	quest.0ABD29E83E16B4DF.quest_desc: ["O &epote&r guarda líquidos, biscoitos e até &abichinhos&r: vagalumes, peixes e lesmas. Clique no bicho com o pote vazio."]
+	quest.10375FA9F990031D.title: "Placa de direção"
+	quest.10375FA9F990031D.quest_subtitle: "Supplementaries"
+	quest.10375FA9F990031D.quest_desc: ["A &eplaca de direção&r tem duas setas. Escreva nelas o nome dos lugares (casa, mina, vila) e gire para apontar o caminho."]
+	quest.52E4903BCC1BA3D5.title: "Corda"
+	quest.52E4903BCC1BA3D5.quest_desc: ["A &ecorda&r do Supplementaries serve para &asubir e descer&r em buracos fundos. Clique com mais corda nela para ela descer mais."]
+	quest.34FD72549F95D0C2.title: "Estilingue"
+	quest.34FD72549F95D0C2.quest_subtitle: "Supplementaries"
+	quest.34FD72549F95D0C2.quest_desc: ["O &eestilingue&r atira qualquer item. Com tochas, ele ilumina caverna de longe."]
+	quest.3D9DD83025FC71A6.title: "Aljava"
+	quest.3D9DD83025FC71A6.quest_subtitle: "Supplementaries"
+	quest.3D9DD83025FC71A6.quest_desc: ["A &ealjava&r guarda vários tipos de flecha num espaço só. A tecla &eAlt + V&r troca a flecha."]
+	quest.019F5CBDF8ABFD78.title: "Globo e enfeites"
+	quest.019F5CBDF8ABFD78.quest_subtitle: "Supplementaries"
+	quest.019F5CBDF8ABFD78.quest_desc: ["Globo que gira, relógio de parede, fole, torneira, vaso de flor, cofre: o Supplementaries tem dezenas de blocos. Veja com &e@supplementaries&r no JEI."]
+	quest.7029E4B1CD69178F.title: "Decoração"
+	quest.7029E4B1CD69178F.quest_subtitle: "Beautify"
+	quest.7029E4B1CD69178F.quest_desc: ["Persianas, porta-retratos, treliça para plantas, lâmpadas e vasos pendurados."]
+	quest.1C07E6854A7704A2.title: "Vaso pendurado"
+	quest.1C07E6854A7704A2.quest_subtitle: "Beautify"
+	quest.1C07E6854A7704A2.quest_desc: ["Pendure no teto e coloque uma flor dentro."]
+	quest.16853D93B6377171.title: "Móveis do Create"
+	quest.16853D93B6377171.quest_subtitle: "Create: Interiors"
+	quest.16853D93B6377171.quest_desc: ["Bancos e cadeiras no estilo do Create. Dá para sentar, inclusive em trens e máquinas que andam."]
 	chapter.0681A168F2C7C697.title: "Animais"
-	quest.709A1A630889A48A.title: "Dicionario animal"
-	quest.709A1A630889A48A.quest_desc: ["Alex's Mobs tem um livro que explica cada bicho, o que ele come e como domesticar."]
-	quest.06C980678102C2D1.title: "Banana"
-	quest.06C980678102C2D1.quest_desc: ["Bananas caem das folhas de selva. Varios bichos do Alex's Mobs gostam delas, como os macacos."]
+	chapter.0681A168F2C7C697.chapter_subtitle: ["Bichos novos, pets e dragões"]
+	quest.709A1A630889A48A.title: "Dicionário animal"
+	quest.709A1A630889A48A.quest_subtitle: "Alex's Mobs"
+	quest.709A1A630889A48A.quest_desc: ["O pack tem &amais de 150 bichos novos&r. O &eDicionário animal&r explica cada um do Alex's Mobs: onde vive, o que come e como domesticar.", "", "Mire em qualquer bicho para ver o nome e o mod no topo da tela. Bicho desconhecido? Procure o nome no JEI."]
 	quest.4ADAEBCD1EB47A95.title: "Hamster"
-	quest.4ADAEBCD1EB47A95.quest_desc: ["Adorable Hamster Pets: hamsters de estimacao que seguem voce e cabem no ombro."]
-	quest.11870977C3D93740.title: "Dragao"
-	quest.11870977C3D93740.quest_desc: ["Dragon Mounts: ovos de dragao chocam um dragao que voce cria e monta."]
-	quest.673908041A368C98.title: "Mais bichos"
-	quest.673908041A368C98.quest_desc: ["Naturalist, Critters and Companions, Friends&Foes, Wilder Nature e Archie's Dinosaurs espalham bichos pelos biomas. O Jade mostra o nome de cada um."]
+	quest.4ADAEBCD1EB47A95.quest_subtitle: "Adorable Hamster Pets"
+	quest.4ADAEBCD1EB47A95.quest_desc: ["Hamsters vivem nos campos. Para domesticar, dê &epepino fatiado&r (corte o pepino na tábua de corte).", "", "Dá para carregar até &atrês nos ombros&r: eles avisam quando tem creeper perto e farejam diamante.", "", "O livro do hamster explica tudo: camas, armadura, comidas."]
+	quest.61C61A081520CB2D.title: "Hamster no ombro"
+	quest.61C61A081520CB2D.quest_desc: ["Com um hamster domesticado, agache (&eShift&r) e clique nele para colocar no ombro."]
+	quest.06C980678102C2D1.title: "Banana"
+	quest.06C980678102C2D1.quest_subtitle: "Alex's Mobs"
+	quest.06C980678102C2D1.quest_desc: ["Bananas caem das &efolhas da selva&r. Elas servem para domesticar macacos e gorilas."]
+	quest.3849201631781B1D.title: "Macaco-prego"
+	quest.3849201631781B1D.quest_subtitle: "Alex's Mobs"
+	quest.3849201631781B1D.quest_desc: ["O &emacaco-prego&r vive na selva. Dê &ebananas&r para domesticar. Ele senta no ombro e ajuda a atacar."]
+	quest.49112F4ACB001628.title: "Gorila"
+	quest.49112F4ACB001628.quest_subtitle: "Alex's Mobs"
+	quest.49112F4ACB001628.quest_desc: ["O &egorila&r vive em grupos na selva, com um gorila-de-costas-prateadas no comando. Dê &ebananas&r para domesticar."]
+	quest.49AB300C67D3AA1F.title: "Urso amigo"
+	quest.49AB300C67D3AA1F.quest_subtitle: "Alex's Mobs"
+	quest.49AB300C67D3AA1F.quest_desc: ["O &eurso-pardo&r é perigoso, mas dá para domesticar com &emel&r e &esalmão&r. Depois ele aceita sela!"]
+	quest.097CC09B429254A5.title: "Elefante"
+	quest.097CC09B429254A5.quest_subtitle: "Alex's Mobs"
+	quest.097CC09B429254A5.quest_desc: ["O &eelefante&r vive na savana. Domesticado, carrega você e um baú nas costas. Veja como no Dicionário animal."]
+	quest.6150E244CB3DEF29.title: "Águia caçadora"
+	quest.6150E244CB3DEF29.quest_subtitle: "Alex's Mobs"
+	quest.6150E244CB3DEF29.quest_desc: ["A &eáguia-careca&r pode ser treinada para caçar com uma &eluva de falcoaria&r."]
+	quest.0A838F3BD45A0086.title: "Rede de captura"
+	quest.0A838F3BD45A0086.quest_subtitle: "Naturalist"
+	quest.0A838F3BD45A0086.quest_desc: ["O &eNaturalist&r traz bichos realistas: urso, cervo, leão, elefante, cobra, borboleta.", "", "A &erede de captura&r pega bichinhos (borboletas, vagalumes, caracóis) para levar para casa."]
+	quest.6D1B85B0167C383F.title: "Urso com mel"
+	quest.6D1B85B0167C383F.quest_subtitle: "Naturalist"
+	quest.6D1B85B0167C383F.quest_desc: ["Os ursos do Naturalist adoram mel. Dê um &efavo de mel&r para um urso."]
+	quest.44B56177CD82D0CA.title: "Hipopótamo"
+	quest.44B56177CD82D0CA.quest_subtitle: "Naturalist"
+	quest.44B56177CD82D0CA.quest_desc: ["Dê uma &emelancia&r para um hipopótamo no pântano ou rio."]
+	quest.1BC70B92D74B0EE0.title: "Golem de cobre"
+	quest.1BC70B92D74B0EE0.quest_subtitle: "Friends&Foes"
+	quest.1BC70B92D74B0EE0.quest_desc: ["O &egolem de cobre&r aperta botões de cobre sozinho. Ele é montado no mundo com blocos de cobre, como o golem de ferro.", "", "Cuidado: ele enferruja com o tempo. Encere com favo de mel para parar."]
+	quest.1327834361AA2D2E.title: "Moobloom"
+	quest.1327834361AA2D2E.quest_subtitle: "Friends&Foes"
+	quest.1327834361AA2D2E.quest_desc: ["A &emoobloom&r é uma vaca com flores nas costas. Use a tesoura nela para pegar flores amarelas."]
+	quest.0A85DA39533066FF.title: "Glare"
+	quest.0A85DA39533066FF.quest_subtitle: "Friends&Foes"
+	quest.0A85DA39533066FF.quest_desc: ["O &eglare&r é um bichinho de musgo que mostra os lugares escuros onde monstros podem nascer. Domestique com &ebagas brilhantes&r."]
+	quest.22B41F73D0FF5EEC.title: "Gancho"
+	quest.22B41F73D0FF5EEC.quest_subtitle: "Critters and Companions"
+	quest.22B41F73D0FF5EEC.quest_desc: ["O &eCritters and Companions&r traz lontras, libélulas, furões e coelhinhos-do-mar.", "", "O &egancho&r puxa você até onde ele prender. Ótimo para escalar."]
+	quest.7E43CEFFCC4BB081.title: "Vila dos sapos"
+	quest.7E43CEFFCC4BB081.quest_subtitle: "Ribbits"
+	quest.7E43CEFFCC4BB081.quest_desc: ["Nos &epântanos&r existem vilas de sapos. Os sapos tocam música e trocam itens."]
+	quest.78FAE471475BB2C4.title: "Troféu de caça"
+	quest.78FAE471475BB2C4.quest_subtitle: "Wilder Nature"
+	quest.78FAE471475BB2C4.quest_desc: ["O &eWilder Nature&r traz bisões, cervos e lobos-vermelhos. Os troféus enfeitam a parede."]
+	quest.59E080926C5F84D3.title: "Dinossauros"
+	quest.59E080926C5F84D3.quest_subtitle: "Archie's Dinosaurs"
+	quest.59E080926C5F84D3.quest_desc: ["Dinossauros vivem soltos pelo mundo, dos herbívoros grandes aos predadores. &cCuidado&r com os carnívoros.", "", "&7Clique em Concluir quando vir o primeiro."]
+	quest.305C7BD83B1F7E76.title: "Ovo de dragão"
+	quest.305C7BD83B1F7E76.quest_subtitle: "Dragon Mounts"
+	quest.305C7BD83B1F7E76.quest_desc: ["Dragões vivem no mundo normal, no Nether e no End. Também dá para achar &eovos de dragão&r.", "", "Coloque o ovo no chão e espere chocar: o filhote já nasce seu."]
+	quest.72ED106D1CF93B4F.title: "Domar um dragão"
+	quest.72ED106D1CF93B4F.quest_subtitle: "Dragon Mounts"
+	quest.72ED106D1CF93B4F.quest_desc: ["Dragão adulto se doma dando &epeixe&r até aparecerem corações.", "", "Coloque uma &esela&r e monte: &eespaço&r sobe, &eShift&r desce. O &eapito&r chama o dragão de longe."]
 	chapter.2BBF7954E151BB6E.title: "Explorar"
 	quest.076BEA6CFE9209A1.title: "Bussola de biomas"
 	quest.076BEA6CFE9209A1.quest_desc: ["Nature's Compass aponta para o bioma que voce escolher."]
