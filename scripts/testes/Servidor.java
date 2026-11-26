@@ -12,11 +12,17 @@ public class Servidor {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> salvar("sinal")));
         Files.writeString(Path.of("pid"), Long.toString(ProcessHandle.current().pid()));
         System.out.println("Done (0.1s)! For help, type \"help\"");
+        log("Done (0.1s)!");
         Files.writeString(Path.of("rodando"), "");
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String linha;
         while ((linha = console.readLine()) != null) {
             Files.writeString(Path.of("console.txt"), linha + "\n", java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.APPEND);
+            // Foto do mundo (iniciar.sh): confirma o save-all com atraso, como um mundo grande.
+            if (linha.trim().startsWith("save-all")) {
+                Thread.sleep(1500);
+                log("Saved the game");
+            }
             if (linha.trim().equals("stop")) {
                 salvar("stop");
                 System.exit(0);
@@ -24,6 +30,11 @@ public class Servidor {
         }
         // Console fechado (janela fechada): o servidor de verdade segue rodando ate receber um sinal.
         Thread.sleep(Long.MAX_VALUE);
+    }
+
+    static void log(String linha) throws Exception {
+        Files.createDirectories(Path.of("logs"));
+        Files.writeString(Path.of("logs/latest.log"), linha + "\n", java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.APPEND);
     }
 
     static synchronized void salvar(String como) {

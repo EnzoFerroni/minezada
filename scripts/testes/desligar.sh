@@ -16,12 +16,16 @@ caso() {
   echo mundo > "$t/server/world/level.dat"
   cp "$aqui/Servidor.java" "$t/server/"
   echo teste > "$t/sync/host.lock"
+  mkdir -p "$t/bin"
+  printf '#!/bin/sh\ncase "$*" in *sessao-atual*) sleep 3 ;; esac\nexec /bin/cp "$@"\n' > "$t/bin/cp"; chmod +x "$t/bin/cp"
   echo '# teste' > "$t/sync/jogadores.txt"
   # O fim do iniciar.sh: servidor e envio do mundo.
   cat > "$t/rodar.sh" <<EOF
 #!/usr/bin/env bash
 MINEZADA_TESTE=1 . "$raiz/scripts/iniciar.sh"
 server="$t/server"; SYNC_DIR="$t/sync"; eu=teste; lista="$t/sync/jogadores.txt"; intervalo=1
+# foto: foto do mundo a cada 2 s, JAVA=true pula o envio ao GitHub e o cp da copia da sessao demora 3 s (Drive lento).
+[ "$nome" != foto ] || { intervalo_foto=2; JAVA=true; echo teste > "$t/sync/github.txt"; PATH="$t/bin:\$PATH"; }
 rodar_servidor java Servidor.java
 enviar_mundo
 touch "$t/fim"
@@ -49,10 +53,16 @@ EOF
         sleep 1.2; echo 'ZzTesteMz sem-original op' >> "$t/sync/jogadores.txt"
         for _ in $(seq 1 60); do grep -q 'whitelist reload' "$t/server/console.txt" 2>/dev/null && break; sleep 0.5; done
         printf 'stop\n' >> "$t/entrada" ;;
+      # stop no meio da foto do mundo: o envio espera a foto, e a copia da sessao nao fica mais nova que o mundo.
+      foto)
+        for _ in $(seq 1 60); do grep -q 'save-off' "$t/server/console.txt" 2>/dev/null && break; sleep 0.5; done
+        printf 'stop\n' >> "$t/entrada" ;;
       ctrlc) printf '\003' >> "$t/entrada" ;;
       janela) kill -9 "$spid" ;;  # fecha o terminal: o sistema manda SIGHUP para a sessao
     esac
     for _ in $(seq 1 60); do [ -f "$t/fim" ] && break; sleep 0.5; done
+    # foto: a copia da sessao (lenta) termina depois; sem ela a conferencia abaixo nao vale.
+    if [ "$nome" = foto ]; then for _ in $(seq 1 20); do [ -f "$t/sync/backups/sessao-atual.tar.gz" ] && break; sleep 0.5; done; sleep 1; fi
     if [ ! -f "$t/server/salvo" ]; then erro="o servidor nao salvou o mundo"
     elif kill -0 "$(cat "$t/server/pid")" 2>/dev/null; then erro="o java continua rodando"
     elif [ ! -f "$t/fim" ]; then erro="o script nao terminou"
@@ -60,6 +70,8 @@ EOF
     elif ! tar -tzf "$t/sync/mundo.tar.gz" | grep -q 'world/level.dat'; then erro="o mundo nao foi enviado"
     elif [ "$nome" = janela ] && ! grep -q 'Janela fechada' "$t/server/logs/iniciar.log"; then erro="sem registro em iniciar.log"
     elif [ "$nome" = whitelist ] && ! grep -q 'whitelist reload' "$t/server/console.txt" 2>/dev/null; then erro="o servidor nao recebeu whitelist reload"
+    elif [ "$nome" = foto ] && [ ! -f "$t/sync/backups/sessao-atual.tar.gz" ]; then erro="a foto do mundo nao rodou"
+    elif [ "$nome" = foto ] && [ "$t/sync/backups/sessao-atual.tar.gz" -nt "$t/sync/mundo.tar.gz" ]; then erro="a copia da sessao ficou mais nova que o mundo do stop"
     elif [ "$nome" = whitelist ] && ! grep -q 'ZzTesteMz' "$t/server/whitelist.json" 2>/dev/null; then erro="o nick novo nao entrou no whitelist.json"
     fi
   fi
@@ -82,4 +94,5 @@ caso stop
 caso ctrlc
 caso janela
 caso whitelist
+caso foto
 [ $falhas -eq 0 ] || { echo "$falhas caso(s) falharam."; exit 1; }

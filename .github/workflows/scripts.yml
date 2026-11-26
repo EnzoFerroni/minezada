@@ -2,6 +2,7 @@
 # - Mac (bash 3.2 do macOS) e Linux: stop, Ctrl+C e janela fechada salvam, enviam o mundo e liberam a trava (issue #7)
 # - whitelist (scripts/Whitelist.java, a mesma no Mac, no Linux e no Windows)
 # - envio do mundo ao GitHub (scripts/MundoGithub.java) e aviso do selo (scripts/Selo.java), contra um GitHub falso
+# - Mac e Linux: minezada.sh (teclas, pacotes, avisos dos mods, perfis, shader) em uma .minecraft falsa
 # - Windows: sintaxe dos .ps1 no PowerShell 5.1 e BOM em .ps1 com acento; shellcheck nos .sh
 # - Windows: desinstalar.ps1 em uma arvore falsa (issue #25)
 name: Testes dos scripts
@@ -36,6 +37,8 @@ jobs:
         run: shellcheck -S warning scripts/*.sh scripts/testes/*.sh ./*.sh iniciar.command modpack/arquivos/minezada.sh
       - name: desinstalar.sh
         run: /bin/bash scripts/testes/desinstalar.sh
+      - name: minezada.sh (antes de abrir o jogo, .minecraft falsa)
+        run: /bin/bash scripts/testes/minezada.sh
       # /bin/bash: no macOS e o 3.2, o mesmo que roda o iniciar.command (o do Homebrew pode vir antes no PATH).
       - name: Desligar o servidor (stop, Ctrl+C, janela fechada)
         run: /bin/bash scripts/testes/desligar.sh
