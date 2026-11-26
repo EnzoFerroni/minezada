@@ -360,8 +360,9 @@ sincronizar_whitelist() {
   "${JAVA:-java}" "$(dirname "${BASH_SOURCE[0]}")/Whitelist.java" "$1" "$2" || echo "AVISO: falha ao atualizar a whitelist." >&2
 }
 
-# Data de modificacao em segundos (vazio se o arquivo nao existe). stat do macOS ou do Linux.
-modificado() { stat -f %m "$1" 2>/dev/null || stat -c %Y "$1" 2>/dev/null || true; }
+# Data de modificacao em segundos (vazio se o arquivo nao existe). stat do Linux antes: no Linux o "stat -f" e outra
+# coisa (sistema de arquivos) e nao falha.
+modificado() { stat -c %Y "$1" 2>/dev/null || stat -f %m "$1" 2>/dev/null || true; }
 
 datas_jogo() { echo "$(modificado "$server/whitelist.json") $(modificado "$server/ops.json")"; }
 
