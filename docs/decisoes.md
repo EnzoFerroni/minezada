@@ -17,6 +17,13 @@ dragão para domar, criar como pet e voar, mods que deixam o jogo mais leve e f�
   o que falta).
 - Fabric descartado: Create oficial é NeoForge. Com isso ficam de fora os mods de renderização Metal
   para Mac (só Fabric 26.x); o Sodium cobre o desempenho no Mac.
+- Revisto em 2026-11-25 (`scripts/comparar-versoes.ps1`): 1.21.1 tem todos os 130 mods do pack; a
+  melhor versão mais nova (26.1.2) tem 92. No Modrinth, NeoForge 1.21.1 é a combinação com mais mods
+  (22.903, contra 9.060 em NeoForge 26.1.2 e 14.333 em Fabric 26.1.2). Create, Farmer's Delight,
+  Supplementaries, Aether, Deep Aether, When Dungeons Arise, Hamster e Dragon Mounts param na 1.21.1.
+- Modrinth em vez de CurseForge: no CurseForge o autor pode bloquear download por outros programas, e
+  aí cada jogador baixaria o mod na mão; a API dele também exige chave. Mod só do CurseForge (Twilight
+  Forest, FTB Quests) só entra se o autor liberar o download por terceiros.
 
 ## Mods: escolhas e descartes
 
