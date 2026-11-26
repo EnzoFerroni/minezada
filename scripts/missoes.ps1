@@ -2,7 +2,7 @@
 # O servidor manda o livro para cada jogador; o progresso fica no mundo, nao aqui.
 # Uso: powershell -ExecutionPolicy Bypass -File scripts/missoes.ps1 (Mac: pwsh scripts/missoes.ps1)
 # Cada missao: t = titulo, d = texto (uma linha por item), e uma tarefa: item (id do item), dim (id da dimensao)
-# mata (id do bicho), estrutura ou bioma (id do mundo) ou nada (o jogador marca como feito). q = quantidade da
+# mata (id do bicho), estrutura ou bioma (id do mundo), conquista (id da conquista, ex.: domar um bicho) ou nada (o jogador marca como feito). q = quantidade da
 # tarefa (itens ou abates). p = premio (id do item) e n = quantidade. Cada missao depende da anterior
 # do mesmo capitulo, a menos que solta = $true. Ids conferidos nos jars do pack (26/11).
 # Extras: capitulo g = grupo (da lista $grupos) e sub = subtitulo; missao sub = subtitulo, marco = $true
@@ -162,14 +162,97 @@ $capitulos = @(
         @{ t = 'Controles'; d = 'Os controles dirigem o trem. Com um horario, ele anda sozinho entre estacoes.'; item = 'create:controls' }
         @{ t = 'Construcoes prontas'; d = 'A mesa de esquemas e o canhao de esquemas montam uma construcao inteira a partir de um arquivo. Coloque arquivos .nbt na pasta schematics do jogo; ha muitos prontos no site createmod.com.'; item = 'create:schematicannon' }
     ) }
-    @{ t = 'Mochila e baus'; g = 'Começo'; icone = 'sophisticatedbackpacks:backpack'; m = @(
-        @{ t = 'Base de melhoria'; d = 'As melhorias da mochila partem desta base. Clique com o botao direito na mochila e coloque nas casas de melhoria.'; item = 'sophisticatedbackpacks:upgrade_base' }
-        @{ t = 'Coletar sozinho'; d = 'A melhoria de coleta guarda direto na mochila o que voce pega do chao.'; item = 'sophisticatedbackpacks:pickup_upgrade' }
-        @{ t = 'Ima'; d = 'A melhoria de ima puxa os itens de perto para a mochila.'; item = 'sophisticatedbackpacks:magnet_upgrade' }
-        @{ t = 'Comer sozinho'; d = 'A melhoria de alimentacao come a comida da mochila quando voce fica com fome.'; item = 'sophisticatedbackpacks:feeding_upgrade' }
-        @{ t = 'Mochila de ferro'; d = 'Mochila maior, com mais espaco e mais casas de melhoria. Depois vem ouro, diamante e netherite.'; item = 'sophisticatedbackpacks:iron_backpack' }
-        @{ t = 'Bau de ferro'; d = 'Iron Chests: baus maiores que o normal. Ferro, ouro, diamante e outros.'; item = 'ironchest:iron_chest'; solta = $true }
-        @{ t = 'Bau grande do Sophisticated'; d = 'Sophisticated Storage: baus e barris com melhorias, como a mochila.'; item = 'sophisticatedstorage:chest'; solta = $true }
+    @{ t = 'Mochila e baús'; g = 'Começo'; icone = 'sophisticatedbackpacks:backpack'; sub = 'Guardar muito e achar tudo rápido'; m = @(
+        @{ t = 'Arrumar o inventário'; sub = 'Mouse Tweaks e Inventory Essentials'; d = @(
+            'Truques que economizam muito tempo:'
+            '&eRoda do mouse&r em cima de um item: passa ele para o outro lado (baú e inventário).'
+            '&eSegure o botão direito e arraste&r: espalha um item por várias casas.'
+            '&eShift + clique duplo&r: move todos os itens iguais de uma vez.'
+            ''
+            '&7Clique em Concluir quando tiver testado.'
+        ) }
+        @{ t = 'Mochila'; marco = $true; sub = 'Sophisticated Backpacks'; d = @(
+            'A &emochila&r é um baú que vai com você. Faça com couro, um baú e linha.'
+            ''
+            'Abra com o botão direito segurando ela, ou coloque no lugar do &epeitoral&r e abra com a tecla &eB&r.'
+            ''
+            '&eShift + botão direito&r no chão coloca a mochila como bloco. Quebre para pegar de volta: os itens continuam dentro.'
+        ); item = 'sophisticatedbackpacks:backpack'; p = 'minecraft:leather'; n = 8 }
+        @{ t = 'Base de melhoria'; d = @(
+            'Toda melhoria da mochila parte desta &ebase&r.'
+            ''
+            'Abra a mochila e coloque a melhoria nas casas da &eesquerda&r. Cada melhoria tem botões próprios para ajustar.'
+        ); item = 'sophisticatedbackpacks:upgrade_base'; q = 2 }
+        @{ t = 'Coletar sozinho'; sub = 'Melhoria de coleta'; d = @(
+            'Com a &emelhoria de coleta&r, o que você pega do chão vai &adireto para a mochila&r.'
+            ''
+            'Dá para filtrar: só pedra, só minério, tudo menos lixo.'
+        ); item = 'sophisticatedbackpacks:pickup_upgrade' }
+        @{ t = 'Ímã'; d = @(
+            'A &emelhoria de ímã&r puxa os itens de perto para a mochila. Ótima para minerar e caçar.'
+        ); item = 'sophisticatedbackpacks:magnet_upgrade' }
+        @{ t = 'Comer sozinho'; d = @(
+            'A &emelhoria de alimentação&r come a comida da mochila quando você fica com fome. Nunca mais morra de fome na caverna.'
+        ); item = 'sophisticatedbackpacks:feeding_upgrade' }
+        @{ t = 'Compactar'; opcional = $true; d = @(
+            'A &emelhoria de compactar&r transforma 9 itens em um bloco sozinha (ferro, carvão, redstone). Economiza muito espaço.'
+        ); item = 'sophisticatedbackpacks:compacting_upgrade' }
+        @{ t = 'Lixeira'; opcional = $true; d = @(
+            'A &emelhoria de descarte&r apaga o que você escolher (terra, cascalho, pedra) assim que entra na mochila.'
+            ''
+            '&cCuidado:&r o que ela apaga não volta.'
+        ); item = 'sophisticatedbackpacks:void_upgrade' }
+        @{ t = 'Mesa de trabalho na mochila'; opcional = $true; d = @(
+            'A &emelhoria de mesa de trabalho&r coloca uma mesa de trabalho dentro da mochila. Dá para fazer coisas em qualquer lugar.'
+        ); item = 'sophisticatedbackpacks:crafting_upgrade' }
+        @{ t = 'Mochila maior'; d = @(
+            'A mochila sobe de nível: &ecobre, ferro, ouro, diamante e netherite&r. Cada nível tem mais espaço e mais casas de melhoria.'
+            ''
+            'Faça o nível novo em volta da mochila antiga na mesa: &aos itens continuam dentro&r.'
+        ); item = 'sophisticatedbackpacks:iron_backpack'; p = 'minecraft:gold_ingot'; n = 4 }
+        @{ t = 'Mochila de diamante'; marco = $true; d = @(
+            'A &emochila de diamante&r já guarda mais que vários baús juntos.'
+            ''
+            'Dica: a &emelhoria de pilha&r deixa cada casa guardar muito mais itens que 64.'
+        ); item = 'sophisticatedbackpacks:diamond_backpack' }
+        @{ t = 'Baú que cresce'; sub = 'Sophisticated Storage'; d = @(
+            'Os &ebaús e barris&r do Sophisticated Storage recebem as mesmas ideias da mochila: melhorias de coleta, compactar, filtrar.'
+            ''
+            'Eles sobem de nível (ferro, ouro, diamante, netherite) com um &eitem de melhoria de nível&r: clique no baú com ele e &aos itens não saem&r.'
+        ); item = 'sophisticatedstorage:chest'; p = 'sophisticatedstorage:basic_to_iron_tier_upgrade' }
+        @{ t = 'Barril de um item só'; opcional = $true; sub = 'Gaveta'; d = @(
+            'O &ebarril limitado&r guarda muitas unidades de poucos tipos de item, e mostra na frente o que tem dentro.'
+            ''
+            'Clique na frente para guardar; clique com o botão esquerdo para tirar.'
+        ); item = 'sophisticatedstorage:limited_barrel_1' }
+        @{ t = 'Mudar o baú de lugar'; opcional = $true; d = @(
+            'A &efita de empacotar&r deixa você quebrar um baú cheio e levar ele com tudo dentro.'
+            ''
+            'Ou use o &eCarry On&r: mãos vazias, Shift e botão direito no baú.'
+        ); item = 'sophisticatedstorage:packing_tape' }
+        @{ t = 'Baú de ferro'; sub = 'Iron Chests'; d = @(
+            'O &eIron Chests&r tem baús maiores: cobre, ferro, ouro, diamante, cristal (mostra os itens por fora) e obsidiana (não explode).'
+            ''
+            'Use os &eupgrades&r do mod no baú comum para trocar de nível sem tirar os itens.'
+        ); item = 'ironchest:iron_chest' }
+        @{ t = 'Terminal de itens'; marco = $true; sub = 'Tom''s Simple Storage'; d = @(
+            'Muitos baús? O &eterminal&r mostra &atodos os itens de todos os baús&r em uma tela só, com busca.'
+            ''
+            'Como montar: um &econector de inventário&r encostado nos baús, ligado por &ecabos&r até o terminal.'
+            ''
+            'Digite o nome na busca e tire o que quiser, sem abrir baú por baú.'
+        ); item = 'toms_storage:storage_terminal'; p = 'toms_storage:inventory_cable'; n = 16 }
+        @{ t = 'Conector de inventário'; d = @(
+            'O &econector&r é o coração da rede: tudo o que encosta nele, ou nos cabos ligados a ele, entra no terminal.'
+        ); item = 'toms_storage:inventory_connector' }
+        @{ t = 'Terminal com mesa'; d = @(
+            'O &eterminal de criação&r junta o terminal com uma mesa de trabalho que &apega os ingredientes direto dos baús&r.'
+        ); item = 'toms_storage:crafting_terminal' }
+        @{ t = 'Terminal sem fio'; opcional = $true; d = @(
+            'O &eterminal sem fio&r abre a rede de baús de longe. Clique com ele no terminal para ligar.'
+            ''
+            'A tecla &eAlt + B&r abre o terminal sem fio que está no seu inventário.'
+        ); item = 'toms_storage:wireless_terminal' }
     ) }
     @{ t = 'Cozinha e fazenda'; g = 'Começo'; icone = 'farmersdelight:cooking_pot'; sub = 'Comer bem deixa você mais forte'; m = @(
         @{ t = 'Variedade dá vida'; marco = $true; sub = 'Spice of Life'; d = @(
@@ -310,19 +393,165 @@ $capitulos = @(
             'Comece minerando &einferium&r nas cavernas. A essência dele faz as primeiras sementes. Veja o caminho todo com &eU&r em cima da essência.'
         ); item = 'mysticalagriculture:inferium_essence'; q = 8; p = 'mysticalagriculture:prosperity_seed_base'; n = 2 }
     ) }
-    @{ t = 'Construir'; g = 'Começo'; icone = 'buildinggadgets2:gadget_building'; m = @(
-        @{ t = 'Ferramenta de construir'; d = 'Building Gadgets: coloca varios blocos de uma vez. Precisa de energia (carregue em um carregador de energia).'; item = 'buildinggadgets2:gadget_building' }
-        @{ t = 'Copiar e colar'; d = 'Copia uma area e cola em outro lugar, gastando os blocos do seu inventario.'; item = 'buildinggadgets2:gadget_copy_paste' }
-        @{ t = 'Construir com espelho'; d = 'Effortless Building: segure Alt para escolher modos como parede, linha, espelho e repeticao.'; solta = $true }
-        @{ t = 'Telhados de verdade'; d = 'Macaw''s Roofs, Windows, Doors, Fences e Furniture: blocos de telhado, janelas, portas, cercas e moveis. Procure por mcw no JEI.'; solta = $true }
-        @{ t = 'Moveis'; d = 'Handcrafted, Beautify, Supplementaries e Bubblellaneous trazem moveis e decoracao. Procure pelo nome do mod no JEI com @.'; solta = $true }
+    @{ t = 'Construir'; g = 'Começo'; icone = 'mcwroofs:oak_roof'; sub = 'Casas bonitas com móveis de verdade'; m = @(
+        @{ t = 'Construir sem sofrer'; marco = $true; sub = 'Effortless Building'; d = @(
+            'Segure &eAlt&r para abrir o menu de construção. Escolha uma forma: &elinha, parede, chão, cubo, círculo&r.'
+            ''
+            'Com um bloco na mão, clique onde começa, mire onde termina e clique de novo: a forma inteira aparece de uma vez. Funciona no sobrevivência, gastando os blocos do inventário.'
+            ''
+            'No mesmo menu tem &eespelho&r (constrói os dois lados iguais) e &erepetição&r. Para desligar, segure Alt e escolha desligar.'
+        ) }
+        @{ t = 'Bloco aleatório'; opcional = $true; sub = 'Effortless Building'; d = @(
+            'A &esacola de blocos aleatórios&r coloca um bloco sorteado dos que estão dentro dela. Ótima para chão e parede com textura misturada (pedra, cascalho, andesito).'
+        ); item = 'effortlessbuilding:randomizer_tool' }
+        @{ t = 'Telhado de verdade'; sub = 'Macaw''s Roofs'; d = @(
+            'Chega de telhado de escada: o &eMacaw''s Roofs&r tem telhados com inclinação, cumeeira e beiral em todas as madeiras e pedras.'
+            ''
+            'Procure &e@mcwroofs&r no JEI para ver todos.'
+        ); item = 'mcwroofs:oak_roof'; q = 8 }
+        @{ t = 'Janela'; sub = 'Macaw''s Windows'; d = @(
+            'Janelas de verdade, persianas, venezianas e &ecortinas&r (coloque o varão e clique com lã).'
+        ); item = 'mcwwindows:oak_window'; q = 4 }
+        @{ t = 'Porta diferente'; sub = 'Macaw''s Doors'; d = @(
+            'Portas de celeiro, de vidro, japonesa, de faroeste, de garagem e muitas outras.'
+        ); item = 'mcwdoors:oak_barn_door' }
+        @{ t = 'Cerca bonita'; opcional = $true; sub = 'Macaw''s Fences and Walls'; d = @(
+            'Cercas de estaca, de fazenda, de arame e portões curvos, todos no estilo do Minecraft.'
+        ); item = 'mcwfences:oak_picket_fence'; q = 8 }
+        @{ t = 'Ponte'; opcional = $true; sub = 'Macaw''s Bridges'; d = @(
+            'Pontes de corda, de tronco, de ferro e de vidro. Elas se ajustam sozinhas quando você coloca uma do lado da outra.'
+        ); item = 'mcwbridges:rope_oak_bridge'; q = 8 }
+        @{ t = 'Primeiros móveis'; sub = 'Macaw''s Furniture'; d = @(
+            'Mesas, cadeiras, gavetas, guarda-roupas e armários de cozinha em todas as madeiras.'
+            ''
+            'Muitos guardam itens: gavetas e guarda-roupas funcionam como baús. Clique com o botão direito numa cadeira para sentar.'
+        ); item = 'mcwfurnitures:oak_chair' }
+        @{ t = 'Casa aconchegante'; sub = 'Handcrafted'; d = @(
+            'Sofás, camas bonitas, criados-mudos, prateleiras e almofadas no estilo do Minecraft.'
+            ''
+            'O &emartelo&r do Handcrafted muda o formato de alguns móveis: clique com ele no bloco.'
+        ); item = 'handcrafted:oak_couch'; p = 'handcrafted:hammer' }
+        @{ t = 'Troféu'; opcional = $true; sub = 'Handcrafted'; d = @(
+            'Pendure na parede o troféu de um bicho ou monstro que você venceu: urso, creeper, blaze e outros.'
+        ); item = 'handcrafted:creeper_trophy' }
+        @{ t = 'Móveis que funcionam'; marco = $true; sub = 'Furniture Refurbished'; d = @(
+            'O &eFurniture Refurbished&r tem móveis que fazem coisas: geladeira que guarda comida, fogão que cozinha, pia com água, TV, computador e campainha.'
+            ''
+            'Os móveis do mod saem da &ebancada&r dele. Alguns, como luzes e TV, precisam de &eenergia&r do próprio mod: veja com &eU&r em cima deles.'
+        ); item = 'refurbished_furniture:fridge' }
+        @{ t = 'Correio'; opcional = $true; sub = 'Furniture Refurbished'; d = @(
+            'Coloque uma &ecaixa de correio&r na frente de casa e dê um nome a ela. Os amigos podem mandar itens para ela de longe. Veja como com &eU&r em cima da caixa.'
+        ); item = 'refurbished_furniture:oak_mail_box' }
+        @{ t = 'Pote'; sub = 'Supplementaries'; d = @(
+            'O &epote&r guarda líquidos, biscoitos e até &abichinhos&r: vagalumes, peixes e lesmas. Clique no bicho com o pote vazio.'
+        ); item = 'supplementaries:jar' }
+        @{ t = 'Placa de direção'; sub = 'Supplementaries'; d = @(
+            'A &eplaca de direção&r tem duas setas. Escreva nelas o nome dos lugares (casa, mina, vila) e gire para apontar o caminho.'
+        ); item = 'supplementaries:way_sign_oak' }
+        @{ t = 'Corda'; d = @(
+            'A &ecorda&r do Supplementaries serve para &asubir e descer&r em buracos fundos. Clique com mais corda nela para ela descer mais.'
+        ); item = 'supplementaries:rope'; q = 16 }
+        @{ t = 'Estilingue'; opcional = $true; sub = 'Supplementaries'; d = @(
+            'O &eestilingue&r atira qualquer item. Com tochas, ele ilumina caverna de longe.'
+        ); item = 'supplementaries:slingshot' }
+        @{ t = 'Aljava'; opcional = $true; sub = 'Supplementaries'; d = @(
+            'A &ealjava&r guarda vários tipos de flecha num espaço só. A tecla &eAlt + V&r troca a flecha.'
+        ); item = 'supplementaries:quiver' }
+        @{ t = 'Globo e enfeites'; opcional = $true; sub = 'Supplementaries'; d = @(
+            'Globo que gira, relógio de parede, fole, torneira, vaso de flor, cofre: o Supplementaries tem dezenas de blocos. Veja com &e@supplementaries&r no JEI.'
+        ); item = 'supplementaries:globe' }
+        @{ t = 'Decoração'; sub = 'Beautify'; d = @(
+            'Persianas, porta-retratos, treliça para plantas, lâmpadas e vasos pendurados.'
+        ); item = 'beautify:oak_picture_frame' }
+        @{ t = 'Vaso pendurado'; opcional = $true; sub = 'Beautify'; d = @(
+            'Pendure no teto e coloque uma flor dentro.'
+        ); item = 'beautify:hanging_pot' }
+        @{ t = 'Móveis do Create'; opcional = $true; sub = 'Create: Interiors'; d = @(
+            'Bancos e cadeiras no estilo do Create. Dá para sentar, inclusive em trens e máquinas que andam.'
+        ); item = 'interiors:kelp_chair' }
     ) }
-    @{ t = 'Animais'; g = 'Começo'; icone = 'alexsmobs:animal_dictionary'; m = @(
-        @{ t = 'Dicionario animal'; d = 'Alex''s Mobs tem um livro que explica cada bicho, o que ele come e como domesticar.'; item = 'alexsmobs:animal_dictionary' }
-        @{ t = 'Banana'; d = 'Bananas caem das folhas de selva. Varios bichos do Alex''s Mobs gostam delas, como os macacos.'; item = 'alexsmobs:banana' }
-        @{ t = 'Hamster'; d = 'Adorable Hamster Pets: hamsters de estimacao que seguem voce e cabem no ombro.'; solta = $true }
-        @{ t = 'Dragao'; d = 'Dragon Mounts: ovos de dragao chocam um dragao que voce cria e monta.'; solta = $true }
-        @{ t = 'Mais bichos'; d = 'Naturalist, Critters and Companions, Friends&Foes, Wilder Nature e Archie''s Dinosaurs espalham bichos pelos biomas. O Jade mostra o nome de cada um.'; solta = $true }
+    @{ t = 'Animais'; g = 'Começo'; icone = 'alexsmobs:banana'; sub = 'Bichos novos, pets e dragões'; m = @(
+        @{ t = 'Dicionário animal'; marco = $true; sub = 'Alex''s Mobs'; d = @(
+            'O pack tem &amais de 150 bichos novos&r. O &eDicionário animal&r explica cada um do Alex''s Mobs: onde vive, o que come e como domesticar.'
+            ''
+            'Mire em qualquer bicho para ver o nome e o mod no topo da tela. Bicho desconhecido? Procure o nome no JEI.'
+        ); item = 'alexsmobs:animal_dictionary' }
+        @{ t = 'Hamster'; sub = 'Adorable Hamster Pets'; d = @(
+            'Hamsters vivem nos campos. Para domesticar, dê &epepino fatiado&r (corte o pepino na tábua de corte).'
+            ''
+            'Dá para carregar até &atrês nos ombros&r: eles avisam quando tem creeper perto e farejam diamante.'
+            ''
+            'O livro do hamster explica tudo: camas, armadura, comidas.'
+        ); conquista = 'adorablehamsterpets:husbandry/tame_hamster'; p = 'adorablehamsterpets:sliced_cucumber'; n = 8 }
+        @{ t = 'Hamster no ombro'; opcional = $true; d = @(
+            'Com um hamster domesticado, agache (&eShift&r) e clique nele para colocar no ombro.'
+        ); conquista = 'adorablehamsterpets:husbandry/shoulder_hamster' }
+        @{ t = 'Banana'; sub = 'Alex''s Mobs'; d = @(
+            'Bananas caem das &efolhas da selva&r. Elas servem para domesticar macacos e gorilas.'
+        ); item = 'alexsmobs:banana'; q = 4 }
+        @{ t = 'Macaco-prego'; sub = 'Alex''s Mobs'; d = @(
+            'O &emacaco-prego&r vive na selva. Dê &ebananas&r para domesticar. Ele senta no ombro e ajuda a atacar.'
+        ); conquista = 'alexsmobs:alexsmobs/tame_capuchin' }
+        @{ t = 'Gorila'; sub = 'Alex''s Mobs'; d = @(
+            'O &egorila&r vive em grupos na selva, com um gorila-de-costas-prateadas no comando. Dê &ebananas&r para domesticar.'
+        ); conquista = 'alexsmobs:alexsmobs/tame_gorilla' }
+        @{ t = 'Urso amigo'; opcional = $true; sub = 'Alex''s Mobs'; d = @(
+            'O &eurso-pardo&r é perigoso, mas dá para domesticar com &emel&r e &esalmão&r. Depois ele aceita sela!'
+        ); conquista = 'alexsmobs:alexsmobs/tame_grizzly_bear' }
+        @{ t = 'Elefante'; opcional = $true; sub = 'Alex''s Mobs'; d = @(
+            'O &eelefante&r vive na savana. Domesticado, carrega você e um baú nas costas. Veja como no Dicionário animal.'
+        ); conquista = 'alexsmobs:alexsmobs/tame_elephant' }
+        @{ t = 'Águia caçadora'; opcional = $true; sub = 'Alex''s Mobs'; d = @(
+            'A &eáguia-careca&r pode ser treinada para caçar com uma &eluva de falcoaria&r.'
+        ); conquista = 'alexsmobs:alexsmobs/tame_bald_eagle' }
+        @{ t = 'Rede de captura'; sub = 'Naturalist'; d = @(
+            'O &eNaturalist&r traz bichos realistas: urso, cervo, leão, elefante, cobra, borboleta.'
+            ''
+            'A &erede de captura&r pega bichinhos (borboletas, vagalumes, caracóis) para levar para casa.'
+        ); item = 'naturalist:capture_net' }
+        @{ t = 'Urso com mel'; opcional = $true; sub = 'Naturalist'; d = @(
+            'Os ursos do Naturalist adoram mel. Dê um &efavo de mel&r para um urso.'
+        ); conquista = 'naturalist:husbandry/feed_bear_honeycomb' }
+        @{ t = 'Hipopótamo'; opcional = $true; sub = 'Naturalist'; d = @(
+            'Dê uma &emelancia&r para um hipopótamo no pântano ou rio.'
+        ); conquista = 'naturalist:husbandry/feed_hippo_melon' }
+        @{ t = 'Golem de cobre'; sub = 'Friends&Foes'; d = @(
+            'O &egolem de cobre&r aperta botões de cobre sozinho. Ele é montado no mundo com blocos de cobre, como o golem de ferro.'
+            ''
+            'Cuidado: ele enferruja com o tempo. Encere com favo de mel para parar.'
+        ); conquista = 'friendsandfoes:adventure/summon_copper_golem' }
+        @{ t = 'Moobloom'; opcional = $true; sub = 'Friends&Foes'; d = @(
+            'A &emoobloom&r é uma vaca com flores nas costas. Use a tesoura nela para pegar flores amarelas.'
+        ); conquista = 'friendsandfoes:husbandry/shear_a_moobloom' }
+        @{ t = 'Glare'; opcional = $true; sub = 'Friends&Foes'; d = @(
+            'O &eglare&r é um bichinho de musgo que mostra os lugares escuros onde monstros podem nascer. Domestique com &ebagas brilhantes&r.'
+        ); conquista = 'friendsandfoes:husbandry/tame_a_glare' }
+        @{ t = 'Gancho'; opcional = $true; sub = 'Critters and Companions'; d = @(
+            'O &eCritters and Companions&r traz lontras, libélulas, furões e coelhinhos-do-mar.'
+            ''
+            'O &egancho&r puxa você até onde ele prender. Ótimo para escalar.'
+        ); item = 'crittersandcompanions:grappling_hook' }
+        @{ t = 'Vila dos sapos'; opcional = $true; sub = 'Ribbits'; d = @(
+            'Nos &epântanos&r existem vilas de sapos. Os sapos tocam música e trocam itens.'
+        ); estrutura = 'ribbits:ribbit_village' }
+        @{ t = 'Troféu de caça'; opcional = $true; sub = 'Wilder Nature'; d = @(
+            'O &eWilder Nature&r traz bisões, cervos e lobos-vermelhos. Os troféus enfeitam a parede.'
+        ); item = 'wildernature:deer_trophy' }
+        @{ t = 'Dinossauros'; opcional = $true; sub = 'Archie''s Dinosaurs'; d = @(
+            'Dinossauros vivem soltos pelo mundo, dos herbívoros grandes aos predadores. &cCuidado&r com os carnívoros.'
+            ''
+            '&7Clique em Concluir quando vir o primeiro.'
+        ) }
+        @{ t = 'Ovo de dragão'; marco = $true; sub = 'Dragon Mounts'; d = @(
+            'Dragões vivem no mundo normal, no Nether e no End. Também dá para achar &eovos de dragão&r.'
+            ''
+            'Coloque o ovo no chão e espere chocar: o filhote já nasce seu.'
+        ); conquista = 'dmr:hatch_1_dragon_egg' }
+        @{ t = 'Domar um dragão'; marco = $true; sub = 'Dragon Mounts'; d = @(
+            'Dragão adulto se doma dando &epeixe&r até aparecerem corações.'
+            ''
+            'Coloque uma &esela&r e monte: &eespaço&r sobe, &eShift&r desce. O &eapito&r chama o dragão de longe.'
+        ); conquista = 'dmr:tame_dragon'; p = 'minecraft:saddle' }
     ) }
     @{ t = 'Explorar'; g = 'Aventura'; icone = 'naturescompass:naturescompass'; m = @(
         @{ t = 'Bussola de biomas'; d = 'Nature''s Compass aponta para o bioma que voce escolher.'; item = 'naturescompass:naturescompass' }
@@ -483,7 +712,7 @@ if (Test-Path $jarsDir) {
         try { $z = [IO.Compression.ZipFile]::OpenRead($j.FullName) } catch { continue }
         foreach ($e in $z.Entries) {
             if ($e.FullName -match '^assets/([a-z0-9_.-]+)/models/item/([a-z0-9_/.-]+)\.json$') { [void]$existe.Add("$($matches[1]):$($matches[2])") }
-            elseif ($e.FullName -match '^data/([a-z0-9_.-]+)/(dimension|worldgen/structure|worldgen/biome)/([a-z0-9_/.-]+)\.json$') { [void]$existe.Add("$($matches[1]):$($matches[3])") }
+            elseif ($e.FullName -match '^data/([a-z0-9_.-]+)/(dimension|worldgen/structure|worldgen/biome|advancement)/([a-z0-9_/.-]+)\.json$') { [void]$existe.Add("$($matches[1]):$($matches[3])") }
             elseif ($e.FullName -match '^assets/[a-z0-9_.-]+/lang/en_us\.json$') {
                 # Bichos: o id vem das chaves entity.<mod>.<nome> do arquivo de idioma.
                 $r = New-Object IO.StreamReader $e.Open(); $txt = $r.ReadToEnd(); $r.Dispose()
@@ -492,7 +721,7 @@ if (Test-Path $jarsDir) {
         }
         $z.Dispose()
     }
-    $faltam = @(foreach ($c in $capitulos) { foreach ($id in @($c.icone) + @($c.m | ForEach-Object { $_['item']; $_['dim']; $_['p']; $_['mata']; $_['estrutura']; $_['bioma'] })) {
+    $faltam = @(foreach ($c in $capitulos) { foreach ($id in @($c.icone) + @($c.m | ForEach-Object { $_['item']; $_['dim']; $_['p']; $_['mata']; $_['estrutura']; $_['bioma']; $_['conquista'] })) {
         if ($id -and $id -notlike 'minecraft:*' -and -not $existe.Contains($id)) { "$($c.t): $id" } } })
     if ($faltam) { throw "Ids que nao existem no pack:`n$($faltam -join "`n")" }
 }
@@ -530,6 +759,7 @@ foreach ($c in $capitulos) {
             elseif ($m['mata']) { "{ entity: `"$($m['mata'])`", id: `"$(Id "tarefa/$qid")`", type: `"kill`", value: $($q)L }" }
             elseif ($m['estrutura']) { "{ id: `"$(Id "tarefa/$qid")`", structure: `"$($m['estrutura'])`", type: `"structure`" }" }
             elseif ($m['bioma']) { "{ biome: `"$($m['bioma'])`", id: `"$(Id "tarefa/$qid")`", type: `"biome`" }" }
+            elseif ($m['conquista']) { "{ advancement: `"$($m['conquista'])`", criterion: `"`", id: `"$(Id "tarefa/$qid")`", type: `"advancement`" }" }
             elseif ($m['dim']) { "{ dimension: `"$($m['dim'])`", id: `"$(Id "tarefa/$qid")`", type: `"dimension`" }" }
             else { "{ id: `"$(Id "tarefa/$qid")`", type: `"checkmark`" }" }
         $xp = if ($m['xp']) { $m['xp'] } elseif ($m['marco']) { 100 } else { 20 }
