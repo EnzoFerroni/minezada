@@ -17,9 +17,23 @@ $servidor = 'minezada.dpdns.org'  # tunel da Cloudflare: o TXT do dominio manda 
 $tunel = 'molecule-spindle.tun.ply.gg'  # playit: endereco fixo do tunel (playit-endereco.txt no Drive)
 $h = @{ 'User-Agent' = 'minezada-modpack-builder/1.0' }
 
+# Downloads com novas tentativas: o Modrinth corta por limite (429) e o GitHub as vezes trava no CI.
+# 404 e outros erros do cliente falham na hora. -MaximumRetryCount so existe no PS 7.
+function Tentar([scriptblock]$bloco) {
+    for ($i = 1; ; $i++) {
+        try { return & $bloco }
+        catch {
+            $cod = 0; if ($_.Exception.Response) { $cod = [int]$_.Exception.Response.StatusCode }
+            if ($i -ge 4 -or ($cod -ge 400 -and $cod -lt 500 -and $cod -ne 429)) { throw }
+            Write-Host "  falhou ($($_.Exception.Message)); tentando de novo em $($i * 20) s"
+            Start-Sleep ($i * 20)
+        }
+    }
+}
+
 # Le como UTF-8 (o PS 5.1 decodifica como Latin-1 e quebra emoji/acento) e achata arrays JSON.
 function Get-Api($path) {
-    $r = Invoke-WebRequest "$api/$path" -Headers $h -UseBasicParsing
+    $r = Tentar { Invoke-WebRequest "$api/$path" -Headers $h -UseBasicParsing }
     @([Text.Encoding]::UTF8.GetString($r.RawContentStream.ToArray()) | ConvertFrom-Json) | ForEach-Object { $_ }
 }
 
@@ -66,7 +80,7 @@ function Get-Cf($path) {
         if (-not $script:cfKey -and $sync -and (Test-Path (Join-Path $sync 'curseforge.txt'))) { $script:cfKey = (Get-Content (Join-Path $sync 'curseforge.txt') -Raw).Trim() }
         if (-not $script:cfKey) { throw 'Mod do CurseForge no mods.txt e sem chave da API (CURSEFORGE_KEY ou curseforge.txt no Drive)' }
     }
-    $r = Invoke-WebRequest "https://api.curseforge.com/v1/$path" -Headers @{ 'x-api-key' = $script:cfKey; 'User-Agent' = $h['User-Agent'] } -UseBasicParsing
+    $r = Tentar { Invoke-WebRequest "https://api.curseforge.com/v1/$path" -Headers @{ 'x-api-key' = $script:cfKey; 'User-Agent' = $h['User-Agent'] } -UseBasicParsing }
     ([Text.Encoding]::UTF8.GetString($r.RawContentStream.ToArray()) | ConvertFrom-Json).data
 }
 
@@ -163,7 +177,7 @@ foreach ($x in $projs.Values) {
 
 # NeoForge mais novo que o Prism ja conhece: o meta dele atrasa algumas horas em relacao ao maven,
 # e uma versao que ainda nao esta la faz a instancia falhar ao abrir.
-$metaNeo = [Text.Encoding]::UTF8.GetString((Invoke-WebRequest 'https://meta.prismlauncher.org/v1/net.neoforged/index.json' -UseBasicParsing).RawContentStream.ToArray()) | ConvertFrom-Json
+$metaNeo = [Text.Encoding]::UTF8.GetString((Tentar { Invoke-WebRequest 'https://meta.prismlauncher.org/v1/net.neoforged/index.json' -UseBasicParsing }).RawContentStream.ToArray()) | ConvertFrom-Json
 $neo = ($metaNeo.versions | Where-Object { $_.version -like "$($mc.Substring(2)).*" } | Select-Object -First 1).version  # "21.1.*"
 # Versao fixa como a dos mods (trocar o NeoForge faz o Prism de quem abre sem o atalho perguntar "Update"). -Atualizar busca a mais nova.
 if ($neoAntes -and -not $Atualizar -and ($metaNeo.versions | Where-Object version -eq $neoAntes)) { $neo = $neoAntes }
@@ -246,7 +260,7 @@ $inst = Join-Path $tmp 'prism'
 New-Item -ItemType Directory -Force (Join-Path $inst '.minecraft') | Out-Null
 foreach ($j in $jars) {
     $arq = Join-Path $root "tools/$($j[0])"
-    if (-not (Test-Path $arq)) { New-Item -ItemType Directory -Force (Split-Path $arq) | Out-Null; Invoke-WebRequest $j[1] -OutFile $arq }
+    if (-not (Test-Path $arq)) { New-Item -ItemType Directory -Force (Split-Path $arq) | Out-Null; Tentar { Invoke-WebRequest $j[1] -OutFile $arq } }
     if ((Sha256 $arq) -ne $j[2]) { Remove-Item $arq; throw "$($j[0]): checksum nao confere (download corrompido ou adulterado)." }
     Copy-Item $arq (Join-Path $inst '.minecraft')
 }
@@ -394,7 +408,7 @@ $porJar = @{}
 foreach ($m in $pwMods | Where-Object pasta -eq 'mods') {
     $arq = Join-Path $cache "$($m.sha1).jar"
     if (-not (Test-Path $arq)) {
-        Invoke-WebRequest $m.url -OutFile "$arq.tmp" -Headers $h -UseBasicParsing
+        Tentar { Invoke-WebRequest $m.url -OutFile "$arq.tmp" -Headers $h -UseBasicParsing }
         if ((Get-FileHash "$arq.tmp" -Algorithm SHA1).Hash -ne $m.sha1) { Remove-Item "$arq.tmp"; throw "$($m.arquivo): checksum nao confere" }
         Move-Item "$arq.tmp" $arq
     }
