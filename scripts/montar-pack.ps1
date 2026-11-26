@@ -52,7 +52,22 @@ $presas = @{ 'accessories' = 'Fb55Fgjz'; 'customskinloader' = '9B1Mb9IZ' }
 # Hamster 3.7.0: architectury, geckolib, fzzy-config, patchouli e accessories (ver acima).
 $depsExtras = @{ 'adorable-hamster-pets' = @('lhGA9TYQ', '8BmcQJ2H', 'hYykXjDp', 'nU0bVIaL', 'jtmvUHXj') }
 $linhas = Get-Content (Join-Path $root 'modpack/mods.txt') -Encoding UTF8
-$pedidos = foreach ($l in $linhas) { if ($l -match '^\s*([a-z0-9_-]+)\s*\|') { $matches[1] } }
+$pedidos = foreach ($l in $linhas) { if ($l -match '^\s*((?:cf:)?[a-z0-9_-]+)\s*\|') { $matches[1] } }
+
+# Mods do CurseForge ("cf:<id>" no mods.txt): so entram se o autor libera download por outros programas
+# (allowModDistribution), para o packwiz baixar sozinho como os do Modrinth. Dependencias obrigatorias deles
+# precisam estar no mods.txt (o script avisa). Chave da API: CURSEFORGE_KEY ou curseforge.txt na pasta do Drive.
+$cfPedidos = @($pedidos | Where-Object { $_ -like 'cf:*' }); $pedidos = @($pedidos | Where-Object { $_ -notlike 'cf:*' })
+function Get-Cf($path) {
+    if (-not $script:cfKey) {
+        $script:cfKey = $env:CURSEFORGE_KEY
+        $sync = if (Test-Path (Join-Path $root 'config.env')) { (Select-String (Join-Path $root 'config.env') -Pattern '^SYNC_DIR="?(.*?)"?\s*$' | Select-Object -First 1).Matches.Groups[1].Value }
+        if (-not $script:cfKey -and $sync -and (Test-Path (Join-Path $sync 'curseforge.txt'))) { $script:cfKey = (Get-Content (Join-Path $sync 'curseforge.txt') -Raw).Trim() }
+        if (-not $script:cfKey) { throw 'Mod do CurseForge no mods.txt e sem chave da API (CURSEFORGE_KEY ou curseforge.txt no Drive)' }
+    }
+    $r = Invoke-WebRequest "https://api.curseforge.com/v1/$path" -Headers @{ 'x-api-key' = $script:cfKey; 'User-Agent' = $h['User-Agent'] } -UseBasicParsing
+    ([Text.Encoding]::UTF8.GetString($r.RawContentStream.ToArray()) | ConvertFrom-Json).data
+}
 
 # Pack anterior (modpack/pack): lista de arquivos (para mostrar o que mudou) e a versao de cada projeto (para
 # repetir; o link de cada arquivo tem o id do projeto e da versao).
@@ -62,6 +77,7 @@ foreach ($m in Get-ChildItem (Join-Path $root 'modpack/pack') -Filter *.pw.toml 
     $c = Get-Content $m.FullName -Raw -Encoding UTF8
     if ($c -match '(?m)^filename = "(.+)"') { $antes += "$($m.Directory.Name)/$($matches[1])" }
     if ($c -match '/data/([^/]+)/versions/([^/]+)/') { $fixas[$matches[1]] = $matches[2] }
+    if ($c -match '(?m)^project-id = (\d+)\s+file-id = (\d+)') { $fixas["cf:$($matches[1])"] = $matches[2] }
 }
 $vistos = @{}; $projs = [ordered]@{}; $info = @{}; $pwMods = @()
 $fila = New-Object System.Collections.Queue
@@ -96,6 +112,24 @@ while ($fila.Count) {
     }
     Write-Host ('{0,-30} {1}' -f $p.slug, $v.version_number)
 }
+# Dependencia do CurseForge que o pack ja traz pelo Modrinth (id do CurseForge = id do Modrinth).
+$cfNoModrinth = @{ '419699' = 'lhGA9TYQ' }  # Architectury API
+$cfIds = @($cfPedidos | ForEach-Object { $_.Substring(3) }) + @($cfNoModrinth.Keys | Where-Object { $projs[$cfNoModrinth[$_]] })
+foreach ($chave in $cfPedidos) {
+    $cid = $chave.Substring(3)
+    $m = Get-Cf "mods/$cid"
+    if (-not $m.allowModDistribution) { throw "$($m.name) (cf:$cid): o autor nao libera download por outros programas; cada jogador teria que baixar na mao" }
+    $cf = if ($fixas[$chave] -and -not $Atualizar) { Get-Cf "mods/$cid/files/$($fixas[$chave])" }
+        else { Get-Cf "mods/$cid/files?gameVersion=$mc&modLoaderType=6&pageSize=50" | Where-Object releaseType -eq 1 | Select-Object -First 1 }
+    if (-not $cf) { throw "$($m.name) (cf:$cid): sem arquivo release para $loader $mc" }
+    $faltam = @($cf.dependencies | Where-Object { $_.relationType -eq 3 -and "$($_.modId)" -notin $cfIds } | ForEach-Object modId)
+    if ($faltam) { throw "$($m.name) (cf:$cid) precisa de cf:$($faltam -join ', cf:') no mods.txt (ou do mesmo mod pelo Modrinth)" }
+    $url = if ($cf.downloadUrl) { $cf.downloadUrl } else { "https://edge.forgecdn.net/files/$([math]::Floor($cf.id / 1000))/$($cf.id % 1000)/$([uri]::EscapeDataString($cf.fileName))" }
+    $projs[$chave] = [pscustomobject]@{ p = [pscustomobject]@{ slug = $m.slug; title = $m.name; icon_url = $m.logo.thumbnailUrl; chave = $chave; link = $m.links.websiteUrl; cf = "$cid $($cf.id)" }
+        v = [pscustomobject]@{ version_number = $cf.displayName }; f = [pscustomobject]@{ filename = $cf.fileName; url = $url; hashes = @{ sha1 = ($cf.hashes | Where-Object algo -eq 1).value } }
+        pasta = 'mods'; deps = @(); cliente = $true; servidor = $true }
+    Write-Host ('{0,-30} {1} (CurseForge)' -f $m.slug, $cf.displayName)
+}
 
 # Dependencia vai para todo lado onde algum mod que precisa dela esta: o Modrinth marca algumas como
 # "so servidor" (ex: Lithostitched) mesmo quando o mod que depende delas tambem roda no cliente.
@@ -112,9 +146,10 @@ do {
 
 foreach ($x in $projs.Values) {
     $p = $x.p; $v = $x.v; $f = $x.f
-    $info[$p.slug] = [pscustomobject]@{ titulo = $p.title; versao = $v.version_number; servidor = $x.servidor; icone = $p.icon_url }
+    $info[$(if ($p.chave) { $p.chave } else { $p.slug })] = [pscustomobject]@{ titulo = $p.title; versao = $v.version_number; servidor = $x.servidor; icone = $p.icon_url
+        link = $(if ($p.link) { $p.link } else { "https://modrinth.com/mod/$($p.slug)" }) }
     $lado = if (-not $x.servidor) { 'client' } elseif (-not $x.cliente) { 'server' } else { 'both' }
-    $pwMods += [pscustomobject]@{ slug = $p.slug; titulo = $p.title; arquivo = $f.filename; url = $f.url; sha1 = $f.hashes.sha1; lado = $lado; pasta = $x.pasta }
+    $pwMods += [pscustomobject]@{ slug = $p.slug; titulo = $p.title; arquivo = $f.filename; url = $f.url; sha1 = $f.hashes.sha1; lado = $lado; pasta = $x.pasta; cf = $p.cf }
 }
 
 # NeoForge mais novo que o Prism ja conhece: o meta dele atrasa algumas horas em relacao ao maven,
@@ -151,7 +186,7 @@ $pwMods = @($ordenado.Values)
 foreach ($m in $pwMods) {
     $rel = "$($m.pasta)/$($m.slug).pw.toml"  # o packwiz instala o arquivo na pasta do metafile
     $opc = if ($opcionais[$m.slug]) { "`n[option]`noptional = true`ndefault = false`ndescription = $(Toml $opcionais[$m.slug])`n" } else { '' }
-    Escrever (Join-Path $pw $rel) "name = $(Toml $m.titulo)`nfilename = $(Toml $m.arquivo)`nside = `"$($m.lado)`"`n`n[download]`nurl = $(Toml $m.url)`nhash-format = `"sha1`"`nhash = `"$($m.sha1)`"`n$opc"
+    Escrever (Join-Path $pw $rel) "name = $(Toml $m.titulo)`nfilename = $(Toml $m.arquivo)`nside = `"$($m.lado)`"`n`n[download]`nurl = $(Toml $m.url)`nhash-format = `"sha1`"`nhash = `"$($m.sha1)`"`n$opc$(if ($m.cf) { $c = $m.cf.Split(' '); "`n[update.curseforge]`nproject-id = $($c[0])`nfile-id = $($c[1])`n" })"
     $idx += "`n[[files]]`nfile = `"$rel`"`nhash = `"$(Sha256 (Join-Path $pw $rel))`"`nmetafile = true`n"
 }
 # Arquivos soltos (perfis de grafico etc) de modpack/arquivos vao para o jogo de cada um.
@@ -251,19 +286,19 @@ $cartoes = @()
 $fechar = { if ($cartoes) { $script:md += '<table>'; for ($k = 0; $k -lt $cartoes.Count; $k += 3) { $script:md += '<tr>' + (($cartoes[$k..([Math]::Min($k + 2, $cartoes.Count - 1))]) -join '') + '</tr>' }; $script:md += '</table>' }; $script:cartoes = @() }
 foreach ($l in $linhas) {
     if ($l -match '^## (.+)') { & $fechar; $md += '', "## $($matches[1])", '' }
-    elseif ($l -match '^\s*([a-z0-9_-]+)\s*\|\s*(.+)$') {
+    elseif ($l -match '^\s*((?:cf:)?[a-z0-9_-]+)\s*\|\s*(.+)$') {
         $slug = $matches[1]; $desc = $matches[2].Trim(); $i = $info[$slug]
         $p = $desc.IndexOf('. ')
         $resumo = if ($p -gt 0) { $desc.Substring(0, $p) } else { $desc.TrimEnd('.') }
-        $link = "https://modrinth.com/mod/$slug"
+        $link = $i.link
         $topo = if ($fotos[$slug]) { "<a href=`"$link`"><img src=`"$($fotos[$slug])`" width=`"100%`"></a>" } elseif ($i.icone) { "<a href=`"$link`"><img src=`"$($i.icone)`" width=`"64`"></a>" } else { '' }
         $ico = if ($i.icone) { "<img src=`"$($i.icone)`" width=`"16`"> " } else { '' }
         $cartoes += "<td width=`"33%`" valign=`"top`">$topo<br>$ico<a href=`"$link`"><b>$($i.titulo)</b></a><br><sub>$resumo</sub></td>"
     }
 }
 & $fechar
-$extras = $info.Keys | Where-Object { $_ -notin $pedidos } | Sort-Object
-if ($extras) { $md += '', '## Dependências (entram sozinhas)', '', (($extras | ForEach-Object { "[$($info[$_].titulo)](https://modrinth.com/mod/$_)" }) -join ' · ') }
+$extras = $info.Keys | Where-Object { $_ -notin $pedidos -and $_ -notin $cfPedidos } | Sort-Object
+if ($extras) { $md += '', '## Dependências (entram sozinhas)', '', (($extras | ForEach-Object { "[$($info[$_].titulo)]($($info[$_].link))" }) -join ' · ') }
 $doc = Join-Path $root 'docs/mods.md'
 $txt = [IO.File]::ReadAllText($doc)
 if ($txt -notmatch '<!-- mods:inicio -->') { throw 'docs/mods.md sem os marcadores <!-- mods:inicio --> / <!-- mods:fim -->' }

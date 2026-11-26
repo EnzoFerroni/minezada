@@ -25,6 +25,8 @@ jobs:
       # shortcut: baixa todos os jars a cada vez (~600 MB, o montar-pack confere as dependencias); cache se ficar lento.
       - name: Montar de novo e comparar
         shell: pwsh
+        env:
+          CURSEFORGE_KEY: ${{ secrets.CURSEFORGE_KEY }}
         run: |
           $v = [regex]::Match((Get-Content modpack/pack/pack.toml -Raw), 'version = "(.+?)"').Groups[1].Value
           ./scripts/montar-pack.ps1 -Versao $v
@@ -47,6 +49,7 @@ jobs:
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
+          CURSEFORGE_KEY: ${{ secrets.CURSEFORGE_KEY }}
         run: |
           $log = try { ./scripts/montar-pack.ps1 -Atualizar *>&1 | Out-String } catch { "ERRO: $_" }
           $linhas = $log -split "`n"

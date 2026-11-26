@@ -226,6 +226,11 @@ hash = "6cc162fb00a9c1b742c55963086994ee327099dbaea65bc0d33851c8c8c083a7"
 metafile = true
 
 [[files]]
+file = "mods/croptopia.pw.toml"
+hash = "fa369796462c43585ad02ddb4be411d26118c878b9cf08261d6d74a6db9223fd"
+metafile = true
+
+[[files]]
 file = "mods/cubes-without-borders.pw.toml"
 hash = "8e862fb675ee652337871212cfdb85b9e6a6e1bb146082560a80ddb8bc67fe00"
 metafile = true
@@ -291,6 +296,11 @@ hash = "b4e34326d5e45c1286dbbd5dd815ecbd6bef5dce4a3be4814db431a21d12b517"
 metafile = true
 
 [[files]]
+file = "mods/epherolib.pw.toml"
+hash = "331154b3ee77b55f92b8b46c7a5a0dee02f207bda7c3728e11cbcc3e1020ee3e"
+metafile = true
+
+[[files]]
 file = "mods/explorers-compass.pw.toml"
 hash = "464977b7a56fd85443b15cf0f36e3fd42c0752c1e84eced6be691d14d36c762e"
 metafile = true
@@ -313,6 +323,21 @@ metafile = true
 [[files]]
 file = "mods/fragmentum.pw.toml"
 hash = "4433b33f668d46f316d95f1910559c8c6b52a755765ab562ea4c2a66eead2831"
+metafile = true
+
+[[files]]
+file = "mods/ftb-library-forge.pw.toml"
+hash = "5f907415fba5992e045036626e2defdfeaea1f8db2355fb7106b1db734eb586e"
+metafile = true
+
+[[files]]
+file = "mods/ftb-quests-forge.pw.toml"
+hash = "ee68e96cade3298703be9355d09109ce9ce5980b6ad576e5d3a6f10b4d38d1e5"
+metafile = true
+
+[[files]]
+file = "mods/ftb-teams-forge.pw.toml"
+hash = "1a00da75dde20c6f9d1e938f6f0928b00fbd2891c8cd6b8b1289772971be12ad"
 metafile = true
 
 [[files]]
@@ -363,6 +388,11 @@ metafile = true
 [[files]]
 file = "mods/iris.pw.toml"
 hash = "22e42f4b5a9756e24b499687ec5735479c8453b9cea53f5a83241ef967fa65a1"
+metafile = true
+
+[[files]]
+file = "mods/iron-chests.pw.toml"
+hash = "04933632dae846a5caaad209cb48b7b87dc9749291b489133a3a325661a7f783"
 metafile = true
 
 [[files]]
@@ -631,6 +661,11 @@ hash = "4cb370b7ea368c9bdce93e2fb80e2009506020aef7c279151759bbf01085af0f"
 metafile = true
 
 [[files]]
+file = "mods/the-twilight-forest.pw.toml"
+hash = "ac1ea371d4bf68e4021a49d61a4b992bca42ab7c47ec0467e7ab12e8fddb797d"
+metafile = true
+
+[[files]]
 file = "mods/the-undergarden.pw.toml"
 hash = "3a4ebaf841466ff1f94d2d22d7c34bb151b8477a7937c5e3aedae388748cdde9"
 metafile = true
@@ -648,6 +683,11 @@ metafile = true
 [[files]]
 file = "mods/trade-cycling.pw.toml"
 hash = "2352e484e28ebce0fa23b30d2b22f9b9ca67b2a6282448fb92c918fc0345bd7c"
+metafile = true
+
+[[files]]
+file = "mods/twilight-delight.pw.toml"
+hash = "79af1f1da0ce1d74c7cec23e72d28d3eed45baf6ffc27b732800b6988522b534"
 metafile = true
 
 [[files]]
