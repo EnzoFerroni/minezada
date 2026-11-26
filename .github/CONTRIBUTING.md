@@ -145,3 +145,5 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
   nem o trap é instalado. Ligar `set -m` antes (como em `scripts/testes/desligar.sh`), senão o teste falha à toa.
 
 Mod pedido sem versao para o Minecraft do pack: `powershell -ExecutionPolicy Bypass -File scripts/comparar-versoes.ps1 <slug>` mostra, para cada versao do jogo, quantos mods do pack tem versao NeoForge no Modrinth e quais faltam.
+
+Livro de missoes (FTB Quests): edite a tabela de `scripts/missoes.ps1` e rode o script; ele gera `server-config/config/ftbquests/quests`, que o iniciar copia para o servidor. Ids de itens e dimensoes precisam existir nos jars.

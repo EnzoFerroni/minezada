@@ -1,0 +1,64 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "primeiros_passos"
+	group: ""
+	icon: { id: "minecraft:crafting_table" }
+	id: "7219E05592DE0419"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			id: "E92EB052F9F3B141"
+			tasks: [{ id: "0520B69D185A8095", type: "checkmark" }]
+			x: 0d
+			y: 0d
+		}
+		{
+			dependencies: ["E92EB052F9F3B141"]
+			id: "0003CE0F6AE91DC0"
+			rewards: [{ id: "8D09399AEDFDE912", item: { count: 4, id: "minecraft:bread" }, type: "item" }]
+			tasks: [{ id: "78901D46E741DF0A", item: { count: 1, id: "minecraft:crafting_table" }, type: "item" }]
+			x: 1.5d
+			y: 0d
+		}
+		{
+			dependencies: ["0003CE0F6AE91DC0"]
+			id: "0E19EE28A91186E6"
+			tasks: [{ id: "2C05ACA0A5904912", type: "checkmark" }]
+			x: 3d
+			y: 0d
+		}
+		{
+			dependencies: ["0E19EE28A91186E6"]
+			id: "B6952285DC2B5452"
+			rewards: [{ id: "F02A39839B21FACA", item: { count: 4, id: "minecraft:leather" }, type: "item" }]
+			tasks: [{ id: "345B810F0B320B30", item: { count: 1, id: "sophisticatedbackpacks:backpack" }, type: "item" }]
+			x: 4.5d
+			y: 0d
+		}
+		{
+			dependencies: ["B6952285DC2B5452"]
+			id: "50A4703D190E18DE"
+			rewards: [{ id: "69B5EFC819B2DF1C", item: { count: 2, id: "minecraft:ender_pearl" }, type: "item" }]
+			tasks: [{ id: "F76F6F755B0BB8E1", item: { count: 1, id: "waystones:waystone" }, type: "item" }]
+			x: 6d
+			y: 0d
+		}
+		{
+			dependencies: ["50A4703D190E18DE"]
+			id: "712E2F6300ED0812"
+			tasks: [{ id: "4726B4A82CC579C6", type: "checkmark" }]
+			x: 7.5d
+			y: 0d
+		}
+		{
+			dependencies: ["712E2F6300ED0812"]
+			id: "B772DD21EE451560"
+			rewards: [{ id: "81E38928F8754892", item: { count: 4, id: "minecraft:golden_carrot" }, type: "item" }]
+			tasks: [{ id: "77A9F9674A73871C", item: { count: 1, id: "farmersdelight:cooking_pot" }, type: "item" }]
+			x: 9d
+			y: 0d
+		}
+	]
+}
