@@ -40,28 +40,28 @@
 			id: "132C1D9BA47BE4F2"
 			rewards: [{ id: "38EA54B6FECC7C22", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "eternal_starlight:starlight", id: "2D2D4E7151275D15", type: "dimension" }]
-			x: 0d
-			y: 1.5d
+			x: 6d
+			y: 0d
 		}
 		{
 			id: "12578001AE3297C2"
 			rewards: [{ id: "6F8F3987083678D9", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "dimdungeons:dungeon_dimension", id: "55628F32E5D69F42", type: "dimension" }]
-			x: 1.5d
+			x: 0d
 			y: 1.5d
 		}
 		{
 			id: "009843D988A83261"
 			rewards: [{ id: "668AA0CF02087075", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "ad_astra:moon", id: "7D8A20115A811664", type: "dimension" }]
-			x: 3d
+			x: 1.5d
 			y: 1.5d
 		}
 		{
 			id: "78BEFEA816B93AB6"
 			rewards: [{ id: "10DCDE46FAE283B0", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "minecraft:the_end", id: "0A665287FE2C907B", type: "dimension" }]
-			x: 4.5d
+			x: 3d
 			y: 1.5d
 		}
 	]

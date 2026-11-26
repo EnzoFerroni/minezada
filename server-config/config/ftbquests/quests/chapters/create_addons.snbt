@@ -40,8 +40,8 @@
 			id: "577B50F4C3ED884A"
 			rewards: [{ id: "1EA6483FBAABB52C", type: "xp", xp: 20 }]
 			tasks: [{ id: "78ECE4BE4F469AAA", type: "checkmark" }]
-			x: 0d
-			y: 1.5d
+			x: 6d
+			y: 0d
 		}
 	]
 }
