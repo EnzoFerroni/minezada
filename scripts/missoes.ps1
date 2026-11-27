@@ -1961,6 +1961,8 @@ $semMissao = @{
     'o proprio livro' = 'cf:289412'
     'funciona sozinho ou so muda a tela' = 'bettersearch', 'appleskin', 'better-advancements', 'yungs-menu-tweaks', 'polymorph', 'travelers-titles', 'dynamic-torches', 'tectonic', 'yungs-bridges', 'yungs-extras', 'easy-anvils'
 }
+# Meta fixa para mod com muitas variantes (madeira, cor) que inflam a contagem de itens.
+$metaFixa = @{ 'storage-delight' = 3; 'botany-pots' = 4; 'cf:415438' = 8; 'macaws-furniture' = 4; 'macaws-roofs' = 2; 'macaws-windows' = 2; 'macaws-doors' = 2; 'macaws-bridges' = 2; 'macaws-fences-and-walls' = 2; 'handcrafted' = 4; 'sophisticated-storage' = 6; 'createdeco' = 3; 'create-deco' = 3; 'copycats' = 2; 'advanced-netherite' = 3; 'interiors' = 2 }
 $motivo = @{}; foreach ($k in $semMissao.Keys) { foreach ($s in $semMissao[$k]) { $motivo[$s] = $k } }
 if (Test-Path $jarsDir) {
     # slug -> jar (sha1 do .pw.toml) -> modIds do neoforge.mods.toml (com os mods embutidos).
@@ -2002,7 +2004,7 @@ if (Test-Path $jarsDir) {
             if (@($m['mod']) -contains $slug -or @($ids | Where-Object { $ns -contains $_.Split(':')[0] }).Count) { $n++; $caps[$c.t] = 1 } } }
         # Meta pelo tamanho do mod: itens com nome no idioma do jar.
         $qi = if ($sha) { [int]$itens[$sha] } else { 0 }
-        $meta = if ($qi -eq 0) { 1 } elseif ($qi -le 30) { 3 } elseif ($qi -le 150) { 5 } else { 10 }
+        $meta = if ($metaFixa[$slug]) { $metaFixa[$slug] } elseif ($qi -eq 0) { 1 } elseif ($qi -le 30) { 3 } elseif ($qi -le 150) { 5 } else { 10 }
         $st = if ($motivo[$slug] -and $n -eq 0) { $resumo.nao++; "nao precisa ($($motivo[$slug]))" } elseif ($n -eq 0) { $resumo.falta++; '**falta**' } elseif ($n -lt $meta) { $resumo.pouco++; 'pouco' } else { $resumo.ok++; 'ok' }
         $linhas += "| $cat | ``$slug`` | $qi | $n/$meta | $st | $(($caps.Keys | Sort-Object) -join ', ') |"
     }
@@ -2013,7 +2015,7 @@ if (Test-Path $jarsDir) {
         ''
         "$($capitulos.Count) capitulos, $(@($capitulos | ForEach-Object { $_.m }).Count) missoes. Mods: $($resumo.ok) ok, $($resumo.pouco) abaixo da meta, $($resumo.falta) faltando, $($resumo.nao) sem necessidade de missao."
         ''
-        'Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 5, mais que isso 10.'
+        'Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 5, mais que isso 10 (menos os de $metaFixa no missoes.ps1, com muitas variantes de madeira ou cor).'
         ''
         '| Categoria | Mod | Itens | Missoes/meta | Status | Capitulos |'
         '|---|---|---|---|---|---|'
