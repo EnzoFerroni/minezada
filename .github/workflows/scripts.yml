@@ -12,6 +12,9 @@ on:
   push:
     paths: ['scripts/**', '*.sh', '*.ps1', '*.command', '*.bat', 'modpack/arquivos/minezada.*', '.github/workflows/scripts.yml']
   workflow_dispatch:
+  # Toda semana, para pegar quebra de fora (Prism novo, link morto, Modrinth).
+  schedule:
+    - cron: '0 6 * * 0'
 
 permissions:
   contents: read

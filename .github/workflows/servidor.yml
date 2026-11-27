@@ -6,6 +6,9 @@ on:
   push:
     paths: ['modpack/**', 'server-config/**', '.github/workflows/servidor.yml']
   workflow_dispatch:
+  # Toda semana, para pegar quebra de fora (Prism novo, link morto, Modrinth).
+  schedule:
+    - cron: '0 6 * * 0'
 
 permissions:
   contents: read
