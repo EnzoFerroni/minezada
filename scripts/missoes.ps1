@@ -799,6 +799,116 @@ $capitulos = @(
             'Bancos e cadeiras no estilo do Create. Dá para sentar, inclusive em trens e máquinas que andam.'
         ); item = 'interiors:kelp_chair' }
     ) }
+    @{ t = 'Decorar'; g = 'Começo'; icone = 'mcwfurnitures:oak_wardrobe'; sub = 'Móveis, telhados, janelas, portas e enfeites'; m = @(
+        @{ t = 'Casa com cara de casa'; marco = $true; mod = @('bubblellaneous'); sub = 'Comece por aqui'; d = @(
+            'O pack tem &emilhares de blocos de decoração&r: móveis, telhados, janelas, portas, pontes, cercas e enfeites.'
+            ''
+            'Quase todos saem de &emadeira, pedra e vidro&r. Procure no JEI pelo nome do mod: &e@mcw&r (Macaw''s), &e@handcrafted&r, &e@beautify&r, &e@bubblellaneous&r.'
+            ''
+            'Cada ramo deste capítulo mostra um mod. Não precisa fazer tudo: escolha o que combina com a sua casa.'
+        ) }
+        @{ t = 'Telhado de verdade'; depois = 'Casa com cara de casa'; sub = 'Macaw''s Roofs'; d = @(
+            'O &eMacaw''s Roofs&r troca as escadas por &etelhados de verdade&r, com várias inclinações.'
+            ''
+            'Faça um &etelhado de carvalho&r.'
+        ); item = 'mcwroofs:oak_roof'; q = 8 }
+        @{ t = 'Sótão'; depois = 'Telhado de verdade'; d = @('O &etelhado de sótão&r deixa espaço embaixo para um quarto.'); item = 'mcwroofs:oak_attic_roof' }
+        @{ t = 'Cumeeira'; depois = 'Telhado de verdade'; d = @('A &ecumeeira&r fecha o topo onde as duas águas do telhado se encontram.'); item = 'mcwroofs:oak_top_roof' }
+        @{ t = 'Telhado íngreme'; depois = 'Telhado de verdade'; d = @('O &etelhado íngreme&r deixa a casa alta e pontuda.'); item = 'mcwroofs:oak_steep_roof' }
+        @{ t = 'Beiral'; depois = 'Telhado íngreme'; opcional = $true; d = @('O &etelhado de baixo&r faz a ponta que passa da parede.'); item = 'mcwroofs:oak_lower_roof' }
+        @{ t = 'Íngreme com degrau'; depois = 'Telhado íngreme'; opcional = $true; d = @('Peça para juntar o telhado íngreme com o comum.'); item = 'mcwroofs:oak_upper_steep_roof' }
+        @{ t = 'Telhado de tábuas'; depois = 'Telhado de verdade'; opcional = $true; d = @('A mesma família de telhados, com textura de &etábuas&r.'); item = 'mcwroofs:oak_planks_roof' }
+        @{ t = 'Telhado de pedra'; depois = 'Telhado de verdade'; d = @('Telhados de &epedra&r para castelos e casas mais fortes.'); item = 'mcwroofs:stone_roof' }
+        @{ t = 'Sótão escuro'; depois = 'Sótão'; opcional = $true; d = @('Misture madeiras: um sótão de &ecarvalho escuro&r.'); item = 'mcwroofs:dark_oak_attic_roof' }
+        @{ t = 'Sótão de pedra'; depois = 'Telhado de pedra'; opcional = $true; d = @('O sótão também existe em pedra.'); item = 'mcwroofs:stone_attic_roof' }
+        @{ t = 'Móveis'; depois = 'Casa com cara de casa'; sub = 'Macaw''s Furniture'; d = @(
+            'O &eMacaw''s Furniture&r tem guarda-roupas, gavetas, mesas, cadeiras e balcões. Muitos &aguardam itens&r como um baú.'
+            ''
+            'Faça um &eguarda-roupa de carvalho&r.'
+        ); item = 'mcwfurnitures:oak_wardrobe' }
+        @{ t = 'Gaveta'; depois = 'Móveis'; d = @('A &egaveta&r guarda itens e serve de criado-mudo.'); item = 'mcwfurnitures:oak_drawer' }
+        @{ t = 'Mesa'; depois = 'Móveis'; d = @('Uma &emesa&r para a sala ou a cozinha.'); item = 'mcwfurnitures:oak_table' }
+        @{ t = 'Cadeira'; depois = 'Mesa'; d = @('Clique com o botão direito em uma &ecadeira&r para sentar.'); item = 'mcwfurnitures:oak_chair'; q = 4 }
+        @{ t = 'Estante'; depois = 'Móveis'; d = @('Uma &eestante&r de livros.'); item = 'mcwfurnitures:oak_bookshelf' }
+        @{ t = 'Escrivaninha'; depois = 'Móveis'; opcional = $true; d = @('Uma &eescrivaninha&r para o escritório.'); item = 'mcwfurnitures:oak_desk' }
+        @{ t = 'Balcão'; depois = 'Móveis'; d = @('O &ebalcão&r monta a cozinha.'); item = 'mcwfurnitures:oak_counter'; q = 4 }
+        @{ t = 'Balcão com gavetas'; depois = 'Balcão'; opcional = $true; d = @('O balcão também pode guardar itens.'); item = 'mcwfurnitures:oak_drawer_counter' }
+        @{ t = 'Mesinha de centro'; depois = 'Mesa'; opcional = $true; d = @('Uma &emesinha de centro&r para a sala.'); item = 'mcwfurnitures:oak_coffee_table' }
+        @{ t = 'Janela'; depois = 'Casa com cara de casa'; sub = 'Macaw''s Windows'; d = @(
+            'O &eMacaw''s Windows&r tem janelas com moldura, persianas, venezianas e cortinas.'
+        ); item = 'mcwwindows:oak_window'; q = 4 }
+        @{ t = 'Janela de quatro'; depois = 'Janela'; d = @('Uma janela dividida em &equatro vidros&r.'); item = 'mcwwindows:oak_four_window' }
+        @{ t = 'Janela de pedra'; depois = 'Janela'; d = @('Janela com moldura de &epedra&r.'); item = 'mcwwindows:stone_window' }
+        @{ t = 'Persiana'; depois = 'Janela'; d = @('A &epersiana&r abre e fecha com o botão direito.'); item = 'mcwwindows:oak_blinds' }
+        @{ t = 'Veneziana'; depois = 'Persiana'; d = @('A &eveneziana&r vai do lado de fora da janela.'); item = 'mcwwindows:oak_shutter' }
+        @{ t = 'Seteira'; depois = 'Janela de pedra'; opcional = $true; d = @('A &eseteira&r é a janelinha estreita de castelo.'); item = 'mcwwindows:stone_brick_arrow_slit' }
+        @{ t = 'Janela gótica'; depois = 'Janela de pedra'; opcional = $true; d = @('Uma janela &egótica&r de tijolos de pedra.'); item = 'mcwwindows:stone_brick_gothic' }
+        @{ t = 'Parapeito'; depois = 'Janela'; opcional = $true; d = @('O &eparapeito&r enfeita a parede embaixo da janela.'); item = 'mcwwindows:oak_plank_parapet' }
+        @{ t = 'Janela de tronco'; depois = 'Janela'; opcional = $true; d = @('Moldura de &etronco descascado&r.'); item = 'mcwwindows:stripped_oak_log_window' }
+        @{ t = 'Porta nova'; depois = 'Casa com cara de casa'; sub = 'Macaw''s Doors'; d = @(
+            'O &eMacaw''s Doors&r tem portas de todos os estilos: celeiro, japonesa, moderna, de praia.'
+        ); item = 'mcwdoors:oak_cottage_door' }
+        @{ t = 'Porta de celeiro'; depois = 'Porta nova'; d = @('Uma &eporta de celeiro&r larga.'); item = 'mcwdoors:oak_barn_door' }
+        @{ t = 'Porta japonesa'; depois = 'Porta nova'; d = @('Uma porta &ejaponesa&r de correr.'); item = 'mcwdoors:oak_japanese_door' }
+        @{ t = 'Porta moderna'; depois = 'Porta nova'; d = @('Uma porta &emoderna&r.'); item = 'mcwdoors:oak_modern_door' }
+        @{ t = 'Porta de vidro'; depois = 'Porta de celeiro'; opcional = $true; d = @('Porta de celeiro com &evidro&r.'); item = 'mcwdoors:oak_barn_glass_door' }
+        @{ t = 'Porta de praia'; depois = 'Porta nova'; opcional = $true; d = @('Uma porta de &epraia&r.'); item = 'mcwdoors:oak_beach_door' }
+        @{ t = 'Porta de papel'; depois = 'Porta japonesa'; opcional = $true; d = @('Uma porta de &epapel&r.'); item = 'mcwdoors:oak_paper_door' }
+        @{ t = 'Porta de quatro painéis'; depois = 'Porta nova'; opcional = $true; d = @('A porta clássica de &equatro painéis&r.'); item = 'mcwdoors:oak_four_panel_door' }
+        @{ t = 'Porta escura'; depois = 'Porta moderna'; opcional = $true; d = @('Uma porta moderna de &ecarvalho escuro&r.'); item = 'mcwdoors:dark_oak_modern_door' }
+        @{ t = 'Ponte'; depois = 'Casa com cara de casa'; sub = 'Macaw''s Bridges'; d = @(
+            'O &eMacaw''s Bridges&r tem pontes de corda, de tronco, de pedra e de ferro.'
+            ''
+            'Faça uma &eponte de corda&r.'
+        ); item = 'mcwbridges:rope_oak_bridge'; q = 8 }
+        @{ t = 'Ponte de tronco'; depois = 'Ponte'; d = @('Uma ponte de &etronco&r.'); item = 'mcwbridges:oak_log_bridge_middle' }
+        @{ t = 'Ponte de pedra'; depois = 'Ponte'; d = @('Uma ponte de &etijolos de pedra&r.'); item = 'mcwbridges:stone_brick_bridge' }
+        @{ t = 'Pilar de ponte'; depois = 'Ponte de pedra'; d = @('O &epilar&r segura a ponte por baixo.'); item = 'mcwbridges:stone_bridge_pier' }
+        @{ t = 'Escada de ponte'; depois = 'Ponte de pedra'; d = @('A &eescada&r sobe até a ponte.'); item = 'mcwbridges:stone_brick_bridge_stair' }
+        @{ t = 'Ponte de ferro'; depois = 'Ponte'; opcional = $true; d = @('Uma ponte de &eferro&r.'); item = 'mcwbridges:iron_bridge' }
+        @{ t = 'Ponte de vidro'; depois = 'Ponte'; opcional = $true; d = @('Uma ponte de &evidro&r.'); item = 'mcwbridges:glass_bridge' }
+        @{ t = 'Ponte de trilho'; depois = 'Ponte'; opcional = $true; d = @('Ponte com &etrilho&r de madeira.'); item = 'mcwbridges:oak_rail_bridge' }
+        @{ t = 'Ponte de tijolos'; depois = 'Ponte de pedra'; opcional = $true; d = @('Uma ponte de &etijolos&r.'); item = 'mcwbridges:brick_bridge' }
+        @{ t = 'Cerca de estacas'; depois = 'Casa com cara de casa'; sub = 'Macaw''s Fences and Walls'; d = @(
+            'O &eMacaw''s Fences and Walls&r tem cercas, muros e portões novos.'
+        ); item = 'mcwfences:oak_picket_fence'; q = 8 }
+        @{ t = 'Paliçada'; depois = 'Cerca de estacas'; d = @('Uma &epaliçada&r de troncos.'); item = 'mcwfences:oak_stockade_fence' }
+        @{ t = 'Cerca de cavalo'; depois = 'Cerca de estacas'; d = @('A &ecerca de cavalo&r para o pasto.'); item = 'mcwfences:oak_horse_fence' }
+        @{ t = 'Cerca de arame'; depois = 'Cerca de estacas'; d = @('Uma cerca de &earame&r.'); item = 'mcwfences:oak_wired_fence' }
+        @{ t = 'Portão'; depois = 'Cerca de estacas'; d = @('Um &eportão&r curvo.'); item = 'mcwfences:oak_curved_gate' }
+        @{ t = 'Cerca viva'; depois = 'Cerca de estacas'; opcional = $true; d = @('Uma &ecerca viva&r de folhas.'); item = 'mcwfences:oak_hedge' }
+        @{ t = 'Muro de pedra'; depois = 'Cerca de estacas'; opcional = $true; d = @('Um muro de &epilar de pedra&r.'); item = 'mcwfences:stone_pillar_wall' }
+        @{ t = 'Muro com grama'; depois = 'Muro de pedra'; opcional = $true; d = @('Um muro de pedra com &egrama&r em cima.'); item = 'mcwfences:stone_grass_topped_wall' }
+        @{ t = 'Portão pirâmide'; depois = 'Portão'; opcional = $true; d = @('Um portão com topo em &epirâmide&r.'); item = 'mcwfences:oak_pyramid_gate' }
+        @{ t = 'Feito à mão'; depois = 'Casa com cara de casa'; sub = 'Handcrafted'; d = @(
+            'O &eHandcrafted&r tem móveis com almofadas, louças, troféus e enfeites.'
+            ''
+            'Faça um &esofá&r.'
+        ); item = 'handcrafted:oak_couch' }
+        @{ t = 'Cama chique'; depois = 'Feito à mão'; d = @('Uma &ecama chique&r com dossel.'); item = 'handcrafted:oak_fancy_bed' }
+        @{ t = 'Criado-mudo'; depois = 'Feito à mão'; d = @('Um &ecriado-mudo&r para o lado da cama.'); item = 'handcrafted:oak_nightstand' }
+        @{ t = 'Banco de jantar'; depois = 'Feito à mão'; d = @('Um &ebanco de jantar&r.'); item = 'handcrafted:oak_dining_bench' }
+        @{ t = 'Prateleira'; depois = 'Feito à mão'; d = @('Uma &eprateleira&r que mostra os itens em cima.'); item = 'handcrafted:oak_shelf' }
+        @{ t = 'Coifa'; depois = 'Feito à mão'; d = @('A &ecoifa&r da cozinha.'); item = 'handcrafted:kitchen_hood' }
+        @{ t = 'Acabamento de pilar'; depois = 'Feito à mão'; opcional = $true; d = @('Os &eacabamentos&r enfeitam cantos e pilares.'); item = 'handcrafted:oak_pillar_trim' }
+        @{ t = 'Vaso dourado'; depois = 'Feito à mão'; opcional = $true; d = @('Um &evaso dourado&r.'); item = 'handcrafted:golden_wide_pot' }
+        @{ t = 'Troféu'; depois = 'Feito à mão'; opcional = $true; d = @('Os &etroféus&r de bichos enfeitam a parede.'); item = 'handcrafted:fox_trophy' }
+        @{ t = 'Luminária'; depois = 'Casa com cara de casa'; sub = 'Beautify'; d = @(
+            'O &eBeautify&r tem luminárias, cordas, vasos pendurados e quadros.'
+        ); item = 'beautify:lamp_jar' }
+        @{ t = 'Vaso pendurado'; depois = 'Luminária'; d = @('Um &evaso pendurado&r. Ponha uma flor dentro.'); item = 'beautify:hanging_pot' }
+        @{ t = 'Quadro'; depois = 'Luminária'; d = @('Uma &emoldura de quadro&r.'); item = 'beautify:oak_picture_frame' }
+        @{ t = 'Pilha de livros'; depois = 'Luminária'; opcional = $true; d = @('Uma &epilha de livros&r para a mesa.'); item = 'beautify:bookstack' }
+        @{ t = 'Treliça'; depois = 'Luminária'; opcional = $true; d = @('A &etreliça&r segura plantas na parede.'); item = 'beautify:oak_trellis' }
+        @{ t = 'Gadget de construção'; depois = 'Casa com cara de casa'; sub = 'Building Gadgets'; d = @(
+            'O &egadget de construção&r coloca vários blocos de uma vez, gastando energia. Recarregue em uma máquina de energia.'
+        ); item = 'buildinggadgets2:gadget_building' }
+        @{ t = 'Copiar e colar'; depois = 'Gadget de construção'; d = @('O gadget de &ecopiar e colar&r copia uma construção e cola em outro lugar.'); item = 'buildinggadgets2:gadget_copy_paste' }
+        @{ t = 'Gadget de destruição'; depois = 'Gadget de construção'; opcional = $true; d = @('Apaga uma área de blocos de uma vez.'); item = 'buildinggadgets2:gadget_destruction' }
+        @{ t = 'Construir em série'; depois = 'Casa com cara de casa'; mod = @('effortless-building'); opcional = $true; sub = 'Effortless Building'; d = @(
+            'O &eEffortless Building&r tem modos de construir paredes, chão e linhas inteiras. Veja a tecla em Controles (busque &eEffortless&r).'
+        ) }
+    ) }
     @{ t = 'Animais'; g = 'Começo'; icone = 'alexsmobs:banana'; sub = 'Bichos novos, pets e dragões'; m = @(
         @{ t = 'Dicionário animal'; marco = $true; sub = 'Alex''s Mobs'; d = @(
             'O pack tem &amais de 150 bichos novos&r. O &eDicionário animal&r explica cada um do Alex''s Mobs: onde vive, o que come e como domesticar.'
@@ -1062,6 +1172,9 @@ $capitulos = @(
             ''
             'Lá mora o &edragão&r. Leve muitos blocos, arco e poções.'
         ); dim = 'minecraft:the_end' }
+        @{ t = 'Pedra do portal'; depois = 'Masmorras infinitas'; opcional = $true; d = @('A &epedra-chave do portal&r é o começo do portal das masmorras.'); item = 'dimdungeons:block_portal_keyhole' }
+        @{ t = 'Estação de inscrição'; depois = 'Masmorras infinitas'; opcional = $true; d = @('A &eestação de inscrição&r prepara as chaves. Ela aparece nas masmorras.'); item = 'dimdungeons:block_key_charger' }
+        @{ t = 'Pérola de volta'; depois = 'Entrar nas masmorras'; opcional = $true; d = @('A &epérola de volta&r tira você da masmorra.'); item = 'dimdungeons:item_homeward_pearl' }
     ) }
     @{ t = 'Aether'; g = 'Dimensões'; icone = 'aether:ambrosium_shard'; sub = 'Ilhas no céu, três masmorras e um chefe final'; m = @(
         @{ t = 'Chegar no Aether'; marco = $true; d = @(
@@ -1612,6 +1725,32 @@ $capitulos = @(
         @{ t = 'Pergaminho de volta'; depois = 'Pé na estrada'; d = @(
             'O &epergaminho de retorno&r leva de volta para a última waystone ou cama. Bom para voltar de uma viagem longa.'
         ); item = 'waystones:return_scroll' }
+        @{ t = 'Waystone'; depois = 'Pé na estrada'; sub = 'Waystones'; d = @(
+            'As &ewaystones&r são pedras de teletransporte. Ache uma em uma vila ou faça a sua, e clique nela para ativar.'
+            ''
+            'Depois é só abrir qualquer waystone ativada e escolher para onde ir.'
+        ); item = 'waystones:waystone' }
+        @{ t = 'Pedra de teleporte'; depois = 'Waystone'; d = @('A &epedra de teleporte&r abre a lista de waystones de qualquer lugar.'); item = 'waystones:warp_stone' }
+        @{ t = 'Placa de teleporte'; depois = 'Waystone'; opcional = $true; d = @('A &eplaca de teleporte&r liga dois pontos: pise em uma e saia na outra.'); item = 'waystones:warp_plate' }
+        @{ t = 'Atlas do Nether'; depois = 'Atlas'; opcional = $true; d = @('Um atlas próprio para o &eNether&r.'); item = 'map_atlases:nether_atlas' }
+        @{ t = 'Atlas do End'; depois = 'Atlas'; opcional = $true; d = @('Um atlas próprio para o &eEnd&r.'); item = 'map_atlases:end_atlas' }
+        @{ t = 'Ilha de cogumelos'; depois = 'Bússola de biomas'; mod = @('natures-compass'); d = @('Use a bússola de biomas para achar os &ecampos de cogumelo&r, onde não nasce monstro.'); bioma = 'minecraft:mushroom_fields' }
+        @{ t = 'Bioma raro'; depois = 'Bússola de biomas'; mod = @('natures-compass'); opcional = $true; d = @('Escolha na bússola um bioma que você nunca viu e vá até ele.') }
+        @{ t = 'Mansão da floresta'; depois = 'Bússola de estruturas'; mod = @('explorers-compass'); d = @('Use a bússola de estruturas para achar uma &emansão da floresta&r, cheia de illagers.'); estrutura = 'minecraft:mansion' }
+        @{ t = 'Estrutura rara'; depois = 'Bússola de estruturas'; mod = @('explorers-compass'); opcional = $true; d = @('Escolha na bússola uma estrutura que você nunca visitou e vá até ela.') }
+        @{ t = 'Saco de dormir'; depois = 'Pé na estrada'; sub = 'Comforts'; d = @(
+            'O &esaco de dormir&r passa a noite em qualquer lugar &asem mudar o ponto de renascimento&r.'
+        ); item = 'comforts:sleeping_bag_white' }
+        @{ t = 'Rede'; depois = 'Saco de dormir'; d = @('A &erede&r é o contrário: deita durante o dia e pula até a noite. Também não muda o renascimento.'); item = 'comforts:hammock_white' }
+        @{ t = 'Corda e prego'; depois = 'Rede'; d = @('A &ecorda e prego&r prende a rede na parede.'); item = 'comforts:rope_and_nail' }
+        @{ t = 'Cochilo na rede'; depois = 'Corda e prego'; mod = @('comforts'); opcional = $true; d = @('Monte uma rede entre duas cordas e tire um cochilo de dia.') }
+        @{ t = 'Chapéus'; depois = 'Pé na estrada'; mod = @('hats-renewed'); opcional = $true; sub = 'Hats Renewed'; d = @(
+            'Os bichos andam de &echapéu&r. Derrote um para ganhar o chapéu dele.'
+            ''
+            'Para escolher qual usar, veja a tecla em Controles (busque &echapéu&r ou &ehat&r).'
+        ) }
+        @{ t = 'Coleção de chapéus'; depois = 'Chapéus'; mod = @('hats-renewed'); opcional = $true; d = @('Junte chapéus de cinco bichos diferentes.') }
+        @{ t = 'Lançador de chapéus'; depois = 'Chapéus'; opcional = $true; d = @('O &elançador de chapéus&r atira chapéus nos bichos.'); item = 'hats:hat_launcher' }
     ) }
     @{ t = 'Masmorras e tesouros'; g = 'Aventura'; icone = 'artifacts:cloud_in_a_bottle'; sub = 'Masmorras, templos e minas reformulados'; m = @(
         @{ t = 'Baú só seu'; marco = $true; d = @(
@@ -1657,6 +1796,10 @@ $capitulos = @(
         @{ t = 'Baú que morde'; depois = 'Artefato'; opcional = $true; d = @(
             'Às vezes um baú é um &emímico&r. Mate um: ele deixa artefatos.'
         ); conquista = 'artifacts:chest_slayer' }
+        @{ t = 'Barril do tesouro'; depois = 'Baú só seu'; opcional = $true; d = @('O Lootr também vale para &ebarris&r. Abra um barril de estrutura.'); conquista = 'lootr:1barrel' }
+        @{ t = 'Tênis de corrida'; depois = 'Artefato'; opcional = $true; d = @('O &etênis de corrida&r deixa você mais rápido.'); item = 'artifacts:running_shoes' }
+        @{ t = 'Pingente de fogo'; depois = 'Artefato'; opcional = $true; d = @('O &ependente de chama&r põe fogo em quem bate em você.'); item = 'artifacts:flame_pendant' }
+        @{ t = 'Garras de cavar'; depois = 'Artefato'; opcional = $true; d = @('As &egarras de cavar&r deixam você quebrar blocos mais rápido.'); item = 'artifacts:digging_claws' }
     ) }
     @{ t = 'Grandes estruturas'; g = 'Aventura'; icone = 'minecraft:netherite_sword'; sub = 'When Dungeons Arise: castelos, navios e torres gigantes'; m = @(
         @{ t = 'Estruturas gigantes'; marco = $true; d = @(
@@ -1767,6 +1910,9 @@ $capitulos = @(
         @{ t = 'Monumento do oceano'; depois = 'Viajante'; d = @(
             'O monumento do oceano tem mais salas (YUNG''s). Leve poção de respirar na água.'
         ); estrutura = 'betteroceanmonuments:ocean_monument' }
+        @{ t = 'Cem estruturas'; depois = 'Viajante'; mod = @('moogs-voyager-structures'); opcional = $true; sub = 'Moog''s Voyager Structures'; d = @(
+            'O &eMoog''s Voyager Structures&r espalha mais de 130 estruturas pequenas no estilo do jogo. Ache três diferentes.'
+        ) }
     ) }
     @{ t = 'Nether e End'; g = 'Aventura'; icone = 'minecraft:end_crystal'; sub = 'Fortalezas, castelos e a luta com o dragão'; m = @(
         @{ t = 'Fortaleza do Nether'; marco = $true; d = @(
@@ -1812,6 +1958,9 @@ $capitulos = @(
         @{ t = 'Esqueleto de dragão'; depois = 'Dragão do Ender'; opcional = $true; d = @(
             'O &eNullscape&r deixa o End mais estranho. Ache um &eesqueleto de dragão&r gigante.'
         ); estrutura = 'nullscape:dragon_skeleton' }
+        @{ t = 'Ilha do dragão nova'; depois = 'Fortaleza do End'; mod = @('yungs-better-end-island'); opcional = $true; sub = 'YUNG''s Better End Island'; d = @(
+            'Chegando no End, olhe em volta: a ilha tem torres novas e um portal de volta mais bonito.'
+        ) }
     ) }
     @{ t = 'Caçador de chefes'; g = 'Aventura'; icone = 'minecraft:wither_skeleton_skull'; sub = 'Os monstros mais fortes do pack'; m = @(
         @{ t = 'Armado até os dentes'; marco = $true; d = @(
@@ -1875,6 +2024,20 @@ $capitulos = @(
         @{ t = 'Cavernas perdidas'; depois = 'Selva subterrânea'; sub = 'YUNG''s Cave Biomes'; d = @('Um deserto embaixo da terra, com tempestades de areia.'); bioma = 'yungscavebiomes:lost_caves' }
         @{ t = 'Floresta invertida'; depois = 'Mundo novo'; sub = 'Nether'; d = @('No Nether, o &eIncendium&r tem uma floresta de cabeça para baixo.'); bioma = 'incendium:inverted_forest' }
         @{ t = 'Vale do choro'; depois = 'Floresta invertida'; opcional = $true; d = @('Outro bioma do Nether do Incendium.'); bioma = 'incendium:weeping_valley' }
+        @{ t = 'Vale da origem'; depois = 'Mundo novo'; opcional = $true; d = @('Um bioma com a grama verde-viva das versões antigas.'); bioma = 'biomesoplenty:origin_valley' }
+        @{ t = 'Vulcão do Biomes'; depois = 'Mundo novo'; opcional = $true; d = @('Um &evulcão&r do Biomes O'' Plenty, com lava escorrendo.'); bioma = 'biomesoplenty:volcano' }
+        @{ t = 'Sequoia'; depois = 'Floresta de sequoias'; d = @('Pegue um &etronco de sequoia&r, madeira nova para construir.'); item = 'biomesoplenty:redwood_log'; q = 16 }
+        @{ t = 'Quartzo rosa'; depois = 'Mundo novo'; opcional = $true; d = @('O &equartzo rosa&r aparece em cristais no subsolo e faz blocos de decoração.'); item = 'biomesoplenty:rose_quartz_chunk' }
+        @{ t = 'Cavernas de sal rosa'; depois = 'Cânion de cristal'; d = @('Cavernas de &esal rosa&r do Galosphere.'); bioma = 'galosphere:pink_salt_caves' }
+        @{ t = 'Paládio'; depois = 'Cânion de cristal'; d = @('O &epaládio&r é o metal do Galosphere.'); item = 'galosphere:palladium_ingot' }
+        @{ t = 'Capacete de sterling'; depois = 'Paládio'; d = @('O &ecapacete de sterling&r protege de explosões.'); item = 'galosphere:sterling_helmet' }
+        @{ t = 'Sinalizador brilhante'; depois = 'Cânion de cristal'; opcional = $true; d = @('O &esinalizador brilhante&r ilumina cavernas quando jogado.'); item = 'galosphere:glow_flare' }
+        @{ t = 'Mármore'; depois = 'Selva subterrânea'; d = @('O &emármore&r dos novos biomas de caverna, bom para construir.'); item = 'yungscavebiomes:marble'; q = 16 }
+        @{ t = 'Lírio de gelo'; depois = 'Cavernas de gelo'; opcional = $true; d = @('O &elírio de gelo&r nasce nas cavernas congeladas.'); item = 'yungscavebiomes:frost_lily' }
+        @{ t = 'Pêssego espinhoso'; depois = 'Cavernas perdidas'; opcional = $true; d = @('O &epêssego espinhoso&r é o fruto do cacto das cavernas perdidas.'); item = 'yungscavebiomes:prickly_peach' }
+        @{ t = 'Calendário'; depois = 'Mundo novo'; sub = 'Serene Seasons'; d = @(
+            'O mundo tem &eestações do ano&r. O &ecalendário&r mostra a estação e quantos dias faltam para a próxima.'
+        ); item = 'sereneseasons:calendar' }
     ) }
     @{ t = 'Colecionador'; g = 'Aventura'; icone = 'minecraft:diamond'; sub = 'Os itens mais raros do jogo'; m = @(
         @{ t = 'Montinho de diamante'; marco = $true; d = @(
@@ -2031,7 +2194,7 @@ $semMissao = @{
     'funciona sozinho ou so muda a tela' = 'bettersearch', 'appleskin', 'better-advancements', 'yungs-menu-tweaks', 'polymorph', 'travelers-titles', 'dynamic-torches', 'tectonic', 'yungs-bridges', 'yungs-extras', 'easy-anvils'
 }
 # Meta fixa para mod com muitas variantes (madeira, cor) que inflam a contagem de itens.
-$metaFixa = @{ 'storage-delight' = 3; 'botany-pots' = 4; 'cf:415438' = 8; 'macaws-furniture' = 4; 'macaws-roofs' = 2; 'macaws-windows' = 2; 'macaws-doors' = 2; 'macaws-bridges' = 2; 'macaws-fences-and-walls' = 2; 'handcrafted' = 4; 'sophisticated-storage' = 6; 'createdeco' = 3; 'create-deco' = 3; 'copycats' = 2; 'advanced-netherite' = 3; 'interiors' = 2 }
+$metaFixa = @{ 'storage-delight' = 3; 'botany-pots' = 4; 'cf:415438' = 8; 'macaws-furniture' = 4; 'macaws-roofs' = 2; 'macaws-windows' = 2; 'macaws-doors' = 2; 'macaws-bridges' = 2; 'macaws-fences-and-walls' = 2; 'handcrafted' = 4; 'sophisticated-storage' = 6; 'createdeco' = 3; 'create-deco' = 3; 'copycats' = 2; 'advanced-netherite' = 3; 'interiors' = 2; 'biomes-o-plenty' = 6; 'galosphere' = 6 }
 $motivo = @{}; foreach ($k in $semMissao.Keys) { foreach ($s in $semMissao[$k]) { $motivo[$s] = $k } }
 if (Test-Path $jarsDir) {
     # slug -> jar (sha1 do .pw.toml) -> modIds do neoforge.mods.toml (com os mods embutidos).

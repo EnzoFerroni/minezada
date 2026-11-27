@@ -5,7 +5,7 @@
 	group: "0B7482EA7957301C"
 	icon: { id: "minecraft:ender_eye" }
 	id: "3AFA20A348928003"
-	order_index: 17
+	order_index: 18
 	quest_links: [ ]
 	quests: [
 		{
@@ -15,7 +15,7 @@
 			size: 1.5d
 			tasks: [{ id: "393D878BD4665930", type: "checkmark" }]
 			x: 0d
-			y: 5.25d
+			y: 6.125d
 		}
 		{
 			dependencies: ["36676C6CCD56E1A0"]
@@ -72,7 +72,7 @@
 			optional: true
 			tasks: [{ id: "55628F32E5D69F42", item: { count: 1, id: "dimdungeons:item_portal_key" }, type: "item" }]
 			x: 2.5d
-			y: 10.5d
+			y: 12.25d
 		}
 		{
 			dependencies: ["12578001AE3297C2"]
@@ -92,6 +92,33 @@
 			tasks: [{ dimension: "minecraft:the_end", id: "0A665287FE2C907B", type: "dimension" }]
 			x: 5d
 			y: 0d
+		}
+		{
+			dependencies: ["12578001AE3297C2"]
+			id: "5506BC13CECFE2F8"
+			rewards: [{ id: "7214D72372895BAF", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "04D46B7A39B710A6", item: { count: 1, id: "dimdungeons:block_portal_keyhole" }, type: "item" }]
+			x: 5d
+			y: 12.25d
+		}
+		{
+			dependencies: ["12578001AE3297C2"]
+			id: "3B1CC24DC15EFB3A"
+			rewards: [{ id: "015BBB305C675BDC", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "05B2B0FFBE24B8A3", item: { count: 1, id: "dimdungeons:block_key_charger" }, type: "item" }]
+			x: 5d
+			y: 14d
+		}
+		{
+			dependencies: ["688A1A2205220F36"]
+			id: "4BDB387A2DE7D1B7"
+			rewards: [{ id: "390D183C22EF9086", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "04D42D8AEFC8F595", item: { count: 1, id: "dimdungeons:item_homeward_pearl" }, type: "item" }]
+			x: 7.5d
+			y: 10.5d
 		}
 	]
 }

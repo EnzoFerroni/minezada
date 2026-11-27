@@ -5,7 +5,7 @@
 	group: "2A64FDD2182C23F1"
 	icon: { id: "justhammers:iron_hammer" }
 	id: "1EDB32752725DDCA"
-	order_index: 23
+	order_index: 24
 	quest_links: [ ]
 	quests: [
 		{
