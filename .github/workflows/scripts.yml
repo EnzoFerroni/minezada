@@ -11,10 +11,18 @@ name: Testes dos scripts
 on:
   push:
     paths: ['scripts/**', '*.sh', '*.ps1', '*.command', '*.bat', 'modpack/arquivos/minezada.*', '.github/workflows/scripts.yml']
+  # PR comum (nunca pull_request_target): PR de fork roda sem segredo e com token so de leitura.
+  pull_request:
+    paths: ['scripts/**', '*.sh', '*.ps1', '*.command', '*.bat', 'modpack/arquivos/minezada.*', '.github/workflows/scripts.yml']
   workflow_dispatch:
   # Toda semana, para pegar quebra de fora (Prism novo, link morto, Modrinth).
   schedule:
     - cron: '0 6 * * 0'
+
+# Push novo no mesmo PR cancela a run antiga.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
