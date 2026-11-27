@@ -1,0 +1,47 @@
+# Abre uma issue quando um workflow do main falha e fecha quando ele volta a passar.
+name: Alerta de CI
+
+on:
+  workflow_run: # zizmor: ignore[dangerous-triggers] sem checkout, so le nome, conclusao e link da run
+    workflows: [Pagina, Testes dos scripts, Servidor de teste, Pack]
+    types: [completed]
+    branches: [main]
+  # Teste manual da logica sem quebrar o CI de verdade.
+  workflow_dispatch:
+    inputs:
+      nome:
+        description: Nome do workflow
+        default: Teste do alerta
+      conclusao:
+        description: failure ou success
+        default: failure
+
+permissions: {}
+
+jobs:
+  alerta:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    timeout-minutes: 5
+    steps:
+      - name: Abrir, comentar ou fechar a issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          NOME: ${{ github.event.workflow_run.name || inputs.nome }}
+          CONCLUSAO: ${{ github.event.workflow_run.conclusion || inputs.conclusao }}
+          LINK: ${{ github.event.workflow_run.html_url || format('{0}/{1}/actions/runs/{2}', github.server_url, github.repository, github.run_id) }}
+        run: |
+          titulo="CI falhando: $NOME"
+          num=$(gh issue list --state open --label bug --search "in:title \"$titulo\"" --json number,title \
+            --jq "map(select(.title == \"$titulo\")) | .[0].number // empty")
+          if [ "$CONCLUSAO" = failure ]; then
+            if [ -n "$num" ]; then
+              gh issue comment "$num" --body "Falhou de novo: $LINK"
+            else
+              gh issue create --title "$titulo" --label bug --body "O workflow $NOME falhou no main: $LINK"
+            fi
+          elif [ "$CONCLUSAO" = success ] && [ -n "$num" ]; then
+            gh issue close "$num" --comment "Voltou a passar: $LINK"
+          fi
