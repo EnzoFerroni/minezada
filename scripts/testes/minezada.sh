@@ -14,7 +14,7 @@ mkdir -p "$mc/config/xaero/minimap" "$mc/shaderpacks" "$mc/mods" \
 cp "$raiz/modpack/arquivos/minezada.sh" "$mc/"
 cat > "$mc/options.txt" <<'FIM'
 key_key.pickItem:key.mouse.middle
-key_key.veinminer_client.hold:key.keyboard.x
+key_gui.xaero_new_waypoint:key.keyboard.x
 resourcePacks:["vanilla"]
 incompatibleResourcePacks:[]
 FIM
@@ -36,7 +36,7 @@ printf 'mundo-1\n' > "$mc/mundo-id.txt"
 o="$mc/options.txt"
 confere "tecla nova onde estava sem tecla" 'grep -qx "key_key.pingwheel.ping_location:key.mouse.middle" "$o"'
 confere "tecla no padrao do mod trocada" 'grep -qx "key_key.pickItem:key.mouse.5" "$o"'
-confere "tecla escolhida pelo jogador mantida" 'grep -qx "key_key.veinminer_client.hold:key.keyboard.x" "$o"'
+confere "tecla escolhida pelo jogador mantida" 'grep -qx "key_gui.xaero_new_waypoint:key.keyboard.x" "$o"'
 confere "3D Crops nas duas listas" '[ "$(grep -c "\"file/crops-3d(2).zip\"" "$o")" = 2 ]'
 confere "lista vazia vira lista de um item" 'grep -q "^incompatibleResourcePacks:\[\"file/crops-3d(2).zip\"," "$o"'
 confere "Distant Horizons: aviso desligado" 'grep -qx "showGarbageCollectorWarning = false" "$mc/config/DistantHorizons.toml"'

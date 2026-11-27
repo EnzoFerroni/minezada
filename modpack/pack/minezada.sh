@@ -21,7 +21,6 @@ fi
 [ "${1:-}" != "--cloudflared" ] || exit 0
 # Teclas do pack, trocadas so em quem ainda esta sem a tecla salva ou no padrao do mod (tecla padrao nova):
 # Ping Wheel no botao do meio (o padrao e o lateral, que o trackpad nao tem) e o pegar bloco no lateral;
-# VeinMiner na tecla ao lado do 1 (o padrao Z bate com o Xaero).
 # shortcut: quem escolher de volta um padrao do mod perde a escolha na abertura seguinte; marcar a troca se alguem reclamar.
 if [ -f options.txt ]; then
   while read -r k padrao nova; do
@@ -36,7 +35,6 @@ if [ -f options.txt ]; then
   done <<'FIM'
 key_key.pingwheel.ping_location key.mouse.5 key.mouse.middle
 key_key.pickItem key.mouse.middle key.mouse.5
-key_key.veinminer_client.hold key.keyboard.z key.keyboard.grave.accent
 key_gui.xaero_new_waypoint key.keyboard.b key.keyboard.n
 key_key.toms_storage.open_terminal key.keyboard.b key.keyboard.b:ALT
 key_key.map_atlases.place_pin key.keyboard.b key.keyboard.b:SHIFT
@@ -51,7 +49,6 @@ key_key.aether.invisibility_toggle.desc key.keyboard.v key.keyboard.j
 key_key.deep_aether.toggle_skyjade_transparency key.keyboard.v key.keyboard.unknown
 key_key.corpse.death_history key.keyboard.u key.keyboard.u:ALT
 key_iris.keybind.toggleShaders key.keyboard.k:ALT key.keyboard.k
-key_key.veinminer_client.config key.keyboard.o key.keyboard.o:SHIFT
 FIM
   # Pacotes feitos para outra versao do Minecraft (3D Crops, pack_format 55; Deep Aether Tooltips): o jogo tira da
   # lista a cada abertura, a menos que o nome conste tambem em incompatibleResourcePacks. Garante nas duas listas.

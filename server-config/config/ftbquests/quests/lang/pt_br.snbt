@@ -15,7 +15,7 @@
 	quest.183B6AD51D05073B.quest_subtitle: "Jade"
 	quest.183B6AD51D05073B.quest_desc: ["Mire em qualquer bloco ou bicho: o nome, o mod de onde ele vem e informações úteis aparecem no &etopo da tela&r.", "", "Serve para saber a vida de um bicho, quanto falta para uma planta crescer ou o que tem dentro de uma máquina."]
 	quest.0003CE0F6AE91DC0.title: "Mesa de trabalho"
-	quest.0003CE0F6AE91DC0.quest_desc: ["O começo de sempre: junte madeira e faça uma &emesa de trabalho&r.", "", "Dica: segure a tecla &eao lado do 1&r (acento grave) enquanto quebra um tronco para derrubar a árvore inteira de uma vez. Funciona com minério também (&eVeinMiner&r)."]
+	quest.0003CE0F6AE91DC0.quest_desc: ["O começo de sempre: junte madeira e faça uma &emesa de trabalho&r.", "", "Dica: segure a tecla &eao lado do 1&r (acento grave) enquanto quebra um tronco para derrubar a árvore inteira de uma vez. Funciona com minério também (&eFTB Ultimine&r)."]
 	quest.0E19EE28A91186E6.title: "Mapa"
 	quest.0E19EE28A91186E6.quest_subtitle: "Nunca mais se perca"
 	quest.0E19EE28A91186E6.quest_desc: ["O &eminimapa&r fica no canto da tela. A tecla &eM&r abre o mapa do mundo, com tudo que você já explorou.", "", "A tecla &eN&r cria um ponto marcado (waypoint) onde você está. Marque a sua casa!", "", "Outros jogadores aparecem no minimapa como cabecinhas."]
@@ -472,7 +472,7 @@
 	chapter.1EDB32752725DDCA.title: "Utilidades"
 	chapter.1EDB32752725DDCA.chapter_subtitle: ["Ferramentas e truques que facilitam a vida"]
 	quest.493065C7669E9089.title: "Minerar em bloco"
-	quest.493065C7669E9089.quest_subtitle: "VeinMiner"
+	quest.493065C7669E9089.quest_subtitle: "FTB Ultimine"
 	quest.493065C7669E9089.quest_desc: ["Segure a &etecla ao lado do 1&r e quebre um bloco: todos os blocos iguais grudados vêm junto (até 64). Funciona com minério, tronco e o que mais quiser.", "", "Um contorno mostra o que vai quebrar. Com a tecla segurada, &erole o mouse&r para trocar o formato (veio, túnel, área).", "", "&7Clique em Concluir quando tiver testado."]
 	quest.44D6D9BE5B35C3AF.title: "Martelo"
 	quest.44D6D9BE5B35C3AF.quest_subtitle: "Just Hammers"
@@ -638,7 +638,7 @@
 	quest.40C014566C6CA7D2.quest_desc: ["Incendium: um vale do Nether."]
 	chapter.4ED654CD8429AD9B.title: "Colecionador"
 	quest.030337DA57D9612C.title: "Montinho de diamante"
-	quest.030337DA57D9612C.quest_desc: ["Junte 64 diamantes. O VeinMiner ajuda."]
+	quest.030337DA57D9612C.quest_desc: ["Junte 64 diamantes. O FTB Ultimine ajuda."]
 	quest.370E650A8D2869D1.title: "Netherite"
 	quest.370E650A8D2869D1.quest_desc: ["Restos antigos no fundo do Nether viram netherite."]
 	quest.7D39318A46A4A28E.title: "Totem"

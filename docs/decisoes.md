@@ -34,7 +34,7 @@ dragão para domar, criar como pet e voar, mods que deixam o jogo mais leve e f�
 | Livro de missões | FTB Quests (CurseForge, download liberado pelo autor) com a trilha em português gerada por `scripts/missoes.ps1`; FTB XMod Compat (clicar no item abre a receita) e FTB Filter System | Odyssey Quests (derrubava todo jogador em servidor dedicado, Heracles#292) |
 | Baús maiores | Sophisticated Storage + Backpacks | - |
 | Sistema de baú | Tom's Simple Storage (terminal com busca, fácil) | Refined Storage e AE2 (complexos para iniciantes) |
-| Ferramentas melhores | Just Hammers (3x3), Advanced Netherite, Veinminer | Tinkers' Construct (sem versão 1.21.1), Silent Gear (complexo) |
+| Ferramentas melhores | Just Hammers (3x3), Advanced Netherite, FTB Ultimine | Tinkers' Construct (sem versão 1.21.1), Silent Gear (complexo) |
 | Dragão pet que voa | Dragon Mounts Remastered (desde 2026-11-19): o mais simples e com cara de vanilla, doma com peixe, apito para chamar, só precisa do GeckoLib | Wyrmroost (poucos dragões prontos e difícil de domar), Ice and Fire CE (o mais famoso, mas pesado, com dragões que quebram o terreno e muitas outras criaturas), Book of Dragons (estilo Como Treinar o Seu Dragão, domar é um processo longo), Cobblemon (Pokémon fugia do estilo do pack), Tiny Dragons (não voa) |
 | Upgrade de baú | Sophisticated Storage (upgrade de tier aplicado no baú sem tirar os itens) e Iron Chests (pedido dos amigos) | - |
 | Dimensões novas | The Aether e Deep Aether, Twilight Forest (pelo CurseForge, download liberado), Undergarden, Ad Astra, Eternal Starlight | Blue Skies e Deeper and Darker (sem versão NeoForge 1.21.1), Bumblezone (derrubava o servidor e confunde iniciantes) |

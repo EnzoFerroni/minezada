@@ -13,12 +13,10 @@ foreach ($p in $antigos) {
 }
 # Teclas do pack, trocadas so em quem ainda esta sem a tecla salva ou no padrao do mod (tecla, padroes, nova):
 # Ping Wheel no botao do meio (o padrao e o lateral, que o trackpad nao tem) e o pegar bloco no lateral;
-# VeinMiner na tecla ao lado do 1 (o padrao Z bate com o Xaero).
 # shortcut: quem escolher de volta um padrao do mod perde a escolha na abertura seguinte; marcar a troca se alguem reclamar.
 $teclas = @(
     @('key_key.pingwheel.ping_location', 'key.mouse.5', 'key.mouse.middle'),
     @('key_key.pickItem', 'key.mouse.middle', 'key.mouse.5'),
-    @('key_key.veinminer_client.hold', 'key.keyboard.z', 'key.keyboard.grave.accent'),
     # Teclas com varias acoes dos mods: a mais usada fica sozinha, as outras vao para Alt ou Shift
     # (Ctrl no Mac vira Cmd, e Cmd+H e Cmd+M escondem a janela).
     @('key_gui.xaero_new_waypoint', 'key.keyboard.b', 'key.keyboard.n'),
@@ -35,9 +33,7 @@ $teclas = @(
     @('key_key.deep_aether.toggle_skyjade_transparency', 'key.keyboard.v', 'key.keyboard.unknown'),
     @('key_key.corpse.death_history', 'key.keyboard.u', 'key.keyboard.u:ALT'),
     # Shader volta para o K (ficou em Alt+K enquanto um mod de teclado visual usou o K em 20/11).
-    @('key_iris.keybind.toggleShaders', 'key.keyboard.k:ALT', 'key.keyboard.k'),
-    # O escolhe o shader do Iris; a config do VeinMiner vai para Shift+O.
-    @('key_key.veinminer_client.config', 'key.keyboard.o', 'key.keyboard.o:SHIFT')
+    @('key_iris.keybind.toggleShaders', 'key.keyboard.k:ALT', 'key.keyboard.k')
 )
 if (Test-Path options.txt) {
     $o = [Collections.Generic.List[string]](Get-Content options.txt -Encoding UTF8)
