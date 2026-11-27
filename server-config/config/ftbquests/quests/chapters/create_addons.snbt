@@ -58,7 +58,7 @@
 			size: 1.5d
 			tasks: [{ id: "4BEF768D7595A52A", item: { count: 1, id: "create_enchantment_industry:blaze_enchanter" }, type: "item" }]
 			x: 0d
-			y: 27.625d
+			y: 17.375d
 		}
 		{
 			dependencies: ["0AE0A49C20D90610"]
@@ -66,7 +66,7 @@
 			rewards: [{ id: "3C09BDC69D0E4655", type: "xp", xp: 20 }]
 			tasks: [{ id: "1F714E3C2526713F", item: { count: 1, id: "create_enchantment_industry:mechanical_grindstone" }, type: "item" }]
 			x: 2.5d
-			y: 25d
+			y: 14.75d
 		}
 		{
 			dependencies: ["0AE0A49C20D90610"]
@@ -75,7 +75,7 @@
 			optional: true
 			tasks: [{ id: "39EE7968486F42B4", item: { count: 1, id: "create_enchantment_industry:printer" }, type: "item" }]
 			x: 2.5d
-			y: 26.75d
+			y: 16.5d
 		}
 		{
 			dependencies: ["0AE0A49C20D90610"]
@@ -84,7 +84,7 @@
 			optional: true
 			tasks: [{ id: "5793DD0BED37043E", item: { count: 1, id: "create_enchantment_industry:experience_lantern" }, type: "item" }]
 			x: 2.5d
-			y: 28.5d
+			y: 18.25d
 		}
 		{
 			id: "5FB760C9763FC50F"
@@ -93,7 +93,7 @@
 			size: 1.5d
 			tasks: [{ id: "7F975AC37DEF64B7", item: { count: 1, id: "createoreexcavation:vein_finder" }, type: "item" }]
 			x: 0d
-			y: 48.125d
+			y: 23.375d
 		}
 		{
 			dependencies: ["5FB760C9763FC50F"]
@@ -101,7 +101,7 @@
 			rewards: [{ id: "40CC26C3CF03E3F2", type: "xp", xp: 20 }, { id: "3130EE6FAD46F8EF", item: { count: 1, id: "createoreexcavation:drill" }, type: "item" }]
 			tasks: [{ id: "30B4FE2BB9CF1EE7", item: { count: 1, id: "createoreexcavation:drilling_machine" }, type: "item" }]
 			x: 2.5d
-			y: 47.25d
+			y: 22.5d
 		}
 		{
 			dependencies: ["5FB760C9763FC50F"]
@@ -110,14 +110,14 @@
 			optional: true
 			tasks: [{ id: "772D5ACDD14D3E09", item: { count: 1, id: "createoreexcavation:vein_atlas" }, type: "item" }]
 			x: 2.5d
-			y: 49d
+			y: 24.25d
 		}
 		{
 			id: "45730FE793A899F4"
 			rewards: [{ id: "6590A2D82214E217", type: "xp", xp: 20 }]
 			tasks: [{ id: "0BED29B4822E04D3", item: { count: 1, id: "create_connected:kinetic_battery" }, type: "item" }]
 			x: 0d
-			y: 41.375d
+			y: 27.625d
 		}
 		{
 			dependencies: ["45730FE793A899F4"]
@@ -126,7 +126,7 @@
 			optional: true
 			tasks: [{ id: "5AF1BD937BC2FBA9", item: { count: 1, id: "create_connected:item_silo" }, type: "item" }]
 			x: 2.5d
-			y: 40.5d
+			y: 26.75d
 		}
 		{
 			dependencies: ["45730FE793A899F4"]
@@ -135,14 +135,14 @@
 			optional: true
 			tasks: [{ id: "1BFBCF86A05B6D23", item: { count: 1, id: "create_connected:six_way_gearbox" }, type: "item" }]
 			x: 2.5d
-			y: 42.25d
+			y: 28.5d
 		}
 		{
 			id: "41ACC6F31407787B"
 			rewards: [{ id: "38AC9555DFE1BA64", type: "xp", xp: 20 }]
 			tasks: [{ id: "7BB20A9C7AC1228F", item: { count: 1, id: "sliceanddice:slicer" }, type: "item" }]
 			x: 0d
-			y: 44.75d
+			y: 31d
 		}
 		{
 			dependencies: ["41ACC6F31407787B"]
@@ -151,14 +151,14 @@
 			optional: true
 			tasks: [{ id: "78ECE4BE4F469AAA", type: "checkmark" }]
 			x: 2.5d
-			y: 44.75d
+			y: 31d
 		}
 		{
 			id: "5457A75344E09AE4"
 			rewards: [{ id: "665EC50350062F63", type: "xp", xp: 20 }]
 			tasks: [{ id: "058948D293ED1642", item: { count: 1, id: "dndesires:freezing_sail" }, type: "item" }]
 			x: 0d
-			y: 35.375d
+			y: 36.125d
 		}
 		{
 			dependencies: ["5457A75344E09AE4"]
@@ -167,7 +167,7 @@
 			optional: true
 			tasks: [{ id: "1DB54D45D095533A", item: { count: 1, id: "dndesires:hydraulic_press" }, type: "item" }]
 			x: 2.5d
-			y: 32.75d
+			y: 33.5d
 		}
 		{
 			dependencies: ["5457A75344E09AE4"]
@@ -176,14 +176,14 @@
 			optional: true
 			tasks: [{ id: "5849B4036649091A", item: { count: 1, id: "dndesires:vanilla_milkshake" }, type: "item" }]
 			x: 2.5d
-			y: 34.5d
+			y: 35.25d
 		}
 		{
 			id: "19186904EA9D7269"
 			rewards: [{ id: "774EB58D49D24431", type: "xp", xp: 20 }]
 			tasks: [{ id: "16698A1206296DE2", item: { count: 4, id: "copycats:copycat_slope" }, type: "item" }]
 			x: 0d
-			y: 16.5d
+			y: 43d
 		}
 		{
 			dependencies: ["19186904EA9D7269"]
@@ -191,7 +191,7 @@
 			rewards: [{ id: "24BE190E21B3A991", type: "xp", xp: 20 }]
 			tasks: [{ id: "0F2679D71543E360", item: { count: 8, id: "createdeco:andesite_catwalk" }, type: "item" }]
 			x: 2.5d
-			y: 14.75d
+			y: 41.25d
 		}
 		{
 			dependencies: ["19186904EA9D7269"]
@@ -200,7 +200,7 @@
 			optional: true
 			tasks: [{ id: "5DA0282692FC6BD6", item: { count: 1, id: "interiors:kelp_chair" }, type: "item" }]
 			x: 2.5d
-			y: 16.5d
+			y: 43d
 		}
 		{
 			id: "2C6CC6B4A989908C"
@@ -208,7 +208,7 @@
 			optional: true
 			tasks: [{ id: "0081A4DB17DE0823", item: { count: 1, id: "createrailwaysnavigator:navigator" }, type: "item" }]
 			x: 0d
-			y: 21.625d
+			y: 48.125d
 		}
 		{
 			dependencies: ["2C6CC6B4A989908C"]
@@ -217,7 +217,7 @@
 			optional: true
 			tasks: [{ id: "6AEF5CCABEF91EC3", type: "checkmark" }]
 			x: 2.5d
-			y: 20.75d
+			y: 47.25d
 		}
 		{
 			id: "21DADBE9E1F368A9"
@@ -269,7 +269,7 @@
 			optional: true
 			tasks: [{ id: "3BABAB19214CE374", item: { count: 1, id: "create_enchantment_industry:blaze_forger" }, type: "item" }]
 			x: 2.5d
-			y: 30.25d
+			y: 20d
 		}
 		{
 			dependencies: ["10E98AB1A679DC59"]
@@ -296,7 +296,7 @@
 			optional: true
 			tasks: [{ id: "506701A77F5C62FF", item: { count: 1, id: "createrailwaysnavigator:train_station_clock" }, type: "item" }]
 			x: 2.5d
-			y: 22.5d
+			y: 49d
 		}
 		{
 			dependencies: ["34D82D6108776643"]
@@ -305,7 +305,7 @@
 			optional: true
 			tasks: [{ id: "44A25FDA937D3EB6", item: { count: 1, id: "createrailwaysnavigator:advanced_display" }, type: "item" }]
 			x: 5d
-			y: 22.5d
+			y: 49d
 		}
 		{
 			dependencies: ["19186904EA9D7269"]
@@ -314,7 +314,7 @@
 			optional: true
 			tasks: [{ id: "3D613A6F21C30721", item: { count: 1, id: "copycats:copycat_door" }, type: "item" }]
 			x: 2.5d
-			y: 18.25d
+			y: 44.75d
 		}
 		{
 			dependencies: ["08DC6AEE1E596AE3"]
@@ -323,7 +323,7 @@
 			optional: true
 			tasks: [{ id: "1F3B06427AC326DD", item: { count: 4, id: "createdeco:brass_window" }, type: "item" }]
 			x: 5d
-			y: 14.75d
+			y: 41.25d
 		}
 		{
 			dependencies: ["6A90FF828D635598"]
@@ -332,7 +332,7 @@
 			optional: true
 			tasks: [{ id: "518E6DD0E8E2F45D", item: { count: 8, id: "createdeco:andesite_bars" }, type: "item" }]
 			x: 7.5d
-			y: 14.75d
+			y: 41.25d
 		}
 		{
 			dependencies: ["5457A75344E09AE4"]
@@ -341,7 +341,7 @@
 			optional: true
 			tasks: [{ id: "33126AAC7107517F", item: { count: 1, id: "dndesires:stirling_engine" }, type: "item" }]
 			x: 2.5d
-			y: 36.25d
+			y: 37d
 		}
 		{
 			dependencies: ["5457A75344E09AE4"]
@@ -350,7 +350,7 @@
 			optional: true
 			tasks: [{ id: "7174894FB1BD040C", item: { count: 1, id: "dndesires:handheld_drill" }, type: "item" }]
 			x: 2.5d
-			y: 38d
+			y: 38.75d
 		}
 	]
 }

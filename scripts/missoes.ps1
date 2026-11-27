@@ -2350,7 +2350,8 @@ foreach ($c in $capitulos) {
         else { foreach ($k in $f) { Pos-Ramo $k }; $posY[$n] = ($posY[$f[0]] + $posY[$f[-1]]) / 2 }
     }
     # Solta com filhos vira raiz de arvore: senao os filhos ficam sem posicao (y vazio, um em cima do outro).
-    foreach ($n in @($filhos.Keys)) { if ($raizes -notcontains $n -and -not ($filhos.Values | Where-Object { $_ -contains $n })) { $raizes += $n } }
+    # Ordem das missoes (nao a do hashtable, que muda entre o PowerShell 5.1 e o 7).
+    foreach ($n in @($c.m | ForEach-Object { $_.t } | Where-Object { $filhos.ContainsKey($_) })) { if ($raizes -notcontains $n -and -not ($filhos.Values | Where-Object { $_ -contains $n })) { $raizes += $n } }
     foreach ($r in $raizes) { Pos-Ramo $r; $script:proxY += 0.75 }
     $base = $script:proxY + 1
     $k = 0
