@@ -351,6 +351,48 @@
 	quest.12B3F56B552344DD.title: "Plantar minério"
 	quest.12B3F56B552344DD.quest_subtitle: "Mystical Agriculture"
 	quest.12B3F56B552344DD.quest_desc: ["O &eMystical Agriculture&r planta minério como se fosse trigo.", "", "Comece minerando &einferium&r nas cavernas. A essência dele faz as primeiras sementes. Veja o caminho todo com &eU&r em cima da essência."]
+	chapter.64B22B4BB373E79A.title: "Agricultura mística"
+	chapter.64B22B4BB373E79A.chapter_subtitle: ["Mystical Agriculture: plantar minério"]
+	quest.18C4838499E4AB07.title: "Minério que se planta"
+	quest.18C4838499E4AB07.quest_subtitle: "Comece por aqui"
+	quest.18C4838499E4AB07.quest_desc: ["O &eMystical Agriculture&r faz &esementes de recursos&r: ferro, carvão, diamante, até bichos. Elas crescem como trigo.", "", "Tudo começa com a &eessência de inferium&r. Mine o &eminério de inferium&r nas cavernas (ele também cai de bichos).", "", "Dica: &eU&r em cima de qualquer essência mostra para que ela serve."]
+	quest.0795287AFA07A7F3.title: "Prosperidade"
+	quest.0795287AFA07A7F3.quest_desc: ["O &eminério de prosperidade&r dá &efragmentos de prosperidade&r. Eles fazem a &ebase de semente&r, o corpo de toda semente."]
+	quest.3E70F75BC8D4CC9A.title: "Cristal de infusão"
+	quest.3E70F75BC8D4CC9A.quest_desc: ["O &ecristal de infusão&r sobe a essência de nível na mesa de trabalho: &e4 essências + o cristal&r dão 1 do nível seguinte.", "Os níveis: &einferium&r, &eprudentium&r, &etertium&r, &eimperium&r e &esupremium&r.", "O cristal gasta com o uso. O &ecristal mestre&r, mais tarde, nunca gasta."]
+	quest.086D2DB909945B49.title: "Altar de infusão"
+	quest.086D2DB909945B49.quest_subtitle: "Onde as sementes nascem"
+	quest.086D2DB909945B49.quest_desc: ["O &ealtar de infusão&r fica no meio de &e8 pedestais&r em volta, com um bloco de espaço.", "Ponha a base de semente no altar e os ingredientes nos pedestais (veja no JEI). Clique no altar com a &evarinha&r."]
+	quest.205FBAC55E572EB9.title: "Varinha"
+	quest.205FBAC55E572EB9.quest_desc: ["A &evarinha de infusão&r começa a receita no altar."]
+	quest.64A1CBD6FB1C171D.title: "Primeira semente"
+	quest.64A1CBD6FB1C171D.quest_desc: ["Faça sua primeira &esemente de recurso&r no altar. Ferro, carvão ou terra são boas para começar.", "Plante em terra arada. Quando crescer, ela dá a &eessência&r do recurso; as essências na mesa viram o item (quantas, veja no JEI).", "", "&7Clique em Concluir quando colher sua primeira semente."]
+	quest.1B74729726BC7695.title: "Prudentium"
+	quest.1B74729726BC7695.quest_desc: ["O segundo nível de essência. Sementes melhores pedem essência mais alta."]
+	quest.30E2B009E644D444.title: "Tertium"
+	quest.30E2B009E644D444.quest_desc: ["O terceiro nível. Já faz sementes de ouro, redstone e lápis."]
+	quest.7AF9455D41DFCE8D.title: "Imperium"
+	quest.7AF9455D41DFCE8D.quest_desc: ["O quarto nível. Sementes de diamante e esmeralda pedem imperium."]
+	quest.4684EB204EC58BEB.title: "Supremium"
+	quest.4684EB204EC58BEB.quest_desc: ["O nível mais alto comum. Sementes de netherita e as mais raras pedem supremium."]
+	quest.7EE69E94160A1599.title: "Terra mística"
+	quest.7EE69E94160A1599.quest_desc: ["A &eterra arada de essência&r (um bloco de essência com a enxada) dá mais colheita para sementes do mesmo nível ou abaixo."]
+	quest.5792473F28CC4DA1.title: "Acelerador"
+	quest.5792473F28CC4DA1.quest_desc: ["O &eacelerador de crescimento&r embaixo da terra faz as plantas de cima crescerem mais rápido. Empilhe vários."]
+	quest.6D51DAA2524EFA51.title: "Fertilizante místico"
+	quest.6D51DAA2524EFA51.quest_desc: ["O &efertilizante místico&r faz uma semente de recurso crescer na hora."]
+	quest.23679B379BD7D916.title: "Ferramentas de essência"
+	quest.23679B379BD7D916.quest_desc: ["Com essência e lingotes você faz &eferramentas e armaduras&r de cada nível. Quanto maior o nível, mais forte.", "A &efoice&r colhe uma área de plantas de uma vez."]
+	quest.5E9396AF5661178A.title: "Mesa de melhorias"
+	quest.5E9396AF5661178A.quest_desc: ["Na &emesa de ajustes&r você põe &eaumentos&r nas ferramentas: velocidade, alcance, voar com a armadura e mais."]
+	quest.519F78B29C5976A2.title: "Sementes de bichos"
+	quest.519F78B29C5976A2.quest_subtitle: "Almas"
+	quest.519F78B29C5976A2.quest_desc: ["Para sementes de bichos (vaca, zumbi, blaze) junte &ealmas&r: mate o bicho com a &eadaga de soulium&r tendo um &epote de almas&r no inventário.", "O soulium vem do &eminério de soulium&r, na pedra de almas do Nether."]
+	quest.578BE3719C0828EF.title: "Fábrica de essência"
+	quest.578BE3719C0828EF.quest_desc: ["O &ecolhedor&r colhe as plantas em volta sozinho. O &ereprocessador&r transforma semente sobrando em essência.", "Com uma &eestrutura de máquina&r e energia elétrica, a fazenda trabalha sem você."]
+	quest.65C46D5EE9D2F700.title: "Supremium desperto"
+	quest.65C46D5EE9D2F700.quest_subtitle: "O fim do mod"
+	quest.65C46D5EE9D2F700.quest_desc: ["O &ealtar do despertar&r, com &evasos de essência&r em volta, faz o &esupremium desperto&r, o material mais forte do mod."]
 	chapter.1CC3B8CA7BE5A04E.title: "Construir"
 	chapter.1CC3B8CA7BE5A04E.chapter_subtitle: ["Casas bonitas com móveis de verdade"]
 	quest.147BEF281E8E7856.title: "Construir sem sofrer"

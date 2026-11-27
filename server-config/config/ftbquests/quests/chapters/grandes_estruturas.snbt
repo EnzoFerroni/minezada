@@ -5,7 +5,7 @@
 	group: "0723197381022D89"
 	icon: { id: "minecraft:netherite_sword" }
 	id: "5FCBD0E696C50B49"
-	order_index: 27
+	order_index: 28
 	quest_links: [ ]
 	quests: [
 		{

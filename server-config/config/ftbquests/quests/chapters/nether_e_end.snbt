@@ -5,7 +5,7 @@
 	group: "0723197381022D89"
 	icon: { id: "minecraft:end_crystal" }
 	id: "246539DD4330908B"
-	order_index: 29
+	order_index: 30
 	quest_links: [ ]
 	quests: [
 		{

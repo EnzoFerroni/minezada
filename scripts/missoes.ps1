@@ -653,6 +653,75 @@ $capitulos = @(
             'Comece minerando &einferium&r nas cavernas. A essência dele faz as primeiras sementes. Veja o caminho todo com &eU&r em cima da essência.'
         ); item = 'mysticalagriculture:inferium_essence'; q = 8; p = 'mysticalagriculture:prosperity_seed_base'; n = 2 }
     ) }
+    @{ t = 'Agricultura mística'; g = 'Começo'; icone = 'mysticalagriculture:inferium_essence'; sub = 'Mystical Agriculture: plantar minério'; m = @(
+        @{ t = 'Minério que se planta'; marco = $true; sub = 'Comece por aqui'; d = @(
+            'O &eMystical Agriculture&r faz &esementes de recursos&r: ferro, carvão, diamante, até bichos. Elas crescem como trigo.'
+            ''
+            'Tudo começa com a &eessência de inferium&r. Mine o &eminério de inferium&r nas cavernas (ele também cai de bichos).'
+            ''
+            'Dica: &eU&r em cima de qualquer essência mostra para que ela serve.'
+        ); item = 'mysticalagriculture:inferium_essence'; q = 16; p = 'mysticalagriculture:inferium_essence'; n = 16 }
+        @{ t = 'Prosperidade'; depois = 'Minério que se planta'; d = @(
+            'O &eminério de prosperidade&r dá &efragmentos de prosperidade&r. Eles fazem a &ebase de semente&r, o corpo de toda semente.'
+        ); item = 'mysticalagriculture:prosperity_shard'; q = 8 }
+        @{ t = 'Cristal de infusão'; depois = 'Prosperidade'; marco = $true; d = @(
+            'O &ecristal de infusão&r sobe a essência de nível na mesa de trabalho: &e4 essências + o cristal&r dão 1 do nível seguinte.'
+            'Os níveis: &einferium&r, &eprudentium&r, &etertium&r, &eimperium&r e &esupremium&r.'
+            'O cristal gasta com o uso. O &ecristal mestre&r, mais tarde, nunca gasta.'
+        ); item = 'mysticalagriculture:infusion_crystal' }
+        @{ t = 'Altar de infusão'; depois = 'Cristal de infusão'; marco = $true; sub = 'Onde as sementes nascem'; d = @(
+            'O &ealtar de infusão&r fica no meio de &e8 pedestais&r em volta, com um bloco de espaço.'
+            'Ponha a base de semente no altar e os ingredientes nos pedestais (veja no JEI). Clique no altar com a &evarinha&r.'
+        ); item = 'mysticalagriculture:infusion_altar'; p = 'mysticalagriculture:infusion_pedestal'; n = 8 }
+        @{ t = 'Varinha'; depois = 'Altar de infusão'; d = @(
+            'A &evarinha de infusão&r começa a receita no altar.'
+        ); item = 'mysticalagriculture:wand' }
+        @{ t = 'Primeira semente'; depois = 'Varinha'; marco = $true; d = @(
+            'Faça sua primeira &esemente de recurso&r no altar. Ferro, carvão ou terra são boas para começar.'
+            'Plante em terra arada. Quando crescer, ela dá a &eessência&r do recurso; as essências na mesa viram o item (quantas, veja no JEI).'
+            ''
+            '&7Clique em Concluir quando colher sua primeira semente.'
+        ) }
+        @{ t = 'Prudentium'; depois = 'Cristal de infusão'; d = @(
+            'O segundo nível de essência. Sementes melhores pedem essência mais alta.'
+        ); item = 'mysticalagriculture:prudentium_essence'; q = 8 }
+        @{ t = 'Tertium'; depois = 'Prudentium'; d = @(
+            'O terceiro nível. Já faz sementes de ouro, redstone e lápis.'
+        ); item = 'mysticalagriculture:tertium_essence'; q = 8 }
+        @{ t = 'Imperium'; depois = 'Tertium'; d = @(
+            'O quarto nível. Sementes de diamante e esmeralda pedem imperium.'
+        ); item = 'mysticalagriculture:imperium_essence'; q = 8 }
+        @{ t = 'Supremium'; depois = 'Imperium'; marco = $true; d = @(
+            'O nível mais alto comum. Sementes de netherita e as mais raras pedem supremium.'
+        ); item = 'mysticalagriculture:supremium_essence'; q = 8; p = 'mysticalagriculture:master_infusion_crystal' }
+        @{ t = 'Terra mística'; depois = 'Prudentium'; d = @(
+            'A &eterra arada de essência&r (um bloco de essência com a enxada) dá mais colheita para sementes do mesmo nível ou abaixo.'
+        ); item = 'mysticalagriculture:inferium_farmland'; q = 4 }
+        @{ t = 'Acelerador'; depois = 'Terra mística'; d = @(
+            'O &eacelerador de crescimento&r embaixo da terra faz as plantas de cima crescerem mais rápido. Empilhe vários.'
+        ); item = 'mysticalagriculture:inferium_growth_accelerator' }
+        @{ t = 'Fertilizante místico'; depois = 'Terra mística'; opcional = $true; d = @(
+            'O &efertilizante místico&r faz uma semente de recurso crescer na hora.'
+        ); item = 'mysticalagriculture:mystical_fertilizer'; q = 4 }
+        @{ t = 'Ferramentas de essência'; depois = 'Prudentium'; d = @(
+            'Com essência e lingotes você faz &eferramentas e armaduras&r de cada nível. Quanto maior o nível, mais forte.'
+            'A &efoice&r colhe uma área de plantas de uma vez.'
+        ); item = 'mysticalagriculture:inferium_sickle' }
+        @{ t = 'Mesa de melhorias'; depois = 'Ferramentas de essência'; opcional = $true; d = @(
+            'Na &emesa de ajustes&r você põe &eaumentos&r nas ferramentas: velocidade, alcance, voar com a armadura e mais.'
+        ); item = 'mysticalagriculture:tinkering_table' }
+        @{ t = 'Sementes de bichos'; depois = 'Primeira semente'; sub = 'Almas'; d = @(
+            'Para sementes de bichos (vaca, zumbi, blaze) junte &ealmas&r: mate o bicho com a &eadaga de soulium&r tendo um &epote de almas&r no inventário.'
+            'O soulium vem do &eminério de soulium&r, na pedra de almas do Nether.'
+        ); item = 'mysticalagriculture:soul_jar'; p = 'mysticalagriculture:soulium_dagger' }
+        @{ t = 'Fábrica de essência'; depois = 'Primeira semente'; opcional = $true; d = @(
+            'O &ecolhedor&r colhe as plantas em volta sozinho. O &ereprocessador&r transforma semente sobrando em essência.'
+            'Com uma &eestrutura de máquina&r e energia elétrica, a fazenda trabalha sem você.'
+        ); item = 'mysticalagriculture:harvester' }
+        @{ t = 'Supremium desperto'; depois = 'Supremium'; opcional = $true; marco = $true; sub = 'O fim do mod'; d = @(
+            'O &ealtar do despertar&r, com &evasos de essência&r em volta, faz o &esupremium desperto&r, o material mais forte do mod.'
+        ); item = 'mysticalagriculture:awakened_supremium_essence' }
+    ) }
     @{ t = 'Construir'; g = 'Começo'; icone = 'mcwroofs:oak_roof'; sub = 'Casas bonitas com móveis de verdade'; m = @(
         @{ t = 'Construir sem sofrer'; mod = @('effortless-building'); marco = $true; sub = 'Effortless Building'; d = @(
             'Segure &eAlt&r para abrir o menu de construção. Escolha uma forma: &elinha, parede, chão, cubo, círculo&r.'
