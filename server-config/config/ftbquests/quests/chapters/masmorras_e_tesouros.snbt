@@ -1,0 +1,107 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "masmorras_e_tesouros"
+	group: "0723197381022D89"
+	icon: { id: "artifacts:cloud_in_a_bottle" }
+	id: "27715EDF11C7BB0D"
+	order_index: 26
+	quest_links: [ ]
+	quests: [
+		{
+			id: "32D94C7A6E9E47F3"
+			rewards: [{ id: "0DD3EE6039AB85C9", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ advancement: "lootr:1chest", criterion: "", id: "55C28CFFE55A2896", type: "advancement" }]
+			x: 0d
+			y: 6.125d
+		}
+		{
+			dependencies: ["32D94C7A6E9E47F3"]
+			id: "7A482C17B4104DD7"
+			rewards: [{ id: "20BF32C2D0177C80", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "lootr:25loot", criterion: "", id: "7E4E95B0ECE49D5C", type: "advancement" }]
+			x: 2.5d
+			y: 0d
+		}
+		{
+			dependencies: ["32D94C7A6E9E47F3"]
+			id: "5C0144FA3796F319"
+			rewards: [{ id: "45F275B973F72D7E", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "betterdungeons:small_dungeon", criterion: "", id: "556DBA29228372BA", type: "advancement" }]
+			x: 2.5d
+			y: 1.75d
+		}
+		{
+			dependencies: ["5C0144FA3796F319"]
+			id: "14113656C9D6F019"
+			rewards: [{ id: "3691080D9866EB2C", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "betterdungeons:all_dungeons", criterion: "", id: "42E6BFE1F2B969A4", type: "advancement" }]
+			x: 5d
+			y: 1.75d
+		}
+		{
+			dependencies: ["32D94C7A6E9E47F3"]
+			id: "0554847C6B75FAFD"
+			rewards: [{ id: "46CCDD9277E7A170", type: "xp", xp: 20 }]
+			tasks: [{ id: "5A0AE05399F773CE", structure: "bettermineshafts:mineshaft_oak", type: "structure" }]
+			x: 2.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["32D94C7A6E9E47F3"]
+			id: "2FA4E4C4A25029E0"
+			rewards: [{ id: "194C3F9529AE071F", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "betterdeserttemples:temple_clear", criterion: "", id: "50D700C961476BCD", type: "advancement" }]
+			x: 2.5d
+			y: 5.25d
+		}
+		{
+			dependencies: ["32D94C7A6E9E47F3"]
+			id: "683D02C3F87080FA"
+			rewards: [{ id: "7B408E9310B9E671", type: "xp", xp: 20 }]
+			tasks: [{ id: "7A592AADD5F12BD4", structure: "betterjungletemples:jungle_temple", type: "structure" }]
+			x: 2.5d
+			y: 7d
+		}
+		{
+			dependencies: ["32D94C7A6E9E47F3"]
+			id: "483C00533D048B09"
+			rewards: [{ id: "19AFA1DF699C9029", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "1C77298B4220EA05", structure: "betterwitchhuts:witch_hut", type: "structure" }]
+			x: 2.5d
+			y: 8.75d
+		}
+		{
+			dependencies: ["32D94C7A6E9E47F3"]
+			id: "6E9DF870F1EE70DB"
+			rewards: [{ id: "282685686E79E68A", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "nova_structures:adventure/find_tavern", criterion: "", id: "5F37D2C838B2C83A", type: "advancement" }]
+			x: 2.5d
+			y: 10.5d
+		}
+		{
+			dependencies: ["32D94C7A6E9E47F3"]
+			id: "78C7BB77263FD95E"
+			rewards: [{ id: "14D8A041928E775E", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "115205D43E93F02C", item: { count: 1, id: "artifacts:cloud_in_a_bottle" }, type: "item" }]
+			x: 2.5d
+			y: 12.25d
+		}
+		{
+			dependencies: ["78C7BB77263FD95E"]
+			id: "1F816EA6021ECBEB"
+			rewards: [{ id: "5FDD5C4498E1C1C2", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "artifacts:chest_slayer", criterion: "", id: "203B32EB68CA6B3E", type: "advancement" }]
+			x: 5d
+			y: 12.25d
+		}
+	]
+}

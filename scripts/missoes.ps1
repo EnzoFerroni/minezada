@@ -812,12 +812,6 @@ $capitulos = @(
             'Coloque uma &esela&r e monte: &eespaço&r sobe, &eShift&r desce. O &eapito&r chama o dragão de longe.'
         ); conquista = 'dmr:tame_dragon'; p = 'minecraft:saddle' }
     ) }
-    @{ t = 'Explorar'; g = 'Aventura'; icone = 'naturescompass:naturescompass'; m = @(
-        @{ t = 'Bussola de biomas'; d = 'Nature''s Compass aponta para o bioma que voce escolher.'; item = 'naturescompass:naturescompass' }
-        @{ t = 'Bussola de estruturas'; d = 'Explorer''s Compass aponta para vilas, templos, masmorras e outras estruturas.'; item = 'explorerscompass:explorerscompass' }
-        @{ t = 'Atlas'; d = 'Map Atlases junta mapas de papel em um livro. Na mao secundaria vira minimapa.'; item = 'map_atlases:atlas' }
-        @{ t = 'Pergaminho de volta'; d = 'O pergaminho de retorno leva de volta para a ultima waystone ou cama.'; item = 'waystones:return_scroll' }
-    ) }
     @{ t = 'Mekanism 1: começo'; g = 'Tecnologia'; icone = 'mekanism:metallurgic_infuser'; sub = 'Máquinas elétricas e aço'; m = @(
         @{ t = 'O que é o Mekanism'; marco = $true; sub = 'Comece por aqui'; d = @(
             'O &eMekanism&r tem máquinas elétricas que processam minério, gases e muito mais.'
@@ -1526,77 +1520,314 @@ $capitulos = @(
             '&7Clique em Concluir quando montar seu primeiro veículo.'
         ) }
     ) }
-    @{ t = 'Cacador de chefes'; g = 'Aventura'; icone = 'minecraft:wither_skeleton_skull'; m = @(
-        @{ t = 'Wither'; d = 'Tres cranios de esqueleto wither em cima de areia das almas em T. Faca longe de casa.'; mata = 'minecraft:wither'; p = 'minecraft:diamond'; n = 8; solta = $true }
-        @{ t = 'Dragao do Ender'; d = 'O chefe do End.'; mata = 'minecraft:ender_dragon'; p = 'minecraft:diamond'; n = 8; solta = $true }
-        @{ t = 'Warden'; d = 'Mora nas cidades antigas do subsolo escuro. Sem barulho, ele nao aparece.'; mata = 'minecraft:warden'; p = 'minecraft:diamond'; n = 8; solta = $true }
-        @{ t = 'Guardiao anciao'; d = 'Mora no monumento do oceano.'; mata = 'minecraft:elder_guardian'; p = 'minecraft:sponge'; n = 4; solta = $true }
-        @{ t = 'Cavaleiro de ferro'; d = 'Mowzie''s Mobs: o Ferrous Wroughtnaut guarda uma camara no subsolo. Acerte as costas depois que ele erra o golpe.'; mata = 'mowziesmobs:ferrous_wroughtnaut'; solta = $true }
-        @{ t = 'Frostmaw'; d = 'Mowzie''s Mobs: um gigante de gelo que dorme nos biomas de neve.'; mata = 'mowziesmobs:frostmaw'; solta = $true }
-        @{ t = 'Umvuthi'; d = 'Mowzie''s Mobs: o passaro do sol que lidera o povo da savana.'; mata = 'mowziesmobs:umvuthi'; solta = $true }
-        @{ t = 'Escultor'; d = 'Mowzie''s Mobs: Tongbi, o Escultor, no topo do monasterio nas montanhas.'; mata = 'mowziesmobs:sculptor'; solta = $true }
-        @{ t = 'Capita Cornelia'; d = 'Aquamirae: o fantasma da capita nos navios piratas do oceano gelado.'; mata = 'aquamirae:captain_cornelia'; solta = $true }
-        @{ t = 'Maw'; d = 'Aquamirae: monstro das aguas geladas.'; mata = 'aquamirae:maw'; solta = $true }
-        @{ t = 'Guardiao esquecido'; d = 'Undergarden: o chefe das catacumbas.'; mata = 'undergarden:forgotten_guardian'; solta = $true }
-        @{ t = 'Guardiao do portao'; d = 'Eternal Starlight: The Gatekeeper.'; mata = 'eternal_starlight:the_gatekeeper'; solta = $true }
-        @{ t = 'Golem estelar'; d = 'Eternal Starlight: o golem da forja.'; mata = 'eternal_starlight:starlight_golem'; solta = $true }
-        @{ t = 'Monstro lunar'; d = 'Eternal Starlight: a Lunar Monstrosity.'; mata = 'eternal_starlight:lunar_monstrosity'; solta = $true }
+    @{ t = 'Explorar'; g = 'Aventura'; icone = 'naturescompass:naturescompass'; sub = 'Ferramentas para achar tudo pelo mundo'; m = @(
+        @{ t = 'Pé na estrada'; marco = $true; sub = 'Comece por aqui'; d = @(
+            'O mundo do Minezada tem &ecentenas de estruturas&r novas e quase &e200 biomas&r. Os capítulos deste grupo mostram o que procurar.'
+            ''
+            'Os &ebaús de estruturas&r são de cada jogador (&eLootr&r): quem chega depois também ganha o tesouro.'
+            ''
+            '&7Leve cama, comida, tochas e blocos. Marque o caminho no mapa (tecla &fM&7).'
+        ) }
+        @{ t = 'Bússola de biomas'; depois = 'Pé na estrada'; d = @(
+            'A &eNature''s Compass&r aponta para o bioma que você escolher.'
+            ''
+            'Clique com o botão direito para abrir a lista, escolha o bioma e siga a agulha.'
+        ); item = 'naturescompass:naturescompass' }
+        @{ t = 'Bússola de estruturas'; depois = 'Pé na estrada'; d = @(
+            'A &eExplorer''s Compass&r faz o mesmo com &eestruturas&r: vilas, templos, masmorras e castelos.'
+        ); item = 'explorerscompass:explorerscompass' }
+        @{ t = 'Atlas'; depois = 'Pé na estrada'; opcional = $true; d = @(
+            'O &eMap Atlases&r junta mapas de papel em um livro. Na mão secundária vira um mapa que se desenha sozinho.'
+        ); item = 'map_atlases:atlas' }
+        @{ t = 'Pergaminho de volta'; depois = 'Pé na estrada'; d = @(
+            'O &epergaminho de retorno&r leva de volta para a última waystone ou cama. Bom para voltar de uma viagem longa.'
+        ); item = 'waystones:return_scroll' }
     ) }
-    @{ t = 'Chefes da Twilight'; g = 'Aventura'; icone = 'twilightforest:naga_scale'; m = @(
-        @{ t = 'Naga'; d = 'O primeiro chefe, no patio de pedra.'; mata = 'twilightforest:naga' }
-        @{ t = 'Lich'; d = 'A torre do Lich. Quebre os escudos dele antes de atacar.'; mata = 'twilightforest:lich' }
-        @{ t = 'Minoshroom'; d = 'No fundo do labirinto do pantano.'; mata = 'twilightforest:minoshroom' }
-        @{ t = 'Hidra'; d = 'No covil de fogo. Leve resistencia ao fogo.'; mata = 'twilightforest:hydra' }
-        @{ t = 'Cavaleiros fantasmas'; d = 'Na fortaleza dos cavaleiros, na floresta escura.'; mata = 'twilightforest:knight_phantom' }
-        @{ t = 'Ur-Ghast'; d = 'No topo da torre escura.'; mata = 'twilightforest:ur_ghast' }
-        @{ t = 'Yeti alfa'; d = 'Na caverna dos yetis, na floresta de neve.'; mata = 'twilightforest:alpha_yeti' }
-        @{ t = 'Rainha da Neve'; d = 'No palacio da aurora, no glaciar.'; mata = 'twilightforest:snow_queen' }
+    @{ t = 'Masmorras e tesouros'; g = 'Aventura'; icone = 'artifacts:cloud_in_a_bottle'; sub = 'Masmorras, templos e minas reformulados'; m = @(
+        @{ t = 'Baú só seu'; marco = $true; d = @(
+            'Abra um baú de estrutura. Com o &eLootr&r cada jogador tem o próprio tesouro em cada baú.'
+            ''
+            'Baú do Lootr tem um contorno diferente. Não quebre: é só abrir.'
+        ); conquista = 'lootr:1chest' }
+        @{ t = 'Caçador de baús'; depois = 'Baú só seu'; opcional = $true; d = @(
+            'Abra &e25 baús&r de estruturas diferentes.'
+        ); conquista = 'lootr:25loot' }
+        @{ t = 'Masmorra'; depois = 'Baú só seu'; d = @(
+            'As masmorras pequenas (YUNG''s Better Dungeons) mudam conforme o bicho: zumbi, esqueleto ou aranha.'
+            ''
+            'Quebre o &egerador de monstros&r ou ponha tochas em volta para ele parar.'
+        ); conquista = 'betterdungeons:small_dungeon' }
+        @{ t = 'Todas as masmorras'; depois = 'Masmorra'; opcional = $true; d = @(
+            'Visite todos os tipos de masmorra do YUNG''s Better Dungeons.'
+        ); conquista = 'betterdungeons:all_dungeons' }
+        @{ t = 'Mina abandonada'; depois = 'Baú só seu'; d = @(
+            'As minas abandonadas mudam com o bioma: de gelo, de deserto, de selva, de cogumelo.'
+            ''
+            'Têm trilhos, carrinhos com baú e elevadores.'
+        ); estrutura = 'bettermineshafts:mineshaft_oak' }
+        @{ t = 'Templo do deserto'; depois = 'Baú só seu'; d = @(
+            'O templo do deserto virou um &elabirinto com armadilhas&r e uma câmara do tesouro no fim.'
+            ''
+            '&cOlhe onde pisa.&r'
+        ); conquista = 'betterdeserttemples:temple_clear' }
+        @{ t = 'Templo da selva'; depois = 'Baú só seu'; d = @(
+            'O templo da selva ficou maior, com quebra-cabeças.'
+        ); estrutura = 'betterjungletemples:jungle_temple' }
+        @{ t = 'Cabana da bruxa'; depois = 'Baú só seu'; opcional = $true; d = @(
+            'Cada tipo de pântano tem a sua cabana de bruxa.'
+        ); estrutura = 'betterwitchhuts:witch_hut' }
+        @{ t = 'Taverna'; depois = 'Baú só seu'; d = @(
+            'O &eDungeons and Taverns&r espalha &etavernas&r pelo mundo. Os aldeões de lá vendem &emapas de tesouro&r.'
+        ); conquista = 'nova_structures:adventure/find_tavern' }
+        @{ t = 'Artefato'; depois = 'Baú só seu'; marco = $true; d = @(
+            'Os &eArtifacts&r são itens mágicos achados em baús de estruturas: &enuvem na garrafa&r (pulo duplo), &etênis de corrida&r, &eamuleto de fogo&r e muito mais.'
+            ''
+            'Eles vão nos espaços de acessório do inventário.'
+        ); item = 'artifacts:cloud_in_a_bottle' }
+        @{ t = 'Baú que morde'; depois = 'Artefato'; opcional = $true; d = @(
+            'Às vezes um baú é um &emímico&r. Mate um: ele deixa artefatos.'
+        ); conquista = 'artifacts:chest_slayer' }
     ) }
-    @{ t = 'Explorador'; g = 'Aventura'; icone = 'explorerscompass:explorerscompass'; m = @(
-        @{ t = 'Cidade antiga'; d = 'No subsolo escuro. Cuidado com o Warden.'; estrutura = 'minecraft:ancient_city'; solta = $true }
-        @{ t = 'Camaras de desafio'; d = 'Salas com geradores de desafio e o cofre das chaves.'; estrutura = 'minecraft:trial_chambers'; solta = $true }
-        @{ t = 'Mansao da floresta'; d = 'Na floresta escura, cheia de illagers.'; estrutura = 'minecraft:mansion'; solta = $true }
-        @{ t = 'Fortaleza'; d = 'Onde fica o portal do End. Os olhos de ender apontam para ela.'; estrutura = 'betterstrongholds:stronghold'; solta = $true }
-        @{ t = 'Fortaleza do Nether'; d = 'Onde nascem os blazes e os esqueletos wither.'; estrutura = 'betterfortresses:fortress'; solta = $true }
-        @{ t = 'Monumento do oceano'; d = 'Debaixo do mar, com os guardioes.'; estrutura = 'betteroceanmonuments:ocean_monument'; solta = $true }
-        @{ t = 'Coliseu'; d = 'When Dungeons Arise: uma arena enorme cheia de inimigos.'; estrutura = 'dungeons_arise:coliseum'; solta = $true }
-        @{ t = 'Fortaleza illager'; d = 'When Dungeons Arise: um forte dos illagers.'; estrutura = 'dungeons_arise:illager_fort'; solta = $true }
-        @{ t = 'Navio pirata morto-vivo'; d = 'When Dungeons Arise: um navio fantasma no mar.'; estrutura = 'dungeons_arise:undead_pirate_ship'; solta = $true }
-        @{ t = 'Palacio Shiraz'; d = 'When Dungeons Arise: um palacio no deserto.'; estrutura = 'dungeons_arise:shiraz_palace'; solta = $true }
-        @{ t = 'Asilo da praga'; d = 'When Dungeons Arise: o lugar mais assustador do pack.'; estrutura = 'dungeons_arise:plague_asylum'; solta = $true }
-        @{ t = 'Dirigivel'; d = 'When Dungeons Arise: um dirigivel no ceu.'; estrutura = 'dungeons_arise:small_blimp'; solta = $true }
-        @{ t = 'Navio pirata'; d = 'Aquamirae: navio pirata no oceano gelado, onde mora a Capita Cornelia.'; estrutura = 'aquamirae:pirate_ship'; solta = $true }
-        @{ t = 'Camara de ferro'; d = 'Mowzie''s Mobs: a camara do Ferrous Wroughtnaut.'; estrutura = 'mowziesmobs:wrought_chamber'; solta = $true }
-        @{ t = 'Vila dos sapos'; d = 'Ribbits: vila de sapos no pantano.'; estrutura = 'ribbits:ribbit_village'; solta = $true }
-        @{ t = 'Castelo proibido'; d = 'Incendium: o castelo do Nether.'; estrutura = 'incendium:forbidden_castle'; solta = $true }
-        @{ t = 'Vila piglin'; d = 'Incendium: uma vila de piglins no Nether.'; estrutura = 'incendium:piglin_village'; solta = $true }
-        @{ t = 'Taverna'; d = 'Explorify: uma taverna na estrada.'; estrutura = 'explorify:tavern'; solta = $true }
-        @{ t = 'Cidadela'; d = 'Friends&Foes: a cidadela dos illagers.'; estrutura = 'friendsandfoes:citadel'; solta = $true }
-        @{ t = 'Ninho de dinossauro'; d = 'Archie''s Dinosaurs: uma cratera com fosseis.'; estrutura = 'ec_ad:big_crater'; solta = $true }
-        @{ t = 'Esqueleto de dragao'; d = 'Nullscape: um esqueleto gigante no End.'; estrutura = 'nullscape:dragon_skeleton'; solta = $true }
+    @{ t = 'Grandes estruturas'; g = 'Aventura'; icone = 'minecraft:netherite_sword'; sub = 'When Dungeons Arise: castelos, navios e torres gigantes'; m = @(
+        @{ t = 'Estruturas gigantes'; marco = $true; d = @(
+            'O &eWhen Dungeons Arise&r espalha construções enormes, cheias de inimigos e baús.'
+            ''
+            'Vá com &earmadura de ferro ou melhor&r, comida e amigos. A bússola de estruturas acha cada uma.'
+        ) }
+        @{ t = 'Moinho dos illagers'; depois = 'Estruturas gigantes'; d = @(
+            'Um &emoinho dos illagers&r, guardado por saqueadores.'
+        ); estrutura = 'dungeons_arise:illager_windmill' }
+        @{ t = 'Forte illager'; depois = 'Moinho dos illagers'; d = @(
+            'Um &eforte&r inteiro de illagers.'
+        ); estrutura = 'dungeons_arise:illager_fort' }
+        @{ t = 'Galé illager'; depois = 'Forte illager'; opcional = $true; d = @(
+            'Os illagers também navegam: ache uma &egalé&r no mar.'
+        ); estrutura = 'dungeons_arise:illager_galley' }
+        @{ t = 'Vila dos bandidos'; depois = 'Estruturas gigantes'; d = @(
+            'Uma &evila de bandidos&r no deserto.'
+        ); estrutura = 'dungeons_arise:bandit_village' }
+        @{ t = 'Palácio Shiraz'; depois = 'Vila dos bandidos'; d = @(
+            'Um &epalácio&r enorme no deserto.'
+        ); estrutura = 'dungeons_arise:shiraz_palace' }
+        @{ t = 'Coliseu'; depois = 'Estruturas gigantes'; d = @(
+            'Uma &earena&r gigante, cheia de inimigos.'
+        ); estrutura = 'dungeons_arise:coliseum' }
+        @{ t = 'Templo infestado'; depois = 'Coliseu'; d = @(
+            'Um templo tomado por &etraças&r.'
+        ); estrutura = 'dungeons_arise:infested_temple' }
+        @{ t = 'Navio pirata fantasma'; depois = 'Estruturas gigantes'; d = @(
+            'Um &enavio pirata morto-vivo&r no mar.'
+        ); estrutura = 'dungeons_arise:undead_pirate_ship' }
+        @{ t = 'Farol'; depois = 'Navio pirata fantasma'; opcional = $true; d = @(
+            'Um &efarol&r na beira do mar.'
+        ); estrutura = 'dungeons_arise:lighthouse' }
+        @{ t = 'Dirigível'; depois = 'Estruturas gigantes'; d = @(
+            'Um &edirigível&r voando alto no céu.'
+        ); estrutura = 'dungeons_arise:small_blimp' }
+        @{ t = 'Conquistador celeste'; depois = 'Dirigível'; d = @(
+            'O &eHeavenly Conqueror&r é um navio voador gigante.'
+        ); estrutura = 'dungeons_arise:heavenly_conqueror' }
+        @{ t = 'Minas profundas'; depois = 'Estruturas gigantes'; d = @(
+            'Um &ecomplexo de mineração&r abandonado.'
+        ); estrutura = 'dungeons_arise:mining_system' }
+        @{ t = 'Vila dos cogumelos'; depois = 'Estruturas gigantes'; opcional = $true; d = @(
+            'Uma &evila de cogumelos&r gigantes.'
+        ); estrutura = 'dungeons_arise:mushroom_village' }
+        @{ t = 'Monastério'; depois = 'Estruturas gigantes'; opcional = $true; d = @(
+            'Um &emonastério&r nas montanhas.'
+        ); estrutura = 'dungeons_arise:monastery' }
+        @{ t = 'Torres espinhosas'; depois = 'Templo infestado'; d = @(
+            'As &eThornborn Towers&r ficam no mar, cheias de espinhos.'
+        ); estrutura = 'dungeons_arise:thornborn_towers' }
+        @{ t = 'Asilo da praga'; depois = @('Templo infestado', 'Minas profundas'); marco = $true; sub = 'O lugar mais assustador do pack'; d = @(
+            'O &eAsilo da Praga&r é a estrutura mais perigosa. Vá bem preparado.'
+        ); estrutura = 'dungeons_arise:plague_asylum' }
     ) }
-    @{ t = 'Volta ao mundo'; g = 'Aventura'; icone = 'naturescompass:naturescompass'; m = @(
-        @{ t = 'Cerejeiras'; d = 'Um vale de cerejeiras rosa.'; bioma = 'terralith:sakura_valley'; solta = $true }
-        @{ t = 'Canion vermelho'; d = 'O canion de pedra vermelha.'; bioma = 'terralith:bryce_canyon'; solta = $true }
-        @{ t = 'Vulcao'; d = 'A cratera de um vulcao.'; bioma = 'terralith:volcanic_crater'; solta = $true }
-        @{ t = 'Ilhas no ceu'; d = 'Ilhas que flutuam acima das nuvens.'; bioma = 'terralith:skylands_summer'; solta = $true }
-        @{ t = 'Floresta de lavanda'; d = 'Tudo roxo de lavanda.'; bioma = 'terralith:lavender_forest'; solta = $true }
-        @{ t = 'Penhascos brancos'; d = 'Penhascos de pedra branca no mar.'; bioma = 'terralith:white_cliffs'; solta = $true }
-        @{ t = 'Oasis'; d = 'Um oasis no meio do deserto.'; bioma = 'terralith:desert_oasis'; solta = $true }
-        @{ t = 'Selva subterranea'; d = 'Uma selva inteira dentro de uma caverna.'; bioma = 'terralith:cave/underground_jungle'; solta = $true }
-        @{ t = 'Cavernas de cristal'; d = 'Um canion de ametista.'; bioma = 'terralith:amethyst_canyon'; solta = $true }
-        @{ t = 'Floresta invertida'; d = 'Incendium: no Nether, uma floresta de cabeca para baixo.'; bioma = 'incendium:inverted_forest'; solta = $true }
-        @{ t = 'Vale do choro'; d = 'Incendium: um vale do Nether.'; bioma = 'incendium:weeping_valley'; solta = $true }
+    @{ t = 'Pelo mundo'; g = 'Aventura'; icone = 'minecraft:filled_map'; sub = 'Vilas, ruínas, torres e acampamentos'; m = @(
+        @{ t = 'Viajante'; marco = $true; d = @(
+            'Vários mods espalham &eestruturas pequenas&r pelo mundo: ruínas, torres, acampamentos, pontes e vilas novas.'
+            ''
+            'Quase todas têm baú. Vale parar para olhar.'
+        ) }
+        @{ t = 'Vila nova'; depois = 'Viajante'; d = @(
+            'O &eTowns and Towers&r traz vilas de estilos diferentes. Ache uma &evila sueca&r.'
+        ); estrutura = 'towns_and_towers:exclusives/village_swedish' }
+        @{ t = 'Vila mediterrânea'; depois = 'Vila nova'; opcional = $true; d = @(
+            'Outra vila do Towns and Towers, com casas brancas.'
+        ); estrutura = 'towns_and_towers:exclusives/village_mediterranean' }
+        @{ t = 'Vila dos sapos'; depois = 'Viajante'; opcional = $true; d = @(
+            'O &eRibbits&r tem vilas de sapos no pântano. Eles negociam.'
+        ); estrutura = 'ribbits:ribbit_village' }
+        @{ t = 'Torre do mago'; depois = 'Viajante'; d = @(
+            'O &eStructory Towers&r espalha torres por bioma. Ache a &etorre do mago&r.'
+        ); estrutura = 'structory_towers:wizard_tower' }
+        @{ t = 'Mansão velha'; depois = 'Viajante'; d = @(
+            'O &eStructory&r tem ruínas com história. Ache a &emansão velha&r.'
+        ); estrutura = 'structory:old_manor' }
+        @{ t = 'Cemitério'; depois = 'Mansão velha'; opcional = $true; d = @(
+            'Um &ecemitério&r abandonado do Structory.'
+        ); estrutura = 'structory:graveyard' }
+        @{ t = 'Ruínas antigas'; depois = 'Viajante'; d = @(
+            'O &ePhilips Ruins&r espalha ruínas com tesouros. Ache a &ecripta antiga&r.'
+        ); estrutura = 'philipsruins:ancient_crypt' }
+        @{ t = 'Cidade das almas perdidas'; depois = 'Ruínas antigas'; opcional = $true; d = @(
+            'A &eLost Soul City&r é uma das maiores ruínas do Philips Ruins.'
+        ); estrutura = 'philipsruins:lost_soul_city' }
+        @{ t = 'Acampamento'; depois = 'Viajante'; d = @(
+            'O &eExplorify&r tem acampamentos, mausoléus e torres de vigia. Ache um &eacampamento&r.'
+        ); estrutura = 'explorify:campsite' }
+        @{ t = 'Mausoléu'; depois = 'Acampamento'; opcional = $true; d = @(
+            'Um &emausoléu&r do Explorify.'
+        ); estrutura = 'explorify:mausoleum' }
+        @{ t = 'Mansão illager'; depois = 'Viajante'; d = @(
+            'O &eDungeons and Taverns&r tem uma &emansão illager&r nova.'
+        ); conquista = 'nova_structures:adventure/find_illager_manor' }
+        @{ t = 'Vila do pântano'; depois = 'Viajante'; opcional = $true; d = @(
+            'Uma &evila no pântano&r do Dungeons and Taverns.'
+        ); conquista = 'nova_structures:adventure/find_swamp_village' }
+        @{ t = 'Ruínas de cristal'; depois = 'Viajante'; opcional = $true; d = @(
+            'O &eGalosphere&r tem ruínas esquecidas nas cavernas de cristal.'
+        ); conquista = 'galosphere:adventure/find_forgotten_ruins' }
+        @{ t = 'Cidade antiga'; depois = 'Viajante'; marco = $true; d = @(
+            'No subsolo escuro ficam as &ecidades antigas&r. Ande agachado: barulho chama o &eWarden&r.'
+        ); estrutura = 'minecraft:ancient_city' }
+        @{ t = 'Câmaras de desafio'; depois = 'Viajante'; d = @(
+            'Salas com &egeradores de desafio&r. Vença as ondas para ganhar chaves e abrir os cofres.'
+        ); estrutura = 'minecraft:trial_chambers' }
+        @{ t = 'Monumento do oceano'; depois = 'Viajante'; d = @(
+            'O monumento do oceano tem mais salas (YUNG''s). Leve poção de respirar na água.'
+        ); estrutura = 'betteroceanmonuments:ocean_monument' }
     ) }
-    @{ t = 'Colecionador'; g = 'Aventura'; icone = 'minecraft:diamond'; m = @(
-        @{ t = 'Montinho de diamante'; d = 'Junte 64 diamantes. O FTB Ultimine ajuda.'; item = 'minecraft:diamond'; q = 64; p = 'minecraft:diamond_block'; n = 2 }
-        @{ t = 'Netherite'; d = 'Restos antigos no fundo do Nether viram netherite.'; item = 'minecraft:netherite_ingot' }
-        @{ t = 'Totem'; d = 'O totem da imortalidade vem dos evocadores das mansoes e cidadelas.'; item = 'minecraft:totem_of_undying'; solta = $true }
-        @{ t = 'Tridente'; d = 'Os afogados as vezes deixam cair.'; item = 'minecraft:trident'; solta = $true }
-        @{ t = 'Elytra'; d = 'Nos navios das cidades do End. Conserte com membrana de phantom na bigorna.'; item = 'minecraft:elytra'; solta = $true }
-        @{ t = 'Cabeca de dragao'; d = 'Na proa dos navios do End.'; item = 'minecraft:dragon_head'; solta = $true }
-        @{ t = 'Estrela do Nether'; d = 'O premio do Wither, para fazer um sinalizador.'; item = 'minecraft:nether_star'; solta = $true }
-        @{ t = 'Sinalizador'; d = 'Um sinalizador em cima de uma piramide de blocos de ferro, ouro ou diamante da efeitos bons.'; item = 'minecraft:beacon'; solta = $true }
+    @{ t = 'Nether e End'; g = 'Aventura'; icone = 'minecraft:end_crystal'; sub = 'Fortalezas, castelos e a luta com o dragão'; m = @(
+        @{ t = 'Fortaleza do Nether'; marco = $true; d = @(
+            'A fortaleza do Nether ficou maior e mais bonita (YUNG''s). Lá nascem os &eblazes&r e os &eesqueletos wither&r.'
+            ''
+            'Os blazes deixam a &evara de blaze&r, que faz os olhos de ender.'
+        ); estrutura = 'betterfortresses:fortress' }
+        @{ t = 'Vara de blaze'; depois = 'Fortaleza do Nether'; d = @(
+            'Mate blazes para pegar &evaras de blaze&r.'
+        ); item = 'minecraft:blaze_rod'; q = 6 }
+        @{ t = 'Castelo proibido'; depois = 'Fortaleza do Nether'; d = @(
+            'O &eIncendium&r tem estruturas grandes no Nether. O &ecastelo proibido&r é a maior.'
+        ); estrutura = 'incendium:forbidden_castle' }
+        @{ t = 'Vila piglin'; depois = 'Fortaleza do Nether'; opcional = $true; d = @(
+            'Uma &evila de piglins&r do Incendium. Use algo de ouro para eles não atacarem.'
+        ); estrutura = 'incendium:piglin_village' }
+        @{ t = 'Fortaleza dos piglins'; depois = 'Fortaleza do Nether'; opcional = $true; d = @(
+            'O &eDungeons and Taverns&r tem um &edonjon&r dos piglins.'
+        ); conquista = 'nova_structures:nether/find_donjon' }
+        @{ t = 'Seguir o olho'; depois = 'Vara de blaze'; d = @(
+            'Faça um &eolho de ender&r e jogue para cima: ele voa na direção da fortaleza do End.'
+        ); conquista = 'minecraft:story/follow_ender_eye' }
+        @{ t = 'Fortaleza do End'; depois = 'Seguir o olho'; d = @(
+            'A fortaleza ficou &emaior e mais perigosa&r (YUNG''s), com bibliotecas e salas novas. O portal fica no fundo.'
+        ); estrutura = 'betterstrongholds:stronghold' }
+        @{ t = 'Dragão do Ender'; depois = 'Fortaleza do End'; marco = $true; sub = 'Ilha do dragão reformulada'; d = @(
+            'A ilha do dragão ficou mais bonita (YUNG''s Better End Island). Destrua os &ecristais&r nas torres antes de bater no dragão.'
+            ''
+            'Leve arco, muitos blocos e um &ebalde de água&r.'
+        ); mata = 'minecraft:ender_dragon'; p = 'minecraft:diamond'; n = 8 }
+        @{ t = 'Cidade do End'; depois = 'Dragão do Ender'; d = @(
+            'Depois do dragão, o portal pequeno leva às &eilhas de fora&r. Lá ficam as &ecidades do End&r, com baús e o navio.'
+        ); estrutura = 'minecraft:end_city' }
+        @{ t = 'Elytra'; depois = 'Cidade do End'; marco = $true; d = @(
+            'O navio da cidade do End guarda as &eelytra&r: asas para planar. Com foguetes, você voa.'
+        ); item = 'minecraft:elytra' }
+        @{ t = 'Castelo do End'; depois = 'Dragão do Ender'; opcional = $true; d = @(
+            'O &eDungeons and Taverns&r tem um &ecastelo&r nas ilhas do End.'
+        ); conquista = 'nova_structures:end/find_end_castle' }
+        @{ t = 'Navio gigante do End'; depois = 'Dragão do Ender'; opcional = $true; d = @(
+            'O &eMES&r espalha estruturas pelo End. Ache um &enavio gigante&r.'
+        ); estrutura = 'mes:mega_ship' }
+        @{ t = 'Esqueleto de dragão'; depois = 'Dragão do Ender'; opcional = $true; d = @(
+            'O &eNullscape&r deixa o End mais estranho. Ache um &eesqueleto de dragão&r gigante.'
+        ); estrutura = 'nullscape:dragon_skeleton' }
+    ) }
+    @{ t = 'Caçador de chefes'; g = 'Aventura'; icone = 'minecraft:wither_skeleton_skull'; sub = 'Os monstros mais fortes do pack'; m = @(
+        @{ t = 'Armado até os dentes'; marco = $true; d = @(
+            'Chefes batem forte. Antes de ir: &earmadura de diamante&r ou melhor, comida boa, poções e um &etotem&r se tiver.'
+            ''
+            'Os chefes do Aether, da Twilight, do Undergarden e do Eternal Starlight estão nos capítulos de &eDimensões&r.'
+        ) }
+        @{ t = 'Guardião ancião'; depois = 'Armado até os dentes'; d = @(
+            'Mora no &emonumento do oceano&r. Ele deixa você com &efadiga de mineração&r: mate os três para tirar.'
+        ); mata = 'minecraft:elder_guardian'; p = 'minecraft:sponge'; n = 4 }
+        @{ t = 'Wither'; depois = 'Armado até os dentes'; marco = $true; d = @(
+            'Três &ecrânios de esqueleto wither&r em cima de &eareia das almas&r em forma de T. Faça &elonge de casa&r: ele explode tudo.'
+        ); mata = 'minecraft:wither'; p = 'minecraft:diamond'; n = 8 }
+        @{ t = 'Warden'; depois = 'Armado até os dentes'; d = @(
+            'Mora nas &ecidades antigas&r. Ele é cego e acha você pelo barulho. Melhor fugir do que lutar.'
+        ); mata = 'minecraft:warden'; p = 'minecraft:diamond'; n = 8; opcional = $true }
+        @{ t = 'Cavaleiro de ferro'; depois = 'Armado até os dentes'; sub = 'Mowzie''s Mobs'; d = @(
+            'O &eFerrous Wroughtnaut&r guarda uma câmara no subsolo. Desvie do machado e acerte as &ecostas&r depois que ele errar o golpe.'
+        ); mata = 'mowziesmobs:ferrous_wroughtnaut' }
+        @{ t = 'Frostmaw'; depois = 'Armado até os dentes'; sub = 'Mowzie''s Mobs'; d = @(
+            'Um gigante de gelo que &edorme&r nos biomas de neve.'
+        ); mata = 'mowziesmobs:frostmaw' }
+        @{ t = 'Umvuthi'; depois = 'Armado até os dentes'; sub = 'Mowzie''s Mobs'; d = @(
+            'O pássaro do sol que lidera o povo da &esavana&r.'
+        ); mata = 'mowziesmobs:umvuthi' }
+        @{ t = 'Escultor'; depois = 'Armado até os dentes'; sub = 'Mowzie''s Mobs'; opcional = $true; d = @(
+            'O &eEscultor&r espera no topo de um monastério nas montanhas.'
+        ); mata = 'mowziesmobs:sculptor' }
+        @{ t = 'Capitã Cornélia'; depois = 'Armado até os dentes'; sub = 'Aquamirae'; d = @(
+            'O fantasma da capitã mora nos &enavios piratas&r do oceano gelado.'
+        ); mata = 'aquamirae:captain_cornelia' }
+        @{ t = 'Maw'; depois = 'Capitã Cornélia'; sub = 'Aquamirae'; opcional = $true; d = @(
+            'Um monstro das &eáguas geladas&r.'
+        ); mata = 'aquamirae:maw' }
+        @{ t = 'Chefes das estruturas'; depois = 'Armado até os dentes'; sub = 'Dungeons and Taverns'; d = @(
+            'Várias estruturas do Dungeons and Taverns têm um &eminichefe&r. Vença todos.'
+        ); conquista = 'nova_structures:adventure/kill_all_minibosses' }
+    ) }
+    @{ t = 'Volta ao mundo'; g = 'Aventura'; icone = 'minecraft:compass'; sub = 'Biomas novos do Terralith, Biomes O'' Plenty e mais'; m = @(
+        @{ t = 'Mundo novo'; marco = $true; d = @(
+            'O &eTerralith&r, o &eBiomes O'' Plenty&r e o &eTectonic&r mudaram o mundo: montanhas altas, vales, ilhas no céu e cavernas novas.'
+            ''
+            'Use a &ebússola de biomas&r para achar cada um.'
+        ) }
+        @{ t = 'Cerejeiras'; depois = 'Mundo novo'; d = @('Um vale de &ecerejeiras&r rosa.'); bioma = 'terralith:sakura_valley' }
+        @{ t = 'Cânion vermelho'; depois = 'Mundo novo'; d = @('O cânion de &epedra vermelha&r.'); bioma = 'terralith:bryce_canyon' }
+        @{ t = 'Vulcão'; depois = 'Mundo novo'; d = @('A cratera de um &evulcão&r.'); bioma = 'terralith:volcanic_crater' }
+        @{ t = 'Ilhas no céu'; depois = 'Mundo novo'; marco = $true; d = @('Ilhas que &eflutuam&r acima das nuvens.'); bioma = 'terralith:skylands_summer' }
+        @{ t = 'Penhascos brancos'; depois = 'Mundo novo'; opcional = $true; d = @('Penhascos de pedra branca no mar.'); bioma = 'terralith:white_cliffs' }
+        @{ t = 'Oásis'; depois = 'Mundo novo'; opcional = $true; d = @('Um oásis no meio do deserto.'); bioma = 'terralith:desert_oasis' }
+        @{ t = 'Floresta de sequoias'; depois = 'Mundo novo'; d = @('Árvores gigantes do &eBiomes O'' Plenty&r.'); bioma = 'biomesoplenty:redwood_forest' }
+        @{ t = 'Bosque místico'; depois = 'Mundo novo'; d = @('Um bosque mágico e colorido do Biomes O'' Plenty.'); bioma = 'biomesoplenty:mystic_grove' }
+        @{ t = 'Campo de lavanda'; depois = 'Mundo novo'; opcional = $true; d = @('Tudo roxo de lavanda.'); bioma = 'biomesoplenty:lavender_field' }
+        @{ t = 'Fontes termais'; depois = 'Mundo novo'; opcional = $true; d = @('Fontes de água quente nas montanhas.'); bioma = 'biomesoplenty:hot_springs' }
+        @{ t = 'Selva subterrânea'; depois = 'Mundo novo'; sub = 'Cavernas'; d = @('Uma &eselva inteira&r dentro de uma caverna.'); bioma = 'terralith:cave/underground_jungle' }
+        @{ t = 'Cânion de cristal'; depois = 'Selva subterrânea'; sub = 'Galosphere'; d = @(
+            'O &eGalosphere&r tem cavernas de cristal. Lá tem &eallurite&r e &elumiere&r, cristais para itens de exploração.'
+        ); bioma = 'galosphere:crystal_canyons' }
+        @{ t = 'Cristal de allurite'; depois = 'Cânion de cristal'; opcional = $true; d = @('Pegue um fragmento de &eallurite&r.'); item = 'galosphere:allurite_shard' }
+        @{ t = 'Cavernas de gelo'; depois = 'Selva subterrânea'; sub = 'YUNG''s Cave Biomes'; d = @('Cavernas congeladas com gelo encantado.'); bioma = 'yungscavebiomes:frosted_caves' }
+        @{ t = 'Cavernas perdidas'; depois = 'Selva subterrânea'; sub = 'YUNG''s Cave Biomes'; d = @('Um deserto embaixo da terra, com tempestades de areia.'); bioma = 'yungscavebiomes:lost_caves' }
+        @{ t = 'Floresta invertida'; depois = 'Mundo novo'; sub = 'Nether'; d = @('No Nether, o &eIncendium&r tem uma floresta de cabeça para baixo.'); bioma = 'incendium:inverted_forest' }
+        @{ t = 'Vale do choro'; depois = 'Floresta invertida'; opcional = $true; d = @('Outro bioma do Nether do Incendium.'); bioma = 'incendium:weeping_valley' }
+    ) }
+    @{ t = 'Colecionador'; g = 'Aventura'; icone = 'minecraft:diamond'; sub = 'Os itens mais raros do jogo'; m = @(
+        @{ t = 'Montinho de diamante'; marco = $true; d = @(
+            'Junte &e64 diamantes&r. Segure a tecla &eao lado do 1&r para minerar o veio inteiro (FTB Ultimine).'
+        ); item = 'minecraft:diamond'; q = 64; p = 'minecraft:diamond_block'; n = 1 }
+        @{ t = 'Netherite'; depois = 'Montinho de diamante'; d = @(
+            'Os &erestos antigos&r ficam no fundo do Nether. Derreta, junte com ouro e vire &elingote de netherite&r.'
+        ); item = 'minecraft:netherite_ingot' }
+        @{ t = 'Totem'; depois = 'Montinho de diamante'; d = @(
+            'O &etotem da imortalidade&r salva da morte uma vez. Vem dos &eevocadores&r das mansões.'
+        ); item = 'minecraft:totem_of_undying' }
+        @{ t = 'Tridente'; depois = 'Montinho de diamante'; opcional = $true; d = @(
+            'Os &eafogados&r às vezes deixam cair um tridente.'
+        ); item = 'minecraft:trident' }
+        @{ t = 'Cabeça de dragão'; depois = 'Montinho de diamante'; opcional = $true; d = @(
+            'Fica na proa dos navios das cidades do End.'
+        ); item = 'minecraft:dragon_head' }
+        @{ t = 'Estrela do Nether'; depois = 'Montinho de diamante'; d = @(
+            'O prêmio do &eWither&r.'
+        ); item = 'minecraft:nether_star' }
+        @{ t = 'Sinalizador'; depois = 'Estrela do Nether'; marco = $true; d = @(
+            'Um &esinalizador&r em cima de uma pirâmide de blocos de ferro, ouro ou diamante dá efeitos bons para quem está perto.'
+        ); item = 'minecraft:beacon' }
     ) }
 )
 

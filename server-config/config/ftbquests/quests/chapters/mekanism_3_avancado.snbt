@@ -5,7 +5,7 @@
 	group: "75C4FBF5BDDE1148"
 	icon: { id: "mekanism:digital_miner" }
 	id: "60A767B2A79ABA0E"
-	order_index: 15
+	order_index: 14
 	quest_links: [ ]
 	quests: [
 		{

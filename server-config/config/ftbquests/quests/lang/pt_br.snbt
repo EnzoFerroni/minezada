@@ -479,15 +479,6 @@
 	quest.72ED106D1CF93B4F.title: "Domar um dragão"
 	quest.72ED106D1CF93B4F.quest_subtitle: "Dragon Mounts"
 	quest.72ED106D1CF93B4F.quest_desc: ["Dragão adulto se doma dando &epeixe&r até aparecerem corações.", "", "Coloque uma &esela&r e monte: &eespaço&r sobe, &eShift&r desce. O &eapito&r chama o dragão de longe."]
-	chapter.2BBF7954E151BB6E.title: "Explorar"
-	quest.076BEA6CFE9209A1.title: "Bussola de biomas"
-	quest.076BEA6CFE9209A1.quest_desc: ["Nature's Compass aponta para o bioma que voce escolher."]
-	quest.3062EA0B7042C34D.title: "Bussola de estruturas"
-	quest.3062EA0B7042C34D.quest_desc: ["Explorer's Compass aponta para vilas, templos, masmorras e outras estruturas."]
-	quest.333B894B34D3932D.title: "Atlas"
-	quest.333B894B34D3932D.quest_desc: ["Map Atlases junta mapas de papel em um livro. Na mao secundaria vira minimapa."]
-	quest.6181CF23667BE12E.title: "Pergaminho de volta"
-	quest.6181CF23667BE12E.quest_desc: ["O pergaminho de retorno leva de volta para a ultima waystone ou cama."]
 	chapter.79135E8160B07546.title: "Mekanism 1: começo"
 	chapter.79135E8160B07546.chapter_subtitle: ["Máquinas elétricas e aço"]
 	quest.0AC3BC569A4CB669.title: "O que é o Mekanism"
@@ -957,133 +948,233 @@
 	quest.21DADBE9E1F368A9.title: "Dirigíveis"
 	quest.21DADBE9E1F368A9.quest_subtitle: "Create Aeronautics"
 	quest.21DADBE9E1F368A9.quest_desc: ["Com o Aeronautics, construções do Create &avoam&r: dirigíveis, aviões, barcos e carros.", "Veja os blocos novos no JEI e o Ponder (&eW&r) de cada um.", "&7Clique em Concluir quando montar seu primeiro veículo."]
-	chapter.671D011D2029328F.title: "Cacador de chefes"
+	chapter.2BBF7954E151BB6E.title: "Explorar"
+	chapter.2BBF7954E151BB6E.chapter_subtitle: ["Ferramentas para achar tudo pelo mundo"]
+	quest.21C5B7064481CEC8.title: "Pé na estrada"
+	quest.21C5B7064481CEC8.quest_subtitle: "Comece por aqui"
+	quest.21C5B7064481CEC8.quest_desc: ["O mundo do Minezada tem &ecentenas de estruturas&r novas e quase &e200 biomas&r. Os capítulos deste grupo mostram o que procurar.", "", "Os &ebaús de estruturas&r são de cada jogador (&eLootr&r): quem chega depois também ganha o tesouro.", "", "&7Leve cama, comida, tochas e blocos. Marque o caminho no mapa (tecla &fM&7)."]
+	quest.076BEA6CFE9209A1.title: "Bússola de biomas"
+	quest.076BEA6CFE9209A1.quest_desc: ["A &eNature's Compass&r aponta para o bioma que você escolher.", "", "Clique com o botão direito para abrir a lista, escolha o bioma e siga a agulha."]
+	quest.3062EA0B7042C34D.title: "Bússola de estruturas"
+	quest.3062EA0B7042C34D.quest_desc: ["A &eExplorer's Compass&r faz o mesmo com &eestruturas&r: vilas, templos, masmorras e castelos."]
+	quest.333B894B34D3932D.title: "Atlas"
+	quest.333B894B34D3932D.quest_desc: ["O &eMap Atlases&r junta mapas de papel em um livro. Na mão secundária vira um mapa que se desenha sozinho."]
+	quest.6181CF23667BE12E.title: "Pergaminho de volta"
+	quest.6181CF23667BE12E.quest_desc: ["O &epergaminho de retorno&r leva de volta para a última waystone ou cama. Bom para voltar de uma viagem longa."]
+	chapter.27715EDF11C7BB0D.title: "Masmorras e tesouros"
+	chapter.27715EDF11C7BB0D.chapter_subtitle: ["Masmorras, templos e minas reformulados"]
+	quest.32D94C7A6E9E47F3.title: "Baú só seu"
+	quest.32D94C7A6E9E47F3.quest_desc: ["Abra um baú de estrutura. Com o &eLootr&r cada jogador tem o próprio tesouro em cada baú.", "", "Baú do Lootr tem um contorno diferente. Não quebre: é só abrir."]
+	quest.7A482C17B4104DD7.title: "Caçador de baús"
+	quest.7A482C17B4104DD7.quest_desc: ["Abra &e25 baús&r de estruturas diferentes."]
+	quest.5C0144FA3796F319.title: "Masmorra"
+	quest.5C0144FA3796F319.quest_desc: ["As masmorras pequenas (YUNG's Better Dungeons) mudam conforme o bicho: zumbi, esqueleto ou aranha.", "", "Quebre o &egerador de monstros&r ou ponha tochas em volta para ele parar."]
+	quest.14113656C9D6F019.title: "Todas as masmorras"
+	quest.14113656C9D6F019.quest_desc: ["Visite todos os tipos de masmorra do YUNG's Better Dungeons."]
+	quest.0554847C6B75FAFD.title: "Mina abandonada"
+	quest.0554847C6B75FAFD.quest_desc: ["As minas abandonadas mudam com o bioma: de gelo, de deserto, de selva, de cogumelo.", "", "Têm trilhos, carrinhos com baú e elevadores."]
+	quest.2FA4E4C4A25029E0.title: "Templo do deserto"
+	quest.2FA4E4C4A25029E0.quest_desc: ["O templo do deserto virou um &elabirinto com armadilhas&r e uma câmara do tesouro no fim.", "", "&cOlhe onde pisa.&r"]
+	quest.683D02C3F87080FA.title: "Templo da selva"
+	quest.683D02C3F87080FA.quest_desc: ["O templo da selva ficou maior, com quebra-cabeças."]
+	quest.483C00533D048B09.title: "Cabana da bruxa"
+	quest.483C00533D048B09.quest_desc: ["Cada tipo de pântano tem a sua cabana de bruxa."]
+	quest.6E9DF870F1EE70DB.title: "Taverna"
+	quest.6E9DF870F1EE70DB.quest_desc: ["O &eDungeons and Taverns&r espalha &etavernas&r pelo mundo. Os aldeões de lá vendem &emapas de tesouro&r."]
+	quest.78C7BB77263FD95E.title: "Artefato"
+	quest.78C7BB77263FD95E.quest_desc: ["Os &eArtifacts&r são itens mágicos achados em baús de estruturas: &enuvem na garrafa&r (pulo duplo), &etênis de corrida&r, &eamuleto de fogo&r e muito mais.", "", "Eles vão nos espaços de acessório do inventário."]
+	quest.1F816EA6021ECBEB.title: "Baú que morde"
+	quest.1F816EA6021ECBEB.quest_desc: ["Às vezes um baú é um &emímico&r. Mate um: ele deixa artefatos."]
+	chapter.5FCBD0E696C50B49.title: "Grandes estruturas"
+	chapter.5FCBD0E696C50B49.chapter_subtitle: ["When Dungeons Arise: castelos, navios e torres gigantes"]
+	quest.33993A261AD763B4.title: "Estruturas gigantes"
+	quest.33993A261AD763B4.quest_desc: ["O &eWhen Dungeons Arise&r espalha construções enormes, cheias de inimigos e baús.", "", "Vá com &earmadura de ferro ou melhor&r, comida e amigos. A bússola de estruturas acha cada uma."]
+	quest.37F8A1DF4CDF42BB.title: "Moinho dos illagers"
+	quest.37F8A1DF4CDF42BB.quest_desc: ["Um &emoinho dos illagers&r, guardado por saqueadores."]
+	quest.6B02D1746070AA28.title: "Forte illager"
+	quest.6B02D1746070AA28.quest_desc: ["Um &eforte&r inteiro de illagers."]
+	quest.40FF9A8D7069477E.title: "Galé illager"
+	quest.40FF9A8D7069477E.quest_desc: ["Os illagers também navegam: ache uma &egalé&r no mar."]
+	quest.54CDC75564BF2FFA.title: "Vila dos bandidos"
+	quest.54CDC75564BF2FFA.quest_desc: ["Uma &evila de bandidos&r no deserto."]
+	quest.719BD8C2A50534DD.title: "Palácio Shiraz"
+	quest.719BD8C2A50534DD.quest_desc: ["Um &epalácio&r enorme no deserto."]
+	quest.21EA63751DD5340C.title: "Coliseu"
+	quest.21EA63751DD5340C.quest_desc: ["Uma &earena&r gigante, cheia de inimigos."]
+	quest.17E12284F9388CD2.title: "Templo infestado"
+	quest.17E12284F9388CD2.quest_desc: ["Um templo tomado por &etraças&r."]
+	quest.027D36F5ADBBD43B.title: "Navio pirata fantasma"
+	quest.027D36F5ADBBD43B.quest_desc: ["Um &enavio pirata morto-vivo&r no mar."]
+	quest.715FC5C1E8E2578B.title: "Farol"
+	quest.715FC5C1E8E2578B.quest_desc: ["Um &efarol&r na beira do mar."]
+	quest.1EE66CDA685B5F25.title: "Dirigível"
+	quest.1EE66CDA685B5F25.quest_desc: ["Um &edirigível&r voando alto no céu."]
+	quest.3A25E0C03985EE30.title: "Conquistador celeste"
+	quest.3A25E0C03985EE30.quest_desc: ["O &eHeavenly Conqueror&r é um navio voador gigante."]
+	quest.281948E0C5CF0B8C.title: "Minas profundas"
+	quest.281948E0C5CF0B8C.quest_desc: ["Um &ecomplexo de mineração&r abandonado."]
+	quest.064A88FE51F8C6C1.title: "Vila dos cogumelos"
+	quest.064A88FE51F8C6C1.quest_desc: ["Uma &evila de cogumelos&r gigantes."]
+	quest.22979B76051D46E0.title: "Monastério"
+	quest.22979B76051D46E0.quest_desc: ["Um &emonastério&r nas montanhas."]
+	quest.59C9138E6BEA5CC0.title: "Torres espinhosas"
+	quest.59C9138E6BEA5CC0.quest_desc: ["As &eThornborn Towers&r ficam no mar, cheias de espinhos."]
+	quest.3944647F91250922.title: "Asilo da praga"
+	quest.3944647F91250922.quest_subtitle: "O lugar mais assustador do pack"
+	quest.3944647F91250922.quest_desc: ["O &eAsilo da Praga&r é a estrutura mais perigosa. Vá bem preparado."]
+	chapter.39F8AA372D9DED95.title: "Pelo mundo"
+	chapter.39F8AA372D9DED95.chapter_subtitle: ["Vilas, ruínas, torres e acampamentos"]
+	quest.6D5E864441F67FE3.title: "Viajante"
+	quest.6D5E864441F67FE3.quest_desc: ["Vários mods espalham &eestruturas pequenas&r pelo mundo: ruínas, torres, acampamentos, pontes e vilas novas.", "", "Quase todas têm baú. Vale parar para olhar."]
+	quest.1BE8ABF8FDAFF487.title: "Vila nova"
+	quest.1BE8ABF8FDAFF487.quest_desc: ["O &eTowns and Towers&r traz vilas de estilos diferentes. Ache uma &evila sueca&r."]
+	quest.10D04A508457776F.title: "Vila mediterrânea"
+	quest.10D04A508457776F.quest_desc: ["Outra vila do Towns and Towers, com casas brancas."]
+	quest.6168181D56121897.title: "Vila dos sapos"
+	quest.6168181D56121897.quest_desc: ["O &eRibbits&r tem vilas de sapos no pântano. Eles negociam."]
+	quest.2BEDE7C4AEFC5ABF.title: "Torre do mago"
+	quest.2BEDE7C4AEFC5ABF.quest_desc: ["O &eStructory Towers&r espalha torres por bioma. Ache a &etorre do mago&r."]
+	quest.26E7AC659E8C7E0E.title: "Mansão velha"
+	quest.26E7AC659E8C7E0E.quest_desc: ["O &eStructory&r tem ruínas com história. Ache a &emansão velha&r."]
+	quest.13CE0BB221A84F19.title: "Cemitério"
+	quest.13CE0BB221A84F19.quest_desc: ["Um &ecemitério&r abandonado do Structory."]
+	quest.0E2A5E80FF4A8BFB.title: "Ruínas antigas"
+	quest.0E2A5E80FF4A8BFB.quest_desc: ["O &ePhilips Ruins&r espalha ruínas com tesouros. Ache a &ecripta antiga&r."]
+	quest.48BA977FC41A5545.title: "Cidade das almas perdidas"
+	quest.48BA977FC41A5545.quest_desc: ["A &eLost Soul City&r é uma das maiores ruínas do Philips Ruins."]
+	quest.394247738FB30054.title: "Acampamento"
+	quest.394247738FB30054.quest_desc: ["O &eExplorify&r tem acampamentos, mausoléus e torres de vigia. Ache um &eacampamento&r."]
+	quest.684AC7F9E5B4D61F.title: "Mausoléu"
+	quest.684AC7F9E5B4D61F.quest_desc: ["Um &emausoléu&r do Explorify."]
+	quest.5EC0C96FA0278BF9.title: "Mansão illager"
+	quest.5EC0C96FA0278BF9.quest_desc: ["O &eDungeons and Taverns&r tem uma &emansão illager&r nova."]
+	quest.5014951852DE8B41.title: "Vila do pântano"
+	quest.5014951852DE8B41.quest_desc: ["Uma &evila no pântano&r do Dungeons and Taverns."]
+	quest.2CFD320264430E6D.title: "Ruínas de cristal"
+	quest.2CFD320264430E6D.quest_desc: ["O &eGalosphere&r tem ruínas esquecidas nas cavernas de cristal."]
+	quest.2E082671975A7DED.title: "Cidade antiga"
+	quest.2E082671975A7DED.quest_desc: ["No subsolo escuro ficam as &ecidades antigas&r. Ande agachado: barulho chama o &eWarden&r."]
+	quest.1CC03AE1679F7062.title: "Câmaras de desafio"
+	quest.1CC03AE1679F7062.quest_desc: ["Salas com &egeradores de desafio&r. Vença as ondas para ganhar chaves e abrir os cofres."]
+	quest.31CFA7991AFA9DC3.title: "Monumento do oceano"
+	quest.31CFA7991AFA9DC3.quest_desc: ["O monumento do oceano tem mais salas (YUNG's). Leve poção de respirar na água."]
+	chapter.246539DD4330908B.title: "Nether e End"
+	chapter.246539DD4330908B.chapter_subtitle: ["Fortalezas, castelos e a luta com o dragão"]
+	quest.1ABACF903EF89C9A.title: "Fortaleza do Nether"
+	quest.1ABACF903EF89C9A.quest_desc: ["A fortaleza do Nether ficou maior e mais bonita (YUNG's). Lá nascem os &eblazes&r e os &eesqueletos wither&r.", "", "Os blazes deixam a &evara de blaze&r, que faz os olhos de ender."]
+	quest.058886F33C547D44.title: "Vara de blaze"
+	quest.058886F33C547D44.quest_desc: ["Mate blazes para pegar &evaras de blaze&r."]
+	quest.2E103DA74704E977.title: "Castelo proibido"
+	quest.2E103DA74704E977.quest_desc: ["O &eIncendium&r tem estruturas grandes no Nether. O &ecastelo proibido&r é a maior."]
+	quest.7DB1CCA26CFDACA3.title: "Vila piglin"
+	quest.7DB1CCA26CFDACA3.quest_desc: ["Uma &evila de piglins&r do Incendium. Use algo de ouro para eles não atacarem."]
+	quest.0E437A9918A685BE.title: "Fortaleza dos piglins"
+	quest.0E437A9918A685BE.quest_desc: ["O &eDungeons and Taverns&r tem um &edonjon&r dos piglins."]
+	quest.1EF5CDD29801F9B9.title: "Seguir o olho"
+	quest.1EF5CDD29801F9B9.quest_desc: ["Faça um &eolho de ender&r e jogue para cima: ele voa na direção da fortaleza do End."]
+	quest.798EC7C28013C3FC.title: "Fortaleza do End"
+	quest.798EC7C28013C3FC.quest_desc: ["A fortaleza ficou &emaior e mais perigosa&r (YUNG's), com bibliotecas e salas novas. O portal fica no fundo."]
+	quest.03708FB3F9B5A6A3.title: "Dragão do Ender"
+	quest.03708FB3F9B5A6A3.quest_subtitle: "Ilha do dragão reformulada"
+	quest.03708FB3F9B5A6A3.quest_desc: ["A ilha do dragão ficou mais bonita (YUNG's Better End Island). Destrua os &ecristais&r nas torres antes de bater no dragão.", "", "Leve arco, muitos blocos e um &ebalde de água&r."]
+	quest.5F71455E1E5953AA.title: "Cidade do End"
+	quest.5F71455E1E5953AA.quest_desc: ["Depois do dragão, o portal pequeno leva às &eilhas de fora&r. Lá ficam as &ecidades do End&r, com baús e o navio."]
+	quest.750817A51867C739.title: "Elytra"
+	quest.750817A51867C739.quest_desc: ["O navio da cidade do End guarda as &eelytra&r: asas para planar. Com foguetes, você voa."]
+	quest.5C4C78112A7C5B76.title: "Castelo do End"
+	quest.5C4C78112A7C5B76.quest_desc: ["O &eDungeons and Taverns&r tem um &ecastelo&r nas ilhas do End."]
+	quest.37C0D38C1566D566.title: "Navio gigante do End"
+	quest.37C0D38C1566D566.quest_desc: ["O &eMES&r espalha estruturas pelo End. Ache um &enavio gigante&r."]
+	quest.103B7D10CE1B5BF8.title: "Esqueleto de dragão"
+	quest.103B7D10CE1B5BF8.quest_desc: ["O &eNullscape&r deixa o End mais estranho. Ache um &eesqueleto de dragão&r gigante."]
+	chapter.671D011D2029328F.title: "Caçador de chefes"
+	chapter.671D011D2029328F.chapter_subtitle: ["Os monstros mais fortes do pack"]
+	quest.4A95AE35C356C0E0.title: "Armado até os dentes"
+	quest.4A95AE35C356C0E0.quest_desc: ["Chefes batem forte. Antes de ir: &earmadura de diamante&r ou melhor, comida boa, poções e um &etotem&r se tiver.", "", "Os chefes do Aether, da Twilight, do Undergarden e do Eternal Starlight estão nos capítulos de &eDimensões&r."]
+	quest.542C1529514AFB08.title: "Guardião ancião"
+	quest.542C1529514AFB08.quest_desc: ["Mora no &emonumento do oceano&r. Ele deixa você com &efadiga de mineração&r: mate os três para tirar."]
 	quest.62726123703DF347.title: "Wither"
-	quest.62726123703DF347.quest_desc: ["Tres cranios de esqueleto wither em cima de areia das almas em T. Faca longe de casa."]
-	quest.14A09DB6CD3C9668.title: "Dragao do Ender"
-	quest.14A09DB6CD3C9668.quest_desc: ["O chefe do End."]
+	quest.62726123703DF347.quest_desc: ["Três &ecrânios de esqueleto wither&r em cima de &eareia das almas&r em forma de T. Faça &elonge de casa&r: ele explode tudo."]
 	quest.3B675ADFEB3DC4A5.title: "Warden"
-	quest.3B675ADFEB3DC4A5.quest_desc: ["Mora nas cidades antigas do subsolo escuro. Sem barulho, ele nao aparece."]
-	quest.542C1529514AFB08.title: "Guardiao anciao"
-	quest.542C1529514AFB08.quest_desc: ["Mora no monumento do oceano."]
+	quest.3B675ADFEB3DC4A5.quest_desc: ["Mora nas &ecidades antigas&r. Ele é cego e acha você pelo barulho. Melhor fugir do que lutar."]
 	quest.6EAA7D65C829EAEC.title: "Cavaleiro de ferro"
-	quest.6EAA7D65C829EAEC.quest_desc: ["Mowzie's Mobs: o Ferrous Wroughtnaut guarda uma camara no subsolo. Acerte as costas depois que ele erra o golpe."]
+	quest.6EAA7D65C829EAEC.quest_subtitle: "Mowzie's Mobs"
+	quest.6EAA7D65C829EAEC.quest_desc: ["O &eFerrous Wroughtnaut&r guarda uma câmara no subsolo. Desvie do machado e acerte as &ecostas&r depois que ele errar o golpe."]
 	quest.0D06AEA7DF8858A2.title: "Frostmaw"
-	quest.0D06AEA7DF8858A2.quest_desc: ["Mowzie's Mobs: um gigante de gelo que dorme nos biomas de neve."]
+	quest.0D06AEA7DF8858A2.quest_subtitle: "Mowzie's Mobs"
+	quest.0D06AEA7DF8858A2.quest_desc: ["Um gigante de gelo que &edorme&r nos biomas de neve."]
 	quest.308D71C4D5520C9A.title: "Umvuthi"
-	quest.308D71C4D5520C9A.quest_desc: ["Mowzie's Mobs: o passaro do sol que lidera o povo da savana."]
+	quest.308D71C4D5520C9A.quest_subtitle: "Mowzie's Mobs"
+	quest.308D71C4D5520C9A.quest_desc: ["O pássaro do sol que lidera o povo da &esavana&r."]
 	quest.36E81DAF9E4A2C77.title: "Escultor"
-	quest.36E81DAF9E4A2C77.quest_desc: ["Mowzie's Mobs: Tongbi, o Escultor, no topo do monasterio nas montanhas."]
-	quest.0E303137846E5107.title: "Capita Cornelia"
-	quest.0E303137846E5107.quest_desc: ["Aquamirae: o fantasma da capita nos navios piratas do oceano gelado."]
+	quest.36E81DAF9E4A2C77.quest_subtitle: "Mowzie's Mobs"
+	quest.36E81DAF9E4A2C77.quest_desc: ["O &eEscultor&r espera no topo de um monastério nas montanhas."]
+	quest.0E303137846E5107.title: "Capitã Cornélia"
+	quest.0E303137846E5107.quest_subtitle: "Aquamirae"
+	quest.0E303137846E5107.quest_desc: ["O fantasma da capitã mora nos &enavios piratas&r do oceano gelado."]
 	quest.6A04EA7B733F51D5.title: "Maw"
-	quest.6A04EA7B733F51D5.quest_desc: ["Aquamirae: monstro das aguas geladas."]
-	quest.657F017E8BAA19B7.title: "Guardiao esquecido"
-	quest.657F017E8BAA19B7.quest_desc: ["Undergarden: o chefe das catacumbas."]
-	quest.08B95201CB94C70C.title: "Guardiao do portao"
-	quest.08B95201CB94C70C.quest_desc: ["Eternal Starlight: The Gatekeeper."]
-	quest.0264C648566DCAFE.title: "Golem estelar"
-	quest.0264C648566DCAFE.quest_desc: ["Eternal Starlight: o golem da forja."]
-	quest.69CAAB8AFFAD3256.title: "Monstro lunar"
-	quest.69CAAB8AFFAD3256.quest_desc: ["Eternal Starlight: a Lunar Monstrosity."]
-	chapter.00768C72EAFD4EA3.title: "Chefes da Twilight"
-	quest.6490CA6149519CDC.title: "Naga"
-	quest.6490CA6149519CDC.quest_desc: ["O primeiro chefe, no patio de pedra."]
-	quest.116977F2BD1CE274.title: "Lich"
-	quest.116977F2BD1CE274.quest_desc: ["A torre do Lich. Quebre os escudos dele antes de atacar."]
-	quest.59A47017C31FA7E8.title: "Minoshroom"
-	quest.59A47017C31FA7E8.quest_desc: ["No fundo do labirinto do pantano."]
-	quest.4AE3826881F9D457.title: "Hidra"
-	quest.4AE3826881F9D457.quest_desc: ["No covil de fogo. Leve resistencia ao fogo."]
-	quest.2BDAC0BBD460038C.title: "Cavaleiros fantasmas"
-	quest.2BDAC0BBD460038C.quest_desc: ["Na fortaleza dos cavaleiros, na floresta escura."]
-	quest.325DB48F631D47C8.title: "Ur-Ghast"
-	quest.325DB48F631D47C8.quest_desc: ["No topo da torre escura."]
-	quest.2BDDBDCF337F9D0E.title: "Yeti alfa"
-	quest.2BDDBDCF337F9D0E.quest_desc: ["Na caverna dos yetis, na floresta de neve."]
-	quest.0074CD0979FCF7F9.title: "Rainha da Neve"
-	quest.0074CD0979FCF7F9.quest_desc: ["No palacio da aurora, no glaciar."]
-	chapter.399D037DDCE38331.title: "Explorador"
-	quest.7C444AD0D6718BCE.title: "Cidade antiga"
-	quest.7C444AD0D6718BCE.quest_desc: ["No subsolo escuro. Cuidado com o Warden."]
-	quest.386B8F653AF78C9F.title: "Camaras de desafio"
-	quest.386B8F653AF78C9F.quest_desc: ["Salas com geradores de desafio e o cofre das chaves."]
-	quest.561B7CF1CFD769E2.title: "Mansao da floresta"
-	quest.561B7CF1CFD769E2.quest_desc: ["Na floresta escura, cheia de illagers."]
-	quest.4DA558A35B923119.title: "Fortaleza"
-	quest.4DA558A35B923119.quest_desc: ["Onde fica o portal do End. Os olhos de ender apontam para ela."]
-	quest.39E1CD7CB12EDA6F.title: "Fortaleza do Nether"
-	quest.39E1CD7CB12EDA6F.quest_desc: ["Onde nascem os blazes e os esqueletos wither."]
-	quest.4BF994F1CA99747B.title: "Monumento do oceano"
-	quest.4BF994F1CA99747B.quest_desc: ["Debaixo do mar, com os guardioes."]
-	quest.7E4A666B5BBF16D1.title: "Coliseu"
-	quest.7E4A666B5BBF16D1.quest_desc: ["When Dungeons Arise: uma arena enorme cheia de inimigos."]
-	quest.558BFAC6C1C4221A.title: "Fortaleza illager"
-	quest.558BFAC6C1C4221A.quest_desc: ["When Dungeons Arise: um forte dos illagers."]
-	quest.2EA4A33F6B692D20.title: "Navio pirata morto-vivo"
-	quest.2EA4A33F6B692D20.quest_desc: ["When Dungeons Arise: um navio fantasma no mar."]
-	quest.296357EC3B8AF529.title: "Palacio Shiraz"
-	quest.296357EC3B8AF529.quest_desc: ["When Dungeons Arise: um palacio no deserto."]
-	quest.350F6088D3D05B53.title: "Asilo da praga"
-	quest.350F6088D3D05B53.quest_desc: ["When Dungeons Arise: o lugar mais assustador do pack."]
-	quest.6E9F2E9155DD6AE9.title: "Dirigivel"
-	quest.6E9F2E9155DD6AE9.quest_desc: ["When Dungeons Arise: um dirigivel no ceu."]
-	quest.40FDDDFE5251C5BF.title: "Navio pirata"
-	quest.40FDDDFE5251C5BF.quest_desc: ["Aquamirae: navio pirata no oceano gelado, onde mora a Capita Cornelia."]
-	quest.079C05DAA7488BAE.title: "Camara de ferro"
-	quest.079C05DAA7488BAE.quest_desc: ["Mowzie's Mobs: a camara do Ferrous Wroughtnaut."]
-	quest.6C1B45322779964A.title: "Vila dos sapos"
-	quest.6C1B45322779964A.quest_desc: ["Ribbits: vila de sapos no pantano."]
-	quest.3E785FE65989A919.title: "Castelo proibido"
-	quest.3E785FE65989A919.quest_desc: ["Incendium: o castelo do Nether."]
-	quest.6476BB4EF3352AB9.title: "Vila piglin"
-	quest.6476BB4EF3352AB9.quest_desc: ["Incendium: uma vila de piglins no Nether."]
-	quest.52132A11A04149AA.title: "Taverna"
-	quest.52132A11A04149AA.quest_desc: ["Explorify: uma taverna na estrada."]
-	quest.34ECE984C788A76B.title: "Cidadela"
-	quest.34ECE984C788A76B.quest_desc: ["Friends&Foes: a cidadela dos illagers."]
-	quest.7EDA6475F8D84E20.title: "Ninho de dinossauro"
-	quest.7EDA6475F8D84E20.quest_desc: ["Archie's Dinosaurs: uma cratera com fosseis."]
-	quest.698AD54E6122D0FB.title: "Esqueleto de dragao"
-	quest.698AD54E6122D0FB.quest_desc: ["Nullscape: um esqueleto gigante no End."]
+	quest.6A04EA7B733F51D5.quest_subtitle: "Aquamirae"
+	quest.6A04EA7B733F51D5.quest_desc: ["Um monstro das &eáguas geladas&r."]
+	quest.2BF59C25B1CFA6A9.title: "Chefes das estruturas"
+	quest.2BF59C25B1CFA6A9.quest_subtitle: "Dungeons and Taverns"
+	quest.2BF59C25B1CFA6A9.quest_desc: ["Várias estruturas do Dungeons and Taverns têm um &eminichefe&r. Vença todos."]
 	chapter.6E3919EFC5A2EEF7.title: "Volta ao mundo"
+	chapter.6E3919EFC5A2EEF7.chapter_subtitle: ["Biomas novos do Terralith, Biomes O' Plenty e mais"]
+	quest.4C18048CCC7E2F79.title: "Mundo novo"
+	quest.4C18048CCC7E2F79.quest_desc: ["O &eTerralith&r, o &eBiomes O' Plenty&r e o &eTectonic&r mudaram o mundo: montanhas altas, vales, ilhas no céu e cavernas novas.", "", "Use a &ebússola de biomas&r para achar cada um."]
 	quest.2D8F878CD7BC1FBE.title: "Cerejeiras"
-	quest.2D8F878CD7BC1FBE.quest_desc: ["Um vale de cerejeiras rosa."]
-	quest.21DD0E73C9F46759.title: "Canion vermelho"
-	quest.21DD0E73C9F46759.quest_desc: ["O canion de pedra vermelha."]
-	quest.03E2F1D49DC8D627.title: "Vulcao"
-	quest.03E2F1D49DC8D627.quest_desc: ["A cratera de um vulcao."]
-	quest.3A84C45EED62EAFB.title: "Ilhas no ceu"
-	quest.3A84C45EED62EAFB.quest_desc: ["Ilhas que flutuam acima das nuvens."]
-	quest.43BF5C538206D1B5.title: "Floresta de lavanda"
-	quest.43BF5C538206D1B5.quest_desc: ["Tudo roxo de lavanda."]
+	quest.2D8F878CD7BC1FBE.quest_desc: ["Um vale de &ecerejeiras&r rosa."]
+	quest.21DD0E73C9F46759.title: "Cânion vermelho"
+	quest.21DD0E73C9F46759.quest_desc: ["O cânion de &epedra vermelha&r."]
+	quest.03E2F1D49DC8D627.title: "Vulcão"
+	quest.03E2F1D49DC8D627.quest_desc: ["A cratera de um &evulcão&r."]
+	quest.3A84C45EED62EAFB.title: "Ilhas no céu"
+	quest.3A84C45EED62EAFB.quest_desc: ["Ilhas que &eflutuam&r acima das nuvens."]
 	quest.401E53260B046572.title: "Penhascos brancos"
 	quest.401E53260B046572.quest_desc: ["Penhascos de pedra branca no mar."]
-	quest.09D5A586382C5BAE.title: "Oasis"
-	quest.09D5A586382C5BAE.quest_desc: ["Um oasis no meio do deserto."]
-	quest.3B3207C8DEDCCC12.title: "Selva subterranea"
-	quest.3B3207C8DEDCCC12.quest_desc: ["Uma selva inteira dentro de uma caverna."]
-	quest.3467848BE62720A8.title: "Cavernas de cristal"
-	quest.3467848BE62720A8.quest_desc: ["Um canion de ametista."]
+	quest.09D5A586382C5BAE.title: "Oásis"
+	quest.09D5A586382C5BAE.quest_desc: ["Um oásis no meio do deserto."]
+	quest.37008FBC14F46A83.title: "Floresta de sequoias"
+	quest.37008FBC14F46A83.quest_desc: ["Árvores gigantes do &eBiomes O' Plenty&r."]
+	quest.3EB32C924FED67C3.title: "Bosque místico"
+	quest.3EB32C924FED67C3.quest_desc: ["Um bosque mágico e colorido do Biomes O' Plenty."]
+	quest.17BDBDBC5BC45F13.title: "Campo de lavanda"
+	quest.17BDBDBC5BC45F13.quest_desc: ["Tudo roxo de lavanda."]
+	quest.0DECB30F00F11804.title: "Fontes termais"
+	quest.0DECB30F00F11804.quest_desc: ["Fontes de água quente nas montanhas."]
+	quest.3B3207C8DEDCCC12.title: "Selva subterrânea"
+	quest.3B3207C8DEDCCC12.quest_subtitle: "Cavernas"
+	quest.3B3207C8DEDCCC12.quest_desc: ["Uma &eselva inteira&r dentro de uma caverna."]
+	quest.7BC3B396EEDF2733.title: "Cânion de cristal"
+	quest.7BC3B396EEDF2733.quest_subtitle: "Galosphere"
+	quest.7BC3B396EEDF2733.quest_desc: ["O &eGalosphere&r tem cavernas de cristal. Lá tem &eallurite&r e &elumiere&r, cristais para itens de exploração."]
+	quest.0B064D049AB97F8A.title: "Cristal de allurite"
+	quest.0B064D049AB97F8A.quest_desc: ["Pegue um fragmento de &eallurite&r."]
+	quest.18014FAD5C025736.title: "Cavernas de gelo"
+	quest.18014FAD5C025736.quest_subtitle: "YUNG's Cave Biomes"
+	quest.18014FAD5C025736.quest_desc: ["Cavernas congeladas com gelo encantado."]
+	quest.10D39B57C7A1C28C.title: "Cavernas perdidas"
+	quest.10D39B57C7A1C28C.quest_subtitle: "YUNG's Cave Biomes"
+	quest.10D39B57C7A1C28C.quest_desc: ["Um deserto embaixo da terra, com tempestades de areia."]
 	quest.6841C627B5ED58C3.title: "Floresta invertida"
-	quest.6841C627B5ED58C3.quest_desc: ["Incendium: no Nether, uma floresta de cabeca para baixo."]
+	quest.6841C627B5ED58C3.quest_subtitle: "Nether"
+	quest.6841C627B5ED58C3.quest_desc: ["No Nether, o &eIncendium&r tem uma floresta de cabeça para baixo."]
 	quest.40C014566C6CA7D2.title: "Vale do choro"
-	quest.40C014566C6CA7D2.quest_desc: ["Incendium: um vale do Nether."]
+	quest.40C014566C6CA7D2.quest_desc: ["Outro bioma do Nether do Incendium."]
 	chapter.4ED654CD8429AD9B.title: "Colecionador"
+	chapter.4ED654CD8429AD9B.chapter_subtitle: ["Os itens mais raros do jogo"]
 	quest.030337DA57D9612C.title: "Montinho de diamante"
-	quest.030337DA57D9612C.quest_desc: ["Junte 64 diamantes. O FTB Ultimine ajuda."]
+	quest.030337DA57D9612C.quest_desc: ["Junte &e64 diamantes&r. Segure a tecla &eao lado do 1&r para minerar o veio inteiro (FTB Ultimine)."]
 	quest.370E650A8D2869D1.title: "Netherite"
-	quest.370E650A8D2869D1.quest_desc: ["Restos antigos no fundo do Nether viram netherite."]
+	quest.370E650A8D2869D1.quest_desc: ["Os &erestos antigos&r ficam no fundo do Nether. Derreta, junte com ouro e vire &elingote de netherite&r."]
 	quest.7D39318A46A4A28E.title: "Totem"
-	quest.7D39318A46A4A28E.quest_desc: ["O totem da imortalidade vem dos evocadores das mansoes e cidadelas."]
+	quest.7D39318A46A4A28E.quest_desc: ["O &etotem da imortalidade&r salva da morte uma vez. Vem dos &eevocadores&r das mansões."]
 	quest.7A5E4996923A7CA6.title: "Tridente"
-	quest.7A5E4996923A7CA6.quest_desc: ["Os afogados as vezes deixam cair."]
-	quest.2A1B99114C0C5D62.title: "Elytra"
-	quest.2A1B99114C0C5D62.quest_desc: ["Nos navios das cidades do End. Conserte com membrana de phantom na bigorna."]
-	quest.2E2F0B64C34BD002.title: "Cabeca de dragao"
-	quest.2E2F0B64C34BD002.quest_desc: ["Na proa dos navios do End."]
+	quest.7A5E4996923A7CA6.quest_desc: ["Os &eafogados&r às vezes deixam cair um tridente."]
+	quest.2E2F0B64C34BD002.title: "Cabeça de dragão"
+	quest.2E2F0B64C34BD002.quest_desc: ["Fica na proa dos navios das cidades do End."]
 	quest.0009A0ADFF3F42CE.title: "Estrela do Nether"
-	quest.0009A0ADFF3F42CE.quest_desc: ["O premio do Wither, para fazer um sinalizador."]
+	quest.0009A0ADFF3F42CE.quest_desc: ["O prêmio do &eWither&r."]
 	quest.33C97891F98C6AEA.title: "Sinalizador"
-	quest.33C97891F98C6AEA.quest_desc: ["Um sinalizador em cima de uma piramide de blocos de ferro, ouro ou diamante da efeitos bons."]
+	quest.33C97891F98C6AEA.quest_desc: ["Um &esinalizador&r em cima de uma pirâmide de blocos de ferro, ouro ou diamante dá efeitos bons para quem está perto."]
 }

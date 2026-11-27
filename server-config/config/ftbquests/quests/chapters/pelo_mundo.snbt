@@ -1,0 +1,158 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "pelo_mundo"
+	group: "0723197381022D89"
+	icon: { id: "minecraft:filled_map" }
+	id: "39F8AA372D9DED95"
+	order_index: 28
+	quest_links: [ ]
+	quests: [
+		{
+			id: "6D5E864441F67FE3"
+			rewards: [{ id: "74D44EA24B7B50E2", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "3C6F872C128B95F2", type: "checkmark" }]
+			x: 0d
+			y: 9.625d
+		}
+		{
+			dependencies: ["6D5E864441F67FE3"]
+			id: "1BE8ABF8FDAFF487"
+			rewards: [{ id: "74D3BFA0ECB43D3F", type: "xp", xp: 20 }]
+			tasks: [{ id: "0CAEA226AC55CB8B", structure: "towns_and_towers:exclusives/village_swedish", type: "structure" }]
+			x: 2.5d
+			y: 0d
+		}
+		{
+			dependencies: ["1BE8ABF8FDAFF487"]
+			id: "10D04A508457776F"
+			rewards: [{ id: "3F6AD333BB352B6C", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "6714ADB8230B2DD0", structure: "towns_and_towers:exclusives/village_mediterranean", type: "structure" }]
+			x: 5d
+			y: 0d
+		}
+		{
+			dependencies: ["6D5E864441F67FE3"]
+			id: "6168181D56121897"
+			rewards: [{ id: "1218D466F895F7E9", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "2B288B7C37DB8D44", structure: "ribbits:ribbit_village", type: "structure" }]
+			x: 2.5d
+			y: 1.75d
+		}
+		{
+			dependencies: ["6D5E864441F67FE3"]
+			id: "2BEDE7C4AEFC5ABF"
+			rewards: [{ id: "611EACA1A963E5F0", type: "xp", xp: 20 }]
+			tasks: [{ id: "26B54BE8B7121308", structure: "structory_towers:wizard_tower", type: "structure" }]
+			x: 2.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["6D5E864441F67FE3"]
+			id: "26E7AC659E8C7E0E"
+			rewards: [{ id: "2E13B6C59C0CCE76", type: "xp", xp: 20 }]
+			tasks: [{ id: "6722481BCAA2CA2C", structure: "structory:old_manor", type: "structure" }]
+			x: 2.5d
+			y: 5.25d
+		}
+		{
+			dependencies: ["26E7AC659E8C7E0E"]
+			id: "13CE0BB221A84F19"
+			rewards: [{ id: "0A018D06C5E655BD", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "0A65753F279E1FFC", structure: "structory:graveyard", type: "structure" }]
+			x: 5d
+			y: 5.25d
+		}
+		{
+			dependencies: ["6D5E864441F67FE3"]
+			id: "0E2A5E80FF4A8BFB"
+			rewards: [{ id: "1F841EFCFBFCCAEE", type: "xp", xp: 20 }]
+			tasks: [{ id: "57B46C14F0DEAA2C", structure: "philipsruins:ancient_crypt", type: "structure" }]
+			x: 2.5d
+			y: 7d
+		}
+		{
+			dependencies: ["0E2A5E80FF4A8BFB"]
+			id: "48BA977FC41A5545"
+			rewards: [{ id: "5B16A1300314ED76", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "04D6B5A1411297E9", structure: "philipsruins:lost_soul_city", type: "structure" }]
+			x: 5d
+			y: 7d
+		}
+		{
+			dependencies: ["6D5E864441F67FE3"]
+			id: "394247738FB30054"
+			rewards: [{ id: "2DF7B8D4C5BAAA47", type: "xp", xp: 20 }]
+			tasks: [{ id: "35917D14936DFDD4", structure: "explorify:campsite", type: "structure" }]
+			x: 2.5d
+			y: 8.75d
+		}
+		{
+			dependencies: ["394247738FB30054"]
+			id: "684AC7F9E5B4D61F"
+			rewards: [{ id: "1464032414C88704", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "14FF951C1F66AFB6", structure: "explorify:mausoleum", type: "structure" }]
+			x: 5d
+			y: 8.75d
+		}
+		{
+			dependencies: ["6D5E864441F67FE3"]
+			id: "5EC0C96FA0278BF9"
+			rewards: [{ id: "2F154F7D29D83F43", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "nova_structures:adventure/find_illager_manor", criterion: "", id: "7F5682730767CD58", type: "advancement" }]
+			x: 2.5d
+			y: 10.5d
+		}
+		{
+			dependencies: ["6D5E864441F67FE3"]
+			id: "5014951852DE8B41"
+			rewards: [{ id: "30FA95EC42FA8D5B", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "nova_structures:adventure/find_swamp_village", criterion: "", id: "39E800CD523329DD", type: "advancement" }]
+			x: 2.5d
+			y: 12.25d
+		}
+		{
+			dependencies: ["6D5E864441F67FE3"]
+			id: "2CFD320264430E6D"
+			rewards: [{ id: "4006512EC5B65910", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "galosphere:adventure/find_forgotten_ruins", criterion: "", id: "27487081839E8A0C", type: "advancement" }]
+			x: 2.5d
+			y: 14d
+		}
+		{
+			dependencies: ["6D5E864441F67FE3"]
+			id: "2E082671975A7DED"
+			rewards: [{ id: "1E0BC25DBABBC314", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "23F289756C1855B1", structure: "minecraft:ancient_city", type: "structure" }]
+			x: 2.5d
+			y: 15.75d
+		}
+		{
+			dependencies: ["6D5E864441F67FE3"]
+			id: "1CC03AE1679F7062"
+			rewards: [{ id: "0A6C494C15ED9836", type: "xp", xp: 20 }]
+			tasks: [{ id: "38BCDD62037E031B", structure: "minecraft:trial_chambers", type: "structure" }]
+			x: 2.5d
+			y: 17.5d
+		}
+		{
+			dependencies: ["6D5E864441F67FE3"]
+			id: "31CFA7991AFA9DC3"
+			rewards: [{ id: "0587E0087C6D703E", type: "xp", xp: 20 }]
+			tasks: [{ id: "3C119A25C41A764D", structure: "betteroceanmonuments:ocean_monument", type: "structure" }]
+			x: 2.5d
+			y: 19.25d
+		}
+	]
+}
