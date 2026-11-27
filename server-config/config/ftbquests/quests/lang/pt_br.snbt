@@ -1187,7 +1187,7 @@
 	quest.18A687E7D569A71A.title: "Botas de queda longa"
 	quest.18A687E7D569A71A.quest_desc: ["As &ebotas de queda longa&r tiram o dano de queda. Combinam com o portal gun."]
 	quest.16658B7CF020A208.title: "Cubo companheiro"
-	quest.16658B7CF020A208.quest_desc: ["O &ecubo companheiro&r com coração. Ele não fala, mas é fiel."]
+	quest.16658B7CF020A208.quest_desc: ["Faça um &ecubo de armazenamento&r (receita no JEI). O cubo tem variantes, como o &ecubo companheiro&r com coração.", "", "&7Clique em Concluir."]
 	quest.54EE99A80E600475.title: "Mesa do cachimbo"
 	quest.54EE99A80E600475.quest_desc: ["A &emesa de cachimbos&r faz cachimbos do Smoking Pipe. A &efolha da sabedoria&r dá experiência ao fumar."]
 	quest.05D8F27C20DA114B.title: "Plantar tabaco"
