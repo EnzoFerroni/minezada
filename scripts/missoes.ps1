@@ -2336,7 +2336,7 @@ foreach ($c in $capitulos) {
             if ($pais) { $filhos[$pais[0]] = @($filhos[$pais[0]]) + $m.t | Where-Object { $_ } } else { $raizes += $m.t }
             $pos = "arvore|$($m.t)"
         }
-        else { $prof[$m.t] = 0; $pos = 'solta' }
+        else { $prof[$m.t] = 0; $pos = "solta|$($m.t)" }
         $qs += "`t`t{$dep`n`t`t`tid: `"$qid`"$extra`n`t`t`ttasks: [$tarefa]`n`t`t`t@POS@`n`t`t}@@SEP@@$pos"
         $lang += "`tquest.$qid.title: $(Txt $m.t)"
         if ($m['sub']) { $lang += "`tquest.$qid.quest_subtitle: $(Txt $m['sub'])" }
@@ -2349,12 +2349,15 @@ foreach ($c in $capitulos) {
         if (-not $filhos[$n]) { $posY[$n] = $script:proxY; $script:proxY += 1.75 }
         else { foreach ($k in $f) { Pos-Ramo $k }; $posY[$n] = ($posY[$f[0]] + $posY[$f[-1]]) / 2 }
     }
+    # Solta com filhos vira raiz de arvore: senao os filhos ficam sem posicao (y vazio, um em cima do outro).
+    foreach ($n in @($filhos.Keys)) { if ($raizes -notcontains $n -and -not ($filhos.Values | Where-Object { $_ -contains $n })) { $raizes += $n } }
     foreach ($r in $raizes) { Pos-Ramo $r; $script:proxY += 0.75 }
     $base = $script:proxY + 1
     $k = 0
     $qs = for ($i = 0; $i -lt $qs.Count; $i++) {
         $texto, $pos = $qs[$i] -split '@@SEP@@'
-        if ($pos -eq 'solta') { $pos = "$(($k % 5) * 2)d|$($base + [math]::Floor($k / 5) * 1.75)d"; $k++ }
+        if ($pos -like 'solta|*' -and $posY.ContainsKey($pos.Substring(6))) { $n = $pos.Substring(6); $pos = "$($prof[$n] * 2.5)d|$($posY[$n])d" }
+        elseif ($pos -like 'solta|*') { $pos = "$(($k % 5) * 2)d|$($base + [math]::Floor($k / 5) * 1.75)d"; $k++ }
         elseif ($pos -like 'arvore|*') { $n = $pos.Substring(7); $pos = "$($prof[$n] * 2.5)d|$($posY[$n])d" }
         $px, $py = $pos -split '\|'
         $texto.Replace('@POS@', "x: $px`n`t`t`ty: $py")
