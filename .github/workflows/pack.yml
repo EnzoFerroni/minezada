@@ -53,6 +53,25 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      # packwiz (release.yml) e packwiz-installer (montar-pack.ps1) sao fixos: so avisa, nao troca sozinho.
+      - name: Procurar versao nova do packwiz e abrir issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          corpo=""
+          fixo=$(grep -oE 'packwiz/packwiz@[0-9a-f]{40}' .github/workflows/release.yml | cut -d@ -f2)
+          ult=$(gh api repos/packwiz/packwiz/commits/main -q .sha)
+          [ "$fixo" = "$ult" ] || corpo="$corpo- packwiz: fixo $fixo em release.yml, ultimo commit $ult"$'\n'
+          for r in packwiz-installer-bootstrap packwiz-installer; do
+            fixo=$(grep -oE "packwiz/$r/releases/download/[^/]+" scripts/montar-pack.ps1 | cut -d/ -f5)
+            ult=$(gh api "repos/packwiz/$r/releases/latest" -q .tag_name)
+            [ "$fixo" = "$ult" ] || corpo="$corpo- $r: fixo $fixo em scripts/montar-pack.ps1, ultimo release $ult"$'\n'
+          done
+          [ -n "$corpo" ] || { echo 'packwiz em dia.'; exit 0; }
+          corpo="Versao nova em $(date +%F):"$'\n\n'"$corpo"$'\n'"Para aplicar: ler o changelog, trocar o commit/versao e o SHA-256, e seguir o checklist do CONTRIBUTING."
+          titulo='Packwiz com versao nova'
+          n=$(gh issue list --state open --search "in:title \"$titulo\"" --json number --jq '.[0].number // empty')
+          if [ -n "$n" ]; then gh issue edit "$n" --body "$corpo"; else gh issue create --title "$titulo" --body "$corpo"; fi
       - name: Procurar versoes novas e abrir issue
         shell: pwsh
         env:
