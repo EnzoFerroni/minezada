@@ -490,6 +490,9 @@
 	quest.16853D93B6377171.title: "Móveis do Create"
 	quest.16853D93B6377171.quest_subtitle: "Create: Interiors"
 	quest.16853D93B6377171.quest_desc: ["Bancos e cadeiras no estilo do Create. Dá para sentar, inclusive em trens e máquinas que andam."]
+	quest.3DA6D83330290EBF.title: "Tapete embaixo de tudo"
+	quest.3DA6D83330290EBF.quest_subtitle: "Underlay"
+	quest.3DA6D83330290EBF.quest_desc: ["Com o &eUnderlay&r você põe &etapete&r, laje, alçapão, botão ou trilho &eembaixo&r de baús, camas, placas e tochas.", "Clique com o bloco na face de baixo. Clique de novo com outro para trocar; clique esquerdo tira.", "", "&7Clique em Concluir quando testar."]
 	chapter.7B3C540516C4A30E.title: "Decorar"
 	chapter.7B3C540516C4A30E.chapter_subtitle: ["Móveis, telhados, janelas, portas e enfeites"]
 	quest.3A96F0EDB3B0AC47.title: "Casa com cara de casa"
@@ -1623,4 +1626,7 @@
 	quest.0009A0ADFF3F42CE.quest_desc: ["O prêmio do &eWither&r."]
 	quest.33C97891F98C6AEA.title: "Sinalizador"
 	quest.33C97891F98C6AEA.quest_desc: ["Um &esinalizador&r em cima de uma pirâmide de blocos de ferro, ouro ou diamante dá efeitos bons para quem está perto."]
+	quest.1D6864C2EF09DA59.title: "Catálogo de itens"
+	quest.1D6864C2EF09DA59.quest_subtitle: "Completionist's Index"
+	quest.1D6864C2EF09DA59.quest_desc: ["O &ecatálogo&r mostra todos os itens do jogo e dos mods, separados por mod, com uma barra de quanto você já pegou.", "Abra pelo &ebotão no inventário&r ou no &emenu de pausa&r. Tem busca.", "", "&7Clique em Concluir quando abrir o catálogo."]
 }

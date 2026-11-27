@@ -10,6 +10,7 @@ jade-addons-forge | Mostra no Jade informações de mais mods (Create, Farmer's 
 appleskin | Mostra na barra de fome quanto cada comida vai encher e a saturação, para saber o que vale a pena comer.
 better-advancements | Tela de conquistas (tecla L) mais clara. Serve de guia do que fazer a seguir.
 enchantment-descriptions | Mostra o que cada encantamento faz ao passar o mouse no livro.
+completionists-index | Catálogo de todos os itens do jogo e dos mods: marca o que você já pegou e mostra quanto falta de cada mod.
 just-enough-resources-jer | No JEI, mostra em que altura cada minério aparece e o que cada mob dropa.
 cf:289412 | FTB Quests: livro de missões para guiar a progressão.
 cf:404465 | FTB Library: biblioteca do FTB Quests.
@@ -28,6 +29,7 @@ explorers-compass | Bússola que encontra estruturas (vilas, templos, masmorras 
 ping-wheel | Clique com o botão do meio do mouse (o scroll) para marcar um lugar ou item para os amigos verem. Segure para escolher o tipo de marca.
 
 ## Construção e decoração
+underlay | Coloca tapete, laje, alçapão, botão ou trilho embaixo de baús, camas, placas e tochas.
 cf:298187 | Building Gadgets: ferramentas para construir grande (vários blocos de uma vez, copiar e colar construções, trocar blocos em área).
 effortless-building | Espelho, repetição e formas ao construir. Funciona no modo sobrevivência.
 macaws-furniture | Móveis: guarda-roupas, gavetas, cadeiras, mesas, sofás, pias.
@@ -194,6 +196,7 @@ better-leaves | Folhas mais cheias e fofas nas árvores, inclusive as dos mods. 
 fast-better-grass | Grama cobre também a lateral dos blocos: campos mais bonitos, sem custo de FPS.
 simple-grass-flowers | Florzinhas na grama, no micélio e no podzol.
 3d-crops | Plantações (trigo, cenoura, batata) em 3D.
+brazilian-project | Tradução para português de mais de mil mods que não vêm traduzidos, e correções nas traduções que já existem.
 better-lanterns | Lanternas e correntes com modelos mais detalhados.
 cubic-sun-moon | Sol e lua em 3D, com fases da lua de verdade.
 fresh-waystones-texture | Waystones com visual novo, no estilo do jogo.

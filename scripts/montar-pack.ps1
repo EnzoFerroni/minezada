@@ -53,10 +53,10 @@ $soCliente = @('distanthorizons')
 # reserva as texturas do Distant Horizons so por ele estar instalado, e no Mac (16 texturas) o shader nao abre.
 $opcionais = @{ 'distanthorizons' = 'Ver muito mais longe (montanhas no horizonte). Funciona junto com shader. No Mac ele fica desligado.' }
 # Pacotes de recursos que ja vem ligados, nesta ordem (o ultimo tem prioridade:
-# Fresh Animations em cima para os mobs). O jogar liga os desta lista ate em quem ja tinha options.txt.
+# Fresh Animations em cima para os mobs; a traducao pt-BR por ultimo, por cima de tudo). O jogar liga os desta lista ate em quem ja tinha options.txt.
 $rpLigados = @('fast-better-grass', 'simple-grass-flowers', 'better-leaves',
     '3d-crops', 'better-lanterns', 'cubic-sun-moon', 'fresh-waystones-texture', 'low-shield-pack', 'low-on-fire',
-    'fresh-animations', 'fresh-animations-extensions', 'bubblellaneous-recursos')
+    'fresh-animations', 'fresh-animations-extensions', 'bubblellaneous-recursos', 'brazilian-project')
 # Versao presa (id da versao no Modrinth), vale ate com -Atualizar.
 # Accessories 1.1.0-beta.53: minimo que o Hamster aceita. O Aether embute a beta.48, que impede o
 # servidor de abrir; a avulsa tem prioridade sobre a embutida.

@@ -2,7 +2,7 @@
 
 Gerado pelo `scripts/missoes.ps1`. Nao edite a mao: rode o script depois de mexer no livro ou no `mods.txt`.
 
-36 capitulos, 676 missoes. Mods: 125 ok, 0 abaixo da meta, 0 faltando, 68 sem necessidade de missao.
+36 capitulos, 678 missoes. Mods: 127 ok, 0 abaixo da meta, 0 faltando, 69 sem necessidade de missao.
 
 Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 5, mais que isso 10 (menos os de $metaFixa no missoes.ps1, com muitas variantes de madeira ou cor).
 
@@ -11,6 +11,7 @@ Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 
 | Aprender e guias | AppleSkin (`appleskin`) | 0 | 0/1 | nao precisa (funciona sozinho ou so muda a tela) |  |
 | Aprender e guias | Better Advancements (`better-advancements`) | 0 | 0/1 | nao precisa (funciona sozinho ou so muda a tela) |  |
 | Aprender e guias | Better Search (`bettersearch`) | 0 | 0/1 | nao precisa (funciona sozinho ou so muda a tela) |  |
+| Aprender e guias | Completionist's Index (`completionists-index`) | 0 | 1/1 | ok | Colecionador |
 | Aprender e guias | Enchantment Descriptions (`enchantment-descriptions`) | 0 | 1/1 | ok | Utilidades |
 | Aprender e guias | FTB Filter System (`cf:943925`) | 1 | 0/3 | nao precisa (biblioteca) |  |
 | Aprender e guias | FTB Library (NeoForge) (`cf:404465`) | 2 | 0/3 | nao precisa (biblioteca) |  |
@@ -65,6 +66,7 @@ Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 
 | Construção e decoração | MrCrayfish's Furniture Mod: Refurbished (`cf:897116`) | 473 | 12/10 | ok | Construir, Cozinha e fazenda, Primeiros passos |
 | Construção e decoração | Supplementaries (`supplementaries`) | 304 | 18/10 | ok | Construir, Cozinha e fazenda, Primeiros passos, Volta ao mundo |
 | Construção e decoração | Supplementaries Squared (`supplementaries-squared`) | 55 | 15/5 | ok | Construir, Cozinha e fazenda, Primeiros passos |
+| Construção e decoração | Underlay (`underlay`) | 1 | 1/1 | ok | Construir |
 | Create: addons | Create Aeronautics (`create-aeronautics`) | 0 | 1/1 | ok | Create: addons |
 | Create: addons | Create Contraption Terminals (`create-contraption-terminals`) | 0 | 5/1 | ok | Create: addons, Mochila e baús |
 | Create: addons | Create Crafts & Additions (`createaddition`) | 56 | 19/5 | ok | Cozinha e fazenda, Create: energia, Primeiros passos |
