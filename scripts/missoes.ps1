@@ -2255,7 +2255,7 @@ $jarsDir = Join-Path $root 'tools/jars'
 if (Test-Path $jarsDir) {
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     $existe = New-Object 'Collections.Generic.HashSet[string]'
-    # Item vale pelo nome item.<mod>.<id> ou block.<mod>.<id> no idioma do mod (modelo interno, como
+    # Item vale pelo nome item.<mod>.<id> ou block.<mod>.<id> no idioma do mod e pelo modelo do item (so o nome nao basta: nether_atlas do Map Atlases; modelo interno, como
     # refurbished_furniture:fridge, nao e item). Mod sem idioma: vale o modelo.
     $nomes = New-Object 'Collections.Generic.HashSet[string]'; $comNome = New-Object 'Collections.Generic.HashSet[string]'
     foreach ($j in Get-ChildItem $jarsDir -Filter *.jar) {
@@ -2275,7 +2275,7 @@ if (Test-Path $jarsDir) {
     }
     $faltam = @(foreach ($c in $capitulos) {
         foreach ($id in @($c.icone) + @($c.m | ForEach-Object { $_['item']; $_['p'] })) {
-            if ($id -and $id -notlike 'minecraft:*' -and -not $(if ($comNome.Contains($id.Split(':')[0])) { $nomes.Contains($id) } else { $existe.Contains($id) })) { "$($c.t): $id" } }
+            if ($id -and $id -notlike 'minecraft:*' -and -not $(if ($comNome.Contains($id.Split(':')[0])) { $nomes.Contains($id) -and $existe.Contains($id) } else { $existe.Contains($id) })) { "$($c.t): $id" } }
         foreach ($id in @($c.m | ForEach-Object { $_['dim']; $_['mata']; $_['estrutura']; $_['bioma']; $_['conquista'] })) {
             if ($id -and $id -notlike 'minecraft:*' -and -not $existe.Contains($id)) { "$($c.t): $id" } } })
     if ($faltam) { throw "Ids que nao existem no pack:`n$($faltam -join "`n")" }
