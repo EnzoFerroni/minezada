@@ -6,7 +6,7 @@ Por isso, falha de segurança aqui é tratada com prioridade.
 ## Como avisar
 
 Não abra issue pública. Use **Security > Report a vulnerability** neste repositório
-(relato privado do GitHub). Só o dono vê o relato.
+(relato privado do GitHub): https://github.com/EnzoFerroni/minezada/security/advisories/new. Só o dono vê o relato.
 
 Ajuda contar: o arquivo ou comando, o que um atacante consegue fazer e como reproduzir.
 
