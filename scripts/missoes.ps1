@@ -2473,12 +2473,12 @@ $motivo = @{}; foreach ($k in $semMissao.Keys) { foreach ($s in $semMissao[$k]) 
 if (Test-Path $jarsDir) {
     # slug -> jar (sha1 do .pw.toml) -> modIds do neoforge.mods.toml (com os mods embutidos).
     $pwDir = Join-Path $root 'modpack/pack'
-    $porCf = @{}; $porSlug = @{}
+    $porCf = @{}; $porSlug = @{}; $nomeMod = @{}
     foreach ($f in Get-ChildItem $pwDir -Recurse -Filter *.pw.toml) {
         $t = [IO.File]::ReadAllText($f.FullName)
         $sha = [regex]::Match($t, 'hash = "([0-9a-f]{40})"').Groups[1].Value
-        $porSlug[$f.Name -replace '\.pw\.toml$', ''] = $sha
-        $cf = [regex]::Match($t, 'project-id = (\d+)'); if ($cf.Success) { $porCf["cf:$($cf.Groups[1].Value)"] = $sha }
+        $porSlug[$f.Name -replace '\.pw\.toml$', ''] = $sha; $nomeMod[$f.Name -replace '\.pw\.toml$', ''] = [regex]::Match($t, '(?m)^name = "(.*)"').Groups[1].Value
+        $cf = [regex]::Match($t, 'project-id = (\d+)'); if ($cf.Success) { $porCf["cf:$($cf.Groups[1].Value)"] = $sha; $nomeMod["cf:$($cf.Groups[1].Value)"] = $nomeMod[$f.Name -replace '\.pw\.toml$', ''] }
     }
     $modIds = @{}; $itens = @{}
     foreach ($sha in @($porSlug.Values) + @($porCf.Values) | Sort-Object -Unique) {
@@ -2494,6 +2494,9 @@ if (Test-Path $jarsDir) {
         $z.Dispose()
         $modIds[$sha] = @($ids | Where-Object { $_ -notin 'minecraft', 'neoforge', 'c', 'forge' } | Sort-Object -Unique)
     }
+    # Linhas por categoria e mod em ordem alfabetica (sem acento; ordinal para dar igual no PS 5.1 e 7).
+    $chave = { param($s) (($s.Normalize([Text.NormalizationForm]::FormD) -replace '\p{Mn}', '').ToLowerInvariant()) }
+    $dl = New-Object 'Collections.Generic.SortedDictionary[string,string]' ([StringComparer]::Ordinal)
     $linhas = @(); $cat = ''; $resumo = @{ falta = 0; pouco = 0; ok = 0; nao = 0 }
     foreach ($l in [IO.File]::ReadAllLines((Join-Path $root 'modpack/mods.txt'))) {
         if ($l -match '^## (.+)') { $cat = $matches[1]; continue }
@@ -2512,8 +2515,10 @@ if (Test-Path $jarsDir) {
         $qi = if ($sha) { [int]$itens[$sha] } else { 0 }
         $meta = if ($metaFixa[$slug]) { $metaFixa[$slug] } elseif ($qi -eq 0) { 1 } elseif ($qi -le 30) { 3 } elseif ($qi -le 150) { 5 } else { 10 }
         $st = if ($motivo[$slug] -and $n -eq 0) { $resumo.nao++; "nao precisa ($($motivo[$slug]))" } elseif ($n -eq 0) { $resumo.falta++; '**falta**' } elseif ($n -lt $meta) { $resumo.pouco++; 'pouco' } else { $resumo.ok++; 'ok' }
-        $linhas += "| $cat | ``$slug`` | $qi | $n/$meta | $st | $(($caps.Keys | Sort-Object) -join ', ') |"
+        $nm = if ($nomeMod[$slug]) { $nomeMod[$slug] } else { $slug }
+        $dl["$(& $chave $cat)`0$(& $chave $nm)`0$slug"] = "| $cat | $nm (``$slug``) | $qi | $n/$meta | $st | $(($caps.Keys | Sort-Object) -join ', ') |"
     }
+    $linhas = @($dl.Values)
     $doc = @(
         '# Cobertura do livro de missoes'
         ''

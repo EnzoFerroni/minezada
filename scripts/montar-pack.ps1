@@ -298,7 +298,20 @@ Remove-Item -Recurse -Force $tmp
 # Vitrine de mods em docs/mods.md, entre os marcadores: indice das categorias e cada mod recolhido (icone,
 # nome e a primeira frase da descricao do mods.txt; ao clicar, o resto, a imagem, o link e a versao).
 $ancora = { param($t) ($t.ToLower() -replace '[^\p{L}\p{Nd} -]', '') -replace ' ', '-' }  # mesmo id que o GitHub da ao titulo
-$cats = @($linhas | Where-Object { $_ -match '^## ' } | ForEach-Object { $_.Substring(3).Trim() })
+# Categorias e mods em ordem alfabetica (sem acento, sem diferenca de maiuscula; ordinal para dar igual no PS 5.1 e 7).
+$chave = { param($s) (($s.Normalize([Text.NormalizationForm]::FormD) -replace '\p{Mn}', '').ToLowerInvariant()) }
+$grupos = [ordered]@{}; $g = $null
+foreach ($l in $linhas) {
+    if ($l -match '^## (.+)') { $g = $matches[1].Trim(); $grupos[$g] = @() }
+    elseif ($g -and $l -match '^\s*((?:cf:)?[a-z0-9_-]+)\s*\|') { $grupos[$g] += $l }
+}
+$ordenar = { param($itens, $f) $d = New-Object 'Collections.Generic.SortedDictionary[string,string]' ([StringComparer]::Ordinal); foreach ($x in $itens) { $d["$(& $f $x)`0$x"] = $x }; @($d.Values) }
+$ordCats = & $ordenar @($grupos.Keys) { param($c) & $chave $c }
+$linhasOrd = foreach ($c in $ordCats) {
+    "## $c"
+    & $ordenar $grupos[$c] { param($l) $s = ($l -split '\|')[0].Trim(); & $chave "$($info[$s].titulo) $s" }
+}
+$cats = @($ordCats)
 $md = @("<sub>Minecraft $mc · NeoForge $neo · pack ``$Versao`` · $($info.Count) mods. Gerado por ``scripts/montar-pack.ps1``.</sub>",
     '', (($cats | ForEach-Object { $nome = ($_ -split ' [(]')[0]; $id = & $ancora $_; "[$nome](#$id)" }) -join ' · '))
 # Fotos escolhidas por scripts/fotos.ps1 (modpack/fotos.txt; vazio = so o icone).
@@ -308,7 +321,7 @@ if (Test-Path $arqFotos) { foreach ($l in Get-Content $arqFotos -Encoding UTF8) 
 # Cada categoria e uma grade de cartoes (3 por linha): foto, icone com nome (link) e a primeira frase.
 $cartoes = @(); $site = @(); $catAtual = ''
 $fechar = { if ($cartoes) { $script:md += '<table>'; for ($k = 0; $k -lt $cartoes.Count; $k += 3) { $script:md += '<tr>' + (($cartoes[$k..([Math]::Min($k + 2, $cartoes.Count - 1))]) -join '') + '</tr>' }; $script:md += '</table>' }; $script:cartoes = @() }
-foreach ($l in $linhas) {
+foreach ($l in $linhasOrd) {
     if ($l -match '^## (.+)') { & $fechar; $md += '', "## $($matches[1])", '' }
     elseif ($l -match '^\s*((?:cf:)?[a-z0-9_-]+)\s*\|\s*(.+)$') {
         $slug = $matches[1]; $desc = $matches[2].Trim(); $i = $info[$slug]
