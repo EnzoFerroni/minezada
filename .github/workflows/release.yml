@@ -25,7 +25,28 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ env.TAG }}
+          fetch-depth: 0
           persist-credentials: false
+      # Acrescenta nas notas os mods que entraram, sairam e mudaram de versao desde a Release anterior.
+      - name: Mods nas notas
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          export LC_ALL=C
+          ant=$(git tag -l 'v*' --sort=-creatordate | grep -vx "$TAG" | head -1)
+          [ -n "$ant" ] || exit 0
+          nomes() { git ls-tree --name-only "$1" modpack/pack/mods/ | while read -r f; do
+            printf '%s\t%s\n' "$(git show "$1:$f" | sed -n 's/^name = "\(.*\)"/\1/p')" "$(git show "$1:$f" | sed -n 's/^filename = "\(.*\)"/\1/p')"; done | sort; }
+          nomes "$ant" > a.tsv; nomes "$TAG" > b.tsv
+          lista() { if [ -s "$1" ]; then sed 's/^/- /' "$1"; else echo "- nenhum"; fi; }
+          cut -f1 a.tsv | sort -u > an; cut -f1 b.tsv | sort -u > bn
+          comm -13 an bn > entraram; comm -23 an bn > sairam
+          join -t$'\t' a.tsv b.tsv | awk -F'\t' '$2!=$3{print $1}' > mudaram
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json body -q .body > notas.md
+          grep -q '^## Mods desde' notas.md && exit 0
+          { echo; echo "## Mods desde $ant"; echo; echo "Entraram:"; lista entraram; echo; echo "Sairam:"; lista sairam
+            echo; echo "Versao nova:"; lista mudaram; } >> notas.md
+          gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --notes-file notas.md
       # packwiz fixo por commit. O export baixa cada mod para calcular o sha512 que o .mrpack exige.
       - name: Gerar o .mrpack
         run: |
