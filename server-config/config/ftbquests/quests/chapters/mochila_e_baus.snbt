@@ -113,7 +113,7 @@
 			dependencies: ["585BC78BCC23604E"]
 			id: "6D93AAA52D2FC80F"
 			rewards: [{ id: "32AF6CCF04A0B694", type: "xp", xp: 20 }, { id: "2F8E1B1F99973F2A", item: { count: 1, id: "sophisticatedstorage:basic_to_iron_tier_upgrade" }, type: "item" }]
-			tasks: [{ id: "7B948442127C39BD", item: { count: 1, id: "sophisticatedstorage:chest" }, type: "item" }]
+			tasks: [{ id: "7B948442127C39BD", item: { count: 1, components: {"sophisticatedstorage:wood_type":"oak"}, id: "sophisticatedstorage:chest" }, match_components: "none", type: "item" }]
 			x: 2d
 			y: 5.75d
 			hide_dependency_lines: true
@@ -123,7 +123,7 @@
 			id: "7BC3A5BD3552D288"
 			rewards: [{ id: "54490258F3573AA2", type: "xp", xp: 20 }]
 			optional: true
-			tasks: [{ id: "46E0D22A8401FD42", item: { count: 1, id: "sophisticatedstorage:limited_barrel_1" }, type: "item" }]
+			tasks: [{ id: "46E0D22A8401FD42", item: { count: 1, components: {"sophisticatedstorage:wood_type":"spruce"}, id: "sophisticatedstorage:limited_barrel_1" }, match_components: "none", type: "item" }]
 			x: 4d
 			y: 5.0d
 			hide_dependency_lines: true
