@@ -224,9 +224,9 @@ if (Test-Path $soltos) {
         $dest = Join-Path $pw $rel
         New-Item -ItemType Directory -Force (Split-Path $dest) | Out-Null
         Copy-Item $a.FullName $dest
-        # minezada.ps1/.sh (rodam antes de abrir) e os pacotes de
+        # minezada.ps1/.sh (rodam antes de abrir), o texto do Ultimine (fora de baixo do minimapa) e os pacotes de
         # recursos proprios (resourcepacks/) sempre atualizam: sem preserve.
-        $pres = if ($rel -like 'minezada.*' -or $rel -like 'resourcepacks/*' -or $rel -eq 'mundo-id.txt') { '' } else { "preserve = true`n" }
+        $pres = if ($rel -like 'minezada.*' -or $rel -eq 'config/ftbultimine-client.snbt' -or $rel -like 'resourcepacks/*' -or $rel -eq 'mundo-id.txt') { '' } else { "preserve = true`n" }
         $idx += "`n[[files]]`nfile = $(Toml $rel)`nhash = `"$(Sha256 $dest)`"`n$pres"
     }
 }
