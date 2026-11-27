@@ -787,17 +787,96 @@
 	quest.08B06B2679D02B1D.title: "Fumar"
 	quest.08B06B2679D02B1D.quest_subtitle: "Smoking Pipe e Tobacconist"
 	quest.08B06B2679D02B1D.quest_desc: ["Plante tabaco, seque e fume no cachimbo. É só diversão: dá um pouco de experiência."]
+	chapter.4336DF8ADFC764BF.title: "Create: energia"
+	chapter.4336DF8ADFC764BF.chapter_subtitle: ["Create Crafts & Additions: eletricidade"]
+	quest.047025B1EE2634F3.title: "Giro vira energia"
+	quest.047025B1EE2634F3.quest_subtitle: "Alternador"
+	quest.047025B1EE2634F3.quest_desc: ["O &ealternador&r recebe giro do Create e faz &eenergia elétrica&r (FE).", "É a energia que as máquinas do Mekanism e de outros mods usam."]
+	quest.0DB3694569E089A1.title: "Laminador"
+	quest.0DB3694569E089A1.quest_desc: ["O &elaminador&r gira e transforma lingotes em &ehastes&r e chapas em &efios&r."]
+	quest.05547B220C858625.title: "Fio de cobre"
+	quest.05547B220C858625.quest_desc: ["O &efio de cobre&r enrolado no &ecarretel&r liga os conectores e leva energia."]
+	quest.36F7808BC93DAC16.title: "Conectores"
+	quest.36F7808BC93DAC16.quest_desc: ["Ponha um &econector&r em cada máquina. Clique com o carretel em um e depois no outro: o fio liga os dois.", "O &econector grande&r leva mais energia e mais longe."]
+	quest.452D1ED958B227A4.title: "Acumulador"
+	quest.452D1ED958B227A4.quest_desc: ["O &eacumulador&r é uma bateria grande. Guarda energia para a noite e para quando o giro para."]
+	quest.23FB7B97FAF4EC21.title: "Motor elétrico"
+	quest.23FB7B97FAF4EC21.quest_desc: ["O &emotor elétrico&r faz o contrário: energia vira giro. Dá para escolher a velocidade.", "Assim uma fábrica longe recebe força só por fio."]
+	quest.1442DCECE23509B0.title: "Bobina de Tesla"
+	quest.1442DCECE23509B0.quest_desc: ["A &ebobina de Tesla&r carrega itens com energia que passam embaixo dela."]
+	quest.3B6DF873C66A9D6D.title: "Biocombustível"
+	quest.3B6DF873C66A9D6D.quest_desc: ["Sementes na prensa dão &eóleo de sementes&r; misturado vira &ebiocombustível&r.", "Com o &equeimador com canudo&r, o queimador de blaze é alimentado por líquido. Veja tudo no JEI."]
+	quest.1DCC81B43BD3F3DF.title: "Electrum"
+	quest.1DCC81B43BD3F3DF.quest_desc: ["Ouro e prata no misturador viram &eelectrum&r, um fio melhor para levar energia."]
 	chapter.352FDEAA5730E688.title: "Create: addons"
+	chapter.352FDEAA5730E688.chapter_subtitle: ["Mais máquinas, encantos e equipamentos"]
 	quest.07F95DF54233143C.title: "Jetpack"
-	quest.07F95DF54233143C.quest_desc: ["Create Jetpack: voa com ar comprimido de um tanque."]
-	quest.38B4B8D64B859B04.title: "Escavadeira de minerio"
-	quest.38B4B8D64B859B04.quest_desc: ["Create Ore Excavation: maquinas que extraem minerio de veios infinitos no subsolo."]
-	quest.6B817114074B4272.title: "Encantar com maquina"
-	quest.6B817114074B4272.quest_desc: ["Create Enchantment Industry: transforma experiencia em liquido e encanta itens com maquinas."]
-	quest.325CB21188010A9A.title: "Energia"
-	quest.325CB21188010A9A.quest_desc: ["Create Crafts & Additions: o alternador gera energia e o motor eletrico gira as maquinas."]
-	quest.577B50F4C3ED884A.title: "Cozinha automatica"
-	quest.577B50F4C3ED884A.quest_desc: ["Create Central Kitchen: as maquinas do Create fazem as comidas do Farmer's Delight."]
+	quest.07F95DF54233143C.quest_subtitle: "Create Jetpack"
+	quest.07F95DF54233143C.quest_desc: ["O &ejetpack&r usa o ar do tanque de ar para &avoar&r. Feito a partir do tanque de ar de cobre.", "Encha de ar como o tanque normal. A versão de netherita aguenta mais."]
+	quest.5FC9632E31CB5DFE.title: "Capacete com óculos"
+	quest.5FC9632E31CB5DFE.quest_subtitle: "Create Goggles"
+	quest.5FC9632E31CB5DFE.quest_desc: ["Junte os &eóculos de engenheiro&r com um capacete e use os dois de uma vez.", "Os &etanques de ar&r de ferro, ouro e diamante protegem como peitoral."]
+	quest.10E98AB1A679DC59.title: "Exoesqueleto"
+	quest.10E98AB1A679DC59.quest_subtitle: "Create Stuff Additions"
+	quest.10E98AB1A679DC59.quest_desc: ["O Create Stuff Additions traz &ejetpacks&r de outros materiais, &eexoesqueleto&r (pula e corre mais), broca e ferramentas."]
+	quest.35FE24176E3BCE6E.title: "Broca portátil"
+	quest.35FE24176E3BCE6E.quest_desc: ["A &ebroca portátil&r quebra blocos rápido usando ar ou combustível."]
+	quest.01AD84283E144F3E.title: "Gancho"
+	quest.01AD84283E144F3E.quest_desc: ["O &egancho&r puxa você até onde ele prende. Ótimo para escalar."]
+	quest.0AE0A49C20D90610.title: "Encantar com máquinas"
+	quest.0AE0A49C20D90610.quest_subtitle: "Create Enchantment Industry"
+	quest.0AE0A49C20D90610.quest_desc: ["O &eencantador de blaze&r encanta itens sozinho, usando &eXP líquido&r.", "Veja no JEI e no Ponder (&eW&r) como juntar XP líquido e montar a linha."]
+	quest.64255BD6E52FBFE8.title: "Esmeril mecânico"
+	quest.64255BD6E52FBFE8.quest_desc: ["O &eesmeril mecânico&r tira encantos de itens e devolve o XP."]
+	quest.6E68B7070F2E6DAD.title: "Impressora"
+	quest.6E68B7070F2E6DAD.quest_desc: ["A &eimpressora&r copia livros encantados e livros escritos usando XP líquido."]
+	quest.2662E6DB09B9D435.title: "Lanterna de XP"
+	quest.2662E6DB09B9D435.quest_desc: ["A &elanterna de experiência&r ilumina e guarda XP. Bonita na base."]
+	quest.5FB760C9763FC50F.title: "Minério infinito"
+	quest.5FB760C9763FC50F.quest_subtitle: "Create Ore Excavation"
+	quest.5FB760C9763FC50F.quest_desc: ["Há &everos de minério&r escondidos embaixo dos chunks. O &elocalizador de veios&r diz o que tem no chunk."]
+	quest.3C50EFB67540B9CA.title: "Perfuratriz"
+	quest.3C50EFB67540B9CA.quest_desc: ["A &eperfuratriz&r em cima de um veio, com uma &ebroca&r e giro, tira minério &asem acabar&r.", "Veja no Ponder (&eW&r) como montar."]
+	quest.1A259D813E630E42.title: "Atlas de veios"
+	quest.1A259D813E630E42.quest_desc: ["O &eatlas&r guarda os veios que você já achou."]
+	quest.45730FE793A899F4.title: "Bateria cinética"
+	quest.45730FE793A899F4.quest_subtitle: "Create Connected"
+	quest.45730FE793A899F4.quest_desc: ["O Create Connected traz peças que faltam: &ebateria cinética&r (guarda giro), freio, embreagens e caixas novas."]
+	quest.323EF5860F8798A5.title: "Silo de itens"
+	quest.323EF5860F8798A5.quest_desc: ["O &esilo&r guarda muito item, empilhando em altura. O &evaso de fluido&r faz o mesmo com líquidos."]
+	quest.2F3B53AD4A123954.title: "Caixa de 6 lados"
+	quest.2F3B53AD4A123954.quest_desc: ["A &ecaixa de engrenagens de 6 lados&r leva o giro para todas as direções."]
+	quest.41ACC6F31407787B.title: "Cortadora"
+	quest.41ACC6F31407787B.quest_subtitle: "Slice and Dice"
+	quest.41ACC6F31407787B.quest_desc: ["A &ecortadora&r segura uma faca e corta comida no depósito: as receitas da tábua do Farmer's Delight sozinhas.", "O &eregador&r molha a plantação e faz crescer mais rápido."]
+	quest.577B50F4C3ED884A.title: "Cozinha automática"
+	quest.577B50F4C3ED884A.quest_subtitle: "Create Central Kitchen"
+	quest.577B50F4C3ED884A.quest_desc: ["Com o Central Kitchen, &ebicos&r, &ebraços&r e &edeployers&r cozinham as receitas da panela e da frigideira dos mods de comida.", "&7Clique em Concluir quando montar algo."]
+	quest.5457A75344E09AE4.title: "Velas especiais"
+	quest.5457A75344E09AE4.quest_subtitle: "Dreams and Desires"
+	quest.5457A75344E09AE4.quest_desc: ["As &evelas catalisadoras&r dão processos novos ao vento do ventilador: congelar, lixar, ferver e mais.", "Veja no Ponder (&eW&r)."]
+	quest.0B08001F282864B7.title: "Prensa hidráulica"
+	quest.0B08001F282864B7.quest_desc: ["A &eprensa hidráulica&r e o &eventilador industrial&r são versões mais fortes das máquinas do Create."]
+	quest.527C38FCB9F31E60.title: "Milk-shake"
+	quest.527C38FCB9F31E60.quest_desc: ["O Dreams and Desires tem &emilk-shakes&r. Misture no misturador e encha com o bico."]
+	quest.19186904EA9D7269.title: "Blocos que copiam"
+	quest.19186904EA9D7269.quest_subtitle: "Copycats+"
+	quest.19186904EA9D7269.quest_desc: ["Os blocos &ecopycat&r copiam a textura de qualquer bloco: clique neles com o bloco na mão.", "Degraus, rampas, portas e cercas de qualquer material."]
+	quest.08DC6AEE1E596AE3.title: "Decoração industrial"
+	quest.08DC6AEE1E596AE3.quest_subtitle: "Create Deco"
+	quest.08DC6AEE1E596AE3.quest_desc: ["Passarelas, grades, janelas e chapas no estilo do Create. Veja tudo no JEI."]
+	quest.43B19B7722CB18CB.title: "Cadeiras"
+	quest.43B19B7722CB18CB.quest_subtitle: "Interiors"
+	quest.43B19B7722CB18CB.quest_desc: ["Cadeiras e sofás no estilo do Create. Funcionam também dentro de trens."]
+	quest.2C6CC6B4A989908C.title: "Navegador"
+	quest.2C6CC6B4A989908C.quest_subtitle: "Create Railways Navigator"
+	quest.2C6CC6B4A989908C.quest_desc: ["O &enavegador&r acha a rota de trem entre duas estações, com horários."]
+	quest.2337906B10633422.title: "Terminal no trem"
+	quest.2337906B10633422.quest_subtitle: "Contraption Terminals"
+	quest.2337906B10633422.quest_desc: ["O terminal do &eTom's Storage&r funciona dentro de trens e máquinas que andam.", "&7Clique em Concluir quando testar."]
+	quest.21DADBE9E1F368A9.title: "Dirigíveis"
+	quest.21DADBE9E1F368A9.quest_subtitle: "Create Aeronautics"
+	quest.21DADBE9E1F368A9.quest_desc: ["Com o Aeronautics, construções do Create &avoam&r: dirigíveis, aviões, barcos e carros.", "Veja os blocos novos no JEI e o Ponder (&eW&r) de cada um.", "&7Clique em Concluir quando montar seu primeiro veículo."]
 	chapter.671D011D2029328F.title: "Cacador de chefes"
 	quest.62726123703DF347.title: "Wither"
 	quest.62726123703DF347.quest_desc: ["Tres cranios de esqueleto wither em cima de areia das almas em T. Faca longe de casa."]
