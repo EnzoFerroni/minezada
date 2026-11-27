@@ -208,6 +208,8 @@ bliss-shader | Céu e nuvens impressionantes, para PCs fortes. No Mac abre (test
 
 ## Servidor e login
 modflared | Liga sozinho o túnel da Cloudflare ao entrar no servidor. A conexão vai como site seguro (HTTPS), então funciona em rede de faculdade, empresa e Wi-Fi público.
+crash-assistant | Se o jogo fechar com erro, abre uma janela explicando o motivo e com um botão que manda o log e gera um link: mande esse link no grupo para resolvermos.
+yeetus-experimentus | Tira o aviso de "configurações experimentais" ao criar ou abrir mundo sozinho.
 mixauth | Login no servidor. Com Minecraft original você entra direto (a Mojang confirma a conta) e com a sua skin. Sem original: na primeira vez /register senha senha, depois /login senha, sempre (protege seu nick).
 skinrestorer | Mostra a skin de cada um no servidor, mesmo em rede que bloqueia a Mojang. Trocar: /skin set nick SeuNick ou /skin set web classic <link da imagem>.
 customskinloader | Busca a skin de cada jogador direto no jogo. Se o servidor não conseguir as skins (limite da Mojang em rede compartilhada, como na faculdade), elas continuam aparecendo.

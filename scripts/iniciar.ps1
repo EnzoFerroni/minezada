@@ -441,6 +441,24 @@ finally {
     if ($sync -and (Test-Path (Join-Path $sync 'dispatch.txt'))) {
         & $cfg.JAVA (Join-Path $PSScriptRoot 'Selo.java') $sync 'desligou' | ForEach-Object { Write-Host $_ }
     }
+    # Logs da sessao no Drive (logs/AAAAMMDD-HHMM): latest.log, crashes e erros.txt so com WARN/ERROR. Guarda as 20 ultimas.
+    if ($sync) {
+        try {
+            $desde = if ($inicio) { $inicio } else { (Get-Date).AddHours(-12) }
+            $dl = Join-Path $sync "logs\$(Get-Date -Format yyyyMMdd-HHmm)"
+            New-Item -ItemType Directory -Force $dl | Out-Null
+            $ll = Join-Path $server 'logs\latest.log'
+            if (Test-Path $ll) {
+                Copy-Item $ll $dl
+                Select-String -Path $ll -Pattern '/(WARN|ERROR|FATAL)\]' | ForEach-Object Line | Set-Content (Join-Path $dl 'erros.txt')
+            }
+            @(Get-ChildItem (Join-Path $server 'crash-reports') -ErrorAction SilentlyContinue) + @(Get-ChildItem $server -Filter 'hs_err_pid*.log') |
+                Where-Object { $_ -and $_.LastWriteTime -ge $desde } | Copy-Item -Destination $dl
+            Get-ChildItem (Join-Path $sync 'logs') -Directory | Sort-Object Name -Descending | Select-Object -Skip 20 | Remove-Item -Recurse -Force
+            Write-Host "Logs da sessao em $dl"
+        }
+        catch { Write-Warning "Nao guardei os logs: $($_.Exception.Message)" }
+    }
     if ($sync) {
         Write-Host 'Enviando mundo para a pasta sincronizada...'
         $itens = @('world', 'ops.json', 'whitelist.json', 'banned-players.json', 'banned-ips.json') |

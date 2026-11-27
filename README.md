@@ -57,6 +57,8 @@ Na primeira vez, o jogo pede a sua conta. **Tem Minecraft original?** Entre com 
 
 Ele manda os registros do jogo para o site [mclo.gs](https://mclo.gs) e copia os links. Vai só o seu nick, nada pessoal.
 
+Se o jogo fechar com erro, abre uma janela com um botão que gera o link do registro sozinho: mande esse link no grupo.
+
 **Windows** (no PowerShell):
 
 ```powershell
