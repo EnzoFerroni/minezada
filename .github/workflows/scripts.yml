@@ -35,7 +35,7 @@ jobs:
           java-version: '21'
       - name: shellcheck
         if: runner.os == 'Linux'
-        run: shellcheck -S warning scripts/*.sh scripts/testes/*.sh ./*.sh iniciar.command modpack/arquivos/minezada.sh
+        run: git ls-files -z '*.sh' '*.command' | xargs -0 shellcheck -S warning
       - name: desinstalar.sh
         run: /bin/bash scripts/testes/desinstalar.sh
       - name: minezada.sh (antes de abrir o jogo, .minecraft falsa)
