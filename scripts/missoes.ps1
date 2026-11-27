@@ -513,6 +513,21 @@ $capitulos = @(
             ''
             'A tecla &eAlt + B&r abre o terminal sem fio que está no seu inventário.'
         ); item = 'toms_storage:wireless_terminal' }
+        @{ t = 'Barril de ferro'; depois = 'Baú que cresce'; d = @(
+            'Barris e baús do Sophisticated Storage sobem de nível com &emelhorias de nível&r: cobre, ferro, ouro, diamante, netherita.'
+        ); item = 'sophisticatedstorage:iron_barrel' }
+        @{ t = 'Fita de mudança'; depois = 'Baú que cresce'; d = @(
+            'A &efita de empacotar&r fecha o baú: quebre e ele sai &acom tudo dentro&r. Ótimo para mudar de casa.'
+        ); item = 'sophisticatedstorage:packing_tape' }
+        @{ t = 'Controlador'; depois = 'Barril de ferro'; marco = $true; d = @(
+            'O &econtrolador&r junta todos os baús e barris encostados: coloque itens nele e eles vão para o baú certo.'
+        ); item = 'sophisticatedstorage:controller' }
+        @{ t = 'Baú de diamante'; depois = 'Baú de ferro'; d = @(
+            'Os baús do Iron Chests vão do ferro ao &ediamante&r, &ecristal&r (dá para ver dentro) e &eobsidiana&r (aguenta explosão).'
+        ); item = 'ironchest:diamond_chest' }
+        @{ t = 'Melhorar baú colocado'; depois = 'Baú de ferro'; d = @(
+            'Clique com a &emelhoria de baú&r em um baú já colocado: ele sobe de nível sem tirar nada de dentro.'
+        ); item = 'ironchest:wood_to_iron_chest_upgrade' }
     ) }
     @{ t = 'Cozinha e fazenda'; g = 'Começo'; icone = 'farmersdelight:cooking_pot'; sub = 'Comer bem deixa você mais forte'; m = @(
         @{ t = 'Variedade dá vida'; mod = @('cf:277616'); marco = $true; sub = 'Spice of Life'; d = @(
@@ -652,6 +667,42 @@ $capitulos = @(
             ''
             'Comece minerando &einferium&r nas cavernas. A essência dele faz as primeiras sementes. Veja o caminho todo com &eU&r em cima da essência.'
         ); item = 'mysticalagriculture:inferium_essence'; q = 8; p = 'mysticalagriculture:prosperity_seed_base'; n = 2 }
+        @{ t = 'Diário de comidas'; depois = 'Variedade dá vida'; sub = 'Spice of Life'; d = @(
+            'O &ediário de comidas&r mostra quantas comidas diferentes você já provou e quanto falta para o próximo &acoração extra&r.'
+        ); item = 'solcarrot:food_book' }
+        @{ t = 'Corações extras'; mod = @('cf:277616'); depois = 'Diário de comidas'; marco = $true; d = @(
+            'Cada tanto de &ecomidas novas&r que você prova dá um &acoração a mais&r de vida, para sempre.'
+            'Comer sempre a mesma coisa não conta. Varie: é o motivo de existir tanta receita no pack.'
+            ''
+            '&7Clique em Concluir quando ganhar seu primeiro coração extra.'
+        ) }
+        @{ t = 'Prensa de comida'; depois = 'Utensílios que não quebram'; d = @(
+            'A &eprensa de comida&r do Croptopia faz óleo, suco e massa. Também fica na mesa sem quebrar.'
+        ); item = 'croptopia:food_press' }
+        @{ t = 'Queijo'; depois = 'Prensa de comida'; opcional = $true; d = @(
+            'O &equeijo&r entra em pizza, lasanha e muitas outras receitas. Veja como fazer com &eR&r.'
+        ); item = 'croptopia:cheese'; q = 4 }
+        @{ t = 'Pizza'; depois = 'Queijo'; opcional = $true; d = @(
+            'Uma das comidas que mais enchem. Ótima para quem vai explorar.'
+        ); item = 'croptopia:pizza'; p = 'croptopia:cheese'; n = 4 }
+        @{ t = 'Balcão e torradeira'; depois = 'Cozinha montada'; d = @(
+            'O &ebalcão&r guarda ingredientes e conta como parte da cozinha. A &etorradeira&r faz torrada e esquenta comida.'
+        ); item = 'cookingforblockheads:counter'; p = 'cookingforblockheads:toaster' }
+        @{ t = 'Porta-temperos'; depois = 'Balcão e torradeira'; opcional = $true; d = @(
+            'O &eporta-temperos&r na parede guarda temperos ao alcance da cozinha.'
+        ); item = 'cookingforblockheads:spice_rack' }
+        @{ t = 'Gavetas'; depois = 'Armários de cozinha'; d = @(
+            'As &egavetas&r do Storage Delight guardam itens e enfeitam. Cada madeira tem a sua.'
+        ); item = 'storagedelight:oak_drawer_with_door' }
+        @{ t = 'Estante com porta'; depois = 'Gavetas'; opcional = $true; d = @(
+            'Estantes e armários com porta para o escritório e a biblioteca.'
+        ); item = 'storagedelight:oak_bookshelf_with_door' }
+        @{ t = 'Vaso bonito'; depois = 'Vaso de planta'; opcional = $true; d = @(
+            'O vaso existe em &etijolo&r, pedra, deepslate e outros. O &evaso encerado&r não deixa ninguém mexer na planta.'
+        ); item = 'botanypots:bricks_botany_pot' }
+        @{ t = 'Vaso de pedra'; depois = 'Vaso bonito'; opcional = $true; d = @(
+            'Vaso de &etijolo de pedra&r com funil, para uma fazenda de vasos bonita no porão.'
+        ); item = 'botanypots:stone_bricks_hopper_botany_pot' }
     ) }
     @{ t = 'Agricultura mística'; g = 'Começo'; icone = 'mysticalagriculture:inferium_essence'; sub = 'Mystical Agriculture: plantar minério'; m = @(
         @{ t = 'Minério que se planta'; marco = $true; sub = 'Comece por aqui'; d = @(
@@ -1625,6 +1676,50 @@ $capitulos = @(
         @{ t = 'Fumar'; mod = @('cf:1410391', 'cf:896915', 'ciggycraft'); depois = 'Minerar em bloco'; opcional = $true; sub = 'Smoking Pipe e Tobacconist'; d = @(
             'Plante tabaco, seque e fume no cachimbo. É só diversão: dá um pouco de experiência.'
         ) }
+        @{ t = 'Martelo de impacto'; depois = 'Martelo'; d = @(
+            'O &emartelo de impacto&r quebra uma área maior. O &emartelo reforçado&r dura muito mais.'
+        ); item = 'justhammers:iron_impact_hammer' }
+        @{ t = 'Martelo reforçado'; depois = 'Martelo de impacto'; opcional = $true; d = @(
+            'Feito com o &enúcleo reforçado&r. Ótimo para cavar túneis grandes.'
+        ); item = 'justhammers:iron_reinforced_hammer' }
+        @{ t = 'Lingote de netherita com ferro'; depois = 'Netherite melhor'; d = @(
+            'O Advanced Netherite junta netherita com &eferro&r, &eouro&r, &eesmeralda&r ou &ediamante&r. Cada um dá um bônus diferente.'
+        ); item = 'advancednetherite:netherite_iron_ingot' }
+        @{ t = 'Picareta de netherita com diamante'; depois = 'Lingote de netherita com ferro'; opcional = $true; marco = $true; d = @(
+            'Uma das picaretas mais fortes do jogo. Projeto para o fim.'
+        ); item = 'advancednetherite:netherite_diamond_pickaxe' }
+        @{ t = 'Ultimine cansa'; mod = @('cf:386134'); depois = 'Minerar em bloco'; d = @(
+            'Quebrar muitos blocos de uma vez com o &eUltimine&r gasta &efome&r. Leve comida.'
+            'Os itens e o XP caem juntos no lugar do primeiro bloco.'
+            '&7Clique em Concluir.'
+        ) }
+        @{ t = 'Botas de queda longa'; depois = 'Portal gun'; d = @(
+            'As &ebotas de queda longa&r tiram o dano de queda. Combinam com o portal gun.'
+        ); item = 'aperture_innovations:long_fall_boots' }
+        @{ t = 'Cubo companheiro'; depois = 'Portal gun'; opcional = $true; d = @(
+            'O &ecubo companheiro&r com coração. Ele não fala, mas é fiel.'
+        ); item = 'aperture_innovations:weighted_companion_cube' }
+        @{ t = 'Mesa do cachimbo'; depois = 'Fumar'; d = @(
+            'A &emesa de cachimbos&r faz cachimbos do Smoking Pipe. A &efolha da sabedoria&r dá experiência ao fumar.'
+        ); item = 'smokingpipe:pipemaker_table' }
+        @{ t = 'Plantar tabaco'; depois = 'Fumar'; d = @(
+            'Plante &esementes de tabaco&r e seque as folhas (veja como no JEI). Cada tipo de folha tem um efeito.'
+        ); item = 'ciggycraft:tobacco_seeds'; q = 4 }
+        @{ t = 'Guia do tabaco'; depois = 'Plantar tabaco'; d = @(
+            'O &eguia do Tobacconist&r explica os tipos de tabaco, cachimbos, charutos e narguilé.'
+        ); item = 'tobacconistmod:tobacco_guide' }
+        @{ t = 'Cachimbo de ouro'; depois = 'Guia do tabaco'; opcional = $true; d = @(
+            'Cachimbos melhores duram mais. Há de cobre, ferro, ouro, joias e até netherita.'
+        ); item = 'tobacconistmod:gold_smoking_pipe' }
+        @{ t = 'Charuto'; depois = 'Guia do tabaco'; opcional = $true; d = @(
+            'O Tobacconist também faz &echaruto&r e &ecigarro&r com papel de enrolar. Veja as receitas no JEI.'
+        ); item = 'tobacconistmod:cigar' }
+        @{ t = 'Cigarro'; depois = 'Plantar tabaco'; opcional = $true; d = @(
+            'O CiggyCraft faz &ecigarro&r e &emaço&r com as folhas secas.'
+        ); item = 'ciggycraft:pack_of_cigarettes' }
+        @{ t = 'Cachimbo simples'; depois = 'Mesa do cachimbo'; opcional = $true; d = @(
+            'O &ecachimbo&r do Smoking Pipe, feito na mesa de cachimbos.'
+        ); item = 'smokingpipe:smoking_pipe' }
     ) }
     @{ t = 'Create: energia'; g = 'Tecnologia'; icone = 'createaddition:electric_motor'; sub = 'Create Crafts & Additions: eletricidade'; m = @(
         @{ t = 'Giro vira energia'; marco = $true; sub = 'Alternador'; d = @(
@@ -1749,6 +1844,49 @@ $capitulos = @(
             'Veja os blocos novos no JEI e o Ponder (&eW&r) de cada um.'
             '&7Clique em Concluir quando montar seu primeiro veículo.'
         ) }
+        @{ t = 'Jetpack de netherita'; depois = 'Jetpack'; opcional = $true; d = @(
+            'Aguenta mais ar e protege como peitoral de netherita.'
+        ); item = 'create_jetpack:netherite_jetpack' }
+        @{ t = 'Voar com o jetpack'; mod = @('create-jetpack'); depois = 'Jetpack'; d = @(
+            'Com o jetpack cheio no peito, segure &epular&r no ar para subir. Veja em &eControles&r a tecla do modo pairar.'
+            '&7Clique em Concluir quando voar.'
+        ) }
+        @{ t = 'Tanque de diamante'; depois = 'Capacete com óculos'; d = @(
+            'O &etanque de ar de diamante&r protege como peitoral de diamante e guarda ar.'
+        ); item = 'creategoggles:diamond_backtank' }
+        @{ t = 'Mergulho com óculos'; depois = 'Capacete com óculos'; opcional = $true; d = @(
+            'O &ecapacete de mergulho com óculos&r: respira na água e mostra as máquinas.'
+        ); item = 'creategoggles:goggle_diving_helmet' }
+        @{ t = 'Forja de blaze'; depois = 'Encantar com máquinas'; opcional = $true; d = @(
+            'A &eforja de blaze&r junta encantos e faz receitas especiais com XP líquido. Veja no JEI.'
+        ); item = 'create_enchantment_industry:blaze_forger' }
+        @{ t = 'Lança-chamas'; depois = 'Exoesqueleto'; opcional = $true; d = @(
+            'O &elança-chamas&r queima o que estiver na frente usando combustível.'
+        ); item = 'create_sa:flamethrower' }
+        @{ t = 'Drone'; depois = 'Exoesqueleto'; opcional = $true; d = @(
+            'O &edrone de latão&r voa e carrega itens, guiado pelo controle.'
+        ); item = 'create_sa:brass_drone_item' }
+        @{ t = 'Relógio de estação'; depois = 'Navegador'; opcional = $true; d = @(
+            'O &erelógio de estação&r e os &epainéis avançados&r mostram horários e destinos dos trens.'
+        ); item = 'createrailwaysnavigator:train_station_clock' }
+        @{ t = 'Painel avançado'; depois = 'Relógio de estação'; opcional = $true; d = @(
+            'Monte um painel de partidas igual ao de estação de verdade.'
+        ); item = 'createrailwaysnavigator:advanced_display' }
+        @{ t = 'Porta que copia'; depois = 'Blocos que copiam'; opcional = $true; d = @(
+            'Portas e alçapões copycat ficam com a textura do bloco que você escolher.'
+        ); item = 'copycats:copycat_door' }
+        @{ t = 'Grades e janelas'; depois = 'Decoração industrial'; opcional = $true; d = @(
+            'Grades de andesito e janelas de latão do Create Deco para fábricas bonitas.'
+        ); item = 'createdeco:brass_window'; q = 4 }
+        @{ t = 'Barras'; depois = 'Grades e janelas'; opcional = $true; d = @(
+            'Barras de metal em vários materiais.'
+        ); item = 'createdeco:andesite_bars'; q = 8 }
+        @{ t = 'Motor Stirling'; depois = 'Velas especiais'; opcional = $true; d = @(
+            'O &emotor Stirling&r gira com calor. Uma fonte de força pequena e simples.'
+        ); item = 'dndesires:stirling_engine' }
+        @{ t = 'Furadeira de mão'; depois = 'Velas especiais'; opcional = $true; d = @(
+            'A &efuradeira&r e a &eserra de mão&r quebram blocos rápido com a força do Create.'
+        ); item = 'dndesires:handheld_drill' }
     ) }
     @{ t = 'Explorar'; g = 'Aventura'; icone = 'naturescompass:naturescompass'; sub = 'Ferramentas para achar tudo pelo mundo'; m = @(
         @{ t = 'Pé na estrada'; marco = $true; sub = 'Comece por aqui'; d = @(
@@ -2241,7 +2379,7 @@ $semMissao = @{
     'funciona sozinho ou so muda a tela' = 'bettersearch', 'appleskin', 'better-advancements', 'yungs-menu-tweaks', 'polymorph', 'travelers-titles', 'dynamic-torches', 'tectonic', 'yungs-bridges', 'yungs-extras', 'easy-anvils'
 }
 # Meta fixa para mod com muitas variantes (madeira, cor) que inflam a contagem de itens.
-$metaFixa = @{ 'storage-delight' = 3; 'botany-pots' = 4; 'cf:415438' = 8; 'macaws-furniture' = 4; 'macaws-roofs' = 2; 'macaws-windows' = 2; 'macaws-doors' = 2; 'macaws-bridges' = 2; 'macaws-fences-and-walls' = 2; 'handcrafted' = 4; 'sophisticated-storage' = 6; 'createdeco' = 3; 'create-deco' = 3; 'copycats' = 2; 'advanced-netherite' = 3; 'interiors' = 2; 'biomes-o-plenty' = 6; 'galosphere' = 6 }
+$metaFixa = @{ 'storage-delight' = 3; 'botany-pots' = 4; 'cf:415438' = 8; 'macaws-furniture' = 4; 'macaws-roofs' = 2; 'macaws-windows' = 2; 'macaws-doors' = 2; 'macaws-bridges' = 2; 'macaws-fences-and-walls' = 2; 'handcrafted' = 4; 'sophisticated-storage' = 6; 'createdeco' = 3; 'create-deco' = 3; 'copycats' = 2; 'advanced-netherite' = 3; 'interiors' = 2; 'biomes-o-plenty' = 6; 'galosphere' = 6; 'cf:896915' = 4; 'cf:386134' = 2 }
 $motivo = @{}; foreach ($k in $semMissao.Keys) { foreach ($s in $semMissao[$k]) { $motivo[$s] = $k } }
 if (Test-Path $jarsDir) {
     # slug -> jar (sha1 do .pw.toml) -> modIds do neoforge.mods.toml (com os mods embutidos).
