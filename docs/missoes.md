@@ -2,7 +2,7 @@
 
 Gerado pelo `scripts/missoes.ps1`. Nao edite a mao: rode o script depois de mexer no livro ou no `mods.txt`.
 
-36 capitulos, 632 missoes. Mods: 103 ok, 22 abaixo da meta, 0 faltando, 68 sem necessidade de missao.
+36 capitulos, 676 missoes. Mods: 125 ok, 0 abaixo da meta, 0 faltando, 68 sem necessidade de missao.
 
 Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 5, mais que isso 10 (menos os de $metaFixa no missoes.ps1, com muitas variantes de madeira ou cor).
 
@@ -49,44 +49,44 @@ Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 
 | Comida e fazenda | `twilight-delight` | 252 | 32/10 | ok | Cozinha e fazenda, Dimensões, Primeiros passos, Twilight Forest |
 | Comida e fazenda | `ends-delight` | 63 | 10/5 | ok | Cozinha e fazenda, Primeiros passos |
 | Comida e fazenda | `oceans-delight` | 25 | 11/3 | ok | Cozinha e fazenda, Primeiros passos |
-| Comida e fazenda | `storage-delight` | 168 | 1/3 | pouco | Cozinha e fazenda |
-| Comida e fazenda | `cf:415438` | 537 | 5/8 | pouco | Cozinha e fazenda, Volta ao mundo |
+| Comida e fazenda | `storage-delight` | 168 | 3/3 | ok | Cozinha e fazenda |
+| Comida e fazenda | `cf:415438` | 537 | 8/8 | ok | Cozinha e fazenda, Volta ao mundo |
 | Comida e fazenda | `cf:885449` | 0 | 0/1 | nao precisa (biblioteca) |  |
-| Comida e fazenda | `cf:231484` | 146 | 3/5 | pouco | Cozinha e fazenda |
-| Comida e fazenda | `cf:277616` | 1 | 1/3 | pouco | Cozinha e fazenda |
-| Comida e fazenda | `botany-pots` | 183 | 2/4 | pouco | Cozinha e fazenda |
+| Comida e fazenda | `cf:231484` | 146 | 5/5 | ok | Cozinha e fazenda |
+| Comida e fazenda | `cf:277616` | 1 | 3/3 | ok | Cozinha e fazenda |
+| Comida e fazenda | `botany-pots` | 183 | 4/4 | ok | Cozinha e fazenda |
 | Comida e fazenda | `mystical-agriculture` | 248 | 18/10 | ok | Agricultura mística, Cozinha e fazenda |
-| Comida e fazenda | `cf:1410391` | 4 | 1/3 | pouco | Utilidades |
-| Comida e fazenda | `ciggycraft` | 7 | 1/3 | pouco | Utilidades |
-| Comida e fazenda | `cf:896915` | 281 | 1/10 | pouco | Utilidades |
+| Comida e fazenda | `cf:1410391` | 4 | 3/3 | ok | Utilidades |
+| Comida e fazenda | `ciggycraft` | 7 | 3/3 | ok | Utilidades |
+| Comida e fazenda | `cf:896915` | 281 | 4/4 | ok | Utilidades |
 | Tecnologia | `create` | 742 | 82/10 | ok | Create 1: o básico, Create 2: primeiras máquinas, Create 3: era do latão, Create 4: fluidos e vapor, Create 5: trens, Create 6: logística, Create: ferramentas |
 | Tecnologia | `cf:268560` | 368 | 30/10 | ok | Mekanism 1: começo, Mekanism 2: minérios, Mekanism 3: avançado |
 | Tecnologia | `iron-furnaces` | 44 | 7/5 | ok | Fornalhas, Utilidades |
 | Create: addons | `create-contraption-terminals` | 0 | 5/1 | ok | Create: addons, Mochila e baús |
 | Create: addons | `createaddition` | 56 | 19/5 | ok | Cozinha e fazenda, Create: energia, Primeiros passos |
-| Create: addons | `create-enchantment-industry` | 34 | 4/5 | pouco | Create: addons |
-| Create: addons | `create-jetpack` | 6 | 1/3 | pouco | Create: addons |
-| Create: addons | `create-connected` | 121 | 7/5 | ok | Create: addons |
+| Create: addons | `create-enchantment-industry` | 34 | 5/5 | ok | Create: addons |
+| Create: addons | `create-jetpack` | 6 | 3/3 | ok | Create: addons |
+| Create: addons | `create-connected` | 121 | 10/5 | ok | Create: addons |
 | Create: addons | `create-aeronautics` | 0 | 1/1 | ok | Create: addons |
 | Create: addons | `create-ore-excavation` | 14 | 3/3 | ok | Create: addons |
-| Create: addons | `create-goggles` | 27 | 1/3 | pouco | Create: addons |
-| Create: addons | `create-stuff-additions` | 93 | 3/5 | pouco | Create: addons |
+| Create: addons | `create-goggles` | 27 | 3/3 | ok | Create: addons |
+| Create: addons | `create-stuff-additions` | 93 | 5/5 | ok | Create: addons |
 | Create: addons | `createbetterfps` | 0 | 0/1 | nao precisa (desempenho) |  |
-| Create: addons | `slice-and-dice` | 4 | 6/3 | ok | Cozinha e fazenda, Create: addons |
+| Create: addons | `slice-and-dice` | 4 | 7/3 | ok | Cozinha e fazenda, Create: addons |
 | Create: addons | `create-central-kitchen` | 0 | 13/1 | ok | Cozinha e fazenda, Create: addons, Primeiros passos |
-| Create: addons | `create-railways-navigator` | 11 | 1/3 | pouco | Create: addons |
-| Create: addons | `copycats` | 48 | 1/2 | pouco | Create: addons |
-| Create: addons | `create-deco` | 409 | 1/3 | pouco | Create: addons |
-| Create: addons | `create-dreams-and-desires` | 105 | 3/5 | pouco | Create: addons |
+| Create: addons | `create-railways-navigator` | 11 | 3/3 | ok | Create: addons |
+| Create: addons | `copycats` | 48 | 2/2 | ok | Create: addons |
+| Create: addons | `create-deco` | 409 | 3/3 | ok | Create: addons |
+| Create: addons | `create-dreams-and-desires` | 105 | 5/5 | ok | Create: addons |
 | Create: addons | `interiors` | 53 | 2/2 | ok | Construir, Create: addons |
-| Baús e armazenamento | `sophisticated-storage` | 146 | 3/6 | pouco | Mochila e baús |
+| Baús e armazenamento | `sophisticated-storage` | 146 | 6/6 | ok | Mochila e baús |
 | Baús e armazenamento | `sophisticated-backpacks` | 77 | 11/5 | ok | Mochila e baús, Primeiros passos |
-| Baús e armazenamento | `toms-storage` | 22 | 7/3 | ok | Mochila e baús |
-| Baús e armazenamento | `cf:228756` | 21 | 1/3 | pouco | Mochila e baús |
-| Ferramentas | `just-hammers` | 29 | 1/3 | pouco | Utilidades |
-| Ferramentas | `advanced-netherite` | 44 | 1/3 | pouco | Utilidades |
-| Ferramentas | `cf:386134` | 1 | 1/3 | pouco | Utilidades |
-| Ferramentas | `aperture-innovations` | 20 | 1/3 | pouco | Utilidades |
+| Baús e armazenamento | `toms-storage` | 22 | 10/3 | ok | Mochila e baús |
+| Baús e armazenamento | `cf:228756` | 21 | 3/3 | ok | Mochila e baús |
+| Ferramentas | `just-hammers` | 29 | 3/3 | ok | Utilidades |
+| Ferramentas | `advanced-netherite` | 44 | 3/3 | ok | Utilidades |
+| Ferramentas | `cf:386134` | 1 | 2/2 | ok | Utilidades |
+| Ferramentas | `aperture-innovations` | 20 | 3/3 | ok | Utilidades |
 | Mobs e animais | `dmr` | 2 | 4/3 | ok | Animais, Bichos do mundo |
 | Mobs e animais | `cf:1635121` | 294 | 11/10 | ok | Animais, Bichos do mundo |
 | Mobs e animais | `cf:602059` | 83 | 6/5 | ok | Animais, Bichos do mundo |
@@ -97,7 +97,7 @@ Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 
 | Mobs e animais | `naturalist` | 151 | 14/10 | ok | Animais, Bichos do mundo |
 | Mobs e animais | `mowzies-mobs` | 57 | 6/5 | ok | Bichos do mundo, Caçador de chefes |
 | Mobs e animais | `aquamirae` | 80 | 6/5 | ok | Bichos do mundo, Caçador de chefes |
-| Mobs e animais | `adorable-hamster-pets` | 54 | 14/5 | ok | Animais, Construir, Cozinha e fazenda, Volta ao mundo |
+| Mobs e animais | `adorable-hamster-pets` | 54 | 19/5 | ok | Animais, Construir, Cozinha e fazenda, Volta ao mundo |
 | Dimensões | `eternal-starlight` | 1109 | 16/10 | ok | Dimensões, Eternal Starlight |
 | Dimensões | `dimensional-dungeons` | 46 | 5/5 | ok | Dimensões |
 | Dimensões | `cf:227639` | 765 | 63/10 | ok | Aether, Cozinha e fazenda, Create: energia, Dimensões, Masmorras e tesouros, Primeiros passos, Twilight Forest |

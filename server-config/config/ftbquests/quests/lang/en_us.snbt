@@ -282,6 +282,16 @@
 	quest.28315E407FFFB7DB.quest_desc: ["O &eterminal de criação&r junta o terminal com uma mesa de trabalho que &apega os ingredientes direto dos baús&r."]
 	quest.28915A92C10ED59B.title: "Terminal sem fio"
 	quest.28915A92C10ED59B.quest_desc: ["O &eterminal sem fio&r abre a rede de baús de longe. Clique com ele no terminal para ligar.", "", "A tecla &eAlt + B&r abre o terminal sem fio que está no seu inventário."]
+	quest.1B1BEDBFE4FA66B9.title: "Barril de ferro"
+	quest.1B1BEDBFE4FA66B9.quest_desc: ["Barris e baús do Sophisticated Storage sobem de nível com &emelhorias de nível&r: cobre, ferro, ouro, diamante, netherita."]
+	quest.6B8BC4BEE714B52B.title: "Fita de mudança"
+	quest.6B8BC4BEE714B52B.quest_desc: ["A &efita de empacotar&r fecha o baú: quebre e ele sai &acom tudo dentro&r. Ótimo para mudar de casa."]
+	quest.7C9F822A0A6B37E5.title: "Controlador"
+	quest.7C9F822A0A6B37E5.quest_desc: ["O &econtrolador&r junta todos os baús e barris encostados: coloque itens nele e eles vão para o baú certo."]
+	quest.02E8329E24B3169C.title: "Baú de diamante"
+	quest.02E8329E24B3169C.quest_desc: ["Os baús do Iron Chests vão do ferro ao &ediamante&r, &ecristal&r (dá para ver dentro) e &eobsidiana&r (aguenta explosão)."]
+	quest.6564B0FD60FACAA9.title: "Melhorar baú colocado"
+	quest.6564B0FD60FACAA9.quest_desc: ["Clique com a &emelhoria de baú&r em um baú já colocado: ele sobe de nível sem tirar nada de dentro."]
 	chapter.45E0B2A3B1354CC1.title: "Cozinha e fazenda"
 	chapter.45E0B2A3B1354CC1.chapter_subtitle: ["Comer bem deixa você mais forte"]
 	quest.1A06C261319C8017.title: "Variedade dá vida"
@@ -351,6 +361,29 @@
 	quest.12B3F56B552344DD.title: "Plantar minério"
 	quest.12B3F56B552344DD.quest_subtitle: "Mystical Agriculture"
 	quest.12B3F56B552344DD.quest_desc: ["O &eMystical Agriculture&r planta minério como se fosse trigo.", "", "Comece minerando &einferium&r nas cavernas. A essência dele faz as primeiras sementes. Veja o caminho todo com &eU&r em cima da essência."]
+	quest.5D5FDA3F71806D9B.title: "Diário de comidas"
+	quest.5D5FDA3F71806D9B.quest_subtitle: "Spice of Life"
+	quest.5D5FDA3F71806D9B.quest_desc: ["O &ediário de comidas&r mostra quantas comidas diferentes você já provou e quanto falta para o próximo &acoração extra&r."]
+	quest.318DEE7044BAC077.title: "Corações extras"
+	quest.318DEE7044BAC077.quest_desc: ["Cada tanto de &ecomidas novas&r que você prova dá um &acoração a mais&r de vida, para sempre.", "Comer sempre a mesma coisa não conta. Varie: é o motivo de existir tanta receita no pack.", "", "&7Clique em Concluir quando ganhar seu primeiro coração extra."]
+	quest.4637478245D3A9B1.title: "Prensa de comida"
+	quest.4637478245D3A9B1.quest_desc: ["A &eprensa de comida&r do Croptopia faz óleo, suco e massa. Também fica na mesa sem quebrar."]
+	quest.35617065D32E313A.title: "Queijo"
+	quest.35617065D32E313A.quest_desc: ["O &equeijo&r entra em pizza, lasanha e muitas outras receitas. Veja como fazer com &eR&r."]
+	quest.6FA72C7367DB1381.title: "Pizza"
+	quest.6FA72C7367DB1381.quest_desc: ["Uma das comidas que mais enchem. Ótima para quem vai explorar."]
+	quest.7ACBD6C0402F56E2.title: "Balcão e torradeira"
+	quest.7ACBD6C0402F56E2.quest_desc: ["O &ebalcão&r guarda ingredientes e conta como parte da cozinha. A &etorradeira&r faz torrada e esquenta comida."]
+	quest.66D61A7E0836E177.title: "Porta-temperos"
+	quest.66D61A7E0836E177.quest_desc: ["O &eporta-temperos&r na parede guarda temperos ao alcance da cozinha."]
+	quest.53F6268AC93A55DA.title: "Gavetas"
+	quest.53F6268AC93A55DA.quest_desc: ["As &egavetas&r do Storage Delight guardam itens e enfeitam. Cada madeira tem a sua."]
+	quest.61AB9B3901B02FD3.title: "Estante com porta"
+	quest.61AB9B3901B02FD3.quest_desc: ["Estantes e armários com porta para o escritório e a biblioteca."]
+	quest.7ACB8EA174016BDE.title: "Vaso bonito"
+	quest.7ACB8EA174016BDE.quest_desc: ["O vaso existe em &etijolo&r, pedra, deepslate e outros. O &evaso encerado&r não deixa ninguém mexer na planta."]
+	quest.4EFB5B7375D35B91.title: "Vaso de pedra"
+	quest.4EFB5B7375D35B91.quest_desc: ["Vaso de &etijolo de pedra&r com funil, para uma fazenda de vasos bonita no porão."]
 	chapter.64B22B4BB373E79A.title: "Agricultura mística"
 	chapter.64B22B4BB373E79A.chapter_subtitle: ["Mystical Agriculture: plantar minério"]
 	quest.18C4838499E4AB07.title: "Minério que se planta"
@@ -1141,6 +1174,34 @@
 	quest.08B06B2679D02B1D.title: "Fumar"
 	quest.08B06B2679D02B1D.quest_subtitle: "Smoking Pipe e Tobacconist"
 	quest.08B06B2679D02B1D.quest_desc: ["Plante tabaco, seque e fume no cachimbo. É só diversão: dá um pouco de experiência."]
+	quest.260A6E3AA86FD795.title: "Martelo de impacto"
+	quest.260A6E3AA86FD795.quest_desc: ["O &emartelo de impacto&r quebra uma área maior. O &emartelo reforçado&r dura muito mais."]
+	quest.33164A253BBB5A2C.title: "Martelo reforçado"
+	quest.33164A253BBB5A2C.quest_desc: ["Feito com o &enúcleo reforçado&r. Ótimo para cavar túneis grandes."]
+	quest.1596C6927B92A5F7.title: "Lingote de netherita com ferro"
+	quest.1596C6927B92A5F7.quest_desc: ["O Advanced Netherite junta netherita com &eferro&r, &eouro&r, &eesmeralda&r ou &ediamante&r. Cada um dá um bônus diferente."]
+	quest.4BB47944D1A879F4.title: "Picareta de netherita com diamante"
+	quest.4BB47944D1A879F4.quest_desc: ["Uma das picaretas mais fortes do jogo. Projeto para o fim."]
+	quest.7E4DAE33D3D9C431.title: "Ultimine cansa"
+	quest.7E4DAE33D3D9C431.quest_desc: ["Quebrar muitos blocos de uma vez com o &eUltimine&r gasta &efome&r. Leve comida.", "Os itens e o XP caem juntos no lugar do primeiro bloco.", "&7Clique em Concluir."]
+	quest.18A687E7D569A71A.title: "Botas de queda longa"
+	quest.18A687E7D569A71A.quest_desc: ["As &ebotas de queda longa&r tiram o dano de queda. Combinam com o portal gun."]
+	quest.16658B7CF020A208.title: "Cubo companheiro"
+	quest.16658B7CF020A208.quest_desc: ["O &ecubo companheiro&r com coração. Ele não fala, mas é fiel."]
+	quest.54EE99A80E600475.title: "Mesa do cachimbo"
+	quest.54EE99A80E600475.quest_desc: ["A &emesa de cachimbos&r faz cachimbos do Smoking Pipe. A &efolha da sabedoria&r dá experiência ao fumar."]
+	quest.05D8F27C20DA114B.title: "Plantar tabaco"
+	quest.05D8F27C20DA114B.quest_desc: ["Plante &esementes de tabaco&r e seque as folhas (veja como no JEI). Cada tipo de folha tem um efeito."]
+	quest.727825825196664A.title: "Guia do tabaco"
+	quest.727825825196664A.quest_desc: ["O &eguia do Tobacconist&r explica os tipos de tabaco, cachimbos, charutos e narguilé."]
+	quest.1AE5A9B4C8BBF28C.title: "Cachimbo de ouro"
+	quest.1AE5A9B4C8BBF28C.quest_desc: ["Cachimbos melhores duram mais. Há de cobre, ferro, ouro, joias e até netherita."]
+	quest.67D7F29FD5DBE305.title: "Charuto"
+	quest.67D7F29FD5DBE305.quest_desc: ["O Tobacconist também faz &echaruto&r e &ecigarro&r com papel de enrolar. Veja as receitas no JEI."]
+	quest.4B4E0CC94EB4459F.title: "Cigarro"
+	quest.4B4E0CC94EB4459F.quest_desc: ["O CiggyCraft faz &ecigarro&r e &emaço&r com as folhas secas."]
+	quest.5762EF69F38ED0B3.title: "Cachimbo simples"
+	quest.5762EF69F38ED0B3.quest_desc: ["O &ecachimbo&r do Smoking Pipe, feito na mesa de cachimbos."]
 	chapter.4336DF8ADFC764BF.title: "Create: energia"
 	chapter.4336DF8ADFC764BF.chapter_subtitle: ["Create Crafts & Additions: eletricidade"]
 	quest.047025B1EE2634F3.title: "Giro vira energia"
@@ -1231,6 +1292,34 @@
 	quest.21DADBE9E1F368A9.title: "Dirigíveis"
 	quest.21DADBE9E1F368A9.quest_subtitle: "Create Aeronautics"
 	quest.21DADBE9E1F368A9.quest_desc: ["Com o Aeronautics, construções do Create &avoam&r: dirigíveis, aviões, barcos e carros.", "Veja os blocos novos no JEI e o Ponder (&eW&r) de cada um.", "&7Clique em Concluir quando montar seu primeiro veículo."]
+	quest.06090F838D84D3BD.title: "Jetpack de netherita"
+	quest.06090F838D84D3BD.quest_desc: ["Aguenta mais ar e protege como peitoral de netherita."]
+	quest.52481DC36217E55F.title: "Voar com o jetpack"
+	quest.52481DC36217E55F.quest_desc: ["Com o jetpack cheio no peito, segure &epular&r no ar para subir. Veja em &eControles&r a tecla do modo pairar.", "&7Clique em Concluir quando voar."]
+	quest.7BCAAFADFAF9B2E2.title: "Tanque de diamante"
+	quest.7BCAAFADFAF9B2E2.quest_desc: ["O &etanque de ar de diamante&r protege como peitoral de diamante e guarda ar."]
+	quest.09647B9BD774D086.title: "Mergulho com óculos"
+	quest.09647B9BD774D086.quest_desc: ["O &ecapacete de mergulho com óculos&r: respira na água e mostra as máquinas."]
+	quest.35D6DEA3FCB287DE.title: "Forja de blaze"
+	quest.35D6DEA3FCB287DE.quest_desc: ["A &eforja de blaze&r junta encantos e faz receitas especiais com XP líquido. Veja no JEI."]
+	quest.5C93A354E9EBEF4F.title: "Lança-chamas"
+	quest.5C93A354E9EBEF4F.quest_desc: ["O &elança-chamas&r queima o que estiver na frente usando combustível."]
+	quest.00E81C2ACC803A8A.title: "Drone"
+	quest.00E81C2ACC803A8A.quest_desc: ["O &edrone de latão&r voa e carrega itens, guiado pelo controle."]
+	quest.34D82D6108776643.title: "Relógio de estação"
+	quest.34D82D6108776643.quest_desc: ["O &erelógio de estação&r e os &epainéis avançados&r mostram horários e destinos dos trens."]
+	quest.4477271B23093E83.title: "Painel avançado"
+	quest.4477271B23093E83.quest_desc: ["Monte um painel de partidas igual ao de estação de verdade."]
+	quest.0FB72C0F8251EC3E.title: "Porta que copia"
+	quest.0FB72C0F8251EC3E.quest_desc: ["Portas e alçapões copycat ficam com a textura do bloco que você escolher."]
+	quest.6A90FF828D635598.title: "Grades e janelas"
+	quest.6A90FF828D635598.quest_desc: ["Grades de andesito e janelas de latão do Create Deco para fábricas bonitas."]
+	quest.59124CC7FAB1064F.title: "Barras"
+	quest.59124CC7FAB1064F.quest_desc: ["Barras de metal em vários materiais."]
+	quest.53EAEDC56B494A30.title: "Motor Stirling"
+	quest.53EAEDC56B494A30.quest_desc: ["O &emotor Stirling&r gira com calor. Uma fonte de força pequena e simples."]
+	quest.60CD76ED4315816C.title: "Furadeira de mão"
+	quest.60CD76ED4315816C.quest_desc: ["A &efuradeira&r e a &eserra de mão&r quebram blocos rápido com a força do Create."]
 	chapter.2BBF7954E151BB6E.title: "Explorar"
 	chapter.2BBF7954E151BB6E.chapter_subtitle: ["Ferramentas para achar tudo pelo mundo"]
 	quest.21C5B7064481CEC8.title: "Pé na estrada"
