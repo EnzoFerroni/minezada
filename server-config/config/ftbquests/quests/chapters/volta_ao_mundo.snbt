@@ -126,7 +126,7 @@
 			rewards: [{ id: "621238F6A0EB17C9", type: "xp", xp: 20 }]
 			tasks: [{ biome: "galosphere:crystal_canyons", id: "0C4EDC5797880BAD", type: "biome" }]
 			x: 4d
-			y: 9.75d
+			y: 8.25d
 		}
 		{
 			dependencies: ["7BC3B396EEDF2733"]
@@ -135,7 +135,7 @@
 			optional: true
 			tasks: [{ id: "601E5D320735D87F", item: { count: 1, id: "galosphere:allurite_shard" }, type: "item" }]
 			x: 6d
-			y: 9.0d
+			y: 7.5d
 			hide_dependency_lines: true
 		}
 		{
@@ -144,7 +144,7 @@
 			rewards: [{ id: "598AF7E8A6F8AFD8", type: "xp", xp: 20 }]
 			tasks: [{ biome: "yungscavebiomes:frosted_caves", id: "763516F526E1560E", type: "biome" }]
 			x: 4d
-			y: 12d
+			y: 10.5d
 		}
 		{
 			dependencies: ["3B3207C8DEDCCC12"]
@@ -152,7 +152,7 @@
 			rewards: [{ id: "651B9A4CDB993353", type: "xp", xp: 20 }]
 			tasks: [{ biome: "yungscavebiomes:lost_caves", id: "1024E45E61CC94D8", type: "biome" }]
 			x: 4d
-			y: 13.5d
+			y: 12.75d
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
@@ -215,7 +215,7 @@
 			rewards: [{ id: "4A8F6F71930590DC", type: "xp", xp: 20 }]
 			tasks: [{ biome: "galosphere:pink_salt_caves", id: "4E73F883EE365ABB", type: "biome" }]
 			x: 7.5d
-			y: 9d
+			y: 7.5d
 			hide_dependency_lines: true
 		}
 		{
@@ -224,7 +224,7 @@
 			rewards: [{ id: "5A76B8C168F044E0", type: "xp", xp: 20 }]
 			tasks: [{ id: "16A0D358E9E32C06", item: { count: 1, id: "galosphere:palladium_ingot" }, type: "item" }]
 			x: 6d
-			y: 10.5d
+			y: 9d
 		}
 		{
 			dependencies: ["05B0D934F088BC87"]
@@ -232,7 +232,7 @@
 			rewards: [{ id: "784C2316656039C0", type: "xp", xp: 20 }]
 			tasks: [{ id: "0589EA4604B58602", item: { count: 1, id: "galosphere:sterling_helmet" }, type: "item" }]
 			x: 8d
-			y: 10.5d
+			y: 9d
 		}
 		{
 			dependencies: ["7BC3B396EEDF2733"]
@@ -241,16 +241,16 @@
 			optional: true
 			tasks: [{ id: "42D3E49062B6F670", item: { count: 1, id: "galosphere:glow_flare" }, type: "item" }]
 			x: 9d
-			y: 9d
+			y: 7.5d
 			hide_dependency_lines: true
 		}
 		{
-			dependencies: ["3B3207C8DEDCCC12"]
-			id: "159BE77FF005CB70"
-			rewards: [{ id: "79822B0F59BF83E3", type: "xp", xp: 20 }]
-			tasks: [{ id: "16C6ED7079C56B7B", item: { count: 16, id: "yungscavebiomes:marble" }, type: "item" }]
-			x: 4d
-			y: 7.5d
+			dependencies: ["10D39B57C7A1C28C"]
+			id: "4B471B0C6B400B1C"
+			rewards: [{ id: "2658278435C0C0C7", type: "xp", xp: 20 }]
+			tasks: [{ id: "28744313EFAF1192", item: { count: 16, id: "yungscavebiomes:ancient_sandstone" }, type: "item" }]
+			x: 6d
+			y: 12d
 		}
 		{
 			dependencies: ["18014FAD5C025736"]
@@ -259,7 +259,7 @@
 			optional: true
 			tasks: [{ id: "33FEECF9A524A8FE", item: { count: 1, id: "yungscavebiomes:frost_lily" }, type: "item" }]
 			x: 6d
-			y: 12d
+			y: 10.5d
 		}
 		{
 			dependencies: ["10D39B57C7A1C28C"]
