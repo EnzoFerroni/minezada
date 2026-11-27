@@ -1,0 +1,54 @@
+# Confere os .ps1 com o PSScriptAnalyzer, procura segredos no historico com o gitleaks
+# e barra dado pessoal (IP local, e-mail, rede de casa) pela lista do segredo PRIVADO_REGEX.
+name: Lint e segredos
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  powershell:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: PSScriptAnalyzer
+        shell: pwsh
+        run: |
+          Install-Module PSScriptAnalyzer -RequiredVersion 1.24.0 -Scope CurrentUser -Force
+          $r = git ls-files '*.ps1' | ForEach-Object { Invoke-ScriptAnalyzer -Path $_ -Settings ./PSScriptAnalyzerSettings.psd1 }
+          $r | Format-Table ScriptName, Line, RuleName, Message -AutoSize -Wrap
+          if ($r) { throw "$(@($r).Count) avisos do PSScriptAnalyzer" }
+
+  segredos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: gitleaks (todo o historico)
+        run: |
+          curl -fsSL -o gl.tgz https://github.com/gitleaks/gitleaks/releases/download/v8.28.0/gitleaks_8.28.0_linux_x64.tar.gz
+          echo 'a65b5253807a68ac0cafa4414031fd740aeb55f54fb7e55f386acb52e6a840eb  gl.tgz' | sha256sum -c -
+          tar -xzf gl.tgz gitleaks
+          ./gitleaks git --redact --no-banner -v .
+      # A lista fica no segredo para nao publicar o proprio dado que ela procura.
+      - name: Dado pessoal nos arquivos
+        env:
+          PRIVADO_REGEX: ${{ secrets.PRIVADO_REGEX }}
+        run: |
+          if [ -z "$PRIVADO_REGEX" ]; then
+            if [ "$GITHUB_EVENT_NAME" = pull_request ]; then echo "PR de fork sem segredo: pulado"; exit 0; fi
+            echo "::error::segredo PRIVADO_REGEX vazio"; exit 1
+          fi
+          if git grep -I -n -i -E -e "$PRIVADO_REGEX" -- . ':!*.jar' | cut -d: -f1,2; then
+            echo "::error::dado pessoal nos arquivos acima (o texto nao e mostrado)"; exit 1
+          fi
