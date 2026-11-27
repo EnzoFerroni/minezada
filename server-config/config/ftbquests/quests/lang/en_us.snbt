@@ -497,79 +497,252 @@
 	quest.453A0736B216E094.quest_desc: ["Transforma um minerio em dois montes de po: o dobro de lingotes."]
 	quest.193CC4C2D0BF0A31.title: "Cabos"
 	quest.193CC4C2D0BF0A31.quest_desc: ["Cabos universais levam energia do gerador para as maquinas."]
-	chapter.3AFA20A348928003.title: "Dimensoes"
+	chapter.3AFA20A348928003.title: "Dimensões"
+	chapter.3AFA20A348928003.chapter_subtitle: ["Outros mundos para visitar"]
+	quest.36676C6CCD56E1A0.title: "Além do mundo normal"
+	quest.36676C6CCD56E1A0.quest_subtitle: "Comece por aqui"
+	quest.36676C6CCD56E1A0.quest_desc: ["Além do Nether e do End, o pack tem vários &emundos novos&r, cada um com bichos, minérios, chefes e itens próprios.", "", "Cada mundo tem o seu &ecapítulo&r neste grupo, com o passo a passo do começo ao fim.", "", "&7Leve comida, cama e uma arma boa. Quem morre em outro mundo volta para a cama, mas os itens ficam lá."]
 	quest.29026A4FF6CEB946.title: "Nether"
-	quest.29026A4FF6CEB946.quest_desc: ["Portal de obsidiana aceso com isqueiro."]
+	quest.29026A4FF6CEB946.quest_desc: ["Moldura de &eobsidiana&r (4 de largura, 5 de altura) acesa com um &eisqueiro&r.", "", "Lá tem &aouro, quartzo e netherite&r, e os fortes do Nether."]
 	quest.7155CC138F6A4CDC.title: "Aether"
-	quest.7155CC138F6A4CDC.quest_desc: ["O ceu do Minecraft: moldura de pedra luminosa (glowstone) acesa com um balde de agua."]
+	quest.7155CC138F6A4CDC.quest_subtitle: "O céu"
+	quest.7155CC138F6A4CDC.quest_desc: ["Moldura de &eglowstone&r no formato do portal do Nether, acesa com um &ebalde de água&r.", "", "Ilhas flutuantes, três masmorras e chefes. Capítulo &eAether&r."]
 	quest.2F383471F920B013.title: "Twilight Forest"
-	quest.2F383471F920B013.quest_desc: ["Poca de agua 2x2 cercada de flores; jogue um diamante dentro."]
+	quest.2F383471F920B013.quest_subtitle: "A floresta do crepúsculo"
+	quest.2F383471F920B013.quest_desc: ["Faça uma poça de água &e2x2&r, cerque com &eflores&r e jogue um &ediamante&r dentro (tecla &eQ&r).", "", "Uma floresta em eterno pôr do sol, cheia de chefes. Capítulo &eTwilight Forest&r."]
 	quest.7B3BE44F6DE1B8AD.title: "Undergarden"
-	quest.7B3BE44F6DE1B8AD.quest_desc: ["Moldura de tijolos de pedra ativada com o catalisador do Undergarden (receita no JEI)."]
+	quest.7B3BE44F6DE1B8AD.quest_subtitle: "O mundo de baixo"
+	quest.7B3BE44F6DE1B8AD.quest_desc: ["Moldura de &etijolos de pedra&r ativada com o &ecatalisador&r do mod.", "", "Escuro, perigoso e com metais novos. Capítulo &eUndergarden&r."]
 	quest.132C1D9BA47BE4F2.title: "Eternal Starlight"
-	quest.132C1D9BA47BE4F2.quest_desc: ["Dimensao das estrelas: procure as ruinas de portal pelo mundo e veja no JEI como ativar."]
+	quest.132C1D9BA47BE4F2.quest_subtitle: "O mundo das estrelas"
+	quest.132C1D9BA47BE4F2.quest_desc: ["Procure as &eruínas de portal&r pelo mundo e vença o desafio do &eGuardião&r para ganhar o orbe que abre o portal.", "", "Capítulo &eEternal Starlight&r."]
+	quest.5F3E1D7AAC0727F0.title: "Espaço"
+	quest.5F3E1D7AAC0727F0.quest_subtitle: "Lua, planetas e foguetes"
+	quest.5F3E1D7AAC0727F0.quest_desc: ["Com o &eAd Astra&r você monta foguetes e voa para a Lua e outros planetas.", "", "É o mundo mais demorado: precisa de energia, aço e combustível. Capítulo &eEspaço&r."]
 	quest.12578001AE3297C2.title: "Masmorras infinitas"
-	quest.12578001AE3297C2.quest_desc: ["Dimensional Dungeons: a chave de portal abre masmorras que se renovam (receita no JEI)."]
-	quest.009843D988A83261.title: "Lua"
-	quest.009843D988A83261.quest_desc: ["Ad Astra: monte um foguete na bancada da NASA e voe para a Lua."]
+	quest.12578001AE3297C2.quest_subtitle: "Dimensional Dungeons"
+	quest.12578001AE3297C2.quest_desc: ["Uma dimensão só de &emasmorras&r que se renovam, abertas com uma &echave de portal&r.", "", "Como montar o portal e preparar a chave: veja o &eguia&r do mod e as receitas no JEI (&eR&r e &eU&r)."]
+	quest.688A1A2205220F36.title: "Entrar nas masmorras"
+	quest.688A1A2205220F36.quest_desc: ["Cada chave leva a uma masmorra diferente, com baús e inimigos. Saia antes de a chave acabar."]
 	quest.78BEFEA816B93AB6.title: "End"
-	quest.78BEFEA816B93AB6.quest_desc: ["Olhos de ender levam ao portal do End e ao dragao."]
+	quest.78BEFEA816B93AB6.quest_subtitle: "O fim do jogo normal"
+	quest.78BEFEA816B93AB6.quest_desc: ["Faça &eolhos de ender&r (pérola de ender e pó de blaze do Nether) e jogue para cima: eles voam até a &efortaleza&r com o portal do End.", "", "Lá mora o &edragão&r. Leve muitos blocos, arco e poções."]
 	chapter.62BEA1E66A80BAE3.title: "Aether"
+	chapter.62BEA1E66A80BAE3.chapter_subtitle: ["Ilhas no céu, três masmorras e um chefe final"]
 	quest.6B1A452EC3CA1779.title: "Chegar no Aether"
-	quest.6B1A452EC3CA1779.quest_desc: ["Moldura de glowstone acesa com um balde de agua. Leve o paraquedas dourado que o mod da na primeira visita."]
+	quest.6B1A452EC3CA1779.quest_desc: ["Faça uma moldura de &eglowstone&r no formato do portal do Nether e despeje um &ebalde de água&r dentro.", "", "Cuidado com a beira das ilhas: cair do Aether leva de volta ao mundo normal, de bem alto. O mod dá um &eparaquedas&r na primeira visita."]
+	quest.787B744669ADA254.title: "Ferramentas do céu"
+	quest.787B744669ADA254.quest_desc: ["Ferramentas normais rendem pouco aqui. Faça as do Aether:", "", "&eskyroot&r (madeira) e depois &eholystone&r (pedra)."]
 	quest.0D2620E5B1473973.title: "Ambrosium"
-	quest.0D2620E5B1473973.quest_desc: ["Fragmentos de ambrosium curam e servem de combustivel no Aether."]
+	quest.0D2620E5B1473973.quest_desc: ["Os &efragmentos de ambrosium&r saem de um minério amarelo.", "", "Servem de &acombustível&r para as máquinas do Aether e &acuram&r um pouco quando comidos."]
 	quest.3B79E945D837AB5A.title: "Zanite"
-	quest.3B79E945D837AB5A.quest_desc: ["Gema azul para ferramentas e armadura do Aether."]
-	quest.3EDEF2172CD2B905.title: "Primeira masmorra"
-	quest.3EDEF2172CD2B905.quest_desc: ["Venca o Slider na masmorra de bronze e pegue a chave de bronze."]
-	quest.4AF87777C727F2E1.title: "Rainha Valquiria"
-	quest.4AF87777C727F2E1.quest_desc: ["A masmorra de prata guarda a Rainha Valquiria e a chave de prata."]
-	quest.2696EF3E0D6E89B7.title: "Espirito do Sol"
-	quest.2696EF3E0D6E89B7.quest_desc: ["A masmorra de ouro e o fim do Aether: venca o Espirito do Sol."]
+	quest.3B79E945D837AB5A.quest_desc: ["A &egema de zanite&r é o ferro do Aether: ferramentas, armadura e anéis.", "", "Ferramentas de zanite ficam &amais rápidas&r quanto mais gastas."]
+	quest.128C4DC11A13D64B.title: "Altar"
+	quest.128C4DC11A13D64B.quest_desc: ["O &ealtar&r usa ambrosium para &aencantar&r itens do Aether e consertar ferramentas.", "", "Veja o que ele faz com &eU&r no JEI."]
+	quest.45F2948DC467A190.title: "Gravitite"
+	quest.45F2948DC467A190.quest_desc: ["O minério rosa de &egravitite&r fica nas ilhas mais altas. Encante no altar para ter a &egravitite encantada&r.", "", "Com ela vem a melhor armadura do Aether: a &aarmadura de gravitite&r dá pulo alto."]
+	quest.3539EFE299C02384.title: "Gelo nos acessórios"
+	quest.3539EFE299C02384.quest_desc: ["O &econgelador&r usa &eicestone&r para transformar anéis e pingentes em versões de gelo."]
+	quest.57C811566B034B09.title: "Nuvem azul"
+	quest.57C811566B034B09.quest_desc: ["Pule em uma &enuvem azul&r para ser lançado bem alto. Ótimo para chegar em ilhas."]
+	quest.745C241BECCB4616.title: "Ovo de moa"
+	quest.745C241BECCB4616.quest_desc: ["As &emoas&r são aves grandes do Aether. Pegue um &eovo&r e choque na &eincubadora&r.", "", "Uma moa domada vira &amontaria&r. A moa preta voa."]
+	quest.2AC1A306495CC5C6.title: "Voar de moa preta"
+	quest.2AC1A306495CC5C6.quest_desc: ["Monte em uma &emoa preta&r: ela plana e pula várias vezes no ar."]
+	quest.4D3D7F2DF8702746.title: "Porco voador"
+	quest.4D3D7F2DF8702746.quest_desc: ["Coloque uma &esela&r em um &ephyg&r, o porco com asas, e voe com ele."]
+	quest.5B24BEC0B570ADC2.title: "Masmorra de bronze"
+	quest.5B24BEC0B570ADC2.quest_subtitle: "Primeiro chefe"
+	quest.5B24BEC0B570ADC2.quest_desc: ["A masmorra de bronze fica dentro de uma ilha. O chefe é o &eSlider&r, um bloco que desliza: ele só leva dano de &epicareta&r.", "", "Saia do caminho quando ele avançar. O baú do fim dá a &echave de bronze&r e itens fortes."]
+	quest.242726B82D0C75B9.title: "Martelo dos deuses"
+	quest.242726B82D0C75B9.quest_desc: ["O &eMartelo de Kingbdogz&r sai da masmorra de bronze e lança raios."]
+	quest.42E0EBD20C241D12.title: "Masmorra de prata"
+	quest.42E0EBD20C241D12.quest_subtitle: "A Rainha Valquíria"
+	quest.42E0EBD20C241D12.quest_desc: ["Um templo nas nuvens, guardado por &evalquírias&r. No fim está a &eRainha Valquíria&r.", "", "O prêmio inclui a &apedra de regeneração&r e equipamento de valquíria."]
+	quest.12F7B2FDB6EBBA4D.title: "Masmorra de ouro"
+	quest.12F7B2FDB6EBBA4D.quest_subtitle: "O chefe final do Aether"
+	quest.12F7B2FDB6EBBA4D.quest_desc: ["Uma ilha de fogo onde vive o &eEspírito do Sol&r. É o fim do Aether.", "", "Vencer ele libera &adormir no Aether&r e dá a armadura de fênix."]
+	quest.31D66D09635F63A8.title: "Armadura de fênix"
+	quest.31D66D09635F63A8.quest_desc: ["A &earmadura de fênix&r protege do fogo e da lava."]
+	quest.5B4DF41273D3DDCA.title: "Deep Aether"
+	quest.5B4DF41273D3DDCA.quest_subtitle: "Mais Aether"
+	quest.5B4DF41273D3DDCA.quest_desc: ["O &eDeep Aether&r adiciona biomas, bichos e uma masmorra nova ao Aether.", "", "Visite todos os biomas do Aether para cumprir esta."]
+	quest.3F1D9C87FE3640B4.title: "Masmorra de latão"
+	quest.3F1D9C87FE3640B4.quest_subtitle: "Deep Aether"
+	quest.3F1D9C87FE3640B4.quest_desc: ["A masmorra de latão do Deep Aether guarda o chefe das tempestades."]
+	quest.15E59D0857A99A08.title: "Armadura de stratus"
+	quest.15E59D0857A99A08.quest_desc: ["O &elingote de stratus&r do Deep Aether faz uma armadura ainda melhor que a de gravitite."]
 	chapter.58CDF0B4C55394C9.title: "Twilight Forest"
-	quest.020B1BDC21D32332.title: "Entrar"
-	quest.020B1BDC21D32332.quest_desc: ["Poca de agua 2x2 cercada de flores; jogue um diamante dentro."]
+	chapter.58CDF0B4C55394C9.chapter_subtitle: ["Chefes em ordem: cada um libera a próxima região"]
+	quest.7F94D60B33668C50.title: "Entrar no crepúsculo"
+	quest.7F94D60B33668C50.quest_desc: ["Faça uma poça de água &e2x2&r, cerque com &eflores&r e jogue um &ediamante&r dentro (tecla &eQ&r). Um raio cria o portal.", "", "Aqui as regiões têm &ebarreiras&r: tentar pular um chefe dá efeitos ruins. Siga a ordem deste capítulo."]
+	quest.0CA2AF0C7EC159EA.title: "Caçar bichos"
+	quest.0CA2AF0C7EC159EA.quest_desc: ["A floresta tem bichos próprios. Cace alguns para ter os materiais do mapa mágico."]
+	quest.696945016EC617E4.title: "Foco do mapa"
+	quest.696945016EC617E4.quest_desc: ["O &efoco de mapa mágico&r usa uma pena de &ecorvo&r, &etorchberries&r e pó de glowstone (receita no JEI)."]
+	quest.3C11C6E6C0EA5EDF.title: "Mapa mágico"
+	quest.3C11C6E6C0EA5EDF.quest_desc: ["O &emapa mágico&r mostra os &abiomas e onde ficam os chefes&r. Fica muito mais fácil achar o próximo."]
+	quest.707D54F645603EFE.title: "Mesa de desmontar"
+	quest.707D54F645603EFE.quest_desc: ["A &emesa de desmontar&r transforma um item de volta nos materiais dele. Cuidado: gasta XP."]
+	quest.6013E76D290A8B55.title: "Equipamento de viajante"
+	quest.6013E76D290A8B55.quest_desc: ["Faça uma peça de &earmadura de viajante&r, leve e barata para o começo."]
+	quest.77375CC947BC0956.title: "Colinas ocas"
+	quest.77375CC947BC0956.quest_desc: ["As &ecolinas ocas&r têm minério e baús, guardados por bichos. Vença o guardião de uma colina pequena."]
 	quest.7DF21F3AFD83BEBE.title: "Naga"
-	quest.7DF21F3AFD83BEBE.quest_desc: ["O primeiro chefe vive no patio de pedra. Ele deixa escamas para armadura."]
-	quest.3C11C6E6C0EA5EDF.title: "Mapa magico"
-	quest.3C11C6E6C0EA5EDF.quest_desc: ["Com o foco de mapa magico voce faz um mapa que mostra os biomas e as estruturas dos chefes."]
-	quest.40E733CE9055A8C2.title: "Proximos chefes"
-	quest.40E733CE9055A8C2.quest_desc: ["A progressao segue: Lich, Hidra, Ur-Ghast e outros. Cada chefe libera a regiao seguinte; tentar pular da efeitos ruins."]
+	quest.7DF21F3AFD83BEBE.quest_subtitle: "Chefe 1"
+	quest.7DF21F3AFD83BEBE.quest_desc: ["A &eNaga&r é uma cobra gigante que vive em um &epátio de pedra&r. Desvie das investidas e bata nas costas.", "", "Ela deixa &eescamas de naga&r, que abrem a barreira da torre do Lich."]
+	quest.015FE3E52C62267B.title: "Armadura de naga"
+	quest.015FE3E52C62267B.quest_desc: ["Com as escamas você faz &epeitoral e calças de naga&r."]
+	quest.4354333ECF296039.title: "Lich"
+	quest.4354333ECF296039.quest_subtitle: "Chefe 2"
+	quest.4354333ECF296039.quest_desc: ["O &eLich&r mora no topo de uma torre. Quebre os escudos dele antes de atacar.", "", "Ele deixa um &ecetro&r. Ter um cetro libera o pântano, a floresta escura e a neve."]
+	quest.2F95DFA5385F8875.title: "Quatro cetros"
+	quest.2F95DFA5385F8875.quest_desc: ["Junte os &equatro cetros&r do Lich."]
+	quest.4E6A33EFDA8310FC.title: "Estrogonofe de Meef"
+	quest.4E6A33EFDA8310FC.quest_subtitle: "Labirinto do pântano"
+	quest.4E6A33EFDA8310FC.quest_desc: ["No fundo do &elabirinto&r do pântano vive o &eMinoshroom&r. Ele deixa o &eestrogonofe de Meef&r.", "", "Comer o estrogonofe protege do calor do &epântano de fogo&r."]
+	quest.4F3BC87AC1DE3236.title: "Hidra"
+	quest.4F3BC87AC1DE3236.quest_subtitle: "Chefe do pântano de fogo"
+	quest.4F3BC87AC1DE3236.quest_desc: ["A &eHidra&r tem três cabeças. Leve &eresistência ao fogo&r e acerte as cabeças quando abrirem a boca."]
+	quest.19494C781D43E575.title: "Ferramentas de fogo"
+	quest.19494C781D43E575.quest_desc: ["O sangue da Hidra faz os &elingotes de fogo&r: ferramentas e armadura que queimam o inimigo."]
+	quest.0E8F07E6F125324C.title: "Cavaleiros fantasmas"
+	quest.0E8F07E6F125324C.quest_subtitle: "Floresta escura"
+	quest.0E8F07E6F125324C.quest_desc: ["Na &efloresta escura&r fica a tumba dos &ecavaleiros fantasmas&r. Vença todos.", "", "Isso libera as máquinas da &etorre de carminita&r."]
+	quest.7FB25A0C64E45268.title: "Ur-Ghast"
+	quest.7FB25A0C64E45268.quest_subtitle: "Chefe da torre escura"
+	quest.7FB25A0C64E45268.quest_desc: ["No topo da &etorre escura&r, mate os ghasts em volta da armadilha e ative ela para puxar o &eUr-Ghast&r do céu."]
+	quest.3F8AA7659D2C817A.title: "Yeti alfa"
+	quest.3F8AA7659D2C817A.quest_subtitle: "Floresta de neve"
+	quest.3F8AA7659D2C817A.quest_desc: ["Na caverna da floresta de neve vive o &eYeti alfa&r. O pelo dele protege do frio do &eglaciar&r."]
+	quest.3155A2678BBADDC2.title: "Rainha da Neve"
+	quest.3155A2678BBADDC2.quest_subtitle: "Palácio da Aurora"
+	quest.3155A2678BBADDC2.quest_desc: ["No topo do &ePalácio da Aurora&r, no glaciar, está a &eRainha da Neve&r."]
+	quest.3C907DEB900F4722.title: "Planaltos"
+	quest.3C907DEB900F4722.quest_subtitle: "Fim da chuva ácida"
+	quest.3C907DEB900F4722.quest_desc: ["Vencer a Hidra, o Ur-Ghast e a Rainha da Neve limpa a chuva ácida e abre os &eplanaltos&r."]
+	quest.15F58F687CF8126B.title: "Pé de feijão"
+	quest.15F58F687CF8126B.quest_desc: ["Nas cavernas dos trolls ache os &efeijões mágicos&r e plante na terra brilhante embaixo das nuvens. Suba até os &egigantes&r."]
+	quest.02DF9C137B36A284.title: "Lâmpada de cinzas"
+	quest.02DF9C137B36A284.quest_desc: ["Pegue o que o gigante deixa, volte às cavernas dos trolls e ache a &elâmpada de cinzas&r: ela queima as barreiras de espinhos.", "", "&7Por enquanto este é o fim da história do Twilight. O resto dos planaltos ainda está em construção no mod."]
 	chapter.52600FF197F42E06.title: "Undergarden"
+	chapter.52600FF197F42E06.chapter_subtitle: ["Um mundo escuro embaixo de tudo"]
 	quest.49ABA829AA40AE05.title: "Catalisador"
-	quest.49ABA829AA40AE05.quest_desc: ["O catalisador ativa o portal de tijolos de pedra."]
-	quest.7F65FA3D01E0FE56.title: "Entrar"
-	quest.7F65FA3D01E0FE56.quest_desc: ["Undergarden e um mundo escuro e perigoso embaixo da terra. Leve tochas."]
+	quest.49ABA829AA40AE05.quest_desc: ["O &ecatalisador&r abre o portal. Veja a receita com &eR&r no JEI.", "", "Faça uma moldura de &etijolos de pedra&r no formato do portal do Nether e use o catalisador nela."]
+	quest.0DAEA9FFA03C1228.title: "Entrar no Undergarden"
+	quest.0DAEA9FFA03C1228.quest_desc: ["Um mundo &eescuro&r e cheio de criaturas podres. Leve &etochas&r, comida e armadura."]
+	quest.4A4DF9CF5C9EA79A.title: "Estilingue"
+	quest.4A4DF9CF5C9EA79A.quest_desc: ["O &eestilingue&r atira pedrinhas, frutas e outras coisas que você acha por lá."]
+	quest.36E0BCF3D5F5CC5E.title: "Feijões"
+	quest.36E0BCF3D5F5CC5E.quest_desc: ["Colha um pé de &efeijões do Undergarden&r: comida para a viagem."]
+	quest.056DFA7749AE60F8.title: "Abóbora roxa"
+	quest.056DFA7749AE60F8.quest_desc: ["Plante uma semente de &egloomgourd&r, a abóbora roxa do Undergarden."]
+	quest.3BEA369351B43548.title: "Negociar com Stoneborn"
+	quest.3BEA369351B43548.quest_desc: ["Os &eStoneborn&r são gigantes de pedra que negociam. Troque algo com um deles."]
 	quest.09912EE1CD8CCEEA.title: "Cloggrum"
-	quest.09912EE1CD8CCEEA.quest_desc: ["O primeiro metal do Undergarden, para ferramentas."]
+	quest.09912EE1CD8CCEEA.quest_desc: ["O &ecloggrum&r é o primeiro metal do Undergarden: ferramentas e armadura."]
 	quest.2B4732C93C19A1AF.title: "Froststeel"
-	quest.2B4732C93C19A1AF.quest_desc: ["Metal gelado que deixa os inimigos mais lentos."]
+	quest.2B4732C93C19A1AF.quest_desc: ["O &efroststeel&r é um metal gelado: as armas &adeixam o inimigo lento&r."]
 	quest.492E6A440E59C51C.title: "Utherium"
-	quest.492E6A440E59C51C.quest_desc: ["Cristal forte contra as criaturas do Undergarden."]
-	chapter.6CDFF22C3CFE2200.title: "Espaco"
-	quest.5AD3F903CD78E4F3.title: "Aco"
-	quest.5AD3F903CD78E4F3.quest_desc: ["Ad Astra comeca com aco."]
+	quest.492E6A440E59C51C.quest_desc: ["O cristal de &eutherium&r faz armas &afortes contra as criaturas podres&r.", "", "&cCuidado:&r mexer com utherium pode passar a &einfecção utérica&r. Ache um jeito de segurar ela."]
+	quest.3009C1F1D141E0D2.title: "Tocha de fragmento"
+	quest.3009C1F1D141E0D2.quest_desc: ["A &etocha de fragmento&r machuca as criaturas podres que chegam perto."]
+	quest.1A74A41A0FAFB4B3.title: "Catacumbas"
+	quest.1A74A41A0FAFB4B3.quest_desc: ["Ache as &ecatacumbas&r: corredores antigos guardados pelos &eesquecidos&r."]
+	quest.376BE10134E82C88.title: "Guardião esquecido"
+	quest.376BE10134E82C88.quest_subtitle: "Chefe"
+	quest.376BE10134E82C88.quest_desc: ["Vença um &eGuardião Esquecido&r. Ele deixa pepitas para o &elingote esquecido&r."]
+	quest.5D4FF225B4A82584.title: "Lingote esquecido"
+	quest.5D4FF225B4A82584.quest_desc: ["O &elingote esquecido&r melhora as ferramentas de cloggrum: as &aferramentas esquecidas&r são as melhores do Undergarden."]
+	quest.76E24874DA092A32.title: "As profundezas"
+	quest.76E24874DA092A32.quest_desc: ["Quebre a barreira de &edreadrock&r no fundo do Undergarden e entre nas &eprofundezas&r."]
+	quest.100EF18C7D07F1B4.title: "Infusor"
+	quest.100EF18C7D07F1B4.quest_desc: ["O &einfusor&r é a máquina das profundezas. Veja o que ele faz com &eU&r no JEI."]
+	quest.2C67769A84C41338.title: "Acampamento dos Denizens"
+	quest.2C67769A84C41338.quest_desc: ["Ache um acampamento dos &eDenizens&r, o povo das profundezas."]
+	chapter.5FD7EA0445DF77BD.title: "Eternal Starlight"
+	chapter.5FD7EA0445DF77BD.chapter_subtitle: ["Um mundo de estrelas, cristais e golens"]
+	quest.2C22BCD8BD64FFFC.title: "Desafio do Guardião"
+	quest.2C22BCD8BD64FFFC.quest_desc: ["Procure as &eruínas de portal&r pelo mundo normal. Lá está o &eGuardião&r: vença o desafio dele."]
+	quest.28430639041CD52A.title: "Orbe da profecia"
+	quest.28430639041CD52A.quest_desc: ["O &eorbe da profecia&r é a chave do portal do Eternal Starlight. Veja como usar com &eU&r no JEI."]
+	quest.5A55401740D7F4EC.title: "Céu de mil estrelas"
+	quest.5A55401740D7F4EC.quest_desc: ["Entre no &eEternal Starlight&r: noite eterna, plantas que brilham e bichos estranhos."]
+	quest.7D97649E78C93475.title: "Diamante estrelado"
+	quest.7D97649E78C93475.quest_desc: ["O &ediamante estrelado&r é um dos minérios desta dimensão."]
+	quest.2F394DA42C10AA18.title: "Prata profunda"
+	quest.2F394DA42C10AA18.quest_desc: ["O &elingote de prata profunda&r (deepsilver) vem do minério do fundo da dimensão."]
+	quest.0D8162EF226DA6FF.title: "Chuva de meteoros"
+	quest.0D8162EF226DA6FF.quest_desc: ["Às vezes caem &emeteoros&r do céu. Assista a uma chuva de meteoros."]
+	quest.09D40D4563462D65.title: "Presente do céu"
+	quest.09D40D4563462D65.quest_desc: ["O &elingote de aethersent&r vem dos meteoros."]
+	quest.2043672EFD4804B9.title: "Deserto de cristal"
+	quest.2043672EFD4804B9.quest_desc: ["Visite o bioma &edeserto cristalizado&r."]
+	quest.1981BA6AD688185E.title: "Abismo"
+	quest.1981BA6AD688185E.quest_desc: ["Mergulhe no bioma &eabismo&r, o fundo do mar desta dimensão."]
+	quest.50ADED386C9A77F8.title: "Olho que procura"
+	quest.50ADED386C9A77F8.quest_desc: ["O &eolho que procura&r mostra o caminho para a &eforja dos golens&r."]
+	quest.03C3D4A7EC2F6CFA.title: "Forja dos golens"
+	quest.03C3D4A7EC2F6CFA.quest_desc: ["Entre na &eforja dos golens&r, a estrutura do primeiro chefe."]
+	quest.5B84EACDCAEE20B4.title: "Golem Estelar"
+	quest.5B84EACDCAEE20B4.quest_subtitle: "Chefe"
+	quest.5B84EACDCAEE20B4.quest_desc: ["O &eGolem Estelar&r se protege com &eblocos de energia&r. Desligue os blocos para ele ficar vulnerável.", "", "Ele deixa o &elingote de aço de golem&r."]
+	quest.56DAA0C0BC553D16.title: "Monstruosidade Lunar"
+	quest.56DAA0C0BC553D16.quest_subtitle: "Chefe"
+	quest.56DAA0C0BC553D16.quest_desc: ["A &eMonstruosidade Lunar&r só leva dano quando está &epegando fogo&r.", "", "Ela libera a &aarmadura de unrealium&r e a lança crescente."]
+	quest.62097E20923EDF13.title: "Armadura de unrealium"
+	quest.62097E20923EDF13.quest_desc: ["Monte a armadura completa de &eunrealium&r."]
+	quest.42B9E0390937E46C.title: "Explorador estelar"
+	quest.42B9E0390937E46C.quest_desc: ["Visite &etodos os biomas&r do Eternal Starlight."]
+	chapter.6CDFF22C3CFE2200.title: "Espaço"
+	chapter.6CDFF22C3CFE2200.chapter_subtitle: ["Foguetes, oxigênio e outros planetas"]
+	quest.7024745C8C6C2B85.title: "Gerador a carvão"
+	quest.7024745C8C6C2B85.quest_subtitle: "Energia"
+	quest.7024745C8C6C2B85.quest_desc: ["As máquinas do &eAd Astra&r gastam energia. O começo mais simples é o &egerador a carvão&r.", "", "Ligue as máquinas com cabos e veja as receitas com &eR&r no JEI."]
+	quest.63EB37EC627A1A03.title: "Compressor"
+	quest.63EB37EC627A1A03.quest_desc: ["O &ecompressor&r transforma lingotes em &echapas&r, usadas em quase tudo do foguete."]
+	quest.5AD3F903CD78E4F3.title: "Aço"
+	quest.5AD3F903CD78E4F3.quest_desc: ["O &ealto-forno etriônico&r usa energia para fazer &elingote de aço&r."]
 	quest.78643149D88DB1BF.title: "Bancada da NASA"
-	quest.78643149D88DB1BF.quest_desc: ["A bancada da NASA monta as pecas do foguete."]
+	quest.78643149D88DB1BF.quest_desc: ["A &ebancada da NASA&r monta os foguetes."]
+	quest.2B9EA2C9AC123A6F.title: "Petróleo"
+	quest.2B9EA2C9AC123A6F.quest_desc: ["Encha um balde com &epetróleo&r: ele aparece em poças no oceano."]
+	quest.310B0B930748753D.title: "Combustível"
+	quest.310B0B930748753D.quest_desc: ["A &erefinaria&r transforma petróleo em &ecombustível de foguete&r."]
 	quest.7B3831876F704DD4.title: "Traje espacial"
-	quest.7B3831876F704DD4.quest_desc: ["Capacete e traje espacial com oxigenio sao obrigatorios fora da Terra."]
-	quest.1E0708B7EA09C5FA.title: "Foguete"
-	quest.1E0708B7EA09C5FA.quest_desc: ["Foguete nivel 1: leva ate a Lua. Abasteca com combustivel e coloque na plataforma de lancamento."]
+	quest.7B3831876F704DD4.quest_desc: ["Fora da Terra não tem ar. Faça o traje completo: &ecapacete, traje, calças e botas espaciais&r.", "", "O &ecarregador de oxigênio&r enche o traje."]
+	quest.3FA240CCE87A060E.title: "Carregador de oxigênio"
+	quest.3FA240CCE87A060E.quest_desc: ["Encha o tanque do traje no &ecarregador de oxigênio&r antes de cada viagem."]
+	quest.69087F843B801DBE.title: "Foguete nível 1"
+	quest.69087F843B801DBE.quest_desc: ["Monte o &efoguete nível 1&r, ponha em uma &eplataforma de lançamento&r e abasteça com combustível.", "", "Entre e aperte espaço para decolar. Ele vai até a &eLua&r."]
 	quest.72366A0DEA4B1515.title: "Lua"
-	quest.72366A0DEA4B1515.quest_desc: ["Na Lua tem desh, o metal do foguete seguinte."]
-	quest.4A989F85660C8492.title: "Desh"
-	quest.4A989F85660C8492.quest_desc: ["Com desh voce faz o foguete nivel 2 e chega em Marte."]
-	quest.6C64252B40CD4F10.title: "Marte"
-	quest.6C64252B40CD4F10.quest_desc: ["Marte e o caminho para Venus, Mercurio e Glacio."]
-	quest.425B42F224DFA666.title: "Venus"
-	quest.425B42F224DFA666.quest_desc: ["Venus e quente e acida: va com o traje certo."]
-	quest.07CDDF90A2B8F066.title: "Mercurio"
-	quest.07CDDF90A2B8F066.quest_desc: ["O planeta mais perto do Sol."]
-	quest.6D006D3D25BE95FA.title: "Glacio"
-	quest.6D006D3D25BE95FA.quest_desc: ["O planeta gelado, o mais longe de todos."]
+	quest.72366A0DEA4B1515.quest_subtitle: "Um pequeno passo"
+	quest.72366A0DEA4B1515.quest_desc: ["Chegue na &eLua&r. A gravidade é baixa: os pulos ficam enormes.", "", "Lá tem &edesh&r, o metal do próximo foguete."]
 	quest.624E7920FAAD6862.title: "Vila lunar"
-	quest.624E7920FAAD6862.quest_desc: ["Os lunarianos tem vilas na Lua e trocam itens como os aldeoes."]
+	quest.624E7920FAAD6862.quest_desc: ["Os &elunarianos&r têm vilas na Lua e trocam itens como aldeões."]
+	quest.21510F8025EC14F0.title: "Painel solar"
+	quest.21510F8025EC14F0.quest_desc: ["O &epainel solar&r gera energia de graça com a luz do Sol."]
+	quest.07394B49AD59F63E.title: "Distribuidor de oxigênio"
+	quest.07394B49AD59F63E.quest_desc: ["O &edistribuidor de oxigênio&r enche uma sala fechada de ar: dá para morar em outro planeta sem traje."]
+	quest.4A989F85660C8492.title: "Desh"
+	quest.4A989F85660C8492.quest_desc: ["Com &edesh&r você faz o &efoguete nível 2&r."]
+	quest.6C64252B40CD4F10.title: "Marte"
+	quest.6C64252B40CD4F10.quest_desc: ["O foguete nível 2 leva até &eMarte&r. Lá tem &eostrum&r, o metal do nível 3."]
+	quest.632CCE17812CA499.title: "Traje de netherite"
+	quest.632CCE17812CA499.quest_desc: ["O &etraje espacial de netherite&r aguenta calor extremo. É preciso para Vênus e Mercúrio."]
+	quest.17377A11BDFC847A.title: "Foguete nível 3"
+	quest.17377A11BDFC847A.quest_desc: ["Com &eostrum&r monte o &efoguete nível 3&r."]
+	quest.425B42F224DFA666.title: "Vênus"
+	quest.425B42F224DFA666.quest_desc: ["Vênus é &equente e ácida&r. Lá tem &ecalorite&r, o metal do nível 4."]
+	quest.07CDDF90A2B8F066.title: "Mercúrio"
+	quest.07CDDF90A2B8F066.quest_desc: ["O planeta mais perto do Sol."]
+	quest.39F7E9B2FFD27441.title: "Traje a jato"
+	quest.39F7E9B2FFD27441.quest_desc: ["O &etraje a jato&r empurra você para a frente com força."]
+	quest.3E75F79AAB570876.title: "Foguete nível 4"
+	quest.3E75F79AAB570876.quest_desc: ["Com &ecalorite&r monte o &efoguete nível 4&r, o mais forte."]
+	quest.6D006D3D25BE95FA.title: "Glacio"
+	quest.6D006D3D25BE95FA.quest_subtitle: "Outro sistema solar"
+	quest.6D006D3D25BE95FA.quest_desc: ["O foguete nível 4 chega em &eGlacio&r, o planeta gelado de outro sistema solar."]
 	chapter.1EDB32752725DDCA.title: "Utilidades"
 	chapter.1EDB32752725DDCA.chapter_subtitle: ["Ferramentas e truques que facilitam a vida"]
 	quest.493065C7669E9089.title: "Minerar em bloco"

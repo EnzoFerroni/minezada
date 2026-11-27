@@ -824,49 +824,396 @@ $capitulos = @(
         @{ t = 'Camara de enriquecimento'; d = 'Transforma um minerio em dois montes de po: o dobro de lingotes.'; item = 'mekanism:enrichment_chamber' }
         @{ t = 'Cabos'; d = 'Cabos universais levam energia do gerador para as maquinas.'; item = 'mekanism:basic_universal_cable' }
     ) }
-    @{ t = 'Dimensoes'; g = 'Dimensões'; icone = 'minecraft:ender_eye'; m = @(
-        @{ t = 'Nether'; d = 'Portal de obsidiana aceso com isqueiro.'; dim = 'minecraft:the_nether'; solta = $true }
-        @{ t = 'Aether'; d = 'O ceu do Minecraft: moldura de pedra luminosa (glowstone) acesa com um balde de agua.'; dim = 'aether:the_aether'; solta = $true }
-        @{ t = 'Twilight Forest'; d = 'Poca de agua 2x2 cercada de flores; jogue um diamante dentro.'; dim = 'twilightforest:twilight_forest'; solta = $true }
-        @{ t = 'Undergarden'; d = 'Moldura de tijolos de pedra ativada com o catalisador do Undergarden (receita no JEI).'; dim = 'undergarden:undergarden'; solta = $true }
-        @{ t = 'Eternal Starlight'; d = 'Dimensao das estrelas: procure as ruinas de portal pelo mundo e veja no JEI como ativar.'; dim = 'eternal_starlight:starlight'; solta = $true }
-        @{ t = 'Masmorras infinitas'; d = 'Dimensional Dungeons: a chave de portal abre masmorras que se renovam (receita no JEI).'; dim = 'dimdungeons:dungeon_dimension'; solta = $true }
-        @{ t = 'Lua'; d = 'Ad Astra: monte um foguete na bancada da NASA e voe para a Lua.'; dim = 'ad_astra:moon'; solta = $true }
-        @{ t = 'End'; d = 'Olhos de ender levam ao portal do End e ao dragao.'; dim = 'minecraft:the_end'; solta = $true }
+    @{ t = 'Dimensões'; g = 'Dimensões'; icone = 'minecraft:ender_eye'; sub = 'Outros mundos para visitar'; m = @(
+        @{ t = 'Além do mundo normal'; marco = $true; sub = 'Comece por aqui'; d = @(
+            'Além do Nether e do End, o pack tem vários &emundos novos&r, cada um com bichos, minérios, chefes e itens próprios.'
+            ''
+            'Cada mundo tem o seu &ecapítulo&r neste grupo, com o passo a passo do começo ao fim.'
+            ''
+            '&7Leve comida, cama e uma arma boa. Quem morre em outro mundo volta para a cama, mas os itens ficam lá.'
+        ) }
+        @{ t = 'Nether'; depois = 'Além do mundo normal'; d = @(
+            'Moldura de &eobsidiana&r (4 de largura, 5 de altura) acesa com um &eisqueiro&r.'
+            ''
+            'Lá tem &aouro, quartzo e netherite&r, e os fortes do Nether.'
+        ); dim = 'minecraft:the_nether' }
+        @{ t = 'Aether'; depois = 'Além do mundo normal'; sub = 'O céu'; d = @(
+            'Moldura de &eglowstone&r no formato do portal do Nether, acesa com um &ebalde de água&r.'
+            ''
+            'Ilhas flutuantes, três masmorras e chefes. Capítulo &eAether&r.'
+        ); dim = 'aether:the_aether' }
+        @{ t = 'Twilight Forest'; depois = 'Além do mundo normal'; sub = 'A floresta do crepúsculo'; d = @(
+            'Faça uma poça de água &e2x2&r, cerque com &eflores&r e jogue um &ediamante&r dentro (tecla &eQ&r).'
+            ''
+            'Uma floresta em eterno pôr do sol, cheia de chefes. Capítulo &eTwilight Forest&r.'
+        ); dim = 'twilightforest:twilight_forest' }
+        @{ t = 'Undergarden'; depois = 'Além do mundo normal'; sub = 'O mundo de baixo'; d = @(
+            'Moldura de &etijolos de pedra&r ativada com o &ecatalisador&r do mod.'
+            ''
+            'Escuro, perigoso e com metais novos. Capítulo &eUndergarden&r.'
+        ); dim = 'undergarden:undergarden' }
+        @{ t = 'Eternal Starlight'; depois = 'Além do mundo normal'; sub = 'O mundo das estrelas'; d = @(
+            'Procure as &eruínas de portal&r pelo mundo e vença o desafio do &eGuardião&r para ganhar o orbe que abre o portal.'
+            ''
+            'Capítulo &eEternal Starlight&r.'
+        ); dim = 'eternal_starlight:starlight' }
+        @{ t = 'Espaço'; depois = 'Além do mundo normal'; sub = 'Lua, planetas e foguetes'; d = @(
+            'Com o &eAd Astra&r você monta foguetes e voa para a Lua e outros planetas.'
+            ''
+            'É o mundo mais demorado: precisa de energia, aço e combustível. Capítulo &eEspaço&r.'
+        ); dim = 'ad_astra:moon' }
+        @{ t = 'Masmorras infinitas'; depois = 'Além do mundo normal'; sub = 'Dimensional Dungeons'; opcional = $true; d = @(
+            'Uma dimensão só de &emasmorras&r que se renovam, abertas com uma &echave de portal&r.'
+            ''
+            'Como montar o portal e preparar a chave: veja o &eguia&r do mod e as receitas no JEI (&eR&r e &eU&r).'
+        ); item = 'dimdungeons:item_portal_key' }
+        @{ t = 'Entrar nas masmorras'; depois = 'Masmorras infinitas'; opcional = $true; d = @(
+            'Cada chave leva a uma masmorra diferente, com baús e inimigos. Saia antes de a chave acabar.'
+        ); dim = 'dimdungeons:dungeon_dimension' }
+        @{ t = 'End'; depois = 'Nether'; marco = $true; sub = 'O fim do jogo normal'; d = @(
+            'Faça &eolhos de ender&r (pérola de ender e pó de blaze do Nether) e jogue para cima: eles voam até a &efortaleza&r com o portal do End.'
+            ''
+            'Lá mora o &edragão&r. Leve muitos blocos, arco e poções.'
+        ); dim = 'minecraft:the_end' }
     ) }
-    @{ t = 'Aether'; g = 'Dimensões'; icone = 'aether:ambrosium_shard'; m = @(
-        @{ t = 'Chegar no Aether'; d = 'Moldura de glowstone acesa com um balde de agua. Leve o paraquedas dourado que o mod da na primeira visita.'; dim = 'aether:the_aether' }
-        @{ t = 'Ambrosium'; d = 'Fragmentos de ambrosium curam e servem de combustivel no Aether.'; item = 'aether:ambrosium_shard' }
-        @{ t = 'Zanite'; d = 'Gema azul para ferramentas e armadura do Aether.'; item = 'aether:zanite_gemstone' }
-        @{ t = 'Primeira masmorra'; d = 'Venca o Slider na masmorra de bronze e pegue a chave de bronze.'; item = 'aether:bronze_dungeon_key' }
-        @{ t = 'Rainha Valquiria'; d = 'A masmorra de prata guarda a Rainha Valquiria e a chave de prata.'; item = 'aether:silver_dungeon_key' }
-        @{ t = 'Espirito do Sol'; d = 'A masmorra de ouro e o fim do Aether: venca o Espirito do Sol.'; item = 'aether:gold_dungeon_key' }
+    @{ t = 'Aether'; g = 'Dimensões'; icone = 'aether:ambrosium_shard'; sub = 'Ilhas no céu, três masmorras e um chefe final'; m = @(
+        @{ t = 'Chegar no Aether'; marco = $true; d = @(
+            'Faça uma moldura de &eglowstone&r no formato do portal do Nether e despeje um &ebalde de água&r dentro.'
+            ''
+            'Cuidado com a beira das ilhas: cair do Aether leva de volta ao mundo normal, de bem alto. O mod dá um &eparaquedas&r na primeira visita.'
+        ); dim = 'aether:the_aether' }
+        @{ t = 'Ferramentas do céu'; depois = 'Chegar no Aether'; d = @(
+            'Ferramentas normais rendem pouco aqui. Faça as do Aether:'
+            ''
+            '&eskyroot&r (madeira) e depois &eholystone&r (pedra).'
+        ); item = 'aether:holystone_pickaxe' }
+        @{ t = 'Ambrosium'; depois = 'Ferramentas do céu'; d = @(
+            'Os &efragmentos de ambrosium&r saem de um minério amarelo.'
+            ''
+            'Servem de &acombustível&r para as máquinas do Aether e &acuram&r um pouco quando comidos.'
+        ); item = 'aether:ambrosium_shard'; q = 8 }
+        @{ t = 'Zanite'; depois = 'Ferramentas do céu'; d = @(
+            'A &egema de zanite&r é o ferro do Aether: ferramentas, armadura e anéis.'
+            ''
+            'Ferramentas de zanite ficam &amais rápidas&r quanto mais gastas.'
+        ); conquista = 'aether:zanite' }
+        @{ t = 'Altar'; depois = @('Ambrosium', 'Zanite'); d = @(
+            'O &ealtar&r usa ambrosium para &aencantar&r itens do Aether e consertar ferramentas.'
+            ''
+            'Veja o que ele faz com &eU&r no JEI.'
+        ); conquista = 'aether:craft_altar' }
+        @{ t = 'Gravitite'; depois = 'Altar'; d = @(
+            'O minério rosa de &egravitite&r fica nas ilhas mais altas. Encante no altar para ter a &egravitite encantada&r.'
+            ''
+            'Com ela vem a melhor armadura do Aether: a &aarmadura de gravitite&r dá pulo alto.'
+        ); conquista = 'aether:enchanted_gravitite' }
+        @{ t = 'Gelo nos acessórios'; depois = 'Altar'; opcional = $true; d = @(
+            'O &econgelador&r usa &eicestone&r para transformar anéis e pingentes em versões de gelo.'
+        ); conquista = 'aether:ice_accessory' }
+        @{ t = 'Nuvem azul'; depois = 'Chegar no Aether'; opcional = $true; d = @(
+            'Pule em uma &enuvem azul&r para ser lançado bem alto. Ótimo para chegar em ilhas.'
+        ); conquista = 'aether:blue_aercloud' }
+        @{ t = 'Ovo de moa'; depois = 'Nuvem azul'; d = @(
+            'As &emoas&r são aves grandes do Aether. Pegue um &eovo&r e choque na &eincubadora&r.'
+            ''
+            'Uma moa domada vira &amontaria&r. A moa preta voa.'
+        ); conquista = 'aether:incubate_moa' }
+        @{ t = 'Voar de moa preta'; depois = 'Ovo de moa'; opcional = $true; conquista = 'aether:black_moa'; d = @(
+            'Monte em uma &emoa preta&r: ela plana e pula várias vezes no ar.'
+        ) }
+        @{ t = 'Porco voador'; depois = 'Nuvem azul'; opcional = $true; d = @(
+            'Coloque uma &esela&r em um &ephyg&r, o porco com asas, e voe com ele.'
+        ); conquista = 'aether:mount_phyg' }
+        @{ t = 'Masmorra de bronze'; depois = 'Gravitite'; marco = $true; sub = 'Primeiro chefe'; d = @(
+            'A masmorra de bronze fica dentro de uma ilha. O chefe é o &eSlider&r, um bloco que desliza: ele só leva dano de &epicareta&r.'
+            ''
+            'Saia do caminho quando ele avançar. O baú do fim dá a &echave de bronze&r e itens fortes.'
+        ); conquista = 'aether:bronze_dungeon' }
+        @{ t = 'Martelo dos deuses'; depois = 'Masmorra de bronze'; opcional = $true; d = @(
+            'O &eMartelo de Kingbdogz&r sai da masmorra de bronze e lança raios.'
+        ); item = 'aether:hammer_of_kingbdogz' }
+        @{ t = 'Masmorra de prata'; depois = 'Masmorra de bronze'; marco = $true; sub = 'A Rainha Valquíria'; d = @(
+            'Um templo nas nuvens, guardado por &evalquírias&r. No fim está a &eRainha Valquíria&r.'
+            ''
+            'O prêmio inclui a &apedra de regeneração&r e equipamento de valquíria.'
+        ); conquista = 'aether:silver_dungeon' }
+        @{ t = 'Masmorra de ouro'; depois = 'Masmorra de prata'; marco = $true; sub = 'O chefe final do Aether'; d = @(
+            'Uma ilha de fogo onde vive o &eEspírito do Sol&r. É o fim do Aether.'
+            ''
+            'Vencer ele libera &adormir no Aether&r e dá a armadura de fênix.'
+        ); conquista = 'aether:gold_dungeon' }
+        @{ t = 'Armadura de fênix'; depois = 'Masmorra de ouro'; opcional = $true; d = @(
+            'A &earmadura de fênix&r protege do fogo e da lava.'
+        ); conquista = 'aether:phoenix_armor' }
+        @{ t = 'Deep Aether'; depois = 'Chegar no Aether'; sub = 'Mais Aether'; d = @(
+            'O &eDeep Aether&r adiciona biomas, bichos e uma masmorra nova ao Aether.'
+            ''
+            'Visite todos os biomas do Aether para cumprir esta.'
+        ); conquista = 'deep_aether:explore_aether' }
+        @{ t = 'Masmorra de latão'; depois = @('Deep Aether', 'Masmorra de bronze'); sub = 'Deep Aether'; d = @(
+            'A masmorra de latão do Deep Aether guarda o chefe das tempestades.'
+        ); conquista = 'deep_aether:brass_dungeon' }
+        @{ t = 'Armadura de stratus'; depois = @('Deep Aether', 'Gravitite'); opcional = $true; d = @(
+            'O &elingote de stratus&r do Deep Aether faz uma armadura ainda melhor que a de gravitite.'
+        ); conquista = 'deep_aether:stratus_armor' }
     ) }
-    @{ t = 'Twilight Forest'; g = 'Dimensões'; icone = 'twilightforest:naga_scale'; m = @(
-        @{ t = 'Entrar'; d = 'Poca de agua 2x2 cercada de flores; jogue um diamante dentro.'; dim = 'twilightforest:twilight_forest' }
-        @{ t = 'Naga'; d = 'O primeiro chefe vive no patio de pedra. Ele deixa escamas para armadura.'; item = 'twilightforest:naga_scale' }
-        @{ t = 'Mapa magico'; d = 'Com o foco de mapa magico voce faz um mapa que mostra os biomas e as estruturas dos chefes.'; item = 'twilightforest:magic_map_focus' }
-        @{ t = 'Proximos chefes'; d = 'A progressao segue: Lich, Hidra, Ur-Ghast e outros. Cada chefe libera a regiao seguinte; tentar pular da efeitos ruins.'; }
+    @{ t = 'Twilight Forest'; g = 'Dimensões'; icone = 'twilightforest:naga_scale'; sub = 'Chefes em ordem: cada um libera a próxima região'; m = @(
+        @{ t = 'Entrar no crepúsculo'; marco = $true; d = @(
+            'Faça uma poça de água &e2x2&r, cerque com &eflores&r e jogue um &ediamante&r dentro (tecla &eQ&r). Um raio cria o portal.'
+            ''
+            'Aqui as regiões têm &ebarreiras&r: tentar pular um chefe dá efeitos ruins. Siga a ordem deste capítulo.'
+        ); dim = 'twilightforest:twilight_forest' }
+        @{ t = 'Caçar bichos'; depois = 'Entrar no crepúsculo'; d = @(
+            'A floresta tem bichos próprios. Cace alguns para ter os materiais do mapa mágico.'
+        ); conquista = 'twilightforest:twilight_hunter' }
+        @{ t = 'Foco do mapa'; depois = 'Caçar bichos'; d = @(
+            'O &efoco de mapa mágico&r usa uma pena de &ecorvo&r, &etorchberries&r e pó de glowstone (receita no JEI).'
+        ); conquista = 'twilightforest:magic_map_focus' }
+        @{ t = 'Mapa mágico'; depois = 'Foco do mapa'; d = @(
+            'O &emapa mágico&r mostra os &abiomas e onde ficam os chefes&r. Fica muito mais fácil achar o próximo.'
+        ); conquista = 'twilightforest:magic_map' }
+        @{ t = 'Mesa de desmontar'; depois = 'Entrar no crepúsculo'; opcional = $true; d = @(
+            'A &emesa de desmontar&r transforma um item de volta nos materiais dele. Cuidado: gasta XP.'
+        ); item = 'twilightforest:uncrafting_table' }
+        @{ t = 'Equipamento de viajante'; depois = 'Entrar no crepúsculo'; opcional = $true; d = @(
+            'Faça uma peça de &earmadura de viajante&r, leve e barata para o começo.'
+        ); conquista = 'twilightforest:craft_travellers_gear' }
+        @{ t = 'Colinas ocas'; depois = 'Entrar no crepúsculo'; opcional = $true; d = @(
+            'As &ecolinas ocas&r têm minério e baús, guardados por bichos. Vença o guardião de uma colina pequena.'
+        ); conquista = 'twilightforest:hill1' }
+        @{ t = 'Naga'; depois = 'Entrar no crepúsculo'; marco = $true; sub = 'Chefe 1'; d = @(
+            'A &eNaga&r é uma cobra gigante que vive em um &epátio de pedra&r. Desvie das investidas e bata nas costas.'
+            ''
+            'Ela deixa &eescamas de naga&r, que abrem a barreira da torre do Lich.'
+        ); conquista = 'twilightforest:progress_naga' }
+        @{ t = 'Armadura de naga'; depois = 'Naga'; opcional = $true; d = @(
+            'Com as escamas você faz &epeitoral e calças de naga&r.'
+        ); conquista = 'twilightforest:naga_armors' }
+        @{ t = 'Lich'; depois = 'Naga'; marco = $true; sub = 'Chefe 2'; d = @(
+            'O &eLich&r mora no topo de uma torre. Quebre os escudos dele antes de atacar.'
+            ''
+            'Ele deixa um &ecetro&r. Ter um cetro libera o pântano, a floresta escura e a neve.'
+        ); conquista = 'twilightforest:progress_lich' }
+        @{ t = 'Quatro cetros'; depois = 'Lich'; opcional = $true; d = @(
+            'Junte os &equatro cetros&r do Lich.'
+        ); conquista = 'twilightforest:lich_scepters' }
+        @{ t = 'Estrogonofe de Meef'; depois = 'Lich'; sub = 'Labirinto do pântano'; d = @(
+            'No fundo do &elabirinto&r do pântano vive o &eMinoshroom&r. Ele deixa o &eestrogonofe de Meef&r.'
+            ''
+            'Comer o estrogonofe protege do calor do &epântano de fogo&r.'
+        ); conquista = 'twilightforest:progress_labyrinth' }
+        @{ t = 'Hidra'; depois = 'Estrogonofe de Meef'; marco = $true; sub = 'Chefe do pântano de fogo'; d = @(
+            'A &eHidra&r tem três cabeças. Leve &eresistência ao fogo&r e acerte as cabeças quando abrirem a boca.'
+        ); conquista = 'twilightforest:progress_hydra' }
+        @{ t = 'Ferramentas de fogo'; depois = 'Hidra'; opcional = $true; d = @(
+            'O sangue da Hidra faz os &elingotes de fogo&r: ferramentas e armadura que queimam o inimigo.'
+        ); conquista = 'twilightforest:fiery_set' }
+        @{ t = 'Cavaleiros fantasmas'; depois = 'Lich'; sub = 'Floresta escura'; d = @(
+            'Na &efloresta escura&r fica a tumba dos &ecavaleiros fantasmas&r. Vença todos.'
+            ''
+            'Isso libera as máquinas da &etorre de carminita&r.'
+        ); conquista = 'twilightforest:progress_knights' }
+        @{ t = 'Ur-Ghast'; depois = 'Cavaleiros fantasmas'; marco = $true; sub = 'Chefe da torre escura'; d = @(
+            'No topo da &etorre escura&r, mate os ghasts em volta da armadilha e ative ela para puxar o &eUr-Ghast&r do céu.'
+        ); conquista = 'twilightforest:progress_ur_ghast' }
+        @{ t = 'Yeti alfa'; depois = 'Lich'; sub = 'Floresta de neve'; d = @(
+            'Na caverna da floresta de neve vive o &eYeti alfa&r. O pelo dele protege do frio do &eglaciar&r.'
+        ); conquista = 'twilightforest:progress_yeti' }
+        @{ t = 'Rainha da Neve'; depois = 'Yeti alfa'; marco = $true; sub = 'Palácio da Aurora'; d = @(
+            'No topo do &ePalácio da Aurora&r, no glaciar, está a &eRainha da Neve&r.'
+        ); conquista = 'twilightforest:progress_glacier' }
+        @{ t = 'Planaltos'; depois = @('Hidra', 'Ur-Ghast', 'Rainha da Neve'); marco = $true; sub = 'Fim da chuva ácida'; d = @(
+            'Vencer a Hidra, o Ur-Ghast e a Rainha da Neve limpa a chuva ácida e abre os &eplanaltos&r.'
+        ); conquista = 'twilightforest:progress_merge' }
+        @{ t = 'Pé de feijão'; depois = 'Planaltos'; d = @(
+            'Nas cavernas dos trolls ache os &efeijões mágicos&r e plante na terra brilhante embaixo das nuvens. Suba até os &egigantes&r.'
+        ); conquista = 'twilightforest:beanstalk' }
+        @{ t = 'Lâmpada de cinzas'; depois = 'Pé de feijão'; marco = $true; d = @(
+            'Pegue o que o gigante deixa, volte às cavernas dos trolls e ache a &elâmpada de cinzas&r: ela queima as barreiras de espinhos.'
+            ''
+            '&7Por enquanto este é o fim da história do Twilight. O resto dos planaltos ainda está em construção no mod.'
+        ); conquista = 'twilightforest:progress_troll' }
     ) }
-    @{ t = 'Undergarden'; g = 'Dimensões'; icone = 'undergarden:catalyst'; m = @(
-        @{ t = 'Catalisador'; d = 'O catalisador ativa o portal de tijolos de pedra.'; item = 'undergarden:catalyst' }
-        @{ t = 'Entrar'; d = 'Undergarden e um mundo escuro e perigoso embaixo da terra. Leve tochas.'; dim = 'undergarden:undergarden' }
-        @{ t = 'Cloggrum'; d = 'O primeiro metal do Undergarden, para ferramentas.'; item = 'undergarden:cloggrum_ingot' }
-        @{ t = 'Froststeel'; d = 'Metal gelado que deixa os inimigos mais lentos.'; item = 'undergarden:froststeel_ingot' }
-        @{ t = 'Utherium'; d = 'Cristal forte contra as criaturas do Undergarden.'; item = 'undergarden:utherium_crystal' }
+    @{ t = 'Undergarden'; g = 'Dimensões'; icone = 'undergarden:catalyst'; sub = 'Um mundo escuro embaixo de tudo'; m = @(
+        @{ t = 'Catalisador'; marco = $true; d = @(
+            'O &ecatalisador&r abre o portal. Veja a receita com &eR&r no JEI.'
+            ''
+            'Faça uma moldura de &etijolos de pedra&r no formato do portal do Nether e use o catalisador nela.'
+        ); item = 'undergarden:catalyst' }
+        @{ t = 'Entrar no Undergarden'; depois = 'Catalisador'; d = @(
+            'Um mundo &eescuro&r e cheio de criaturas podres. Leve &etochas&r, comida e armadura.'
+        ); dim = 'undergarden:undergarden' }
+        @{ t = 'Estilingue'; depois = 'Entrar no Undergarden'; d = @(
+            'O &eestilingue&r atira pedrinhas, frutas e outras coisas que você acha por lá.'
+        ); item = 'undergarden:slingshot' }
+        @{ t = 'Feijões'; depois = 'Entrar no Undergarden'; opcional = $true; d = @(
+            'Colha um pé de &efeijões do Undergarden&r: comida para a viagem.'
+        ); conquista = 'undergarden:undergarden/underbeans' }
+        @{ t = 'Abóbora roxa'; depois = 'Entrar no Undergarden'; opcional = $true; d = @(
+            'Plante uma semente de &egloomgourd&r, a abóbora roxa do Undergarden.'
+        ); conquista = 'undergarden:undergarden/plant_gloomgourd' }
+        @{ t = 'Negociar com Stoneborn'; depois = 'Entrar no Undergarden'; opcional = $true; d = @(
+            'Os &eStoneborn&r são gigantes de pedra que negociam. Troque algo com um deles.'
+        ); conquista = 'undergarden:undergarden/stoneborn_trade' }
+        @{ t = 'Cloggrum'; depois = 'Entrar no Undergarden'; d = @(
+            'O &ecloggrum&r é o primeiro metal do Undergarden: ferramentas e armadura.'
+        ); item = 'undergarden:cloggrum_ingot'; q = 4 }
+        @{ t = 'Froststeel'; depois = 'Cloggrum'; d = @(
+            'O &efroststeel&r é um metal gelado: as armas &adeixam o inimigo lento&r.'
+        ); item = 'undergarden:froststeel_ingot' }
+        @{ t = 'Utherium'; depois = 'Cloggrum'; d = @(
+            'O cristal de &eutherium&r faz armas &afortes contra as criaturas podres&r.'
+            ''
+            '&cCuidado:&r mexer com utherium pode passar a &einfecção utérica&r. Ache um jeito de segurar ela.'
+        ); item = 'undergarden:utherium_crystal' }
+        @{ t = 'Tocha de fragmento'; depois = 'Utherium'; opcional = $true; d = @(
+            'A &etocha de fragmento&r machuca as criaturas podres que chegam perto.'
+        ); item = 'undergarden:shard_torch' }
+        @{ t = 'Catacumbas'; depois = 'Cloggrum'; d = @(
+            'Ache as &ecatacumbas&r: corredores antigos guardados pelos &eesquecidos&r.'
+        ); conquista = 'undergarden:undergarden/catacombs' }
+        @{ t = 'Guardião esquecido'; depois = 'Catacumbas'; marco = $true; sub = 'Chefe'; d = @(
+            'Vença um &eGuardião Esquecido&r. Ele deixa pepitas para o &elingote esquecido&r.'
+        ); conquista = 'undergarden:undergarden/kill_forgotten_guardian' }
+        @{ t = 'Lingote esquecido'; depois = 'Guardião esquecido'; d = @(
+            'O &elingote esquecido&r melhora as ferramentas de cloggrum: as &aferramentas esquecidas&r são as melhores do Undergarden.'
+        ); item = 'undergarden:forgotten_ingot' }
+        @{ t = 'As profundezas'; depois = 'Lingote esquecido'; marco = $true; d = @(
+            'Quebre a barreira de &edreadrock&r no fundo do Undergarden e entre nas &eprofundezas&r.'
+        ); conquista = 'undergarden:undergarden/enter_depths' }
+        @{ t = 'Infusor'; depois = 'As profundezas'; d = @(
+            'O &einfusor&r é a máquina das profundezas. Veja o que ele faz com &eU&r no JEI.'
+        ); item = 'undergarden:infuser' }
+        @{ t = 'Acampamento dos Denizens'; depois = 'As profundezas'; opcional = $true; d = @(
+            'Ache um acampamento dos &eDenizens&r, o povo das profundezas.'
+        ); conquista = 'undergarden:undergarden/enter_denizen_camp' }
     ) }
-    @{ t = 'Espaco'; g = 'Dimensões'; icone = 'ad_astra:tier_1_rocket'; m = @(
-        @{ t = 'Aco'; d = 'Ad Astra comeca com aco.'; item = 'ad_astra:steel_ingot' }
-        @{ t = 'Bancada da NASA'; d = 'A bancada da NASA monta as pecas do foguete.'; item = 'ad_astra:nasa_workbench' }
-        @{ t = 'Traje espacial'; d = 'Capacete e traje espacial com oxigenio sao obrigatorios fora da Terra.'; item = 'ad_astra:space_suit' }
-        @{ t = 'Foguete'; d = 'Foguete nivel 1: leva ate a Lua. Abasteca com combustivel e coloque na plataforma de lancamento.'; item = 'ad_astra:tier_1_rocket' }
-        @{ t = 'Lua'; d = 'Na Lua tem desh, o metal do foguete seguinte.'; dim = 'ad_astra:moon' }
-        @{ t = 'Desh'; d = 'Com desh voce faz o foguete nivel 2 e chega em Marte.'; item = 'ad_astra:desh_ingot' }
-        @{ t = 'Marte'; d = 'Marte e o caminho para Venus, Mercurio e Glacio.'; dim = 'ad_astra:mars' }
-        @{ t = 'Venus'; d = 'Venus e quente e acida: va com o traje certo.'; dim = 'ad_astra:venus'; solta = $true }
-        @{ t = 'Mercurio'; d = 'O planeta mais perto do Sol.'; dim = 'ad_astra:mercury'; solta = $true }
-        @{ t = 'Glacio'; d = 'O planeta gelado, o mais longe de todos.'; dim = 'ad_astra:glacio'; solta = $true }
-        @{ t = 'Vila lunar'; d = 'Os lunarianos tem vilas na Lua e trocam itens como os aldeoes.'; estrutura = 'ad_astra:lunarian_village'; solta = $true }
+    @{ t = 'Eternal Starlight'; g = 'Dimensões'; icone = 'eternal_starlight:orb_of_prophecy'; sub = 'Um mundo de estrelas, cristais e golens'; m = @(
+        @{ t = 'Desafio do Guardião'; marco = $true; d = @(
+            'Procure as &eruínas de portal&r pelo mundo normal. Lá está o &eGuardião&r: vença o desafio dele.'
+        ); conquista = 'eternal_starlight:challenge_gatekeeper' }
+        @{ t = 'Orbe da profecia'; depois = 'Desafio do Guardião'; d = @(
+            'O &eorbe da profecia&r é a chave do portal do Eternal Starlight. Veja como usar com &eU&r no JEI.'
+        ); item = 'eternal_starlight:orb_of_prophecy' }
+        @{ t = 'Céu de mil estrelas'; depois = 'Orbe da profecia'; marco = $true; d = @(
+            'Entre no &eEternal Starlight&r: noite eterna, plantas que brilham e bichos estranhos.'
+        ); dim = 'eternal_starlight:starlight' }
+        @{ t = 'Diamante estrelado'; depois = 'Céu de mil estrelas'; d = @(
+            'O &ediamante estrelado&r é um dos minérios desta dimensão.'
+        ); item = 'eternal_starlight:starlit_diamond' }
+        @{ t = 'Prata profunda'; depois = 'Céu de mil estrelas'; d = @(
+            'O &elingote de prata profunda&r (deepsilver) vem do minério do fundo da dimensão.'
+        ); item = 'eternal_starlight:deepsilver_ingot' }
+        @{ t = 'Chuva de meteoros'; depois = 'Céu de mil estrelas'; d = @(
+            'Às vezes caem &emeteoros&r do céu. Assista a uma chuva de meteoros.'
+        ); conquista = 'eternal_starlight:witness_meteor_shower' }
+        @{ t = 'Presente do céu'; depois = 'Chuva de meteoros'; d = @(
+            'O &elingote de aethersent&r vem dos meteoros.'
+        ); item = 'eternal_starlight:aethersent_ingot' }
+        @{ t = 'Deserto de cristal'; depois = 'Céu de mil estrelas'; opcional = $true; d = @(
+            'Visite o bioma &edeserto cristalizado&r.'
+        ); conquista = 'eternal_starlight:enter_crystallized_desert' }
+        @{ t = 'Abismo'; depois = 'Céu de mil estrelas'; opcional = $true; d = @(
+            'Mergulhe no bioma &eabismo&r, o fundo do mar desta dimensão.'
+        ); conquista = 'eternal_starlight:enter_abyss' }
+        @{ t = 'Olho que procura'; depois = 'Céu de mil estrelas'; d = @(
+            'O &eolho que procura&r mostra o caminho para a &eforja dos golens&r.'
+        ); item = 'eternal_starlight:seeking_eye' }
+        @{ t = 'Forja dos golens'; depois = 'Olho que procura'; d = @(
+            'Entre na &eforja dos golens&r, a estrutura do primeiro chefe.'
+        ); conquista = 'eternal_starlight:enter_golem_forge' }
+        @{ t = 'Golem Estelar'; depois = 'Forja dos golens'; marco = $true; sub = 'Chefe'; d = @(
+            'O &eGolem Estelar&r se protege com &eblocos de energia&r. Desligue os blocos para ele ficar vulnerável.'
+            ''
+            'Ele deixa o &elingote de aço de golem&r.'
+        ); conquista = 'eternal_starlight:kill_golem' }
+        @{ t = 'Monstruosidade Lunar'; depois = 'Golem Estelar'; marco = $true; sub = 'Chefe'; d = @(
+            'A &eMonstruosidade Lunar&r só leva dano quando está &epegando fogo&r.'
+            ''
+            'Ela libera a &aarmadura de unrealium&r e a lança crescente.'
+        ); conquista = 'eternal_starlight:kill_lunar_monstrosity' }
+        @{ t = 'Armadura de unrealium'; depois = 'Monstruosidade Lunar'; opcional = $true; d = @(
+            'Monte a armadura completa de &eunrealium&r.'
+        ); conquista = 'eternal_starlight:full_unrealium_armor' }
+        @{ t = 'Explorador estelar'; depois = 'Céu de mil estrelas'; opcional = $true; d = @(
+            'Visite &etodos os biomas&r do Eternal Starlight.'
+        ); conquista = 'eternal_starlight:all_starlight_biomes' }
+    ) }
+    @{ t = 'Espaço'; g = 'Dimensões'; icone = 'ad_astra:tier_1_rocket'; sub = 'Foguetes, oxigênio e outros planetas'; m = @(
+        @{ t = 'Gerador a carvão'; marco = $true; sub = 'Energia'; d = @(
+            'As máquinas do &eAd Astra&r gastam energia. O começo mais simples é o &egerador a carvão&r.'
+            ''
+            'Ligue as máquinas com cabos e veja as receitas com &eR&r no JEI.'
+        ); item = 'ad_astra:coal_generator' }
+        @{ t = 'Compressor'; depois = 'Gerador a carvão'; d = @(
+            'O &ecompressor&r transforma lingotes em &echapas&r, usadas em quase tudo do foguete.'
+        ); item = 'ad_astra:compressor' }
+        @{ t = 'Aço'; depois = 'Compressor'; d = @(
+            'O &ealto-forno etriônico&r usa energia para fazer &elingote de aço&r.'
+        ); item = 'ad_astra:steel_ingot'; q = 8 }
+        @{ t = 'Bancada da NASA'; depois = 'Aço'; marco = $true; d = @(
+            'A &ebancada da NASA&r monta os foguetes.'
+        ); item = 'ad_astra:nasa_workbench' }
+        @{ t = 'Petróleo'; depois = 'Gerador a carvão'; d = @(
+            'Encha um balde com &epetróleo&r: ele aparece em poças no oceano.'
+        ); item = 'ad_astra:oil_bucket' }
+        @{ t = 'Combustível'; depois = 'Petróleo'; d = @(
+            'A &erefinaria&r transforma petróleo em &ecombustível de foguete&r.'
+        ); item = 'ad_astra:fuel_bucket' }
+        @{ t = 'Traje espacial'; depois = 'Aço'; d = @(
+            'Fora da Terra não tem ar. Faça o traje completo: &ecapacete, traje, calças e botas espaciais&r.'
+            ''
+            'O &ecarregador de oxigênio&r enche o traje.'
+        ); item = 'ad_astra:space_suit' }
+        @{ t = 'Carregador de oxigênio'; depois = 'Traje espacial'; d = @(
+            'Encha o tanque do traje no &ecarregador de oxigênio&r antes de cada viagem.'
+        ); item = 'ad_astra:oxygen_loader' }
+        @{ t = 'Foguete nível 1'; depois = @('Bancada da NASA', 'Combustível', 'Carregador de oxigênio'); marco = $true; d = @(
+            'Monte o &efoguete nível 1&r, ponha em uma &eplataforma de lançamento&r e abasteça com combustível.'
+            ''
+            'Entre e aperte espaço para decolar. Ele vai até a &eLua&r.'
+        ); item = 'ad_astra:tier_1_rocket' }
+        @{ t = 'Lua'; depois = 'Foguete nível 1'; marco = $true; sub = 'Um pequeno passo'; d = @(
+            'Chegue na &eLua&r. A gravidade é baixa: os pulos ficam enormes.'
+            ''
+            'Lá tem &edesh&r, o metal do próximo foguete.'
+        ); dim = 'ad_astra:moon' }
+        @{ t = 'Vila lunar'; depois = 'Lua'; opcional = $true; d = @(
+            'Os &elunarianos&r têm vilas na Lua e trocam itens como aldeões.'
+        ); estrutura = 'ad_astra:lunarian_village' }
+        @{ t = 'Painel solar'; depois = 'Lua'; opcional = $true; d = @(
+            'O &epainel solar&r gera energia de graça com a luz do Sol.'
+        ); item = 'ad_astra:solar_panel' }
+        @{ t = 'Distribuidor de oxigênio'; depois = 'Painel solar'; opcional = $true; d = @(
+            'O &edistribuidor de oxigênio&r enche uma sala fechada de ar: dá para morar em outro planeta sem traje.'
+        ); item = 'ad_astra:oxygen_distributor' }
+        @{ t = 'Desh'; depois = 'Lua'; d = @(
+            'Com &edesh&r você faz o &efoguete nível 2&r.'
+        ); item = 'ad_astra:desh_ingot' }
+        @{ t = 'Marte'; depois = 'Desh'; marco = $true; d = @(
+            'O foguete nível 2 leva até &eMarte&r. Lá tem &eostrum&r, o metal do nível 3.'
+        ); dim = 'ad_astra:mars' }
+        @{ t = 'Traje de netherite'; depois = 'Marte'; d = @(
+            'O &etraje espacial de netherite&r aguenta calor extremo. É preciso para Vênus e Mercúrio.'
+        ); item = 'ad_astra:netherite_space_suit' }
+        @{ t = 'Foguete nível 3'; depois = 'Traje de netherite'; d = @(
+            'Com &eostrum&r monte o &efoguete nível 3&r.'
+        ); item = 'ad_astra:tier_3_rocket' }
+        @{ t = 'Vênus'; depois = 'Foguete nível 3'; d = @(
+            'Vênus é &equente e ácida&r. Lá tem &ecalorite&r, o metal do nível 4.'
+        ); dim = 'ad_astra:venus' }
+        @{ t = 'Mercúrio'; depois = 'Foguete nível 3'; opcional = $true; d = @(
+            'O planeta mais perto do Sol.'
+        ); dim = 'ad_astra:mercury' }
+        @{ t = 'Traje a jato'; depois = 'Vênus'; opcional = $true; d = @(
+            'O &etraje a jato&r empurra você para a frente com força.'
+        ); item = 'ad_astra:jet_suit' }
+        @{ t = 'Foguete nível 4'; depois = 'Vênus'; d = @(
+            'Com &ecalorite&r monte o &efoguete nível 4&r, o mais forte.'
+        ); item = 'ad_astra:tier_4_rocket' }
+        @{ t = 'Glacio'; depois = 'Foguete nível 4'; marco = $true; sub = 'Outro sistema solar'; d = @(
+            'O foguete nível 4 chega em &eGlacio&r, o planeta gelado de outro sistema solar.'
+        ); dim = 'ad_astra:glacio' }
     ) }
     @{ t = 'Utilidades'; g = 'Começo'; icone = 'justhammers:iron_hammer'; sub = 'Ferramentas e truques que facilitam a vida'; m = @(
         @{ t = 'Minerar em bloco'; marco = $true; sub = 'FTB Ultimine'; d = @(

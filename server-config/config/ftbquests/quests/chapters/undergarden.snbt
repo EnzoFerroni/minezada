@@ -10,26 +10,63 @@
 	quests: [
 		{
 			id: "49ABA829AA40AE05"
-			rewards: [{ id: "54E4949900FAFB7A", type: "xp", xp: 20 }]
+			rewards: [{ id: "54E4949900FAFB7A", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
 			tasks: [{ id: "404890C13610814D", item: { count: 1, id: "undergarden:catalyst" }, type: "item" }]
 			x: 0d
-			y: 0d
+			y: 4.59375d
 		}
 		{
 			dependencies: ["49ABA829AA40AE05"]
-			id: "7F65FA3D01E0FE56"
-			rewards: [{ id: "2DEF643E1651BC82", type: "xp", xp: 20 }]
-			tasks: [{ dimension: "undergarden:undergarden", id: "782BE18BD1F5AC44", type: "dimension" }]
+			id: "0DAEA9FFA03C1228"
+			rewards: [{ id: "2065EF068668A04A", type: "xp", xp: 20 }]
+			tasks: [{ dimension: "undergarden:undergarden", id: "37FEB81FC930C73C", type: "dimension" }]
 			x: 2.5d
+			y: 4.59375d
+		}
+		{
+			dependencies: ["0DAEA9FFA03C1228"]
+			id: "4A4DF9CF5C9EA79A"
+			rewards: [{ id: "107934ACC2C8E641", type: "xp", xp: 20 }]
+			tasks: [{ id: "0C0948BD413FBEEF", item: { count: 1, id: "undergarden:slingshot" }, type: "item" }]
+			x: 5d
 			y: 0d
 		}
 		{
-			dependencies: ["7F65FA3D01E0FE56"]
+			dependencies: ["0DAEA9FFA03C1228"]
+			id: "36E0BCF3D5F5CC5E"
+			rewards: [{ id: "50C05DA332F3108A", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "undergarden:undergarden/underbeans", criterion: "", id: "77226BD6F009D733", type: "advancement" }]
+			x: 5d
+			y: 1.75d
+		}
+		{
+			dependencies: ["0DAEA9FFA03C1228"]
+			id: "056DFA7749AE60F8"
+			rewards: [{ id: "3FC75E8EA44CE1E3", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "undergarden:undergarden/plant_gloomgourd", criterion: "", id: "6521B71ADCD9CAE2", type: "advancement" }]
+			x: 5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["0DAEA9FFA03C1228"]
+			id: "3BEA369351B43548"
+			rewards: [{ id: "42459958B60658D5", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "undergarden:undergarden/stoneborn_trade", criterion: "", id: "12EC54D76D12CF72", type: "advancement" }]
+			x: 5d
+			y: 5.25d
+		}
+		{
+			dependencies: ["0DAEA9FFA03C1228"]
 			id: "09912EE1CD8CCEEA"
 			rewards: [{ id: "44D1A67E8F7AEB65", type: "xp", xp: 20 }]
-			tasks: [{ id: "3113A8487CFCCB82", item: { count: 1, id: "undergarden:cloggrum_ingot" }, type: "item" }]
+			tasks: [{ id: "3113A8487CFCCB82", item: { count: 4, id: "undergarden:cloggrum_ingot" }, type: "item" }]
 			x: 5d
-			y: 0d
+			y: 9.1875d
 		}
 		{
 			dependencies: ["09912EE1CD8CCEEA"]
@@ -37,15 +74,77 @@
 			rewards: [{ id: "0274CB69D69283DC", type: "xp", xp: 20 }]
 			tasks: [{ id: "591612BDFD1F4BF2", item: { count: 1, id: "undergarden:froststeel_ingot" }, type: "item" }]
 			x: 7.5d
-			y: 0d
+			y: 7d
 		}
 		{
-			dependencies: ["2B4732C93C19A1AF"]
+			dependencies: ["09912EE1CD8CCEEA"]
 			id: "492E6A440E59C51C"
 			rewards: [{ id: "0558DC6791503814", type: "xp", xp: 20 }]
 			tasks: [{ id: "7A6F4C42CC17EC55", item: { count: 1, id: "undergarden:utherium_crystal" }, type: "item" }]
+			x: 7.5d
+			y: 8.75d
+		}
+		{
+			dependencies: ["492E6A440E59C51C"]
+			id: "3009C1F1D141E0D2"
+			rewards: [{ id: "53B7717164E3E309", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "2732E7856F761CDE", item: { count: 1, id: "undergarden:shard_torch" }, type: "item" }]
 			x: 10d
-			y: 0d
+			y: 8.75d
+		}
+		{
+			dependencies: ["09912EE1CD8CCEEA"]
+			id: "1A74A41A0FAFB4B3"
+			rewards: [{ id: "318DA49C20F97B69", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "undergarden:undergarden/catacombs", criterion: "", id: "2C09A91022585189", type: "advancement" }]
+			x: 7.5d
+			y: 11.375d
+		}
+		{
+			dependencies: ["1A74A41A0FAFB4B3"]
+			id: "376BE10134E82C88"
+			rewards: [{ id: "16A979F9745C0D9C", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ advancement: "undergarden:undergarden/kill_forgotten_guardian", criterion: "", id: "0991500C3D320ED1", type: "advancement" }]
+			x: 10d
+			y: 11.375d
+		}
+		{
+			dependencies: ["376BE10134E82C88"]
+			id: "5D4FF225B4A82584"
+			rewards: [{ id: "36CC604FDF6BFBB1", type: "xp", xp: 20 }]
+			tasks: [{ id: "722A7B94F1B08BBF", item: { count: 1, id: "undergarden:forgotten_ingot" }, type: "item" }]
+			x: 12.5d
+			y: 11.375d
+		}
+		{
+			dependencies: ["5D4FF225B4A82584"]
+			id: "76E24874DA092A32"
+			rewards: [{ id: "01078F5382318AB3", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ advancement: "undergarden:undergarden/enter_depths", criterion: "", id: "411C68B6A84AD29C", type: "advancement" }]
+			x: 15d
+			y: 11.375d
+		}
+		{
+			dependencies: ["76E24874DA092A32"]
+			id: "100EF18C7D07F1B4"
+			rewards: [{ id: "00ECA68F9C78F01A", type: "xp", xp: 20 }]
+			tasks: [{ id: "49E7C21498326CA8", item: { count: 1, id: "undergarden:infuser" }, type: "item" }]
+			x: 17.5d
+			y: 10.5d
+		}
+		{
+			dependencies: ["76E24874DA092A32"]
+			id: "2C67769A84C41338"
+			rewards: [{ id: "574F9BFB5F179F7B", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "undergarden:undergarden/enter_denizen_camp", criterion: "", id: "652635E2E68377F5", type: "advancement" }]
+			x: 17.5d
+			y: 12.25d
 		}
 	]
 }
