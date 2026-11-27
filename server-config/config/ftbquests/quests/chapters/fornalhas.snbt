@@ -15,14 +15,14 @@
 			size: 1.5d
 			tasks: [{ id: "342F866FA3E23D8D", item: { count: 1, id: "ironfurnaces:iron_furnace" }, type: "item" }]
 			x: 0d
-			y: 0.875d
+			y: 0.75d
 		}
 		{
 			dependencies: ["7A313F079B7BFBE4"]
 			id: "7E7C87AB3D5FE39B"
 			rewards: [{ id: "099619620E4BC727", type: "xp", xp: 20 }]
 			tasks: [{ id: "3FB4BCF21397A8E1", item: { count: 1, id: "ironfurnaces:upgrade_gold" }, type: "item" }]
-			x: 2.5d
+			x: 2d
 			y: 0d
 		}
 		{
@@ -30,7 +30,7 @@
 			id: "1797F477107C810E"
 			rewards: [{ id: "040805B9F69D97D8", type: "xp", xp: 20 }]
 			tasks: [{ id: "409554ADAE60D4AC", item: { count: 1, id: "ironfurnaces:diamond_furnace" }, type: "item" }]
-			x: 5d
+			x: 4d
 			y: 0d
 		}
 		{
@@ -38,8 +38,8 @@
 			id: "690670CB60C03628"
 			rewards: [{ id: "5C7D1989F9D0C24B", type: "xp", xp: 20 }]
 			tasks: [{ id: "108C06F73A847E32", item: { count: 1, id: "ironfurnaces:augment_speed" }, type: "item" }]
-			x: 2.5d
-			y: 1.75d
+			x: 2d
+			y: 1.5d
 		}
 		{
 			dependencies: ["690670CB60C03628"]
@@ -47,8 +47,8 @@
 			rewards: [{ id: "414A83764998A03D", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "3A2C2C18A6930E82", item: { count: 1, id: "ironfurnaces:augment_generator" }, type: "item" }]
-			x: 5d
-			y: 1.75d
+			x: 4d
+			y: 1.5d
 		}
 		{
 			dependencies: ["1797F477107C810E"]
@@ -56,7 +56,7 @@
 			rewards: [{ id: "0FB67781D8097B18", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "6A6EDF853BF9EB0A", item: { count: 1, id: "ironfurnaces:netherite_furnace" }, type: "item" }]
-			x: 7.5d
+			x: 6d
 			y: 0d
 		}
 	]

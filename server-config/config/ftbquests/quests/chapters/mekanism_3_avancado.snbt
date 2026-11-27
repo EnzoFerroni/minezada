@@ -15,15 +15,15 @@
 			size: 1.5d
 			tasks: [{ id: "38BD5D5D48EA2D63", item: { count: 2, id: "mekanism:advanced_control_circuit" }, type: "item" }]
 			x: 0d
-			y: 5.6875d
+			y: 2.25d
 		}
 		{
 			dependencies: ["40C43BD34032ECE6"]
 			id: "570E78C1DE57C6F4"
 			rewards: [{ id: "76C22AE1B1B191A8", type: "xp", xp: 20 }]
 			tasks: [{ id: "56119A308DE91489", item: { count: 4, id: "mekanism:alloy_reinforced" }, type: "item" }]
-			x: 2.5d
-			y: 2.625d
+			x: 2d
+			y: 3.75d
 		}
 		{
 			dependencies: ["570E78C1DE57C6F4"]
@@ -32,24 +32,25 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "1066A15FEA0C61D7", item: { count: 1, id: "mekanism:digital_miner" }, type: "item" }]
-			x: 5d
-			y: 0d
+			x: 4d
+			y: 3.0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["40C43BD34032ECE6"]
 			id: "18C9510FB9FAC352"
 			rewards: [{ id: "450AC3980A3E4A87", type: "xp", xp: 20 }]
 			tasks: [{ id: "453D080F5F697EFA", item: { count: 1, id: "mekanism:atomic_disassembler" }, type: "item" }]
-			x: 2.5d
-			y: 7d
+			x: 2d
+			y: 0d
 		}
 		{
 			dependencies: ["40C43BD34032ECE6"]
 			id: "5BEAB8BD2ADB6C62"
 			rewards: [{ id: "2CD363C181878169", type: "xp", xp: 20 }]
 			tasks: [{ id: "03DC9D4D7FFC7086", item: { count: 1, id: "mekanism:jetpack" }, type: "item" }]
-			x: 2.5d
-			y: 8.75d
+			x: 2d
+			y: 1.5d
 		}
 		{
 			dependencies: ["570E78C1DE57C6F4"]
@@ -58,24 +59,26 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "0523EC2E862F9CAE", item: { count: 1, id: "mekanism:teleporter" }, type: "item" }]
-			x: 5d
-			y: 1.75d
+			x: 5.5d
+			y: 3d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["570E78C1DE57C6F4"]
 			id: "075DB1FF067573D1"
 			rewards: [{ id: "0DE06319B655EC61", type: "xp", xp: 20 }]
 			tasks: [{ id: "0F81C49A66DF944E", item: { count: 1, id: "mekanism:qio_drive_array" }, type: "item" }]
-			x: 5d
-			y: 3.5d
+			x: 7d
+			y: 3d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["570E78C1DE57C6F4"]
 			id: "665E38B659B28A5E"
 			rewards: [{ id: "60E17E3C88BA1E2D", type: "xp", xp: 20 }]
 			tasks: [{ id: "0D6E74D1649F22BE", item: { count: 4, id: "mekanism:alloy_atomic" }, type: "item" }]
-			x: 5d
-			y: 5.25d
+			x: 4d
+			y: 4.5d
 		}
 		{
 			dependencies: ["665E38B659B28A5E"]
@@ -85,8 +88,8 @@
 			size: 1.5d
 			optional: true
 			tasks: [{ id: "684A479703A0B91D", item: { count: 1, id: "mekanism:mekasuit_helmet" }, type: "item" }]
-			x: 7.5d
-			y: 5.25d
+			x: 6d
+			y: 4.5d
 		}
 	]
 }

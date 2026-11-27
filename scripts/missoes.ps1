@@ -12,6 +12,8 @@
 # &r volta ao normal) e "{@pagebreak}" sozinho em uma linha para comecar outra pagina. mod = slug (ou lista) do mods.txt que a missao
 # ensina, para missao sem id do mod (teclas, mecanicas); conta na cobertura em docs/missoes.md.
 # Este arquivo tem BOM (UTF-8): os textos podem ter acento.
+# Recusa (e o CI falha) item sem nome ou modelo, titulo ou descricao vazia, titulo repetido, missao em cima de outra
+# e linha de dependencia passando por cima de missao.
 $ErrorActionPreference = 'Stop'
 $root = Split-Path $PSScriptRoot -Parent
 $destino = Join-Path $root 'server-config/config/ftbquests/quests'
@@ -1566,7 +1568,7 @@ $capitulos = @(
         @{ t = 'Carregador de oxigênio'; depois = 'Traje espacial'; d = @(
             'Encha o tanque do traje no &ecarregador de oxigênio&r antes de cada viagem.'
         ); item = 'ad_astra:oxygen_loader' }
-        @{ t = 'Foguete nível 1'; depois = @('Bancada da NASA', 'Combustível', 'Carregador de oxigênio'); marco = $true; d = @(
+        @{ t = 'Foguete nível 1'; depois = 'Bancada da NASA'; marco = $true; d = @(
             'Monte o &efoguete nível 1&r, ponha em uma &eplataforma de lançamento&r e abasteça com combustível.'
             ''
             'Entre e aperte espaço para decolar. Ele vai até a &eLua&r.'
@@ -2037,7 +2039,7 @@ $capitulos = @(
         @{ t = 'Torres espinhosas'; depois = 'Templo infestado'; d = @(
             'As &eThornborn Towers&r ficam no mar, cheias de espinhos.'
         ); estrutura = 'dungeons_arise:thornborn_towers' }
-        @{ t = 'Asilo da praga'; depois = @('Templo infestado', 'Minas profundas'); marco = $true; sub = 'O lugar mais assustador do pack'; d = @(
+        @{ t = 'Asilo da praga'; depois = 'Templo infestado'; marco = $true; sub = 'O lugar mais assustador do pack'; d = @(
             'O &eAsilo da Praga&r é a estrutura mais perigosa. Vá bem preparado.'
         ); estrutura = 'dungeons_arise:plague_asylum' }
     ) }
@@ -2299,6 +2301,18 @@ $lang = @()
 $gids = @{}
 $gs = foreach ($g in $grupos) { $gids[$g.t] = Id "grupo/$($g.t)"; $lang += "`tchapter_group.$($gids[$g.t]).title: $(Txt $g.t)"; "`t`t{ icon: { id: `"$($g.icone)`" }, id: `"$($gids[$g.t])`" }" }
 [IO.File]::WriteAllText((Join-Path $destino 'chapter_groups.snbt'), "{`n`tchapter_groups: [`n$($gs -join "`n")`n`t]`n}`n", $utf8)
+# Conferencia dos textos: titulo e descricao em toda missao, sem titulo repetido no capitulo (o id sai do titulo).
+$erros = @()
+foreach ($c in $capitulos) {
+    if (-not $c.t -or -not $c.icone) { $erros += "Capitulo sem titulo ou icone: $($c.t)" }
+    $vistos = @{}
+    foreach ($m in $c.m) {
+        if (-not "$($m.t)".Trim()) { $erros += "$($c.t): missao sem titulo" }
+        if (-not (@($m.d) -join '').Trim()) { $erros += "$($c.t): '$($m.t)' sem descricao" }
+        if ($vistos[$m.t]) { $erros += "$($c.t): titulo repetido '$($m.t)'" }
+        $vistos[$m.t] = $true
+    }
+}
 $ordem = 0
 foreach ($c in $capitulos) {
     $cid = Id "capitulo/$($c.t)"; $nome = ((Sem $c.t).ToLower() -replace '[^a-z0-9]+', '_').Trim('_')
@@ -2309,7 +2323,7 @@ foreach ($c in $capitulos) {
     # Desenho em arvore: x pela profundidade (missao depois da outra vai para a direita). Cada ramo ganha uma faixa
     # propria na vertical e o pai fica no meio dos filhos, assim as linhas nao se cruzam. Com mais de um pai, o ramo
     # segue o primeiro. Soltas (sem dependencia) ficam em grade embaixo da arvore.
-    $qs = @(); $antT = $null; $tit = @{}; $prof = @{}; $posY = @{}; $filhos = @{}; $raizes = @()
+    $qs = @(); $antT = $null; $tit = @{}; $paisDe = @{}; $prof = @{}; $posY = @{}; $filhos = @{}; $raizes = @()
     foreach ($m in $c.m) {
         $qid = Id "missao/$($c.t)/$($m.t)"
         $q = if ($m['q']) { $m['q'] } else { 1 }
@@ -2341,32 +2355,87 @@ foreach ($c in $capitulos) {
         $lang += "`tquest.$qid.title: $(Txt $m.t)"
         if ($m['sub']) { $lang += "`tquest.$qid.quest_subtitle: $(Txt $m['sub'])" }
         $lang += "`tquest.$qid.quest_desc: [$((@($m.d) | ForEach-Object { Txt $_ }) -join ', ')]"
-        $tit[$m.t] = $qid; $antT = $m.t
+        $tit[$m.t] = $qid; $antT = $m.t; $paisDe[$m.t] = $pais
     }
     $script:proxY = 0
+    # Folhas (sem filhos) do mesmo pai ficam em grade de 4 colunas, sem linha (a linha ate a ultima passaria por cima
+    # das outras). Raiz com muitos ramos quebra em colunas de ate ~14 de altura: a pagina cabe na tela sem arrastar.
+    $posX = @{}; $grade = @{}; $script:dx = 0
     function Pos-Ramo($n) {
         $f = @($filhos[$n])
-        if (-not $filhos[$n]) { $posY[$n] = $script:proxY; $script:proxY += 1.75 }
-        else { foreach ($k in $f) { Pos-Ramo $k }; $posY[$n] = ($posY[$f[0]] + $posY[$f[-1]]) / 2 }
+        $posX[$n] = $script:dx + $prof[$n] * 2
+        if (-not $filhos[$n]) { $posY[$n] = $script:proxY; $script:proxY += 1.5; return }
+        $folhas = @($f | Where-Object { -not $filhos[$_] }); $internos = @($f | Where-Object { $filhos[$_] })
+        $ini = $script:proxY
+        if ($folhas.Count -gt 2) {
+            for ($i = 0; $i -lt $folhas.Count; $i++) {
+                $posX[$folhas[$i]] = $script:dx + ($prof[$n] + 1) * 2 + ($i % 4) * 1.5
+                $posY[$folhas[$i]] = $ini + [math]::Floor($i / 4) * 1.5
+                $grade[$folhas[$i]] = $true
+            }
+            $script:proxY = $ini + [math]::Ceiling($folhas.Count / 4) * 1.5
+        }
+        else { foreach ($k in $folhas) { Pos-Ramo $k } }
+        if ($prof[$n] -eq 0 -and $internos.Count -gt 3) {
+            $topo = $script:proxY; $dx0 = $script:dx; $fim = $script:proxY
+            foreach ($k in $internos) {
+                if ($script:proxY - $topo -gt 14) { $script:dx += 12; $script:proxY = $topo }
+                Pos-Ramo $k; $grade[$k] = $true; $script:proxY += 0.5; $fim = [math]::Max($fim, $script:proxY)
+            }
+            $script:dx = $dx0; $script:proxY = $fim; $posY[$n] = $ini
+        }
+        else {
+            foreach ($k in $internos) { Pos-Ramo $k }
+            $posY[$n] = ($ini + $script:proxY - 1.5) / 2
+        }
     }
     # Solta com filhos vira raiz de arvore: senao os filhos ficam sem posicao (y vazio, um em cima do outro).
     # Ordem das missoes (nao a do hashtable, que muda entre o PowerShell 5.1 e o 7).
     foreach ($n in @($c.m | ForEach-Object { $_.t } | Where-Object { $filhos.ContainsKey($_) })) { if ($raizes -notcontains $n -and -not ($filhos.Values | Where-Object { $_ -contains $n })) { $raizes += $n } }
-    foreach ($r in $raizes) { Pos-Ramo $r; $script:proxY += 0.75 }
+    # Muitas arvores no capitulo: passada a altura de ~16, a proxima vai para uma coluna nova a direita.
+    foreach ($r in $raizes) {
+        if ($script:proxY -gt 16) { $script:dx = ($posX.Values | Measure-Object -Maximum).Maximum + 3; $script:proxY = 0 }
+        Pos-Ramo $r; $script:proxY += 0.5
+    }
+    $script:proxY = ($posY.Values | Measure-Object -Maximum).Maximum + 1.5
     $base = $script:proxY + 1
-    $k = 0
+    $k = 0; $pontos = @()
     $qs = for ($i = 0; $i -lt $qs.Count; $i++) {
         $texto, $pos = $qs[$i] -split '@@SEP@@'
-        if ($pos -like 'solta|*' -and $posY.ContainsKey($pos.Substring(6))) { $n = $pos.Substring(6); $pos = "$($prof[$n] * 2.5)d|$($posY[$n])d" }
+        if ($pos -like 'solta|*' -and $posY.ContainsKey($pos.Substring(6))) { $n = $pos.Substring(6); $pos = "$($posX[$n])d|$($posY[$n])d|$n" }
         elseif ($pos -like 'solta|*') { $pos = "$(($k % 5) * 2)d|$($base + [math]::Floor($k / 5) * 1.75)d"; $k++ }
-        elseif ($pos -like 'arvore|*') { $n = $pos.Substring(7); $pos = "$($prof[$n] * 2.5)d|$($posY[$n])d" }
-        $px, $py = $pos -split '\|'
-        $texto.Replace('@POS@', "x: $px`n`t`t`ty: $py")
+        elseif ($pos -like 'arvore|*') { $n = $pos.Substring(7); $pos = "$($posX[$n])d|$($posY[$n])d|$n" }
+        $px, $py, $n = $pos -split '\|'
+        $m = $c.m[$i]
+        $pontos += ,@([double]$px.TrimEnd('d'), [double]$py.TrimEnd('d'), $(if ($m['marco']) { 1.5 } else { 1 }), $m.t)
+        $extra = if ($n -and $grade[$n]) { "`n`t`t`thide_dependency_lines: true" } else { '' }
+        $texto.Replace('@POS@', "x: $px`n`t`t`ty: $py$extra")
+    }
+    # Conferencia do desenho: nenhuma missao em cima de outra e nenhuma linha visivel passando por cima de missao.
+    $onde = @{}; foreach ($pt in $pontos) { $onde[$pt[3]] = $pt }
+    for ($a = 0; $a -lt $pontos.Count; $a++) {
+        for ($b = $a + 1; $b -lt $pontos.Count; $b++) {
+            $p1 = $pontos[$a]; $p2 = $pontos[$b]; $lim = ($p1[2] + $p2[2]) / 2
+            if ([math]::Abs($p1[0] - $p2[0]) -lt $lim -and [math]::Abs($p1[1] - $p2[1]) -lt $lim) { $erros += "$($c.t): '$($p1[3])' em cima de '$($p2[3])'" }
+        }
+    }
+    foreach ($m in $c.m) {
+        if ($grade[$m.t]) { continue }
+        foreach ($pai in @($paisDe[$m.t])) {
+            $p1 = $onde[$pai]; $p2 = $onde[$m.t]; $dx = $p2[0] - $p1[0]; $dy = $p2[1] - $p1[1]; $l2 = $dx * $dx + $dy * $dy
+            foreach ($q in $pontos) {
+                if ($q[3] -eq $pai -or $q[3] -eq $m.t -or $l2 -eq 0) { continue }
+                $t = [math]::Max(0.0, [math]::Min(1.0, (($q[0] - $p1[0]) * $dx + ($q[1] - $p1[1]) * $dy) / $l2))
+                $ex = $p1[0] + $t * $dx - $q[0]; $ey = $p1[1] + $t * $dy - $q[1]
+                if ([math]::Sqrt($ex * $ex + $ey * $ey) -lt $q[2] * 0.45) { $erros += "$($c.t): linha '$pai' -> '$($m.t)' passa por cima de '$($q[3])'" }
+            }
+        }
     }
     $cap = "{`n`tdefault_hide_dependency_lines: false`n`tdefault_quest_shape: `"`"`n`tfilename: `"$nome`"`n`tgroup: `"$grupo`"`n`ticon: { id: `"$($c.icone)`" }`n`tid: `"$cid`"`n`torder_index: $ordem`n`tquest_links: [ ]`n`tquests: [`n$($qs -join "`n")`n`t]`n}`n"
     [IO.File]::WriteAllText((Join-Path $destino "chapters/$nome.snbt"), $cap, $utf8)
     $ordem++
 }
+if ($erros) { throw "Livro com problemas:`n$($erros -join "`n")" }
 # pt_br para o jogo em portugues; en_us igual, para quem trocou o idioma nao ver chaves no lugar do texto.
 foreach ($l in 'pt_br', 'en_us') { [IO.File]::WriteAllText((Join-Path $destino "lang/$l.snbt"), "{`n$($lang -join "`n")`n}`n", $utf8) }
 Write-Host "$($capitulos.Count) capitulos, $(@($capitulos | ForEach-Object { $_.m }).Count) missoes -> $destino"

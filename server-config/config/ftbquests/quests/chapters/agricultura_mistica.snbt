@@ -15,15 +15,15 @@
 			size: 1.5d
 			tasks: [{ id: "24C067FFFE2F9B56", item: { count: 16, id: "mysticalagriculture:inferium_essence" }, type: "item" }]
 			x: 0d
-			y: 3.5d
+			y: 3.75d
 		}
 		{
 			dependencies: ["18C4838499E4AB07"]
 			id: "0795287AFA07A7F3"
 			rewards: [{ id: "629999D5B27E12C9", type: "xp", xp: 20 }]
 			tasks: [{ id: "103DABB341FB6BA8", item: { count: 8, id: "mysticalagriculture:prosperity_shard" }, type: "item" }]
-			x: 2.5d
-			y: 3.5d
+			x: 2d
+			y: 3.75d
 		}
 		{
 			dependencies: ["0795287AFA07A7F3"]
@@ -32,8 +32,8 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "59550852641C6C34", item: { count: 1, id: "mysticalagriculture:infusion_crystal" }, type: "item" }]
-			x: 5d
-			y: 3.5d
+			x: 4d
+			y: 3.75d
 		}
 		{
 			dependencies: ["3E70F75BC8D4CC9A"]
@@ -42,16 +42,16 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "412DA2B949DBDAC2", item: { count: 1, id: "mysticalagriculture:infusion_altar" }, type: "item" }]
-			x: 7.5d
-			y: 0.875d
+			x: 6d
+			y: 0.75d
 		}
 		{
 			dependencies: ["086D2DB909945B49"]
 			id: "205FBAC55E572EB9"
 			rewards: [{ id: "605FCD2A605AC859", type: "xp", xp: 20 }]
 			tasks: [{ id: "2B00F290B18A0A54", item: { count: 1, id: "mysticalagriculture:wand" }, type: "item" }]
-			x: 10d
-			y: 0.875d
+			x: 8d
+			y: 0.75d
 		}
 		{
 			dependencies: ["205FBAC55E572EB9"]
@@ -60,32 +60,32 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "75864864DE0DBED2", type: "checkmark" }]
-			x: 12.5d
-			y: 0.875d
+			x: 10d
+			y: 0.75d
 		}
 		{
 			dependencies: ["3E70F75BC8D4CC9A"]
 			id: "1B74729726BC7695"
 			rewards: [{ id: "1D3CA9DE43925C8C", type: "xp", xp: 20 }]
 			tasks: [{ id: "226167FE5C49E680", item: { count: 8, id: "mysticalagriculture:prudentium_essence" }, type: "item" }]
-			x: 7.5d
-			y: 6.125d
+			x: 6d
+			y: 5.25d
 		}
 		{
 			dependencies: ["1B74729726BC7695"]
 			id: "30E2B009E644D444"
 			rewards: [{ id: "0517F537EB0E7DD1", type: "xp", xp: 20 }]
 			tasks: [{ id: "0ADBA63D752E8C0E", item: { count: 8, id: "mysticalagriculture:tertium_essence" }, type: "item" }]
-			x: 10d
-			y: 3.5d
+			x: 8d
+			y: 3d
 		}
 		{
 			dependencies: ["30E2B009E644D444"]
 			id: "7AF9455D41DFCE8D"
 			rewards: [{ id: "5375088E38A516DD", type: "xp", xp: 20 }]
 			tasks: [{ id: "10D6D229D485178A", item: { count: 8, id: "mysticalagriculture:imperium_essence" }, type: "item" }]
-			x: 12.5d
-			y: 3.5d
+			x: 10d
+			y: 3d
 		}
 		{
 			dependencies: ["7AF9455D41DFCE8D"]
@@ -94,24 +94,24 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "38345A492D80215F", item: { count: 8, id: "mysticalagriculture:supremium_essence" }, type: "item" }]
-			x: 15d
-			y: 3.5d
+			x: 12d
+			y: 3d
 		}
 		{
 			dependencies: ["1B74729726BC7695"]
 			id: "7EE69E94160A1599"
 			rewards: [{ id: "58BDD2ED09881134", type: "xp", xp: 20 }]
 			tasks: [{ id: "16F89A41FCB1CA37", item: { count: 4, id: "mysticalagriculture:inferium_farmland" }, type: "item" }]
-			x: 10d
-			y: 6.125d
+			x: 8d
+			y: 5.25d
 		}
 		{
 			dependencies: ["7EE69E94160A1599"]
 			id: "5792473F28CC4DA1"
 			rewards: [{ id: "428C9C269F1B702C", type: "xp", xp: 20 }]
 			tasks: [{ id: "5934F14BF5EC2EFF", item: { count: 1, id: "mysticalagriculture:inferium_growth_accelerator" }, type: "item" }]
-			x: 12.5d
-			y: 5.25d
+			x: 10d
+			y: 4.5d
 		}
 		{
 			dependencies: ["7EE69E94160A1599"]
@@ -119,16 +119,16 @@
 			rewards: [{ id: "107F105C80061B1A", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "269B123884B02574", item: { count: 4, id: "mysticalagriculture:mystical_fertilizer" }, type: "item" }]
-			x: 12.5d
-			y: 7d
+			x: 10d
+			y: 6d
 		}
 		{
 			dependencies: ["1B74729726BC7695"]
 			id: "23679B379BD7D916"
 			rewards: [{ id: "33DB8EACDF150D9B", type: "xp", xp: 20 }]
 			tasks: [{ id: "0FCDE50F771A1A90", item: { count: 1, id: "mysticalagriculture:inferium_sickle" }, type: "item" }]
-			x: 10d
-			y: 8.75d
+			x: 8d
+			y: 7.5d
 		}
 		{
 			dependencies: ["23679B379BD7D916"]
@@ -136,15 +136,15 @@
 			rewards: [{ id: "10C47A4963D7A7F6", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "28874D6F975A4A3F", item: { count: 1, id: "mysticalagriculture:tinkering_table" }, type: "item" }]
-			x: 12.5d
-			y: 8.75d
+			x: 10d
+			y: 7.5d
 		}
 		{
 			dependencies: ["64A1CBD6FB1C171D"]
 			id: "519F78B29C5976A2"
 			rewards: [{ id: "336D034FE511BC2D", type: "xp", xp: 20 }, { id: "614EBDF9D8E368DB", item: { count: 1, id: "mysticalagriculture:soulium_dagger" }, type: "item" }]
 			tasks: [{ id: "3CCEA827D851DBE5", item: { count: 1, id: "mysticalagriculture:soul_jar" }, type: "item" }]
-			x: 15d
+			x: 12d
 			y: 0d
 		}
 		{
@@ -153,8 +153,8 @@
 			rewards: [{ id: "045F091C3BD52B16", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "517B7B93440F3090", item: { count: 1, id: "mysticalagriculture:harvester" }, type: "item" }]
-			x: 15d
-			y: 1.75d
+			x: 12d
+			y: 1.5d
 		}
 		{
 			dependencies: ["4684EB204EC58BEB"]
@@ -164,8 +164,8 @@
 			size: 1.5d
 			optional: true
 			tasks: [{ id: "15A8771A675D35E7", item: { count: 1, id: "mysticalagriculture:awakened_supremium_essence" }, type: "item" }]
-			x: 17.5d
-			y: 3.5d
+			x: 14d
+			y: 3d
 		}
 	]
 }

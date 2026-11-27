@@ -15,15 +15,15 @@
 			size: 1.5d
 			tasks: [{ id: "13484565F060D517", item: { count: 1, id: "create:basin" }, type: "item" }]
 			x: 0d
-			y: 9.1875d
+			y: 3.75d
 		}
 		{
 			dependencies: ["0600E8BC2C175FA0"]
 			id: "13D65DA105B6DC8C"
 			rewards: [{ id: "45EC31B87AC257C6", type: "xp", xp: 20 }]
 			tasks: [{ id: "487149DE30ACA34A", item: { count: 1, id: "create:mechanical_mixer" }, type: "item" }]
-			x: 2.5d
-			y: 6.125d
+			x: 2d
+			y: 3.75d
 		}
 		{
 			dependencies: ["0600E8BC2C175FA0"]
@@ -31,8 +31,8 @@
 			rewards: [{ id: "335BE33A13C4222C", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "4B1AF6F4E8726457", type: "checkmark" }]
-			x: 2.5d
-			y: 10.5d
+			x: 2d
+			y: 0d
 		}
 		{
 			dependencies: ["13D65DA105B6DC8C"]
@@ -41,8 +41,8 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "527710B7FF045108", item: { count: 1, id: "create:blaze_burner" }, type: "item" }]
-			x: 5d
-			y: 6.125d
+			x: 4d
+			y: 3.75d
 		}
 		{
 			dependencies: ["35CF7E0EF578B3D8"]
@@ -51,32 +51,32 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "461CDF2655C56C19", item: { count: 16, id: "create:brass_ingot" }, type: "item" }]
-			x: 7.5d
-			y: 6.125d
+			x: 6d
+			y: 3.75d
 		}
 		{
 			dependencies: ["396A729DC1F49665"]
 			id: "4586EE64BB7E2CB4"
 			rewards: [{ id: "42DC318428B847A2", type: "xp", xp: 20 }]
 			tasks: [{ id: "1F64E50F10DECD3F", item: { count: 4, id: "create:brass_casing" }, type: "item" }]
-			x: 10d
-			y: 3.5d
+			x: 8d
+			y: 5.25d
 		}
 		{
 			dependencies: ["0600E8BC2C175FA0"]
 			id: "7E1B436601F36D12"
 			rewards: [{ id: "1B32D4428C8919DB", type: "xp", xp: 20 }]
 			tasks: [{ id: "5095859CD8745617", item: { count: 4, id: "create:polished_rose_quartz" }, type: "item" }]
-			x: 2.5d
-			y: 12.25d
+			x: 2d
+			y: 7.5d
 		}
 		{
 			dependencies: ["7E1B436601F36D12"]
 			id: "39C529A3EA719B53"
 			rewards: [{ id: "5187E8FACB2D390B", type: "xp", xp: 20 }]
 			tasks: [{ id: "397CBC09C3F88A48", item: { count: 4, id: "create:electron_tube" }, type: "item" }]
-			x: 5d
-			y: 12.25d
+			x: 4d
+			y: 7.5d
 		}
 		{
 			dependencies: ["39C529A3EA719B53"]
@@ -85,8 +85,8 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "0987070ADA5DA452", item: { count: 1, id: "create:deployer" }, type: "item" }]
-			x: 7.5d
-			y: 12.25d
+			x: 6d
+			y: 7.5d
 		}
 		{
 			dependencies: ["5D8954105C424FBC", "396A729DC1F49665"]
@@ -95,24 +95,25 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "4A5017D13EA2CEB7", item: { count: 1, id: "create:precision_mechanism" }, type: "item" }]
-			x: 10d
-			y: 12.25d
+			x: 8d
+			y: 7.5d
 		}
 		{
 			dependencies: ["4586EE64BB7E2CB4"]
 			id: "7BC3C4803FA3464F"
 			rewards: [{ id: "79D3C18B24177A89", type: "xp", xp: 20 }]
 			tasks: [{ id: "05D77A6EFB814379", item: { count: 2, id: "create:brass_funnel" }, type: "item" }]
-			x: 12.5d
-			y: 1.75d
+			x: 10d
+			y: 6d
 		}
 		{
 			dependencies: ["7BC3C4803FA3464F"]
 			id: "68EB7FC2303C16F5"
 			rewards: [{ id: "4472F5678D749516", type: "xp", xp: 20 }]
 			tasks: [{ id: "290F46D5AB44E573", item: { count: 2, id: "create:brass_tunnel" }, type: "item" }]
-			x: 15d
-			y: 0d
+			x: 12d
+			y: 6.0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["7C28ABE1AD660519", "7BC3C4803FA3464F"]
@@ -121,16 +122,16 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "75A74A35BDCA5C5B", item: { count: 1, id: "create:mechanical_arm" }, type: "item" }]
-			x: 15d
-			y: 12.25d
+			x: 12d
+			y: 7.5d
 		}
 		{
 			dependencies: ["396A729DC1F49665"]
 			id: "2FFCD2A06A46A4AE"
 			rewards: [{ id: "770A01E1209FBB6F", type: "xp", xp: 20 }]
 			tasks: [{ id: "0EC7C4A607FBD86A", item: { count: 9, id: "create:mechanical_crafter" }, type: "item" }]
-			x: 10d
-			y: 7d
+			x: 8d
+			y: 1.5d
 		}
 		{
 			dependencies: ["396A729DC1F49665"]
@@ -139,16 +140,16 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "06CB3310024CDC0F", item: { count: 2, id: "create:crushing_wheel" }, type: "item" }]
-			x: 10d
-			y: 8.75d
+			x: 8d
+			y: 3d
 		}
 		{
 			dependencies: ["4586EE64BB7E2CB4"]
 			id: "7CAF4D4A7402A94D"
 			rewards: [{ id: "5649E905E4565F4D", type: "xp", xp: 20 }]
 			tasks: [{ id: "32F49FA192543654", item: { count: 4, id: "create:item_vault" }, type: "item" }]
-			x: 12.5d
-			y: 5.25d
+			x: 10d
+			y: 4.5d
 		}
 		{
 			dependencies: ["7BC3C4803FA3464F"]
@@ -156,8 +157,9 @@
 			rewards: [{ id: "793CFB4219D2A83D", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "62679D825C24F85E", item: { count: 1, id: "create:smart_chute" }, type: "item" }]
-			x: 15d
-			y: 1.75d
+			x: 13.5d
+			y: 6d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["7BC3C4803FA3464F"]
@@ -166,7 +168,8 @@
 			optional: true
 			tasks: [{ id: "56C419DC0BBAFC64", item: { count: 1, id: "create:weighted_ejector" }, type: "item" }]
 			x: 15d
-			y: 3.5d
+			y: 6d
+			hide_dependency_lines: true
 		}
 	]
 }

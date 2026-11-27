@@ -15,15 +15,16 @@
 			size: 1.5d
 			tasks: [{ id: "3C13317D3AD16526", item: { count: 1, id: "create:copper_backtank" }, type: "item" }]
 			x: 0d
-			y: 1.75d
+			y: 0d
 		}
 		{
 			dependencies: ["1CD64CA9B6660FE5"]
 			id: "7FFBADD6B554CD74"
 			rewards: [{ id: "3AD74529C8118400", type: "xp", xp: 20 }]
 			tasks: [{ id: "3B4218549BEC16C3", item: { count: 1, id: "create:copper_diving_helmet" }, type: "item" }]
-			x: 2.5d
-			y: 0d
+			x: 2d
+			y: 0.0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["1CD64CA9B6660FE5"]
@@ -31,16 +32,18 @@
 			rewards: [{ id: "1C5BF4E2669EA75D", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "7FFCFDF301FEA733", item: { count: 1, id: "create:potato_cannon" }, type: "item" }]
-			x: 2.5d
-			y: 1.75d
+			x: 3.5d
+			y: 0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["1CD64CA9B6660FE5"]
 			id: "28D8450C02496E45"
 			rewards: [{ id: "0141FE5C6AF3CB27", type: "xp", xp: 20 }]
 			tasks: [{ id: "4AECEDF8B07F0728", item: { count: 1, id: "create:extendo_grip" }, type: "item" }]
-			x: 2.5d
-			y: 3.5d
+			x: 5d
+			y: 0d
+			hide_dependency_lines: true
 		}
 		{
 			id: "2D34AA00C9371497"
@@ -48,7 +51,7 @@
 			optional: true
 			tasks: [{ id: "12506AB303F3817B", item: { count: 1, id: "create:wand_of_symmetry" }, type: "item" }]
 			x: 0d
-			y: 9.50d
+			y: 4.50d
 		}
 		{
 			id: "7D151FDC19987794"
@@ -57,7 +60,7 @@
 			size: 1.5d
 			tasks: [{ id: "5051AA12B009389B", item: { count: 1, id: "create:schematic_table" }, type: "item" }]
 			x: 0d
-			y: 6d
+			y: 2d
 		}
 		{
 			dependencies: ["7D151FDC19987794"]
@@ -66,8 +69,8 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "5730EE1674392C4E", item: { count: 1, id: "create:schematicannon" }, type: "item" }]
-			x: 2.5d
-			y: 6d
+			x: 2d
+			y: 2d
 		}
 	]
 }

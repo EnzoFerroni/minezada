@@ -15,23 +15,24 @@
 			size: 1.5d
 			tasks: [{ id: "4484555566BC8AC3", type: "checkmark" }]
 			x: 0d
-			y: 7d
+			y: 0d
 		}
 		{
 			dependencies: ["33993A261AD763B4"]
 			id: "37F8A1DF4CDF42BB"
 			rewards: [{ id: "1EE6A097C51CE505", type: "xp", xp: 20 }]
 			tasks: [{ id: "4856171ABF84F9B6", structure: "dungeons_arise:illager_windmill", type: "structure" }]
-			x: 2.5d
-			y: 0d
+			x: 2d
+			y: 1.5d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["37F8A1DF4CDF42BB"]
 			id: "6B02D1746070AA28"
 			rewards: [{ id: "0ED30D8179F93B27", type: "xp", xp: 20 }]
 			tasks: [{ id: "4E1B9B2A794CC0D6", structure: "dungeons_arise:illager_fort", type: "structure" }]
-			x: 5d
-			y: 0d
+			x: 4d
+			y: 1.5d
 		}
 		{
 			dependencies: ["6B02D1746070AA28"]
@@ -39,48 +40,51 @@
 			rewards: [{ id: "7523C9D43296F24A", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "0D4B3A39DE6E0D7B", structure: "dungeons_arise:illager_galley", type: "structure" }]
-			x: 7.5d
-			y: 0d
+			x: 6d
+			y: 1.5d
 		}
 		{
 			dependencies: ["33993A261AD763B4"]
 			id: "54CDC75564BF2FFA"
 			rewards: [{ id: "07AEB9124843794E", type: "xp", xp: 20 }]
 			tasks: [{ id: "5DB8069817A2CAE1", structure: "dungeons_arise:bandit_village", type: "structure" }]
-			x: 2.5d
-			y: 1.75d
+			x: 2d
+			y: 3.5d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["54CDC75564BF2FFA"]
 			id: "719BD8C2A50534DD"
 			rewards: [{ id: "2809BBBD86E4AA61", type: "xp", xp: 20 }]
 			tasks: [{ id: "39E4BF8FA411ADC2", structure: "dungeons_arise:shiraz_palace", type: "structure" }]
-			x: 5d
-			y: 1.75d
+			x: 4d
+			y: 3.5d
 		}
 		{
 			dependencies: ["33993A261AD763B4"]
 			id: "21EA63751DD5340C"
 			rewards: [{ id: "51B8CF3461E147D2", type: "xp", xp: 20 }]
 			tasks: [{ id: "03784D64B325DED0", structure: "dungeons_arise:coliseum", type: "structure" }]
-			x: 2.5d
-			y: 4.375d
+			x: 2d
+			y: 6.25d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["21EA63751DD5340C"]
 			id: "17E12284F9388CD2"
 			rewards: [{ id: "36975501D441F53C", type: "xp", xp: 20 }]
 			tasks: [{ id: "5BF7333932250A3B", structure: "dungeons_arise:infested_temple", type: "structure" }]
-			x: 5d
-			y: 4.375d
+			x: 4d
+			y: 6.25d
 		}
 		{
 			dependencies: ["33993A261AD763B4"]
 			id: "027D36F5ADBBD43B"
 			rewards: [{ id: "70FBD1E0CACF42A6", type: "xp", xp: 20 }]
 			tasks: [{ id: "37D07A59C4CEEC49", structure: "dungeons_arise:undead_pirate_ship", type: "structure" }]
-			x: 2.5d
-			y: 7d
+			x: 2d
+			y: 9d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["027D36F5ADBBD43B"]
@@ -88,32 +92,34 @@
 			rewards: [{ id: "42718A6FB9B6B6CD", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "098262FAED533A4F", structure: "dungeons_arise:lighthouse", type: "structure" }]
-			x: 5d
-			y: 7d
+			x: 4d
+			y: 9d
 		}
 		{
 			dependencies: ["33993A261AD763B4"]
 			id: "1EE66CDA685B5F25"
 			rewards: [{ id: "49729C51E258A49E", type: "xp", xp: 20 }]
 			tasks: [{ id: "26241EAF7F81C6B5", structure: "dungeons_arise:small_blimp", type: "structure" }]
-			x: 2.5d
-			y: 8.75d
+			x: 2d
+			y: 11d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["1EE66CDA685B5F25"]
 			id: "3A25E0C03985EE30"
 			rewards: [{ id: "3FB54FA00BD211FD", type: "xp", xp: 20 }]
 			tasks: [{ id: "2F93CFDFFC53F5AE", structure: "dungeons_arise:heavenly_conqueror", type: "structure" }]
-			x: 5d
-			y: 8.75d
+			x: 4d
+			y: 11d
 		}
 		{
 			dependencies: ["33993A261AD763B4"]
 			id: "281948E0C5CF0B8C"
 			rewards: [{ id: "20D3D7A9D2083452", type: "xp", xp: 20 }]
 			tasks: [{ id: "29F27C7B04978B6B", structure: "dungeons_arise:mining_system", type: "structure" }]
-			x: 2.5d
-			y: 10.5d
+			x: 2d
+			y: 0.0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["33993A261AD763B4"]
@@ -121,8 +127,9 @@
 			rewards: [{ id: "1421B3F57189BC79", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "10A6DD6F2F8CFA24", structure: "dungeons_arise:mushroom_village", type: "structure" }]
-			x: 2.5d
-			y: 12.25d
+			x: 3.5d
+			y: 0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["33993A261AD763B4"]
@@ -130,26 +137,27 @@
 			rewards: [{ id: "1FA37CD8CA1051EB", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "0BCD6E43BFD64C36", structure: "dungeons_arise:monastery", type: "structure" }]
-			x: 2.5d
-			y: 14d
+			x: 5d
+			y: 0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["17E12284F9388CD2"]
 			id: "59C9138E6BEA5CC0"
 			rewards: [{ id: "3880CB519C6EF9E1", type: "xp", xp: 20 }]
 			tasks: [{ id: "3F4A26790035882C", structure: "dungeons_arise:thornborn_towers", type: "structure" }]
-			x: 7.5d
-			y: 3.5d
+			x: 6d
+			y: 5.5d
 		}
 		{
-			dependencies: ["17E12284F9388CD2", "281948E0C5CF0B8C"]
+			dependencies: ["17E12284F9388CD2"]
 			id: "3944647F91250922"
 			rewards: [{ id: "09C543A3128B5A1B", type: "xp", xp: 100 }]
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "07C9C15BC4775D61", structure: "dungeons_arise:plague_asylum", type: "structure" }]
-			x: 7.5d
-			y: 5.25d
+			x: 6d
+			y: 7d
 		}
 	]
 }

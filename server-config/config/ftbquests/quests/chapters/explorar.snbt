@@ -15,23 +15,25 @@
 			size: 1.5d
 			tasks: [{ id: "2FEAD4366420F5B3", type: "checkmark" }]
 			x: 0d
-			y: 9.625d
+			y: 0d
 		}
 		{
 			dependencies: ["21C5B7064481CEC8"]
 			id: "076BEA6CFE9209A1"
 			rewards: [{ id: "792D1269EB56B841", type: "xp", xp: 20 }]
 			tasks: [{ id: "1CA2EA610578DF67", item: { count: 1, id: "naturescompass:naturescompass" }, type: "item" }]
-			x: 2.5d
-			y: 0.875d
+			x: 2d
+			y: 2.25d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["21C5B7064481CEC8"]
 			id: "3062EA0B7042C34D"
 			rewards: [{ id: "69D89FCDA80F9D6E", type: "xp", xp: 20 }]
 			tasks: [{ id: "508E13BD258E98B8", item: { count: 1, id: "explorerscompass:explorerscompass" }, type: "item" }]
-			x: 2.5d
-			y: 4.375d
+			x: 2d
+			y: 5.75d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["21C5B7064481CEC8"]
@@ -39,32 +41,34 @@
 			rewards: [{ id: "2EC54BEB7C6DA1D2", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "380B469D7D30E15C", item: { count: 1, id: "map_atlases:atlas" }, type: "item" }]
-			x: 2.5d
-			y: 7.875d
+			x: 2d
+			y: 9.25d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["21C5B7064481CEC8"]
 			id: "6181CF23667BE12E"
 			rewards: [{ id: "19CE4767B8F209CE", type: "xp", xp: 20 }]
 			tasks: [{ id: "1CA6DA17954FCD5C", item: { count: 1, id: "waystones:return_scroll" }, type: "item" }]
-			x: 2.5d
-			y: 10.5d
+			x: 2d
+			y: 0d
 		}
 		{
 			dependencies: ["21C5B7064481CEC8"]
 			id: "3D16CF125CA71F15"
 			rewards: [{ id: "3D4BE6036E25281F", type: "xp", xp: 20 }]
 			tasks: [{ id: "4E447A67B4179457", item: { count: 1, id: "waystones:waystone" }, type: "item" }]
-			x: 2.5d
-			y: 13.125d
+			x: 2d
+			y: 12.75d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["3D16CF125CA71F15"]
 			id: "45B29C1183D9355C"
 			rewards: [{ id: "5B7B9A1F3862C093", type: "xp", xp: 20 }]
 			tasks: [{ id: "673D336AA7E97866", item: { count: 1, id: "waystones:warp_stone" }, type: "item" }]
-			x: 5d
-			y: 12.25d
+			x: 4d
+			y: 12d
 		}
 		{
 			dependencies: ["3D16CF125CA71F15"]
@@ -72,8 +76,8 @@
 			rewards: [{ id: "09FB5F0A786BE7B1", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "6A391655197ABBF6", item: { count: 1, id: "waystones:warp_plate" }, type: "item" }]
-			x: 5d
-			y: 14d
+			x: 4d
+			y: 13.5d
 		}
 		{
 			dependencies: ["333B894B34D3932D"]
@@ -81,8 +85,8 @@
 			rewards: [{ id: "71584C51520F789D", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "0CCBC57D3F0C0084", type: "checkmark" }]
-			x: 5d
-			y: 7d
+			x: 4d
+			y: 8.5d
 		}
 		{
 			dependencies: ["333B894B34D3932D"]
@@ -90,16 +94,16 @@
 			rewards: [{ id: "118A1B50CE50DBF3", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "4A69FC26B6AD511C", type: "checkmark" }]
-			x: 5d
-			y: 8.75d
+			x: 4d
+			y: 10d
 		}
 		{
 			dependencies: ["076BEA6CFE9209A1"]
 			id: "0F2CA8646830B374"
 			rewards: [{ id: "4AF4CA5A05C23B97", type: "xp", xp: 20 }]
 			tasks: [{ biome: "minecraft:mushroom_fields", id: "10837A3131D48BCA", type: "biome" }]
-			x: 5d
-			y: 0d
+			x: 4d
+			y: 1.5d
 		}
 		{
 			dependencies: ["076BEA6CFE9209A1"]
@@ -107,16 +111,16 @@
 			rewards: [{ id: "54FB297551B5D249", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "033382B1266CF64D", type: "checkmark" }]
-			x: 5d
-			y: 1.75d
+			x: 4d
+			y: 3d
 		}
 		{
 			dependencies: ["3062EA0B7042C34D"]
 			id: "7D9C14117A40C07E"
 			rewards: [{ id: "454A4F0E5745D9D3", type: "xp", xp: 20 }]
 			tasks: [{ id: "3EF6C8CB1D3F8280", structure: "minecraft:mansion", type: "structure" }]
-			x: 5d
-			y: 3.5d
+			x: 4d
+			y: 5d
 		}
 		{
 			dependencies: ["3062EA0B7042C34D"]
@@ -124,32 +128,33 @@
 			rewards: [{ id: "6D508F01C98E034C", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "50560CCF97B08BAC", type: "checkmark" }]
-			x: 5d
-			y: 5.25d
+			x: 4d
+			y: 6.5d
 		}
 		{
 			dependencies: ["21C5B7064481CEC8"]
 			id: "22CC8B3A2D25E984"
 			rewards: [{ id: "3465D5949210A261", type: "xp", xp: 20 }]
 			tasks: [{ id: "1C430A5B6E65503C", item: { count: 1, id: "comforts:sleeping_bag_white" }, type: "item" }]
-			x: 2.5d
-			y: 15.75d
+			x: 2d
+			y: 15.5d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["22CC8B3A2D25E984"]
 			id: "0FA3ED4C02DAED99"
 			rewards: [{ id: "7ABDF5DCB5101EE2", type: "xp", xp: 20 }]
 			tasks: [{ id: "25FDD7ADE3ABC271", item: { count: 1, id: "comforts:hammock_white" }, type: "item" }]
-			x: 5d
-			y: 15.75d
+			x: 4d
+			y: 15.5d
 		}
 		{
 			dependencies: ["0FA3ED4C02DAED99"]
 			id: "7D250E356A95F3AE"
 			rewards: [{ id: "6B3A8AB31D1F9E43", type: "xp", xp: 20 }]
 			tasks: [{ id: "426AA39A3DB673B7", item: { count: 1, id: "comforts:rope_and_nail" }, type: "item" }]
-			x: 7.5d
-			y: 15.75d
+			x: 6d
+			y: 15.5d
 		}
 		{
 			dependencies: ["7D250E356A95F3AE"]
@@ -157,8 +162,8 @@
 			rewards: [{ id: "354B702D12E96E36", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "7F3AE2C0690106BF", type: "checkmark" }]
-			x: 10d
-			y: 15.75d
+			x: 8d
+			y: 15.5d
 		}
 		{
 			dependencies: ["21C5B7064481CEC8"]
@@ -166,8 +171,9 @@
 			rewards: [{ id: "193FF7DA5CEC6902", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "4200B9EE67DAE750", type: "checkmark" }]
-			x: 2.5d
-			y: 18.375d
+			x: 14d
+			y: 2.25d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["6C649EF7320B4B28"]
@@ -175,8 +181,8 @@
 			rewards: [{ id: "1AD277D3FE56A140", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "2245F7DDA2FA2D4B", type: "checkmark" }]
-			x: 5d
-			y: 17.5d
+			x: 16d
+			y: 1.5d
 		}
 		{
 			dependencies: ["6C649EF7320B4B28"]
@@ -184,8 +190,8 @@
 			rewards: [{ id: "13C21D3AFFA5831A", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "1EB3EF2265B2C1ED", type: "checkmark" }]
-			x: 5d
-			y: 19.25d
+			x: 16d
+			y: 3d
 		}
 	]
 }
