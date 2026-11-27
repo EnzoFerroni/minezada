@@ -2,7 +2,7 @@
 
 Gerado pelo `scripts/missoes.ps1`. Nao edite a mao: rode o script depois de mexer no livro ou no `mods.txt`.
 
-35 capitulos, 601 missoes. Mods: 96 ok, 29 abaixo da meta, 0 faltando, 68 sem necessidade de missao.
+35 capitulos, 601 missoes. Mods: 95 ok, 30 abaixo da meta, 0 faltando, 68 sem necessidade de missao.
 
 Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 5, mais que isso 10 (menos os de $metaFixa no missoes.ps1, com muitas variantes de madeira ou cor).
 
@@ -85,7 +85,7 @@ Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 
 | Baús e armazenamento | `cf:228756` | 21 | 1/3 | pouco | Mochila e baús |
 | Ferramentas | `just-hammers` | 29 | 1/3 | pouco | Utilidades |
 | Ferramentas | `advanced-netherite` | 44 | 1/3 | pouco | Utilidades |
-| Ferramentas | `cf:386134` | 0 | 1/1 | ok | Utilidades |
+| Ferramentas | `cf:386134` | 1 | 1/3 | pouco | Utilidades |
 | Ferramentas | `aperture-innovations` | 20 | 1/3 | pouco | Utilidades |
 | Mobs e animais | `dmr` | 2 | 2/3 | pouco | Animais |
 | Mobs e animais | `cf:1635121` | 294 | 7/10 | pouco | Animais |
