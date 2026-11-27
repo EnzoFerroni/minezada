@@ -5,7 +5,7 @@ name: Pack
 
 on:
   push:
-    paths: ['modpack/**', 'scripts/montar-pack.ps1', '.github/workflows/pack.yml']
+    paths: ['modpack/**', 'scripts/montar-pack.ps1', 'scripts/missoes.ps1', '.github/workflows/pack.yml']
   schedule:
     - cron: '0 12 * * 1'
   workflow_dispatch:
@@ -37,9 +37,9 @@ jobs:
         run: |
           $v = [regex]::Match((Get-Content modpack/pack/pack.toml -Raw), 'version = "(.+?)"').Groups[1].Value
           ./scripts/montar-pack.ps1 -Versao $v
-          git diff --stat -- modpack/pack
-          git diff --quiet -- modpack/pack
-          if ($LASTEXITCODE) { Write-Host '::error::modpack/pack nao bate com o mods.txt: rode scripts/montar-pack.ps1 e faca commit'; exit 1 }
+          git diff --stat -- modpack/pack docs/missoes.md server-config/config/ftbquests
+          git diff --quiet -- modpack/pack docs/missoes.md server-config/config/ftbquests
+          if ($LASTEXITCODE) { Write-Host '::error::modpack/pack, livro ou docs/missoes.md nao batem: rode scripts/montar-pack.ps1 e faca commit'; exit 1 }
 
   atualizacoes:
     if: github.event_name != 'push'

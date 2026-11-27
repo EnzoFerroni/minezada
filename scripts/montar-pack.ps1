@@ -455,3 +455,6 @@ foreach ($lado in 'client', 'server') {
 }
 if ($problemas) { Write-Host "$problemas problema(s) de dependencia: corrija antes do push." -ForegroundColor Red; exit 1 }
 Write-Host 'Dependencias dos jars: ok'
+
+# Livro de missoes e cobertura por mod (docs/missoes.md): mod novo aparece como "falta".
+& (Join-Path $PSScriptRoot 'missoes.ps1')
