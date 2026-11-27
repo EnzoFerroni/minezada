@@ -5,7 +5,7 @@
 	group: "0723197381022D89"
 	icon: { id: "artifacts:cloud_in_a_bottle" }
 	id: "27715EDF11C7BB0D"
-	order_index: 27
+	order_index: 28
 	quest_links: [ ]
 	quests: [
 		{
@@ -15,7 +15,7 @@
 			size: 1.5d
 			tasks: [{ advancement: "lootr:1chest", criterion: "", id: "55C28CFFE55A2896", type: "advancement" }]
 			x: 0d
-			y: 6.125d
+			y: 9.625d
 		}
 		{
 			dependencies: ["32D94C7A6E9E47F3"]
@@ -92,7 +92,7 @@
 			size: 1.5d
 			tasks: [{ id: "115205D43E93F02C", item: { count: 1, id: "artifacts:cloud_in_a_bottle" }, type: "item" }]
 			x: 2.5d
-			y: 12.25d
+			y: 14.875d
 		}
 		{
 			dependencies: ["78C7BB77263FD95E"]
@@ -102,6 +102,42 @@
 			tasks: [{ advancement: "artifacts:chest_slayer", criterion: "", id: "203B32EB68CA6B3E", type: "advancement" }]
 			x: 5d
 			y: 12.25d
+		}
+		{
+			dependencies: ["32D94C7A6E9E47F3"]
+			id: "6A3F9F6160A24130"
+			rewards: [{ id: "01FC3ED3796936A9", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "lootr:1barrel", criterion: "", id: "6BB6CEF1CBAC4D9A", type: "advancement" }]
+			x: 2.5d
+			y: 19.25d
+		}
+		{
+			dependencies: ["78C7BB77263FD95E"]
+			id: "52B2EF0F2DB06B0F"
+			rewards: [{ id: "6ACB2153D248DB3A", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "052F9662D84E53CD", item: { count: 1, id: "artifacts:running_shoes" }, type: "item" }]
+			x: 5d
+			y: 14d
+		}
+		{
+			dependencies: ["78C7BB77263FD95E"]
+			id: "65EE0EFB7FCD176D"
+			rewards: [{ id: "7EB07E4C10674143", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "69A5C9564B03F307", item: { count: 1, id: "artifacts:flame_pendant" }, type: "item" }]
+			x: 5d
+			y: 15.75d
+		}
+		{
+			dependencies: ["78C7BB77263FD95E"]
+			id: "5FD2F5CE674699FA"
+			rewards: [{ id: "462C1E2F03E01DBB", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "71854F1EC2EE8B1E", item: { count: 1, id: "artifacts:digging_claws" }, type: "item" }]
+			x: 5d
+			y: 17.5d
 		}
 	]
 }

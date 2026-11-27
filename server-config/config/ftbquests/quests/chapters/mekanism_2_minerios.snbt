@@ -5,7 +5,7 @@
 	group: "75C4FBF5BDDE1148"
 	icon: { id: "mekanism:enrichment_chamber" }
 	id: "3526DABF48583D2E"
-	order_index: 14
+	order_index: 15
 	quest_links: [ ]
 	quests: [
 		{

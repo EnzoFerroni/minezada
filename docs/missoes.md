@@ -2,7 +2,7 @@
 
 Gerado pelo `scripts/missoes.ps1`. Nao edite a mao: rode o script depois de mexer no livro ou no `mods.txt`.
 
-34 capitulos, 490 missoes. Mods: 69 ok, 52 abaixo da meta, 4 faltando, 68 sem necessidade de missao.
+35 capitulos, 601 missoes. Mods: 96 ok, 29 abaixo da meta, 0 faltando, 68 sem necessidade de missao.
 
 Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 5, mais que isso 10 (menos os de $metaFixa no missoes.ps1, com muitas variantes de madeira ou cor).
 
@@ -19,38 +19,38 @@ Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 
 | Aprender e guias | `cf:289412` | 18 | 0/3 | nao precisa (o proprio livro) |  |
 | Aprender e guias | `cf:404465` | 2 | 0/3 | nao precisa (biblioteca) |  |
 | Aprender e guias | `cf:404468` | 0 | 0/1 | nao precisa (biblioteca) |  |
-| Aprender e guias | `cf:889915` | 0 | 2/1 | ok | Explorar, Primeiros passos |
+| Aprender e guias | `cf:889915` | 0 | 5/1 | ok | Explorar, Primeiros passos |
 | Aprender e guias | `cf:943925` | 1 | 0/3 | nao precisa (biblioteca) |  |
 | Mapas e viagem | `xaeros-minimap` | 0 | 1/1 | ok | Primeiros passos |
 | Mapas e viagem | `xaeros-world-map` | 0 | 1/1 | ok | Primeiros passos |
-| Mapas e viagem | `xaeros-minimap-world-map-waystones-compatibility-forge` | 0 | 2/1 | ok | Explorar, Primeiros passos |
-| Mapas e viagem | `waystones` | 58 | 2/5 | pouco | Explorar, Primeiros passos |
-| Mapas e viagem | `map-atlases-forge` | 3 | 1/3 | pouco | Explorar |
-| Mapas e viagem | `natures-compass` | 1 | 1/3 | pouco | Explorar |
-| Mapas e viagem | `explorers-compass` | 1 | 1/3 | pouco | Explorar |
+| Mapas e viagem | `xaeros-minimap-world-map-waystones-compatibility-forge` | 0 | 5/1 | ok | Explorar, Primeiros passos |
+| Mapas e viagem | `waystones` | 58 | 5/5 | ok | Explorar, Primeiros passos |
+| Mapas e viagem | `map-atlases-forge` | 3 | 3/3 | ok | Explorar |
+| Mapas e viagem | `natures-compass` | 1 | 3/3 | ok | Explorar |
+| Mapas e viagem | `explorers-compass` | 1 | 3/3 | ok | Explorar |
 | Mapas e viagem | `ping-wheel` | 0 | 1/1 | ok | Primeiros passos |
-| Construção e decoração | `cf:298187` | 9 | 1/3 | pouco | Utilidades |
-| Construção e decoração | `effortless-building` | 1 | 2/3 | pouco | Construir |
-| Construção e decoração | `macaws-furniture` | 654 | 1/4 | pouco | Construir |
-| Construção e decoração | `macaws-roofs` | 607 | 1/2 | pouco | Construir |
-| Construção e decoração | `macaws-windows` | 315 | 1/2 | pouco | Construir |
-| Construção e decoração | `macaws-doors` | 282 | 1/2 | pouco | Construir |
-| Construção e decoração | `macaws-bridges` | 152 | 1/2 | pouco | Construir |
-| Construção e decoração | `macaws-fences-and-walls` | 180 | 1/2 | pouco | Construir |
-| Construção e decoração | `handcrafted` | 301 | 2/4 | pouco | Construir |
+| Construção e decoração | `cf:298187` | 9 | 4/3 | ok | Decorar, Utilidades |
+| Construção e decoração | `effortless-building` | 1 | 3/3 | ok | Construir, Decorar |
+| Construção e decoração | `macaws-furniture` | 654 | 10/4 | ok | Construir, Decorar |
+| Construção e decoração | `macaws-roofs` | 607 | 11/2 | ok | Construir, Decorar |
+| Construção e decoração | `macaws-windows` | 315 | 10/2 | ok | Construir, Decorar |
+| Construção e decoração | `macaws-doors` | 282 | 10/2 | ok | Construir, Decorar |
+| Construção e decoração | `macaws-bridges` | 152 | 10/2 | ok | Construir, Decorar |
+| Construção e decoração | `macaws-fences-and-walls` | 180 | 10/2 | ok | Construir, Decorar |
+| Construção e decoração | `handcrafted` | 301 | 11/4 | ok | Construir, Decorar |
 | Construção e decoração | `cf:897116` | 473 | 12/10 | ok | Construir, Cozinha e fazenda, Primeiros passos |
-| Construção e decoração | `supplementaries` | 304 | 17/10 | ok | Construir, Cozinha e fazenda, Primeiros passos |
+| Construção e decoração | `supplementaries` | 304 | 18/10 | ok | Construir, Cozinha e fazenda, Primeiros passos, Volta ao mundo |
 | Construção e decoração | `supplementaries-squared` | 55 | 15/5 | ok | Construir, Cozinha e fazenda, Primeiros passos |
 | Construção e decoração | `amendments` | 15 | 5/3 | ok | Construir |
-| Construção e decoração | `beautify` | 53 | 2/5 | pouco | Construir |
-| Construção e decoração | `bubblellaneous` | 0 | 0/1 | **falta** |  |
-| Comida e fazenda | `farmers-delight` | 227 | 21/10 | ok | Cozinha e fazenda, Create: energia, Primeiros passos |
+| Construção e decoração | `beautify` | 53 | 7/5 | ok | Construir, Decorar |
+| Construção e decoração | `bubblellaneous` | 0 | 1/1 | ok | Decorar |
+| Comida e fazenda | `farmers-delight` | 227 | 22/10 | ok | Cozinha e fazenda, Create: energia, Primeiros passos, Volta ao mundo |
 | Comida e fazenda | `cultural-delights` | 179 | 16/10 | ok | Construir, Cozinha e fazenda, Primeiros passos |
 | Comida e fazenda | `twilight-delight` | 252 | 32/10 | ok | Cozinha e fazenda, Dimensões, Primeiros passos, Twilight Forest |
 | Comida e fazenda | `ends-delight` | 63 | 10/5 | ok | Cozinha e fazenda, Primeiros passos |
 | Comida e fazenda | `oceans-delight` | 25 | 11/3 | ok | Cozinha e fazenda, Primeiros passos |
 | Comida e fazenda | `storage-delight` | 168 | 1/3 | pouco | Cozinha e fazenda |
-| Comida e fazenda | `cf:415438` | 537 | 4/8 | pouco | Cozinha e fazenda |
+| Comida e fazenda | `cf:415438` | 537 | 5/8 | pouco | Cozinha e fazenda, Volta ao mundo |
 | Comida e fazenda | `cf:885449` | 0 | 0/1 | nao precisa (biblioteca) |  |
 | Comida e fazenda | `cf:231484` | 146 | 3/5 | pouco | Cozinha e fazenda |
 | Comida e fazenda | `cf:277616` | 1 | 1/3 | pouco | Cozinha e fazenda |
@@ -85,7 +85,7 @@ Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 
 | Baús e armazenamento | `cf:228756` | 21 | 1/3 | pouco | Mochila e baús |
 | Ferramentas | `just-hammers` | 29 | 1/3 | pouco | Utilidades |
 | Ferramentas | `advanced-netherite` | 44 | 1/3 | pouco | Utilidades |
-| Ferramentas | `cf:386134` | 1 | 1/3 | pouco | Utilidades |
+| Ferramentas | `cf:386134` | 0 | 1/1 | ok | Utilidades |
 | Ferramentas | `aperture-innovations` | 20 | 1/3 | pouco | Utilidades |
 | Mobs e animais | `dmr` | 2 | 2/3 | pouco | Animais |
 | Mobs e animais | `cf:1635121` | 294 | 7/10 | pouco | Animais |
@@ -97,10 +97,10 @@ Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 
 | Mobs e animais | `naturalist` | 151 | 10/10 | ok | Animais |
 | Mobs e animais | `mowzies-mobs` | 57 | 4/5 | pouco | Caçador de chefes |
 | Mobs e animais | `aquamirae` | 80 | 2/5 | pouco | Caçador de chefes |
-| Mobs e animais | `adorable-hamster-pets` | 54 | 13/5 | ok | Animais, Construir, Cozinha e fazenda |
+| Mobs e animais | `adorable-hamster-pets` | 54 | 14/5 | ok | Animais, Construir, Cozinha e fazenda, Volta ao mundo |
 | Dimensões | `eternal-starlight` | 1109 | 16/10 | ok | Dimensões, Eternal Starlight |
-| Dimensões | `dimensional-dungeons` | 46 | 2/5 | pouco | Dimensões |
-| Dimensões | `cf:227639` | 765 | 60/10 | ok | Aether, Cozinha e fazenda, Create: energia, Dimensões, Masmorras e tesouros, Primeiros passos, Twilight Forest |
+| Dimensões | `dimensional-dungeons` | 46 | 5/5 | ok | Dimensões |
+| Dimensões | `cf:227639` | 765 | 63/10 | ok | Aether, Cozinha e fazenda, Create: energia, Dimensões, Masmorras e tesouros, Primeiros passos, Twilight Forest |
 | Dimensões | `aether` | 287 | 22/10 | ok | Aether, Construir, Dimensões |
 | Dimensões | `deep-aether` | 448 | 20/10 | ok | Aether, Dimensões |
 | Dimensões | `the-undergarden` | 350 | 17/10 | ok | Dimensões, Undergarden |
@@ -108,16 +108,16 @@ Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 
 | Dimensões | `incendium` | 0 | 4/1 | ok | Nether e End, Volta ao mundo |
 | Dimensões | `nullscape` | 0 | 1/1 | ok | Nether e End |
 | Aventura e chefes | `when-dungeons-arise` | 0 | 16/1 | ok | Grandes estruturas |
-| Aventura e chefes | `artifacts` | 49 | 2/5 | pouco | Masmorras e tesouros |
-| Aventura e chefes | `lootr` | 9 | 2/3 | pouco | Masmorras e tesouros |
+| Aventura e chefes | `artifacts` | 49 | 5/5 | ok | Masmorras e tesouros |
+| Aventura e chefes | `lootr` | 9 | 3/3 | ok | Masmorras e tesouros |
 | Estruturas | `dungeons-and-taverns` | 26 | 6/3 | ok | Caçador de chefes, Masmorras e tesouros, Nether e End, Pelo mundo |
-| Estruturas | `moogs-voyager-structures` | 0 | 0/1 | **falta** |  |
+| Estruturas | `moogs-voyager-structures` | 0 | 1/1 | ok | Pelo mundo |
 | Estruturas | `structory` | 0 | 2/1 | ok | Pelo mundo |
 | Estruturas | `structory-towers` | 0 | 1/1 | ok | Pelo mundo |
 | Estruturas | `philips-ruins` | 0 | 2/1 | ok | Pelo mundo |
 | Estruturas | `yungs-bridges` | 0 | 0/1 | nao precisa (funciona sozinho ou so muda a tela) |  |
 | Estruturas | `yungs-extras` | 0 | 0/1 | nao precisa (funciona sozinho ou so muda a tela) |  |
-| Estruturas | `yungs-better-end-island` | 0 | 0/1 | **falta** |  |
+| Estruturas | `yungs-better-end-island` | 0 | 1/1 | ok | Nether e End |
 | Estruturas | `mes-moogs-end-structures` | 0 | 1/1 | ok | Nether e End |
 | Estruturas | `yungs-better-dungeons` | 0 | 2/1 | ok | Masmorras e tesouros |
 | Estruturas | `yungs-better-mineshafts` | 0 | 1/1 | ok | Masmorras e tesouros |
@@ -129,12 +129,12 @@ Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 
 | Estruturas | `yungs-better-nether-fortresses` | 0 | 1/1 | ok | Nether e End |
 | Estruturas | `towns-and-towers` | 0 | 2/1 | ok | Pelo mundo |
 | Estruturas | `explorify` | 0 | 2/1 | ok | Pelo mundo |
-| Biomas, terreno e cavernas | `yungs-cave-biomes` | 32 | 2/5 | pouco | Volta ao mundo |
-| Biomas, terreno e cavernas | `biomes-o-plenty` | 460 | 6/10 | pouco | Cozinha e fazenda, Volta ao mundo |
-| Biomas, terreno e cavernas | `galosphere` | 171 | 3/10 | pouco | Pelo mundo, Volta ao mundo |
-| Biomas, terreno e cavernas | `serene-seasons-plus` | 0 | 2/1 | ok | Cozinha e fazenda |
-| Biomas, terreno e cavernas | `serene-seasons` | 3 | 2/3 | pouco | Cozinha e fazenda |
-| Biomas, terreno e cavernas | `terralith` | 0 | 9/1 | ok | Cozinha e fazenda, Volta ao mundo |
+| Biomas, terreno e cavernas | `yungs-cave-biomes` | 32 | 5/5 | ok | Volta ao mundo |
+| Biomas, terreno e cavernas | `biomes-o-plenty` | 460 | 11/6 | ok | Cozinha e fazenda, Volta ao mundo |
+| Biomas, terreno e cavernas | `galosphere` | 171 | 7/6 | ok | Pelo mundo, Volta ao mundo |
+| Biomas, terreno e cavernas | `serene-seasons-plus` | 0 | 3/1 | ok | Cozinha e fazenda, Volta ao mundo |
+| Biomas, terreno e cavernas | `serene-seasons` | 3 | 3/3 | ok | Cozinha e fazenda, Volta ao mundo |
+| Biomas, terreno e cavernas | `terralith` | 0 | 10/1 | ok | Cozinha e fazenda, Volta ao mundo |
 | Biomas, terreno e cavernas | `tectonic` | 0 | 0/1 | nao precisa (funciona sozinho ou so muda a tela) |  |
 | Interface e controles | `yungs-menu-tweaks` | 0 | 0/1 | nao precisa (funciona sozinho ou so muda a tela) |  |
 | Interface e controles | `controlling` | 0 | 1/1 | ok | Primeiros passos |
@@ -147,11 +147,11 @@ Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 
 | Interface e controles | `cubes-without-borders` | 0 | 0/1 | nao precisa (visual ou som) |  |
 | Qualidade de vida | `carry-on` | 0 | 1/1 | ok | Primeiros passos |
 | Qualidade de vida | `clumps` | 0 | 0/1 | nao precisa (desempenho) |  |
-| Qualidade de vida | `comforts` | 34 | 1/5 | pouco | Utilidades |
+| Qualidade de vida | `comforts` | 34 | 5/5 | ok | Explorar, Utilidades |
 | Qualidade de vida | `trade-cycling` | 0 | 1/1 | ok | Utilidades |
 | Qualidade de vida | `easy-anvils` | 0 | 0/1 | nao precisa (funciona sozinho ou so muda a tela) |  |
 | Qualidade de vida | `corpse` | 0 | 1/1 | ok | Primeiros passos |
-| Visual e ambiente | `hats-renewed` | 1 | 0/3 | **falta** |  |
+| Visual e ambiente | `hats-renewed` | 1 | 3/3 | ok | Explorar |
 | Visual e ambiente | `travelers-titles` | 0 | 0/1 | nao precisa (funciona sozinho ou so muda a tela) |  |
 | Visual e ambiente | `fresh-animations` | 0 | 0/1 | nao precisa (visual ou som) |  |
 | Visual e ambiente | `entity-model-features` | 0 | 0/1 | nao precisa (visual ou som) |  |

@@ -457,6 +457,167 @@
 	quest.16853D93B6377171.title: "Móveis do Create"
 	quest.16853D93B6377171.quest_subtitle: "Create: Interiors"
 	quest.16853D93B6377171.quest_desc: ["Bancos e cadeiras no estilo do Create. Dá para sentar, inclusive em trens e máquinas que andam."]
+	chapter.7B3C540516C4A30E.title: "Decorar"
+	chapter.7B3C540516C4A30E.chapter_subtitle: ["Móveis, telhados, janelas, portas e enfeites"]
+	quest.3A96F0EDB3B0AC47.title: "Casa com cara de casa"
+	quest.3A96F0EDB3B0AC47.quest_subtitle: "Comece por aqui"
+	quest.3A96F0EDB3B0AC47.quest_desc: ["O pack tem &emilhares de blocos de decoração&r: móveis, telhados, janelas, portas, pontes, cercas e enfeites.", "", "Quase todos saem de &emadeira, pedra e vidro&r. Procure no JEI pelo nome do mod: &e@mcw&r (Macaw's), &e@handcrafted&r, &e@beautify&r, &e@bubblellaneous&r.", "", "Cada ramo deste capítulo mostra um mod. Não precisa fazer tudo: escolha o que combina com a sua casa."]
+	quest.79F414218E7B00ED.title: "Telhado de verdade"
+	quest.79F414218E7B00ED.quest_subtitle: "Macaw's Roofs"
+	quest.79F414218E7B00ED.quest_desc: ["O &eMacaw's Roofs&r troca as escadas por &etelhados de verdade&r, com várias inclinações.", "", "Faça um &etelhado de carvalho&r."]
+	quest.7AD3E3506F12C0B5.title: "Sótão"
+	quest.7AD3E3506F12C0B5.quest_desc: ["O &etelhado de sótão&r deixa espaço embaixo para um quarto."]
+	quest.52363ED3D21DD7FD.title: "Cumeeira"
+	quest.52363ED3D21DD7FD.quest_desc: ["A &ecumeeira&r fecha o topo onde as duas águas do telhado se encontram."]
+	quest.52968B695E9FCBF6.title: "Telhado íngreme"
+	quest.52968B695E9FCBF6.quest_desc: ["O &etelhado íngreme&r deixa a casa alta e pontuda."]
+	quest.4AC3BE6694AAFA61.title: "Beiral"
+	quest.4AC3BE6694AAFA61.quest_desc: ["O &etelhado de baixo&r faz a ponta que passa da parede."]
+	quest.466F77A8420092F0.title: "Íngreme com degrau"
+	quest.466F77A8420092F0.quest_desc: ["Peça para juntar o telhado íngreme com o comum."]
+	quest.0CFC9B574D6EC884.title: "Telhado de tábuas"
+	quest.0CFC9B574D6EC884.quest_desc: ["A mesma família de telhados, com textura de &etábuas&r."]
+	quest.2D7C54CDE1BB8B9C.title: "Telhado de pedra"
+	quest.2D7C54CDE1BB8B9C.quest_desc: ["Telhados de &epedra&r para castelos e casas mais fortes."]
+	quest.619CF7F06ACADB1E.title: "Sótão escuro"
+	quest.619CF7F06ACADB1E.quest_desc: ["Misture madeiras: um sótão de &ecarvalho escuro&r."]
+	quest.4151F85EB6C77FE3.title: "Sótão de pedra"
+	quest.4151F85EB6C77FE3.quest_desc: ["O sótão também existe em pedra."]
+	quest.5098BD8F697EC7AD.title: "Móveis"
+	quest.5098BD8F697EC7AD.quest_subtitle: "Macaw's Furniture"
+	quest.5098BD8F697EC7AD.quest_desc: ["O &eMacaw's Furniture&r tem guarda-roupas, gavetas, mesas, cadeiras e balcões. Muitos &aguardam itens&r como um baú.", "", "Faça um &eguarda-roupa de carvalho&r."]
+	quest.0CECA9F57B766449.title: "Gaveta"
+	quest.0CECA9F57B766449.quest_desc: ["A &egaveta&r guarda itens e serve de criado-mudo."]
+	quest.4F0B5A25EFD6BBDF.title: "Mesa"
+	quest.4F0B5A25EFD6BBDF.quest_desc: ["Uma &emesa&r para a sala ou a cozinha."]
+	quest.163DADF546B4048E.title: "Cadeira"
+	quest.163DADF546B4048E.quest_desc: ["Clique com o botão direito em uma &ecadeira&r para sentar."]
+	quest.1F1BA899FCBB419B.title: "Estante"
+	quest.1F1BA899FCBB419B.quest_desc: ["Uma &eestante&r de livros."]
+	quest.1ACA797AC773565A.title: "Escrivaninha"
+	quest.1ACA797AC773565A.quest_desc: ["Uma &eescrivaninha&r para o escritório."]
+	quest.17B9EF4FBCB3F66E.title: "Balcão"
+	quest.17B9EF4FBCB3F66E.quest_desc: ["O &ebalcão&r monta a cozinha."]
+	quest.5F3FBE2BC8F68EE7.title: "Balcão com gavetas"
+	quest.5F3FBE2BC8F68EE7.quest_desc: ["O balcão também pode guardar itens."]
+	quest.47BD86FF90B2FB6F.title: "Mesinha de centro"
+	quest.47BD86FF90B2FB6F.quest_desc: ["Uma &emesinha de centro&r para a sala."]
+	quest.47808FABC0689684.title: "Janela"
+	quest.47808FABC0689684.quest_subtitle: "Macaw's Windows"
+	quest.47808FABC0689684.quest_desc: ["O &eMacaw's Windows&r tem janelas com moldura, persianas, venezianas e cortinas."]
+	quest.164455D52F0A588D.title: "Janela de quatro"
+	quest.164455D52F0A588D.quest_desc: ["Uma janela dividida em &equatro vidros&r."]
+	quest.6B59744AAF897C9D.title: "Janela de pedra"
+	quest.6B59744AAF897C9D.quest_desc: ["Janela com moldura de &epedra&r."]
+	quest.77D13B2F07A86EE7.title: "Persiana"
+	quest.77D13B2F07A86EE7.quest_desc: ["A &epersiana&r abre e fecha com o botão direito."]
+	quest.29DC40CFDFD4C956.title: "Veneziana"
+	quest.29DC40CFDFD4C956.quest_desc: ["A &eveneziana&r vai do lado de fora da janela."]
+	quest.0782822DA83CBE93.title: "Seteira"
+	quest.0782822DA83CBE93.quest_desc: ["A &eseteira&r é a janelinha estreita de castelo."]
+	quest.285B9735B443B1F7.title: "Janela gótica"
+	quest.285B9735B443B1F7.quest_desc: ["Uma janela &egótica&r de tijolos de pedra."]
+	quest.2129A63E4E908AE8.title: "Parapeito"
+	quest.2129A63E4E908AE8.quest_desc: ["O &eparapeito&r enfeita a parede embaixo da janela."]
+	quest.3D99EB5B11F6E1C3.title: "Janela de tronco"
+	quest.3D99EB5B11F6E1C3.quest_desc: ["Moldura de &etronco descascado&r."]
+	quest.1648D93341544E0B.title: "Porta nova"
+	quest.1648D93341544E0B.quest_subtitle: "Macaw's Doors"
+	quest.1648D93341544E0B.quest_desc: ["O &eMacaw's Doors&r tem portas de todos os estilos: celeiro, japonesa, moderna, de praia."]
+	quest.0CEF5541B4A96DA1.title: "Porta de celeiro"
+	quest.0CEF5541B4A96DA1.quest_desc: ["Uma &eporta de celeiro&r larga."]
+	quest.0519E8674B0DE837.title: "Porta japonesa"
+	quest.0519E8674B0DE837.quest_desc: ["Uma porta &ejaponesa&r de correr."]
+	quest.0FA45431C8DBBDBE.title: "Porta moderna"
+	quest.0FA45431C8DBBDBE.quest_desc: ["Uma porta &emoderna&r."]
+	quest.33585EE60B7F1861.title: "Porta de vidro"
+	quest.33585EE60B7F1861.quest_desc: ["Porta de celeiro com &evidro&r."]
+	quest.6D0EAADCE75CE6A2.title: "Porta de praia"
+	quest.6D0EAADCE75CE6A2.quest_desc: ["Uma porta de &epraia&r."]
+	quest.6F0E635139E7C1FB.title: "Porta de papel"
+	quest.6F0E635139E7C1FB.quest_desc: ["Uma porta de &epapel&r."]
+	quest.0493D460FE6A264F.title: "Porta de quatro painéis"
+	quest.0493D460FE6A264F.quest_desc: ["A porta clássica de &equatro painéis&r."]
+	quest.77B6E4C7348A242D.title: "Porta escura"
+	quest.77B6E4C7348A242D.quest_desc: ["Uma porta moderna de &ecarvalho escuro&r."]
+	quest.09857CF0DD66F498.title: "Ponte"
+	quest.09857CF0DD66F498.quest_subtitle: "Macaw's Bridges"
+	quest.09857CF0DD66F498.quest_desc: ["O &eMacaw's Bridges&r tem pontes de corda, de tronco, de pedra e de ferro.", "", "Faça uma &eponte de corda&r."]
+	quest.5E910C03CBF9E518.title: "Ponte de tronco"
+	quest.5E910C03CBF9E518.quest_desc: ["Uma ponte de &etronco&r."]
+	quest.6DD9930A5129B5EB.title: "Ponte de pedra"
+	quest.6DD9930A5129B5EB.quest_desc: ["Uma ponte de &etijolos de pedra&r."]
+	quest.06027DEBCD68255A.title: "Pilar de ponte"
+	quest.06027DEBCD68255A.quest_desc: ["O &epilar&r segura a ponte por baixo."]
+	quest.191FBD4D1861C146.title: "Escada de ponte"
+	quest.191FBD4D1861C146.quest_desc: ["A &eescada&r sobe até a ponte."]
+	quest.0E9B76BC76BAA4C6.title: "Ponte de ferro"
+	quest.0E9B76BC76BAA4C6.quest_desc: ["Uma ponte de &eferro&r."]
+	quest.59BD8F91CBE1E5E5.title: "Ponte de vidro"
+	quest.59BD8F91CBE1E5E5.quest_desc: ["Uma ponte de &evidro&r."]
+	quest.43621896BEFECC90.title: "Ponte de trilho"
+	quest.43621896BEFECC90.quest_desc: ["Ponte com &etrilho&r de madeira."]
+	quest.363BE0AFEACF5AFB.title: "Ponte de tijolos"
+	quest.363BE0AFEACF5AFB.quest_desc: ["Uma ponte de &etijolos&r."]
+	quest.59651CAF5A3B7F5D.title: "Cerca de estacas"
+	quest.59651CAF5A3B7F5D.quest_subtitle: "Macaw's Fences and Walls"
+	quest.59651CAF5A3B7F5D.quest_desc: ["O &eMacaw's Fences and Walls&r tem cercas, muros e portões novos."]
+	quest.0EFAF6677B5F0290.title: "Paliçada"
+	quest.0EFAF6677B5F0290.quest_desc: ["Uma &epaliçada&r de troncos."]
+	quest.54E6FBCB219A63FB.title: "Cerca de cavalo"
+	quest.54E6FBCB219A63FB.quest_desc: ["A &ecerca de cavalo&r para o pasto."]
+	quest.16740B58FC5CA75C.title: "Cerca de arame"
+	quest.16740B58FC5CA75C.quest_desc: ["Uma cerca de &earame&r."]
+	quest.144B733553BADF22.title: "Portão"
+	quest.144B733553BADF22.quest_desc: ["Um &eportão&r curvo."]
+	quest.3355283E842F6F4F.title: "Cerca viva"
+	quest.3355283E842F6F4F.quest_desc: ["Uma &ecerca viva&r de folhas."]
+	quest.11BF109F4034BD87.title: "Muro de pedra"
+	quest.11BF109F4034BD87.quest_desc: ["Um muro de &epilar de pedra&r."]
+	quest.094571EF2119B98F.title: "Muro com grama"
+	quest.094571EF2119B98F.quest_desc: ["Um muro de pedra com &egrama&r em cima."]
+	quest.63A807B2251AC5C0.title: "Portão pirâmide"
+	quest.63A807B2251AC5C0.quest_desc: ["Um portão com topo em &epirâmide&r."]
+	quest.15691675E696E283.title: "Feito à mão"
+	quest.15691675E696E283.quest_subtitle: "Handcrafted"
+	quest.15691675E696E283.quest_desc: ["O &eHandcrafted&r tem móveis com almofadas, louças, troféus e enfeites.", "", "Faça um &esofá&r."]
+	quest.52F508E293C7B570.title: "Cama chique"
+	quest.52F508E293C7B570.quest_desc: ["Uma &ecama chique&r com dossel."]
+	quest.0946641425FA884E.title: "Criado-mudo"
+	quest.0946641425FA884E.quest_desc: ["Um &ecriado-mudo&r para o lado da cama."]
+	quest.7F69F27620C0BA14.title: "Banco de jantar"
+	quest.7F69F27620C0BA14.quest_desc: ["Um &ebanco de jantar&r."]
+	quest.6472AB034451BA74.title: "Prateleira"
+	quest.6472AB034451BA74.quest_desc: ["Uma &eprateleira&r que mostra os itens em cima."]
+	quest.6F1D620B27D63E52.title: "Coifa"
+	quest.6F1D620B27D63E52.quest_desc: ["A &ecoifa&r da cozinha."]
+	quest.6D4961EB3A946D0C.title: "Acabamento de pilar"
+	quest.6D4961EB3A946D0C.quest_desc: ["Os &eacabamentos&r enfeitam cantos e pilares."]
+	quest.07ADD643BBA3923A.title: "Vaso dourado"
+	quest.07ADD643BBA3923A.quest_desc: ["Um &evaso dourado&r."]
+	quest.282758B7A6250D3B.title: "Troféu"
+	quest.282758B7A6250D3B.quest_desc: ["Os &etroféus&r de bichos enfeitam a parede."]
+	quest.5A158B930213B529.title: "Luminária"
+	quest.5A158B930213B529.quest_subtitle: "Beautify"
+	quest.5A158B930213B529.quest_desc: ["O &eBeautify&r tem luminárias, cordas, vasos pendurados e quadros."]
+	quest.3D3BE8E128549914.title: "Vaso pendurado"
+	quest.3D3BE8E128549914.quest_desc: ["Um &evaso pendurado&r. Ponha uma flor dentro."]
+	quest.6B82D89FFACE37C5.title: "Quadro"
+	quest.6B82D89FFACE37C5.quest_desc: ["Uma &emoldura de quadro&r."]
+	quest.0C627A67A001D22B.title: "Pilha de livros"
+	quest.0C627A67A001D22B.quest_desc: ["Uma &epilha de livros&r para a mesa."]
+	quest.2BD8DB9F1B40877B.title: "Treliça"
+	quest.2BD8DB9F1B40877B.quest_desc: ["A &etreliça&r segura plantas na parede."]
+	quest.75C374BE2B147B58.title: "Gadget de construção"
+	quest.75C374BE2B147B58.quest_subtitle: "Building Gadgets"
+	quest.75C374BE2B147B58.quest_desc: ["O &egadget de construção&r coloca vários blocos de uma vez, gastando energia. Recarregue em uma máquina de energia."]
+	quest.5B6DF40C6895EC24.title: "Copiar e colar"
+	quest.5B6DF40C6895EC24.quest_desc: ["O gadget de &ecopiar e colar&r copia uma construção e cola em outro lugar."]
+	quest.526C7A5E7065F886.title: "Gadget de destruição"
+	quest.526C7A5E7065F886.quest_desc: ["Apaga uma área de blocos de uma vez."]
+	quest.766396862B958168.title: "Construir em série"
+	quest.766396862B958168.quest_subtitle: "Effortless Building"
+	quest.766396862B958168.quest_desc: ["O &eEffortless Building&r tem modos de construir paredes, chão e linhas inteiras. Veja a tecla em Controles (busque &eEffortless&r)."]
 	chapter.0681A168F2C7C697.title: "Animais"
 	chapter.0681A168F2C7C697.chapter_subtitle: ["Bichos novos, pets e dragões"]
 	quest.709A1A630889A48A.title: "Dicionário animal"
@@ -640,6 +801,12 @@
 	quest.78BEFEA816B93AB6.title: "End"
 	quest.78BEFEA816B93AB6.quest_subtitle: "O fim do jogo normal"
 	quest.78BEFEA816B93AB6.quest_desc: ["Faça &eolhos de ender&r (pérola de ender e pó de blaze do Nether) e jogue para cima: eles voam até a &efortaleza&r com o portal do End.", "", "Lá mora o &edragão&r. Leve muitos blocos, arco e poções."]
+	quest.5506BC13CECFE2F8.title: "Pedra do portal"
+	quest.5506BC13CECFE2F8.quest_desc: ["A &epedra-chave do portal&r é o começo do portal das masmorras."]
+	quest.3B1CC24DC15EFB3A.title: "Estação de inscrição"
+	quest.3B1CC24DC15EFB3A.quest_desc: ["A &eestação de inscrição&r prepara as chaves. Ela aparece nas masmorras."]
+	quest.4BDB387A2DE7D1B7.title: "Pérola de volta"
+	quest.4BDB387A2DE7D1B7.quest_desc: ["A &epérola de volta&r tira você da masmorra."]
 	chapter.62BEA1E66A80BAE3.title: "Aether"
 	chapter.62BEA1E66A80BAE3.chapter_subtitle: ["Ilhas no céu, três masmorras e um chefe final"]
 	quest.6B1A452EC3CA1779.title: "Chegar no Aether"
@@ -1003,6 +1170,41 @@
 	quest.333B894B34D3932D.quest_desc: ["O &eMap Atlases&r junta mapas de papel em um livro. Na mão secundária vira um mapa que se desenha sozinho."]
 	quest.6181CF23667BE12E.title: "Pergaminho de volta"
 	quest.6181CF23667BE12E.quest_desc: ["O &epergaminho de retorno&r leva de volta para a última waystone ou cama. Bom para voltar de uma viagem longa."]
+	quest.3D16CF125CA71F15.title: "Waystone"
+	quest.3D16CF125CA71F15.quest_subtitle: "Waystones"
+	quest.3D16CF125CA71F15.quest_desc: ["As &ewaystones&r são pedras de teletransporte. Ache uma em uma vila ou faça a sua, e clique nela para ativar.", "", "Depois é só abrir qualquer waystone ativada e escolher para onde ir."]
+	quest.45B29C1183D9355C.title: "Pedra de teleporte"
+	quest.45B29C1183D9355C.quest_desc: ["A &epedra de teleporte&r abre a lista de waystones de qualquer lugar."]
+	quest.6CF18EE2919C3934.title: "Placa de teleporte"
+	quest.6CF18EE2919C3934.quest_desc: ["A &eplaca de teleporte&r liga dois pontos: pise em uma e saia na outra."]
+	quest.5B3B104334EEB1CC.title: "Atlas do Nether"
+	quest.5B3B104334EEB1CC.quest_desc: ["Um atlas próprio para o &eNether&r."]
+	quest.27BAB7E55491A280.title: "Atlas do End"
+	quest.27BAB7E55491A280.quest_desc: ["Um atlas próprio para o &eEnd&r."]
+	quest.0F2CA8646830B374.title: "Ilha de cogumelos"
+	quest.0F2CA8646830B374.quest_desc: ["Use a bússola de biomas para achar os &ecampos de cogumelo&r, onde não nasce monstro."]
+	quest.15790481D3B53A15.title: "Bioma raro"
+	quest.15790481D3B53A15.quest_desc: ["Escolha na bússola um bioma que você nunca viu e vá até ele."]
+	quest.7D9C14117A40C07E.title: "Mansão da floresta"
+	quest.7D9C14117A40C07E.quest_desc: ["Use a bússola de estruturas para achar uma &emansão da floresta&r, cheia de illagers."]
+	quest.3279911A5DB8B383.title: "Estrutura rara"
+	quest.3279911A5DB8B383.quest_desc: ["Escolha na bússola uma estrutura que você nunca visitou e vá até ela."]
+	quest.22CC8B3A2D25E984.title: "Saco de dormir"
+	quest.22CC8B3A2D25E984.quest_subtitle: "Comforts"
+	quest.22CC8B3A2D25E984.quest_desc: ["O &esaco de dormir&r passa a noite em qualquer lugar &asem mudar o ponto de renascimento&r."]
+	quest.0FA3ED4C02DAED99.title: "Rede"
+	quest.0FA3ED4C02DAED99.quest_desc: ["A &erede&r é o contrário: deita durante o dia e pula até a noite. Também não muda o renascimento."]
+	quest.7D250E356A95F3AE.title: "Corda e prego"
+	quest.7D250E356A95F3AE.quest_desc: ["A &ecorda e prego&r prende a rede na parede."]
+	quest.40C8BA337F5391E1.title: "Cochilo na rede"
+	quest.40C8BA337F5391E1.quest_desc: ["Monte uma rede entre duas cordas e tire um cochilo de dia."]
+	quest.6C649EF7320B4B28.title: "Chapéus"
+	quest.6C649EF7320B4B28.quest_subtitle: "Hats Renewed"
+	quest.6C649EF7320B4B28.quest_desc: ["Os bichos andam de &echapéu&r. Derrote um para ganhar o chapéu dele.", "", "Para escolher qual usar, veja a tecla em Controles (busque &echapéu&r ou &ehat&r)."]
+	quest.7C24927A6C7803B9.title: "Coleção de chapéus"
+	quest.7C24927A6C7803B9.quest_desc: ["Junte chapéus de cinco bichos diferentes."]
+	quest.26C227D48A5ECA57.title: "Lançador de chapéus"
+	quest.26C227D48A5ECA57.quest_desc: ["O &elançador de chapéus&r atira chapéus nos bichos."]
 	chapter.27715EDF11C7BB0D.title: "Masmorras e tesouros"
 	chapter.27715EDF11C7BB0D.chapter_subtitle: ["Masmorras, templos e minas reformulados"]
 	quest.32D94C7A6E9E47F3.title: "Baú só seu"
@@ -1027,6 +1229,14 @@
 	quest.78C7BB77263FD95E.quest_desc: ["Os &eArtifacts&r são itens mágicos achados em baús de estruturas: &enuvem na garrafa&r (pulo duplo), &etênis de corrida&r, &eamuleto de fogo&r e muito mais.", "", "Eles vão nos espaços de acessório do inventário."]
 	quest.1F816EA6021ECBEB.title: "Baú que morde"
 	quest.1F816EA6021ECBEB.quest_desc: ["Às vezes um baú é um &emímico&r. Mate um: ele deixa artefatos."]
+	quest.6A3F9F6160A24130.title: "Barril do tesouro"
+	quest.6A3F9F6160A24130.quest_desc: ["O Lootr também vale para &ebarris&r. Abra um barril de estrutura."]
+	quest.52B2EF0F2DB06B0F.title: "Tênis de corrida"
+	quest.52B2EF0F2DB06B0F.quest_desc: ["O &etênis de corrida&r deixa você mais rápido."]
+	quest.65EE0EFB7FCD176D.title: "Pingente de fogo"
+	quest.65EE0EFB7FCD176D.quest_desc: ["O &ependente de chama&r põe fogo em quem bate em você."]
+	quest.5FD2F5CE674699FA.title: "Garras de cavar"
+	quest.5FD2F5CE674699FA.quest_desc: ["As &egarras de cavar&r deixam você quebrar blocos mais rápido."]
 	chapter.5FCBD0E696C50B49.title: "Grandes estruturas"
 	chapter.5FCBD0E696C50B49.chapter_subtitle: ["When Dungeons Arise: castelos, navios e torres gigantes"]
 	quest.33993A261AD763B4.title: "Estruturas gigantes"
@@ -1100,6 +1310,9 @@
 	quest.1CC03AE1679F7062.quest_desc: ["Salas com &egeradores de desafio&r. Vença as ondas para ganhar chaves e abrir os cofres."]
 	quest.31CFA7991AFA9DC3.title: "Monumento do oceano"
 	quest.31CFA7991AFA9DC3.quest_desc: ["O monumento do oceano tem mais salas (YUNG's). Leve poção de respirar na água."]
+	quest.5B7FA431FCA96E9D.title: "Cem estruturas"
+	quest.5B7FA431FCA96E9D.quest_subtitle: "Moog's Voyager Structures"
+	quest.5B7FA431FCA96E9D.quest_desc: ["O &eMoog's Voyager Structures&r espalha mais de 130 estruturas pequenas no estilo do jogo. Ache três diferentes."]
 	chapter.246539DD4330908B.title: "Nether e End"
 	chapter.246539DD4330908B.chapter_subtitle: ["Fortalezas, castelos e a luta com o dragão"]
 	quest.1ABACF903EF89C9A.title: "Fortaleza do Nether"
@@ -1129,6 +1342,9 @@
 	quest.37C0D38C1566D566.quest_desc: ["O &eMES&r espalha estruturas pelo End. Ache um &enavio gigante&r."]
 	quest.103B7D10CE1B5BF8.title: "Esqueleto de dragão"
 	quest.103B7D10CE1B5BF8.quest_desc: ["O &eNullscape&r deixa o End mais estranho. Ache um &eesqueleto de dragão&r gigante."]
+	quest.7EAA212A72F20F59.title: "Ilha do dragão nova"
+	quest.7EAA212A72F20F59.quest_subtitle: "YUNG's Better End Island"
+	quest.7EAA212A72F20F59.quest_desc: ["Chegando no End, olhe em volta: a ilha tem torres novas e um portal de volta mais bonito."]
 	chapter.671D011D2029328F.title: "Caçador de chefes"
 	chapter.671D011D2029328F.chapter_subtitle: ["Os monstros mais fortes do pack"]
 	quest.4A95AE35C356C0E0.title: "Armado até os dentes"
@@ -1203,6 +1419,31 @@
 	quest.6841C627B5ED58C3.quest_desc: ["No Nether, o &eIncendium&r tem uma floresta de cabeça para baixo."]
 	quest.40C014566C6CA7D2.title: "Vale do choro"
 	quest.40C014566C6CA7D2.quest_desc: ["Outro bioma do Nether do Incendium."]
+	quest.11EEDA407562C864.title: "Vale da origem"
+	quest.11EEDA407562C864.quest_desc: ["Um bioma com a grama verde-viva das versões antigas."]
+	quest.7993A8F8E6B1E182.title: "Vulcão do Biomes"
+	quest.7993A8F8E6B1E182.quest_desc: ["Um &evulcão&r do Biomes O' Plenty, com lava escorrendo."]
+	quest.372A40FEA08957FE.title: "Sequoia"
+	quest.372A40FEA08957FE.quest_desc: ["Pegue um &etronco de sequoia&r, madeira nova para construir."]
+	quest.621BD6D49D51FC75.title: "Quartzo rosa"
+	quest.621BD6D49D51FC75.quest_desc: ["O &equartzo rosa&r aparece em cristais no subsolo e faz blocos de decoração."]
+	quest.64B96F0B1E7C9085.title: "Cavernas de sal rosa"
+	quest.64B96F0B1E7C9085.quest_desc: ["Cavernas de &esal rosa&r do Galosphere."]
+	quest.05B0D934F088BC87.title: "Paládio"
+	quest.05B0D934F088BC87.quest_desc: ["O &epaládio&r é o metal do Galosphere."]
+	quest.62C1279EF5A8255B.title: "Capacete de sterling"
+	quest.62C1279EF5A8255B.quest_desc: ["O &ecapacete de sterling&r protege de explosões."]
+	quest.05DEC6F5A8DA38F6.title: "Sinalizador brilhante"
+	quest.05DEC6F5A8DA38F6.quest_desc: ["O &esinalizador brilhante&r ilumina cavernas quando jogado."]
+	quest.159BE77FF005CB70.title: "Mármore"
+	quest.159BE77FF005CB70.quest_desc: ["O &emármore&r dos novos biomas de caverna, bom para construir."]
+	quest.4B657FA898BB041A.title: "Lírio de gelo"
+	quest.4B657FA898BB041A.quest_desc: ["O &elírio de gelo&r nasce nas cavernas congeladas."]
+	quest.0C86122E5C8E6FB5.title: "Pêssego espinhoso"
+	quest.0C86122E5C8E6FB5.quest_desc: ["O &epêssego espinhoso&r é o fruto do cacto das cavernas perdidas."]
+	quest.59CBD97D652943BA.title: "Calendário"
+	quest.59CBD97D652943BA.quest_subtitle: "Serene Seasons"
+	quest.59CBD97D652943BA.quest_desc: ["O mundo tem &eestações do ano&r. O &ecalendário&r mostra a estação e quantos dias faltam para a próxima."]
 	chapter.4ED654CD8429AD9B.title: "Colecionador"
 	chapter.4ED654CD8429AD9B.chapter_subtitle: ["Os itens mais raros do jogo"]
 	quest.030337DA57D9612C.title: "Montinho de diamante"

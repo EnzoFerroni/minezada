@@ -5,7 +5,7 @@
 	group: "0723197381022D89"
 	icon: { id: "minecraft:filled_map" }
 	id: "39F8AA372D9DED95"
-	order_index: 29
+	order_index: 30
 	quest_links: [ ]
 	quests: [
 		{
@@ -15,7 +15,7 @@
 			size: 1.5d
 			tasks: [{ id: "3C6F872C128B95F2", type: "checkmark" }]
 			x: 0d
-			y: 9.625d
+			y: 10.5d
 		}
 		{
 			dependencies: ["6D5E864441F67FE3"]
@@ -153,6 +153,15 @@
 			tasks: [{ id: "3C119A25C41A764D", structure: "betteroceanmonuments:ocean_monument", type: "structure" }]
 			x: 2.5d
 			y: 19.25d
+		}
+		{
+			dependencies: ["6D5E864441F67FE3"]
+			id: "5B7FA431FCA96E9D"
+			rewards: [{ id: "1AA40019C650D040", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "7D01556CFBB6F963", type: "checkmark" }]
+			x: 2.5d
+			y: 21d
 		}
 	]
 }

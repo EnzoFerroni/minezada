@@ -5,7 +5,7 @@
 	group: "75C4FBF5BDDE1148"
 	icon: { id: "ironfurnaces:iron_furnace" }
 	id: "64FBC3AE633D0A83"
-	order_index: 16
+	order_index: 17
 	quest_links: [ ]
 	quests: [
 		{
