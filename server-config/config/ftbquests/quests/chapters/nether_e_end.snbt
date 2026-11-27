@@ -1,0 +1,126 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "nether_e_end"
+	group: "0723197381022D89"
+	icon: { id: "minecraft:end_crystal" }
+	id: "246539DD4330908B"
+	order_index: 29
+	quest_links: [ ]
+	quests: [
+		{
+			id: "1ABACF903EF89C9A"
+			rewards: [{ id: "2069332149B1F994", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "4C51D99046311B58", structure: "betterfortresses:fortress", type: "structure" }]
+			x: 0d
+			y: 6.5625d
+		}
+		{
+			dependencies: ["1ABACF903EF89C9A"]
+			id: "058886F33C547D44"
+			rewards: [{ id: "57EA45DFE7C0453B", type: "xp", xp: 20 }]
+			tasks: [{ id: "43B241A0E8DAD89E", item: { count: 6, id: "minecraft:blaze_rod" }, type: "item" }]
+			x: 2.5d
+			y: 2.625d
+		}
+		{
+			dependencies: ["1ABACF903EF89C9A"]
+			id: "2E103DA74704E977"
+			rewards: [{ id: "4E57CDA1A685B5AE", type: "xp", xp: 20 }]
+			tasks: [{ id: "0B7CCE61B219E252", structure: "incendium:forbidden_castle", type: "structure" }]
+			x: 2.5d
+			y: 7d
+		}
+		{
+			dependencies: ["1ABACF903EF89C9A"]
+			id: "7DB1CCA26CFDACA3"
+			rewards: [{ id: "7893F1B457216465", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "7602A346A4DABCFD", structure: "incendium:piglin_village", type: "structure" }]
+			x: 2.5d
+			y: 8.75d
+		}
+		{
+			dependencies: ["1ABACF903EF89C9A"]
+			id: "0E437A9918A685BE"
+			rewards: [{ id: "214E09FC45E00669", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "nova_structures:nether/find_donjon", criterion: "", id: "47FB3CBF4706EBC5", type: "advancement" }]
+			x: 2.5d
+			y: 10.5d
+		}
+		{
+			dependencies: ["058886F33C547D44"]
+			id: "1EF5CDD29801F9B9"
+			rewards: [{ id: "548747BD0D8A5CC7", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "minecraft:story/follow_ender_eye", criterion: "", id: "6785B8F0A5B53334", type: "advancement" }]
+			x: 5d
+			y: 2.625d
+		}
+		{
+			dependencies: ["1EF5CDD29801F9B9"]
+			id: "798EC7C28013C3FC"
+			rewards: [{ id: "3FEB3F109D422207", type: "xp", xp: 20 }]
+			tasks: [{ id: "7081228B2B998A6B", structure: "betterstrongholds:stronghold", type: "structure" }]
+			x: 7.5d
+			y: 2.625d
+		}
+		{
+			dependencies: ["798EC7C28013C3FC"]
+			id: "03708FB3F9B5A6A3"
+			rewards: [{ id: "38F8898B114B38CE", type: "xp", xp: 100 }, { id: "5C9E7FCE0224581C", item: { count: 8, id: "minecraft:diamond" }, type: "item" }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ entity: "minecraft:ender_dragon", id: "02192D57D18A479F", type: "kill", value: 1L }]
+			x: 10d
+			y: 2.625d
+		}
+		{
+			dependencies: ["03708FB3F9B5A6A3"]
+			id: "5F71455E1E5953AA"
+			rewards: [{ id: "79E425C9205B4854", type: "xp", xp: 20 }]
+			tasks: [{ id: "243F6B97C09F829E", structure: "minecraft:end_city", type: "structure" }]
+			x: 12.5d
+			y: 0d
+		}
+		{
+			dependencies: ["5F71455E1E5953AA"]
+			id: "750817A51867C739"
+			rewards: [{ id: "617B8D220F3C8B1F", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "24A46CBB177D0DEC", item: { count: 1, id: "minecraft:elytra" }, type: "item" }]
+			x: 15d
+			y: 0d
+		}
+		{
+			dependencies: ["03708FB3F9B5A6A3"]
+			id: "5C4C78112A7C5B76"
+			rewards: [{ id: "55F0BEA2991723A6", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "nova_structures:end/find_end_castle", criterion: "", id: "741EC11C270841C4", type: "advancement" }]
+			x: 12.5d
+			y: 1.75d
+		}
+		{
+			dependencies: ["03708FB3F9B5A6A3"]
+			id: "37C0D38C1566D566"
+			rewards: [{ id: "00300F55CE3BE732", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "3641547ED0FA7034", structure: "mes:mega_ship", type: "structure" }]
+			x: 12.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["03708FB3F9B5A6A3"]
+			id: "103B7D10CE1B5BF8"
+			rewards: [{ id: "690C7C35DD86C668", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "1548F545AA65089D", structure: "nullscape:dragon_skeleton", type: "structure" }]
+			x: 12.5d
+			y: 5.25d
+		}
+	]
+}

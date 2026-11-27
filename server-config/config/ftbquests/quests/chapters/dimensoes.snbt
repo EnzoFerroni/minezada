@@ -5,7 +5,7 @@
 	group: "0B7482EA7957301C"
 	icon: { id: "minecraft:ender_eye" }
 	id: "3AFA20A348928003"
-	order_index: 17
+	order_index: 16
 	quest_links: [ ]
 	quests: [
 		{

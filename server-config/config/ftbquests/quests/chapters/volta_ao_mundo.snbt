@@ -3,87 +3,163 @@
 	default_quest_shape: ""
 	filename: "volta_ao_mundo"
 	group: "0723197381022D89"
-	icon: { id: "naturescompass:naturescompass" }
+	icon: { id: "minecraft:compass" }
 	id: "6E3919EFC5A2EEF7"
-	order_index: 29
+	order_index: 31
 	quest_links: [ ]
 	quests: [
 		{
+			id: "4C18048CCC7E2F79"
+			rewards: [{ id: "410CDA8C510B8D7D", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "570C7DAE5DF19F56", type: "checkmark" }]
+			x: 0d
+			y: 11.375d
+		}
+		{
+			dependencies: ["4C18048CCC7E2F79"]
 			id: "2D8F878CD7BC1FBE"
 			rewards: [{ id: "7804305800D8B11E", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:sakura_valley", id: "0B819CCD88F2F6A5", type: "biome" }]
-			x: 0d
-			y: 1.00d
+			x: 2.5d
+			y: 0d
 		}
 		{
+			dependencies: ["4C18048CCC7E2F79"]
 			id: "21DD0E73C9F46759"
 			rewards: [{ id: "1CB8871CE40C8383", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:bryce_canyon", id: "71DAE8670850D902", type: "biome" }]
-			x: 2d
-			y: 1d
+			x: 2.5d
+			y: 1.75d
 		}
 		{
+			dependencies: ["4C18048CCC7E2F79"]
 			id: "03E2F1D49DC8D627"
 			rewards: [{ id: "7ECAE1B87BBE52E6", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:volcanic_crater", id: "46F0F624E2BDF0BD", type: "biome" }]
-			x: 4d
-			y: 1d
+			x: 2.5d
+			y: 3.5d
 		}
 		{
+			dependencies: ["4C18048CCC7E2F79"]
 			id: "3A84C45EED62EAFB"
-			rewards: [{ id: "5543287FCAE7ACFE", type: "xp", xp: 20 }]
+			rewards: [{ id: "5543287FCAE7ACFE", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
 			tasks: [{ biome: "terralith:skylands_summer", id: "24FADF19A8B084B2", type: "biome" }]
-			x: 6d
-			y: 1d
+			x: 2.5d
+			y: 5.25d
 		}
 		{
-			id: "43BF5C538206D1B5"
-			rewards: [{ id: "02D5558F89749567", type: "xp", xp: 20 }]
-			tasks: [{ biome: "terralith:lavender_forest", id: "01961FE2D31FE533", type: "biome" }]
-			x: 8d
-			y: 1d
-		}
-		{
+			dependencies: ["4C18048CCC7E2F79"]
 			id: "401E53260B046572"
 			rewards: [{ id: "6379E0FCDC139F54", type: "xp", xp: 20 }]
+			optional: true
 			tasks: [{ biome: "terralith:white_cliffs", id: "06097BB613525445", type: "biome" }]
-			x: 0d
-			y: 2.75d
+			x: 2.5d
+			y: 7d
 		}
 		{
+			dependencies: ["4C18048CCC7E2F79"]
 			id: "09D5A586382C5BAE"
 			rewards: [{ id: "0B9F85B7ADD17572", type: "xp", xp: 20 }]
+			optional: true
 			tasks: [{ biome: "terralith:desert_oasis", id: "1931B9A292FDB115", type: "biome" }]
-			x: 2d
-			y: 2.75d
+			x: 2.5d
+			y: 8.75d
 		}
 		{
+			dependencies: ["4C18048CCC7E2F79"]
+			id: "37008FBC14F46A83"
+			rewards: [{ id: "1FE9FA7013B15576", type: "xp", xp: 20 }]
+			tasks: [{ biome: "biomesoplenty:redwood_forest", id: "43285D7888572989", type: "biome" }]
+			x: 2.5d
+			y: 10.5d
+		}
+		{
+			dependencies: ["4C18048CCC7E2F79"]
+			id: "3EB32C924FED67C3"
+			rewards: [{ id: "5A8C5BE759C5F237", type: "xp", xp: 20 }]
+			tasks: [{ biome: "biomesoplenty:mystic_grove", id: "091422FB6C372501", type: "biome" }]
+			x: 2.5d
+			y: 12.25d
+		}
+		{
+			dependencies: ["4C18048CCC7E2F79"]
+			id: "17BDBDBC5BC45F13"
+			rewards: [{ id: "54DA79134A5FB284", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ biome: "biomesoplenty:lavender_field", id: "70EFE203A6936B25", type: "biome" }]
+			x: 2.5d
+			y: 14d
+		}
+		{
+			dependencies: ["4C18048CCC7E2F79"]
+			id: "0DECB30F00F11804"
+			rewards: [{ id: "30029B6F3596D22D", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ biome: "biomesoplenty:hot_springs", id: "696931A24F16CFA1", type: "biome" }]
+			x: 2.5d
+			y: 15.75d
+		}
+		{
+			dependencies: ["4C18048CCC7E2F79"]
 			id: "3B3207C8DEDCCC12"
 			rewards: [{ id: "194D68EAB74E9E78", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:cave/underground_jungle", id: "29B6045B4877DC5C", type: "biome" }]
-			x: 4d
-			y: 2.75d
+			x: 2.5d
+			y: 19.25d
 		}
 		{
-			id: "3467848BE62720A8"
-			rewards: [{ id: "54C14DB82211305C", type: "xp", xp: 20 }]
-			tasks: [{ biome: "terralith:amethyst_canyon", id: "4ED225F4F017DA6E", type: "biome" }]
-			x: 6d
-			y: 2.75d
+			dependencies: ["3B3207C8DEDCCC12"]
+			id: "7BC3B396EEDF2733"
+			rewards: [{ id: "621238F6A0EB17C9", type: "xp", xp: 20 }]
+			tasks: [{ biome: "galosphere:crystal_canyons", id: "0C4EDC5797880BAD", type: "biome" }]
+			x: 5d
+			y: 17.5d
 		}
 		{
+			dependencies: ["7BC3B396EEDF2733"]
+			id: "0B064D049AB97F8A"
+			rewards: [{ id: "118B7A78FF0C5580", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "601E5D320735D87F", item: { count: 1, id: "galosphere:allurite_shard" }, type: "item" }]
+			x: 7.5d
+			y: 17.5d
+		}
+		{
+			dependencies: ["3B3207C8DEDCCC12"]
+			id: "18014FAD5C025736"
+			rewards: [{ id: "598AF7E8A6F8AFD8", type: "xp", xp: 20 }]
+			tasks: [{ biome: "yungscavebiomes:frosted_caves", id: "763516F526E1560E", type: "biome" }]
+			x: 5d
+			y: 19.25d
+		}
+		{
+			dependencies: ["3B3207C8DEDCCC12"]
+			id: "10D39B57C7A1C28C"
+			rewards: [{ id: "651B9A4CDB993353", type: "xp", xp: 20 }]
+			tasks: [{ biome: "yungscavebiomes:lost_caves", id: "1024E45E61CC94D8", type: "biome" }]
+			x: 5d
+			y: 21d
+		}
+		{
+			dependencies: ["4C18048CCC7E2F79"]
 			id: "6841C627B5ED58C3"
 			rewards: [{ id: "3E1980C5656E185D", type: "xp", xp: 20 }]
 			tasks: [{ biome: "incendium:inverted_forest", id: "6745A1E322EA08E6", type: "biome" }]
-			x: 8d
-			y: 2.75d
+			x: 2.5d
+			y: 22.75d
 		}
 		{
+			dependencies: ["6841C627B5ED58C3"]
 			id: "40C014566C6CA7D2"
 			rewards: [{ id: "613A8362D80183CD", type: "xp", xp: 20 }]
+			optional: true
 			tasks: [{ biome: "incendium:weeping_valley", id: "47B34BB1E1B1F28B", type: "biome" }]
-			x: 0d
-			y: 4.50d
+			x: 5d
+			y: 22.75d
 		}
 	]
 }

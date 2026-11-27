@@ -5,15 +5,17 @@
 	group: "0723197381022D89"
 	icon: { id: "minecraft:diamond" }
 	id: "4ED654CD8429AD9B"
-	order_index: 30
+	order_index: 32
 	quest_links: [ ]
 	quests: [
 		{
 			id: "030337DA57D9612C"
-			rewards: [{ id: "616627A61AA63246", type: "xp", xp: 20 }, { id: "698A3902F94D106F", item: { count: 2, id: "minecraft:diamond_block" }, type: "item" }]
+			rewards: [{ id: "616627A61AA63246", type: "xp", xp: 100 }, { id: "698A3902F94D106F", item: { count: 1, id: "minecraft:diamond_block" }, type: "item" }]
+			shape: "gear"
+			size: 1.5d
 			tasks: [{ id: "4C5707AC1B0C5CEE", item: { count: 64, id: "minecraft:diamond" }, type: "item" }]
 			x: 0d
-			y: 0d
+			y: 3.5d
 		}
 		{
 			dependencies: ["030337DA57D9612C"]
@@ -24,46 +26,48 @@
 			y: 0d
 		}
 		{
+			dependencies: ["030337DA57D9612C"]
 			id: "7D39318A46A4A28E"
 			rewards: [{ id: "07F534798537817F", type: "xp", xp: 20 }]
 			tasks: [{ id: "09748917084AEB02", item: { count: 1, id: "minecraft:totem_of_undying" }, type: "item" }]
-			x: 0d
-			y: 3.50d
+			x: 2.5d
+			y: 1.75d
 		}
 		{
+			dependencies: ["030337DA57D9612C"]
 			id: "7A5E4996923A7CA6"
 			rewards: [{ id: "29698A48CBD38911", type: "xp", xp: 20 }]
+			optional: true
 			tasks: [{ id: "1E3C14AF5B54450A", item: { count: 1, id: "minecraft:trident" }, type: "item" }]
-			x: 2d
+			x: 2.5d
 			y: 3.5d
 		}
 		{
-			id: "2A1B99114C0C5D62"
-			rewards: [{ id: "2FB5D722D5606E4A", type: "xp", xp: 20 }]
-			tasks: [{ id: "00973F710748F588", item: { count: 1, id: "minecraft:elytra" }, type: "item" }]
-			x: 4d
-			y: 3.5d
-		}
-		{
+			dependencies: ["030337DA57D9612C"]
 			id: "2E2F0B64C34BD002"
 			rewards: [{ id: "1E4CB7ACF01A0CD4", type: "xp", xp: 20 }]
+			optional: true
 			tasks: [{ id: "7D91CA2794C1947E", item: { count: 1, id: "minecraft:dragon_head" }, type: "item" }]
-			x: 6d
-			y: 3.5d
+			x: 2.5d
+			y: 5.25d
 		}
 		{
+			dependencies: ["030337DA57D9612C"]
 			id: "0009A0ADFF3F42CE"
 			rewards: [{ id: "274B1BE3807989A9", type: "xp", xp: 20 }]
 			tasks: [{ id: "3435D5B61B601D3C", item: { count: 1, id: "minecraft:nether_star" }, type: "item" }]
-			x: 8d
-			y: 3.5d
+			x: 2.5d
+			y: 7d
 		}
 		{
+			dependencies: ["0009A0ADFF3F42CE"]
 			id: "33C97891F98C6AEA"
-			rewards: [{ id: "382FF8E3371854AD", type: "xp", xp: 20 }]
+			rewards: [{ id: "382FF8E3371854AD", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
 			tasks: [{ id: "41D4A18EF074F55E", item: { count: 1, id: "minecraft:beacon" }, type: "item" }]
-			x: 0d
-			y: 5.25d
+			x: 5d
+			y: 7d
 		}
 	]
 }

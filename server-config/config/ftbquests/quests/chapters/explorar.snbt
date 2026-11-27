@@ -5,39 +5,50 @@
 	group: "0723197381022D89"
 	icon: { id: "naturescompass:naturescompass" }
 	id: "2BBF7954E151BB6E"
-	order_index: 12
+	order_index: 25
 	quest_links: [ ]
 	quests: [
 		{
+			id: "21C5B7064481CEC8"
+			rewards: [{ id: "1F240B676E77B600", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "2FEAD4366420F5B3", type: "checkmark" }]
+			x: 0d
+			y: 2.625d
+		}
+		{
+			dependencies: ["21C5B7064481CEC8"]
 			id: "076BEA6CFE9209A1"
 			rewards: [{ id: "792D1269EB56B841", type: "xp", xp: 20 }]
 			tasks: [{ id: "1CA2EA610578DF67", item: { count: 1, id: "naturescompass:naturescompass" }, type: "item" }]
-			x: 0d
-			y: 0d
-		}
-		{
-			dependencies: ["076BEA6CFE9209A1"]
-			id: "3062EA0B7042C34D"
-			rewards: [{ id: "69D89FCDA80F9D6E", type: "xp", xp: 20 }]
-			tasks: [{ id: "508E13BD258E98B8", item: { count: 1, id: "explorerscompass:explorerscompass" }, type: "item" }]
 			x: 2.5d
 			y: 0d
 		}
 		{
-			dependencies: ["3062EA0B7042C34D"]
-			id: "333B894B34D3932D"
-			rewards: [{ id: "2EC54BEB7C6DA1D2", type: "xp", xp: 20 }]
-			tasks: [{ id: "380B469D7D30E15C", item: { count: 1, id: "map_atlases:atlas" }, type: "item" }]
-			x: 5d
-			y: 0d
+			dependencies: ["21C5B7064481CEC8"]
+			id: "3062EA0B7042C34D"
+			rewards: [{ id: "69D89FCDA80F9D6E", type: "xp", xp: 20 }]
+			tasks: [{ id: "508E13BD258E98B8", item: { count: 1, id: "explorerscompass:explorerscompass" }, type: "item" }]
+			x: 2.5d
+			y: 1.75d
 		}
 		{
-			dependencies: ["333B894B34D3932D"]
+			dependencies: ["21C5B7064481CEC8"]
+			id: "333B894B34D3932D"
+			rewards: [{ id: "2EC54BEB7C6DA1D2", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "380B469D7D30E15C", item: { count: 1, id: "map_atlases:atlas" }, type: "item" }]
+			x: 2.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["21C5B7064481CEC8"]
 			id: "6181CF23667BE12E"
 			rewards: [{ id: "19CE4767B8F209CE", type: "xp", xp: 20 }]
 			tasks: [{ id: "1CA6DA17954FCD5C", item: { count: 1, id: "waystones:return_scroll" }, type: "item" }]
-			x: 7.5d
-			y: 0d
+			x: 2.5d
+			y: 5.25d
 		}
 	]
 }

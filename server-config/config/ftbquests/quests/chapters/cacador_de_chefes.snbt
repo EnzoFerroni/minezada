@@ -5,106 +5,102 @@
 	group: "0723197381022D89"
 	icon: { id: "minecraft:wither_skeleton_skull" }
 	id: "671D011D2029328F"
-	order_index: 26
+	order_index: 30
 	quest_links: [ ]
 	quests: [
 		{
-			id: "62726123703DF347"
-			rewards: [{ id: "670FC966927B63D1", type: "xp", xp: 20 }, { id: "66132747E96FD806", item: { count: 8, id: "minecraft:diamond" }, type: "item" }]
-			tasks: [{ entity: "minecraft:wither", id: "48D0049DD50E05D2", type: "kill", value: 1L }]
+			id: "4A95AE35C356C0E0"
+			rewards: [{ id: "7F857FC1D3D7C393", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "39ACF0D4FCB45C41", type: "checkmark" }]
 			x: 0d
-			y: 1.00d
+			y: 7d
 		}
 		{
-			id: "14A09DB6CD3C9668"
-			rewards: [{ id: "15FDBF4319D0960E", type: "xp", xp: 20 }, { id: "6FE7215CBB6C31A7", item: { count: 8, id: "minecraft:diamond" }, type: "item" }]
-			tasks: [{ entity: "minecraft:ender_dragon", id: "35CDFC3A1B08921D", type: "kill", value: 1L }]
-			x: 2d
-			y: 1d
-		}
-		{
-			id: "3B675ADFEB3DC4A5"
-			rewards: [{ id: "090FBFFFE3E5E1D3", type: "xp", xp: 20 }, { id: "3C500F7EE55EE5A7", item: { count: 8, id: "minecraft:diamond" }, type: "item" }]
-			tasks: [{ entity: "minecraft:warden", id: "0D2E17092912829F", type: "kill", value: 1L }]
-			x: 4d
-			y: 1d
-		}
-		{
+			dependencies: ["4A95AE35C356C0E0"]
 			id: "542C1529514AFB08"
 			rewards: [{ id: "4B0380E37C51D1A9", type: "xp", xp: 20 }, { id: "51D87FA02B82B072", item: { count: 4, id: "minecraft:sponge" }, type: "item" }]
 			tasks: [{ entity: "minecraft:elder_guardian", id: "6DC8D495F32202E5", type: "kill", value: 1L }]
-			x: 6d
-			y: 1d
+			x: 2.5d
+			y: 0d
 		}
 		{
+			dependencies: ["4A95AE35C356C0E0"]
+			id: "62726123703DF347"
+			rewards: [{ id: "670FC966927B63D1", type: "xp", xp: 100 }, { id: "66132747E96FD806", item: { count: 8, id: "minecraft:diamond" }, type: "item" }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ entity: "minecraft:wither", id: "48D0049DD50E05D2", type: "kill", value: 1L }]
+			x: 2.5d
+			y: 1.75d
+		}
+		{
+			dependencies: ["4A95AE35C356C0E0"]
+			id: "3B675ADFEB3DC4A5"
+			rewards: [{ id: "090FBFFFE3E5E1D3", type: "xp", xp: 20 }, { id: "3C500F7EE55EE5A7", item: { count: 8, id: "minecraft:diamond" }, type: "item" }]
+			optional: true
+			tasks: [{ entity: "minecraft:warden", id: "0D2E17092912829F", type: "kill", value: 1L }]
+			x: 2.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["4A95AE35C356C0E0"]
 			id: "6EAA7D65C829EAEC"
 			rewards: [{ id: "22370E8455A50DEA", type: "xp", xp: 20 }]
 			tasks: [{ entity: "mowziesmobs:ferrous_wroughtnaut", id: "1C7B0A0A3870B179", type: "kill", value: 1L }]
-			x: 8d
-			y: 1d
+			x: 2.5d
+			y: 5.25d
 		}
 		{
+			dependencies: ["4A95AE35C356C0E0"]
 			id: "0D06AEA7DF8858A2"
 			rewards: [{ id: "4F47BA2168E5A4E1", type: "xp", xp: 20 }]
 			tasks: [{ entity: "mowziesmobs:frostmaw", id: "6319E0B98FFEF714", type: "kill", value: 1L }]
-			x: 0d
-			y: 2.75d
+			x: 2.5d
+			y: 7d
 		}
 		{
+			dependencies: ["4A95AE35C356C0E0"]
 			id: "308D71C4D5520C9A"
 			rewards: [{ id: "07E96C5AE6B76548", type: "xp", xp: 20 }]
 			tasks: [{ entity: "mowziesmobs:umvuthi", id: "0022A39B5686BD74", type: "kill", value: 1L }]
-			x: 2d
-			y: 2.75d
+			x: 2.5d
+			y: 8.75d
 		}
 		{
+			dependencies: ["4A95AE35C356C0E0"]
 			id: "36E81DAF9E4A2C77"
 			rewards: [{ id: "6D74F1BE62321D50", type: "xp", xp: 20 }]
+			optional: true
 			tasks: [{ entity: "mowziesmobs:sculptor", id: "136B03C048273A76", type: "kill", value: 1L }]
-			x: 4d
-			y: 2.75d
+			x: 2.5d
+			y: 10.5d
 		}
 		{
+			dependencies: ["4A95AE35C356C0E0"]
 			id: "0E303137846E5107"
 			rewards: [{ id: "3F791E1C5A842336", type: "xp", xp: 20 }]
 			tasks: [{ entity: "aquamirae:captain_cornelia", id: "78BDE3620FF1B0A7", type: "kill", value: 1L }]
-			x: 6d
-			y: 2.75d
+			x: 2.5d
+			y: 12.25d
 		}
 		{
+			dependencies: ["0E303137846E5107"]
 			id: "6A04EA7B733F51D5"
 			rewards: [{ id: "7794773F5C86B48F", type: "xp", xp: 20 }]
+			optional: true
 			tasks: [{ entity: "aquamirae:maw", id: "43C6A0FCD12B709E", type: "kill", value: 1L }]
-			x: 8d
-			y: 2.75d
+			x: 5d
+			y: 12.25d
 		}
 		{
-			id: "657F017E8BAA19B7"
-			rewards: [{ id: "096BE9EC82C2D095", type: "xp", xp: 20 }]
-			tasks: [{ entity: "undergarden:forgotten_guardian", id: "48F3FA7171827406", type: "kill", value: 1L }]
-			x: 0d
-			y: 4.50d
-		}
-		{
-			id: "08B95201CB94C70C"
-			rewards: [{ id: "270F34DB5F441DD2", type: "xp", xp: 20 }]
-			tasks: [{ entity: "eternal_starlight:the_gatekeeper", id: "634539CB371A6B9B", type: "kill", value: 1L }]
-			x: 2d
-			y: 4.5d
-		}
-		{
-			id: "0264C648566DCAFE"
-			rewards: [{ id: "41B7983C5B7468A8", type: "xp", xp: 20 }]
-			tasks: [{ entity: "eternal_starlight:starlight_golem", id: "1E0F497C75B6E870", type: "kill", value: 1L }]
-			x: 4d
-			y: 4.5d
-		}
-		{
-			id: "69CAAB8AFFAD3256"
-			rewards: [{ id: "6318ACC4D1994102", type: "xp", xp: 20 }]
-			tasks: [{ entity: "eternal_starlight:lunar_monstrosity", id: "7B96E933BB2BD909", type: "kill", value: 1L }]
-			x: 6d
-			y: 4.5d
+			dependencies: ["4A95AE35C356C0E0"]
+			id: "2BF59C25B1CFA6A9"
+			rewards: [{ id: "274702795DD3D50D", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "nova_structures:adventure/kill_all_minibosses", criterion: "", id: "0310A37D53C46C62", type: "advancement" }]
+			x: 2.5d
+			y: 14d
 		}
 	]
 }
