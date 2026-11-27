@@ -689,13 +689,13 @@
 	quest.44B56177CD82D0CA.quest_subtitle: "Naturalist"
 	quest.44B56177CD82D0CA.quest_desc: ["Dê uma &emelancia&r para um hipopótamo no pântano ou rio."]
 	quest.1BC70B92D74B0EE0.title: "Golem de cobre"
-	quest.1BC70B92D74B0EE0.quest_subtitle: "Friends&Foes"
+	quest.1BC70B92D74B0EE0.quest_subtitle: "Friends & Foes"
 	quest.1BC70B92D74B0EE0.quest_desc: ["O &egolem de cobre&r aperta botões de cobre sozinho. Ele é montado no mundo com blocos de cobre, como o golem de ferro.", "", "Cuidado: ele enferruja com o tempo. Encere com favo de mel para parar."]
 	quest.1327834361AA2D2E.title: "Moobloom"
-	quest.1327834361AA2D2E.quest_subtitle: "Friends&Foes"
+	quest.1327834361AA2D2E.quest_subtitle: "Friends & Foes"
 	quest.1327834361AA2D2E.quest_desc: ["A &emoobloom&r é uma vaca com flores nas costas. Use a tesoura nela para pegar flores amarelas."]
 	quest.0A85DA39533066FF.title: "Glare"
-	quest.0A85DA39533066FF.quest_subtitle: "Friends&Foes"
+	quest.0A85DA39533066FF.quest_subtitle: "Friends & Foes"
 	quest.0A85DA39533066FF.quest_desc: ["O &eglare&r é um bichinho de musgo que mostra os lugares escuros onde monstros podem nascer. Domestique com &ebagas brilhantes&r."]
 	quest.22B41F73D0FF5EEC.title: "Gancho"
 	quest.22B41F73D0FF5EEC.quest_subtitle: "Critters and Companions"
@@ -734,8 +734,8 @@
 	quest.42B8E44EF1E15B98.title: "Quadro de recompensas"
 	quest.42B8E44EF1E15B98.quest_subtitle: "Let's Do Wilder Nature"
 	quest.42B8E44EF1E15B98.quest_desc: ["O &eWilder Nature&r traz bisões, cervos, corujas, guaxinins, pinguins e mais.", "", "O &equadro de recompensas&r dá &econtratos&r com tarefas de caça e prêmios. Veja como usar com &eU&r no JEI."]
-	quest.45C7AF094B13C377.title: "Compêndio animal"
-	quest.45C7AF094B13C377.quest_desc: ["O &ecompêndio animal&r explica os bichos do Wilder Nature."]
+	quest.100545150409230F.title: "Carne de cervo"
+	quest.100545150409230F.quest_desc: ["Os &ecervos&r do Wilder Nature dão &ecarne de cervo&r. Asse antes de comer."]
 	quest.4684CF049A9837E8.title: "Bacamarte"
 	quest.4684CF049A9837E8.quest_desc: ["O &ebacamarte&r é uma arma de caça que atira munição de pederneira."]
 	quest.36F6090101B38AB6.title: "Capa de pele"
@@ -768,10 +768,10 @@
 	quest.54F229E270C65B26.title: "Montaria de casco"
 	quest.54F229E270C65B26.quest_desc: ["Crie um &eScuttler&r até virar um &eShellback&r e monte nele."]
 	quest.6F5AF0578D0A0629.title: "Iceologer"
-	quest.6F5AF0578D0A0629.quest_subtitle: "Friends&Foes"
+	quest.6F5AF0578D0A0629.quest_subtitle: "Friends & Foes"
 	quest.6F5AF0578D0A0629.quest_desc: ["O &eIceologer&r é um mago illager de gelo. Vença um."]
 	quest.3A81261A35DF0746.title: "Esconde-esconde"
-	quest.3A81261A35DF0746.quest_subtitle: "Friends&Foes"
+	quest.3A81261A35DF0746.quest_subtitle: "Friends & Foes"
 	quest.3A81261A35DF0746.quest_desc: ["O &eRascal&r brinca de esconde-esconde nas minas. Ache ele três vezes."]
 	quest.02A5548273EA6953.title: "Wildfire"
 	quest.02A5548273EA6953.quest_desc: ["O &eWildfire&r é o chefe das cidadelas do Nether."]
