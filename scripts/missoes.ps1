@@ -54,7 +54,7 @@ $capitulos = @(
         @{ t = 'Mesa de trabalho'; depois = 'Bem-vindo ao Minezada'; d = @(
             'O começo de sempre: junte madeira e faça uma &emesa de trabalho&r.'
             ''
-            'Dica: segure a tecla &eao lado do 1&r (acento grave) enquanto quebra um tronco para derrubar a árvore inteira de uma vez. Funciona com minério também (&eVeinMiner&r).'
+            'Dica: segure a tecla &eao lado do 1&r (acento grave) enquanto quebra um tronco para derrubar a árvore inteira de uma vez. Funciona com minério também (&eFTB Ultimine&r).'
         ); item = 'minecraft:crafting_table'; p = 'minecraft:bread'; n = 4 }
         @{ t = 'Mapa'; depois = 'Bem-vindo ao Minezada'; sub = 'Nunca mais se perca'; d = @(
             'O &eminimapa&r fica no canto da tela. A tecla &eM&r abre o mapa do mundo, com tudo que você já explorou.'
@@ -612,7 +612,7 @@ $capitulos = @(
         @{ t = 'Vila lunar'; d = 'Os lunarianos tem vilas na Lua e trocam itens como os aldeoes.'; estrutura = 'ad_astra:lunarian_village'; solta = $true }
     ) }
     @{ t = 'Utilidades'; g = 'Começo'; icone = 'justhammers:iron_hammer'; sub = 'Ferramentas e truques que facilitam a vida'; m = @(
-        @{ t = 'Minerar em bloco'; marco = $true; sub = 'VeinMiner'; d = @(
+        @{ t = 'Minerar em bloco'; marco = $true; sub = 'FTB Ultimine'; d = @(
             'Segure a &etecla ao lado do 1&r e quebre um bloco: todos os blocos iguais grudados vêm junto (até 64). Funciona com minério, tronco e o que mais quiser.'
             ''
             'Um contorno mostra o que vai quebrar. Com a tecla segurada, &erole o mouse&r para trocar o formato (veio, túnel, área).'
@@ -745,7 +745,7 @@ $capitulos = @(
         @{ t = 'Vale do choro'; d = 'Incendium: um vale do Nether.'; bioma = 'incendium:weeping_valley'; solta = $true }
     ) }
     @{ t = 'Colecionador'; g = 'Aventura'; icone = 'minecraft:diamond'; m = @(
-        @{ t = 'Montinho de diamante'; d = 'Junte 64 diamantes. O VeinMiner ajuda.'; item = 'minecraft:diamond'; q = 64; p = 'minecraft:diamond_block'; n = 2 }
+        @{ t = 'Montinho de diamante'; d = 'Junte 64 diamantes. O FTB Ultimine ajuda.'; item = 'minecraft:diamond'; q = 64; p = 'minecraft:diamond_block'; n = 2 }
         @{ t = 'Netherite'; d = 'Restos antigos no fundo do Nether viram netherite.'; item = 'minecraft:netherite_ingot' }
         @{ t = 'Totem'; d = 'O totem da imortalidade vem dos evocadores das mansoes e cidadelas.'; item = 'minecraft:totem_of_undying'; solta = $true }
         @{ t = 'Tridente'; d = 'Os afogados as vezes deixam cair.'; item = 'minecraft:trident'; solta = $true }

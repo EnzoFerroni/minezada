@@ -10,7 +10,6 @@ sophisticated-backpacks | https://github.com/user-attachments/assets/cc00389b-5f
 toms-storage | https://cdn.modrinth.com/data/gOPAFzp0/images/3f9eaa8b5f8decb0d119381f933403e219236efc.png
 just-hammers | 
 advanced-netherite | https://cdn.modrinth.com/data/CFX9ftUJ/images/32cd959b4be527617d127db981ae0ea846662f36_350.webp
-veinminer | https://cdn.modrinth.com/data/OhduvhIc/images/5acfafbf81a06e44c1c10a288279a2a379c31662.gif
 wyrmroost | https://cdn.modrinth.com/data/8dYAmpGw/images/de36bcf7483ca4c2f69ba15ef292d44d67c86e2c_350.webp
 aether | https://cdn.modrinth.com/data/YhmgMVyu/images/6bcfa05c5228af0eaa3abb567cea8072720f2fc1_350.webp
 the-undergarden | https://cdn.modrinth.com/data/Ejfl5qDL/images/eb7488d59a80a5025b91e85fba4b1b2b070a4159_350.webp

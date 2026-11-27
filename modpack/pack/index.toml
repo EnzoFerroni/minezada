@@ -471,6 +471,11 @@ hash = "1a00da75dde20c6f9d1e938f6f0928b00fbd2891c8cd6b8b1289772971be12ad"
 metafile = true
 
 [[files]]
+file = "mods/ftb-ultimine-forge.pw.toml"
+hash = "23cfa60884dd61d1ec2a78195bbf5554814d8d75a37e766a71d5073002951390"
+metafile = true
+
+[[files]]
 file = "mods/ftb-xmod-compat.pw.toml"
 hash = "9e7004d96189ff72c886613d9eb2fda8b084fdb5d2a07cd9b4324f797442bcf9"
 metafile = true
@@ -573,11 +578,6 @@ metafile = true
 [[files]]
 file = "mods/kotlin-for-forge.pw.toml"
 hash = "c5056f4d15ce00269bb0555bb68ae5ec766b9b02fe44b9d0518b837d2401021f"
-metafile = true
-
-[[files]]
-file = "mods/kotlin-lang-forge.pw.toml"
-hash = "3af3c22c8ce5c47636fcac2f79f116a0e06cc93ad7af63b85795855b35d31c2a"
 metafile = true
 
 [[files]]
@@ -961,16 +961,6 @@ hash = "79af1f1da0ce1d74c7cec23e72d28d3eed45baf6ffc27b732800b6988522b534"
 metafile = true
 
 [[files]]
-file = "mods/veinminer.pw.toml"
-hash = "bd6347fe71892997f39a827ceb032d2994e021cb8c7f27d0b0e02fd27ec4a0f7"
-metafile = true
-
-[[files]]
-file = "mods/veinminer-client.pw.toml"
-hash = "302147b4048df3015d9adaec1795535923664c90710b6ae107125c2129dba004"
-metafile = true
-
-[[files]]
 file = "mods/waystones.pw.toml"
 hash = "426ed3dd46017944747f0601f8832d6f7d7b84aa6efbcb1d0b2ba7cc574b5156"
 metafile = true
@@ -1161,10 +1151,6 @@ hash = "36563c265fc144d007b64cfb73191e67451d268d7b795aca9e8d0a55fda55d6f"
 metafile = true
 
 [[files]]
-file = "config/Veinminer/settings.json"
-hash = "1273c142b4a9e4c915bacfaaff3634023aedb8fc5a8a70245d150a5753bbdcac"
-
-[[files]]
 file = "config/sodium-extra-options.json"
 hash = "5c5c0468a62ce1cb09763855823bea730d056fce7a6f840550f511c238b9acf4"
 preserve = true
@@ -1176,11 +1162,11 @@ preserve = true
 
 [[files]]
 file = "minezada.ps1"
-hash = "4c95e805df8c83a200f0c72b2ad34a15bf61cb5a0cfd5188a6d790227446e6d8"
+hash = "08cd947c4488dc42e352a6dc1b4dfb4a5a8f110db35e4761ea085426b16db20e"
 
 [[files]]
 file = "minezada.sh"
-hash = "c6e158cebd5090551ed41f988f553abf18b517ba68428c98bb6cfca88eb68638"
+hash = "6970e61e0d1f6be944cdb9a7163208e108b27db6f66385fcfaba972c2e2ab6ce"
 
 [[files]]
 file = "modflared/forced_tunnels.json"

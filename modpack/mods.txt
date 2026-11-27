@@ -94,8 +94,7 @@ cf:228756 | Iron Chests: baús de ferro, ouro, diamante e outros, maiores que o 
 ## Ferramentas
 just-hammers | Martelos que quebram uma área 3x3 de uma vez. Ótimos para cavar túneis e minas.
 advanced-netherite | Ferramentas e armaduras ainda melhores que netherite, feitas com materiais do jogo. Progressão no estilo vanilla.
-veinminer | Segure a tecla ao lado do 1 e quebre um bloco: os blocos iguais grudados vêm junto (até 64). Funciona com qualquer bloco: minério, tronco, terra, pedra.
-veinminer-client | Tecla do VeinMiner e contorno do que vai quebrar. Segure a tecla e role o scroll para trocar o formato. Troque a tecla em Opções → Controles (busque "vein").
+cf:386134 | FTB Ultimine: segure a tecla ao lado do 1 e quebre um bloco: os blocos iguais grudados vêm junto (até 64), com os itens juntos em um lugar. Role o scroll com a tecla segurada para trocar o formato (veio, túnel, área). Com enxada, machado ou pá, o clique direito também age em área.
 aperture-innovations | Portal gun do jogo Portal: atire um portal azul e um laranja e atravesse.
 
 ## Mobs e animais
