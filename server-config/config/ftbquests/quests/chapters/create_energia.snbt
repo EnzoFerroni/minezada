@@ -5,7 +5,7 @@
 	group: "75C4FBF5BDDE1148"
 	icon: { id: "createaddition:electric_motor" }
 	id: "4336DF8ADFC764BF"
-	order_index: 23
+	order_index: 24
 	quest_links: [ ]
 	quests: [
 		{

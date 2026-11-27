@@ -2,7 +2,7 @@
 
 Gerado pelo `scripts/missoes.ps1`. Nao edite a mao: rode o script depois de mexer no livro ou no `mods.txt`.
 
-33 capitulos, 472 missoes. Mods: 68 ok, 53 abaixo da meta, 4 faltando, 68 sem necessidade de missao.
+34 capitulos, 490 missoes. Mods: 69 ok, 52 abaixo da meta, 4 faltando, 68 sem necessidade de missao.
 
 Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 5, mais que isso 10 (menos os de $metaFixa no missoes.ps1, com muitas variantes de madeira ou cor).
 
@@ -55,7 +55,7 @@ Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 
 | Comida e fazenda | `cf:231484` | 146 | 3/5 | pouco | Cozinha e fazenda |
 | Comida e fazenda | `cf:277616` | 1 | 1/3 | pouco | Cozinha e fazenda |
 | Comida e fazenda | `botany-pots` | 183 | 2/4 | pouco | Cozinha e fazenda |
-| Comida e fazenda | `mystical-agriculture` | 248 | 1/10 | pouco | Cozinha e fazenda |
+| Comida e fazenda | `mystical-agriculture` | 248 | 18/10 | ok | Agricultura mística, Cozinha e fazenda |
 | Comida e fazenda | `cf:1410391` | 4 | 1/3 | pouco | Utilidades |
 | Comida e fazenda | `ciggycraft` | 7 | 1/3 | pouco | Utilidades |
 | Comida e fazenda | `cf:896915` | 281 | 1/10 | pouco | Utilidades |

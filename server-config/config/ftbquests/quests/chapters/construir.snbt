@@ -5,7 +5,7 @@
 	group: "2A64FDD2182C23F1"
 	icon: { id: "mcwroofs:oak_roof" }
 	id: "1CC3B8CA7BE5A04E"
-	order_index: 10
+	order_index: 11
 	quest_links: [ ]
 	quests: [
 		{
