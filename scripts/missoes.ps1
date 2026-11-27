@@ -2263,6 +2263,7 @@ if (Test-Path $jarsDir) {
     # refurbished_furniture:fridge, nao e item). Mod sem idioma: vale o modelo.
     $nomes = New-Object 'Collections.Generic.HashSet[string]'; $comNome = New-Object 'Collections.Generic.HashSet[string]'
     $usados = New-Object 'Collections.Generic.HashSet[string]'
+    $compDe = @{}; $semComp = New-Object 'Collections.Generic.HashSet[string]'
     # Itens reais que nenhum arquivo de dados cita (balde com bicho), conferidos no jogo.
     $semDados = @('crittersandcompanions:koi_fish_bucket', 'crittersandcompanions:sea_bunny_bucket')
     foreach ($j in Get-ChildItem $jarsDir -Filter *.jar) {
@@ -2275,6 +2276,20 @@ if (Test-Path $jarsDir) {
             if ($e.FullName -match '^data/.+\.json$') {
                 $r = New-Object IO.StreamReader $e.Open(); $txt = $r.ReadToEnd(); $r.Dispose()
                 foreach ($k in [regex]::Matches($txt, '"([a-z0-9_.-]+:[a-z0-9_/.-]+)"')) { [void]$usados.Add($k.Groups[1].Value) }
+                # Item que so sai de receita com componente (bau do Sophisticated Storage com madeira): sem o componente
+                # o JEI nao acha a receita ao clicar na missao. Guarda o menor componente (ordem igual em todo sistema).
+                if ($e.FullName -match '^data/[^/]+/recipes?/' -and $txt.Contains('"result"')) {
+                    try { $res = ($txt | ConvertFrom-Json).result } catch { $res = $null }
+                    if ($res -is [psobject] -and ($res.id -or $res.item)) {
+                        $rid = if ($res.id) { $res.id } else { $res.item }
+                        if ($res.components) {
+                            # Receita generic_* (a de carvalho) ganha das outras madeiras.
+                            $cj = $(if ($e.Name -like 'generic_*') { '0' } else { '1' }) + ($res.components | ConvertTo-Json -Compress -Depth 10)
+                            if (-not $compDe.ContainsKey($rid) -or [string]::CompareOrdinal($cj, $compDe[$rid]) -lt 0) { $compDe[$rid] = $cj }
+                        }
+                        else { [void]$semComp.Add($rid) }
+                    }
+                }
             }
             elseif ($e.FullName -match '^assets/([a-z0-9_.-]+)/lang/en_us\.json$') {
                 # Bichos: o id vem das chaves entity.<mod>.<nome> do arquivo de idioma.
@@ -2343,7 +2358,9 @@ foreach ($c in $capitulos) {
     foreach ($m in $c.m) {
         $qid = Id "missao/$($c.t)/$($m.t)"
         $q = if ($m['q']) { $m['q'] } else { 1 }
-        $tarefa = if ($m['item']) { "{ id: `"$(Id "tarefa/$qid")`", item: { count: $q, id: `"$($m['item'])`" }, type: `"item`" }" }
+        $comp = if ($m['item'] -and $compDe -and $compDe.ContainsKey($m['item']) -and -not $semComp.Contains($m['item'])) { ", components: $($compDe[$m['item']].Substring(1))" } else { '' }
+        $tarefa = if ($m['item'] -and $comp) { "{ id: `"$(Id "tarefa/$qid")`", item: { count: $q$comp, id: `"$($m['item'])`" }, match_components: `"none`", type: `"item`" }" }
+            elseif ($m['item']) { "{ id: `"$(Id "tarefa/$qid")`", item: { count: $q, id: `"$($m['item'])`" }, type: `"item`" }" }
             elseif ($m['mata']) { "{ entity: `"$($m['mata'])`", id: `"$(Id "tarefa/$qid")`", type: `"kill`", value: $($q)L }" }
             elseif ($m['estrutura']) { "{ id: `"$(Id "tarefa/$qid")`", structure: `"$($m['estrutura'])`", type: `"structure`" }" }
             elseif ($m['bioma']) { "{ biome: `"$($m['bioma'])`", id: `"$(Id "tarefa/$qid")`", type: `"biome`" }" }
