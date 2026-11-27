@@ -96,6 +96,7 @@ jobs:
           NOME: ${{ steps.mundo.outputs.nome }}
           POSICOES: ${{ vars.MOSTRAR_POSICOES }}
         run: |
+          set -x
           mkdir -p _site
           cp -R site/. _site/
           if [ -n "$ID" ]; then
