@@ -1161,6 +1161,10 @@ hash = "36563c265fc144d007b64cfb73191e67451d268d7b795aca9e8d0a55fda55d6f"
 metafile = true
 
 [[files]]
+file = "config/crash_assistant/config.toml"
+hash = "edd498bad57381381bd495b8d46164701903e6ea4a1bb1f122fdd97d7c9c0a26"
+
+[[files]]
 file = "config/ftbultimine-client.snbt"
 hash = "be7c33310e76343c99c9b43c2c092467c59b66b1bf269fd3b3ee3b8b563c790e"
 

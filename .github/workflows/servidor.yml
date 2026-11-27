@@ -28,11 +28,15 @@ jobs:
         run: |
           neo="$(sed -n 's/^neoforge = "\(.*\)"/\1/p' modpack/pack/pack.toml)"
           mkdir -p server && cd server
-          curl -fsSL "https://maven.neoforged.net/releases/net/neoforged/neoforge/$neo/neoforge-$neo-installer.jar" -o installer.jar
+          curl -fsSL --retry 5 --retry-all-errors "https://maven.neoforged.net/releases/net/neoforged/neoforge/$neo/neoforge-$neo-installer.jar" -o installer.jar
           java -jar installer.jar --installServer . > /dev/null
           unzip -o -q -j ../modpack/minezada-prism.zip .minecraft/packwiz-installer-bootstrap.jar .minecraft/packwiz-installer.jar -d .
-          java -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar \
-            -g -s server "file://$GITHUB_WORKSPACE/modpack/pack/pack.toml"
+          # Ate 3 tentativas: o Modrinth e o CurseForge as vezes demoram (522, 429); o packwiz continua de onde parou.
+          for i in 1 2 3; do
+            java -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar \
+              -g -s server "file://$GITHUB_WORKSPACE/modpack/pack/pack.toml" && break
+            [ "$i" = 3 ] && exit 1; sleep 30
+          done
           echo eula=true > eula.txt
           cp -R ../server-config/. .
           echo "NEO=$neo" >> "$GITHUB_ENV"
@@ -88,8 +92,11 @@ jobs:
         run: |
           mkdir -p run && cd run
           unzip -o -q -j ../modpack/minezada-prism.zip .minecraft/packwiz-installer-bootstrap.jar .minecraft/packwiz-installer.jar -d .
-          java -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar \
-            -g -s client "file://$GITHUB_WORKSPACE/modpack/pack/pack.toml"
+          for i in 1 2 3; do
+            java -jar packwiz-installer-bootstrap.jar --bootstrap-no-update --bootstrap-main-jar packwiz-installer.jar \
+              -g -s client "file://$GITHUB_WORKSPACE/modpack/pack/pack.toml" && break
+            [ "$i" = 3 ] && exit 1; sleep 30
+          done
           # Distant Horizons (opcional, desligado por padrao) as vezes trava no GLProxy da tela virtual (#31).
           rm -f mods/DistantHorizons*
           ls mods | wc -l
