@@ -5,7 +5,7 @@
 	group: "75C4FBF5BDDE1148"
 	icon: { id: "mekanism:metallurgic_infuser" }
 	id: "59AADA362CD5A80D"
-	order_index: 10
+	order_index: 13
 	quest_links: [ ]
 	quests: [
 		{

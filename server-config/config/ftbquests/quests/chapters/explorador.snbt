@@ -5,7 +5,7 @@
 	group: "0723197381022D89"
 	icon: { id: "explorerscompass:explorerscompass" }
 	id: "399D037DDCE38331"
-	order_index: 20
+	order_index: 23
 	quest_links: [ ]
 	quests: [
 		{
