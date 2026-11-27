@@ -89,6 +89,10 @@ jobs:
       - name: Desinstalar (arvore falsa)
         shell: powershell
         run: scripts/testes/desinstalar.ps1
+      - name: Logs da sessao do servidor no Drive (iniciar.ps1 em pastas falsas)
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: scripts/testes/logs-servidor.ps1
       - name: Antes de abrir o jogo (minezada.ps1 em pasta falsa)
         shell: powershell
         run: scripts/testes/minezada.ps1

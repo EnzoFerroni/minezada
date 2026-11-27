@@ -201,6 +201,11 @@ hash = "3c9a0b51a15af2a39adaa59aa1cc76613e93c29dd8dd14e669bb3dc00af2f632"
 metafile = true
 
 [[files]]
+file = "mods/crash-assistant.pw.toml"
+hash = "04c0442bb09be8451a187f253fc30956f7360fbbbc6a18a37ad589752bc0055d"
+metafile = true
+
+[[files]]
 file = "mods/create.pw.toml"
 hash = "0f9e653a1989fd186f4d268872a150f1fe84c0045d41559c5cb5321d86bf9c23"
 metafile = true
@@ -988,6 +993,11 @@ metafile = true
 [[files]]
 file = "mods/yacl.pw.toml"
 hash = "786b4a86e1ca93700efe2346e89bd81acdcd0b9ec3409af1752a14455ee75d9a"
+metafile = true
+
+[[files]]
+file = "mods/yeetus-experimentus.pw.toml"
+hash = "c60ded269d6b2c683347c85d40f8be781e8f51c70db52a7eed5599ab4599bb78"
 metafile = true
 
 [[files]]

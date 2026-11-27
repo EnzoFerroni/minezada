@@ -53,6 +53,11 @@ depois (o resto é o cache do GitHub e do shields.io). Configurado uma vez só:
 Sem `dispatch.txt` o selo fica só com o horário do GitHub. Host que cai sem `stop` (falta de luz) não avisa: o
 selo fica "ligado" até a próxima consulta do horário.
 
+## Logs e erros
+
+- **Servidor:** a cada desligamento o iniciar guarda em `logs/AAAAMMDD-HHMM` no Drive o `latest.log`, um `erros.txt` só com as linhas WARN/ERROR/FATAL e os relatórios de crash da sessão (pasta `crash-reports` e `hs_err_pid*.log`). Ficam as 20 sessões mais novas. Se o host cair sem desligar, o log fica em `server/logs` da máquina dele.
+- **Jogo:** quando o jogo de alguém fecha com erro, o Crash Assistant abre uma janela que manda o log e gera um link do mclo.gs. Sem a janela, o comando de logs do README faz o mesmo.
+
 ## Recomeçar o mundo do zero
 
 Para abrir o servidor para todos com mundo novo e progresso zerado (inventários, missões, conquistas, waystones):
