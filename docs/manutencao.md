@@ -78,3 +78,10 @@ Para abrir o servidor para todos com mundo novo e progresso zerado (inventários
 - Downloads com checksum e versão fixa: launcher sem original, cloudflared, playit e packwiz-installer. Os mods vêm
   com hash conferido pelo packwiz. A cada push no pack, a Action **Servidor de teste** sobe o servidor e o jogo no
   GitHub e avisa se algo falhar.
+- Outras Actions: **Lint e segredos** (PSScriptAnalyzer nos `.ps1`, gitleaks em todo o histórico e a lista de dados
+  pessoais do segredo `PRIVADO_REGEX`: IP local, e-mail, rede de casa), shellcheck no **Testes dos scripts**,
+  zizmor nos workflows, CodeQL e Dependabot. PR só entra no `main` com o lint passando.
+- **Alerta de CI**: Página, Pack, Servidor de teste ou Testes dos scripts falhando no `main` abrem a issue
+  "CI falhando: <nome>", que fecha sozinha quando passa. Scripts e servidor também rodam todo domingo.
+- Mudou a lista de dados pessoais? `gh secret set PRIVADO_REGEX < arquivo` (regex estendida, sem diferenciar
+  maiúsculas). Ela nunca vai para o repo.
