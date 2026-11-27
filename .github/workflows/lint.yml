@@ -49,6 +49,7 @@ jobs:
             if [ "$GITHUB_EVENT_NAME" = pull_request ]; then echo "PR de fork sem segredo: pulado"; exit 0; fi
             echo "::error::segredo PRIVADO_REGEX vazio"; exit 1
           fi
-          if git grep -I -n -i -E -e "$PRIVADO_REGEX" -- . ':!*.jar' | cut -d: -f1,2; then
-            echo "::error::dado pessoal nos arquivos acima (o texto nao e mostrado)"; exit 1
+          achou=$(git grep -I -n -i -E -e "$PRIVADO_REGEX" -- . ':!*.jar' | cut -d: -f1,2 || true)
+          if [ -n "$achou" ]; then
+            echo "$achou"; echo "::error::dado pessoal nos arquivos acima (o texto nao e mostrado)"; exit 1
           fi
