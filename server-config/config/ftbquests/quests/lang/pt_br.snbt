@@ -1340,10 +1340,10 @@
 	quest.45B29C1183D9355C.quest_desc: ["A &epedra de teleporte&r abre a lista de waystones de qualquer lugar."]
 	quest.6CF18EE2919C3934.title: "Placa de teleporte"
 	quest.6CF18EE2919C3934.quest_desc: ["A &eplaca de teleporte&r liga dois pontos: pise em uma e saia na outra."]
-	quest.5B3B104334EEB1CC.title: "Atlas do Nether"
-	quest.5B3B104334EEB1CC.quest_desc: ["Um atlas próprio para o &eNether&r."]
-	quest.27BAB7E55491A280.title: "Atlas do End"
-	quest.27BAB7E55491A280.quest_desc: ["Um atlas próprio para o &eEnd&r."]
+	quest.10C2B5264399FEA5.title: "Atlas na mão secundária"
+	quest.10C2B5264399FEA5.quest_desc: ["Segure o atlas na &emão secundária&r (tecla &eF&r troca de mão) para ver o mapa na tela enquanto anda."]
+	quest.471065B0B84C2C3D.title: "Atlas em outra dimensão"
+	quest.471065B0B84C2C3D.quest_desc: ["Leve o atlas para o &eNether&r ou o &eEnd&r e faça mapas lá também. O desenho do atlas muda conforme a dimensão."]
 	quest.0F2CA8646830B374.title: "Ilha de cogumelos"
 	quest.0F2CA8646830B374.quest_desc: ["Use a bússola de biomas para achar os &ecampos de cogumelo&r, onde não nasce monstro."]
 	quest.15790481D3B53A15.title: "Bioma raro"
@@ -1366,8 +1366,8 @@
 	quest.6C649EF7320B4B28.quest_desc: ["Os bichos andam de &echapéu&r. Derrote um para ganhar o chapéu dele.", "", "Para escolher qual usar, veja a tecla em Controles (busque &echapéu&r ou &ehat&r)."]
 	quest.7C24927A6C7803B9.title: "Coleção de chapéus"
 	quest.7C24927A6C7803B9.quest_desc: ["Junte chapéus de cinco bichos diferentes."]
-	quest.26C227D48A5ECA57.title: "Lançador de chapéus"
-	quest.26C227D48A5ECA57.quest_desc: ["O &elançador de chapéus&r atira chapéus nos bichos."]
+	quest.7A18AD9F90331E63.title: "Chapéu de mob raro"
+	quest.7A18AD9F90331E63.quest_desc: ["Ganhe o chapéu de um bicho difícil, como um chefe ou um mob do Nether, e use ele."]
 	chapter.27715EDF11C7BB0D.title: "Masmorras e tesouros"
 	chapter.27715EDF11C7BB0D.chapter_subtitle: ["Masmorras, templos e minas reformulados"]
 	quest.32D94C7A6E9E47F3.title: "Baú só seu"
