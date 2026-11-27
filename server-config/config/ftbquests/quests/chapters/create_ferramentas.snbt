@@ -48,7 +48,7 @@
 			optional: true
 			tasks: [{ id: "12506AB303F3817B", item: { count: 1, id: "create:wand_of_symmetry" }, type: "item" }]
 			x: 0d
-			y: 7.00d
+			y: 9.50d
 		}
 		{
 			id: "7D151FDC19987794"
@@ -56,8 +56,8 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "5051AA12B009389B", item: { count: 1, id: "create:schematic_table" }, type: "item" }]
-			x: 2d
-			y: 7d
+			x: 0d
+			y: 6d
 		}
 		{
 			dependencies: ["7D151FDC19987794"]
@@ -67,7 +67,7 @@
 			size: 1.5d
 			tasks: [{ id: "5730EE1674392C4E", item: { count: 1, id: "create:schematicannon" }, type: "item" }]
 			x: 2.5d
-			y: d
+			y: 6d
 		}
 	]
 }
