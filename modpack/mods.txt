@@ -6,6 +6,7 @@
 jei | Mostra a receita de qualquer item. No inventário, passe o mouse num item e aperte R para ver como fazer ou U para ver onde ele é usado.
 bettersearch | Pesquisa que entende erro de digitação e nome em inglês ou português (JEI, inventário criativo e comandos).
 jade | Olhe para um bloco ou mob e aparece no topo da tela o que ele é, de qual mod vem e informações úteis (vida, progresso de crescimento, conteúdo).
+jade-addons-forge | Mostra no Jade informações de mais mods (Create, Farmer's Delight, baús Sophisticated e outros).
 appleskin | Mostra na barra de fome quanto cada comida vai encher e a saturação, para saber o que vale a pena comer.
 better-advancements | Tela de conquistas (tecla L) mais clara. Serve de guia do que fazer a seguir.
 enchantment-descriptions | Mostra o que cada encantamento faz ao passar o mouse no livro.
@@ -222,7 +223,7 @@ dynamic-fps | Baixa o FPS quando o jogo está minimizado ou em segundo plano: me
 moreculling | Deixa de desenhar faces de blocos que você não vê (folhas, vidro): mais FPS.
 chunky | Pré-gera o mundo no servidor para não travar ao explorar terreno novo.
 spark | Mede o desempenho do servidor e do jogo para achar o que pesa.
-noisium | Acelera a geração de terreno no servidor.
+cf:1091339 | AllTheLeaks: conserta vazamentos de memória do jogo e dos mods (sessões longas sem encher a RAM).
 sodium | Deixa o jogo muito mais leve e com mais FPS.
 lithium | Otimiza a lógica do jogo e do servidor, menos lag.
 ferrite-core | Faz o jogo usar menos memória RAM.

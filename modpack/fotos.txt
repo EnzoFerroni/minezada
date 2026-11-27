@@ -91,7 +91,6 @@ dynamic-fps | https://cdn.modrinth.com/data/LQ3K71Q1/images/e8cc9af2ed7fced3b342
 moreculling | https://cdn.modrinth.com/data/51shyZVL/images/4c966271f02d0a7713069e94c933406e8e5b9097_350.webp
 chunky | 
 spark | 
-noisium | 
 sodium | https://cdn.modrinth.com/data/AANobbMI/images/5ca2e8f6c72f3d543dd3dc95b706964c5678d80e_350.webp
 lithium | 
 ferrite-core | 
