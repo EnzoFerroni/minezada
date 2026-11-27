@@ -682,6 +682,80 @@
 	quest.72ED106D1CF93B4F.title: "Domar um dragão"
 	quest.72ED106D1CF93B4F.quest_subtitle: "Dragon Mounts"
 	quest.72ED106D1CF93B4F.quest_desc: ["Dragão adulto se doma dando &epeixe&r até aparecerem corações.", "", "Coloque uma &esela&r e monte: &eespaço&r sobe, &eShift&r desce. O &eapito&r chama o dragão de longe."]
+	chapter.5032C0A113D33DAD.title: "Bichos do mundo"
+	chapter.5032C0A113D33DAD.chapter_subtitle: ["Mais bichos para achar, domar e enfrentar"]
+	quest.52B47CC5963D1FCD.title: "Safári"
+	quest.52B47CC5963D1FCD.quest_subtitle: "Comece por aqui"
+	quest.52B47CC5963D1FCD.quest_desc: ["Além do capítulo &eAnimais&r, vários mods colocam bichos pelo mundo: insetos, peixes, dinossauros, monstros do mar e chefes.", "", "Mire em um bicho para ver o nome e o mod (Jade). Para saber o que ele come ou deixa cair, veja no JEI."]
+	quest.0232C38C50F51A62.title: "Carpa no balde"
+	quest.0232C38C50F51A62.quest_subtitle: "Critters and Companions"
+	quest.0232C38C50F51A62.quest_desc: ["O &eCritters and Companions&r traz bichos pequenos: carpas, lontras, joaninhas, caracóis, pandas-vermelhos.", "", "Pegue uma &ecarpa koi&r com um balde de água. Fica linda em um laguinho."]
+	quest.3E45635319345653.title: "Coelho-do-mar"
+	quest.3E45635319345653.quest_desc: ["O &ecoelho-do-mar&r é uma lesma marinha fofinha. Pegue um com um balde."]
+	quest.5FB8537851048BA8.title: "Pérola"
+	quest.5FB8537851048BA8.quest_desc: ["Ache uma &epérola&r. Veja de onde ela vem com &eR&r no JEI."]
+	quest.53C9ED8FA52B183C.title: "Guia de seda"
+	quest.53C9ED8FA52B183C.quest_desc: ["A &eguia de seda&r é uma corda para levar bichos. Veja a receita com &eR&r."]
+	quest.6D250650292CBCDD.title: "Chapéu de bolota"
+	quest.6D250650292CBCDD.quest_desc: ["Um &echapéu de bolota&r, só para enfeitar."]
+	quest.42B8E44EF1E15B98.title: "Quadro de recompensas"
+	quest.42B8E44EF1E15B98.quest_subtitle: "Let's Do Wilder Nature"
+	quest.42B8E44EF1E15B98.quest_desc: ["O &eWilder Nature&r traz bisões, cervos, corujas, guaxinins, pinguins e mais.", "", "O &equadro de recompensas&r dá &econtratos&r com tarefas de caça e prêmios. Veja como usar com &eU&r no JEI."]
+	quest.45C7AF094B13C377.title: "Compêndio animal"
+	quest.45C7AF094B13C377.quest_desc: ["O &ecompêndio animal&r explica os bichos do Wilder Nature."]
+	quest.4684CF049A9837E8.title: "Bacamarte"
+	quest.4684CF049A9837E8.quest_desc: ["O &ebacamarte&r é uma arma de caça que atira munição de pederneira."]
+	quest.36F6090101B38AB6.title: "Capa de pele"
+	quest.36F6090101B38AB6.quest_desc: ["Uma &ecapa de pele&r para o frio."]
+	quest.25A65F84EF038316.title: "Trufa"
+	quest.25A65F84EF038316.quest_desc: ["A &etrufa&r é um cogumelo raro. Os javalis sabem achar."]
+	quest.2C6C8CDEBB173A35.title: "Dinossauros"
+	quest.2C6C8CDEBB173A35.quest_subtitle: "Archie's Dinosaurs"
+	quest.2C6C8CDEBB173A35.quest_desc: ["Os dinossauros do &eArchie's Dinosaurs&r vivem em biomas certos. Ache um &eTherimoss&r na selva."]
+	quest.45E1C2B82BB3F6A7.title: "Lushsaur domado"
+	quest.45E1C2B82BB3F6A7.quest_desc: ["O &eLushsaur&r vive nas cavernas exuberantes. Ganhe a confiança dele para domar."]
+	quest.4CC210A6A2127398.title: "Coralossauro"
+	quest.4CC210A6A2127398.quest_desc: ["O &eCoralossauro&r vive no oceano quente."]
+	quest.5B0264C193E9F09E.title: "Obsidiceratops"
+	quest.5B0264C193E9F09E.quest_desc: ["O &eObsidiceratops&r vive na floresta carmesim do Nether."]
+	quest.272A055296CBA45B.title: "Sculkraptor"
+	quest.272A055296CBA45B.quest_desc: ["O &eSculkraptor&r caça no subsolo escuro. Vença um."]
+	quest.115415CF65764BEB.title: "Planta carnívora"
+	quest.115415CF65764BEB.quest_subtitle: "Mowzie's Mobs"
+	quest.115415CF65764BEB.quest_desc: ["A &eFoliaath&r parece um arbusto, mas morde. Vença uma."]
+	quest.676D606DFE788CAF.title: "Disfarce"
+	quest.676D606DFE788CAF.quest_desc: ["Entre escondido em um bosque dos &eUmvuthana&r usando uma máscara deles."]
+	quest.0CE291BDF217950D.title: "Labirinto de gelo"
+	quest.0CE291BDF217950D.quest_subtitle: "Aquamirae"
+	quest.0CE291BDF217950D.quest_desc: ["O &eAquamirae&r tem um labirinto de gelo no oceano congelado profundo, cheio de navios afundados."]
+	quest.099A8D75685EE7F8.title: "Corneta de concha"
+	quest.099A8D75685EE7F8.quest_desc: ["Ache uma &ecorneta de concha&r nos navios piratas congelados."]
+	quest.1E446EC8E523F132.title: "Chave congelada"
+	quest.1E446EC8E523F132.quest_desc: ["O fantasma da &eCapitã Cornélia&r guarda uma chave congelada."]
+	quest.54F229E270C65B26.title: "Montaria de casco"
+	quest.54F229E270C65B26.quest_desc: ["Crie um &eScuttler&r até virar um &eShellback&r e monte nele."]
+	quest.6F5AF0578D0A0629.title: "Iceologer"
+	quest.6F5AF0578D0A0629.quest_subtitle: "Friends&Foes"
+	quest.6F5AF0578D0A0629.quest_desc: ["O &eIceologer&r é um mago illager de gelo. Vença um."]
+	quest.3A81261A35DF0746.title: "Esconde-esconde"
+	quest.3A81261A35DF0746.quest_subtitle: "Friends&Foes"
+	quest.3A81261A35DF0746.quest_desc: ["O &eRascal&r brinca de esconde-esconde nas minas. Ache ele três vezes."]
+	quest.02A5548273EA6953.title: "Wildfire"
+	quest.02A5548273EA6953.quest_desc: ["O &eWildfire&r é o chefe das cidadelas do Nether."]
+	quest.570F915C71A954F2.title: "Beija-flor"
+	quest.570F915C71A954F2.quest_subtitle: "Alex's Mobs"
+	quest.570F915C71A954F2.quest_desc: ["Crie dois &ebeija-flores&r. Veja o que eles comem no JEI."]
+	quest.05CCA6AB4D7BD4C2.title: "Camarão-louva-a-deus"
+	quest.05CCA6AB4D7BD4C2.quest_desc: ["Dome um &ecamarão-louva-a-deus&r: ele soca forte."]
+	quest.7AB97B587CF8C279.title: "Sapo do Nether"
+	quest.7AB97B587CF8C279.quest_desc: ["Dome um &esapo distorcido&r do Nether."]
+	quest.5174A1C84A1A7798.title: "Armadura de crocodilo"
+	quest.5174A1C84A1A7798.quest_desc: ["Faça o &epeitoral de crocodilo&r com as escamas dele."]
+	quest.2F8B2DB82E39BDFA.title: "Ovo estranho"
+	quest.2F8B2DB82E39BDFA.quest_subtitle: "Dragon Mounts"
+	quest.2F8B2DB82E39BDFA.quest_desc: ["Os &eovos de dragão&r ficam escondidos em estruturas pelo mundo. Ache um."]
+	quest.3129EBE4A72E01AB.title: "Cinco dragões"
+	quest.3129EBE4A72E01AB.quest_desc: ["Choque &ecinco&r ovos de dragão."]
 	chapter.79135E8160B07546.title: "Mekanism 1: começo"
 	chapter.79135E8160B07546.chapter_subtitle: ["Máquinas elétricas e aço"]
 	quest.0AC3BC569A4CB669.title: "O que é o Mekanism"

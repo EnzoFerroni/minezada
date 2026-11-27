@@ -5,7 +5,7 @@
 	group: "0723197381022D89"
 	icon: { id: "minecraft:filled_map" }
 	id: "39F8AA372D9DED95"
-	order_index: 30
+	order_index: 31
 	quest_links: [ ]
 	quests: [
 		{
