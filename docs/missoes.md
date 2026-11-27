@@ -2,9 +2,9 @@
 
 Gerado pelo `scripts/missoes.ps1`. Nao edite a mao: rode o script depois de mexer no livro ou no `mods.txt`.
 
-33 capitulos, 472 missoes. Mods: 67 ok, 54 abaixo da meta, 4 faltando, 68 sem necessidade de missao.
+33 capitulos, 472 missoes. Mods: 68 ok, 53 abaixo da meta, 4 faltando, 68 sem necessidade de missao.
 
-Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 5, mais que isso 10.
+Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 5, mais que isso 10 (menos os de $metaFixa no missoes.ps1, com muitas variantes de madeira ou cor).
 
 | Categoria | Mod | Itens | Missoes/meta | Status | Capitulos |
 |---|---|---|---|---|---|
@@ -31,13 +31,13 @@ Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 
 | Mapas e viagem | `ping-wheel` | 0 | 1/1 | ok | Primeiros passos |
 | Construção e decoração | `cf:298187` | 9 | 1/3 | pouco | Utilidades |
 | Construção e decoração | `effortless-building` | 1 | 2/3 | pouco | Construir |
-| Construção e decoração | `macaws-furniture` | 654 | 1/10 | pouco | Construir |
-| Construção e decoração | `macaws-roofs` | 607 | 1/10 | pouco | Construir |
-| Construção e decoração | `macaws-windows` | 315 | 1/10 | pouco | Construir |
-| Construção e decoração | `macaws-doors` | 282 | 1/10 | pouco | Construir |
-| Construção e decoração | `macaws-bridges` | 152 | 1/10 | pouco | Construir |
-| Construção e decoração | `macaws-fences-and-walls` | 180 | 1/10 | pouco | Construir |
-| Construção e decoração | `handcrafted` | 301 | 2/10 | pouco | Construir |
+| Construção e decoração | `macaws-furniture` | 654 | 1/4 | pouco | Construir |
+| Construção e decoração | `macaws-roofs` | 607 | 1/2 | pouco | Construir |
+| Construção e decoração | `macaws-windows` | 315 | 1/2 | pouco | Construir |
+| Construção e decoração | `macaws-doors` | 282 | 1/2 | pouco | Construir |
+| Construção e decoração | `macaws-bridges` | 152 | 1/2 | pouco | Construir |
+| Construção e decoração | `macaws-fences-and-walls` | 180 | 1/2 | pouco | Construir |
+| Construção e decoração | `handcrafted` | 301 | 2/4 | pouco | Construir |
 | Construção e decoração | `cf:897116` | 473 | 12/10 | ok | Construir, Cozinha e fazenda, Primeiros passos |
 | Construção e decoração | `supplementaries` | 304 | 17/10 | ok | Construir, Cozinha e fazenda, Primeiros passos |
 | Construção e decoração | `supplementaries-squared` | 55 | 15/5 | ok | Construir, Cozinha e fazenda, Primeiros passos |
@@ -49,12 +49,12 @@ Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 
 | Comida e fazenda | `twilight-delight` | 252 | 32/10 | ok | Cozinha e fazenda, Dimensões, Primeiros passos, Twilight Forest |
 | Comida e fazenda | `ends-delight` | 63 | 10/5 | ok | Cozinha e fazenda, Primeiros passos |
 | Comida e fazenda | `oceans-delight` | 25 | 11/3 | ok | Cozinha e fazenda, Primeiros passos |
-| Comida e fazenda | `storage-delight` | 168 | 1/10 | pouco | Cozinha e fazenda |
-| Comida e fazenda | `cf:415438` | 537 | 4/10 | pouco | Cozinha e fazenda |
+| Comida e fazenda | `storage-delight` | 168 | 1/3 | pouco | Cozinha e fazenda |
+| Comida e fazenda | `cf:415438` | 537 | 4/8 | pouco | Cozinha e fazenda |
 | Comida e fazenda | `cf:885449` | 0 | 0/1 | nao precisa (biblioteca) |  |
 | Comida e fazenda | `cf:231484` | 146 | 3/5 | pouco | Cozinha e fazenda |
 | Comida e fazenda | `cf:277616` | 1 | 1/3 | pouco | Cozinha e fazenda |
-| Comida e fazenda | `botany-pots` | 183 | 2/10 | pouco | Cozinha e fazenda |
+| Comida e fazenda | `botany-pots` | 183 | 2/4 | pouco | Cozinha e fazenda |
 | Comida e fazenda | `mystical-agriculture` | 248 | 1/10 | pouco | Cozinha e fazenda |
 | Comida e fazenda | `cf:1410391` | 4 | 1/3 | pouco | Utilidades |
 | Comida e fazenda | `ciggycraft` | 7 | 1/3 | pouco | Utilidades |
@@ -75,16 +75,16 @@ Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 
 | Create: addons | `slice-and-dice` | 4 | 6/3 | ok | Cozinha e fazenda, Create: addons |
 | Create: addons | `create-central-kitchen` | 0 | 13/1 | ok | Cozinha e fazenda, Create: addons, Primeiros passos |
 | Create: addons | `create-railways-navigator` | 11 | 1/3 | pouco | Create: addons |
-| Create: addons | `copycats` | 48 | 1/5 | pouco | Create: addons |
-| Create: addons | `create-deco` | 409 | 1/10 | pouco | Create: addons |
+| Create: addons | `copycats` | 48 | 1/2 | pouco | Create: addons |
+| Create: addons | `create-deco` | 409 | 1/3 | pouco | Create: addons |
 | Create: addons | `create-dreams-and-desires` | 105 | 3/5 | pouco | Create: addons |
-| Create: addons | `interiors` | 53 | 2/5 | pouco | Construir, Create: addons |
-| Baús e armazenamento | `sophisticated-storage` | 146 | 3/5 | pouco | Mochila e baús |
+| Create: addons | `interiors` | 53 | 2/2 | ok | Construir, Create: addons |
+| Baús e armazenamento | `sophisticated-storage` | 146 | 3/6 | pouco | Mochila e baús |
 | Baús e armazenamento | `sophisticated-backpacks` | 77 | 11/5 | ok | Mochila e baús, Primeiros passos |
 | Baús e armazenamento | `toms-storage` | 22 | 7/3 | ok | Mochila e baús |
 | Baús e armazenamento | `cf:228756` | 21 | 1/3 | pouco | Mochila e baús |
 | Ferramentas | `just-hammers` | 29 | 1/3 | pouco | Utilidades |
-| Ferramentas | `advanced-netherite` | 44 | 1/5 | pouco | Utilidades |
+| Ferramentas | `advanced-netherite` | 44 | 1/3 | pouco | Utilidades |
 | Ferramentas | `cf:386134` | 1 | 1/3 | pouco | Utilidades |
 | Ferramentas | `aperture-innovations` | 20 | 1/3 | pouco | Utilidades |
 | Mobs e animais | `dmr` | 2 | 2/3 | pouco | Animais |
