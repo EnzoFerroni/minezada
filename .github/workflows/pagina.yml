@@ -100,7 +100,7 @@ jobs:
           cp -R site/. _site/
           if [ -n "$ID" ]; then
             # O link de download leva ao armazenamento do GitHub; o curl nao repassa o token para outro endereco.
-            curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H 'Accept: application/octet-stream' \
+            curl -fsSL --retry 5 --retry-all-errors --retry-delay 15 -H "Authorization: Bearer $GH_TOKEN" -H 'Accept: application/octet-stream' \
               "https://api.github.com/repos/$MUNDO_REPO/releases/assets/$ID" -o "$RUNNER_TEMP/mundo.tar.gz"
             mkdir -p "$RUNNER_TEMP/mundo"
             tar -xzf "$RUNNER_TEMP/mundo.tar.gz" -C "$RUNNER_TEMP/mundo"
