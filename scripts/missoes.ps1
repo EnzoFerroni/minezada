@@ -654,7 +654,7 @@ $capitulos = @(
             '&eEnd''s Delight&r: fruta do coro e pratos do End.'
             '&eTwilight Delight&r: comidas da Twilight Forest.'
         ); item = 'oceansdelight:squid_rings' }
-        @{ t = 'Cortadora do Create'; depois = 'Tábua de corte'; opcional = $true; sub = 'Slice & Dice'; d = @(
+        @{ t = 'Cortadora do Create'; depois = 'Tábua de corte'; opcional = $true; sub = 'Slice and Dice'; d = @(
             'A &ecortadora&r faz o trabalho da tábua de corte com a rotação do Create. Dê uma &efaca&r para ela e mande os ingredientes por baixo.'
             ''
             'O &easpersor&r embaixo de um cano com água molha a plantação. Segure &eW&r em cima das peças para ver a animação.'
@@ -1007,15 +1007,15 @@ $capitulos = @(
         @{ t = 'Hipopótamo'; depois = 'Rede de captura'; opcional = $true; sub = 'Naturalist'; d = @(
             'Dê uma &emelancia&r para um hipopótamo no pântano ou rio.'
         ); conquista = 'naturalist:husbandry/feed_hippo_melon' }
-        @{ t = 'Golem de cobre'; depois = 'Dicionário animal'; sub = 'Friends & Foes'; d = @(
+        @{ t = 'Golem de cobre'; depois = 'Dicionário animal'; sub = 'Friends and Foes'; d = @(
             'O &egolem de cobre&r aperta botões de cobre sozinho. Ele é montado no mundo com blocos de cobre, como o golem de ferro.'
             ''
             'Cuidado: ele enferruja com o tempo. Encere com favo de mel para parar.'
         ); conquista = 'friendsandfoes:adventure/summon_copper_golem' }
-        @{ t = 'Moobloom'; depois = 'Golem de cobre'; opcional = $true; sub = 'Friends & Foes'; d = @(
+        @{ t = 'Moobloom'; depois = 'Golem de cobre'; opcional = $true; sub = 'Friends and Foes'; d = @(
             'A &emoobloom&r é uma vaca com flores nas costas. Use a tesoura nela para pegar flores amarelas.'
         ); conquista = 'friendsandfoes:husbandry/shear_a_moobloom' }
-        @{ t = 'Glare'; depois = 'Golem de cobre'; opcional = $true; sub = 'Friends & Foes'; d = @(
+        @{ t = 'Glare'; depois = 'Golem de cobre'; opcional = $true; sub = 'Friends and Foes'; d = @(
             'O &eglare&r é um bichinho de musgo que mostra os lugares escuros onde monstros podem nascer. Domestique com &ebagas brilhantes&r.'
         ); conquista = 'friendsandfoes:husbandry/tame_a_glare' }
         @{ t = 'Gancho'; depois = 'Dicionário animal'; opcional = $true; sub = 'Critters and Companions'; d = @(
@@ -1082,8 +1082,8 @@ $capitulos = @(
         @{ t = 'Corneta de concha'; depois = 'Labirinto de gelo'; d = @('Ache uma &ecorneta de concha&r nos navios piratas congelados.'); conquista = 'aquamirae:adventure/obtain_shell_horn' }
         @{ t = 'Chave congelada'; depois = 'Labirinto de gelo'; d = @('O fantasma da &eCapitã Cornélia&r guarda uma chave congelada.'); conquista = 'aquamirae:adventure/obtain_frozen_key' }
         @{ t = 'Montaria de casco'; depois = 'Labirinto de gelo'; opcional = $true; d = @('Crie um &eScuttler&r até virar um &eShellback&r e monte nele.'); conquista = 'aquamirae:adventure/tame_shellback' }
-        @{ t = 'Iceologer'; depois = 'Safári'; sub = 'Friends & Foes'; d = @('O &eIceologer&r é um mago illager de gelo. Vença um.'); conquista = 'friendsandfoes:adventure/kill_iceologer' }
-        @{ t = 'Esconde-esconde'; depois = 'Safári'; sub = 'Friends & Foes'; d = @('O &eRascal&r brinca de esconde-esconde nas minas. Ache ele três vezes.'); conquista = 'friendsandfoes:adventure/complete_hide_and_seek_game' }
+        @{ t = 'Iceologer'; depois = 'Safári'; sub = 'Friends and Foes'; d = @('O &eIceologer&r é um mago illager de gelo. Vença um.'); conquista = 'friendsandfoes:adventure/kill_iceologer' }
+        @{ t = 'Esconde-esconde'; depois = 'Safári'; sub = 'Friends and Foes'; d = @('O &eRascal&r brinca de esconde-esconde nas minas. Ache ele três vezes.'); conquista = 'friendsandfoes:adventure/complete_hide_and_seek_game' }
         @{ t = 'Wildfire'; depois = 'Iceologer'; opcional = $true; d = @('O &eWildfire&r é o chefe das cidadelas do Nether.'); conquista = 'friendsandfoes:nether/kill_wildfire' }
         @{ t = 'Beija-flor'; depois = 'Safári'; sub = 'Alex''s Mobs'; d = @('Crie dois &ebeija-flores&r. Veja o que eles comem no JEI.'); conquista = 'alexsmobs:alexsmobs/breed_hummingbird' }
         @{ t = 'Camarão-louva-a-deus'; depois = 'Beija-flor'; d = @('Dome um &ecamarão-louva-a-deus&r: ele soca forte.'); conquista = 'alexsmobs:alexsmobs/tame_mantis_shrimp' }
@@ -1723,7 +1723,7 @@ $capitulos = @(
             'O &ecachimbo&r do Smoking Pipe, feito na mesa de cachimbos.'
         ); item = 'smokingpipe:smoking_pipe' }
     ) }
-    @{ t = 'Create: energia'; g = 'Tecnologia'; icone = 'createaddition:electric_motor'; sub = 'Create Crafts & Additions: eletricidade'; m = @(
+    @{ t = 'Create: energia'; g = 'Tecnologia'; icone = 'createaddition:electric_motor'; sub = 'Create Crafts and Additions: eletricidade'; m = @(
         @{ t = 'Giro vira energia'; marco = $true; sub = 'Alternador'; d = @(
             'O &ealternador&r recebe giro do Create e faz &eenergia elétrica&r (FE).'
             'É a energia que as máquinas do Mekanism e de outros mods usam.'
@@ -2310,8 +2310,8 @@ foreach ($c in $capitulos) {
         if (-not "$($m.t)".Trim()) { $erros += "$($c.t): missao sem titulo" }
         if (-not (@($m.d) -join '').Trim()) { $erros += "$($c.t): '$($m.t)' sem descricao" }
         if ($vistos[$m.t]) { $erros += "$($c.t): titulo repetido '$($m.t)'" }
-        # Codigo de cor e & seguido de letra minuscula (&e, &r); & com maiuscula (Friends&Foes) quebra o texto no jogo.
-        foreach ($txt in @($m.t, $m['sub']) + @($m.d)) { if ("$txt" -cmatch '&[A-Z]') { $erros += "$($c.t): '$($m.t)' tem & seguido de maiuscula: $txt" } }
+        # & so como codigo de cor (&e, &r, &l...). Qualquer outro & (Friends&Foes, "A & B") da "invalid formatting" no jogo.
+        foreach ($txt in @($c.t, $c['sub'], $m.t, $m['sub']) + @($m.d)) { if ("$txt" -cmatch '&(?![0-9a-fk-or])') { $erros += "$($c.t): '$($m.t)' tem & que nao e codigo de cor: $txt" } }
         $vistos[$m.t] = $true
     }
 }
