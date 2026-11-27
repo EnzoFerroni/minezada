@@ -5,7 +5,7 @@ name: Pack
 
 on:
   push:
-    paths: ['modpack/**', 'scripts/montar-pack.ps1', 'scripts/missoes.ps1', '.github/workflows/pack.yml']
+    paths: ['modpack/**', 'scripts/montar-pack.ps1', 'scripts/missoes.ps1', 'docs/missoes.md', 'server-config/config/ftbquests/**', '.github/workflows/pack.yml']
   schedule:
     - cron: '0 12 * * 1'
   workflow_dispatch:
