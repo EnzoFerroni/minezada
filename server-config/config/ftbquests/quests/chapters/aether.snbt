@@ -10,50 +10,169 @@
 	quests: [
 		{
 			id: "6B1A452EC3CA1779"
-			rewards: [{ id: "24983C16DA13C501", type: "xp", xp: 20 }]
+			rewards: [{ id: "24983C16DA13C501", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
 			tasks: [{ dimension: "aether:the_aether", id: "7AC37A600BEC78B5", type: "dimension" }]
 			x: 0d
-			y: 0d
+			y: 7.546875d
 		}
 		{
 			dependencies: ["6B1A452EC3CA1779"]
+			id: "787B744669ADA254"
+			rewards: [{ id: "7AA2C759F7636C29", type: "xp", xp: 20 }]
+			tasks: [{ id: "786C71C9CBC1B199", item: { count: 1, id: "aether:holystone_pickaxe" }, type: "item" }]
+			x: 2.5d
+			y: 3.71875d
+		}
+		{
+			dependencies: ["787B744669ADA254"]
 			id: "0D2620E5B1473973"
 			rewards: [{ id: "3A9B26D3F091CBE6", type: "xp", xp: 20 }]
-			tasks: [{ id: "0DFC71E867B33A79", item: { count: 1, id: "aether:ambrosium_shard" }, type: "item" }]
-			x: 2.5d
-			y: 0d
+			tasks: [{ id: "0DFC71E867B33A79", item: { count: 8, id: "aether:ambrosium_shard" }, type: "item" }]
+			x: 5d
+			y: 2.1875d
 		}
 		{
-			dependencies: ["0D2620E5B1473973"]
+			dependencies: ["787B744669ADA254"]
 			id: "3B79E945D837AB5A"
 			rewards: [{ id: "785F0AAF5E721F3B", type: "xp", xp: 20 }]
-			tasks: [{ id: "5AD55A6F016A8567", item: { count: 1, id: "aether:zanite_gemstone" }, type: "item" }]
+			tasks: [{ advancement: "aether:zanite", criterion: "", id: "5AD55A6F016A8567", type: "advancement" }]
 			x: 5d
-			y: 0d
+			y: 5.25d
 		}
 		{
-			dependencies: ["3B79E945D837AB5A"]
-			id: "3EDEF2172CD2B905"
-			rewards: [{ id: "251AAFF3ECFF3BC3", type: "xp", xp: 20 }]
-			tasks: [{ id: "0D5E657EA065D03A", item: { count: 1, id: "aether:bronze_dungeon_key" }, type: "item" }]
+			dependencies: ["0D2620E5B1473973", "3B79E945D837AB5A"]
+			id: "128C4DC11A13D64B"
+			rewards: [{ id: "08659CCF7C9F1B50", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "aether:craft_altar", criterion: "", id: "7B00B061C9A72588", type: "advancement" }]
 			x: 7.5d
-			y: 0d
+			y: 2.1875d
 		}
 		{
-			dependencies: ["3EDEF2172CD2B905"]
-			id: "4AF87777C727F2E1"
-			rewards: [{ id: "0AB637D3A4839E09", type: "xp", xp: 20 }]
-			tasks: [{ id: "2FD1817A323AFC80", item: { count: 1, id: "aether:silver_dungeon_key" }, type: "item" }]
+			dependencies: ["128C4DC11A13D64B"]
+			id: "45F2948DC467A190"
+			rewards: [{ id: "3FEE192595BCA161", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "aether:enchanted_gravitite", criterion: "", id: "064EBCC06A73875F", type: "advancement" }]
 			x: 10d
+			y: 0.875d
+		}
+		{
+			dependencies: ["128C4DC11A13D64B"]
+			id: "3539EFE299C02384"
+			rewards: [{ id: "4D588BF7FF2ABDBB", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "aether:ice_accessory", criterion: "", id: "03C454D8F1AEE5F5", type: "advancement" }]
+			x: 10d
+			y: 3.5d
+		}
+		{
+			dependencies: ["6B1A452EC3CA1779"]
+			id: "57C811566B034B09"
+			rewards: [{ id: "0BC72EBBEF389098", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "aether:blue_aercloud", criterion: "", id: "5761C613BCE4E5B4", type: "advancement" }]
+			x: 2.5d
+			y: 7.875d
+		}
+		{
+			dependencies: ["57C811566B034B09"]
+			id: "745C241BECCB4616"
+			rewards: [{ id: "2F3BA233DB37ABBA", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "aether:incubate_moa", criterion: "", id: "1B4A81A4A3AFD9D1", type: "advancement" }]
+			x: 5d
+			y: 7d
+		}
+		{
+			dependencies: ["745C241BECCB4616"]
+			id: "2AC1A306495CC5C6"
+			rewards: [{ id: "35C88A2AD68178DA", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "aether:black_moa", criterion: "", id: "1ED6367A524A8149", type: "advancement" }]
+			x: 7.5d
+			y: 7d
+		}
+		{
+			dependencies: ["57C811566B034B09"]
+			id: "4D3D7F2DF8702746"
+			rewards: [{ id: "34083B8A1DC50E8B", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "aether:mount_phyg", criterion: "", id: "19C1AE550C137A7C", type: "advancement" }]
+			x: 5d
+			y: 8.75d
+		}
+		{
+			dependencies: ["45F2948DC467A190"]
+			id: "5B24BEC0B570ADC2"
+			rewards: [{ id: "07370B00E4D3D548", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ advancement: "aether:bronze_dungeon", criterion: "", id: "5E78B51807AEFF6A", type: "advancement" }]
+			x: 12.5d
+			y: 0.875d
+		}
+		{
+			dependencies: ["5B24BEC0B570ADC2"]
+			id: "242726B82D0C75B9"
+			rewards: [{ id: "2C19C10C88456A7A", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "4C6F4214EF5E4C8F", item: { count: 1, id: "aether:hammer_of_kingbdogz" }, type: "item" }]
+			x: 15d
 			y: 0d
 		}
 		{
-			dependencies: ["4AF87777C727F2E1"]
-			id: "2696EF3E0D6E89B7"
-			rewards: [{ id: "40A7E62E3D4A4A6B", type: "xp", xp: 20 }]
-			tasks: [{ id: "64450036483C1F2E", item: { count: 1, id: "aether:gold_dungeon_key" }, type: "item" }]
+			dependencies: ["5B24BEC0B570ADC2"]
+			id: "42E0EBD20C241D12"
+			rewards: [{ id: "5BD5A67B643B1F5A", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ advancement: "aether:silver_dungeon", criterion: "", id: "57270CF507BFF78E", type: "advancement" }]
+			x: 15d
+			y: 1.75d
+		}
+		{
+			dependencies: ["42E0EBD20C241D12"]
+			id: "12F7B2FDB6EBBA4D"
+			rewards: [{ id: "792250EAA340CB57", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ advancement: "aether:gold_dungeon", criterion: "", id: "070F4AE929E83EF6", type: "advancement" }]
+			x: 17.5d
+			y: 1.75d
+		}
+		{
+			dependencies: ["12F7B2FDB6EBBA4D"]
+			id: "31D66D09635F63A8"
+			rewards: [{ id: "75869BD3F7091D2F", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "aether:phoenix_armor", criterion: "", id: "3E308E718C663D17", type: "advancement" }]
+			x: 20d
+			y: 1.75d
+		}
+		{
+			dependencies: ["6B1A452EC3CA1779"]
+			id: "5B4DF41273D3DDCA"
+			rewards: [{ id: "78F379F2967AF268", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "deep_aether:explore_aether", criterion: "", id: "3419AA3E6B418416", type: "advancement" }]
+			x: 2.5d
+			y: 11.375d
+		}
+		{
+			dependencies: ["5B4DF41273D3DDCA", "5B24BEC0B570ADC2"]
+			id: "3F1D9C87FE3640B4"
+			rewards: [{ id: "5C445961A48E4DCA", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "deep_aether:brass_dungeon", criterion: "", id: "384E11BB2C495E54", type: "advancement" }]
+			x: 15d
+			y: 10.5d
+		}
+		{
+			dependencies: ["5B4DF41273D3DDCA", "45F2948DC467A190"]
+			id: "15E59D0857A99A08"
+			rewards: [{ id: "0577192C8088C56A", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "deep_aether:stratus_armor", criterion: "", id: "6235AADCB4D90AF1", type: "advancement" }]
 			x: 12.5d
-			y: 0d
+			y: 12.25d
 		}
 	]
 }
