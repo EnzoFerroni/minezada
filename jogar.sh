@@ -2,6 +2,8 @@
 # Instala/atualiza o Minezada e abre o jogo. Rode no Terminal (serve para instalar, atualizar e reparar):
 #   curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.sh | bash
 set -euo pipefail
+# No CI o GITHUB_TOKEN evita o limite de acessos da API (o jogador nao tem e nao precisa).
+gh_auth=(); [ -n "${GITHUB_TOKEN:-}" ] && gh_auth=(-H "Authorization: Bearer $GITHUB_TOKEN")
 # --abrir: modo do atalho Minezada, que baixa este script a cada abertura. Sem perguntas; so refaz o launcher e a
 # instancia se mudaram.
 atalho=0; [ "${1:-}" != "--abrir" ] || atalho=1
@@ -57,7 +59,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
     for d in "/Applications/Prism Launcher.app" "$HOME/Applications/Prism Launcher.app"; do [ -d "$d" ] && app="$d"; done
     if [ -z "$app" ]; then
       echo "Instalando o Prism Launcher..."
-      url="$(curl -fsSL https://api.github.com/repos/PrismLauncher/PrismLauncher/releases/latest \
+      url="$(curl -fsSL ${gh_auth[@]+"${gh_auth[@]}"} https://api.github.com/repos/PrismLauncher/PrismLauncher/releases/latest \
         | grep -o 'https://[^"]*PrismLauncher-macOS-[0-9.]*\.zip' | head -n 1)" || true
       [ -n "$url" ] || { echo "ERRO: o GitHub nao respondeu (limite de acessos da rede). Espere uns minutos e rode de novo."; exit 1; }
       baixar_prism_mac "$url" "$HOME/Applications"
@@ -97,7 +99,7 @@ else
     prism="$lx_dir/PrismLauncher.AppImage"
     if [ ! -f "$prism" ]; then
       echo "Instalando o Prism Launcher..."
-      url="$(curl -fsSL https://api.github.com/repos/PrismLauncher/PrismLauncher/releases/latest \
+      url="$(curl -fsSL ${gh_auth[@]+"${gh_auth[@]}"} https://api.github.com/repos/PrismLauncher/PrismLauncher/releases/latest \
         | grep -o "https://[^\"]*PrismLauncher-Linux-$lx_arch\.AppImage\"" | head -n 1 | tr -d '"')" || true
       [ -n "$url" ] || { echo "ERRO: o GitHub nao respondeu (limite de acessos da rede). Espere uns minutos e rode de novo."; exit 1; }
       mkdir -p "$lx_dir"

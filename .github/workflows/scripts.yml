@@ -47,6 +47,8 @@ jobs:
         run: bash scripts/testes/jogar.sh
       - name: jogar.sh no Linux baixa e roda os AppImages de verdade
         if: runner.os == 'Linux'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: bash scripts/testes/jogar-appimage.sh
       # /bin/bash: no macOS e o 3.2, o mesmo que roda o iniciar.command (o do Homebrew pode vir antes no PATH).
       - name: Desligar o servidor (stop, Ctrl+C, janela fechada)
