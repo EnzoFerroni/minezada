@@ -9,7 +9,8 @@
 # (engrenagem maior, mais XP), opcional = $true (nao conta para completar o capitulo), xp = XP do premio
 # (padrao 20, marco 100). depois = titulo (ou lista de titulos) de que a missao depende; sem depois, ela depende
 # da anterior. O livro e desenhado em arvore a partir disso. Texto aceita cores do jogo (&e amarelo, &a verde, &b azul, &c vermelho, &l negrito,
-# &r volta ao normal) e "{@pagebreak}" sozinho em uma linha para comecar outra pagina.
+# &r volta ao normal) e "{@pagebreak}" sozinho em uma linha para comecar outra pagina. mod = slug (ou lista) do mods.txt que a missao
+# ensina, para missao sem id do mod (teclas, mecanicas); conta na cobertura em docs/missoes.md.
 # Este arquivo tem BOM (UTF-8): os textos podem ter acento.
 $ErrorActionPreference = 'Stop'
 $root = Split-Path $PSScriptRoot -Parent
@@ -38,7 +39,7 @@ $capitulos = @(
             ''
             '&7Clique em &fConcluir&7 para marcar esta como lida.'
         ) }
-        @{ t = 'Receitas: R e U'; depois = 'Bem-vindo ao Minezada'; sub = 'A tecla mais importante'; d = @(
+        @{ t = 'Receitas: R e U'; mod = @('jei'); depois = 'Bem-vindo ao Minezada'; sub = 'A tecla mais importante'; d = @(
             'O pack tem centenas de itens novos. Ninguém decora receita: use o &eJEI&r, a lista de itens na direita do inventário.'
             ''
             '&eR&r com o mouse em cima de um item: mostra &acomo fazer&r.'
@@ -46,7 +47,7 @@ $capitulos = @(
             ''
             'A barra de busca embaixo da lista aceita nome em português ou inglês, e entende erro de digitação. Comece o texto com &e@&r para ver os itens de um mod (exemplo: &e@create&r).'
         ) }
-        @{ t = 'O que é isso?'; depois = 'Bem-vindo ao Minezada'; sub = 'Jade'; d = @(
+        @{ t = 'O que é isso?'; mod = @('jade', 'jade-addons-forge'); depois = 'Bem-vindo ao Minezada'; sub = 'Jade'; d = @(
             'Mire em qualquer bloco ou bicho: o nome, o mod de onde ele vem e informações úteis aparecem no &etopo da tela&r.'
             ''
             'Serve para saber a vida de um bicho, quanto falta para uma planta crescer ou o que tem dentro de uma máquina.'
@@ -56,7 +57,7 @@ $capitulos = @(
             ''
             'Dica: segure a tecla &eao lado do 1&r (acento grave) enquanto quebra um tronco para derrubar a árvore inteira de uma vez. Funciona com minério também (&eFTB Ultimine&r).'
         ); item = 'minecraft:crafting_table'; p = 'minecraft:bread'; n = 4 }
-        @{ t = 'Mapa'; depois = 'Bem-vindo ao Minezada'; sub = 'Nunca mais se perca'; d = @(
+        @{ t = 'Mapa'; mod = @('xaeros-minimap', 'xaeros-world-map'); depois = 'Bem-vindo ao Minezada'; sub = 'Nunca mais se perca'; d = @(
             'O &eminimapa&r fica no canto da tela. A tecla &eM&r abre o mapa do mundo, com tudo que você já explorou.'
             ''
             'A tecla &eN&r cria um ponto marcado (waypoint) onde você está. Marque a sua casa!'
@@ -75,7 +76,7 @@ $capitulos = @(
             ''
             'Faça a sua e coloque perto de casa: assim você sempre volta rápido.'
         ); item = 'waystones:waystone'; p = 'minecraft:ender_pearl'; n = 2 }
-        @{ t = 'Se você morrer'; depois = 'Bem-vindo ao Minezada'; d = @(
+        @{ t = 'Se você morrer'; mod = @('corpse'); depois = 'Bem-vindo ao Minezada'; d = @(
             'Morreu? Seus itens &enão somem&r: ficam guardados em um &ecorpo&r no lugar da morte.'
             ''
             'Volte lá e clique no corpo para pegar tudo. O lugar aparece no mapa.'
@@ -89,12 +90,12 @@ $capitulos = @(
             ''
             'O capítulo &eCozinha e fazenda&r explica tudo.'
         ); item = 'farmersdelight:cooking_pot'; p = 'minecraft:golden_carrot'; n = 4 }
-        @{ t = 'Carregar baús e bichos'; depois = 'Bem-vindo ao Minezada'; sub = 'Carry On'; opcional = $true; d = @(
+        @{ t = 'Carregar baús e bichos'; mod = @('carry-on'); depois = 'Bem-vindo ao Minezada'; sub = 'Carry On'; opcional = $true; d = @(
             'Com as &emãos vazias&r, segure &eShift&r e clique com o botão direito em um baú: você carrega ele inteiro, com os itens dentro.'
             ''
             'Funciona com bichos também. Ótimo para mudar de casa.'
         ) }
-        @{ t = 'Avisar os amigos'; depois = 'Mapa'; sub = 'Ping Wheel'; opcional = $true; d = @(
+        @{ t = 'Avisar os amigos'; mod = @('ping-wheel'); depois = 'Mapa'; sub = 'Ping Wheel'; opcional = $true; d = @(
             'Clique com o &ebotão do meio do mouse&r para marcar um ponto que todos veem: "olha aqui", "perigo", "vem cá".'
         ) }
         @{ t = 'Jogo lento?'; depois = 'Bem-vindo ao Minezada'; sub = 'Perfis de gráfico'; opcional = $true; d = @(
@@ -104,7 +105,7 @@ $capitulos = @(
             ''
             'Tecla &eK&r liga e desliga o shader.'
         ) }
-        @{ t = 'Achar uma tecla'; depois = 'Bem-vindo ao Minezada'; sub = 'Controles'; opcional = $true; d = @(
+        @{ t = 'Achar uma tecla'; mod = @('controlling'); depois = 'Bem-vindo ao Minezada'; sub = 'Controles'; opcional = $true; d = @(
             'Em &eOpções > Controles > Teclas&r tem uma &abusca&r: digite o nome da ação (ou do mod) para ver e trocar a tecla.'
             ''
             'Tecla em vermelho está em conflito com outra.'
@@ -421,7 +422,7 @@ $capitulos = @(
         ); item = 'create:schematicannon'; p = 'create:empty_schematic'; n = 4 }
     ) }
     @{ t = 'Mochila e baús'; g = 'Começo'; icone = 'sophisticatedbackpacks:backpack'; sub = 'Guardar muito e achar tudo rápido'; m = @(
-        @{ t = 'Arrumar o inventário'; sub = 'Mouse Tweaks e Inventory Essentials'; d = @(
+        @{ t = 'Arrumar o inventário'; mod = @('mouse-tweaks', 'inventory-essentials'); sub = 'Mouse Tweaks e Inventory Essentials'; d = @(
             'Truques que economizam muito tempo:'
             '&eRoda do mouse&r em cima de um item: passa ele para o outro lado (baú e inventário).'
             '&eSegure o botão direito e arraste&r: espalha um item por várias casas.'
@@ -514,7 +515,7 @@ $capitulos = @(
         ); item = 'toms_storage:wireless_terminal' }
     ) }
     @{ t = 'Cozinha e fazenda'; g = 'Começo'; icone = 'farmersdelight:cooking_pot'; sub = 'Comer bem deixa você mais forte'; m = @(
-        @{ t = 'Variedade dá vida'; marco = $true; sub = 'Spice of Life'; d = @(
+        @{ t = 'Variedade dá vida'; mod = @('cf:277616'); marco = $true; sub = 'Spice of Life'; d = @(
             'Comer sempre a mesma coisa não compensa: cada comida &enova&r que você prova pela primeira vez dá &acorações extras para sempre&r.'
             ''
             'Passe o mouse em uma comida: o texto diz se você já comeu. Segure uma comida para ver na barra de fome quanto ela enche (&eAppleSkin&r).'
@@ -641,7 +642,7 @@ $capitulos = @(
             ''
             'O &easpersor&r embaixo de um cano com água molha a plantação. Segure &eW&r em cima das peças para ver a animação.'
         ); item = 'sliceanddice:slicer'; p = 'sliceanddice:sprinkler'; n = 2 }
-        @{ t = 'Cozinha automática'; depois = 'Cortadora do Create'; opcional = $true; sub = 'Create: Central Kitchen'; d = @(
+        @{ t = 'Cozinha automática'; mod = @('create-central-kitchen'); depois = 'Cortadora do Create'; opcional = $true; sub = 'Create: Central Kitchen'; d = @(
             'Com o &eCentral Kitchen&r, as máquinas do Create (braço mecânico, depositante) cozinham as receitas do Farmer''s Delight sozinhas.'
             ''
             'Um &equeimador de blaze&r embaixo da panela acelera o cozimento. Segure &eW&r nos itens para ver como montar.'
@@ -653,7 +654,7 @@ $capitulos = @(
         ); item = 'mysticalagriculture:inferium_essence'; q = 8; p = 'mysticalagriculture:prosperity_seed_base'; n = 2 }
     ) }
     @{ t = 'Construir'; g = 'Começo'; icone = 'mcwroofs:oak_roof'; sub = 'Casas bonitas com móveis de verdade'; m = @(
-        @{ t = 'Construir sem sofrer'; marco = $true; sub = 'Effortless Building'; d = @(
+        @{ t = 'Construir sem sofrer'; mod = @('effortless-building'); marco = $true; sub = 'Effortless Building'; d = @(
             'Segure &eAlt&r para abrir o menu de construção. Escolha uma forma: &elinha, parede, chão, cubo, círculo&r.'
             ''
             'Com um bloco na mão, clique onde começa, mire onde termina e clique de novo: a forma inteira aparece de uma vez. Funciona no sobrevivência, gastando os blocos do inventário.'
@@ -796,7 +797,7 @@ $capitulos = @(
         @{ t = 'Troféu de caça'; depois = 'Dicionário animal'; opcional = $true; sub = 'Wilder Nature'; d = @(
             'O &eWilder Nature&r traz bisões, cervos e lobos-vermelhos. Os troféus enfeitam a parede.'
         ); item = 'wildernature:deer_trophy' }
-        @{ t = 'Dinossauros'; depois = 'Dicionário animal'; opcional = $true; sub = 'Archie''s Dinosaurs'; d = @(
+        @{ t = 'Dinossauros'; mod = @('archies-dinosaurs'); depois = 'Dicionário animal'; opcional = $true; sub = 'Archie''s Dinosaurs'; d = @(
             'Dinossauros vivem soltos pelo mundo, dos herbívoros grandes aos predadores. &cCuidado&r com os carnívoros.'
             ''
             '&7Clique em Concluir quando vir o primeiro.'
@@ -1333,7 +1334,7 @@ $capitulos = @(
         ); dim = 'ad_astra:glacio' }
     ) }
     @{ t = 'Utilidades'; g = 'Começo'; icone = 'justhammers:iron_hammer'; sub = 'Ferramentas e truques que facilitam a vida'; m = @(
-        @{ t = 'Minerar em bloco'; marco = $true; sub = 'FTB Ultimine'; d = @(
+        @{ t = 'Minerar em bloco'; mod = @('cf:386134'); marco = $true; sub = 'FTB Ultimine'; d = @(
             'Segure a &etecla ao lado do 1&r e quebre um bloco: todos os blocos iguais grudados vêm junto (até 64). Funciona com minério, tronco e o que mais quiser.'
             ''
             'Um contorno mostra o que vai quebrar. Com a tecla segurada, &erole o mouse&r para trocar o formato (veio, túnel, área).'
@@ -1350,12 +1351,12 @@ $capitulos = @(
             ''
             'Dá para melhorar uma fornalha já colocada com os &eupgrades&r do mod, sem perder o que está dentro.'
         ); item = 'ironfurnaces:iron_furnace'; p = 'minecraft:coal'; n = 16 }
-        @{ t = 'Altura dos minérios'; depois = 'Minerar em bloco'; sub = 'Just Enough Resources'; d = @(
+        @{ t = 'Altura dos minérios'; mod = @('just-enough-resources-jer'); depois = 'Minerar em bloco'; sub = 'Just Enough Resources'; d = @(
             'No JEI, aperte &eU&r em cima de um minério: uma aba mostra &aem que altura ele aparece mais&r.'
             ''
             'Em cima de um bicho ou monstro, mostra o que ele deixa cair.'
         ) }
-        @{ t = 'Encantamentos explicados'; depois = 'Minerar em bloco'; sub = 'Enchantment Descriptions'; d = @(
+        @{ t = 'Encantamentos explicados'; mod = @('enchantment-descriptions'); depois = 'Minerar em bloco'; sub = 'Enchantment Descriptions'; d = @(
             'Passe o mouse em um livro encantado: aparece o que &ecada encantamento faz&r.'
             ''
             'A bigorna não tem mais o limite de "Caro demais" (&eEasy Anvils&r).'
@@ -1365,7 +1366,7 @@ $capitulos = @(
             ''
             'A &erede&r faz o contrário: dorme de dia.'
         ); item = 'comforts:sleeping_bag_white' }
-        @{ t = 'Zoom'; depois = 'Minerar em bloco'; sub = 'Ok Zoomer'; d = @(
+        @{ t = 'Zoom'; mod = @('ok-zoomer'); depois = 'Minerar em bloco'; sub = 'Ok Zoomer'; d = @(
             'Segure &eC&r para dar zoom. Role o mouse para ajustar.'
         ) }
         @{ t = 'Tocha na mão'; depois = 'Minerar em bloco'; sub = 'Dynamic Torches'; d = @(
@@ -1376,7 +1377,7 @@ $capitulos = @(
             ''
             'Esses baús têm um brilho diferente.'
         ) }
-        @{ t = 'Trocar ofertas do aldeão'; depois = 'Minerar em bloco'; opcional = $true; sub = 'Trade Cycling'; d = @(
+        @{ t = 'Trocar ofertas do aldeão'; mod = @('trade-cycling'); depois = 'Minerar em bloco'; opcional = $true; sub = 'Trade Cycling'; d = @(
             'Aldeão com ofertas ruins? Na tela de troca tem um &ebotão&r que sorteia ofertas novas, enquanto ele ainda não negociou com ninguém.'
         ) }
         @{ t = 'Netherite melhor'; depois = 'Martelo'; sub = 'Advanced Netherite'; d = @(
@@ -1392,7 +1393,7 @@ $capitulos = @(
         @{ t = 'Portal gun'; depois = 'Minerar em bloco'; opcional = $true; sub = 'Aperture Innovations'; d = @(
             'A &eportal gun&r do jogo Portal: atire um portal &bazul&r e um &6laranja&r e atravesse de um para o outro.'
         ); item = 'aperture_innovations:portal_gun' }
-        @{ t = 'Fumar'; depois = 'Minerar em bloco'; opcional = $true; sub = 'Smoking Pipe e Tobacconist'; d = @(
+        @{ t = 'Fumar'; mod = @('cf:1410391', 'cf:896915', 'ciggycraft'); depois = 'Minerar em bloco'; opcional = $true; sub = 'Smoking Pipe e Tobacconist'; d = @(
             'Plante tabaco, seque e fume no cachimbo. É só diversão: dá um pouco de experiência.'
         ) }
     ) }
@@ -1483,7 +1484,7 @@ $capitulos = @(
             'A &ecortadora&r segura uma faca e corta comida no depósito: as receitas da tábua do Farmer''s Delight sozinhas.'
             'O &eregador&r molha a plantação e faz crescer mais rápido.'
         ); item = 'sliceanddice:slicer' }
-        @{ t = 'Cozinha automática'; sub = 'Create Central Kitchen'; depois = 'Cortadora'; opcional = $true; d = @(
+        @{ t = 'Cozinha automática'; mod = @('create-central-kitchen'); sub = 'Create Central Kitchen'; depois = 'Cortadora'; opcional = $true; d = @(
             'Com o Central Kitchen, &ebicos&r, &ebraços&r e &edeployers&r cozinham as receitas da panela e da frigideira dos mods de comida.'
             '&7Clique em Concluir quando montar algo.'
         ) }
@@ -1510,11 +1511,11 @@ $capitulos = @(
         @{ t = 'Navegador'; sub = 'Create Railways Navigator'; solta = $true; opcional = $true; d = @(
             'O &enavegador&r acha a rota de trem entre duas estações, com horários.'
         ); item = 'createrailwaysnavigator:navigator' }
-        @{ t = 'Terminal no trem'; sub = 'Contraption Terminals'; depois = 'Navegador'; opcional = $true; d = @(
+        @{ t = 'Terminal no trem'; mod = @('create-contraption-terminals'); sub = 'Contraption Terminals'; depois = 'Navegador'; opcional = $true; d = @(
             'O terminal do &eTom''s Storage&r funciona dentro de trens e máquinas que andam.'
             '&7Clique em Concluir quando testar.'
         ) }
-        @{ t = 'Dirigíveis'; sub = 'Create Aeronautics'; solta = $true; marco = $true; d = @(
+        @{ t = 'Dirigíveis'; mod = @('create-aeronautics'); sub = 'Create Aeronautics'; solta = $true; marco = $true; d = @(
             'Com o Aeronautics, construções do Create &avoam&r: dirigíveis, aviões, barcos e carros.'
             'Veja os blocos novos no JEI e o Ponder (&eW&r) de cada um.'
             '&7Clique em Concluir quando montar seu primeiro veículo.'
@@ -1948,3 +1949,67 @@ foreach ($c in $capitulos) {
 # pt_br para o jogo em portugues; en_us igual, para quem trocou o idioma nao ver chaves no lugar do texto.
 foreach ($l in 'pt_br', 'en_us') { [IO.File]::WriteAllText((Join-Path $destino "lang/$l.snbt"), "{`n$($lang -join "`n")`n}`n", $utf8) }
 Write-Host "$($capitulos.Count) capitulos, $(@($capitulos | ForEach-Object { $_.m }).Count) missoes -> $destino"
+
+# Cobertura: quantas missoes cada mod do mods.txt tem, em docs/missoes.md. Missao conta para um mod quando
+# um id dela (item, bicho, estrutura, bioma, dimensao, conquista) e do mod, ou quando ela tem mod = 'slug'.
+# Mod que nao precisa de missao fica em $semMissao com o motivo. Mod novo no mods.txt aparece como "falta".
+$semMissao = @{
+    'desempenho' = 'sodium', 'lithium', 'ferrite-core', 'modernfix', 'immediatelyfast', 'entityculling', 'moreculling', 'createbetterfps', 'cf:1091339', 'clumps', 'yeetus-experimentus', 'c2me-neoforge', 'noisium'
+    'visual ou som' = 'iris', 'distanthorizons', 'fresh-animations', 'entity-model-features', 'entity-texture-features', '3dskinlayers', 'ambientsounds', 'sound-physics-remastered', 'not-enough-animations', 'cubes-without-borders', 'chat-heads', 'pick-up-notifier'
+    'servidor, login ou skin' = 'modflared', 'mixauth', 'skinrestorer', 'customskinloader', 'crash-assistant'
+    'biblioteca' = 'cf:404465', 'cf:404468', 'cf:885449', 'cf:943925', 'cf:889915'
+    'o proprio livro' = 'cf:289412'
+    'funciona sozinho ou so muda a tela' = 'bettersearch', 'appleskin', 'better-advancements', 'yungs-menu-tweaks', 'polymorph', 'travelers-titles', 'dynamic-torches', 'tectonic', 'yungs-bridges', 'yungs-extras', 'easy-anvils'
+}
+$motivo = @{}; foreach ($k in $semMissao.Keys) { foreach ($s in $semMissao[$k]) { $motivo[$s] = $k } }
+if (Test-Path $jarsDir) {
+    # slug -> jar (sha1 do .pw.toml) -> modIds do neoforge.mods.toml (com os mods embutidos).
+    $pwDir = Join-Path $root 'modpack/pack'
+    $porCf = @{}; $porSlug = @{}
+    foreach ($f in Get-ChildItem $pwDir -Recurse -Filter *.pw.toml) {
+        $t = [IO.File]::ReadAllText($f.FullName)
+        $sha = [regex]::Match($t, 'hash = "([0-9a-f]{40})"').Groups[1].Value
+        $porSlug[$f.Name -replace '\.pw\.toml$', ''] = $sha
+        $cf = [regex]::Match($t, 'project-id = (\d+)'); if ($cf.Success) { $porCf["cf:$($cf.Groups[1].Value)"] = $sha }
+    }
+    $modIds = @{}
+    foreach ($sha in @($porSlug.Values) + @($porCf.Values) | Sort-Object -Unique) {
+        $j = Join-Path $jarsDir "$sha.jar"; if (-not (Test-Path $j)) { continue }
+        $z = [IO.Compression.ZipFile]::OpenRead($j); $ids = @()
+        foreach ($e in $z.Entries | Where-Object { $_.FullName -match '^META-INF/(neoforge\.)?mods\.toml$' }) {
+            $r = New-Object IO.StreamReader $e.Open(); $ids += [regex]::Matches($r.ReadToEnd(), 'modId\s*=\s*"([^"]+)"') | ForEach-Object { $_.Groups[1].Value }; $r.Dispose() }
+        # Namespaces dos assets e data contam tambem (mod com id diferente do namespace, como o Aeronautics).
+        $ids += $z.Entries | ForEach-Object { if ($_.FullName -match '^(?:assets|data)/([a-z0-9_.-]+)/') { $matches[1] } }
+        $z.Dispose()
+        $modIds[$sha] = @($ids | Where-Object { $_ -notin 'minecraft', 'neoforge', 'c', 'forge' } | Sort-Object -Unique)
+    }
+    $linhas = @(); $cat = ''; $resumo = @{ falta = 0; pouco = 0; ok = 0; nao = 0 }
+    foreach ($l in [IO.File]::ReadAllLines((Join-Path $root 'modpack/mods.txt'))) {
+        if ($l -match '^## (.+)') { $cat = $matches[1]; continue }
+        if ($cat -match '^(Pacotes de recursos|Shaders|Desempenho)') { $resumo.nao++; continue }
+        if ($l -match '^\s*(#|$)') { continue }
+        $slug, $desc = $l -split '\s*\|\s*', 2; $slug = $slug.Trim()
+        $sha = if ($slug -like 'cf:*') { $porCf[$slug] } else { $porSlug[$slug] }
+        # Namespace usado por outro mod do pack (ex.: create) so conta para o dono do jar.
+        $ns = if ($sha -and $modIds[$sha]) { $modIds[$sha] } else { @() }
+        if ($slug -ne 'create') { $ns = @($ns | Where-Object { $_ -ne 'create' }) }
+        $caps = @{}; $n = 0
+        foreach ($c in $capitulos) { foreach ($m in $c.m) {
+            $ids = @($m['item'], $m['mata'], $m['estrutura'], $m['bioma'], $m['dim'], $m['conquista']) | Where-Object { $_ }
+            if (@($m['mod']) -contains $slug -or @($ids | Where-Object { $ns -contains $_.Split(':')[0] }).Count) { $n++; $caps[$c.t] = 1 } } }
+        $st = if ($motivo[$slug] -and $n -eq 0) { $resumo.nao++; "nao precisa ($($motivo[$slug]))" } elseif ($n -eq 0) { $resumo.falta++; '**falta**' } elseif ($n -lt 5) { $resumo.pouco++; 'pouco' } else { $resumo.ok++; 'ok' }
+        $linhas += "| $cat | ``$slug`` | $n | $st | $(($caps.Keys | Sort-Object) -join ', ') |"
+    }
+    $doc = @(
+        '# Cobertura do livro de missoes'
+        ''
+        'Gerado pelo `scripts/missoes.ps1`. Nao edite a mao: rode o script depois de mexer no livro ou no `mods.txt`.'
+        ''
+        "$($capitulos.Count) capitulos, $(@($capitulos | ForEach-Object { $_.m }).Count) missoes. Mods: $($resumo.ok) ok (5 ou mais missoes), $($resumo.pouco) com pouco (1 a 4), $($resumo.falta) faltando, $($resumo.nao) sem necessidade de missao."
+        ''
+        '| Categoria | Mod | Missoes | Status | Capitulos |'
+        '|---|---|---|---|---|'
+    ) + $linhas
+    [IO.File]::WriteAllText((Join-Path $root 'docs/missoes.md'), ($doc -join "`n") + "`n", (New-Object Text.UTF8Encoding $false))
+    Write-Host "Cobertura: $($resumo.ok) ok, $($resumo.pouco) pouco, $($resumo.falta) falta, $($resumo.nao) nao precisa -> docs/missoes.md"
+}
