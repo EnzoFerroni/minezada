@@ -192,7 +192,7 @@
 			id: "16658B7CF020A208"
 			rewards: [{ id: "27B88A93A3BC807A", type: "xp", xp: 20 }]
 			optional: true
-			tasks: [{ id: "654F5F080F037A06", item: { count: 1, id: "aperture_innovations:weighted_companion_cube" }, type: "item" }]
+			tasks: [{ id: "654F5F080F037A06", type: "checkmark" }]
 			x: 4d
 			y: 9d
 		}

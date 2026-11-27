@@ -1698,9 +1698,11 @@ $capitulos = @(
         @{ t = 'Botas de queda longa'; depois = 'Portal gun'; d = @(
             'As &ebotas de queda longa&r tiram o dano de queda. Combinam com o portal gun.'
         ); item = 'aperture_innovations:long_fall_boots' }
-        @{ t = 'Cubo companheiro'; depois = 'Portal gun'; opcional = $true; d = @(
-            'O &ecubo companheiro&r com coração. Ele não fala, mas é fiel.'
-        ); item = 'aperture_innovations:weighted_companion_cube' }
+        @{ t = 'Cubo companheiro'; mod = @('aperture-innovations'); depois = 'Portal gun'; opcional = $true; d = @(
+            'Faça um &ecubo de armazenamento&r (receita no JEI). O cubo tem variantes, como o &ecubo companheiro&r com coração.'
+            ''
+            '&7Clique em Concluir.'
+        ) }
         @{ t = 'Mesa do cachimbo'; depois = 'Fumar'; d = @(
             'A &emesa de cachimbos&r faz cachimbos do Smoking Pipe. A &efolha da sabedoria&r dá experiência ao fumar.'
         ); item = 'smokingpipe:pipemaker_table' }
