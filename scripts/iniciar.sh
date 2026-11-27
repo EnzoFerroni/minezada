@@ -154,11 +154,13 @@ echo '{"showWelcomeMessage": false, "showBuildModeHint": false}' > "$server/worl
 echo "Iniciando servidor com $RAM de RAM. Para desligar e salvar: digite 'stop', aperte Ctrl+C ou feche esta janela."
   # Flags do Aikar: coleta de lixo G1 ajustada para servidor de Minecraft (menos travadas).
   flags="-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1"
+  inicio="$server/logs/.inicio-sessao"; mkdir -p "$server/logs"; touch "$inicio"
   rodar_servidor "$JAVA" "-Xms$RAM" "-Xmx$RAM" $flags "@libraries/net/neoforged/neoforge/$neo/unix_args.txt" nogui
 
   kill $tunel_pid $cf_pid 2>/dev/null || true
   avisar_selo desligou
 
+  [ -z "$SYNC_DIR" ] || guardar_logs "$inicio" || echo "Nao copiei os logs da sessao para o Drive." >&2
   [ -z "$SYNC_DIR" ] || enviar_mundo
 }
 
@@ -257,6 +259,22 @@ foto_do_mundo() {
   # Copia de seguranca no Drive (backups/sessao-atual.tar.gz): se a maquina cair, outro host ainda tem a sessao.
   mkdir -p "$SYNC_DIR/backups" && cp -f "$foto" "$SYNC_DIR/backups/sessao-atual.tar.gz" || echo "Nao copiei a sessao para o Drive." >&2
   "${JAVA:-java}" "$(dirname "${BASH_SOURCE[0]}")/MundoGithub.java" "$foto" "$SYNC_DIR" > /dev/null || true
+}
+
+# Logs da sessao no Drive: latest.log, erros.txt, crash reports e hs_err da sessao (sem inicio: ultimas 12 h).
+guardar_logs() {
+  local destino f
+  destino="$SYNC_DIR/logs/$(date +%Y%m%d-%H%M)"
+  local novo=(-newer "$1"); [ -f "$1" ] || novo=(-mmin -720)
+  mkdir -p "$destino" || return 1
+  if [ -f "$server/logs/latest.log" ]; then
+    cp "$server/logs/latest.log" "$destino/" || true
+    grep -E '/(WARN|ERROR|FATAL)\]' "$server/logs/latest.log" > "$destino/erros.txt" || true
+  fi
+  find "$server/crash-reports" "$server" -maxdepth 1 -type f \( -path "$server/crash-reports/*" -o -name 'hs_err_pid*.log' \) "${novo[@]}" 2>/dev/null |
+    while read -r f; do cp "$f" "$destino/" || true; done
+  ls -1d "$SYNC_DIR"/logs/*/ 2>/dev/null | sort -r | tail -n +21 | while read -r f; do rm -rf "$f"; done
+  return 0
 }
 
 # Envia o mundo para a pasta sincronizada, guarda os 5 ultimos e libera a trava.
