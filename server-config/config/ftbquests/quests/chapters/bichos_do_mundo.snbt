@@ -74,9 +74,9 @@
 		}
 		{
 			dependencies: ["42B8E44EF1E15B98"]
-			id: "45C7AF094B13C377"
-			rewards: [{ id: "1A3FE4AB59AB17FC", type: "xp", xp: 20 }]
-			tasks: [{ id: "64C9084D36574D44", item: { count: 1, id: "wildernature:animal_compendium" }, type: "item" }]
+			id: "100545150409230F"
+			rewards: [{ id: "714CAD49C31BCA8D", type: "xp", xp: 20 }]
+			tasks: [{ id: "0E506425EFF151E6", item: { count: 1, id: "wildernature:venison" }, type: "item" }]
 			x: 4d
 			y: 3.5d
 			hide_dependency_lines: true
