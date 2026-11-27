@@ -1972,12 +1972,15 @@ if (Test-Path $jarsDir) {
         $porSlug[$f.Name -replace '\.pw\.toml$', ''] = $sha
         $cf = [regex]::Match($t, 'project-id = (\d+)'); if ($cf.Success) { $porCf["cf:$($cf.Groups[1].Value)"] = $sha }
     }
-    $modIds = @{}
+    $modIds = @{}; $itens = @{}
     foreach ($sha in @($porSlug.Values) + @($porCf.Values) | Sort-Object -Unique) {
         $j = Join-Path $jarsDir "$sha.jar"; if (-not (Test-Path $j)) { continue }
-        $z = [IO.Compression.ZipFile]::OpenRead($j); $ids = @()
+        $z = [IO.Compression.ZipFile]::OpenRead($j); $ids = @(); $qtd = 0
         foreach ($e in $z.Entries | Where-Object { $_.FullName -match '^META-INF/(neoforge\.)?mods\.toml$' }) {
             $r = New-Object IO.StreamReader $e.Open(); $ids += [regex]::Matches($r.ReadToEnd(), 'modId\s*=\s*"([^"]+)"') | ForEach-Object { $_.Groups[1].Value }; $r.Dispose() }
+        foreach ($e in $z.Entries | Where-Object { $_.FullName -match '^assets/[^/]+/lang/en_us\.json$' }) {
+            $r = New-Object IO.StreamReader $e.Open(); $qtd += [regex]::Matches($r.ReadToEnd(), '"(?:item|block)\.[a-z0-9_]+\.[a-z0-9_]+"\s*:').Count; $r.Dispose() }
+        $itens[$sha] = $qtd
         # Namespaces dos assets e data contam tambem (mod com id diferente do namespace, como o Aeronautics).
         $ids += $z.Entries | ForEach-Object { if ($_.FullName -match '^(?:assets|data)/([a-z0-9_.-]+)/') { $matches[1] } }
         $z.Dispose()
@@ -1997,18 +2000,23 @@ if (Test-Path $jarsDir) {
         foreach ($c in $capitulos) { foreach ($m in $c.m) {
             $ids = @($m['item'], $m['mata'], $m['estrutura'], $m['bioma'], $m['dim'], $m['conquista']) | Where-Object { $_ }
             if (@($m['mod']) -contains $slug -or @($ids | Where-Object { $ns -contains $_.Split(':')[0] }).Count) { $n++; $caps[$c.t] = 1 } } }
-        $st = if ($motivo[$slug] -and $n -eq 0) { $resumo.nao++; "nao precisa ($($motivo[$slug]))" } elseif ($n -eq 0) { $resumo.falta++; '**falta**' } elseif ($n -lt 5) { $resumo.pouco++; 'pouco' } else { $resumo.ok++; 'ok' }
-        $linhas += "| $cat | ``$slug`` | $n | $st | $(($caps.Keys | Sort-Object) -join ', ') |"
+        # Meta pelo tamanho do mod: itens com nome no idioma do jar.
+        $qi = if ($sha) { [int]$itens[$sha] } else { 0 }
+        $meta = if ($qi -eq 0) { 1 } elseif ($qi -le 30) { 3 } elseif ($qi -le 150) { 5 } else { 10 }
+        $st = if ($motivo[$slug] -and $n -eq 0) { $resumo.nao++; "nao precisa ($($motivo[$slug]))" } elseif ($n -eq 0) { $resumo.falta++; '**falta**' } elseif ($n -lt $meta) { $resumo.pouco++; 'pouco' } else { $resumo.ok++; 'ok' }
+        $linhas += "| $cat | ``$slug`` | $qi | $n/$meta | $st | $(($caps.Keys | Sort-Object) -join ', ') |"
     }
     $doc = @(
         '# Cobertura do livro de missoes'
         ''
         'Gerado pelo `scripts/missoes.ps1`. Nao edite a mao: rode o script depois de mexer no livro ou no `mods.txt`.'
         ''
-        "$($capitulos.Count) capitulos, $(@($capitulos | ForEach-Object { $_.m }).Count) missoes. Mods: $($resumo.ok) ok (5 ou mais missoes), $($resumo.pouco) com pouco (1 a 4), $($resumo.falta) faltando, $($resumo.nao) sem necessidade de missao."
+        "$($capitulos.Count) capitulos, $(@($capitulos | ForEach-Object { $_.m }).Count) missoes. Mods: $($resumo.ok) ok, $($resumo.pouco) abaixo da meta, $($resumo.falta) faltando, $($resumo.nao) sem necessidade de missao."
         ''
-        '| Categoria | Mod | Missoes | Status | Capitulos |'
-        '|---|---|---|---|---|'
+        'Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 5, mais que isso 10.'
+        ''
+        '| Categoria | Mod | Itens | Missoes/meta | Status | Capitulos |'
+        '|---|---|---|---|---|---|'
     ) + $linhas
     [IO.File]::WriteAllText((Join-Path $root 'docs/missoes.md'), ($doc -join "`n") + "`n", (New-Object Text.UTF8Encoding $false))
     Write-Host "Cobertura: $($resumo.ok) ok, $($resumo.pouco) pouco, $($resumo.falta) falta, $($resumo.nao) nao precisa -> docs/missoes.md"
