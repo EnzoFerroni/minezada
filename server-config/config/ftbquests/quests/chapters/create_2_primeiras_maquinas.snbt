@@ -13,7 +13,7 @@
 			rewards: [{ id: "28DE1E7AF9BD8047", type: "xp", xp: 20 }]
 			tasks: [{ id: "6931839BE204E086", item: { count: 1, id: "create:depot" }, type: "item" }]
 			x: 0d
-			y: 7.4375d
+			y: 5.25d
 		}
 		{
 			dependencies: ["0E9234D0A775C532"]
@@ -22,16 +22,16 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "463F5966456D68E9", item: { count: 1, id: "create:mechanical_press" }, type: "item" }]
-			x: 2.5d
-			y: 3.5d
+			x: 2d
+			y: 3.75d
 		}
 		{
 			dependencies: ["24D45AE531CC8DD4"]
 			id: "0FFB8A4F6D765047"
 			rewards: [{ id: "733B52F45FC64A92", type: "xp", xp: 20 }, { id: "46423D92E5B0ED5B", item: { count: 16, id: "minecraft:iron_ingot" }, type: "item" }]
 			tasks: [{ id: "5D7293C06EFCEAD8", item: { count: 16, id: "create:iron_sheet" }, type: "item" }]
-			x: 5d
-			y: 0d
+			x: 4d
+			y: 1.5d
 		}
 		{
 			dependencies: ["0FFB8A4F6D765047"]
@@ -39,8 +39,8 @@
 			rewards: [{ id: "50438DC68DADF9D1", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "34AF99FA437E6851", item: { count: 4, id: "create:golden_sheet" }, type: "item" }]
-			x: 7.5d
-			y: 0d
+			x: 6d
+			y: 1.5d
 		}
 		{
 			dependencies: ["0E9234D0A775C532"]
@@ -49,24 +49,24 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "0E641DE24165110B", item: { count: 4, id: "create:belt_connector" }, type: "item" }]
-			x: 2.5d
-			y: 11.375d
+			x: 2d
+			y: 9.75d
 		}
 		{
 			dependencies: ["08A9F0D3CB4E4ADF"]
 			id: "665C7D2A5DA1397D"
 			rewards: [{ id: "3497A09DC13ABA0D", type: "xp", xp: 20 }]
 			tasks: [{ id: "48BAEEB33F24A268", item: { count: 2, id: "create:andesite_funnel" }, type: "item" }]
-			x: 5d
-			y: 10.5d
+			x: 4d
+			y: 9d
 		}
 		{
 			dependencies: ["24D45AE531CC8DD4"]
 			id: "77552730F917B3A2"
 			rewards: [{ id: "6240BB9BF258DF5F", type: "xp", xp: 20 }]
 			tasks: [{ id: "0CE420144D833386", item: { count: 1, id: "create:millstone" }, type: "item" }]
-			x: 5d
-			y: 1.75d
+			x: 4d
+			y: 3d
 		}
 		{
 			dependencies: ["77552730F917B3A2"]
@@ -75,8 +75,8 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "40C7DA0A84EB644B", item: { count: 1, id: "create:encased_fan" }, type: "item" }]
-			x: 7.5d
-			y: 1.75d
+			x: 6d
+			y: 3d
 		}
 		{
 			dependencies: ["71902CE9B4233470"]
@@ -84,24 +84,24 @@
 			rewards: [{ id: "43FCE58FF3DD3ED5", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "75602EB1BA86FAF9", item: { count: 8, id: "create:dough" }, type: "item" }]
-			x: 10d
-			y: 1.75d
+			x: 8d
+			y: 3d
 		}
 		{
 			dependencies: ["08A9F0D3CB4E4ADF"]
 			id: "5D406386B77211CF"
 			rewards: [{ id: "52C20B7FE3E16E8A", type: "xp", xp: 20 }]
 			tasks: [{ id: "2E19E7A157A355D4", item: { count: 1, id: "create:mechanical_saw" }, type: "item" }]
-			x: 5d
-			y: 12.25d
+			x: 4d
+			y: 10.5d
 		}
 		{
 			dependencies: ["24D45AE531CC8DD4"]
 			id: "6D0020FF08FE30D0"
 			rewards: [{ id: "65AA2ADA54A45F45", type: "xp", xp: 20 }]
 			tasks: [{ id: "152D59CB481E211F", item: { count: 1, id: "create:mechanical_drill" }, type: "item" }]
-			x: 5d
-			y: 3.5d
+			x: 4d
+			y: 0d
 		}
 		{
 			dependencies: ["24D45AE531CC8DD4"]
@@ -110,40 +110,40 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "17A0C2061CDB8E1D", item: { count: 1, id: "create:windmill_bearing" }, type: "item" }]
-			x: 5d
-			y: 7d
+			x: 4d
+			y: 6d
 		}
 		{
 			dependencies: ["59A226648CAE99CA"]
 			id: "2B88F26A795CAB85"
 			rewards: [{ id: "66EDC52C6F1CFAA3", type: "xp", xp: 20 }]
 			tasks: [{ id: "0DA0E7A6382846B5", item: { count: 1, id: "create:super_glue" }, type: "item" }]
-			x: 7.5d
-			y: 7d
+			x: 6d
+			y: 6d
 		}
 		{
 			dependencies: ["2B88F26A795CAB85"]
 			id: "3E0E9C0DF135D391"
 			rewards: [{ id: "29FB001D085553FB", type: "xp", xp: 20 }]
 			tasks: [{ id: "0387E999AE2D1339", item: { count: 1, id: "create:mechanical_piston" }, type: "item" }]
-			x: 10d
-			y: 5.25d
+			x: 8d
+			y: 4.5d
 		}
 		{
 			dependencies: ["2B88F26A795CAB85"]
 			id: "6E18F7126D48DC9D"
 			rewards: [{ id: "459BC9231ED54E11", type: "xp", xp: 20 }]
 			tasks: [{ id: "2CBC11067EFCC3E0", item: { count: 1, id: "create:mechanical_bearing" }, type: "item" }]
-			x: 10d
-			y: 7d
+			x: 8d
+			y: 7.5d
 		}
 		{
 			dependencies: ["6E18F7126D48DC9D"]
 			id: "777289BEFC4716B7"
 			rewards: [{ id: "170E2D67281E15B0", type: "xp", xp: 20 }]
 			tasks: [{ id: "0ECF1D4869B9698A", item: { count: 1, id: "create:mechanical_harvester" }, type: "item" }]
-			x: 12.5d
-			y: 7d
+			x: 10d
+			y: 7.5d
 		}
 		{
 			dependencies: ["777289BEFC4716B7"]
@@ -151,8 +151,8 @@
 			rewards: [{ id: "714B5428A1D3DB57", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "4E9C445F46A54404", item: { count: 1, id: "create:mechanical_plough" }, type: "item" }]
-			x: 15d
-			y: 7d
+			x: 12d
+			y: 7.5d
 		}
 		{
 			dependencies: ["2B88F26A795CAB85"]
@@ -160,8 +160,8 @@
 			rewards: [{ id: "4377D66040C6F494", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "76CC30770E5269F7", item: { count: 1, id: "create:rope_pulley" }, type: "item" }]
-			x: 10d
-			y: 8.75d
+			x: 8d
+			y: 6d
 		}
 	]
 }

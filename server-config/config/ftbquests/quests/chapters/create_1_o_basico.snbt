@@ -15,14 +15,14 @@
 			size: 1.5d
 			tasks: [{ id: "0F5541D489B10BE6", type: "checkmark" }]
 			x: 0d
-			y: 2.625d
+			y: 5.25d
 		}
 		{
 			dependencies: ["743F2D5CC50C160E"]
 			id: "693A83078EFA0FF8"
 			rewards: [{ id: "1430ED494FD52993", type: "xp", xp: 20 }]
 			tasks: [{ id: "6853097482F488F5", item: { count: 4, id: "create:zinc_ingot" }, type: "item" }]
-			x: 2.5d
+			x: 2d
 			y: 0d
 		}
 		{
@@ -32,64 +32,64 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "060C798C7F7D7BA4", item: { count: 16, id: "create:andesite_alloy" }, type: "item" }]
-			x: 2.5d
-			y: 5.25d
+			x: 2d
+			y: 6d
 		}
 		{
 			dependencies: ["34E5D9F83BA191B7"]
 			id: "3428BD8E488309C6"
 			rewards: [{ id: "1ABB9EF40373B92C", type: "xp", xp: 20 }]
 			tasks: [{ id: "5DA2BD19C6F8D9D3", item: { count: 1, id: "create:wrench" }, type: "item" }]
-			x: 5d
-			y: 1.75d
+			x: 4d
+			y: 1.5d
 		}
 		{
 			dependencies: ["34E5D9F83BA191B7"]
 			id: "4E782FDC8A29C55F"
 			rewards: [{ id: "0188E5E20E3D9F3B", type: "xp", xp: 20 }]
 			tasks: [{ id: "0C7A30D80C0FB5DB", item: { count: 4, id: "create:andesite_casing" }, type: "item" }]
-			x: 5d
-			y: 3.5d
+			x: 4d
+			y: 3d
 		}
 		{
 			dependencies: ["34E5D9F83BA191B7"]
 			id: "713CA83B402B1EBB"
 			rewards: [{ id: "38BB41A0BF1BC09E", type: "xp", xp: 20 }]
 			tasks: [{ id: "1A18A32F018990F4", item: { count: 8, id: "create:shaft" }, type: "item" }]
-			x: 5d
-			y: 8.75d
+			x: 4d
+			y: 7.5d
 		}
 		{
 			dependencies: ["713CA83B402B1EBB"]
 			id: "769C72DE12C48B1B"
 			rewards: [{ id: "3E204DB4866344D7", type: "xp", xp: 20 }]
 			tasks: [{ id: "07A2C45AD6CF7626", item: { count: 4, id: "create:cogwheel" }, type: "item" }]
-			x: 7.5d
-			y: 6.125d
+			x: 6d
+			y: 6.75d
 		}
 		{
 			dependencies: ["769C72DE12C48B1B"]
 			id: "06EC2EE31BBAEFB3"
 			rewards: [{ id: "07C1492B44E2D733", type: "xp", xp: 20 }]
 			tasks: [{ id: "4E359D849A856809", item: { count: 2, id: "create:large_cogwheel" }, type: "item" }]
-			x: 10d
-			y: 5.25d
+			x: 8d
+			y: 6d
 		}
 		{
 			dependencies: ["769C72DE12C48B1B"]
 			id: "495B4DD49D945339"
 			rewards: [{ id: "69255B1A29D832D8", type: "xp", xp: 20 }]
 			tasks: [{ id: "60E99090F1DF773C", item: { count: 1, id: "create:gearbox" }, type: "item" }]
-			x: 10d
-			y: 7d
+			x: 8d
+			y: 7.5d
 		}
 		{
 			dependencies: ["713CA83B402B1EBB"]
 			id: "209FC078EB5E2BD0"
 			rewards: [{ id: "61794C0C38D4A8AA", type: "xp", xp: 20 }]
 			tasks: [{ id: "42636590F25A1EFB", item: { count: 1, id: "create:hand_crank" }, type: "item" }]
-			x: 7.5d
-			y: 8.75d
+			x: 6d
+			y: 4.5d
 		}
 		{
 			dependencies: ["713CA83B402B1EBB"]
@@ -98,16 +98,16 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "4861C3E2AB931E40", item: { count: 1, id: "create:water_wheel" }, type: "item" }]
-			x: 7.5d
-			y: 11.375d
+			x: 6d
+			y: 9.75d
 		}
 		{
 			dependencies: ["15DA37216A7BAE21"]
 			id: "07DF67DB2ED1D8B5"
 			rewards: [{ id: "2E3F1741235F96C9", type: "xp", xp: 20 }]
 			tasks: [{ id: "164FB72644777180", item: { count: 1, id: "create:goggles" }, type: "item" }]
-			x: 10d
-			y: 11.375d
+			x: 8d
+			y: 9.75d
 		}
 		{
 			dependencies: ["07DF67DB2ED1D8B5"]
@@ -116,8 +116,8 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "21973C319A04113C", item: { count: 1, id: "create:stressometer" }, type: "item" }]
-			x: 12.5d
-			y: 11.375d
+			x: 10d
+			y: 9.75d
 		}
 		{
 			dependencies: ["40E31D6C06C810D7"]
@@ -125,8 +125,8 @@
 			rewards: [{ id: "0C4AF6771BF32310", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "1F0B5F98F41E3F32", item: { count: 1, id: "create:clutch" }, type: "item" }]
-			x: 15d
-			y: 10.5d
+			x: 12d
+			y: 9d
 		}
 		{
 			dependencies: ["40E31D6C06C810D7"]
@@ -134,8 +134,8 @@
 			rewards: [{ id: "6C2F344FC610CB77", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "6E48F1BD9F2A0706", item: { count: 2, id: "create:encased_chain_drive" }, type: "item" }]
-			x: 15d
-			y: 12.25d
+			x: 12d
+			y: 10.5d
 		}
 	]
 }

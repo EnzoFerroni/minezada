@@ -15,15 +15,15 @@
 			size: 1.5d
 			tasks: [{ id: "70D56EDC62616F19", item: { count: 32, id: "create:track" }, type: "item" }]
 			x: 0d
-			y: 1.75d
+			y: 1.5d
 		}
 		{
 			dependencies: ["1105C4A2A5247B4C"]
 			id: "10B7A297094D9CEF"
 			rewards: [{ id: "5DC6B42B0C7ABDA2", type: "xp", xp: 20 }]
 			tasks: [{ id: "5CF33358D0B05C13", item: { count: 4, id: "create:railway_casing" }, type: "item" }]
-			x: 2.5d
-			y: 1.75d
+			x: 2d
+			y: 1.5d
 		}
 		{
 			dependencies: ["10B7A297094D9CEF"]
@@ -32,16 +32,16 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "25C8708ED534D405", item: { count: 1, id: "create:track_station" }, type: "item" }]
-			x: 5d
-			y: 1.75d
+			x: 4d
+			y: 1.5d
 		}
 		{
 			dependencies: ["4CB7357FE91F7DAB"]
 			id: "37FFAEDF18523630"
 			rewards: [{ id: "22EF9D74B6912AE8", type: "xp", xp: 20 }]
 			tasks: [{ id: "46660F7D38F62EC5", item: { count: 1, id: "create:controls" }, type: "item" }]
-			x: 7.5d
-			y: 1.75d
+			x: 6d
+			y: 1.5d
 		}
 		{
 			dependencies: ["37FFAEDF18523630"]
@@ -50,15 +50,15 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ id: "18EE597FF22DDE9F", type: "checkmark" }]
-			x: 10d
-			y: 1.75d
+			x: 8d
+			y: 1.5d
 		}
 		{
 			dependencies: ["5D0F1F80F49C538F"]
 			id: "44E30799EB06CA68"
 			rewards: [{ id: "1AC1FF170CCC9C5D", type: "xp", xp: 20 }]
 			tasks: [{ id: "2C826D922137810A", item: { count: 1, id: "create:schedule" }, type: "item" }]
-			x: 12.5d
+			x: 10d
 			y: 0d
 		}
 		{
@@ -66,8 +66,8 @@
 			id: "0915FB2189E653C8"
 			rewards: [{ id: "413691FA9C042C69", type: "xp", xp: 20 }]
 			tasks: [{ id: "2923EC44D051898F", item: { count: 2, id: "create:track_signal" }, type: "item" }]
-			x: 12.5d
-			y: 1.75d
+			x: 10d
+			y: 3d
 		}
 		{
 			dependencies: ["0915FB2189E653C8"]
@@ -75,8 +75,8 @@
 			rewards: [{ id: "2C0C39C3F16314B4", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "38E76849520B6CA1", item: { count: 1, id: "create:track_observer" }, type: "item" }]
-			x: 15d
-			y: 1.75d
+			x: 12d
+			y: 3d
 		}
 		{
 			dependencies: ["5D0F1F80F49C538F"]
@@ -84,8 +84,8 @@
 			rewards: [{ id: "5D7CC0C7FD6893BF", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "3C6DBD18B23E51F6", item: { count: 1, id: "create:train_door" }, type: "item" }]
-			x: 12.5d
-			y: 3.5d
+			x: 10d
+			y: 1.5d
 		}
 	]
 }

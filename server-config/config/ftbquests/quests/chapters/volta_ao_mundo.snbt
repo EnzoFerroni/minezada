@@ -15,31 +15,34 @@
 			size: 1.5d
 			tasks: [{ id: "570C7DAE5DF19F56", type: "checkmark" }]
 			x: 0d
-			y: 18.375d
+			y: 7.5d
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
 			id: "2D8F878CD7BC1FBE"
 			rewards: [{ id: "7804305800D8B11E", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:sakura_valley", id: "0B819CCD88F2F6A5", type: "biome" }]
-			x: 2.5d
-			y: 0d
+			x: 2d
+			y: 0.0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
 			id: "21DD0E73C9F46759"
 			rewards: [{ id: "1CB8871CE40C8383", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:bryce_canyon", id: "71DAE8670850D902", type: "biome" }]
-			x: 2.5d
-			y: 1.75d
+			x: 3.5d
+			y: 0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
 			id: "03E2F1D49DC8D627"
 			rewards: [{ id: "7ECAE1B87BBE52E6", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:volcanic_crater", id: "46F0F624E2BDF0BD", type: "biome" }]
-			x: 2.5d
-			y: 3.5d
+			x: 5d
+			y: 0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
@@ -48,8 +51,9 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ biome: "terralith:skylands_summer", id: "24FADF19A8B084B2", type: "biome" }]
-			x: 2.5d
-			y: 5.25d
+			x: 6.5d
+			y: 0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
@@ -57,8 +61,9 @@
 			rewards: [{ id: "6379E0FCDC139F54", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ biome: "terralith:white_cliffs", id: "06097BB613525445", type: "biome" }]
-			x: 2.5d
-			y: 7d
+			x: 2d
+			y: 1.5d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
@@ -66,24 +71,26 @@
 			rewards: [{ id: "0B9F85B7ADD17572", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ biome: "terralith:desert_oasis", id: "1931B9A292FDB115", type: "biome" }]
-			x: 2.5d
-			y: 8.75d
+			x: 3.5d
+			y: 1.5d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
 			id: "37008FBC14F46A83"
 			rewards: [{ id: "1FE9FA7013B15576", type: "xp", xp: 20 }]
 			tasks: [{ biome: "biomesoplenty:redwood_forest", id: "43285D7888572989", type: "biome" }]
-			x: 2.5d
-			y: 10.5d
+			x: 2d
+			y: 6d
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
 			id: "3EB32C924FED67C3"
 			rewards: [{ id: "5A8C5BE759C5F237", type: "xp", xp: 20 }]
 			tasks: [{ biome: "biomesoplenty:mystic_grove", id: "091422FB6C372501", type: "biome" }]
-			x: 2.5d
-			y: 12.25d
+			x: 5d
+			y: 1.5d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
@@ -91,8 +98,9 @@
 			rewards: [{ id: "54DA79134A5FB284", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ biome: "biomesoplenty:lavender_field", id: "70EFE203A6936B25", type: "biome" }]
-			x: 2.5d
-			y: 14d
+			x: 6.5d
+			y: 1.5d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
@@ -100,24 +108,25 @@
 			rewards: [{ id: "30029B6F3596D22D", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ biome: "biomesoplenty:hot_springs", id: "696931A24F16CFA1", type: "biome" }]
-			x: 2.5d
-			y: 15.75d
+			x: 2d
+			y: 3.0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
 			id: "3B3207C8DEDCCC12"
 			rewards: [{ id: "194D68EAB74E9E78", type: "xp", xp: 20 }]
 			tasks: [{ biome: "terralith:cave/underground_jungle", id: "29B6045B4877DC5C", type: "biome" }]
-			x: 2.5d
-			y: 24.0625d
+			x: 2d
+			y: 10.5d
 		}
 		{
 			dependencies: ["3B3207C8DEDCCC12"]
 			id: "7BC3B396EEDF2733"
 			rewards: [{ id: "621238F6A0EB17C9", type: "xp", xp: 20 }]
 			tasks: [{ biome: "galosphere:crystal_canyons", id: "0C4EDC5797880BAD", type: "biome" }]
-			x: 5d
-			y: 20.125d
+			x: 4d
+			y: 9.75d
 		}
 		{
 			dependencies: ["7BC3B396EEDF2733"]
@@ -125,32 +134,33 @@
 			rewards: [{ id: "118B7A78FF0C5580", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "601E5D320735D87F", item: { count: 1, id: "galosphere:allurite_shard" }, type: "item" }]
-			x: 7.5d
-			y: 17.5d
+			x: 6d
+			y: 9.0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["3B3207C8DEDCCC12"]
 			id: "18014FAD5C025736"
 			rewards: [{ id: "598AF7E8A6F8AFD8", type: "xp", xp: 20 }]
 			tasks: [{ biome: "yungscavebiomes:frosted_caves", id: "763516F526E1560E", type: "biome" }]
-			x: 5d
-			y: 24.5d
+			x: 4d
+			y: 12d
 		}
 		{
 			dependencies: ["3B3207C8DEDCCC12"]
 			id: "10D39B57C7A1C28C"
 			rewards: [{ id: "651B9A4CDB993353", type: "xp", xp: 20 }]
 			tasks: [{ biome: "yungscavebiomes:lost_caves", id: "1024E45E61CC94D8", type: "biome" }]
-			x: 5d
-			y: 26.25d
+			x: 4d
+			y: 13.5d
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
 			id: "6841C627B5ED58C3"
 			rewards: [{ id: "3E1980C5656E185D", type: "xp", xp: 20 }]
 			tasks: [{ biome: "incendium:inverted_forest", id: "6745A1E322EA08E6", type: "biome" }]
-			x: 2.5d
-			y: 29.75d
+			x: 2d
+			y: 15d
 		}
 		{
 			dependencies: ["6841C627B5ED58C3"]
@@ -158,8 +168,8 @@
 			rewards: [{ id: "613A8362D80183CD", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ biome: "incendium:weeping_valley", id: "47B34BB1E1B1F28B", type: "biome" }]
-			x: 5d
-			y: 29.75d
+			x: 4d
+			y: 15d
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
@@ -167,8 +177,9 @@
 			rewards: [{ id: "21061B402C1E2722", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ biome: "biomesoplenty:origin_valley", id: "414C91617D93321E", type: "biome" }]
-			x: 2.5d
-			y: 31.5d
+			x: 3.5d
+			y: 3d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
@@ -176,16 +187,17 @@
 			rewards: [{ id: "6343F9835970327C", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ biome: "biomesoplenty:volcano", id: "128B8D448EE292A7", type: "biome" }]
-			x: 2.5d
-			y: 33.25d
+			x: 5d
+			y: 3d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["37008FBC14F46A83"]
 			id: "372A40FEA08957FE"
 			rewards: [{ id: "10CB4E8285A757B6", type: "xp", xp: 20 }]
 			tasks: [{ id: "038AD073CDD2FB65", item: { count: 16, id: "biomesoplenty:redwood_log" }, type: "item" }]
-			x: 5d
-			y: 10.5d
+			x: 4d
+			y: 6d
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
@@ -193,8 +205,9 @@
 			rewards: [{ id: "028ABC83DBDEF215", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "2CAEB5DC990B69D3", item: { count: 1, id: "biomesoplenty:rose_quartz_chunk" }, type: "item" }]
-			x: 2.5d
-			y: 35d
+			x: 6.5d
+			y: 3d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["7BC3B396EEDF2733"]
@@ -202,23 +215,24 @@
 			rewards: [{ id: "4A8F6F71930590DC", type: "xp", xp: 20 }]
 			tasks: [{ biome: "galosphere:pink_salt_caves", id: "4E73F883EE365ABB", type: "biome" }]
 			x: 7.5d
-			y: 19.25d
+			y: 9d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["7BC3B396EEDF2733"]
 			id: "05B0D934F088BC87"
 			rewards: [{ id: "5A76B8C168F044E0", type: "xp", xp: 20 }]
 			tasks: [{ id: "16A0D358E9E32C06", item: { count: 1, id: "galosphere:palladium_ingot" }, type: "item" }]
-			x: 7.5d
-			y: 21d
+			x: 6d
+			y: 10.5d
 		}
 		{
 			dependencies: ["05B0D934F088BC87"]
 			id: "62C1279EF5A8255B"
 			rewards: [{ id: "784C2316656039C0", type: "xp", xp: 20 }]
 			tasks: [{ id: "0589EA4604B58602", item: { count: 1, id: "galosphere:sterling_helmet" }, type: "item" }]
-			x: 10d
-			y: 21d
+			x: 8d
+			y: 10.5d
 		}
 		{
 			dependencies: ["7BC3B396EEDF2733"]
@@ -226,16 +240,17 @@
 			rewards: [{ id: "68A19683449A736A", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "42D3E49062B6F670", item: { count: 1, id: "galosphere:glow_flare" }, type: "item" }]
-			x: 7.5d
-			y: 22.75d
+			x: 9d
+			y: 9d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["3B3207C8DEDCCC12"]
 			id: "159BE77FF005CB70"
 			rewards: [{ id: "79822B0F59BF83E3", type: "xp", xp: 20 }]
 			tasks: [{ id: "16C6ED7079C56B7B", item: { count: 16, id: "yungscavebiomes:marble" }, type: "item" }]
-			x: 5d
-			y: 28d
+			x: 4d
+			y: 7.5d
 		}
 		{
 			dependencies: ["18014FAD5C025736"]
@@ -243,8 +258,8 @@
 			rewards: [{ id: "480563CECF89C731", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "33FEECF9A524A8FE", item: { count: 1, id: "yungscavebiomes:frost_lily" }, type: "item" }]
-			x: 7.5d
-			y: 24.5d
+			x: 6d
+			y: 12d
 		}
 		{
 			dependencies: ["10D39B57C7A1C28C"]
@@ -252,16 +267,17 @@
 			rewards: [{ id: "02F668C578A12818", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "7D1B4F0BFE468280", item: { count: 1, id: "yungscavebiomes:prickly_peach" }, type: "item" }]
-			x: 7.5d
-			y: 26.25d
+			x: 6d
+			y: 13.5d
 		}
 		{
 			dependencies: ["4C18048CCC7E2F79"]
 			id: "59CBD97D652943BA"
 			rewards: [{ id: "68DED6BBB529B93B", type: "xp", xp: 20 }]
 			tasks: [{ id: "10000E11B3EB3160", item: { count: 1, id: "sereneseasons:calendar" }, type: "item" }]
-			x: 2.5d
-			y: 36.75d
+			x: 2d
+			y: 4.5d
+			hide_dependency_lines: true
 		}
 	]
 }

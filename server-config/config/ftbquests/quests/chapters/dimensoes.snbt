@@ -15,55 +15,60 @@
 			size: 1.5d
 			tasks: [{ id: "393D878BD4665930", type: "checkmark" }]
 			x: 0d
-			y: 6.125d
+			y: 3.75d
 		}
 		{
 			dependencies: ["36676C6CCD56E1A0"]
 			id: "29026A4FF6CEB946"
 			rewards: [{ id: "3DC506297BBD73BF", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "minecraft:the_nether", id: "129763B329EE056D", type: "dimension" }]
-			x: 2.5d
-			y: 0d
+			x: 2d
+			y: 3d
 		}
 		{
 			dependencies: ["36676C6CCD56E1A0"]
 			id: "7155CC138F6A4CDC"
 			rewards: [{ id: "34CE64D2FFCFCCEC", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "aether:the_aether", id: "00974AE67994A467", type: "dimension" }]
-			x: 2.5d
-			y: 1.75d
+			x: 2d
+			y: 0.0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["36676C6CCD56E1A0"]
 			id: "2F383471F920B013"
 			rewards: [{ id: "5E8C47AA034D2710", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "twilightforest:twilight_forest", id: "6FEFCC486512BB27", type: "dimension" }]
-			x: 2.5d
-			y: 3.5d
+			x: 3.5d
+			y: 0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["36676C6CCD56E1A0"]
 			id: "7B3BE44F6DE1B8AD"
 			rewards: [{ id: "344FE9766498A822", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "undergarden:undergarden", id: "0E822EF274A73494", type: "dimension" }]
-			x: 2.5d
-			y: 5.25d
+			x: 5d
+			y: 0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["36676C6CCD56E1A0"]
 			id: "132C1D9BA47BE4F2"
 			rewards: [{ id: "38EA54B6FECC7C22", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "eternal_starlight:starlight", id: "2D2D4E7151275D15", type: "dimension" }]
-			x: 2.5d
-			y: 7d
+			x: 6.5d
+			y: 0d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["36676C6CCD56E1A0"]
 			id: "5F3E1D7AAC0727F0"
 			rewards: [{ id: "5411F1E172DA6DE5", type: "xp", xp: 20 }]
 			tasks: [{ dimension: "ad_astra:moon", id: "6611408D026859D6", type: "dimension" }]
-			x: 2.5d
-			y: 8.75d
+			x: 2d
+			y: 1.5d
+			hide_dependency_lines: true
 		}
 		{
 			dependencies: ["36676C6CCD56E1A0"]
@@ -71,8 +76,8 @@
 			rewards: [{ id: "6F8F3987083678D9", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "55628F32E5D69F42", item: { count: 1, id: "dimdungeons:item_portal_key" }, type: "item" }]
-			x: 2.5d
-			y: 12.25d
+			x: 2d
+			y: 6d
 		}
 		{
 			dependencies: ["12578001AE3297C2"]
@@ -80,8 +85,8 @@
 			rewards: [{ id: "33070010DF5BF076", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ dimension: "dimdungeons:dungeon_dimension", id: "6D77B5E1478AB6C3", type: "dimension" }]
-			x: 5d
-			y: 10.5d
+			x: 4d
+			y: 7.5d
 		}
 		{
 			dependencies: ["29026A4FF6CEB946"]
@@ -90,8 +95,8 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{ dimension: "minecraft:the_end", id: "0A665287FE2C907B", type: "dimension" }]
-			x: 5d
-			y: 0d
+			x: 4d
+			y: 3d
 		}
 		{
 			dependencies: ["12578001AE3297C2"]
@@ -99,8 +104,8 @@
 			rewards: [{ id: "7214D72372895BAF", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "04D46B7A39B710A6", item: { count: 1, id: "dimdungeons:block_portal_keyhole" }, type: "item" }]
-			x: 5d
-			y: 12.25d
+			x: 4d
+			y: 4.5d
 		}
 		{
 			dependencies: ["12578001AE3297C2"]
@@ -108,8 +113,8 @@
 			rewards: [{ id: "015BBB305C675BDC", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "05B2B0FFBE24B8A3", item: { count: 1, id: "dimdungeons:block_key_charger" }, type: "item" }]
-			x: 5d
-			y: 14d
+			x: 4d
+			y: 6d
 		}
 		{
 			dependencies: ["688A1A2205220F36"]
@@ -117,8 +122,8 @@
 			rewards: [{ id: "390D183C22EF9086", type: "xp", xp: 20 }]
 			optional: true
 			tasks: [{ id: "04D42D8AEFC8F595", item: { count: 1, id: "dimdungeons:item_homeward_pearl" }, type: "item" }]
-			x: 7.5d
-			y: 10.5d
+			x: 6d
+			y: 7.5d
 		}
 	]
 }
