@@ -488,15 +488,95 @@
 	quest.333B894B34D3932D.quest_desc: ["Map Atlases junta mapas de papel em um livro. Na mao secundaria vira minimapa."]
 	quest.6181CF23667BE12E.title: "Pergaminho de volta"
 	quest.6181CF23667BE12E.quest_desc: ["O pergaminho de retorno leva de volta para a ultima waystone ou cama."]
-	chapter.59AADA362CD5A80D.title: "Mekanism"
-	quest.790F2B514D6ED05C.title: "Infusor metalurgico"
-	quest.790F2B514D6ED05C.quest_desc: ["A primeira maquina: mistura ferro com carvao para fazer aco e outras ligas. Precisa de energia."]
-	quest.28B3969DA2CBC5F3.title: "Energia"
-	quest.28B3969DA2CBC5F3.quest_desc: ["O Mekanism do pack nao tem geradores proprios: o alternador do Create Crafts & Additions transforma a rotacao do Create em energia para as maquinas."]
-	quest.453A0736B216E094.title: "Camara de enriquecimento"
-	quest.453A0736B216E094.quest_desc: ["Transforma um minerio em dois montes de po: o dobro de lingotes."]
-	quest.193CC4C2D0BF0A31.title: "Cabos"
-	quest.193CC4C2D0BF0A31.quest_desc: ["Cabos universais levam energia do gerador para as maquinas."]
+	chapter.79135E8160B07546.title: "Mekanism 1: começo"
+	chapter.79135E8160B07546.chapter_subtitle: ["Máquinas elétricas e aço"]
+	quest.0AC3BC569A4CB669.title: "O que é o Mekanism"
+	quest.0AC3BC569A4CB669.quest_subtitle: "Comece por aqui"
+	quest.0AC3BC569A4CB669.quest_desc: ["O &eMekanism&r tem máquinas elétricas que processam minério, gases e muito mais.", "É mais complexo que o Create. Faça o Create primeiro: a &eenergia&r vem do &ealternador&r (capítulo Create: energia).", "", "Dica: no JEI (&eU&r em um item) você vê em qual máquina ele é usado."]
+	quest.17E79A6A49696078.title: "Ósmio"
+	quest.17E79A6A49696078.quest_desc: ["O &eósmio&r é o metal do Mekanism. O minério azulado aparece em cavernas."]
+	quest.1B8D10C9945D8D0E.title: "Infusor metalúrgico"
+	quest.1B8D10C9945D8D0E.quest_desc: ["O &einfusor metalúrgico&r junta um item com outro material: ferro com &ecarvão&r vira ferro enriquecido e depois &eaço&r; com &eredstone&r vira liga infundida.", "Precisa de energia ligada nele."]
+	quest.14D23ABF9A132A7B.title: "Aço"
+	quest.14D23ABF9A132A7B.quest_desc: ["Pó de aço (do infusor) derretido na fornalha vira &elingote de aço&r."]
+	quest.491D9C81557632D8.title: "Revestimento de aço"
+	quest.491D9C81557632D8.quest_desc: ["O &erevestimento de aço&r é a base de quase toda máquina do Mekanism."]
+	quest.2057EBC983D012C8.title: "Circuito básico"
+	quest.2057EBC983D012C8.quest_desc: ["O &ecircuito de controle&r vai em muitas receitas. Ósmio com liga infundida."]
+	quest.4DD1F750B3F87EDB.title: "Cabo universal"
+	quest.4DD1F750B3F87EDB.quest_desc: ["O &ecabo universal&r leva energia entre máquinas. Ligue o alternador do Create nele."]
+	quest.15938FB5B9E6E4DD.title: "Cubo de energia"
+	quest.15938FB5B9E6E4DD.quest_desc: ["O &ecubo de energia&r guarda energia. Dá para subir de nível depois."]
+	quest.791898F41F580311.title: "Configurador"
+	quest.791898F41F580311.quest_desc: ["O &econfigurador&r escolhe o que entra e sai em cada lado da máquina. Na própria máquina, a aba de lados faz o mesmo."]
+	quest.576CD497AE1C6AC6.title: "Fornalha elétrica"
+	quest.576CD497AE1C6AC6.quest_desc: ["A &efornalha energizada&r cozinha rápido, sem carvão, só com energia."]
+	quest.31EC3E368E3D75E1.title: "Triturador"
+	quest.31EC3E368E3D75E1.quest_desc: ["O &etriturador&r mói lingotes em pó e pedra em cascalho e areia."]
+	quest.7253E8380E5D4F88.title: "Melhorias"
+	quest.7253E8380E5D4F88.quest_desc: ["As &emelhorias&r de velocidade e energia vão na aba de melhorias da máquina."]
+	quest.1E86B4A3822DC922.title: "Fábrica"
+	quest.1E86B4A3822DC922.quest_desc: ["O &einstalador de nível&r vira uma máquina comum em &efábrica&r: processa vários itens de uma vez."]
+	quest.2D989FEEE5DE2106.title: "Baú pessoal"
+	quest.2D989FEEE5DE2106.quest_desc: ["O &ebaú pessoal&r só abre para você. Bom no servidor."]
+	chapter.3526DABF48583D2E.title: "Mekanism 2: minérios"
+	chapter.3526DABF48583D2E.chapter_subtitle: ["De 2 a 5 lingotes por minério"]
+	quest.2B65985BF8D201F8.title: "Câmara de enriquecimento"
+	quest.2B65985BF8D201F8.quest_subtitle: "2 lingotes por minério"
+	quest.2B65985BF8D201F8.quest_desc: ["A &ecâmara de enriquecimento&r transforma um minério em &edois pós&r. Derreta os pós: dobro de lingotes."]
+	quest.34FAAE7C0F9575C4.title: "Separador eletrolítico"
+	quest.34FAAE7C0F9575C4.quest_desc: ["O &eseparador eletrolítico&r quebra &eágua&r em &ehidrogênio&r e &eoxigênio&r. Os gases andam em &etubos pressurizados&r.", "Use a &ebomba elétrica&r para puxar água."]
+	quest.6B96979CA1D74CB2.title: "Câmara de purificação"
+	quest.6B96979CA1D74CB2.quest_subtitle: "3 lingotes por minério"
+	quest.6B96979CA1D74CB2.quest_desc: ["Com &eoxigênio&r, a &ecâmara de purificação&r faz &etrês pedaços&r por minério. Os pedaços seguem para o triturador e a câmara de enriquecimento."]
+	quest.74ECEA16D810B7DF.title: "Câmara de injeção"
+	quest.74ECEA16D810B7DF.quest_subtitle: "4 lingotes por minério"
+	quest.74ECEA16D810B7DF.quest_desc: ["Com &ecloreto de hidrogênio&r (feito no infusor químico com hidrogênio e cloro), a &ecâmara de injeção química&r faz &equatro fragmentos&r por minério.", "Veja a cadeia toda no JEI."]
+	quest.7EDD328A579FD00B.title: "Dissolução e cristais"
+	quest.7EDD328A579FD00B.quest_subtitle: "5 lingotes por minério"
+	quest.7EDD328A579FD00B.quest_desc: ["O último nível: &ecâmara de dissolução&r, &elavador químico&r e &ecristalizador&r. Cinco lingotes por minério.", "Precisa de ácido sulfúrico e água limpa. Veja tudo no JEI."]
+	quest.3737A64BDB012287.title: "Transportador"
+	quest.3737A64BDB012287.quest_desc: ["O &etransportador logístico&r leva itens entre máquinas. Com o configurador escolha a cor e a ordem."]
+	quest.39BB94768DA38BB5.title: "Cano mecânico"
+	quest.39BB94768DA38BB5.quest_desc: ["O &ecano mecânico&r leva líquidos."]
+	quest.1E5094BED947C9F3.title: "Leitor sísmico"
+	quest.1E5094BED947C9F3.quest_desc: ["O &evibrador sísmico&r com o &eleitor sísmico&r mostra os minérios de baixo da terra, até o fundo."]
+	chapter.60A767B2A79ABA0E.title: "Mekanism 3: avançado"
+	chapter.60A767B2A79ABA0E.chapter_subtitle: ["Mineradora, teletransporte e armadura"]
+	quest.40C43BD34032ECE6.title: "Circuito avançado"
+	quest.40C43BD34032ECE6.quest_desc: ["Os circuitos sobem de nível: &eavançado&r, &eelite&r, &eultimate&r. Cada um usa uma liga melhor do infusor."]
+	quest.570E78C1DE57C6F4.title: "Liga reforçada"
+	quest.570E78C1DE57C6F4.quest_desc: ["Liga infundida com &ediamante&r no infusor vira &eliga reforçada&r."]
+	quest.78289405B4EEF4FF.title: "Mineradora digital"
+	quest.78289405B4EEF4FF.quest_subtitle: "Minera sozinha"
+	quest.78289405B4EEF4FF.quest_desc: ["A &emineradora digital&r tira só os blocos que você filtrar (ex.: todos os minérios) em uma área grande.", "Gasta muita energia. Ponha um baú atrás dela."]
+	quest.18C9510FB9FAC352.title: "Desintegrador atômico"
+	quest.18C9510FB9FAC352.quest_desc: ["O &edesintegrador atômico&r é picareta, pá, machado e espada em um, carregado com energia."]
+	quest.5BEAB8BD2ADB6C62.title: "Jetpack de hidrogênio"
+	quest.5BEAB8BD2ADB6C62.quest_desc: ["O &ejetpack&r do Mekanism voa com &ehidrogênio&r. Encha no separador eletrolítico."]
+	quest.02AE7F945C74E9B2.title: "Teletransporte"
+	quest.02AE7F945C74E9B2.quest_desc: ["O &eteletransportador&r leva você entre bases. Monte a moldura (veja no JEI) e dê a mesma frequência aos dois.", "O &eteletransportador portátil&r vai no bolso."]
+	quest.075DB1FF067573D1.title: "Armazenamento QIO"
+	quest.075DB1FF067573D1.quest_desc: ["O &eQIO&r guarda itens em discos e mostra tudo em um painel, até de longe."]
+	quest.665E38B659B28A5E.title: "Liga atômica"
+	quest.665E38B659B28A5E.quest_desc: ["Liga reforçada com &eobsidiana refinada&r vira &eliga atômica&r, para as coisas mais fortes."]
+	quest.51C1C995430DC003.title: "MekaSuit"
+	quest.51C1C995430DC003.quest_subtitle: "O fim do Mekanism"
+	quest.51C1C995430DC003.quest_desc: ["A &eMekaSuit&r é a armadura mais forte do Mekanism, com módulos (voar, visão noturna, mais vida).", "Feita no &eformulário&r com muita energia. Projeto para o fim do jogo."]
+	chapter.64FBC3AE633D0A83.title: "Fornalhas"
+	chapter.64FBC3AE633D0A83.chapter_subtitle: ["Iron Furnaces: cozinhar mais rápido"]
+	quest.7A313F079B7BFBE4.title: "Fornalha de ferro"
+	quest.7A313F079B7BFBE4.quest_desc: ["A &efornalha de ferro&r cozinha mais rápido que a comum. As de ouro, diamante e acima são ainda mais rápidas."]
+	quest.7E7C87AB3D5FE39B.title: "Melhorar sem quebrar"
+	quest.7E7C87AB3D5FE39B.quest_desc: ["Clique com a &emelhoria&r na fornalha já colocada: ela sobe de nível sem perder o que está dentro."]
+	quest.1797F477107C810E.title: "Fornalha de diamante"
+	quest.1797F477107C810E.quest_desc: ["Mais rápida ainda. Vale para quem cozinha muito."]
+	quest.690670CB60C03628.title: "Aumentos"
+	quest.690670CB60C03628.quest_desc: ["Os &eaumentos&r dão poderes à fornalha: &evelocidade&r, &eeconomia de combustível&r, &ealto-forno&r ou &edefumador&r."]
+	quest.35D036201CA7771D.title: "Fornalha geradora"
+	quest.35D036201CA7771D.quest_desc: ["O &eaumento gerador&r faz a fornalha queimar combustível para gerar energia. Veja no JEI."]
+	quest.795D4ECE49370EDC.title: "Fornalha de netherita"
+	quest.795D4ECE49370EDC.quest_desc: ["A mais rápida de todas. Projeto para quem já tem netherita sobrando."]
 	chapter.3AFA20A348928003.title: "Dimensões"
 	chapter.3AFA20A348928003.chapter_subtitle: ["Outros mundos para visitar"]
 	quest.36676C6CCD56E1A0.title: "Além do mundo normal"
