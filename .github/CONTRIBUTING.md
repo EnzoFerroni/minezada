@@ -162,4 +162,10 @@ operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
 
 Mod pedido sem versao para o Minecraft do pack: `powershell -ExecutionPolicy Bypass -File scripts/comparar-versoes.ps1 <slug>` mostra, para cada versao do jogo, quantos mods do pack tem versao NeoForge no Modrinth e quais faltam.
 
-Livro de missoes (FTB Quests): edite a tabela de `scripts/missoes.ps1` e rode o script; ele gera `server-config/config/ftbquests/quests`, que o iniciar copia para o servidor. Ids de itens e dimensoes precisam existir nos jars.
+Livro de missoes (FTB Quests): edite a tabela de `scripts/missoes.ps1` e rode o script; ele gera `server-config/config/ftbquests/quests`, que o iniciar copia para o servidor. O `montar-pack` roda o script no fim.
+
+- Cobertura por mod em `docs/missoes.md` (gerado): itens do mod, missoes contra a meta e status. Mod novo no `mods.txt` aparece como "falta". Meta pelo tamanho do mod; mod com muitas variantes de madeira ou cor vai em `$metaFixa`, mod sem conteudo para missao em `$semMissao` com o motivo.
+- Missao que ensina um mod sem pedir item dele leva `mod = 'slug'`.
+- O script recusa: item sem nome, modelo ou receita/loot/tag nos jars, missao em cima de outra, linha cruzando missao, titulo ou descricao vazios, titulo repetido no capitulo e `&` que nao seja codigo de cor (escreva "and").
+- Rodar com o `tools/jars` completo (rode o `montar-pack` antes): jar faltando muda a cobertura e o CI do Pack falha. Ordem nunca pode vir de hashtable (`.Keys`): o PowerShell 5.1 e o 7 dariam arvores diferentes.
+- O CI do servidor falha se o log tem "Tried to load invalid item" de um id do livro. Item que existe no jar mas nao no jogo so aparece abrindo o livro.
