@@ -1,0 +1,8 @@
+name = "Completionist's Index"
+filename = "CompletionistsIndex-v21.1.0-1.21.1-NeoForge.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/iSCGCCV1/versions/nx3WY9Ju/CompletionistsIndex-v21.1.0-1.21.1-NeoForge.jar"
+hash-format = "sha1"
+hash = "0977cc9f95a07f00641856ec02a4a387d00cf07c"

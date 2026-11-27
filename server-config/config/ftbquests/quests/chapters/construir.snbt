@@ -200,5 +200,15 @@
 			x: 4d
 			y: 3d
 		}
+		{
+			dependencies: ["147BEF281E8E7856"]
+			id: "3DA6D83330290EBF"
+			rewards: [{ id: "26BBB5F24FA9E857", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "247B6C2D3EEB62B9", type: "checkmark" }]
+			x: 5d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
 	]
 }

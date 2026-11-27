@@ -851,6 +851,12 @@ $capitulos = @(
         @{ t = 'Móveis do Create'; depois = 'Primeiros móveis'; opcional = $true; sub = 'Create: Interiors'; d = @(
             'Bancos e cadeiras no estilo do Create. Dá para sentar, inclusive em trens e máquinas que andam.'
         ); item = 'interiors:kelp_chair' }
+        @{ t = 'Tapete embaixo de tudo'; mod = @('underlay'); depois = 'Construir sem sofrer'; opcional = $true; sub = 'Underlay'; d = @(
+            'Com o &eUnderlay&r você põe &etapete&r, laje, alçapão, botão ou trilho &eembaixo&r de baús, camas, placas e tochas.'
+            'Clique com o bloco na face de baixo. Clique de novo com outro para trocar; clique esquerdo tira.'
+            ''
+            '&7Clique em Concluir quando testar.'
+        ) }
     ) }
     @{ t = 'Decorar'; g = 'Começo'; icone = 'mcwfurnitures:oak_wardrobe'; sub = 'Móveis, telhados, janelas, portas e enfeites'; m = @(
         @{ t = 'Casa com cara de casa'; marco = $true; mod = @('bubblellaneous'); sub = 'Comece por aqui'; d = @(
@@ -2250,6 +2256,12 @@ $capitulos = @(
         @{ t = 'Sinalizador'; depois = 'Estrela do Nether'; marco = $true; d = @(
             'Um &esinalizador&r em cima de uma pirâmide de blocos de ferro, ouro ou diamante dá efeitos bons para quem está perto.'
         ); item = 'minecraft:beacon' }
+        @{ t = 'Catálogo de itens'; mod = @('completionists-index'); depois = 'Montinho de diamante'; sub = 'Completionist''s Index'; d = @(
+            'O &ecatálogo&r mostra todos os itens do jogo e dos mods, separados por mod, com uma barra de quanto você já pegou.'
+            'Abra pelo &ebotão no inventário&r ou no &emenu de pausa&r. Tem busca.'
+            ''
+            '&7Clique em Concluir quando abrir o catálogo.'
+        ) }
     ) }
 )
 
@@ -2485,7 +2497,7 @@ $semMissao = @{
     'funciona sozinho ou so muda a tela' = 'bettersearch', 'appleskin', 'better-advancements', 'yungs-menu-tweaks', 'polymorph', 'travelers-titles', 'dynamic-torches', 'tectonic', 'yungs-bridges', 'yungs-extras', 'easy-anvils'
 }
 # Meta fixa para mod com muitas variantes (madeira, cor) que inflam a contagem de itens.
-$metaFixa = @{ 'storage-delight' = 3; 'botany-pots' = 4; 'cf:415438' = 8; 'macaws-furniture' = 4; 'macaws-roofs' = 2; 'macaws-windows' = 2; 'macaws-doors' = 2; 'macaws-bridges' = 2; 'macaws-fences-and-walls' = 2; 'handcrafted' = 4; 'sophisticated-storage' = 6; 'createdeco' = 3; 'create-deco' = 3; 'copycats' = 2; 'advanced-netherite' = 3; 'interiors' = 2; 'biomes-o-plenty' = 6; 'galosphere' = 6; 'cf:896915' = 4; 'cf:386134' = 2 }
+$metaFixa = @{ 'storage-delight' = 3; 'botany-pots' = 4; 'cf:415438' = 8; 'macaws-furniture' = 4; 'macaws-roofs' = 2; 'macaws-windows' = 2; 'macaws-doors' = 2; 'macaws-bridges' = 2; 'macaws-fences-and-walls' = 2; 'handcrafted' = 4; 'sophisticated-storage' = 6; 'createdeco' = 3; 'create-deco' = 3; 'copycats' = 2; 'advanced-netherite' = 3; 'interiors' = 2; 'biomes-o-plenty' = 6; 'galosphere' = 6; 'cf:896915' = 4; 'cf:386134' = 2; 'underlay' = 1 }
 $motivo = @{}; foreach ($k in $semMissao.Keys) { foreach ($s in $semMissao[$k]) { $motivo[$s] = $k } }
 if (Test-Path $jarsDir) {
     # slug -> jar (sha1 do .pw.toml) -> modIds do neoforge.mods.toml (com os mods embutidos).

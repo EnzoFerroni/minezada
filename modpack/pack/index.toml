@@ -181,6 +181,11 @@ hash = "ca9c879eb5099bdbe64f687087a9563a288a3de78dbde289053acdb295a45e41"
 metafile = true
 
 [[files]]
+file = "mods/completionists-index.pw.toml"
+hash = "1558fc1ef1e940b98a85f4896afb723ca8a58a85f30655a9d650277837860ee0"
+metafile = true
+
+[[files]]
 file = "mods/controlling.pw.toml"
 hash = "aceff9106cdb6f4c20dc0cef4baf6ee9639423f78a52ae64370e367965ccc6ad"
 metafile = true
@@ -966,6 +971,11 @@ hash = "79af1f1da0ce1d74c7cec23e72d28d3eed45baf6ffc27b732800b6988522b534"
 metafile = true
 
 [[files]]
+file = "mods/underlay.pw.toml"
+hash = "568b7aa0c62e8dc5170257f155070e4c958525076d55abe6d67422974bafd8be"
+metafile = true
+
+[[files]]
 file = "mods/waystones.pw.toml"
 hash = "426ed3dd46017944747f0601f8832d6f7d7b84aa6efbcb1d0b2ba7cc574b5156"
 metafile = true
@@ -1088,6 +1098,11 @@ metafile = true
 [[files]]
 file = "resourcepacks/better-leaves.pw.toml"
 hash = "2adfa027a88a52205026d2eb5a57c4b8cee173b08e86e18d8d73fb4a2124ddf3"
+metafile = true
+
+[[files]]
+file = "resourcepacks/brazilian-project.pw.toml"
+hash = "ded5b716408747413210aa1d9d43554101825f57d6fcceb84f3133996cd25bc0"
 metafile = true
 
 [[files]]

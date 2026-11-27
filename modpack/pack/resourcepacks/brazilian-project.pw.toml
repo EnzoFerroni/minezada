@@ -1,0 +1,8 @@
+name = "The Brazilian Localization Project [PT-BR]"
+filename = "The Brazilian Project [1.21.1-1.6.0].zip"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/FGsIa36p/versions/fka9dqfD/The%20Brazilian%20Project%20%5B1.21.1-1.6.0%5D.zip"
+hash-format = "sha1"
+hash = "b5bb67bb889984d00f0c497dba7370c4171b7179"
