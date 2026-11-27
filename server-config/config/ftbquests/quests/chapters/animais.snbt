@@ -5,7 +5,7 @@
 	group: "2A64FDD2182C23F1"
 	icon: { id: "alexsmobs:banana" }
 	id: "0681A168F2C7C697"
-	order_index: 8
+	order_index: 11
 	quest_links: [ ]
 	quests: [
 		{

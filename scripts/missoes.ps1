@@ -110,58 +110,315 @@ $capitulos = @(
             'Tecla em vermelho está em conflito com outra.'
         ) }
     ) }
-    @{ t = 'Create 1: o basico'; g = 'Tecnologia'; icone = 'create:cogwheel'; m = @(
-        @{ t = 'O que e o Create'; d = 'Create e um mod de maquinas que funcionam com rotacao, como um moinho de verdade: algo gira (agua, vento, vapor) e eixos levam o giro ate as maquinas.', 'Segure W com o mouse em cima de qualquer item do Create para ver uma animacao explicando ele (Ponder).' }
-        @{ t = 'Liga de andesito'; d = 'O material de quase tudo no comeco: andesito com pepitas de ferro (ou zinco). Receita no JEI (tecla R).'; item = 'create:andesite_alloy'; q = 16; p = 'create:andesite_alloy'; n = 16 }
-        @{ t = 'Revestimento de andesito'; d = 'Clique com a liga de andesito em um tronco descascado. O revestimento e a base de varias maquinas.'; item = 'create:andesite_casing' }
-        @{ t = 'Eixos'; d = 'O eixo leva a rotacao em linha reta.'; item = 'create:shaft'; q = 8 }
-        @{ t = 'Engrenagens'; d = 'Engrenagens passam o giro para os lados. Duas engrenagens encostadas giram em sentidos opostos.', 'Engrenagem grande ligada a pequena muda a velocidade: pequena para grande diminui, grande para pequena aumenta.'; item = 'create:cogwheel'; q = 4 }
-        @{ t = 'Engrenagem grande'; d = 'Junto com a pequena, ela faz curvas e muda a velocidade (RPM).'; item = 'create:large_cogwheel' }
-        @{ t = 'Caixa de engrenagens'; d = 'Faz curvas de 90 graus em pouco espaco.'; item = 'create:gearbox' }
-        @{ t = 'Manivela'; d = 'Gira as maquinas com a mao, para testar. Cansa: gasta fome.'; item = 'create:hand_crank' }
-        @{ t = 'Roda d''agua'; d = 'Coloque na beira de agua corrente: a agua empurra a roda e ela gira o eixo. Agua dos dois lados trava a roda.'; item = 'create:water_wheel'; p = 'create:shaft'; n = 8 }
-        @{ t = 'Oculos de engenheiro'; d = 'Com os oculos voce olha uma maquina e ve a velocidade e o esforco (stress) dela.'; item = 'create:goggles' }
-        @{ t = 'Stress'; d = 'Cada maquina gasta esforco (SU). Cada fonte de giro tem um limite de SU. Passou do limite, tudo para (overstressed): coloque mais fontes ou baixe a velocidade.', 'O medidor de stress mostra quanto da rede esta em uso.'; item = 'create:stressometer' }
+    @{ t = 'Create 1: o básico'; g = 'Tecnologia'; icone = 'create:cogwheel'; sub = 'Máquinas que funcionam com rotação'; m = @(
+        @{ t = 'O que é o Create'; marco = $true; sub = 'Comece por aqui'; d = @(
+            'O &eCreate&r é um mod de máquinas que funcionam com &erotação&r, como um moinho de verdade.'
+            'Algo gira (água, vento, vapor), &eeixos&r e &eengrenagens&r levam o giro e as máquinas trabalham sozinhas.'
+            ''
+            'Dica de ouro: segure &eW&r com o mouse em cima de qualquer item do Create. Abre o &aPonder&r, uma animação que mostra como ele funciona.'
+            ''
+            '&7Clique em Concluir quando tiver aberto um Ponder.'
+        ) }
+        @{ t = 'Zinco'; depois = 'O que é o Create'; d = @(
+            'O &ezinco&r é o minério novo do Create. Aparece em cavernas, mais fundo, como blocos verde-claros.'
+            'Derreta o minério bruto na fornalha para ter lingotes.'
+        ); item = 'create:zinc_ingot'; q = 4 }
+        @{ t = 'Liga de andesito'; depois = 'O que é o Create'; marco = $true; d = @(
+            'A &eliga de andesito&r é o material de quase tudo no começo.'
+            'Feita com &eandesito&r e &epepitas de ferro&r (ou de zinco). Veja a receita no JEI com &eR&r.'
+        ); item = 'create:andesite_alloy'; q = 16; p = 'create:andesite_alloy'; n = 16 }
+        @{ t = 'Chave inglesa'; depois = 'Liga de andesito'; d = @(
+            'A &echave inglesa&r é a ferramenta do Create.'
+            '&eBotão direito&r: gira o bloco. &eShift + botão direito&r: pega a máquina de volta na hora, sem quebrar.'
+        ); item = 'create:wrench' }
+        @{ t = 'Revestimento de andesito'; depois = 'Liga de andesito'; d = @(
+            'Clique com a liga de andesito em um &etronco descascado&r. Ele vira &erevestimento&r, a base de várias máquinas.'
+        ); item = 'create:andesite_casing'; q = 4 }
+        @{ t = 'Eixos'; depois = 'Liga de andesito'; d = @(
+            'O &eeixo&r leva a rotação em linha reta. Encaixe um atrás do outro.'
+        ); item = 'create:shaft'; q = 8 }
+        @{ t = 'Engrenagens'; depois = 'Eixos'; d = @(
+            '&eEngrenagens&r passam o giro para os lados. Duas encostadas giram em sentidos opostos.'
+            ''
+            'Engrenagem &egrande&r com a &epequena&r muda a velocidade: da pequena para a grande &adiminui&r, da grande para a pequena &aaumenta&r.'
+        ); item = 'create:cogwheel'; q = 4 }
+        @{ t = 'Engrenagem grande'; depois = 'Engrenagens'; d = @(
+            'Faz curvas e muda a velocidade junto com a pequena.'
+        ); item = 'create:large_cogwheel'; q = 2 }
+        @{ t = 'Caixa de engrenagens'; depois = 'Engrenagens'; d = @(
+            'A &ecaixa de engrenagens&r faz curvas de 90 graus em pouco espaço.'
+        ); item = 'create:gearbox' }
+        @{ t = 'Manivela'; depois = 'Eixos'; d = @(
+            'A &emanivela&r gira as máquinas com a mão. Boa para testar. Cansa: gasta fome.'
+        ); item = 'create:hand_crank' }
+        @{ t = 'Roda d''água'; depois = 'Eixos'; marco = $true; sub = 'Primeira fonte de força'; d = @(
+            'Coloque a &eroda d''água&r encostada em &eágua corrente&r: a água empurra a roda e ela gira o eixo.'
+            'Mais rodas no mesmo eixo, mais força. A &eroda d''água grande&r dá ainda mais.'
+        ); item = 'create:water_wheel'; p = 'create:shaft'; n = 8 }
+        @{ t = 'Óculos de engenheiro'; depois = 'Roda d''água'; d = @(
+            'Com os &eóculos&r na cabeça você olha uma máquina e vê a &evelocidade&r e o &eesforço&r dela.'
+        ); item = 'create:goggles' }
+        @{ t = 'Stress'; depois = 'Óculos de engenheiro'; marco = $true; sub = 'Por que a máquina parou?'; d = @(
+            'Cada máquina gasta &eesforço&r (SU). Cada fonte de giro aguenta um tanto de SU.'
+            'Passou do limite, &ctudo para&r. Coloque mais fontes ou baixe a velocidade.'
+            ''
+            'O &emedidor de stress&r mostra quanto da rede está em uso; o &evelocímetro&r mostra a velocidade.'
+        ); item = 'create:stressometer' }
+        @{ t = 'Embreagem e câmbio'; depois = 'Stress'; opcional = $true; d = @(
+            '&eEmbreagem&r: com sinal de redstone, corta o giro.'
+            '&eCâmbio&r: com sinal de redstone, inverte o sentido.'
+        ); item = 'create:clutch' }
+        @{ t = 'Correia'; depois = 'Stress'; opcional = $true; d = @(
+            'A &ecaixa de correia&r leva o giro para os lados sem engrenagem. A versão ajustável muda a velocidade com redstone.'
+        ); item = 'create:encased_chain_drive'; q = 2 }
     ) }
-    @{ t = 'Create 2: primeiras maquinas'; g = 'Tecnologia'; icone = 'create:mechanical_press'; m = @(
-        @{ t = 'Deposito'; d = 'O deposito segura itens embaixo das maquinas, como uma mesa.'; item = 'create:depot' }
-        @{ t = 'Prensa'; d = 'A prensa em cima de um deposito amassa lingotes em chapas. Chapas de ferro aparecem em muitas receitas.'; item = 'create:mechanical_press' }
-        @{ t = 'Chapa de ferro'; d = 'Faca suas primeiras chapas com a prensa.'; item = 'create:iron_sheet'; q = 16; p = 'minecraft:iron_ingot'; n = 16 }
-        @{ t = 'Esteira'; d = 'Feita de alga seca. Clique em dois eixos para ligar: leva itens de uma maquina para outra e tambem passa o giro.'; item = 'create:belt_connector' }
-        @{ t = 'Moedor'; d = 'O moedor transforma trigo em farinha e pedregulho em cascalho.'; item = 'create:millstone' }
-        @{ t = 'Ventilador'; d = 'O ventilador sopra itens. Com fogo atras ele cozinha, com lava ele derrete, com agua ele lava os itens no caminho.'; item = 'create:encased_fan' }
-        @{ t = 'Serra'; d = 'A serra corta madeira. Numa estrutura que anda, derruba arvores inteiras.'; item = 'create:mechanical_saw' }
-        @{ t = 'Broca'; d = 'A broca quebra o bloco da frente. Com rolamentos e pistoes vira uma maquina de minerar.'; item = 'create:mechanical_drill' }
-        @{ t = 'Moinho de vento'; d = 'O rolamento de moinho com velas em volta gira sem agua. Mais velas, mais forca. Clique no rolamento para comecar.'; item = 'create:windmill_bearing' }
-        @{ t = 'Velas'; d = 'As velas do moinho. La tambem serve.'; item = 'create:white_sail'; q = 8 }
-        @{ t = 'Cola'; d = 'A super cola junta blocos para que se movam juntos numa estrutura.'; item = 'create:super_glue' }
-        @{ t = 'Pistao mecanico'; d = 'Empurra uma estrutura inteira para frente e para tras.'; item = 'create:mechanical_piston' }
-        @{ t = 'Rolamento mecanico'; d = 'Gira uma estrutura inteira, como uma roda gigante ou uma porta.'; item = 'create:mechanical_bearing' }
+    @{ t = 'Create 2: primeiras máquinas'; g = 'Tecnologia'; icone = 'create:mechanical_press'; sub = 'Esteiras, prensa, moedor e ventilador'; m = @(
+        @{ t = 'Depósito'; d = @(
+            'O &edepósito&r segura itens embaixo das máquinas, como uma mesa. Clique para pôr e tirar.'
+        ); item = 'create:depot' }
+        @{ t = 'Prensa'; depois = 'Depósito'; marco = $true; d = @(
+            'A &eprensa&r em cima de um depósito (ou esteira) amassa &elingotes em chapas&r.'
+            'Precisa de giro. Chapas aparecem em muitas receitas.'
+        ); item = 'create:mechanical_press' }
+        @{ t = 'Chapa de ferro'; depois = 'Prensa'; d = @(
+            'Faça suas primeiras &echapas de ferro&r com a prensa.'
+        ); item = 'create:iron_sheet'; q = 16; p = 'minecraft:iron_ingot'; n = 16 }
+        @{ t = 'Chapa de ouro'; depois = 'Chapa de ferro'; opcional = $true; d = @(
+            'A chapa de ouro serve no &emecanismo de precisão&r, lá na era do latão.'
+        ); item = 'create:golden_sheet'; q = 4 }
+        @{ t = 'Esteira'; depois = 'Depósito'; marco = $true; d = @(
+            'A &eesteira&r é feita de &ealga seca&r. Clique em um eixo e depois em outro, na mesma linha: a esteira liga os dois.'
+            'Ela leva itens de uma máquina para outra e também passa o giro.'
+        ); item = 'create:belt_connector'; q = 4 }
+        @{ t = 'Funil e calha'; depois = 'Esteira'; d = @(
+            'O &efunil&r põe e tira itens de esteiras e baús.'
+            'A &ecalha&r é um cano de itens para cima e para baixo.'
+        ); item = 'create:andesite_funnel'; q = 2 }
+        @{ t = 'Moedor'; depois = 'Prensa'; d = @(
+            'O &emoedor&r faz farinha de trigo, cascalho de pedregulho, corante de flores.'
+            'Ponha itens por cima, pegue o resultado com a mão ou com um funil.'
+        ); item = 'create:millstone' }
+        @{ t = 'Ventilador'; depois = 'Moedor'; marco = $true; sub = 'Cozinhar, assar e lavar em massa'; d = @(
+            'O &eventilador&r sopra itens. O que estiver no vento passa por um processo:'
+            '&eágua&r na frente: lava (cascalho dá pepitas, minério moído dá extra).'
+            '&efogo&r ou fogueira: cozinha comida.'
+            '&elava&r: derrete, como uma fornalha.'
+            '&efogo de alma&r: assombra (itens novos, veja no JEI).'
+        ); item = 'create:encased_fan' }
+        @{ t = 'Massa e pão'; depois = 'Ventilador'; opcional = $true; d = @(
+            'Farinha do moedor com água dá &emassa&r. O ventilador com fogo vira pão. Uma fazenda de pão sem tocar em nada.'
+        ); item = 'create:dough'; q = 8 }
+        @{ t = 'Serra'; depois = 'Esteira'; d = @(
+            'A &eserra&r corta tronco em tábuas no caminho da esteira. Em uma estrutura que anda, derruba árvores.'
+        ); item = 'create:mechanical_saw' }
+        @{ t = 'Broca'; depois = 'Prensa'; d = @(
+            'A &ebroca&r quebra o bloco da frente. Junto de rolamentos e pistões vira uma máquina de minerar.'
+        ); item = 'create:mechanical_drill' }
+        @{ t = 'Moinho de vento'; depois = 'Prensa'; marco = $true; sub = 'Força sem água'; d = @(
+            'O &erolamento de moinho&r com &evelas&r (ou lã) colados nele gira sem água.'
+            'Mais velas, mais força. Clique no rolamento com a mão vazia para montar.'
+        ); item = 'create:windmill_bearing'; p = 'create:white_sail'; n = 16 }
+        @{ t = 'Cola'; depois = 'Moinho de vento'; d = @(
+            'A &esuper cola&r junta blocos para eles se moverem juntos. Clique em dois cantos para colar a área.'
+        ); item = 'create:super_glue' }
+        @{ t = 'Pistão mecânico'; depois = 'Cola'; d = @(
+            'Empurra uma estrutura inteira para a frente e para trás. Use &eextensões de pistão&r para ir mais longe.'
+        ); item = 'create:mechanical_piston' }
+        @{ t = 'Rolamento mecânico'; depois = 'Cola'; d = @(
+            'Gira uma estrutura inteira: roda-gigante, porta, ponte levadiça.'
+        ); item = 'create:mechanical_bearing' }
+        @{ t = 'Colheitadeira'; depois = 'Rolamento mecânico'; d = @(
+            'A &ecolheitadeira&r em uma estrutura que anda colhe plantações e replanta.'
+            'Faça uma fazenda que se colhe sozinha com um pistão ou rolamento.'
+        ); item = 'create:mechanical_harvester' }
+        @{ t = 'Arado'; depois = 'Colheitadeira'; opcional = $true; d = @(
+            'O &earado&r ara a terra e quebra grama e plantas na frente da estrutura.'
+        ); item = 'create:mechanical_plough' }
+        @{ t = 'Polia de corda'; depois = 'Cola'; opcional = $true; d = @(
+            'Desce e sobe uma estrutura pela corda. Boa para elevador e para minerar para baixo.'
+        ); item = 'create:rope_pulley' }
     ) }
-    @{ t = 'Create 3: era do latao'; g = 'Tecnologia'; icone = 'create:brass_ingot'; m = @(
-        @{ t = 'Bacia'; d = 'A bacia guarda os ingredientes para o misturador e a prensa.'; item = 'create:basin' }
-        @{ t = 'Misturador'; d = 'Em cima da bacia, com um bloco de espaco, ele mistura os ingredientes.'; item = 'create:mechanical_mixer' }
-        @{ t = 'Queimador de blaze'; d = 'Faca o queimador vazio e clique com ele em um blaze. Embaixo da bacia ele aquece as receitas; alimente com carvao.'; item = 'create:blaze_burner' }
-        @{ t = 'Latao'; d = 'Cobre e zinco na bacia aquecida viram latao.'; item = 'create:brass_ingot'; q = 16; p = 'create:brass_ingot'; n = 8 }
-        @{ t = 'Revestimento de latao'; d = 'Latao em tronco descascado. Base das maquinas avancadas.'; item = 'create:brass_casing' }
-        @{ t = 'Quartzo rosa'; d = 'Quartzo rosa polido vira tubo de eletrons, a peca eletronica do Create.'; item = 'create:electron_tube' }
-        @{ t = 'Deployer'; d = 'O deployer usa o item da mao dele no bloco da frente, como um jogador. Base da montagem automatica.'; item = 'create:deployer' }
-        @{ t = 'Mecanismo de precisao'; d = 'Feito em varias etapas numa esteira com deployers (montagem em sequencia). Veja o passo a passo no JEI.'; item = 'create:precision_mechanism'; p = 'create:precision_mechanism'; n = 2 }
-        @{ t = 'Funil de latao'; d = 'Funis colocam e tiram itens das esteiras e baus. O de latao tem filtro.'; item = 'create:brass_funnel' }
-        @{ t = 'Tunel de latao'; d = 'Divide os itens de uma esteira entre varias saidas.'; item = 'create:brass_tunnel' }
-        @{ t = 'Crafter mecanico'; d = 'Varios crafters juntos fazem receitas grandes sozinhos.'; item = 'create:mechanical_crafter'; q = 9 }
-        @{ t = 'Britadores'; d = 'Duas rodas trituradoras girando para dentro moem minerio e dao mais material.'; item = 'create:crushing_wheel'; q = 2 }
+    @{ t = 'Create 3: era do latão'; g = 'Tecnologia'; icone = 'create:brass_ingot'; sub = 'Misturar, aquecer e montar peças'; m = @(
+        @{ t = 'Bacia'; marco = $true; d = @(
+            'A &ebacia&r guarda ingredientes para o misturador e a prensa trabalharem.'
+        ); item = 'create:basin' }
+        @{ t = 'Misturador'; depois = 'Bacia'; d = @(
+            'O &emisturador&r fica &edois blocos acima da bacia&r (um de espaço). Ele mistura o que está na bacia.'
+        ); item = 'create:mechanical_mixer' }
+        @{ t = 'Compactar'; depois = 'Bacia'; opcional = $true; d = @(
+            'A &eprensa em cima da bacia&r compacta: 9 itens viram um bloco, e algumas receitas novas (veja no JEI).'
+        ) }
+        @{ t = 'Queimador de blaze'; depois = 'Misturador'; marco = $true; d = @(
+            'Faça o &equeimador vazio&r e clique com ele em um &eblaze&r (no Nether).'
+            'Embaixo da bacia ele &aaquece&r as receitas. Alimente com carvão ou madeira.'
+            'Com &ebolo de blaze&r ele fica &esuperaquecido&r, para receitas difíceis.'
+        ); item = 'create:blaze_burner' }
+        @{ t = 'Latão'; depois = 'Queimador de blaze'; marco = $true; d = @(
+            '&eCobre&r e &ezinco&r na bacia aquecida, com o misturador: viram &elatão&r.'
+        ); item = 'create:brass_ingot'; q = 16; p = 'create:brass_ingot'; n = 8 }
+        @{ t = 'Revestimento de latão'; depois = 'Latão'; d = @(
+            'Latão em tronco descascado. Base das máquinas avançadas.'
+        ); item = 'create:brass_casing'; q = 4 }
+        @{ t = 'Quartzo rosa'; depois = 'Bacia'; d = @(
+            'O &equartzo rosa&r é quartzo com redstone. Lixe com a &elixa&r para ficar polido.'
+        ); item = 'create:polished_rose_quartz'; q = 4 }
+        @{ t = 'Tubo de elétrons'; depois = 'Quartzo rosa'; d = @(
+            'O &etubo de elétrons&r é a peça eletrônica do Create: quartzo rosa polido com chapa de ferro.'
+        ); item = 'create:electron_tube'; q = 4 }
+        @{ t = 'Deployer'; depois = 'Tubo de elétrons'; marco = $true; d = @(
+            'O &edeployer&r usa o item da mão dele no bloco da frente, como um jogador.'
+            'Põe blocos, usa ferramentas, até ataca. É a base da montagem automática.'
+        ); item = 'create:deployer' }
+        @{ t = 'Mecanismo de precisão'; depois = @('Deployer', 'Latão'); marco = $true; sub = 'Montagem em sequência'; d = @(
+            'Feito em várias etapas em uma esteira com deployers e prensa: a &emontagem em sequência&r.'
+            'Veja o passo a passo no JEI. Algumas peças saem quebradas: é normal, recicle.'
+        ); item = 'create:precision_mechanism'; p = 'create:precision_mechanism'; n = 2 }
+        @{ t = 'Funil de latão'; depois = 'Revestimento de latão'; d = @(
+            'O &efunil de latão&r tem &efiltro&r: escolha qual item passa. Também tira a quantidade exata.'
+        ); item = 'create:brass_funnel'; q = 2 }
+        @{ t = 'Túnel de latão'; depois = 'Funil de latão'; d = @(
+            'O &etúnel de latão&r em cima da esteira divide os itens entre várias saídas, com filtro.'
+        ); item = 'create:brass_tunnel'; q = 2 }
+        @{ t = 'Braço mecânico'; depois = @('Mecanismo de precisão', 'Funil de latão'); marco = $true; d = @(
+            'O &ebraço mecânico&r pega de um lugar e põe em outro.'
+            'Segure o braço e clique nos lugares de entrada (azul) e saída (laranja) antes de colocar.'
+        ); item = 'create:mechanical_arm' }
+        @{ t = 'Crafter mecânico'; depois = 'Latão'; d = @(
+            'Vários &ecrafters&r juntos fazem receitas grandes sozinhos. Use a chave inglesa para virar as setas.'
+        ); item = 'create:mechanical_crafter'; q = 9 }
+        @{ t = 'Britadores'; depois = 'Latão'; marco = $true; sub = 'Mais minério por minério'; d = @(
+            'Duas &erodas trituradoras&r girando para dentro moem minério e dão &aminério moído&r e extras.'
+            'Lave o minério moído com o ventilador e água para ganhar pepitas a mais.'
+        ); item = 'create:crushing_wheel'; q = 2 }
+        @{ t = 'Cofre'; depois = 'Revestimento de latão'; d = @(
+            'O &ecofre&r guarda muito item. Vários juntos viram um cofre grande.'
+        ); item = 'create:item_vault'; q = 4 }
+        @{ t = 'Calha inteligente'; depois = 'Funil de latão'; opcional = $true; d = @(
+            'Uma calha com filtro, que também controla quantos itens descem por vez.'
+        ); item = 'create:smart_chute' }
+        @{ t = 'Lançador'; depois = 'Funil de latão'; opcional = $true; d = @(
+            'O &elançador&r joga itens (ou você) até um alvo. Segure e clique no destino antes de colocar.'
+        ); item = 'create:weighted_ejector' }
     ) }
-    @{ t = 'Create 4: vapor, fluidos e trens'; g = 'Tecnologia'; icone = 'create:steam_engine'; m = @(
-        @{ t = 'Tubos'; d = 'Tubos levam liquidos.'; item = 'create:fluid_pipe'; q = 8 }
-        @{ t = 'Bomba'; d = 'A bomba gira e empurra o liquido pelos tubos. A chave inglesa inverte o sentido.'; item = 'create:mechanical_pump' }
-        @{ t = 'Tanque'; d = 'Tanques guardam liquido. Varios juntos fazem um tanque grande.'; item = 'create:fluid_tank'; q = 4 }
-        @{ t = 'Bico'; d = 'O bico (spout) enche itens com liquido, como garrafas e baldes.'; item = 'create:spout' }
-        @{ t = 'Motor a vapor'; d = 'Tanque com agua em cima de queimadores de blaze vira caldeira; o motor a vapor no tanque da muita forca.'; item = 'create:steam_engine' }
-        @{ t = 'Trilhos'; d = 'Os trilhos do Create fazem curvas grandes e subidas.'; item = 'create:track'; q = 32 }
-        @{ t = 'Estacao'; d = 'A estacao e onde o trem para e e montado.'; item = 'create:track_station' }
-        @{ t = 'Controles'; d = 'Os controles dirigem o trem. Com um horario, ele anda sozinho entre estacoes.'; item = 'create:controls' }
-        @{ t = 'Construcoes prontas'; d = 'A mesa de esquemas e o canhao de esquemas montam uma construcao inteira a partir de um arquivo. Coloque arquivos .nbt na pasta schematics do jogo; ha muitos prontos no site createmod.com.'; item = 'create:schematicannon' }
+    @{ t = 'Create 4: fluidos e vapor'; g = 'Tecnologia'; icone = 'create:steam_engine'; sub = 'Canos, tanques e muita força'; m = @(
+        @{ t = 'Canos'; d = @(
+            'Os &ecanos&r levam líquidos. Sozinhos não empurram nada: precisam de bomba.'
+        ); item = 'create:fluid_pipe'; q = 8 }
+        @{ t = 'Bomba'; depois = 'Canos'; marco = $true; d = @(
+            'A &ebomba&r gira e empurra o líquido. Gire a bomba com a chave para inverter o sentido.'
+        ); item = 'create:mechanical_pump' }
+        @{ t = 'Tanque'; depois = 'Canos'; d = @(
+            'O &etanque&r guarda líquido. Vários juntos viram um tanque grande.'
+        ); item = 'create:fluid_tank'; q = 4 }
+        @{ t = 'Bico'; depois = 'Bomba'; d = @(
+            'O &ebico&r enche itens com líquido: garrafas, baldes, e receitas especiais no depósito.'
+        ); item = 'create:spout' }
+        @{ t = 'Ralo'; depois = 'Bomba'; d = @(
+            'O &eralo&r esvazia itens com líquido (baldes, poções) jogados nele.'
+        ); item = 'create:item_drain' }
+        @{ t = 'Mangueira'; depois = 'Bomba'; d = @(
+            'A &epolia de mangueira&r tira ou põe líquido em uma área. Em um lago bem grande, a água &anunca acaba&r.'
+        ); item = 'create:hose_pulley' }
+        @{ t = 'Válvula'; depois = 'Canos'; opcional = $true; d = @(
+            'A &eválvula&r abre e fecha o cano com giro. O &ecano inteligente&r tem filtro de líquido.'
+        ); item = 'create:fluid_valve' }
+        @{ t = 'Motor a vapor'; depois = @('Tanque', 'Bomba'); marco = $true; sub = 'A fonte de força mais forte'; d = @(
+            'Um &etanque&r com &equeimadores de blaze&r embaixo vira caldeira. Bombeie &eágua&r para dentro.'
+            'Coloque o &emotor a vapor&r na lateral do tanque e um eixo nele.'
+            ''
+            'Mais queimadores e mais tanque, mais motores. Olhe a caldeira com os óculos: ela diz o que falta.'
+        ); item = 'create:steam_engine'; p = 'minecraft:coal_block'; n = 8 }
+        @{ t = 'Apito'; depois = 'Motor a vapor'; opcional = $true; d = @(
+            'O &eapito&r na caldeira toca com redstone. Empilhe para mudar a nota.'
+        ); item = 'create:steam_whistle' }
+        @{ t = 'Chocolate e mel'; depois = 'Bico'; opcional = $true; d = @(
+            'O Create tem &echocolate&r e &emel&r líquidos. O bico cobre doces com eles: veja no JEI.'
+        ); item = 'create:bar_of_chocolate'; q = 4 }
+    ) }
+    @{ t = 'Create 5: trens'; g = 'Tecnologia'; icone = 'create:track_station'; sub = 'Linhas de trem entre as bases'; m = @(
+        @{ t = 'Trilhos'; marco = $true; d = @(
+            'Os &etrilhos do Create&r fazem curvas grandes e subidas. Clique em um ponto e depois no outro para fazer a curva.'
+        ); item = 'create:track'; q = 32; p = 'create:track'; n = 32 }
+        @{ t = 'Revestimento de trem'; depois = 'Trilhos'; d = @(
+            'O &erevestimento de trem&r vem da chapa reforçada (feita com o ventilador e lava, veja no JEI).'
+        ); item = 'create:railway_casing'; q = 4 }
+        @{ t = 'Estação'; depois = 'Revestimento de trem'; marco = $true; d = @(
+            'A &eestação&r fica ao lado do trilho. É onde o trem para e onde ele é montado.'
+            'Clique nela para dar nome e entrar no modo de montar.'
+        ); item = 'create:track_station' }
+        @{ t = 'Controles'; depois = 'Estação'; d = @(
+            'Os &econtroles&r são o volante do trem. Sem eles, o trem não anda.'
+        ); item = 'create:controls' }
+        @{ t = 'Montar um trem'; depois = 'Controles'; marco = $true; sub = 'Seu primeiro trem'; d = @(
+            'No modo de montar da estação, ponha &etruques&r (clique com revestimento de trem no trilho) e blocos em cima.'
+            'Cole tudo com &esuper cola&r, ponha os controles e clique em &eMontar&r.'
+            ''
+            '&7Clique em Concluir quando o trem andar.'
+        ) }
+        @{ t = 'Horário'; depois = 'Montar um trem'; d = @(
+            'Com um &ehorário&r na mão, clique em quem está nos controles (pode ser um bicho sentado). O trem anda sozinho entre estações.'
+        ); item = 'create:schedule' }
+        @{ t = 'Sinais'; depois = 'Montar um trem'; d = @(
+            'Os &esinais&r dividem a linha em partes. Dois trens nunca ficam na mesma parte: &asem batida&r.'
+        ); item = 'create:track_signal'; q = 2 }
+        @{ t = 'Observador de trilho'; depois = 'Sinais'; opcional = $true; d = @(
+            'Dá sinal de redstone quando um trem passa. Bom para cancelas e luzes.'
+        ); item = 'create:track_observer' }
+        @{ t = 'Porta de trem'; depois = 'Montar um trem'; opcional = $true; d = @(
+            'A &eporta de trem&r abre sozinha quando o trem para na estação.'
+        ); item = 'create:train_door' }
+    ) }
+    @{ t = 'Create 6: logística'; g = 'Tecnologia'; icone = 'create:packager'; sub = 'Pacotes, estoque e entregas'; m = @(
+        @{ t = 'Ligação de redstone'; d = @(
+            'A &eligação de redstone&r manda sinal sem fio. Ponha dois itens nas casas dela: só ligações com os mesmos itens conversam.'
+        ); item = 'create:redstone_link'; q = 2 }
+        @{ t = 'Painel e link'; depois = 'Ligação de redstone'; d = @(
+            'O &elink de display&r lê uma máquina, baú ou trem e escreve no &epainel&r, em placas ou em tubos nixie.'
+            'Mostre o estoque do armazém ou o horário do trem.'
+        ); item = 'create:display_link'; p = 'create:display_board'; n = 6 }
+        @{ t = 'Prancheta'; depois = 'Ligação de redstone'; opcional = $true; d = @(
+            'Anote listas na &eprancheta&r. Clique em uma máquina para copiar a configuração dela e em outra para colar.'
+        ); item = 'create:clipboard' }
+        @{ t = 'Empacotador'; depois = 'Ligação de redstone'; marco = $true; sub = 'Itens em caixas'; d = @(
+            'O &eempacotador&r encostado em um baú põe os itens em &epacotes de papelão&r.'
+            'Pacote com &eendereço&r vai sozinho pelas esteiras e é aberto no lugar certo. Veja o Ponder (&eW&r).'
+        ); item = 'create:packager' }
+        @{ t = 'Sapo-porto'; depois = 'Empacotador'; d = @(
+            'O &esapo-porto&r pega e entrega pacotes pelas &ecorrentes transportadoras&r, mesmo longe.'
+        ); item = 'create:package_frogport' }
+        @{ t = 'Corrente transportadora'; depois = 'Sapo-porto'; d = @(
+            'Ligue duas engrenagens com a corrente: pacotes viajam pendurados nela.'
+        ); item = 'create:chain_conveyor'; q = 2 }
+        @{ t = 'Painel de estoque'; depois = 'Empacotador'; marco = $true; d = @(
+            'O &elink de estoque&r junta os baús em uma rede. O &epainel de estoque&r mostra tudo e &apede itens&r: eles chegam empacotados.'
+        ); item = 'create:stock_ticker'; p = 'create:stock_link'; n = 2 }
+        @{ t = 'Medidor de fábrica'; depois = 'Painel de estoque'; opcional = $true; d = @(
+            'O &emedidor de fábrica&r pede ingredientes sozinho quando falta algo e manda produzir. Uma fábrica que se gerencia.'
+        ); item = 'create:factory_gauge' }
+    ) }
+    @{ t = 'Create: ferramentas'; g = 'Tecnologia'; icone = 'create:copper_backtank'; sub = 'Equipamentos e construções prontas'; m = @(
+        @{ t = 'Tanque de ar'; marco = $true; d = @(
+            'O &etanque de ar&r nas costas guarda ar comprimido. Encha colocando ele no chão ligado a um giro.'
+        ); item = 'create:copper_backtank' }
+        @{ t = 'Capacete de mergulho'; depois = 'Tanque de ar'; d = @(
+            'Com o tanque nas costas, o &ecapacete de mergulho&r deixa respirar embaixo da água.'
+        ); item = 'create:copper_diving_helmet' }
+        @{ t = 'Canhão de batata'; depois = 'Tanque de ar'; opcional = $true; d = @(
+            'O &ecanhão de batata&r atira comida e outros itens usando o ar do tanque.'
+        ); item = 'create:potato_cannon' }
+        @{ t = 'Braço extensor'; depois = 'Tanque de ar'; d = @(
+            'Com o &ebraço extensor&r em uma mão, você alcança blocos bem mais longe.'
+        ); item = 'create:extendo_grip' }
+        @{ t = 'Varinha de simetria'; solta = $true; opcional = $true; d = @(
+            'Construa um lado e a &evarinha de simetria&r copia do outro lado. Ótima para castelos.'
+        ); item = 'create:wand_of_symmetry' }
+        @{ t = 'Mesa de esquemas'; solta = $true; marco = $true; sub = 'Construções prontas'; d = @(
+            'A &emesa de esquemas&r carrega construções prontas (.nbt). Ponha os arquivos na pasta &eschematics&r do jogo; há muitas no site createmod.com.'
+            'Grave as suas com o &eesquema e pena&r.'
+        ); item = 'create:schematic_table' }
+        @{ t = 'Canhão de esquemas'; depois = 'Mesa de esquemas'; marco = $true; d = @(
+            'O &ecanhão de esquemas&r constrói o esquema inteiro sozinho, usando os blocos de um baú ao lado.'
+        ); item = 'create:schematicannon'; p = 'create:empty_schematic'; n = 4 }
     ) }
     @{ t = 'Mochila e baús'; g = 'Começo'; icone = 'sophisticatedbackpacks:backpack'; sub = 'Guardar muito e achar tudo rápido'; m = @(
         @{ t = 'Arrumar o inventário'; sub = 'Mouse Tweaks e Inventory Essentials'; d = @(

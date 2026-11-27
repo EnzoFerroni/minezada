@@ -40,100 +40,201 @@
 	quest.1C9212BF4A3DD9BC.title: "Achar uma tecla"
 	quest.1C9212BF4A3DD9BC.quest_subtitle: "Controles"
 	quest.1C9212BF4A3DD9BC.quest_desc: ["Em &eOpções > Controles > Teclas&r tem uma &abusca&r: digite o nome da ação (ou do mod) para ver e trocar a tecla.", "", "Tecla em vermelho está em conflito com outra."]
-	chapter.3BA9B6DE266CCBFE.title: "Create 1: o basico"
-	quest.743F2D5CC50C160E.title: "O que e o Create"
-	quest.743F2D5CC50C160E.quest_desc: ["Create e um mod de maquinas que funcionam com rotacao, como um moinho de verdade: algo gira (agua, vento, vapor) e eixos levam o giro ate as maquinas.", "Segure W com o mouse em cima de qualquer item do Create para ver uma animacao explicando ele (Ponder)."]
+	chapter.3BA9B6DE266CCBFE.title: "Create 1: o básico"
+	chapter.3BA9B6DE266CCBFE.chapter_subtitle: ["Máquinas que funcionam com rotação"]
+	quest.743F2D5CC50C160E.title: "O que é o Create"
+	quest.743F2D5CC50C160E.quest_subtitle: "Comece por aqui"
+	quest.743F2D5CC50C160E.quest_desc: ["O &eCreate&r é um mod de máquinas que funcionam com &erotação&r, como um moinho de verdade.", "Algo gira (água, vento, vapor), &eeixos&r e &eengrenagens&r levam o giro e as máquinas trabalham sozinhas.", "", "Dica de ouro: segure &eW&r com o mouse em cima de qualquer item do Create. Abre o &aPonder&r, uma animação que mostra como ele funciona.", "", "&7Clique em Concluir quando tiver aberto um Ponder."]
+	quest.693A83078EFA0FF8.title: "Zinco"
+	quest.693A83078EFA0FF8.quest_desc: ["O &ezinco&r é o minério novo do Create. Aparece em cavernas, mais fundo, como blocos verde-claros.", "Derreta o minério bruto na fornalha para ter lingotes."]
 	quest.34E5D9F83BA191B7.title: "Liga de andesito"
-	quest.34E5D9F83BA191B7.quest_desc: ["O material de quase tudo no comeco: andesito com pepitas de ferro (ou zinco). Receita no JEI (tecla R)."]
+	quest.34E5D9F83BA191B7.quest_desc: ["A &eliga de andesito&r é o material de quase tudo no começo.", "Feita com &eandesito&r e &epepitas de ferro&r (ou de zinco). Veja a receita no JEI com &eR&r."]
+	quest.3428BD8E488309C6.title: "Chave inglesa"
+	quest.3428BD8E488309C6.quest_desc: ["A &echave inglesa&r é a ferramenta do Create.", "&eBotão direito&r: gira o bloco. &eShift + botão direito&r: pega a máquina de volta na hora, sem quebrar."]
 	quest.4E782FDC8A29C55F.title: "Revestimento de andesito"
-	quest.4E782FDC8A29C55F.quest_desc: ["Clique com a liga de andesito em um tronco descascado. O revestimento e a base de varias maquinas."]
+	quest.4E782FDC8A29C55F.quest_desc: ["Clique com a liga de andesito em um &etronco descascado&r. Ele vira &erevestimento&r, a base de várias máquinas."]
 	quest.713CA83B402B1EBB.title: "Eixos"
-	quest.713CA83B402B1EBB.quest_desc: ["O eixo leva a rotacao em linha reta."]
+	quest.713CA83B402B1EBB.quest_desc: ["O &eeixo&r leva a rotação em linha reta. Encaixe um atrás do outro."]
 	quest.769C72DE12C48B1B.title: "Engrenagens"
-	quest.769C72DE12C48B1B.quest_desc: ["Engrenagens passam o giro para os lados. Duas engrenagens encostadas giram em sentidos opostos.", "Engrenagem grande ligada a pequena muda a velocidade: pequena para grande diminui, grande para pequena aumenta."]
+	quest.769C72DE12C48B1B.quest_desc: ["&eEngrenagens&r passam o giro para os lados. Duas encostadas giram em sentidos opostos.", "", "Engrenagem &egrande&r com a &epequena&r muda a velocidade: da pequena para a grande &adiminui&r, da grande para a pequena &aaumenta&r."]
 	quest.06EC2EE31BBAEFB3.title: "Engrenagem grande"
-	quest.06EC2EE31BBAEFB3.quest_desc: ["Junto com a pequena, ela faz curvas e muda a velocidade (RPM)."]
+	quest.06EC2EE31BBAEFB3.quest_desc: ["Faz curvas e muda a velocidade junto com a pequena."]
 	quest.495B4DD49D945339.title: "Caixa de engrenagens"
-	quest.495B4DD49D945339.quest_desc: ["Faz curvas de 90 graus em pouco espaco."]
+	quest.495B4DD49D945339.quest_desc: ["A &ecaixa de engrenagens&r faz curvas de 90 graus em pouco espaço."]
 	quest.209FC078EB5E2BD0.title: "Manivela"
-	quest.209FC078EB5E2BD0.quest_desc: ["Gira as maquinas com a mao, para testar. Cansa: gasta fome."]
-	quest.15DA37216A7BAE21.title: "Roda d'agua"
-	quest.15DA37216A7BAE21.quest_desc: ["Coloque na beira de agua corrente: a agua empurra a roda e ela gira o eixo. Agua dos dois lados trava a roda."]
-	quest.07DF67DB2ED1D8B5.title: "Oculos de engenheiro"
-	quest.07DF67DB2ED1D8B5.quest_desc: ["Com os oculos voce olha uma maquina e ve a velocidade e o esforco (stress) dela."]
+	quest.209FC078EB5E2BD0.quest_desc: ["A &emanivela&r gira as máquinas com a mão. Boa para testar. Cansa: gasta fome."]
+	quest.15DA37216A7BAE21.title: "Roda d'água"
+	quest.15DA37216A7BAE21.quest_subtitle: "Primeira fonte de força"
+	quest.15DA37216A7BAE21.quest_desc: ["Coloque a &eroda d'água&r encostada em &eágua corrente&r: a água empurra a roda e ela gira o eixo.", "Mais rodas no mesmo eixo, mais força. A &eroda d'água grande&r dá ainda mais."]
+	quest.07DF67DB2ED1D8B5.title: "Óculos de engenheiro"
+	quest.07DF67DB2ED1D8B5.quest_desc: ["Com os &eóculos&r na cabeça você olha uma máquina e vê a &evelocidade&r e o &eesforço&r dela."]
 	quest.40E31D6C06C810D7.title: "Stress"
-	quest.40E31D6C06C810D7.quest_desc: ["Cada maquina gasta esforco (SU). Cada fonte de giro tem um limite de SU. Passou do limite, tudo para (overstressed): coloque mais fontes ou baixe a velocidade.", "O medidor de stress mostra quanto da rede esta em uso."]
-	chapter.544787426C85E4FA.title: "Create 2: primeiras maquinas"
-	quest.0E9234D0A775C532.title: "Deposito"
-	quest.0E9234D0A775C532.quest_desc: ["O deposito segura itens embaixo das maquinas, como uma mesa."]
+	quest.40E31D6C06C810D7.quest_subtitle: "Por que a máquina parou?"
+	quest.40E31D6C06C810D7.quest_desc: ["Cada máquina gasta &eesforço&r (SU). Cada fonte de giro aguenta um tanto de SU.", "Passou do limite, &ctudo para&r. Coloque mais fontes ou baixe a velocidade.", "", "O &emedidor de stress&r mostra quanto da rede está em uso; o &evelocímetro&r mostra a velocidade."]
+	quest.2CF7422C354C9249.title: "Embreagem e câmbio"
+	quest.2CF7422C354C9249.quest_desc: ["&eEmbreagem&r: com sinal de redstone, corta o giro.", "&eCâmbio&r: com sinal de redstone, inverte o sentido."]
+	quest.4C24B4F488A34F95.title: "Correia"
+	quest.4C24B4F488A34F95.quest_desc: ["A &ecaixa de correia&r leva o giro para os lados sem engrenagem. A versão ajustável muda a velocidade com redstone."]
+	chapter.544787426C85E4FA.title: "Create 2: primeiras máquinas"
+	chapter.544787426C85E4FA.chapter_subtitle: ["Esteiras, prensa, moedor e ventilador"]
+	quest.0E9234D0A775C532.title: "Depósito"
+	quest.0E9234D0A775C532.quest_desc: ["O &edepósito&r segura itens embaixo das máquinas, como uma mesa. Clique para pôr e tirar."]
 	quest.24D45AE531CC8DD4.title: "Prensa"
-	quest.24D45AE531CC8DD4.quest_desc: ["A prensa em cima de um deposito amassa lingotes em chapas. Chapas de ferro aparecem em muitas receitas."]
+	quest.24D45AE531CC8DD4.quest_desc: ["A &eprensa&r em cima de um depósito (ou esteira) amassa &elingotes em chapas&r.", "Precisa de giro. Chapas aparecem em muitas receitas."]
 	quest.0FFB8A4F6D765047.title: "Chapa de ferro"
-	quest.0FFB8A4F6D765047.quest_desc: ["Faca suas primeiras chapas com a prensa."]
+	quest.0FFB8A4F6D765047.quest_desc: ["Faça suas primeiras &echapas de ferro&r com a prensa."]
+	quest.7CE4E4F1ED13A0DA.title: "Chapa de ouro"
+	quest.7CE4E4F1ED13A0DA.quest_desc: ["A chapa de ouro serve no &emecanismo de precisão&r, lá na era do latão."]
 	quest.08A9F0D3CB4E4ADF.title: "Esteira"
-	quest.08A9F0D3CB4E4ADF.quest_desc: ["Feita de alga seca. Clique em dois eixos para ligar: leva itens de uma maquina para outra e tambem passa o giro."]
+	quest.08A9F0D3CB4E4ADF.quest_desc: ["A &eesteira&r é feita de &ealga seca&r. Clique em um eixo e depois em outro, na mesma linha: a esteira liga os dois.", "Ela leva itens de uma máquina para outra e também passa o giro."]
+	quest.665C7D2A5DA1397D.title: "Funil e calha"
+	quest.665C7D2A5DA1397D.quest_desc: ["O &efunil&r põe e tira itens de esteiras e baús.", "A &ecalha&r é um cano de itens para cima e para baixo."]
 	quest.77552730F917B3A2.title: "Moedor"
-	quest.77552730F917B3A2.quest_desc: ["O moedor transforma trigo em farinha e pedregulho em cascalho."]
+	quest.77552730F917B3A2.quest_desc: ["O &emoedor&r faz farinha de trigo, cascalho de pedregulho, corante de flores.", "Ponha itens por cima, pegue o resultado com a mão ou com um funil."]
 	quest.71902CE9B4233470.title: "Ventilador"
-	quest.71902CE9B4233470.quest_desc: ["O ventilador sopra itens. Com fogo atras ele cozinha, com lava ele derrete, com agua ele lava os itens no caminho."]
+	quest.71902CE9B4233470.quest_subtitle: "Cozinhar, assar e lavar em massa"
+	quest.71902CE9B4233470.quest_desc: ["O &eventilador&r sopra itens. O que estiver no vento passa por um processo:", "&eágua&r na frente: lava (cascalho dá pepitas, minério moído dá extra).", "&efogo&r ou fogueira: cozinha comida.", "&elava&r: derrete, como uma fornalha.", "&efogo de alma&r: assombra (itens novos, veja no JEI)."]
+	quest.44E57A2A09B6F12B.title: "Massa e pão"
+	quest.44E57A2A09B6F12B.quest_desc: ["Farinha do moedor com água dá &emassa&r. O ventilador com fogo vira pão. Uma fazenda de pão sem tocar em nada."]
 	quest.5D406386B77211CF.title: "Serra"
-	quest.5D406386B77211CF.quest_desc: ["A serra corta madeira. Numa estrutura que anda, derruba arvores inteiras."]
+	quest.5D406386B77211CF.quest_desc: ["A &eserra&r corta tronco em tábuas no caminho da esteira. Em uma estrutura que anda, derruba árvores."]
 	quest.6D0020FF08FE30D0.title: "Broca"
-	quest.6D0020FF08FE30D0.quest_desc: ["A broca quebra o bloco da frente. Com rolamentos e pistoes vira uma maquina de minerar."]
+	quest.6D0020FF08FE30D0.quest_desc: ["A &ebroca&r quebra o bloco da frente. Junto de rolamentos e pistões vira uma máquina de minerar."]
 	quest.59A226648CAE99CA.title: "Moinho de vento"
-	quest.59A226648CAE99CA.quest_desc: ["O rolamento de moinho com velas em volta gira sem agua. Mais velas, mais forca. Clique no rolamento para comecar."]
-	quest.327AE96A1893C2F8.title: "Velas"
-	quest.327AE96A1893C2F8.quest_desc: ["As velas do moinho. La tambem serve."]
+	quest.59A226648CAE99CA.quest_subtitle: "Força sem água"
+	quest.59A226648CAE99CA.quest_desc: ["O &erolamento de moinho&r com &evelas&r (ou lã) colados nele gira sem água.", "Mais velas, mais força. Clique no rolamento com a mão vazia para montar."]
 	quest.2B88F26A795CAB85.title: "Cola"
-	quest.2B88F26A795CAB85.quest_desc: ["A super cola junta blocos para que se movam juntos numa estrutura."]
-	quest.3E0E9C0DF135D391.title: "Pistao mecanico"
-	quest.3E0E9C0DF135D391.quest_desc: ["Empurra uma estrutura inteira para frente e para tras."]
-	quest.6E18F7126D48DC9D.title: "Rolamento mecanico"
-	quest.6E18F7126D48DC9D.quest_desc: ["Gira uma estrutura inteira, como uma roda gigante ou uma porta."]
-	chapter.5484F5C3EA822981.title: "Create 3: era do latao"
+	quest.2B88F26A795CAB85.quest_desc: ["A &esuper cola&r junta blocos para eles se moverem juntos. Clique em dois cantos para colar a área."]
+	quest.3E0E9C0DF135D391.title: "Pistão mecânico"
+	quest.3E0E9C0DF135D391.quest_desc: ["Empurra uma estrutura inteira para a frente e para trás. Use &eextensões de pistão&r para ir mais longe."]
+	quest.6E18F7126D48DC9D.title: "Rolamento mecânico"
+	quest.6E18F7126D48DC9D.quest_desc: ["Gira uma estrutura inteira: roda-gigante, porta, ponte levadiça."]
+	quest.777289BEFC4716B7.title: "Colheitadeira"
+	quest.777289BEFC4716B7.quest_desc: ["A &ecolheitadeira&r em uma estrutura que anda colhe plantações e replanta.", "Faça uma fazenda que se colhe sozinha com um pistão ou rolamento."]
+	quest.6C16949AF40EC86F.title: "Arado"
+	quest.6C16949AF40EC86F.quest_desc: ["O &earado&r ara a terra e quebra grama e plantas na frente da estrutura."]
+	quest.54B9D99EC3B487D9.title: "Polia de corda"
+	quest.54B9D99EC3B487D9.quest_desc: ["Desce e sobe uma estrutura pela corda. Boa para elevador e para minerar para baixo."]
+	chapter.5484F5C3EA822981.title: "Create 3: era do latão"
+	chapter.5484F5C3EA822981.chapter_subtitle: ["Misturar, aquecer e montar peças"]
 	quest.0600E8BC2C175FA0.title: "Bacia"
-	quest.0600E8BC2C175FA0.quest_desc: ["A bacia guarda os ingredientes para o misturador e a prensa."]
+	quest.0600E8BC2C175FA0.quest_desc: ["A &ebacia&r guarda ingredientes para o misturador e a prensa trabalharem."]
 	quest.13D65DA105B6DC8C.title: "Misturador"
-	quest.13D65DA105B6DC8C.quest_desc: ["Em cima da bacia, com um bloco de espaco, ele mistura os ingredientes."]
+	quest.13D65DA105B6DC8C.quest_desc: ["O &emisturador&r fica &edois blocos acima da bacia&r (um de espaço). Ele mistura o que está na bacia."]
+	quest.10CE7A314C216C52.title: "Compactar"
+	quest.10CE7A314C216C52.quest_desc: ["A &eprensa em cima da bacia&r compacta: 9 itens viram um bloco, e algumas receitas novas (veja no JEI)."]
 	quest.35CF7E0EF578B3D8.title: "Queimador de blaze"
-	quest.35CF7E0EF578B3D8.quest_desc: ["Faca o queimador vazio e clique com ele em um blaze. Embaixo da bacia ele aquece as receitas; alimente com carvao."]
-	quest.396A729DC1F49665.title: "Latao"
-	quest.396A729DC1F49665.quest_desc: ["Cobre e zinco na bacia aquecida viram latao."]
-	quest.4586EE64BB7E2CB4.title: "Revestimento de latao"
-	quest.4586EE64BB7E2CB4.quest_desc: ["Latao em tronco descascado. Base das maquinas avancadas."]
+	quest.35CF7E0EF578B3D8.quest_desc: ["Faça o &equeimador vazio&r e clique com ele em um &eblaze&r (no Nether).", "Embaixo da bacia ele &aaquece&r as receitas. Alimente com carvão ou madeira.", "Com &ebolo de blaze&r ele fica &esuperaquecido&r, para receitas difíceis."]
+	quest.396A729DC1F49665.title: "Latão"
+	quest.396A729DC1F49665.quest_desc: ["&eCobre&r e &ezinco&r na bacia aquecida, com o misturador: viram &elatão&r."]
+	quest.4586EE64BB7E2CB4.title: "Revestimento de latão"
+	quest.4586EE64BB7E2CB4.quest_desc: ["Latão em tronco descascado. Base das máquinas avançadas."]
 	quest.7E1B436601F36D12.title: "Quartzo rosa"
-	quest.7E1B436601F36D12.quest_desc: ["Quartzo rosa polido vira tubo de eletrons, a peca eletronica do Create."]
+	quest.7E1B436601F36D12.quest_desc: ["O &equartzo rosa&r é quartzo com redstone. Lixe com a &elixa&r para ficar polido."]
+	quest.39C529A3EA719B53.title: "Tubo de elétrons"
+	quest.39C529A3EA719B53.quest_desc: ["O &etubo de elétrons&r é a peça eletrônica do Create: quartzo rosa polido com chapa de ferro."]
 	quest.5D8954105C424FBC.title: "Deployer"
-	quest.5D8954105C424FBC.quest_desc: ["O deployer usa o item da mao dele no bloco da frente, como um jogador. Base da montagem automatica."]
-	quest.7C28ABE1AD660519.title: "Mecanismo de precisao"
-	quest.7C28ABE1AD660519.quest_desc: ["Feito em varias etapas numa esteira com deployers (montagem em sequencia). Veja o passo a passo no JEI."]
-	quest.7BC3C4803FA3464F.title: "Funil de latao"
-	quest.7BC3C4803FA3464F.quest_desc: ["Funis colocam e tiram itens das esteiras e baus. O de latao tem filtro."]
-	quest.68EB7FC2303C16F5.title: "Tunel de latao"
-	quest.68EB7FC2303C16F5.quest_desc: ["Divide os itens de uma esteira entre varias saidas."]
-	quest.2FFCD2A06A46A4AE.title: "Crafter mecanico"
-	quest.2FFCD2A06A46A4AE.quest_desc: ["Varios crafters juntos fazem receitas grandes sozinhos."]
+	quest.5D8954105C424FBC.quest_desc: ["O &edeployer&r usa o item da mão dele no bloco da frente, como um jogador.", "Põe blocos, usa ferramentas, até ataca. É a base da montagem automática."]
+	quest.7C28ABE1AD660519.title: "Mecanismo de precisão"
+	quest.7C28ABE1AD660519.quest_subtitle: "Montagem em sequência"
+	quest.7C28ABE1AD660519.quest_desc: ["Feito em várias etapas em uma esteira com deployers e prensa: a &emontagem em sequência&r.", "Veja o passo a passo no JEI. Algumas peças saem quebradas: é normal, recicle."]
+	quest.7BC3C4803FA3464F.title: "Funil de latão"
+	quest.7BC3C4803FA3464F.quest_desc: ["O &efunil de latão&r tem &efiltro&r: escolha qual item passa. Também tira a quantidade exata."]
+	quest.68EB7FC2303C16F5.title: "Túnel de latão"
+	quest.68EB7FC2303C16F5.quest_desc: ["O &etúnel de latão&r em cima da esteira divide os itens entre várias saídas, com filtro."]
+	quest.7B3661BA7ABA28FD.title: "Braço mecânico"
+	quest.7B3661BA7ABA28FD.quest_desc: ["O &ebraço mecânico&r pega de um lugar e põe em outro.", "Segure o braço e clique nos lugares de entrada (azul) e saída (laranja) antes de colocar."]
+	quest.2FFCD2A06A46A4AE.title: "Crafter mecânico"
+	quest.2FFCD2A06A46A4AE.quest_desc: ["Vários &ecrafters&r juntos fazem receitas grandes sozinhos. Use a chave inglesa para virar as setas."]
 	quest.23F4045B66346133.title: "Britadores"
-	quest.23F4045B66346133.quest_desc: ["Duas rodas trituradoras girando para dentro moem minerio e dao mais material."]
-	chapter.194556CE7AC2ADF2.title: "Create 4: vapor, fluidos e trens"
-	quest.0DE1EED07292296C.title: "Tubos"
-	quest.0DE1EED07292296C.quest_desc: ["Tubos levam liquidos."]
-	quest.3E62D397BC09BE53.title: "Bomba"
-	quest.3E62D397BC09BE53.quest_desc: ["A bomba gira e empurra o liquido pelos tubos. A chave inglesa inverte o sentido."]
-	quest.65A359F59A05965E.title: "Tanque"
-	quest.65A359F59A05965E.quest_desc: ["Tanques guardam liquido. Varios juntos fazem um tanque grande."]
-	quest.798026F49712E18E.title: "Bico"
-	quest.798026F49712E18E.quest_desc: ["O bico (spout) enche itens com liquido, como garrafas e baldes."]
-	quest.0C36E8C89CCC2873.title: "Motor a vapor"
-	quest.0C36E8C89CCC2873.quest_desc: ["Tanque com agua em cima de queimadores de blaze vira caldeira; o motor a vapor no tanque da muita forca."]
-	quest.460D354F7E365880.title: "Trilhos"
-	quest.460D354F7E365880.quest_desc: ["Os trilhos do Create fazem curvas grandes e subidas."]
-	quest.46081E1978904BB1.title: "Estacao"
-	quest.46081E1978904BB1.quest_desc: ["A estacao e onde o trem para e e montado."]
-	quest.2C8228681581CCD1.title: "Controles"
-	quest.2C8228681581CCD1.quest_desc: ["Os controles dirigem o trem. Com um horario, ele anda sozinho entre estacoes."]
-	quest.41487192176AFECF.title: "Construcoes prontas"
-	quest.41487192176AFECF.quest_desc: ["A mesa de esquemas e o canhao de esquemas montam uma construcao inteira a partir de um arquivo. Coloque arquivos .nbt na pasta schematics do jogo; ha muitos prontos no site createmod.com."]
+	quest.23F4045B66346133.quest_subtitle: "Mais minério por minério"
+	quest.23F4045B66346133.quest_desc: ["Duas &erodas trituradoras&r girando para dentro moem minério e dão &aminério moído&r e extras.", "Lave o minério moído com o ventilador e água para ganhar pepitas a mais."]
+	quest.7CAF4D4A7402A94D.title: "Cofre"
+	quest.7CAF4D4A7402A94D.quest_desc: ["O &ecofre&r guarda muito item. Vários juntos viram um cofre grande."]
+	quest.6BA48B9F7A4ABD5F.title: "Calha inteligente"
+	quest.6BA48B9F7A4ABD5F.quest_desc: ["Uma calha com filtro, que também controla quantos itens descem por vez."]
+	quest.7C4956DBF9F5A5EC.title: "Lançador"
+	quest.7C4956DBF9F5A5EC.quest_desc: ["O &elançador&r joga itens (ou você) até um alvo. Segure e clique no destino antes de colocar."]
+	chapter.2FAD8A3B450887BF.title: "Create 4: fluidos e vapor"
+	chapter.2FAD8A3B450887BF.chapter_subtitle: ["Canos, tanques e muita força"]
+	quest.29A5D1D83610A227.title: "Canos"
+	quest.29A5D1D83610A227.quest_desc: ["Os &ecanos&r levam líquidos. Sozinhos não empurram nada: precisam de bomba."]
+	quest.7DF410A08F8BAAB0.title: "Bomba"
+	quest.7DF410A08F8BAAB0.quest_desc: ["A &ebomba&r gira e empurra o líquido. Gire a bomba com a chave para inverter o sentido."]
+	quest.03E53EBB9D337B3B.title: "Tanque"
+	quest.03E53EBB9D337B3B.quest_desc: ["O &etanque&r guarda líquido. Vários juntos viram um tanque grande."]
+	quest.35A6D64C2E361449.title: "Bico"
+	quest.35A6D64C2E361449.quest_desc: ["O &ebico&r enche itens com líquido: garrafas, baldes, e receitas especiais no depósito."]
+	quest.1AD92E13DBC0B7F7.title: "Ralo"
+	quest.1AD92E13DBC0B7F7.quest_desc: ["O &eralo&r esvazia itens com líquido (baldes, poções) jogados nele."]
+	quest.2646B4220FD325B6.title: "Mangueira"
+	quest.2646B4220FD325B6.quest_desc: ["A &epolia de mangueira&r tira ou põe líquido em uma área. Em um lago bem grande, a água &anunca acaba&r."]
+	quest.1A5F6B1778F51BEC.title: "Válvula"
+	quest.1A5F6B1778F51BEC.quest_desc: ["A &eválvula&r abre e fecha o cano com giro. O &ecano inteligente&r tem filtro de líquido."]
+	quest.1615B5298EDF8AEC.title: "Motor a vapor"
+	quest.1615B5298EDF8AEC.quest_subtitle: "A fonte de força mais forte"
+	quest.1615B5298EDF8AEC.quest_desc: ["Um &etanque&r com &equeimadores de blaze&r embaixo vira caldeira. Bombeie &eágua&r para dentro.", "Coloque o &emotor a vapor&r na lateral do tanque e um eixo nele.", "", "Mais queimadores e mais tanque, mais motores. Olhe a caldeira com os óculos: ela diz o que falta."]
+	quest.0E59C6FFDBA94B98.title: "Apito"
+	quest.0E59C6FFDBA94B98.quest_desc: ["O &eapito&r na caldeira toca com redstone. Empilhe para mudar a nota."]
+	quest.758EBB8B17F7AFBE.title: "Chocolate e mel"
+	quest.758EBB8B17F7AFBE.quest_desc: ["O Create tem &echocolate&r e &emel&r líquidos. O bico cobre doces com eles: veja no JEI."]
+	chapter.147038098C16BC07.title: "Create 5: trens"
+	chapter.147038098C16BC07.chapter_subtitle: ["Linhas de trem entre as bases"]
+	quest.1105C4A2A5247B4C.title: "Trilhos"
+	quest.1105C4A2A5247B4C.quest_desc: ["Os &etrilhos do Create&r fazem curvas grandes e subidas. Clique em um ponto e depois no outro para fazer a curva."]
+	quest.10B7A297094D9CEF.title: "Revestimento de trem"
+	quest.10B7A297094D9CEF.quest_desc: ["O &erevestimento de trem&r vem da chapa reforçada (feita com o ventilador e lava, veja no JEI)."]
+	quest.4CB7357FE91F7DAB.title: "Estação"
+	quest.4CB7357FE91F7DAB.quest_desc: ["A &eestação&r fica ao lado do trilho. É onde o trem para e onde ele é montado.", "Clique nela para dar nome e entrar no modo de montar."]
+	quest.37FFAEDF18523630.title: "Controles"
+	quest.37FFAEDF18523630.quest_desc: ["Os &econtroles&r são o volante do trem. Sem eles, o trem não anda."]
+	quest.5D0F1F80F49C538F.title: "Montar um trem"
+	quest.5D0F1F80F49C538F.quest_subtitle: "Seu primeiro trem"
+	quest.5D0F1F80F49C538F.quest_desc: ["No modo de montar da estação, ponha &etruques&r (clique com revestimento de trem no trilho) e blocos em cima.", "Cole tudo com &esuper cola&r, ponha os controles e clique em &eMontar&r.", "", "&7Clique em Concluir quando o trem andar."]
+	quest.44E30799EB06CA68.title: "Horário"
+	quest.44E30799EB06CA68.quest_desc: ["Com um &ehorário&r na mão, clique em quem está nos controles (pode ser um bicho sentado). O trem anda sozinho entre estações."]
+	quest.0915FB2189E653C8.title: "Sinais"
+	quest.0915FB2189E653C8.quest_desc: ["Os &esinais&r dividem a linha em partes. Dois trens nunca ficam na mesma parte: &asem batida&r."]
+	quest.26027CDBD390EA62.title: "Observador de trilho"
+	quest.26027CDBD390EA62.quest_desc: ["Dá sinal de redstone quando um trem passa. Bom para cancelas e luzes."]
+	quest.4DE18C1C30A3E260.title: "Porta de trem"
+	quest.4DE18C1C30A3E260.quest_desc: ["A &eporta de trem&r abre sozinha quando o trem para na estação."]
+	chapter.2C1570C5830A1593.title: "Create 6: logística"
+	chapter.2C1570C5830A1593.chapter_subtitle: ["Pacotes, estoque e entregas"]
+	quest.59BFFC947AD5A0F2.title: "Ligação de redstone"
+	quest.59BFFC947AD5A0F2.quest_desc: ["A &eligação de redstone&r manda sinal sem fio. Ponha dois itens nas casas dela: só ligações com os mesmos itens conversam."]
+	quest.7EEFBEE1EBC70123.title: "Painel e link"
+	quest.7EEFBEE1EBC70123.quest_desc: ["O &elink de display&r lê uma máquina, baú ou trem e escreve no &epainel&r, em placas ou em tubos nixie.", "Mostre o estoque do armazém ou o horário do trem."]
+	quest.17FC3A05E63E0F3A.title: "Prancheta"
+	quest.17FC3A05E63E0F3A.quest_desc: ["Anote listas na &eprancheta&r. Clique em uma máquina para copiar a configuração dela e em outra para colar."]
+	quest.6BC401F628D4F294.title: "Empacotador"
+	quest.6BC401F628D4F294.quest_subtitle: "Itens em caixas"
+	quest.6BC401F628D4F294.quest_desc: ["O &eempacotador&r encostado em um baú põe os itens em &epacotes de papelão&r.", "Pacote com &eendereço&r vai sozinho pelas esteiras e é aberto no lugar certo. Veja o Ponder (&eW&r)."]
+	quest.4AB16776F87CDD24.title: "Sapo-porto"
+	quest.4AB16776F87CDD24.quest_desc: ["O &esapo-porto&r pega e entrega pacotes pelas &ecorrentes transportadoras&r, mesmo longe."]
+	quest.46EBD663A6C6F940.title: "Corrente transportadora"
+	quest.46EBD663A6C6F940.quest_desc: ["Ligue duas engrenagens com a corrente: pacotes viajam pendurados nela."]
+	quest.5DC3ABDE25A74521.title: "Painel de estoque"
+	quest.5DC3ABDE25A74521.quest_desc: ["O &elink de estoque&r junta os baús em uma rede. O &epainel de estoque&r mostra tudo e &apede itens&r: eles chegam empacotados."]
+	quest.16125CE5A8D33529.title: "Medidor de fábrica"
+	quest.16125CE5A8D33529.quest_desc: ["O &emedidor de fábrica&r pede ingredientes sozinho quando falta algo e manda produzir. Uma fábrica que se gerencia."]
+	chapter.45E8C890F27328E1.title: "Create: ferramentas"
+	chapter.45E8C890F27328E1.chapter_subtitle: ["Equipamentos e construções prontas"]
+	quest.1CD64CA9B6660FE5.title: "Tanque de ar"
+	quest.1CD64CA9B6660FE5.quest_desc: ["O &etanque de ar&r nas costas guarda ar comprimido. Encha colocando ele no chão ligado a um giro."]
+	quest.7FFBADD6B554CD74.title: "Capacete de mergulho"
+	quest.7FFBADD6B554CD74.quest_desc: ["Com o tanque nas costas, o &ecapacete de mergulho&r deixa respirar embaixo da água."]
+	quest.5D35A1A29A61402E.title: "Canhão de batata"
+	quest.5D35A1A29A61402E.quest_desc: ["O &ecanhão de batata&r atira comida e outros itens usando o ar do tanque."]
+	quest.28D8450C02496E45.title: "Braço extensor"
+	quest.28D8450C02496E45.quest_desc: ["Com o &ebraço extensor&r em uma mão, você alcança blocos bem mais longe."]
+	quest.2D34AA00C9371497.title: "Varinha de simetria"
+	quest.2D34AA00C9371497.quest_desc: ["Construa um lado e a &evarinha de simetria&r copia do outro lado. Ótima para castelos."]
+	quest.7D151FDC19987794.title: "Mesa de esquemas"
+	quest.7D151FDC19987794.quest_subtitle: "Construções prontas"
+	quest.7D151FDC19987794.quest_desc: ["A &emesa de esquemas&r carrega construções prontas (.nbt). Ponha os arquivos na pasta &eschematics&r do jogo; há muitas no site createmod.com.", "Grave as suas com o &eesquema e pena&r."]
+	quest.5F9C011E549AB5C9.title: "Canhão de esquemas"
+	quest.5F9C011E549AB5C9.quest_desc: ["O &ecanhão de esquemas&r constrói o esquema inteiro sozinho, usando os blocos de um baú ao lado."]
 	chapter.25D41E448E070155.title: "Mochila e baús"
 	chapter.25D41E448E070155.chapter_subtitle: ["Guardar muito e achar tudo rápido"]
 	quest.585BC78BCC23604E.title: "Arrumar o inventário"
