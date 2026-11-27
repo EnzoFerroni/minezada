@@ -818,11 +818,134 @@ $capitulos = @(
         @{ t = 'Atlas'; d = 'Map Atlases junta mapas de papel em um livro. Na mao secundaria vira minimapa.'; item = 'map_atlases:atlas' }
         @{ t = 'Pergaminho de volta'; d = 'O pergaminho de retorno leva de volta para a ultima waystone ou cama.'; item = 'waystones:return_scroll' }
     ) }
-    @{ t = 'Mekanism'; g = 'Tecnologia'; icone = 'mekanism:metallurgic_infuser'; m = @(
-        @{ t = 'Infusor metalurgico'; d = 'A primeira maquina: mistura ferro com carvao para fazer aco e outras ligas. Precisa de energia.'; item = 'mekanism:metallurgic_infuser' }
-        @{ t = 'Energia'; d = 'O Mekanism do pack nao tem geradores proprios: o alternador do Create Crafts & Additions transforma a rotacao do Create em energia para as maquinas.'; item = 'createaddition:alternator' }
-        @{ t = 'Camara de enriquecimento'; d = 'Transforma um minerio em dois montes de po: o dobro de lingotes.'; item = 'mekanism:enrichment_chamber' }
-        @{ t = 'Cabos'; d = 'Cabos universais levam energia do gerador para as maquinas.'; item = 'mekanism:basic_universal_cable' }
+    @{ t = 'Mekanism 1: começo'; g = 'Tecnologia'; icone = 'mekanism:metallurgic_infuser'; sub = 'Máquinas elétricas e aço'; m = @(
+        @{ t = 'O que é o Mekanism'; marco = $true; sub = 'Comece por aqui'; d = @(
+            'O &eMekanism&r tem máquinas elétricas que processam minério, gases e muito mais.'
+            'É mais complexo que o Create. Faça o Create primeiro: a &eenergia&r vem do &ealternador&r (capítulo Create: energia).'
+            ''
+            'Dica: no JEI (&eU&r em um item) você vê em qual máquina ele é usado.'
+        ) }
+        @{ t = 'Ósmio'; depois = 'O que é o Mekanism'; d = @(
+            'O &eósmio&r é o metal do Mekanism. O minério azulado aparece em cavernas.'
+        ); item = 'mekanism:ingot_osmium'; q = 8 }
+        @{ t = 'Infusor metalúrgico'; depois = 'Ósmio'; marco = $true; d = @(
+            'O &einfusor metalúrgico&r junta um item com outro material: ferro com &ecarvão&r vira ferro enriquecido e depois &eaço&r; com &eredstone&r vira liga infundida.'
+            'Precisa de energia ligada nele.'
+        ); item = 'mekanism:metallurgic_infuser' }
+        @{ t = 'Aço'; depois = 'Infusor metalúrgico'; d = @(
+            'Pó de aço (do infusor) derretido na fornalha vira &elingote de aço&r.'
+        ); item = 'mekanism:ingot_steel'; q = 8 }
+        @{ t = 'Revestimento de aço'; depois = 'Aço'; marco = $true; d = @(
+            'O &erevestimento de aço&r é a base de quase toda máquina do Mekanism.'
+        ); item = 'mekanism:steel_casing'; p = 'mekanism:ingot_steel'; n = 8 }
+        @{ t = 'Circuito básico'; depois = 'Infusor metalúrgico'; d = @(
+            'O &ecircuito de controle&r vai em muitas receitas. Ósmio com liga infundida.'
+        ); item = 'mekanism:basic_control_circuit'; q = 4 }
+        @{ t = 'Cabo universal'; depois = 'Revestimento de aço'; d = @(
+            'O &ecabo universal&r leva energia entre máquinas. Ligue o alternador do Create nele.'
+        ); item = 'mekanism:basic_universal_cable'; q = 8 }
+        @{ t = 'Cubo de energia'; depois = 'Cabo universal'; d = @(
+            'O &ecubo de energia&r guarda energia. Dá para subir de nível depois.'
+        ); item = 'mekanism:basic_energy_cube' }
+        @{ t = 'Configurador'; depois = 'Revestimento de aço'; d = @(
+            'O &econfigurador&r escolhe o que entra e sai em cada lado da máquina. Na própria máquina, a aba de lados faz o mesmo.'
+        ); item = 'mekanism:configurator' }
+        @{ t = 'Fornalha elétrica'; depois = 'Revestimento de aço'; d = @(
+            'A &efornalha energizada&r cozinha rápido, sem carvão, só com energia.'
+        ); item = 'mekanism:energized_smelter' }
+        @{ t = 'Triturador'; depois = 'Revestimento de aço'; opcional = $true; d = @(
+            'O &etriturador&r mói lingotes em pó e pedra em cascalho e areia.'
+        ); item = 'mekanism:crusher' }
+        @{ t = 'Melhorias'; depois = 'Revestimento de aço'; d = @(
+            'As &emelhorias&r de velocidade e energia vão na aba de melhorias da máquina.'
+        ); item = 'mekanism:upgrade_speed' }
+        @{ t = 'Fábrica'; depois = 'Melhorias'; opcional = $true; d = @(
+            'O &einstalador de nível&r vira uma máquina comum em &efábrica&r: processa vários itens de uma vez.'
+        ); item = 'mekanism:basic_smelting_factory' }
+        @{ t = 'Baú pessoal'; depois = 'Revestimento de aço'; opcional = $true; d = @(
+            'O &ebaú pessoal&r só abre para você. Bom no servidor.'
+        ); item = 'mekanism:personal_chest' }
+    ) }
+    @{ t = 'Mekanism 2: minérios'; g = 'Tecnologia'; icone = 'mekanism:enrichment_chamber'; sub = 'De 2 a 5 lingotes por minério'; m = @(
+        @{ t = 'Câmara de enriquecimento'; marco = $true; sub = '2 lingotes por minério'; d = @(
+            'A &ecâmara de enriquecimento&r transforma um minério em &edois pós&r. Derreta os pós: dobro de lingotes.'
+        ); item = 'mekanism:enrichment_chamber' }
+        @{ t = 'Separador eletrolítico'; depois = 'Câmara de enriquecimento'; d = @(
+            'O &eseparador eletrolítico&r quebra &eágua&r em &ehidrogênio&r e &eoxigênio&r. Os gases andam em &etubos pressurizados&r.'
+            'Use a &ebomba elétrica&r para puxar água.'
+        ); item = 'mekanism:electrolytic_separator'; p = 'mekanism:basic_pressurized_tube'; n = 8 }
+        @{ t = 'Câmara de purificação'; depois = 'Separador eletrolítico'; marco = $true; sub = '3 lingotes por minério'; d = @(
+            'Com &eoxigênio&r, a &ecâmara de purificação&r faz &etrês pedaços&r por minério. Os pedaços seguem para o triturador e a câmara de enriquecimento.'
+        ); item = 'mekanism:purification_chamber' }
+        @{ t = 'Câmara de injeção'; depois = 'Câmara de purificação'; marco = $true; sub = '4 lingotes por minério'; d = @(
+            'Com &ecloreto de hidrogênio&r (feito no infusor químico com hidrogênio e cloro), a &ecâmara de injeção química&r faz &equatro fragmentos&r por minério.'
+            'Veja a cadeia toda no JEI.'
+        ); item = 'mekanism:chemical_injection_chamber' }
+        @{ t = 'Dissolução e cristais'; depois = 'Câmara de injeção'; marco = $true; sub = '5 lingotes por minério'; d = @(
+            'O último nível: &ecâmara de dissolução&r, &elavador químico&r e &ecristalizador&r. Cinco lingotes por minério.'
+            'Precisa de ácido sulfúrico e água limpa. Veja tudo no JEI.'
+        ); item = 'mekanism:chemical_crystallizer' }
+        @{ t = 'Transportador'; depois = 'Câmara de enriquecimento'; d = @(
+            'O &etransportador logístico&r leva itens entre máquinas. Com o configurador escolha a cor e a ordem.'
+        ); item = 'mekanism:basic_logistical_transporter'; q = 8 }
+        @{ t = 'Cano mecânico'; depois = 'Câmara de enriquecimento'; opcional = $true; d = @(
+            'O &ecano mecânico&r leva líquidos.'
+        ); item = 'mekanism:basic_mechanical_pipe'; q = 8 }
+        @{ t = 'Leitor sísmico'; depois = 'Câmara de enriquecimento'; opcional = $true; d = @(
+            'O &evibrador sísmico&r com o &eleitor sísmico&r mostra os minérios de baixo da terra, até o fundo.'
+        ); item = 'mekanism:seismic_reader' }
+    ) }
+    @{ t = 'Mekanism 3: avançado'; g = 'Tecnologia'; icone = 'mekanism:digital_miner'; sub = 'Mineradora, teletransporte e armadura'; m = @(
+        @{ t = 'Circuito avançado'; marco = $true; d = @(
+            'Os circuitos sobem de nível: &eavançado&r, &eelite&r, &eultimate&r. Cada um usa uma liga melhor do infusor.'
+        ); item = 'mekanism:advanced_control_circuit'; q = 2 }
+        @{ t = 'Liga reforçada'; depois = 'Circuito avançado'; d = @(
+            'Liga infundida com &ediamante&r no infusor vira &eliga reforçada&r.'
+        ); item = 'mekanism:alloy_reinforced'; q = 4 }
+        @{ t = 'Mineradora digital'; depois = 'Liga reforçada'; marco = $true; sub = 'Minera sozinha'; d = @(
+            'A &emineradora digital&r tira só os blocos que você filtrar (ex.: todos os minérios) em uma área grande.'
+            'Gasta muita energia. Ponha um baú atrás dela.'
+        ); item = 'mekanism:digital_miner' }
+        @{ t = 'Desintegrador atômico'; depois = 'Circuito avançado'; d = @(
+            'O &edesintegrador atômico&r é picareta, pá, machado e espada em um, carregado com energia.'
+        ); item = 'mekanism:atomic_disassembler' }
+        @{ t = 'Jetpack de hidrogênio'; depois = 'Circuito avançado'; d = @(
+            'O &ejetpack&r do Mekanism voa com &ehidrogênio&r. Encha no separador eletrolítico.'
+        ); item = 'mekanism:jetpack' }
+        @{ t = 'Teletransporte'; depois = 'Liga reforçada'; marco = $true; d = @(
+            'O &eteletransportador&r leva você entre bases. Monte a moldura (veja no JEI) e dê a mesma frequência aos dois.'
+            'O &eteletransportador portátil&r vai no bolso.'
+        ); item = 'mekanism:teleporter' }
+        @{ t = 'Armazenamento QIO'; depois = 'Liga reforçada'; d = @(
+            'O &eQIO&r guarda itens em discos e mostra tudo em um painel, até de longe.'
+        ); item = 'mekanism:qio_drive_array' }
+        @{ t = 'Liga atômica'; depois = 'Liga reforçada'; d = @(
+            'Liga reforçada com &eobsidiana refinada&r vira &eliga atômica&r, para as coisas mais fortes.'
+        ); item = 'mekanism:alloy_atomic'; q = 4 }
+        @{ t = 'MekaSuit'; depois = 'Liga atômica'; marco = $true; opcional = $true; sub = 'O fim do Mekanism'; d = @(
+            'A &eMekaSuit&r é a armadura mais forte do Mekanism, com módulos (voar, visão noturna, mais vida).'
+            'Feita no &eformulário&r com muita energia. Projeto para o fim do jogo.'
+        ); item = 'mekanism:mekasuit_helmet' }
+    ) }
+    @{ t = 'Fornalhas'; g = 'Tecnologia'; icone = 'ironfurnaces:iron_furnace'; sub = 'Iron Furnaces: cozinhar mais rápido'; m = @(
+        @{ t = 'Fornalha de ferro'; marco = $true; d = @(
+            'A &efornalha de ferro&r cozinha mais rápido que a comum. As de ouro, diamante e acima são ainda mais rápidas.'
+        ); item = 'ironfurnaces:iron_furnace' }
+        @{ t = 'Melhorar sem quebrar'; depois = 'Fornalha de ferro'; d = @(
+            'Clique com a &emelhoria&r na fornalha já colocada: ela sobe de nível sem perder o que está dentro.'
+        ); item = 'ironfurnaces:upgrade_gold' }
+        @{ t = 'Fornalha de diamante'; depois = 'Melhorar sem quebrar'; d = @(
+            'Mais rápida ainda. Vale para quem cozinha muito.'
+        ); item = 'ironfurnaces:diamond_furnace' }
+        @{ t = 'Aumentos'; depois = 'Fornalha de ferro'; d = @(
+            'Os &eaumentos&r dão poderes à fornalha: &evelocidade&r, &eeconomia de combustível&r, &ealto-forno&r ou &edefumador&r.'
+        ); item = 'ironfurnaces:augment_speed' }
+        @{ t = 'Fornalha geradora'; depois = 'Aumentos'; opcional = $true; d = @(
+            'O &eaumento gerador&r faz a fornalha queimar combustível para gerar energia. Veja no JEI.'
+        ); item = 'ironfurnaces:augment_generator' }
+        @{ t = 'Fornalha de netherita'; depois = 'Fornalha de diamante'; opcional = $true; d = @(
+            'A mais rápida de todas. Projeto para quem já tem netherita sobrando.'
+        ); item = 'ironfurnaces:netherite_furnace' }
     ) }
     @{ t = 'Dimensões'; g = 'Dimensões'; icone = 'minecraft:ender_eye'; sub = 'Outros mundos para visitar'; m = @(
         @{ t = 'Além do mundo normal'; marco = $true; sub = 'Comece por aqui'; d = @(
