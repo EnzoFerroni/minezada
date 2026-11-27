@@ -24,7 +24,12 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      # shortcut: baixa todos os jars a cada vez (~600 MB, o montar-pack confere as dependencias); cache se ficar lento.
+      # Jars (~600 MB) guardados entre execucoes: menos download do Modrinth e do CurseForge, menos erro de rede (522, 429).
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: tools/jars
+          key: jars-${{ hashFiles('modpack/pack/index.toml') }}
+          restore-keys: jars-
       - name: Montar de novo e comparar
         shell: pwsh
         env:

@@ -34,7 +34,7 @@ curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.sh 
 
 > Dica: para copiar, passe o mouse sobre o comando e clique no botão de copiar que aparece no canto direito.
 
-Na primeira vez, o jogo pede a sua conta. **Tem Minecraft original?** Entre com a conta Microsoft. **Não tem?** Escolha um nick (o mesmo que você mandou para quem cuida do servidor). Depois espere os mods baixarem; da primeira vez demora alguns minutos.
+Na primeira vez, o jogo pede a sua conta. **Tem Minecraft original?** Entre com a conta Microsoft. **Não tem?** Escolha um nick (o mesmo que você mandou no grupo). Depois espere os mods baixarem; da primeira vez demora alguns minutos.
 
 ## Depois de instalado
 
@@ -47,17 +47,16 @@ Na primeira vez, o jogo pede a sua conta. **Tem Minecraft original?** Entre com 
 | O que aconteceu | O que fazer |
 |---|---|
 | Qualquer erro na instalação | Rode o comando de novo. Ele conserta e não apaga nada. |
-| "You are not white-listed" | Mande o seu nick exato (com as maiúsculas) para quem cuida do servidor. |
+| "You are not white-listed" | Mande o seu nick exato (com as maiúsculas) no grupo. |
 | Pede senha (só quem não tem original) | Na primeira vez escolha uma senha e digite `/register senha senha`. Nas próximas, `/login senha`. |
 | Jogo lento | **Opções** > **Perfis** > **1 - Minimo**. Os perfis vão de 1 (mais leve) a 7 (mais bonito). |
-| O jogo fechou ou não conecta | Rode o comando de enviar os registros (abaixo) e mande os links que ele mostra para quem cuida do servidor. |
+| O jogo fechou sozinho | Abre uma janela. Clique em **Enviar todos os logs e copiar uma mensagem para suporte** e cole a mensagem no grupo. |
+| Não conecta ou a janela não abriu | Rode o comando de enviar os registros (abaixo) e mande no grupo o que ele mostrar. |
 
 <details>
 <summary><b>Comando de enviar os registros do jogo</b></summary>
 
 Ele manda os registros do jogo para o site [mclo.gs](https://mclo.gs) e copia os links. Vai só o seu nick, nada pessoal.
-
-Se o jogo fechar com erro, abre uma janela com um botão que gera o link do registro sozinho: mande esse link no grupo.
 
 **Windows** (no PowerShell):
 
