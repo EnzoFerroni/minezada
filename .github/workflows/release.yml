@@ -53,6 +53,10 @@ jobs:
           { echo; echo "## Mods desde $ant"; echo; echo "Entraram:"; lista entraram; echo; echo "Sairam:"; lista sairam
             echo; echo "Versao nova:"; lista mudaram; } >> notas.md
           gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --notes-file notas.md
+      - name: Titulo padrao
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --title "Pack ${TAG#v}"
       # packwiz fixo por commit. O export baixa cada mod para calcular o sha512 que o .mrpack exige.
       - name: Gerar o .mrpack
         run: |

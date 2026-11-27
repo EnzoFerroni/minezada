@@ -26,6 +26,21 @@ jobs:
           $r | Format-Table ScriptName, Line, RuleName, Message -AutoSize -Wrap
           if ($r) { throw "$(@($r).Count) avisos do PSScriptAnalyzer" }
 
+  # Commit no main e titulo de PR no padrao "tipo: descricao" (ver CONTRIBUTING).
+  padrao:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Titulo ou commit
+        env:
+          TITULO: ${{ github.event.pull_request.title || github.event.head_commit.message }}
+        run: |
+          linha=$(printf '%s\n' "$TITULO" | head -1)
+          [ -z "$linha" ] && exit 0
+          if ! printf '%s' "$linha" | grep -qE '^(feat|fix|docs|chore|refactor|remove): [^ ].{2,}$'; then
+            echo "::error::fora do padrao 'tipo: descricao' (feat, fix, docs, chore, refactor, remove): $linha"; exit 1
+          fi
+
   segredos:
     runs-on: ubuntu-latest
     timeout-minutes: 10

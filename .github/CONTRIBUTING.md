@@ -38,6 +38,16 @@ Commits sem dados pessoais: autor com o e-mail `noreply` do GitHub
 (`git config user.email 125482399+EnzoFerroni@users.noreply.github.com`) e nada de IP local,
 operadora, token ou e-mail nos arquivos. O `main` é protegido: sem force push.
 
+## Padrão de commits, PRs e Releases
+
+- **Commit e título de PR**: `tipo: o que mudou`, em português sem acento, uma linha. Tipos: `feat` (novidade),
+  `fix` (conserto), `docs`, `chore` (manutenção, CI), `refactor`, `remove`. Ex.: `fix: mapa sem erro no console`.
+  O CI (**Lint e segredos**, job `padrao`) barra o que fugir disso.
+- **PR**: um assunto por PR, preencha o modelo (o que muda, como testou, `Fecha #N`). Entra por squash: o título
+  da PR vira o commit no `main` e o branch é apagado sozinho. Só entra com o lint passando.
+- **Release**: tag `vAAAA.MM.DD.N` igual à versão do `pack.toml`, título `Pack AAAA.MM.DD.N` (a Action põe sozinha).
+  Notas no formato do passo 5 do checklist abaixo.
+
 ## Checklist para mudar o pack
 
 1. Editar `modpack/mods.txt` (ou `scripts/perfis.ps1` para perfis) e rodar `scripts/montar-pack.ps1 -Versao AAAA.MM.DD.N`
