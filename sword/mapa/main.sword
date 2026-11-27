@@ -68,6 +68,21 @@ func parse(name string, mut c *Coord) bool {
     return true
 }
 
+func iabs(a i64) i64 {
+    if a < 0 {
+        return -a
+    }
+    return a
+}
+
+func dist(c Coord) i64 {
+    return iabs(c.x) + iabs(c.z)
+}
+
+func near(a Coord, b Coord) bool {
+    return iabs(a.x - b.x) <= 3 && iabs(a.z - b.z) <= 3
+}
+
 func sub(a u64, b u64) u64 {
     if a < b {
         return 0
@@ -152,6 +167,44 @@ func main() !int {
         try io.Printf("nenhuma regiao em {}\n", dir)
         return 1
     }
+    // So o grupo de regioes em volta do spawn: quem viajou muito longe faria uma imagem de dezenas de GB.
+    // Duas regioes ficam no mesmo grupo quando estao a ate 3 regioes uma da outra nos dois eixos.
+    mut keep := mem.Alloc[bool](&sys, n) orelse return error.OutOfMemory
+    mut seed u64 = 0
+    mut best := dist(coords[0])
+    for i in 0..n {
+        keep[i] = false
+        if dist(coords[i]) < best {
+            best = dist(coords[i])
+            seed = i
+        }
+    }
+    keep[seed] = true
+    mut grew := true
+    for grew {
+        grew = false
+        for i in 0..n {
+            if !keep[i] { continue }
+            for j in 0..n {
+                if !keep[j] && near(coords[i], coords[j]) {
+                    keep[j] = true
+                    grew = true
+                }
+            }
+        }
+    }
+    mut kept u64 = 0
+    for i in 0..n {
+        if keep[i] {
+            paths[kept] = paths[i]
+            coords[kept] = coords[i]
+            kept += 1
+        }
+    }
+    if kept < n {
+        try io.Printf("AVISO: {} regioes longe do spawn ficaram fora do mapa\n", n - kept)
+    }
+    n = kept
     files := paths[0..n]
 
     // Um pedaco por regiao: a imagem dela e, nos tres bytes do fim, se deu certo e quantos chunks desenhou.
