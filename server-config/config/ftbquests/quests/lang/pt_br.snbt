@@ -353,7 +353,7 @@
 	quest.1FF26F89EA731135.quest_subtitle: "Ocean's, End's e Twilight Delight"
 	quest.1FF26F89EA731135.quest_desc: ["Explorar libera pratos novos com efeitos bons:", "&eOcean's Delight&r: lula, baiacu e sopas do mar.", "&eEnd's Delight&r: fruta do coro e pratos do End.", "&eTwilight Delight&r: comidas da Twilight Forest."]
 	quest.7CE52A154AEA62ED.title: "Cortadora do Create"
-	quest.7CE52A154AEA62ED.quest_subtitle: "Slice & Dice"
+	quest.7CE52A154AEA62ED.quest_subtitle: "Slice and Dice"
 	quest.7CE52A154AEA62ED.quest_desc: ["A &ecortadora&r faz o trabalho da tábua de corte com a rotação do Create. Dê uma &efaca&r para ela e mande os ingredientes por baixo.", "", "O &easpersor&r embaixo de um cano com água molha a plantação. Segure &eW&r em cima das peças para ver a animação."]
 	quest.7D237BC6C11B4564.title: "Cozinha automática"
 	quest.7D237BC6C11B4564.quest_subtitle: "Create: Central Kitchen"
@@ -689,13 +689,13 @@
 	quest.44B56177CD82D0CA.quest_subtitle: "Naturalist"
 	quest.44B56177CD82D0CA.quest_desc: ["Dê uma &emelancia&r para um hipopótamo no pântano ou rio."]
 	quest.1BC70B92D74B0EE0.title: "Golem de cobre"
-	quest.1BC70B92D74B0EE0.quest_subtitle: "Friends & Foes"
+	quest.1BC70B92D74B0EE0.quest_subtitle: "Friends and Foes"
 	quest.1BC70B92D74B0EE0.quest_desc: ["O &egolem de cobre&r aperta botões de cobre sozinho. Ele é montado no mundo com blocos de cobre, como o golem de ferro.", "", "Cuidado: ele enferruja com o tempo. Encere com favo de mel para parar."]
 	quest.1327834361AA2D2E.title: "Moobloom"
-	quest.1327834361AA2D2E.quest_subtitle: "Friends & Foes"
+	quest.1327834361AA2D2E.quest_subtitle: "Friends and Foes"
 	quest.1327834361AA2D2E.quest_desc: ["A &emoobloom&r é uma vaca com flores nas costas. Use a tesoura nela para pegar flores amarelas."]
 	quest.0A85DA39533066FF.title: "Glare"
-	quest.0A85DA39533066FF.quest_subtitle: "Friends & Foes"
+	quest.0A85DA39533066FF.quest_subtitle: "Friends and Foes"
 	quest.0A85DA39533066FF.quest_desc: ["O &eglare&r é um bichinho de musgo que mostra os lugares escuros onde monstros podem nascer. Domestique com &ebagas brilhantes&r."]
 	quest.22B41F73D0FF5EEC.title: "Gancho"
 	quest.22B41F73D0FF5EEC.quest_subtitle: "Critters and Companions"
@@ -768,10 +768,10 @@
 	quest.54F229E270C65B26.title: "Montaria de casco"
 	quest.54F229E270C65B26.quest_desc: ["Crie um &eScuttler&r até virar um &eShellback&r e monte nele."]
 	quest.6F5AF0578D0A0629.title: "Iceologer"
-	quest.6F5AF0578D0A0629.quest_subtitle: "Friends & Foes"
+	quest.6F5AF0578D0A0629.quest_subtitle: "Friends and Foes"
 	quest.6F5AF0578D0A0629.quest_desc: ["O &eIceologer&r é um mago illager de gelo. Vença um."]
 	quest.3A81261A35DF0746.title: "Esconde-esconde"
-	quest.3A81261A35DF0746.quest_subtitle: "Friends & Foes"
+	quest.3A81261A35DF0746.quest_subtitle: "Friends and Foes"
 	quest.3A81261A35DF0746.quest_desc: ["O &eRascal&r brinca de esconde-esconde nas minas. Ache ele três vezes."]
 	quest.02A5548273EA6953.title: "Wildfire"
 	quest.02A5548273EA6953.quest_desc: ["O &eWildfire&r é o chefe das cidadelas do Nether."]
@@ -1203,7 +1203,7 @@
 	quest.5762EF69F38ED0B3.title: "Cachimbo simples"
 	quest.5762EF69F38ED0B3.quest_desc: ["O &ecachimbo&r do Smoking Pipe, feito na mesa de cachimbos."]
 	chapter.4336DF8ADFC764BF.title: "Create: energia"
-	chapter.4336DF8ADFC764BF.chapter_subtitle: ["Create Crafts & Additions: eletricidade"]
+	chapter.4336DF8ADFC764BF.chapter_subtitle: ["Create Crafts and Additions: eletricidade"]
 	quest.047025B1EE2634F3.title: "Giro vira energia"
 	quest.047025B1EE2634F3.quest_subtitle: "Alternador"
 	quest.047025B1EE2634F3.quest_desc: ["O &ealternador&r recebe giro do Create e faz &eenergia elétrica&r (FE).", "É a energia que as máquinas do Mekanism e de outros mods usam."]
