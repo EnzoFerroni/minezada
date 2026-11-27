@@ -19,6 +19,8 @@ jobs:
     timeout-minutes: 20
     permissions:
       contents: write
+      id-token: write
+      attestations: write
     env:
       TAG: ${{ github.event.release.tag_name || inputs.tag }}
     steps:
@@ -27,6 +29,10 @@ jobs:
           ref: ${{ env.TAG }}
           fetch-depth: 0
           persist-credentials: false
+      - name: Tag igual a versao do pack
+        run: |
+          v=$(sed -n 's/^version = "\(.*\)"/\1/p' modpack/pack/pack.toml)
+          [ "$TAG" = "v$v" ] || { echo "::error::tag $TAG, mas o pack.toml diz $v"; exit 1; }
       # Acrescenta nas notas os mods que entraram, sairam e mudaram de versao desde a Release anterior.
       - name: Mods nas notas
         env:
@@ -53,6 +59,12 @@ jobs:
           go install github.com/packwiz/packwiz@170b22d785959dda5876b54b7f16e1b807a57fb6
           cd modpack/pack
           "$(go env GOPATH)/bin/packwiz" -y modrinth export -o "$GITHUB_WORKSPACE/minezada-$TAG.mrpack"
+      # Prova de origem: gh attestation verify <arquivo> --repo EnzoFerroni/minezada
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: |
+            minezada-${{ env.TAG }}.mrpack
+            modpack/minezada-prism.zip
       - name: Anexar na Release
         env:
           GH_TOKEN: ${{ github.token }}
