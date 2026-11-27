@@ -992,6 +992,53 @@ $capitulos = @(
             'Coloque uma &esela&r e monte: &eespaço&r sobe, &eShift&r desce. O &eapito&r chama o dragão de longe.'
         ); conquista = 'dmr:tame_dragon'; p = 'minecraft:saddle' }
     ) }
+    @{ t = 'Bichos do mundo'; g = 'Começo'; icone = 'crittersandcompanions:koi_fish'; sub = 'Mais bichos para achar, domar e enfrentar'; m = @(
+        @{ t = 'Safári'; marco = $true; sub = 'Comece por aqui'; d = @(
+            'Além do capítulo &eAnimais&r, vários mods colocam bichos pelo mundo: insetos, peixes, dinossauros, monstros do mar e chefes.'
+            ''
+            'Mire em um bicho para ver o nome e o mod (Jade). Para saber o que ele come ou deixa cair, veja no JEI.'
+        ) }
+        @{ t = 'Carpa no balde'; depois = 'Safári'; sub = 'Critters and Companions'; d = @(
+            'O &eCritters and Companions&r traz bichos pequenos: carpas, lontras, joaninhas, caracóis, pandas-vermelhos.'
+            ''
+            'Pegue uma &ecarpa koi&r com um balde de água. Fica linda em um laguinho.'
+        ); item = 'crittersandcompanions:koi_fish_bucket' }
+        @{ t = 'Coelho-do-mar'; depois = 'Carpa no balde'; d = @('O &ecoelho-do-mar&r é uma lesma marinha fofinha. Pegue um com um balde.'); item = 'crittersandcompanions:sea_bunny_bucket' }
+        @{ t = 'Pérola'; depois = 'Carpa no balde'; d = @('Ache uma &epérola&r. Veja de onde ela vem com &eR&r no JEI.'); item = 'crittersandcompanions:pearl' }
+        @{ t = 'Guia de seda'; depois = 'Carpa no balde'; d = @('A &eguia de seda&r é uma corda para levar bichos. Veja a receita com &eR&r.'); item = 'crittersandcompanions:silk_lead' }
+        @{ t = 'Chapéu de bolota'; depois = 'Carpa no balde'; opcional = $true; d = @('Um &echapéu de bolota&r, só para enfeitar.'); item = 'crittersandcompanions:acorn_hat' }
+        @{ t = 'Quadro de recompensas'; depois = 'Safári'; sub = 'Let''s Do Wilder Nature'; d = @(
+            'O &eWilder Nature&r traz bisões, cervos, corujas, guaxinins, pinguins e mais.'
+            ''
+            'O &equadro de recompensas&r dá &econtratos&r com tarefas de caça e prêmios. Veja como usar com &eU&r no JEI.'
+        ); item = 'wildernature:bounty_board' }
+        @{ t = 'Compêndio animal'; depois = 'Quadro de recompensas'; d = @('O &ecompêndio animal&r explica os bichos do Wilder Nature.'); item = 'wildernature:animal_compendium' }
+        @{ t = 'Bacamarte'; depois = 'Quadro de recompensas'; d = @('O &ebacamarte&r é uma arma de caça que atira munição de pederneira.'); item = 'wildernature:blunderbuss' }
+        @{ t = 'Capa de pele'; depois = 'Quadro de recompensas'; d = @('Uma &ecapa de pele&r para o frio.'); item = 'wildernature:fur_cloak' }
+        @{ t = 'Trufa'; depois = 'Quadro de recompensas'; opcional = $true; d = @('A &etrufa&r é um cogumelo raro. Os javalis sabem achar.'); item = 'wildernature:truffle' }
+        @{ t = 'Dinossauros'; depois = 'Safári'; sub = 'Archie''s Dinosaurs'; d = @(
+            'Os dinossauros do &eArchie''s Dinosaurs&r vivem em biomas certos. Ache um &eTherimoss&r na selva.'
+        ); conquista = 'ec_ad:spot_therimoss' }
+        @{ t = 'Lushsaur domado'; depois = 'Dinossauros'; d = @('O &eLushsaur&r vive nas cavernas exuberantes. Ganhe a confiança dele para domar.'); conquista = 'ec_ad:tame_lushsaur' }
+        @{ t = 'Coralossauro'; depois = 'Dinossauros'; d = @('O &eCoralossauro&r vive no oceano quente.'); conquista = 'ec_ad:spot_coralosaur' }
+        @{ t = 'Obsidiceratops'; depois = 'Dinossauros'; d = @('O &eObsidiceratops&r vive na floresta carmesim do Nether.'); conquista = 'ec_ad:spot_obsidiceratops' }
+        @{ t = 'Sculkraptor'; depois = 'Dinossauros'; opcional = $true; d = @('O &eSculkraptor&r caça no subsolo escuro. Vença um.'); conquista = 'ec_ad:kill_sculkraptor' }
+        @{ t = 'Planta carnívora'; depois = 'Safári'; sub = 'Mowzie''s Mobs'; d = @('A &eFoliaath&r parece um arbusto, mas morde. Vença uma.'); conquista = 'mowziesmobs:kill_foliaath' }
+        @{ t = 'Disfarce'; depois = 'Planta carnívora'; opcional = $true; d = @('Entre escondido em um bosque dos &eUmvuthana&r usando uma máscara deles.'); conquista = 'mowziesmobs:sneak_grove' }
+        @{ t = 'Labirinto de gelo'; depois = 'Safári'; sub = 'Aquamirae'; d = @('O &eAquamirae&r tem um labirinto de gelo no oceano congelado profundo, cheio de navios afundados.'); conquista = 'aquamirae:adventure/find_ice_maze' }
+        @{ t = 'Corneta de concha'; depois = 'Labirinto de gelo'; d = @('Ache uma &ecorneta de concha&r nos navios piratas congelados.'); conquista = 'aquamirae:adventure/obtain_shell_horn' }
+        @{ t = 'Chave congelada'; depois = 'Labirinto de gelo'; d = @('O fantasma da &eCapitã Cornélia&r guarda uma chave congelada.'); conquista = 'aquamirae:adventure/obtain_frozen_key' }
+        @{ t = 'Montaria de casco'; depois = 'Labirinto de gelo'; opcional = $true; d = @('Crie um &eScuttler&r até virar um &eShellback&r e monte nele.'); conquista = 'aquamirae:adventure/tame_shellback' }
+        @{ t = 'Iceologer'; depois = 'Safári'; sub = 'Friends&Foes'; d = @('O &eIceologer&r é um mago illager de gelo. Vença um.'); conquista = 'friendsandfoes:adventure/kill_iceologer' }
+        @{ t = 'Esconde-esconde'; depois = 'Safári'; sub = 'Friends&Foes'; d = @('O &eRascal&r brinca de esconde-esconde nas minas. Ache ele três vezes.'); conquista = 'friendsandfoes:adventure/complete_hide_and_seek_game' }
+        @{ t = 'Wildfire'; depois = 'Iceologer'; opcional = $true; d = @('O &eWildfire&r é o chefe das cidadelas do Nether.'); conquista = 'friendsandfoes:nether/kill_wildfire' }
+        @{ t = 'Beija-flor'; depois = 'Safári'; sub = 'Alex''s Mobs'; d = @('Crie dois &ebeija-flores&r. Veja o que eles comem no JEI.'); conquista = 'alexsmobs:alexsmobs/breed_hummingbird' }
+        @{ t = 'Camarão-louva-a-deus'; depois = 'Beija-flor'; d = @('Dome um &ecamarão-louva-a-deus&r: ele soca forte.'); conquista = 'alexsmobs:alexsmobs/tame_mantis_shrimp' }
+        @{ t = 'Sapo do Nether'; depois = 'Beija-flor'; d = @('Dome um &esapo distorcido&r do Nether.'); conquista = 'alexsmobs:alexsmobs/tame_warped_toad' }
+        @{ t = 'Armadura de crocodilo'; depois = 'Beija-flor'; opcional = $true; d = @('Faça o &epeitoral de crocodilo&r com as escamas dele.'); conquista = 'alexsmobs:alexsmobs/crocodile_chestplate' }
+        @{ t = 'Ovo estranho'; depois = 'Safári'; sub = 'Dragon Mounts'; d = @('Os &eovos de dragão&r ficam escondidos em estruturas pelo mundo. Ache um.'); conquista = 'dmr:find_egg' }
+        @{ t = 'Cinco dragões'; depois = 'Ovo estranho'; opcional = $true; d = @('Choque &ecinco&r ovos de dragão.'); conquista = 'dmr:hatch_5_dragon_eggs' }
+    ) }
     @{ t = 'Mekanism 1: começo'; g = 'Tecnologia'; icone = 'mekanism:metallurgic_infuser'; sub = 'Máquinas elétricas e aço'; m = @(
         @{ t = 'O que é o Mekanism'; marco = $true; sub = 'Comece por aqui'; d = @(
             'O &eMekanism&r tem máquinas elétricas que processam minério, gases e muito mais.'

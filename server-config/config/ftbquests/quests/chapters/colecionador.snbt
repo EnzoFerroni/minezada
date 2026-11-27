@@ -5,7 +5,7 @@
 	group: "0723197381022D89"
 	icon: { id: "minecraft:diamond" }
 	id: "4ED654CD8429AD9B"
-	order_index: 34
+	order_index: 35
 	quest_links: [ ]
 	quests: [
 		{

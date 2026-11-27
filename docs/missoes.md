@@ -2,7 +2,7 @@
 
 Gerado pelo `scripts/missoes.ps1`. Nao edite a mao: rode o script depois de mexer no livro ou no `mods.txt`.
 
-35 capitulos, 601 missoes. Mods: 95 ok, 30 abaixo da meta, 0 faltando, 68 sem necessidade de missao.
+36 capitulos, 632 missoes. Mods: 103 ok, 22 abaixo da meta, 0 faltando, 68 sem necessidade de missao.
 
 Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 5, mais que isso 10 (menos os de $metaFixa no missoes.ps1, com muitas variantes de madeira ou cor).
 
@@ -87,16 +87,16 @@ Meta de missoes pelo tamanho do mod: sem itens 1, ate 30 itens 3, ate 150 itens 
 | Ferramentas | `advanced-netherite` | 44 | 1/3 | pouco | Utilidades |
 | Ferramentas | `cf:386134` | 1 | 1/3 | pouco | Utilidades |
 | Ferramentas | `aperture-innovations` | 20 | 1/3 | pouco | Utilidades |
-| Mobs e animais | `dmr` | 2 | 2/3 | pouco | Animais |
-| Mobs e animais | `cf:1635121` | 294 | 7/10 | pouco | Animais |
-| Mobs e animais | `cf:602059` | 83 | 3/5 | pouco | Animais |
-| Mobs e animais | `critters-and-companions` | 39 | 1/5 | pouco | Animais |
-| Mobs e animais | `lets-do-wildernature` | 53 | 1/5 | pouco | Animais |
-| Mobs e animais | `archies-dinosaurs` | 78 | 1/5 | pouco | Animais |
-| Mobs e animais | `ribbits` | 20 | 9/3 | ok | Animais, Pelo mundo |
-| Mobs e animais | `naturalist` | 151 | 10/10 | ok | Animais |
-| Mobs e animais | `mowzies-mobs` | 57 | 4/5 | pouco | Caçador de chefes |
-| Mobs e animais | `aquamirae` | 80 | 2/5 | pouco | Caçador de chefes |
+| Mobs e animais | `dmr` | 2 | 4/3 | ok | Animais, Bichos do mundo |
+| Mobs e animais | `cf:1635121` | 294 | 11/10 | ok | Animais, Bichos do mundo |
+| Mobs e animais | `cf:602059` | 83 | 6/5 | ok | Animais, Bichos do mundo |
+| Mobs e animais | `critters-and-companions` | 39 | 6/5 | ok | Animais, Bichos do mundo |
+| Mobs e animais | `lets-do-wildernature` | 53 | 6/5 | ok | Animais, Bichos do mundo |
+| Mobs e animais | `archies-dinosaurs` | 78 | 6/5 | ok | Animais, Bichos do mundo |
+| Mobs e animais | `ribbits` | 20 | 13/3 | ok | Animais, Bichos do mundo, Pelo mundo |
+| Mobs e animais | `naturalist` | 151 | 14/10 | ok | Animais, Bichos do mundo |
+| Mobs e animais | `mowzies-mobs` | 57 | 6/5 | ok | Bichos do mundo, Caçador de chefes |
+| Mobs e animais | `aquamirae` | 80 | 6/5 | ok | Bichos do mundo, Caçador de chefes |
 | Mobs e animais | `adorable-hamster-pets` | 54 | 14/5 | ok | Animais, Construir, Cozinha e fazenda, Volta ao mundo |
 | Dimensões | `eternal-starlight` | 1109 | 16/10 | ok | Dimensões, Eternal Starlight |
 | Dimensões | `dimensional-dungeons` | 46 | 5/5 | ok | Dimensões |
