@@ -36,6 +36,11 @@ hash = "f07398538ea0a63e10cc94d4265e5fcd7612d8125ab54d27bc7945c62c730a5b"
 metafile = true
 
 [[files]]
+file = "mods/alltheleaks.pw.toml"
+hash = "4342ec55ec991439eee75b1bdd359e0aa3d35b69516fe104b1b6ad2f52ba5670"
+metafile = true
+
+[[files]]
 file = "mods/ambientsounds.pw.toml"
 hash = "0c5f0bcdc0bf32e2d81c9fabe8645a73cdb58bd0d54764d605bde09c25b5383b"
 metafile = true
@@ -546,6 +551,11 @@ hash = "77f8b6bc4938d8565ac2d5cc234ac0768f22be595becc19675c8e57ee105e92a"
 metafile = true
 
 [[files]]
+file = "mods/jade-addons-forge.pw.toml"
+hash = "0cdb25f4837d961bb0a1beda6acfb9a01d3912d95fe1474dd4ce7fdadc011767"
+metafile = true
+
+[[files]]
 file = "mods/jei.pw.toml"
 hash = "ca41c3edb55636055d18ed98c84805e8d3878399304f55f0e4b550c3b601f1d7"
 metafile = true
@@ -698,11 +708,6 @@ metafile = true
 [[files]]
 file = "mods/natures-compass.pw.toml"
 hash = "eeb3c1e0702309b366132244dd0475b9f612f9207686e8963433e6b784682104"
-metafile = true
-
-[[files]]
-file = "mods/noisium.pw.toml"
-hash = "c82228efff939d04a9fa69d6f9faf6f145d1be3df669f6b657de71d7c1b60abd"
 metafile = true
 
 [[files]]
