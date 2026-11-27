@@ -2221,7 +2221,7 @@ $capitulos = @(
         @{ t = 'Paládio'; depois = 'Cânion de cristal'; d = @('O &epaládio&r é o metal do Galosphere.'); item = 'galosphere:palladium_ingot' }
         @{ t = 'Capacete de sterling'; depois = 'Paládio'; d = @('O &ecapacete de sterling&r protege de explosões.'); item = 'galosphere:sterling_helmet' }
         @{ t = 'Sinalizador brilhante'; depois = 'Cânion de cristal'; opcional = $true; d = @('O &esinalizador brilhante&r ilumina cavernas quando jogado.'); item = 'galosphere:glow_flare' }
-        @{ t = 'Mármore'; depois = 'Selva subterrânea'; d = @('O &emármore&r dos novos biomas de caverna, bom para construir.'); item = 'yungscavebiomes:marble'; q = 16 }
+        @{ t = 'Arenito antigo'; depois = 'Cavernas perdidas'; d = @('O &earenito antigo&r das cavernas perdidas é bom para construir.'); item = 'yungscavebiomes:ancient_sandstone'; q = 16 }
         @{ t = 'Lírio de gelo'; depois = 'Cavernas de gelo'; opcional = $true; d = @('O &elírio de gelo&r nasce nas cavernas congeladas.'); item = 'yungscavebiomes:frost_lily' }
         @{ t = 'Pêssego espinhoso'; depois = 'Cavernas perdidas'; opcional = $true; d = @('O &epêssego espinhoso&r é o fruto do cacto das cavernas perdidas.'); item = 'yungscavebiomes:prickly_peach' }
         @{ t = 'Calendário'; depois = 'Mundo novo'; sub = 'Serene Seasons'; d = @(
@@ -2262,11 +2262,20 @@ if (Test-Path $jarsDir) {
     # Item vale pelo nome item.<mod>.<id> ou block.<mod>.<id> no idioma do mod e pelo modelo do item (so o nome nao basta: nether_atlas do Map Atlases; modelo interno, como
     # refurbished_furniture:fridge, nao e item). Mod sem idioma: vale o modelo.
     $nomes = New-Object 'Collections.Generic.HashSet[string]'; $comNome = New-Object 'Collections.Generic.HashSet[string]'
+    $usados = New-Object 'Collections.Generic.HashSet[string]'
+    # Itens reais que nenhum arquivo de dados cita (balde com bicho), conferidos no jogo.
+    $semDados = @('crittersandcompanions:koi_fish_bucket', 'crittersandcompanions:sea_bunny_bucket')
     foreach ($j in Get-ChildItem $jarsDir -Filter *.jar) {
         try { $z = [IO.Compression.ZipFile]::OpenRead($j.FullName) } catch { continue }
         foreach ($e in $z.Entries) {
             if ($e.FullName -match '^assets/([a-z0-9_.-]+)/models/item/([a-z0-9_/.-]+)\.json$') { [void]$existe.Add("$($matches[1]):$($matches[2])") }
             elseif ($e.FullName -match '^data/([a-z0-9_.-]+)/(dimension|worldgen/structure|worldgen/biome|advancement)/([a-z0-9_/.-]+)\.json$') { [void]$existe.Add("$($matches[1]):$($matches[3])") }
+            # Item desligado no mod (yungscavebiomes:marble, hats:hat_launcher) tem nome e modelo, mas nenhum arquivo de
+            # dados (receita, loot, tag) cita ele. Guarda todo id citado em data/ para conferir isso.
+            if ($e.FullName -match '^data/.+\.json$') {
+                $r = New-Object IO.StreamReader $e.Open(); $txt = $r.ReadToEnd(); $r.Dispose()
+                foreach ($k in [regex]::Matches($txt, '"([a-z0-9_.-]+:[a-z0-9_/.-]+)"')) { [void]$usados.Add($k.Groups[1].Value) }
+            }
             elseif ($e.FullName -match '^assets/([a-z0-9_.-]+)/lang/en_us\.json$') {
                 # Bichos: o id vem das chaves entity.<mod>.<nome> do arquivo de idioma.
                 [void]$comNome.Add($matches[1])
@@ -2282,6 +2291,9 @@ if (Test-Path $jarsDir) {
             if ($id -and $id -notlike 'minecraft:*' -and -not $(if ($comNome.Contains($id.Split(':')[0])) { $nomes.Contains($id) -and $existe.Contains($id) } else { $existe.Contains($id) })) { "$($c.t): $id" } }
         foreach ($id in @($c.m | ForEach-Object { $_['dim']; $_['mata']; $_['estrutura']; $_['bioma']; $_['conquista'] })) {
             if ($id -and $id -notlike 'minecraft:*' -and -not $existe.Contains($id)) { "$($c.t): $id" } } })
+    $faltam += @(foreach ($c in $capitulos) {
+        foreach ($id in @($c.icone) + @($c.m | ForEach-Object { $_['item']; $_['p'] })) {
+            if ($id -and $id -notlike 'minecraft:*' -and -not $usados.Contains($id) -and $semDados -notcontains $id) { "$($c.t): $id (nenhuma receita, loot ou tag cita: item desligado no mod?)" } } })
     if ($faltam) { throw "Ids que nao existem no pack:`n$($faltam -join "`n")" }
 }
 else { Write-Warning 'Sem tools/jars (rode o montar-pack): ids nao conferidos.' }
