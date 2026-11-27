@@ -1279,12 +1279,129 @@ $capitulos = @(
             'Plante tabaco, seque e fume no cachimbo. É só diversão: dá um pouco de experiência.'
         ) }
     ) }
-    @{ t = 'Create: addons'; g = 'Tecnologia'; icone = 'create_jetpack:jetpack'; m = @(
-        @{ t = 'Jetpack'; d = 'Create Jetpack: voa com ar comprimido de um tanque.'; item = 'create_jetpack:jetpack'; solta = $true }
-        @{ t = 'Escavadeira de minerio'; d = 'Create Ore Excavation: maquinas que extraem minerio de veios infinitos no subsolo.'; solta = $true }
-        @{ t = 'Encantar com maquina'; d = 'Create Enchantment Industry: transforma experiencia em liquido e encanta itens com maquinas.'; solta = $true }
-        @{ t = 'Energia'; d = 'Create Crafts & Additions: o alternador gera energia e o motor eletrico gira as maquinas.'; item = 'createaddition:electric_motor'; solta = $true }
-        @{ t = 'Cozinha automatica'; d = 'Create Central Kitchen: as maquinas do Create fazem as comidas do Farmer''s Delight.'; solta = $true }
+    @{ t = 'Create: energia'; g = 'Tecnologia'; icone = 'createaddition:electric_motor'; sub = 'Create Crafts & Additions: eletricidade'; m = @(
+        @{ t = 'Giro vira energia'; marco = $true; sub = 'Alternador'; d = @(
+            'O &ealternador&r recebe giro do Create e faz &eenergia elétrica&r (FE).'
+            'É a energia que as máquinas do Mekanism e de outros mods usam.'
+        ); item = 'createaddition:alternator' }
+        @{ t = 'Laminador'; depois = 'Giro vira energia'; d = @(
+            'O &elaminador&r gira e transforma lingotes em &ehastes&r e chapas em &efios&r.'
+        ); item = 'createaddition:rolling_mill' }
+        @{ t = 'Fio de cobre'; depois = 'Laminador'; d = @(
+            'O &efio de cobre&r enrolado no &ecarretel&r liga os conectores e leva energia.'
+        ); item = 'createaddition:copper_spool'; q = 2 }
+        @{ t = 'Conectores'; depois = 'Fio de cobre'; d = @(
+            'Ponha um &econector&r em cada máquina. Clique com o carretel em um e depois no outro: o fio liga os dois.'
+            'O &econector grande&r leva mais energia e mais longe.'
+        ); item = 'createaddition:connector'; q = 4 }
+        @{ t = 'Acumulador'; depois = 'Conectores'; d = @(
+            'O &eacumulador&r é uma bateria grande. Guarda energia para a noite e para quando o giro para.'
+        ); item = 'createaddition:modular_accumulator' }
+        @{ t = 'Motor elétrico'; depois = 'Conectores'; marco = $true; d = @(
+            'O &emotor elétrico&r faz o contrário: energia vira giro. Dá para escolher a velocidade.'
+            'Assim uma fábrica longe recebe força só por fio.'
+        ); item = 'createaddition:electric_motor' }
+        @{ t = 'Bobina de Tesla'; depois = 'Acumulador'; opcional = $true; d = @(
+            'A &ebobina de Tesla&r carrega itens com energia que passam embaixo dela.'
+        ); item = 'createaddition:tesla_coil' }
+        @{ t = 'Biocombustível'; depois = 'Giro vira energia'; opcional = $true; d = @(
+            'Sementes na prensa dão &eóleo de sementes&r; misturado vira &ebiocombustível&r.'
+            'Com o &equeimador com canudo&r, o queimador de blaze é alimentado por líquido. Veja tudo no JEI.'
+        ); item = 'createaddition:straw' }
+        @{ t = 'Electrum'; depois = 'Laminador'; opcional = $true; d = @(
+            'Ouro e prata no misturador viram &eelectrum&r, um fio melhor para levar energia.'
+        ); item = 'createaddition:electrum_ingot'; q = 4 }
+    ) }
+    @{ t = 'Create: addons'; g = 'Tecnologia'; icone = 'create_jetpack:jetpack'; sub = 'Mais máquinas, encantos e equipamentos'; m = @(
+        @{ t = 'Jetpack'; marco = $true; sub = 'Create Jetpack'; d = @(
+            'O &ejetpack&r usa o ar do tanque de ar para &avoar&r. Feito a partir do tanque de ar de cobre.'
+            'Encha de ar como o tanque normal. A versão de netherita aguenta mais.'
+        ); item = 'create_jetpack:jetpack'; p = 'minecraft:copper_ingot'; n = 8 }
+        @{ t = 'Capacete com óculos'; sub = 'Create Goggles'; depois = 'Jetpack'; d = @(
+            'Junte os &eóculos de engenheiro&r com um capacete e use os dois de uma vez.'
+            'Os &etanques de ar&r de ferro, ouro e diamante protegem como peitoral.'
+        ); item = 'creategoggles:goggle_iron_helmet' }
+        @{ t = 'Exoesqueleto'; sub = 'Create Stuff Additions'; depois = 'Jetpack'; d = @(
+            'O Create Stuff Additions traz &ejetpacks&r de outros materiais, &eexoesqueleto&r (pula e corre mais), broca e ferramentas.'
+        ); item = 'create_sa:andesite_exoskeleton_chestplate' }
+        @{ t = 'Broca portátil'; depois = 'Exoesqueleto'; opcional = $true; d = @(
+            'A &ebroca portátil&r quebra blocos rápido usando ar ou combustível.'
+        ); item = 'create_sa:portable_drill' }
+        @{ t = 'Gancho'; depois = 'Exoesqueleto'; opcional = $true; d = @(
+            'O &egancho&r puxa você até onde ele prende. Ótimo para escalar.'
+        ); item = 'create_sa:grapplin_whisk' }
+        @{ t = 'Encantar com máquinas'; marco = $true; sub = 'Create Enchantment Industry'; solta = $true; d = @(
+            'O &eencantador de blaze&r encanta itens sozinho, usando &eXP líquido&r.'
+            'Veja no JEI e no Ponder (&eW&r) como juntar XP líquido e montar a linha.'
+        ); item = 'create_enchantment_industry:blaze_enchanter' }
+        @{ t = 'Esmeril mecânico'; depois = 'Encantar com máquinas'; d = @(
+            'O &eesmeril mecânico&r tira encantos de itens e devolve o XP.'
+        ); item = 'create_enchantment_industry:mechanical_grindstone' }
+        @{ t = 'Impressora'; depois = 'Encantar com máquinas'; opcional = $true; d = @(
+            'A &eimpressora&r copia livros encantados e livros escritos usando XP líquido.'
+        ); item = 'create_enchantment_industry:printer' }
+        @{ t = 'Lanterna de XP'; depois = 'Encantar com máquinas'; opcional = $true; d = @(
+            'A &elanterna de experiência&r ilumina e guarda XP. Bonita na base.'
+        ); item = 'create_enchantment_industry:experience_lantern' }
+        @{ t = 'Minério infinito'; marco = $true; sub = 'Create Ore Excavation'; solta = $true; d = @(
+            'Há &everos de minério&r escondidos embaixo dos chunks. O &elocalizador de veios&r diz o que tem no chunk.'
+        ); item = 'createoreexcavation:vein_finder' }
+        @{ t = 'Perfuratriz'; depois = 'Minério infinito'; d = @(
+            'A &eperfuratriz&r em cima de um veio, com uma &ebroca&r e giro, tira minério &asem acabar&r.'
+            'Veja no Ponder (&eW&r) como montar.'
+        ); item = 'createoreexcavation:drilling_machine'; p = 'createoreexcavation:drill'; n = 1 }
+        @{ t = 'Atlas de veios'; depois = 'Minério infinito'; opcional = $true; d = @(
+            'O &eatlas&r guarda os veios que você já achou.'
+        ); item = 'createoreexcavation:vein_atlas' }
+        @{ t = 'Bateria cinética'; sub = 'Create Connected'; solta = $true; d = @(
+            'O Create Connected traz peças que faltam: &ebateria cinética&r (guarda giro), freio, embreagens e caixas novas.'
+        ); item = 'create_connected:kinetic_battery' }
+        @{ t = 'Silo de itens'; depois = 'Bateria cinética'; opcional = $true; d = @(
+            'O &esilo&r guarda muito item, empilhando em altura. O &evaso de fluido&r faz o mesmo com líquidos.'
+        ); item = 'create_connected:item_silo' }
+        @{ t = 'Caixa de 6 lados'; depois = 'Bateria cinética'; opcional = $true; d = @(
+            'A &ecaixa de engrenagens de 6 lados&r leva o giro para todas as direções.'
+        ); item = 'create_connected:six_way_gearbox' }
+        @{ t = 'Cortadora'; sub = 'Slice and Dice'; solta = $true; d = @(
+            'A &ecortadora&r segura uma faca e corta comida no depósito: as receitas da tábua do Farmer''s Delight sozinhas.'
+            'O &eregador&r molha a plantação e faz crescer mais rápido.'
+        ); item = 'sliceanddice:slicer' }
+        @{ t = 'Cozinha automática'; sub = 'Create Central Kitchen'; depois = 'Cortadora'; opcional = $true; d = @(
+            'Com o Central Kitchen, &ebicos&r, &ebraços&r e &edeployers&r cozinham as receitas da panela e da frigideira dos mods de comida.'
+            '&7Clique em Concluir quando montar algo.'
+        ) }
+        @{ t = 'Velas especiais'; sub = 'Dreams and Desires'; solta = $true; d = @(
+            'As &evelas catalisadoras&r dão processos novos ao vento do ventilador: congelar, lixar, ferver e mais.'
+            'Veja no Ponder (&eW&r).'
+        ); item = 'dndesires:freezing_sail' }
+        @{ t = 'Prensa hidráulica'; depois = 'Velas especiais'; opcional = $true; d = @(
+            'A &eprensa hidráulica&r e o &eventilador industrial&r são versões mais fortes das máquinas do Create.'
+        ); item = 'dndesires:hydraulic_press' }
+        @{ t = 'Milk-shake'; depois = 'Velas especiais'; opcional = $true; d = @(
+            'O Dreams and Desires tem &emilk-shakes&r. Misture no misturador e encha com o bico.'
+        ); item = 'dndesires:vanilla_milkshake' }
+        @{ t = 'Blocos que copiam'; sub = 'Copycats+'; solta = $true; d = @(
+            'Os blocos &ecopycat&r copiam a textura de qualquer bloco: clique neles com o bloco na mão.'
+            'Degraus, rampas, portas e cercas de qualquer material.'
+        ); item = 'copycats:copycat_slope'; q = 4 }
+        @{ t = 'Decoração industrial'; sub = 'Create Deco'; depois = 'Blocos que copiam'; d = @(
+            'Passarelas, grades, janelas e chapas no estilo do Create. Veja tudo no JEI.'
+        ); item = 'createdeco:andesite_catwalk'; q = 8 }
+        @{ t = 'Cadeiras'; sub = 'Interiors'; depois = 'Blocos que copiam'; opcional = $true; d = @(
+            'Cadeiras e sofás no estilo do Create. Funcionam também dentro de trens.'
+        ); item = 'interiors:kelp_chair' }
+        @{ t = 'Navegador'; sub = 'Create Railways Navigator'; solta = $true; opcional = $true; d = @(
+            'O &enavegador&r acha a rota de trem entre duas estações, com horários.'
+        ); item = 'createrailwaysnavigator:navigator' }
+        @{ t = 'Terminal no trem'; sub = 'Contraption Terminals'; depois = 'Navegador'; opcional = $true; d = @(
+            'O terminal do &eTom''s Storage&r funciona dentro de trens e máquinas que andam.'
+            '&7Clique em Concluir quando testar.'
+        ) }
+        @{ t = 'Dirigíveis'; sub = 'Create Aeronautics'; solta = $true; marco = $true; d = @(
+            'Com o Aeronautics, construções do Create &avoam&r: dirigíveis, aviões, barcos e carros.'
+            'Veja os blocos novos no JEI e o Ponder (&eW&r) de cada um.'
+            '&7Clique em Concluir quando montar seu primeiro veículo.'
+        ) }
     ) }
     @{ t = 'Cacador de chefes'; g = 'Aventura'; icone = 'minecraft:wither_skeleton_skull'; m = @(
         @{ t = 'Wither'; d = 'Tres cranios de esqueleto wither em cima de areia das almas em T. Faca longe de casa.'; mata = 'minecraft:wither'; p = 'minecraft:diamond'; n = 8; solta = $true }
