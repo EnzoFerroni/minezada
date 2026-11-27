@@ -1917,8 +1917,8 @@ $capitulos = @(
         ); item = 'waystones:waystone' }
         @{ t = 'Pedra de teleporte'; depois = 'Waystone'; d = @('A &epedra de teleporte&r abre a lista de waystones de qualquer lugar.'); item = 'waystones:warp_stone' }
         @{ t = 'Placa de teleporte'; depois = 'Waystone'; opcional = $true; d = @('A &eplaca de teleporte&r liga dois pontos: pise em uma e saia na outra.'); item = 'waystones:warp_plate' }
-        @{ t = 'Atlas do Nether'; depois = 'Atlas'; opcional = $true; d = @('Um atlas próprio para o &eNether&r.'); item = 'map_atlases:nether_atlas' }
-        @{ t = 'Atlas do End'; depois = 'Atlas'; opcional = $true; d = @('Um atlas próprio para o &eEnd&r.'); item = 'map_atlases:end_atlas' }
+        @{ t = 'Atlas na mão secundária'; depois = 'Atlas'; mod = @('map-atlases-forge'); opcional = $true; d = @('Segure o atlas na &emão secundária&r (tecla &eF&r troca de mão) para ver o mapa na tela enquanto anda.') }
+        @{ t = 'Atlas em outra dimensão'; depois = 'Atlas'; mod = @('map-atlases-forge'); opcional = $true; d = @('Leve o atlas para o &eNether&r ou o &eEnd&r e faça mapas lá também. O desenho do atlas muda conforme a dimensão.') }
         @{ t = 'Ilha de cogumelos'; depois = 'Bússola de biomas'; mod = @('natures-compass'); d = @('Use a bússola de biomas para achar os &ecampos de cogumelo&r, onde não nasce monstro.'); bioma = 'minecraft:mushroom_fields' }
         @{ t = 'Bioma raro'; depois = 'Bússola de biomas'; mod = @('natures-compass'); opcional = $true; d = @('Escolha na bússola um bioma que você nunca viu e vá até ele.') }
         @{ t = 'Mansão da floresta'; depois = 'Bússola de estruturas'; mod = @('explorers-compass'); d = @('Use a bússola de estruturas para achar uma &emansão da floresta&r, cheia de illagers.'); estrutura = 'minecraft:mansion' }
@@ -1935,7 +1935,7 @@ $capitulos = @(
             'Para escolher qual usar, veja a tecla em Controles (busque &echapéu&r ou &ehat&r).'
         ) }
         @{ t = 'Coleção de chapéus'; depois = 'Chapéus'; mod = @('hats-renewed'); opcional = $true; d = @('Junte chapéus de cinco bichos diferentes.') }
-        @{ t = 'Lançador de chapéus'; depois = 'Chapéus'; opcional = $true; d = @('O &elançador de chapéus&r atira chapéus nos bichos.'); item = 'hats:hat_launcher' }
+        @{ t = 'Chapéu de mob raro'; depois = 'Chapéus'; mod = @('hats-renewed'); opcional = $true; d = @('Ganhe o chapéu de um bicho difícil, como um chefe ou um mob do Nether, e use ele.') }
     ) }
     @{ t = 'Masmorras e tesouros'; g = 'Aventura'; icone = 'artifacts:cloud_in_a_bottle'; sub = 'Masmorras, templos e minas reformulados'; m = @(
         @{ t = 'Baú só seu'; marco = $true; d = @(

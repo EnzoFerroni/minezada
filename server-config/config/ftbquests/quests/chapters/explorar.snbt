@@ -77,19 +77,19 @@
 		}
 		{
 			dependencies: ["333B894B34D3932D"]
-			id: "5B3B104334EEB1CC"
-			rewards: [{ id: "5B4B1FDDA038D0F8", type: "xp", xp: 20 }]
+			id: "10C2B5264399FEA5"
+			rewards: [{ id: "71584C51520F789D", type: "xp", xp: 20 }]
 			optional: true
-			tasks: [{ id: "17C93196533CE5F1", item: { count: 1, id: "map_atlases:nether_atlas" }, type: "item" }]
+			tasks: [{ id: "0CCBC57D3F0C0084", type: "checkmark" }]
 			x: 5d
 			y: 7d
 		}
 		{
 			dependencies: ["333B894B34D3932D"]
-			id: "27BAB7E55491A280"
-			rewards: [{ id: "1577CA1E94F22D53", type: "xp", xp: 20 }]
+			id: "471065B0B84C2C3D"
+			rewards: [{ id: "118A1B50CE50DBF3", type: "xp", xp: 20 }]
 			optional: true
-			tasks: [{ id: "2673A8A10B92B9B6", item: { count: 1, id: "map_atlases:end_atlas" }, type: "item" }]
+			tasks: [{ id: "4A69FC26B6AD511C", type: "checkmark" }]
 			x: 5d
 			y: 8.75d
 		}
@@ -180,10 +180,10 @@
 		}
 		{
 			dependencies: ["6C649EF7320B4B28"]
-			id: "26C227D48A5ECA57"
-			rewards: [{ id: "3CE80ACA3367E292", type: "xp", xp: 20 }]
+			id: "7A18AD9F90331E63"
+			rewards: [{ id: "13C21D3AFFA5831A", type: "xp", xp: 20 }]
 			optional: true
-			tasks: [{ id: "19BB5A4496AAA48C", item: { count: 1, id: "hats:hat_launcher" }, type: "item" }]
+			tasks: [{ id: "1EB3EF2265B2C1ED", type: "checkmark" }]
 			x: 5d
 			y: 19.25d
 		}
