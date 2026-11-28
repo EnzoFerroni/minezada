@@ -1,0 +1,90 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "create_energia"
+	group: "75C4FBF5BDDE1148"
+	icon: { id: "createaddition:electric_motor" }
+	id: "4336DF8ADFC764BF"
+	order_index: 26
+	quest_links: [ ]
+	quests: [
+		{
+			id: "047025B1EE2634F3"
+			rewards: [{ id: "68F991D5730F1E2E", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "468B036B889EADB8", item: { count: 1, id: "createaddition:alternator" }, type: "item" }]
+			x: 0d
+			y: 2.25d
+		}
+		{
+			dependencies: ["047025B1EE2634F3"]
+			id: "0DB3694569E089A1"
+			rewards: [{ id: "7F388FC4A69315F4", type: "xp", xp: 20 }]
+			tasks: [{ id: "66E400B0AC8BC9D7", item: { count: 1, id: "createaddition:rolling_mill" }, type: "item" }]
+			x: 2d
+			y: 3d
+		}
+		{
+			dependencies: ["0DB3694569E089A1"]
+			id: "05547B220C858625"
+			rewards: [{ id: "1B173BE58A5BE6A8", type: "xp", xp: 20 }]
+			tasks: [{ id: "0D9FAEFACDB7F18C", item: { count: 2, id: "createaddition:copper_spool" }, type: "item" }]
+			x: 4d
+			y: 3.75d
+		}
+		{
+			dependencies: ["05547B220C858625"]
+			id: "36F7808BC93DAC16"
+			rewards: [{ id: "3F5538505CB542DF", type: "xp", xp: 20 }]
+			tasks: [{ id: "1905D54264DFF9FF", item: { count: 4, id: "createaddition:connector" }, type: "item" }]
+			x: 6d
+			y: 3.75d
+		}
+		{
+			dependencies: ["36F7808BC93DAC16"]
+			id: "452D1ED958B227A4"
+			rewards: [{ id: "69802612F2328AB6", type: "xp", xp: 20 }]
+			tasks: [{ id: "18653D96AECD3AF6", item: { count: 1, id: "createaddition:modular_accumulator" }, type: "item" }]
+			x: 8d
+			y: 4.5d
+		}
+		{
+			dependencies: ["36F7808BC93DAC16"]
+			id: "23FB7B97FAF4EC21"
+			rewards: [{ id: "7A282AE01A4AE0FD", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "28375931C350D770", item: { count: 1, id: "createaddition:electric_motor" }, type: "item" }]
+			x: 8d
+			y: 3d
+		}
+		{
+			dependencies: ["452D1ED958B227A4"]
+			id: "1442DCECE23509B0"
+			rewards: [{ id: "032F5D42707BFDB6", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "58EFA0ABF4E0F847", item: { count: 1, id: "createaddition:tesla_coil" }, type: "item" }]
+			x: 10d
+			y: 4.5d
+		}
+		{
+			dependencies: ["047025B1EE2634F3"]
+			id: "3B6DF873C66A9D6D"
+			rewards: [{ id: "570E913D5540B523", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "232C1B499B51A007", item: { count: 1, id: "createaddition:straw" }, type: "item" }]
+			x: 2d
+			y: 0d
+		}
+		{
+			dependencies: ["0DB3694569E089A1"]
+			id: "1DCC81B43BD3F3DF"
+			rewards: [{ id: "171A640ACB89DE40", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "045EACC006EEB799", item: { count: 4, id: "createaddition:electrum_ingot" }, type: "item" }]
+			x: 4d
+			y: 1.5d
+		}
+	]
+}

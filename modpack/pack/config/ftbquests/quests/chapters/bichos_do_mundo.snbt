@@ -1,0 +1,295 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "bichos_do_mundo"
+	group: "2A64FDD2182C23F1"
+	icon: { id: "crittersandcompanions:koi_fish" }
+	id: "5032C0A113D33DAD"
+	order_index: 14
+	quest_links: [ ]
+	quests: [
+		{
+			id: "52B47CC5963D1FCD"
+			rewards: [{ id: "2CC79825B406E319", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "25229AFCC8E124AC", type: "checkmark" }]
+			x: 0d
+			y: 0d
+		}
+		{
+			dependencies: ["52B47CC5963D1FCD"]
+			id: "0232C38C50F51A62"
+			rewards: [{ id: "618D2987B562DB5B", type: "xp", xp: 20 }]
+			tasks: [{ id: "32BD3AA5D4A4C3B7", item: { count: 1, id: "crittersandcompanions:koi_fish_bucket" }, type: "item" }]
+			x: 2d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["0232C38C50F51A62"]
+			id: "3E45635319345653"
+			rewards: [{ id: "3029271A7DA193B1", type: "xp", xp: 20 }]
+			tasks: [{ id: "00010A333ECC9649", item: { count: 1, id: "crittersandcompanions:sea_bunny_bucket" }, type: "item" }]
+			x: 4d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["0232C38C50F51A62"]
+			id: "5FB8537851048BA8"
+			rewards: [{ id: "7C2C7C1FF5833E95", type: "xp", xp: 20 }]
+			tasks: [{ id: "5366813C9CE3164B", item: { count: 1, id: "crittersandcompanions:pearl" }, type: "item" }]
+			x: 5.5d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["0232C38C50F51A62"]
+			id: "53C9ED8FA52B183C"
+			rewards: [{ id: "740A8D5E834F8ADA", type: "xp", xp: 20 }]
+			tasks: [{ id: "129FA8267517C6A6", item: { count: 1, id: "crittersandcompanions:silk_lead" }, type: "item" }]
+			x: 7d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["0232C38C50F51A62"]
+			id: "6D250650292CBCDD"
+			rewards: [{ id: "3833BB6AD214A3A2", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "539F677DE794112E", item: { count: 1, id: "crittersandcompanions:acorn_hat" }, type: "item" }]
+			x: 8.5d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["52B47CC5963D1FCD"]
+			id: "42B8E44EF1E15B98"
+			rewards: [{ id: "032DA5D3EEEBCD09", type: "xp", xp: 20 }]
+			tasks: [{ id: "730FAD9248F27584", item: { count: 1, id: "wildernature:bounty_board" }, type: "item" }]
+			x: 2d
+			y: 3.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["42B8E44EF1E15B98"]
+			id: "100545150409230F"
+			rewards: [{ id: "714CAD49C31BCA8D", type: "xp", xp: 20 }]
+			tasks: [{ id: "0E506425EFF151E6", item: { count: 1, id: "wildernature:venison" }, type: "item" }]
+			x: 4d
+			y: 3.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["42B8E44EF1E15B98"]
+			id: "4684CF049A9837E8"
+			rewards: [{ id: "107D63068D31CD50", type: "xp", xp: 20 }]
+			tasks: [{ id: "60F99995766DD056", item: { count: 1, id: "wildernature:blunderbuss" }, type: "item" }]
+			x: 5.5d
+			y: 3.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["42B8E44EF1E15B98"]
+			id: "36F6090101B38AB6"
+			rewards: [{ id: "2CF416D86B2D8764", type: "xp", xp: 20 }]
+			tasks: [{ id: "00F170EF15672768", item: { count: 1, id: "wildernature:fur_cloak" }, type: "item" }]
+			x: 7d
+			y: 3.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["42B8E44EF1E15B98"]
+			id: "25A65F84EF038316"
+			rewards: [{ id: "3D67303DBBC8802C", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "42C59E47FD7D15B2", item: { count: 1, id: "wildernature:truffle" }, type: "item" }]
+			x: 8.5d
+			y: 3.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["52B47CC5963D1FCD"]
+			id: "2C6C8CDEBB173A35"
+			rewards: [{ id: "3EEA7E0E88F24059", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "ec_ad:spot_therimoss", criterion: "", id: "0FC9B50161CBFE3B", type: "advancement" }]
+			x: 2d
+			y: 5.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["2C6C8CDEBB173A35"]
+			id: "45E1C2B82BB3F6A7"
+			rewards: [{ id: "3701E38C89EBD944", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "ec_ad:tame_lushsaur", criterion: "", id: "4BEB5B13D424D8FD", type: "advancement" }]
+			x: 4d
+			y: 5.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["2C6C8CDEBB173A35"]
+			id: "4CC210A6A2127398"
+			rewards: [{ id: "4484782BD6D16B70", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "ec_ad:spot_coralosaur", criterion: "", id: "46BDE621F96CA461", type: "advancement" }]
+			x: 5.5d
+			y: 5.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["2C6C8CDEBB173A35"]
+			id: "5B0264C193E9F09E"
+			rewards: [{ id: "47F1F6641720B871", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "ec_ad:spot_obsidiceratops", criterion: "", id: "240047D86C4958E6", type: "advancement" }]
+			x: 7d
+			y: 5.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["2C6C8CDEBB173A35"]
+			id: "272A055296CBA45B"
+			rewards: [{ id: "5EA69569372FFED5", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "ec_ad:kill_sculkraptor", criterion: "", id: "6423EE85F8FEC82D", type: "advancement" }]
+			x: 8.5d
+			y: 5.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["52B47CC5963D1FCD"]
+			id: "115415CF65764BEB"
+			rewards: [{ id: "7A94528B2AD63700", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "mowziesmobs:kill_foliaath", criterion: "", id: "084C95412129DBDB", type: "advancement" }]
+			x: 2d
+			y: 7.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["115415CF65764BEB"]
+			id: "676D606DFE788CAF"
+			rewards: [{ id: "4FB4421AF1654CB4", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "mowziesmobs:sneak_grove", criterion: "", id: "7EEFF66A07C0C38B", type: "advancement" }]
+			x: 4d
+			y: 7.5d
+		}
+		{
+			dependencies: ["52B47CC5963D1FCD"]
+			id: "0CE291BDF217950D"
+			rewards: [{ id: "45804916FC925B97", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "aquamirae:adventure/find_ice_maze", criterion: "", id: "5C02EBA294B1F583", type: "advancement" }]
+			x: 2d
+			y: 9.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["0CE291BDF217950D"]
+			id: "099A8D75685EE7F8"
+			rewards: [{ id: "49368BC1A33A624B", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "aquamirae:adventure/obtain_shell_horn", criterion: "", id: "6380BFD9FCAADD9A", type: "advancement" }]
+			x: 4d
+			y: 9.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["0CE291BDF217950D"]
+			id: "1E446EC8E523F132"
+			rewards: [{ id: "783DDED84F9AD844", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "aquamirae:adventure/obtain_frozen_key", criterion: "", id: "031B6C2C2B40AC56", type: "advancement" }]
+			x: 5.5d
+			y: 9.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["0CE291BDF217950D"]
+			id: "54F229E270C65B26"
+			rewards: [{ id: "52DDB80AF6C877E9", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "aquamirae:adventure/tame_shellback", criterion: "", id: "49BC1AFAD9C76F60", type: "advancement" }]
+			x: 7d
+			y: 9.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["52B47CC5963D1FCD"]
+			id: "6F5AF0578D0A0629"
+			rewards: [{ id: "0F1409FA1109CE42", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "friendsandfoes:adventure/kill_iceologer", criterion: "", id: "4D29B22B989B4E79", type: "advancement" }]
+			x: 2d
+			y: 11.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["52B47CC5963D1FCD"]
+			id: "3A81261A35DF0746"
+			rewards: [{ id: "2DACCE3FB8C16E71", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "friendsandfoes:adventure/complete_hide_and_seek_game", criterion: "", id: "7F89424365CA7E92", type: "advancement" }]
+			x: 2d
+			y: 0d
+		}
+		{
+			dependencies: ["6F5AF0578D0A0629"]
+			id: "02A5548273EA6953"
+			rewards: [{ id: "605CB84E3D933B12", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "friendsandfoes:nether/kill_wildfire", criterion: "", id: "1EEC2691530F3C63", type: "advancement" }]
+			x: 4d
+			y: 11.5d
+		}
+		{
+			dependencies: ["52B47CC5963D1FCD"]
+			id: "570F915C71A954F2"
+			rewards: [{ id: "26C993AFAD073748", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "alexsmobs:alexsmobs/breed_hummingbird", criterion: "", id: "5AB8E88B99A7CC95", type: "advancement" }]
+			x: 2d
+			y: 13.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["570F915C71A954F2"]
+			id: "05CCA6AB4D7BD4C2"
+			rewards: [{ id: "42D20EE8D33BB191", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "alexsmobs:alexsmobs/tame_mantis_shrimp", criterion: "", id: "1209B0107DB34659", type: "advancement" }]
+			x: 4d
+			y: 13.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["570F915C71A954F2"]
+			id: "7AB97B587CF8C279"
+			rewards: [{ id: "57F852F3DD966C1E", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "alexsmobs:alexsmobs/tame_warped_toad", criterion: "", id: "001CD4C211D999FC", type: "advancement" }]
+			x: 5.5d
+			y: 13.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["570F915C71A954F2"]
+			id: "5174A1C84A1A7798"
+			rewards: [{ id: "7DCBCB2DF0AA5047", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "alexsmobs:alexsmobs/crocodile_chestplate", criterion: "", id: "694D4C19A40269C2", type: "advancement" }]
+			x: 7d
+			y: 13.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["52B47CC5963D1FCD"]
+			id: "2F8B2DB82E39BDFA"
+			rewards: [{ id: "1C51297A8560F38E", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "dmr:find_egg", criterion: "", id: "539E94A9437C90B6", type: "advancement" }]
+			x: 2d
+			y: 15.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["2F8B2DB82E39BDFA"]
+			id: "3129EBE4A72E01AB"
+			rewards: [{ id: "5AA8F7BE29FB81E7", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "dmr:hatch_5_dragon_eggs", criterion: "", id: "5367590814F6EEBB", type: "advancement" }]
+			x: 4d
+			y: 15.5d
+		}
+	]
+}

@@ -1,0 +1,204 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "espaco"
+	group: "0B7482EA7957301C"
+	icon: { id: "ad_astra:tier_1_rocket" }
+	id: "6CDFF22C3CFE2200"
+	order_index: 24
+	quest_links: [ ]
+	quests: [
+		{
+			id: "7024745C8C6C2B85"
+			rewards: [{ id: "6F2FB6E52D937CF2", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "6074DF160EA401A8", item: { count: 1, id: "ad_astra:coal_generator" }, type: "item" }]
+			x: 0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["7024745C8C6C2B85"]
+			id: "63EB37EC627A1A03"
+			rewards: [{ id: "7EF6545F8F1A6D17", type: "xp", xp: 20 }]
+			tasks: [{ id: "2BE730568331C27F", item: { count: 1, id: "ad_astra:compressor" }, type: "item" }]
+			x: 2d
+			y: 3.75d
+		}
+		{
+			dependencies: ["63EB37EC627A1A03"]
+			id: "5AD3F903CD78E4F3"
+			rewards: [{ id: "3AE9C2CE5BBF68EF", type: "xp", xp: 20 }]
+			tasks: [{ id: "7788BC978132718E", item: { count: 8, id: "ad_astra:steel_ingot" }, type: "item" }]
+			x: 4d
+			y: 3.75d
+		}
+		{
+			dependencies: ["5AD3F903CD78E4F3"]
+			id: "78643149D88DB1BF"
+			rewards: [{ id: "414B608A1B9D5CCE", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "3E8F08C636B9616C", item: { count: 1, id: "ad_astra:nasa_workbench" }, type: "item" }]
+			x: 6d
+			y: 3d
+		}
+		{
+			dependencies: ["7024745C8C6C2B85"]
+			id: "2B9EA2C9AC123A6F"
+			rewards: [{ id: "2964FD3868728382", type: "xp", xp: 20 }]
+			tasks: [{ id: "4D8FB77DB63640AE", item: { count: 1, id: "ad_astra:oil_bucket" }, type: "item" }]
+			x: 2d
+			y: 9d
+		}
+		{
+			dependencies: ["2B9EA2C9AC123A6F"]
+			id: "310B0B930748753D"
+			rewards: [{ id: "0829BB20EF1C6698", type: "xp", xp: 20 }]
+			tasks: [{ id: "1DD71101ACD5F9CF", item: { count: 1, id: "ad_astra:fuel_bucket" }, type: "item" }]
+			x: 4d
+			y: 9d
+		}
+		{
+			dependencies: ["5AD3F903CD78E4F3"]
+			id: "7B3831876F704DD4"
+			rewards: [{ id: "5BAB399D6DB7D532", type: "xp", xp: 20 }]
+			tasks: [{ id: "7096129BE98E7082", item: { count: 1, id: "ad_astra:space_suit" }, type: "item" }]
+			x: 6d
+			y: 7.5d
+		}
+		{
+			dependencies: ["7B3831876F704DD4"]
+			id: "3FA240CCE87A060E"
+			rewards: [{ id: "2D66F27F76C005D7", type: "xp", xp: 20 }]
+			tasks: [{ id: "7553676493F871BC", item: { count: 1, id: "ad_astra:oxygen_loader" }, type: "item" }]
+			x: 8d
+			y: 7.5d
+		}
+		{
+			dependencies: ["78643149D88DB1BF"]
+			id: "69087F843B801DBE"
+			rewards: [{ id: "30FE13B4E204F63C", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "2E32E65C56838958", item: { count: 1, id: "ad_astra:tier_1_rocket" }, type: "item" }]
+			x: 8d
+			y: 3d
+		}
+		{
+			dependencies: ["69087F843B801DBE"]
+			id: "72366A0DEA4B1515"
+			rewards: [{ id: "4C23266010CF5816", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ dimension: "ad_astra:moon", id: "6A5D9F836C4598A7", type: "dimension" }]
+			x: 10d
+			y: 3d
+		}
+		{
+			dependencies: ["72366A0DEA4B1515"]
+			id: "624E7920FAAD6862"
+			rewards: [{ id: "0F298E9D06CA1318", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "4688C831D293633F", structure: "ad_astra:lunarian_village", type: "structure" }]
+			x: 12d
+			y: 0d
+		}
+		{
+			dependencies: ["72366A0DEA4B1515"]
+			id: "21510F8025EC14F0"
+			rewards: [{ id: "2E0E5806A4D0EC8D", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "6E910230D6C2E21A", item: { count: 1, id: "ad_astra:solar_panel" }, type: "item" }]
+			x: 12d
+			y: 1.5d
+		}
+		{
+			dependencies: ["21510F8025EC14F0"]
+			id: "07394B49AD59F63E"
+			rewards: [{ id: "558F92CE43B37B19", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "7586EA4DA3BA0DA4", item: { count: 1, id: "ad_astra:oxygen_distributor" }, type: "item" }]
+			x: 14d
+			y: 1.5d
+		}
+		{
+			dependencies: ["72366A0DEA4B1515"]
+			id: "4A989F85660C8492"
+			rewards: [{ id: "7CF710913A46AED4", type: "xp", xp: 20 }]
+			tasks: [{ id: "21E0D1931BCDB2B6", item: { count: 1, id: "ad_astra:desh_ingot" }, type: "item" }]
+			x: 12d
+			y: 4.5d
+		}
+		{
+			dependencies: ["4A989F85660C8492"]
+			id: "6C64252B40CD4F10"
+			rewards: [{ id: "2C4E6BB7B0734FFD", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ dimension: "ad_astra:mars", id: "0E4DFC7C9E7DFEFC", type: "dimension" }]
+			x: 14d
+			y: 4.5d
+		}
+		{
+			dependencies: ["6C64252B40CD4F10"]
+			id: "632CCE17812CA499"
+			rewards: [{ id: "2A65E0EF0B740614", type: "xp", xp: 20 }]
+			tasks: [{ id: "193AE9C980F80461", item: { count: 1, id: "ad_astra:netherite_space_suit" }, type: "item" }]
+			x: 16d
+			y: 4.5d
+		}
+		{
+			dependencies: ["632CCE17812CA499"]
+			id: "17377A11BDFC847A"
+			rewards: [{ id: "08CE455B2011A1C3", type: "xp", xp: 20 }]
+			tasks: [{ id: "332B6E7009922C21", item: { count: 1, id: "ad_astra:tier_3_rocket" }, type: "item" }]
+			x: 18d
+			y: 4.5d
+		}
+		{
+			dependencies: ["17377A11BDFC847A"]
+			id: "425B42F224DFA666"
+			rewards: [{ id: "408449D5C17D28A2", type: "xp", xp: 20 }]
+			tasks: [{ dimension: "ad_astra:venus", id: "3EAD185B2AF74409", type: "dimension" }]
+			x: 20d
+			y: 5.25d
+		}
+		{
+			dependencies: ["17377A11BDFC847A"]
+			id: "07CDDF90A2B8F066"
+			rewards: [{ id: "5C6B0CD6A5D88A43", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ dimension: "ad_astra:mercury", id: "421A0DCF46EB8B7C", type: "dimension" }]
+			x: 20d
+			y: 3d
+		}
+		{
+			dependencies: ["425B42F224DFA666"]
+			id: "39F7E9B2FFD27441"
+			rewards: [{ id: "08712E44C326FB8A", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "4E48E31E5E970BC9", item: { count: 1, id: "ad_astra:jet_suit" }, type: "item" }]
+			x: 22d
+			y: 4.5d
+		}
+		{
+			dependencies: ["425B42F224DFA666"]
+			id: "3E75F79AAB570876"
+			rewards: [{ id: "6EC5513A8EDBE93A", type: "xp", xp: 20 }]
+			tasks: [{ id: "29421A956D60A35D", item: { count: 1, id: "ad_astra:tier_4_rocket" }, type: "item" }]
+			x: 22d
+			y: 6d
+		}
+		{
+			dependencies: ["3E75F79AAB570876"]
+			id: "6D006D3D25BE95FA"
+			rewards: [{ id: "0FC9ECF6913BB7D5", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ dimension: "ad_astra:glacio", id: "0A9E72C50308DFA5", type: "dimension" }]
+			x: 24d
+			y: 6d
+		}
+	]
+}

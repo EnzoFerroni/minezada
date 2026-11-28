@@ -14,7 +14,7 @@
 - **Por que cada coisa é assim**: [docs/decisoes.md](../docs/decisoes.md). Mudou uma decisão? Atualize lá.
 - **Como usar**: [README](../README.md) e [docs/](../docs).
 - **Pack**: `modpack/mods.txt` é a lista de mods (fonte da verdade). `modpack/pack/`,
-  `modpack/minezada-prism.zip` e `docs/mods.md` são gerados pelo `scripts/montar-pack.ps1`: não edite à mão.
+  `modpack/minezada-prism.zip`, `docs/mods.md` e a tabela "Do que precisa" do README são gerados pelo `scripts/montar-pack.ps1`: não edite à mão.
   Perfis de gráfico: tabela em `scripts/perfis.ps1` (gera `modpack/arquivos/`). Configuração do servidor:
   `server-config/` (copiada para `server/` a cada start). Servidor (Windows e Mac) e jogadores
   instalam pelo `pack/` (packwiz).
