@@ -1205,11 +1205,11 @@ hash = "5143487db609990a9e9aa7f6cd73fe10b9782e03c20f949c489a519842368788"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/colecionador.snbt"
-hash = "78f2ff0356bcc001cef94e17cab88e9d65eb02464f76a5c5a12a8df777614032"
+hash = "11daea37aa5f4b1966f227bcb3b7939c8a34d3f79e3acca149a1e08fd1aa1c11"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/construir.snbt"
-hash = "3df1599b7d4ab23226e99d07610944940bcf7c7f3ebd7dcfa98e11ed32b899a1"
+hash = "50fd57205f3c8652f48a2d0bf6f834de44adef20c8fc40f2dbc2a4e996a943e3"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/cozinha_e_fazenda.snbt"
@@ -1297,7 +1297,7 @@ hash = "88a9b26be2fd8e47a7b3e8ba1fd3ecff1dcd4f1cfe09af9c3f9e38e8ce483d15"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/mochila_e_baus.snbt"
-hash = "97abe283d55243c301fe8977d4d66b21cd40b86bdd9ed0e733b06d4c134c47d4"
+hash = "5eb3c74833e2fcc19f6a953256d2e0d1e11d323b64d6da51f2efcab3dc02711d"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/nether_e_end.snbt"
@@ -1333,11 +1333,11 @@ hash = "40cb38f1c2de90f472336b09a86505c35737cc95a2c14540a32e82bcdb9ce136"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us.snbt"
-hash = "4eeef4eac2aec92d3d86c099f7b0bb891627d1bc8a7e88085380a9d75176100f"
+hash = "3e43e7fb4af6355fd06ca38d6e6c240edee8359ad27e545cf738307ded1d48cf"
 
 [[files]]
 file = "config/ftbquests/quests/lang/pt_br.snbt"
-hash = "4eeef4eac2aec92d3d86c099f7b0bb891627d1bc8a7e88085380a9d75176100f"
+hash = "3e43e7fb4af6355fd06ca38d6e6c240edee8359ad27e545cf738307ded1d48cf"
 
 [[files]]
 file = "config/ftbultimine-client.snbt"

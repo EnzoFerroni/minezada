@@ -229,6 +229,8 @@ if (Test-Path $soltos) {
         $dest = Join-Path $pw $rel
         New-Item -ItemType Directory -Force (Split-Path $dest) | Out-Null
         Copy-Item $a.FullName $dest
+        # server-config sai com CRLF no Windows e LF no Linux; o pack guarda os bytes: livro sempre em LF.
+        if ($rel -like 'config/ftbquests/*') { [IO.File]::WriteAllText($dest, [IO.File]::ReadAllText($dest).Replace("`r`n", "`n"), (New-Object Text.UTF8Encoding $false)) }
         # minezada.ps1/.sh (rodam antes de abrir), o texto do Ultimine (fora de baixo do minimapa), o Crash Assistant (pt-BR, sem dados para terceiros) e os pacotes de
         # recursos proprios (resourcepacks/) sempre atualizam: sem preserve.
         $pres = if ($rel -like 'minezada.*' -or $rel -eq 'config/ftbultimine-client.snbt' -or $rel -eq 'config/crash_assistant/config.toml' -or $rel -like 'resourcepacks/*' -or $rel -like 'config/ftbquests/*' -or $rel -eq 'mundo-id.txt') { '' } else { "preserve = true`n" }
