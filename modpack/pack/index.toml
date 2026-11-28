@@ -1180,6 +1180,166 @@ file = "config/crash_assistant/config.toml"
 hash = "edd498bad57381381bd495b8d46164701903e6ea4a1bb1f122fdd97d7c9c0a26"
 
 [[files]]
+file = "config/ftbquests/quests/chapter_groups.snbt"
+hash = "43b24c8b874ff928091dcd4035519a9e898e60b7889cfedf0e1e3ca05fcf06bc"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/aether.snbt"
+hash = "e6205566c5e4f9dd0a8fa0bfb44c47bff4644d1de7602a09c3430f830702da13"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/agricultura_mistica.snbt"
+hash = "9549f92f1cac24161e686c868597161850af548e46aab292d4b85d829dc971b2"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/animais.snbt"
+hash = "fbd9e9054a8dc7886fabc032c48870d96143e3a07d08e032db2fb05ef7606b9d"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/bichos_do_mundo.snbt"
+hash = "60062d93a576d7a88df970a23dc8fafd48860732f133ef856cbd80f8562c34e4"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/cacador_de_chefes.snbt"
+hash = "5143487db609990a9e9aa7f6cd73fe10b9782e03c20f949c489a519842368788"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/colecionador.snbt"
+hash = "78f2ff0356bcc001cef94e17cab88e9d65eb02464f76a5c5a12a8df777614032"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/construir.snbt"
+hash = "3df1599b7d4ab23226e99d07610944940bcf7c7f3ebd7dcfa98e11ed32b899a1"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/cozinha_e_fazenda.snbt"
+hash = "d3d173041e2e06f610e22c1bfced63bbc115b04148383719cc62cee9fed226b3"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/create_1_o_basico.snbt"
+hash = "e1f64db53f2fb2253df0ba8ef779b773edf0736ab9a74c7397817413e42652f3"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/create_2_primeiras_maquinas.snbt"
+hash = "6818dfe6660fc543017094d2efd36e37cfdf3a26a7dda0cb7b52d0d6ff7457d0"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/create_3_era_do_latao.snbt"
+hash = "927c9a77395208dfe04c82c756c154a51f711159ffcc3ca0e9e2924b20414e0b"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/create_4_fluidos_e_vapor.snbt"
+hash = "5cbae0d56bdb9abe729560eb109fbe1175bf191d746bc45fe405d56dce9d606f"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/create_5_trens.snbt"
+hash = "f39490bfceffe626ebb02072301478f23bf98f7357cf75f043b1e63e8713cebf"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/create_6_logistica.snbt"
+hash = "4e5790bc74c8d9422a4a5640f306ccc63e065ca8190bf52e56557a68189bffa1"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/create_addons.snbt"
+hash = "6e412a1a8a3bd816b768884705c4880431c705f183cd0b9dda7879e7137d4fb4"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/create_energia.snbt"
+hash = "a17bd40876a5826111efd701bace71ab218d8b346318a39f4e1f96db855894cb"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/create_ferramentas.snbt"
+hash = "e5504d0fcda13611f5bb704e2e8cc75638c5408f7697be8faa3b2388fdc52038"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/decorar.snbt"
+hash = "3a204ebeb9d4818511fdcb12f465ec00b930ffb2fd70ae21ea1bf69168b3573c"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/dimensoes.snbt"
+hash = "be14e9e47cfe856e20470ea9c9f3454bc55750d96b4726ff8260a8ed0d90291c"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/espaco.snbt"
+hash = "de6bfa742263d81a967817b1b76b739b852a066692f1da52b3973b6528e287a8"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/eternal_starlight.snbt"
+hash = "9600af74bf9afb4a9d2a8f2ef88740fd0405a631754d18d7893726875632827a"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/explorar.snbt"
+hash = "8829438f50f030cc5ac6e40d3b58dda7c6068b67d83433bd702cdb5a4e383013"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/fornalhas.snbt"
+hash = "dd8f247904dddb911b073be23a2a8c65ca02c37c478f41f53f68a99f3052da51"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/grandes_estruturas.snbt"
+hash = "101d6288cd8debb4f9bc5e9b773b1737838ae3b1ba5d8d0c9616aa233d17ae5f"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/masmorras_e_tesouros.snbt"
+hash = "f8376d960fd15476b05a9d8e911a8de69f9b3f49bb5d8976595dfefcf1e34709"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/mekanism_1_comeco.snbt"
+hash = "aa684c04b38d4cdb0e7c0b6c6d9c18e691857e20f72c5c417fa12f5191d858ba"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/mekanism_2_minerios.snbt"
+hash = "e6307bf3238d3034168ab83012150cb675f1a72479d49734e74e640ca179332b"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/mekanism_3_avancado.snbt"
+hash = "88a9b26be2fd8e47a7b3e8ba1fd3ecff1dcd4f1cfe09af9c3f9e38e8ce483d15"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/mochila_e_baus.snbt"
+hash = "97abe283d55243c301fe8977d4d66b21cd40b86bdd9ed0e733b06d4c134c47d4"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/nether_e_end.snbt"
+hash = "dba9d7a73928e3594b05f578c6e0e702d837509c559db2b99630b36bbcce1f30"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/pelo_mundo.snbt"
+hash = "6693f91be1a03395bd7936a65ad56e7e2ec84e2e5e2b367fe1850c68ee09d739"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/primeiros_passos.snbt"
+hash = "b9482c18cd7f1a37e0d576bc88a302c45a595d0a90fa23a67ed41555a0470e96"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/twilight_forest.snbt"
+hash = "d36a64226c39b875ac4b1749e4259d0ad3d57468be3f9ea0e8cf509abd4dc680"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/undergarden.snbt"
+hash = "7add69c0b80fdc4ed56900738d2eeeca07ecb0d982afa592bca83918da1fd135"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/utilidades.snbt"
+hash = "34a72d3f94736b7f531d98e7e54f2429dfbabd20304dedd93f1f62da577f3ad1"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/volta_ao_mundo.snbt"
+hash = "e4e51d49927e01b20cdae4c976442d228e96fcbaf2e915a86dc08106fa48ae9c"
+
+[[files]]
+file = "config/ftbquests/quests/data.snbt"
+hash = "40cb38f1c2de90f472336b09a86505c35737cc95a2c14540a32e82bcdb9ce136"
+
+[[files]]
+file = "config/ftbquests/quests/lang/en_us.snbt"
+hash = "4eeef4eac2aec92d3d86c099f7b0bb891627d1bc8a7e88085380a9d75176100f"
+
+[[files]]
+file = "config/ftbquests/quests/lang/pt_br.snbt"
+hash = "4eeef4eac2aec92d3d86c099f7b0bb891627d1bc8a7e88085380a9d75176100f"
+
+[[files]]
 file = "config/ftbultimine-client.snbt"
 hash = "be7c33310e76343c99c9b43c2c092467c59b66b1bf269fd3b3ee3b8b563c790e"
 

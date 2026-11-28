@@ -1,0 +1,260 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "utilidades"
+	group: "2A64FDD2182C23F1"
+	icon: { id: "justhammers:iron_hammer" }
+	id: "1EDB32752725DDCA"
+	order_index: 25
+	quest_links: [ ]
+	quests: [
+		{
+			id: "493065C7669E9089"
+			rewards: [{ id: "20F1AA4BF0F684B2", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "187A5B13C1AE7DBA", type: "checkmark" }]
+			x: 0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["493065C7669E9089"]
+			id: "44D6D9BE5B35C3AF"
+			rewards: [{ id: "4F09B5467EB7159B", type: "xp", xp: 20 }]
+			tasks: [{ id: "5D37E5FF99F736B0", item: { count: 1, id: "justhammers:iron_hammer" }, type: "item" }]
+			x: 2d
+			y: 5.25d
+		}
+		{
+			dependencies: ["493065C7669E9089"]
+			id: "73D4274DF4F494A1"
+			rewards: [{ id: "5CBC8F3B7E931F3C", type: "xp", xp: 20 }, { id: "2ACF735524A51BDC", item: { count: 16, id: "minecraft:coal" }, type: "item" }]
+			tasks: [{ id: "72725D422ED37694", item: { count: 1, id: "ironfurnaces:iron_furnace" }, type: "item" }]
+			x: 2d
+			y: 0.0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["493065C7669E9089"]
+			id: "454093E878F435FA"
+			rewards: [{ id: "29AD350C759B8F90", type: "xp", xp: 20 }]
+			tasks: [{ id: "692FF922509582A2", type: "checkmark" }]
+			x: 3.5d
+			y: 0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["493065C7669E9089"]
+			id: "1486A30A2C662DEA"
+			rewards: [{ id: "1FCD156FFAE431F4", type: "xp", xp: 20 }]
+			tasks: [{ id: "2465699976CE4A92", type: "checkmark" }]
+			x: 5d
+			y: 0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["493065C7669E9089"]
+			id: "1DF15A7537E1459C"
+			rewards: [{ id: "3FD07BF591497DAC", type: "xp", xp: 20 }]
+			tasks: [{ id: "07E2160D858A684F", item: { count: 1, id: "comforts:sleeping_bag_white" }, type: "item" }]
+			x: 6.5d
+			y: 0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["493065C7669E9089"]
+			id: "051B132375F0969D"
+			rewards: [{ id: "04C1425AE4D3F381", type: "xp", xp: 20 }]
+			tasks: [{ id: "4712901379BC13EE", type: "checkmark" }]
+			x: 2d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["493065C7669E9089"]
+			id: "7AA61CED22BB0609"
+			rewards: [{ id: "67D9DE4CE03354DE", type: "xp", xp: 20 }]
+			tasks: [{ id: "42D8D66205AAA935", item: { count: 16, id: "minecraft:torch" }, type: "item" }]
+			x: 3.5d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["493065C7669E9089"]
+			id: "737CADF831F74384"
+			rewards: [{ id: "2816B936290ECDE2", type: "xp", xp: 20 }]
+			tasks: [{ id: "2B777EFD4ABF1713", type: "checkmark" }]
+			x: 5d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["493065C7669E9089"]
+			id: "1B2A7FBEB0D7E424"
+			rewards: [{ id: "711971793288C308", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "27AFAE9C2A9CFB54", type: "checkmark" }]
+			x: 6.5d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["44D6D9BE5B35C3AF"]
+			id: "205E6C0F5C30753E"
+			rewards: [{ id: "12B7E673E097BF3E", type: "xp", xp: 20 }]
+			tasks: [{ id: "6D7BB6CDA133F496", item: { count: 1, id: "advancednetherite:netherite_diamond_ingot" }, type: "item" }]
+			x: 4d
+			y: 4.5d
+		}
+		{
+			dependencies: ["493065C7669E9089"]
+			id: "1F472D77AC4B59EA"
+			rewards: [{ id: "6211ECEF17ED7A47", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "5F769B3B11342D68", item: { count: 1, id: "buildinggadgets2:gadget_building" }, type: "item" }]
+			x: 2d
+			y: 3.0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["493065C7669E9089"]
+			id: "029100AF745CC64D"
+			rewards: [{ id: "33FBCAC6AF96729F", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "38088248514292A3", item: { count: 1, id: "aperture_innovations:portal_gun" }, type: "item" }]
+			x: 2d
+			y: 8.25d
+		}
+		{
+			dependencies: ["493065C7669E9089"]
+			id: "08B06B2679D02B1D"
+			rewards: [{ id: "2F1D94242BCC2C17", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "6D90F169A510EFA5", type: "checkmark" }]
+			x: 2d
+			y: 12.75d
+		}
+		{
+			dependencies: ["44D6D9BE5B35C3AF"]
+			id: "260A6E3AA86FD795"
+			rewards: [{ id: "73D1D67661A456F4", type: "xp", xp: 20 }]
+			tasks: [{ id: "38FCD2DDC0790F11", item: { count: 1, id: "justhammers:iron_impact_hammer" }, type: "item" }]
+			x: 4d
+			y: 6d
+		}
+		{
+			dependencies: ["260A6E3AA86FD795"]
+			id: "33164A253BBB5A2C"
+			rewards: [{ id: "17AFD9500FF66B50", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "50104A2A7670ECD5", item: { count: 1, id: "justhammers:iron_reinforced_hammer" }, type: "item" }]
+			x: 6d
+			y: 6d
+		}
+		{
+			dependencies: ["205E6C0F5C30753E"]
+			id: "1596C6927B92A5F7"
+			rewards: [{ id: "5210E41751EEF340", type: "xp", xp: 20 }]
+			tasks: [{ id: "714DFCF9E79EF4FB", item: { count: 1, id: "advancednetherite:netherite_iron_ingot" }, type: "item" }]
+			x: 6d
+			y: 4.5d
+		}
+		{
+			dependencies: ["1596C6927B92A5F7"]
+			id: "4BB47944D1A879F4"
+			rewards: [{ id: "415117559DB18F6A", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			optional: true
+			tasks: [{ id: "381F6547BCB97C0A", item: { count: 1, id: "advancednetherite:netherite_diamond_pickaxe" }, type: "item" }]
+			x: 8d
+			y: 4.5d
+		}
+		{
+			dependencies: ["493065C7669E9089"]
+			id: "7E4DAE33D3D9C431"
+			rewards: [{ id: "00A1B009D0B951B9", type: "xp", xp: 20 }]
+			tasks: [{ id: "5A8F381E2FD3B067", type: "checkmark" }]
+			x: 3.5d
+			y: 3d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["029100AF745CC64D"]
+			id: "18A687E7D569A71A"
+			rewards: [{ id: "065AD4DA2D19483B", type: "xp", xp: 20 }]
+			tasks: [{ id: "49B8BF2B21C98785", item: { count: 1, id: "aperture_innovations:long_fall_boots" }, type: "item" }]
+			x: 4d
+			y: 7.5d
+		}
+		{
+			dependencies: ["029100AF745CC64D"]
+			id: "16658B7CF020A208"
+			rewards: [{ id: "27B88A93A3BC807A", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "654F5F080F037A06", type: "checkmark" }]
+			x: 4d
+			y: 9d
+		}
+		{
+			dependencies: ["08B06B2679D02B1D"]
+			id: "54EE99A80E600475"
+			rewards: [{ id: "79EDAE71BF3E056E", type: "xp", xp: 20 }]
+			tasks: [{ id: "49B870E9DF4218B0", item: { count: 1, id: "smokingpipe:pipemaker_table" }, type: "item" }]
+			x: 4d
+			y: 10.5d
+		}
+		{
+			dependencies: ["08B06B2679D02B1D"]
+			id: "05D8F27C20DA114B"
+			rewards: [{ id: "7D66255F32E968E2", type: "xp", xp: 20 }]
+			tasks: [{ id: "7CC1B9C935127335", item: { count: 4, id: "ciggycraft:tobacco_seeds" }, type: "item" }]
+			x: 4d
+			y: 13.5d
+		}
+		{
+			dependencies: ["05D8F27C20DA114B"]
+			id: "727825825196664A"
+			rewards: [{ id: "4EB70C71EDE2DF05", type: "xp", xp: 20 }]
+			tasks: [{ id: "1A3A2AF1BDDB6735", item: { count: 1, id: "tobacconistmod:tobacco_guide" }, type: "item" }]
+			x: 6d
+			y: 14.25d
+		}
+		{
+			dependencies: ["727825825196664A"]
+			id: "1AE5A9B4C8BBF28C"
+			rewards: [{ id: "2F827A9D032027F1", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "01928ED9E90F7E75", item: { count: 1, id: "tobacconistmod:gold_smoking_pipe" }, type: "item" }]
+			x: 8d
+			y: 13.5d
+		}
+		{
+			dependencies: ["727825825196664A"]
+			id: "67D7F29FD5DBE305"
+			rewards: [{ id: "248E8BBDB191BE1B", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "37E5233876AB69C1", item: { count: 1, id: "tobacconistmod:cigar" }, type: "item" }]
+			x: 8d
+			y: 15d
+		}
+		{
+			dependencies: ["05D8F27C20DA114B"]
+			id: "4B4E0CC94EB4459F"
+			rewards: [{ id: "66E8950C53002995", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "3314145AADEF1CF3", item: { count: 1, id: "ciggycraft:pack_of_cigarettes" }, type: "item" }]
+			x: 6d
+			y: 12d
+		}
+		{
+			dependencies: ["54EE99A80E600475"]
+			id: "5762EF69F38ED0B3"
+			rewards: [{ id: "388F5767A7DCF2F4", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "3901AA8051BAAF38", item: { count: 1, id: "smokingpipe:smoking_pipe" }, type: "item" }]
+			x: 6d
+			y: 10.5d
+		}
+	]
+}

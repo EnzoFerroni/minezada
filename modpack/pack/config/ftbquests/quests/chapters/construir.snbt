@@ -1,0 +1,214 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "construir"
+	group: "2A64FDD2182C23F1"
+	icon: { id: "mcwroofs:oak_roof" }
+	id: "1CC3B8CA7BE5A04E"
+	order_index: 11
+	quest_links: [ ]
+	quests: [
+		{
+			id: "147BEF281E8E7856"
+			rewards: [{ id: "586FC5FB7F14D6F0", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "772E305691A2AA4D", type: "checkmark" }]
+			x: 0d
+			y: 5.25d
+		}
+		{
+			dependencies: ["147BEF281E8E7856"]
+			id: "4AA1F0DD4F1E187E"
+			rewards: [{ id: "53500BE9DF4E656C", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "6F47ED93B37D35E2", item: { count: 1, id: "effortlessbuilding:randomizer_tool" }, type: "item" }]
+			x: 2d
+			y: 0.0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["147BEF281E8E7856"]
+			id: "28C9F0C287082F70"
+			rewards: [{ id: "7A8FA86D1DDDD9C1", type: "xp", xp: 20 }]
+			tasks: [{ id: "288D9ABDDC2D2DDF", item: { count: 8, id: "mcwroofs:oak_roof" }, type: "item" }]
+			x: 3.5d
+			y: 0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["147BEF281E8E7856"]
+			id: "005A06688AF20F0C"
+			rewards: [{ id: "237EF7D93E35E4A7", type: "xp", xp: 20 }]
+			tasks: [{ id: "460FCC1A0A854117", item: { count: 4, id: "mcwwindows:oak_window" }, type: "item" }]
+			x: 5d
+			y: 0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["147BEF281E8E7856"]
+			id: "5BA83E853C28E692"
+			rewards: [{ id: "196DD5052D642E51", type: "xp", xp: 20 }]
+			tasks: [{ id: "0EEE9F2F7AB314EF", item: { count: 1, id: "mcwdoors:oak_barn_door" }, type: "item" }]
+			x: 6.5d
+			y: 0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["147BEF281E8E7856"]
+			id: "6BBB6CBA86C4DF12"
+			rewards: [{ id: "7DEA8D60EAE0B425", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "6A92D252D06CBDF6", item: { count: 8, id: "mcwfences:oak_picket_fence" }, type: "item" }]
+			x: 2d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["147BEF281E8E7856"]
+			id: "1C41171CF78F7CDC"
+			rewards: [{ id: "2D092D347A245F04", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "3F837ED14909FA3D", item: { count: 8, id: "mcwbridges:rope_oak_bridge" }, type: "item" }]
+			x: 3.5d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["147BEF281E8E7856"]
+			id: "2273EE0F20F897A0"
+			rewards: [{ id: "7AB0814D7E83EAA7", type: "xp", xp: 20 }]
+			tasks: [{ id: "2AB1C2282E1068A9", item: { count: 1, id: "mcwfurnitures:oak_chair" }, type: "item" }]
+			x: 2d
+			y: 4.5d
+		}
+		{
+			dependencies: ["2273EE0F20F897A0"]
+			id: "30B02B690AB5AC39"
+			rewards: [{ id: "64A1DB50024A7CF5", type: "xp", xp: 20 }, { id: "1005A3363DA5DF3B", item: { count: 1, id: "handcrafted:hammer" }, type: "item" }]
+			tasks: [{ id: "274E0EDE825F0B0C", item: { count: 1, id: "handcrafted:oak_couch" }, type: "item" }]
+			x: 4d
+			y: 4.5d
+		}
+		{
+			dependencies: ["30B02B690AB5AC39"]
+			id: "221E6B6B9FB62673"
+			rewards: [{ id: "5C549422756B15EA", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "39864A6789EC8B90", item: { count: 1, id: "handcrafted:creeper_trophy" }, type: "item" }]
+			x: 6d
+			y: 4.5d
+		}
+		{
+			dependencies: ["2273EE0F20F897A0"]
+			id: "02065EF22CBA3472"
+			rewards: [{ id: "29DCE1D714701641", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "2343BF8997B02A28", item: { count: 1, id: "refurbished_furniture:light_fridge" }, type: "item" }]
+			x: 4d
+			y: 6d
+		}
+		{
+			dependencies: ["02065EF22CBA3472"]
+			id: "49614AE1A15F40D4"
+			rewards: [{ id: "0115DD14C46089C9", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "40AC920B9F1F5652", item: { count: 1, id: "refurbished_furniture:oak_mail_box" }, type: "item" }]
+			x: 6d
+			y: 6d
+		}
+		{
+			dependencies: ["147BEF281E8E7856"]
+			id: "0ABD29E83E16B4DF"
+			rewards: [{ id: "788373D0BB3AB4B3", type: "xp", xp: 20 }]
+			tasks: [{ id: "4ED876AA81943680", item: { count: 1, id: "supplementaries:jar" }, type: "item" }]
+			x: 2d
+			y: 8.25d
+		}
+		{
+			dependencies: ["0ABD29E83E16B4DF"]
+			id: "10375FA9F990031D"
+			rewards: [{ id: "19108C29891E76FE", type: "xp", xp: 20 }]
+			tasks: [{ id: "1C2C6873A1834C82", type: "checkmark" }]
+			x: 4d
+			y: 7.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["0ABD29E83E16B4DF"]
+			id: "52E4903BCC1BA3D5"
+			rewards: [{ id: "159FF97DD64A25CC", type: "xp", xp: 20 }]
+			tasks: [{ id: "51F7406411B74B3C", item: { count: 16, id: "supplementaries:rope" }, type: "item" }]
+			x: 5.5d
+			y: 7.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["0ABD29E83E16B4DF"]
+			id: "34FD72549F95D0C2"
+			rewards: [{ id: "19CD4304AD5C01C8", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "516ACD7C93C64C43", item: { count: 1, id: "supplementaries:slingshot" }, type: "item" }]
+			x: 7d
+			y: 7.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["0ABD29E83E16B4DF"]
+			id: "3D9DD83025FC71A6"
+			rewards: [{ id: "5CF64CA032F57B23", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "6230B66AB93FC246", item: { count: 1, id: "supplementaries:quiver" }, type: "item" }]
+			x: 8.5d
+			y: 7.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["0ABD29E83E16B4DF"]
+			id: "019F5CBDF8ABFD78"
+			rewards: [{ id: "5120325E04828957", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "4C66BECE68A296A2", item: { count: 1, id: "supplementaries:globe" }, type: "item" }]
+			x: 4d
+			y: 9.0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["147BEF281E8E7856"]
+			id: "7029E4B1CD69178F"
+			rewards: [{ id: "2CC2A837EEC02E60", type: "xp", xp: 20 }]
+			tasks: [{ id: "14C949A39C42EEE5", item: { count: 1, id: "beautify:oak_picture_frame" }, type: "item" }]
+			x: 2d
+			y: 10.5d
+		}
+		{
+			dependencies: ["7029E4B1CD69178F"]
+			id: "1C07E6854A7704A2"
+			rewards: [{ id: "09712E8E1983A722", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "7942B0150BDFCBEA", item: { count: 1, id: "beautify:hanging_pot" }, type: "item" }]
+			x: 4d
+			y: 10.5d
+		}
+		{
+			dependencies: ["2273EE0F20F897A0"]
+			id: "16853D93B6377171"
+			rewards: [{ id: "5B47566F0A2A3144", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "32E41A8907EDD825", item: { count: 1, id: "interiors:kelp_chair" }, type: "item" }]
+			x: 4d
+			y: 3d
+		}
+		{
+			dependencies: ["147BEF281E8E7856"]
+			id: "3DA6D83330290EBF"
+			rewards: [{ id: "26BBB5F24FA9E857", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "247B6C2D3EEB62B9", type: "checkmark" }]
+			x: 5d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
+	]
+}

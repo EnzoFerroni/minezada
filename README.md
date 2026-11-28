@@ -36,6 +36,18 @@ curl -fsSL https://raw.githubusercontent.com/EnzoFerroni/minezada/main/jogar.sh 
 
 Na primeira vez, o jogo pede a sua conta. **Tem Minecraft original?** Entre com a conta Microsoft. **Não tem?** Escolha um nick (o mesmo que você mandou no grupo). Depois espere os mods baixarem; da primeira vez demora alguns minutos.
 
+## Do que precisa
+
+<!-- requisitos:inicio -->
+| | Quanto |
+|---|---|
+| Download dos mods, pacotes de recursos e shaders | 858 MB (216 arquivos) |
+| Espaço no disco depois de instalado | cerca de 3 GB (com Minecraft, Java e o Prism; medido em 28/11/2026) |
+| RAM do computador | 8 GB no mínimo, 16 GB recomendado |
+| RAM que o jogo usa | 4 GB (6 GB em computador com 24 GB ou mais) |
+| Download do servidor (para quem hospeda) | 720 MB de mods |
+<!-- requisitos:fim -->
+
 ## Depois de instalado
 
 1. Abra sempre pelo atalho **Minezada** na Área de Trabalho. Ele atualiza tudo sozinho a cada abertura.

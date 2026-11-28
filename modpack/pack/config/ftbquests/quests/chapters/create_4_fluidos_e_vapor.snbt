@@ -1,0 +1,98 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "create_4_fluidos_e_vapor"
+	group: "75C4FBF5BDDE1148"
+	icon: { id: "create:steam_engine" }
+	id: "2FAD8A3B450887BF"
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			id: "29A5D1D83610A227"
+			rewards: [{ id: "4DCB19D3EE25F4D6", type: "xp", xp: 20 }]
+			tasks: [{ id: "1AF0B6818405D5B6", item: { count: 8, id: "create:fluid_pipe" }, type: "item" }]
+			x: 0d
+			y: 3d
+		}
+		{
+			dependencies: ["29A5D1D83610A227"]
+			id: "7DF410A08F8BAAB0"
+			rewards: [{ id: "26EDA2365CEDACA2", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "106B46DA7A0D5DBF", item: { count: 1, id: "create:mechanical_pump" }, type: "item" }]
+			x: 2d
+			y: 3d
+		}
+		{
+			dependencies: ["29A5D1D83610A227"]
+			id: "03E53EBB9D337B3B"
+			rewards: [{ id: "198623A98A1F2747", type: "xp", xp: 20 }]
+			tasks: [{ id: "20BE6EFAEF801406", item: { count: 4, id: "create:fluid_tank" }, type: "item" }]
+			x: 2d
+			y: 6d
+		}
+		{
+			dependencies: ["7DF410A08F8BAAB0"]
+			id: "35A6D64C2E361449"
+			rewards: [{ id: "7E68286E5107E9F3", type: "xp", xp: 20 }]
+			tasks: [{ id: "378A77FF6A7192CA", item: { count: 1, id: "create:spout" }, type: "item" }]
+			x: 4d
+			y: 4.5d
+		}
+		{
+			dependencies: ["7DF410A08F8BAAB0"]
+			id: "1AD92E13DBC0B7F7"
+			rewards: [{ id: "1584702C05B6B0A9", type: "xp", xp: 20 }]
+			tasks: [{ id: "55B0D80F2874C5D3", item: { count: 1, id: "create:item_drain" }, type: "item" }]
+			x: 4d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7DF410A08F8BAAB0"]
+			id: "2646B4220FD325B6"
+			rewards: [{ id: "4D6D909E4291E4F9", type: "xp", xp: 20 }]
+			tasks: [{ id: "71C81402B207A026", item: { count: 1, id: "create:hose_pulley" }, type: "item" }]
+			x: 4d
+			y: 3d
+		}
+		{
+			dependencies: ["29A5D1D83610A227"]
+			id: "1A5F6B1778F51BEC"
+			rewards: [{ id: "0282CDAC704C8F78", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "6F00C42F61EAC004", item: { count: 1, id: "create:fluid_valve" }, type: "item" }]
+			x: 2d
+			y: 0d
+		}
+		{
+			dependencies: ["03E53EBB9D337B3B", "7DF410A08F8BAAB0"]
+			id: "1615B5298EDF8AEC"
+			rewards: [{ id: "1CE229FFBECD1C03", type: "xp", xp: 100 }, { id: "3EEAFCB0A2DB9563", item: { count: 8, id: "minecraft:coal_block" }, type: "item" }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "429486278E5C6935", item: { count: 1, id: "create:steam_engine" }, type: "item" }]
+			x: 4d
+			y: 6d
+		}
+		{
+			dependencies: ["1615B5298EDF8AEC"]
+			id: "0E59C6FFDBA94B98"
+			rewards: [{ id: "0E337AB053B75F9F", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "639FE7C60B3D8F20", item: { count: 1, id: "create:steam_whistle" }, type: "item" }]
+			x: 6d
+			y: 6d
+		}
+		{
+			dependencies: ["35A6D64C2E361449"]
+			id: "758EBB8B17F7AFBE"
+			rewards: [{ id: "27DA77C9262990CA", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "7247318A93203DF3", item: { count: 4, id: "create:bar_of_chocolate" }, type: "item" }]
+			x: 6d
+			y: 4.5d
+		}
+	]
+}

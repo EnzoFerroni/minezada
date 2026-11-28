@@ -1,0 +1,148 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "eternal_starlight"
+	group: "0B7482EA7957301C"
+	icon: { id: "eternal_starlight:orb_of_prophecy" }
+	id: "5FD7EA0445DF77BD"
+	order_index: 23
+	quest_links: [ ]
+	quests: [
+		{
+			id: "2C22BCD8BD64FFFC"
+			rewards: [{ id: "194EBE8727742B20", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ advancement: "eternal_starlight:challenge_gatekeeper", criterion: "", id: "69B88E2C899133E7", type: "advancement" }]
+			x: 0d
+			y: 2.25d
+		}
+		{
+			dependencies: ["2C22BCD8BD64FFFC"]
+			id: "28430639041CD52A"
+			rewards: [{ id: "3827905B4B130348", type: "xp", xp: 20 }]
+			tasks: [{ id: "04313FDE9F681DBC", item: { count: 1, id: "eternal_starlight:orb_of_prophecy" }, type: "item" }]
+			x: 2d
+			y: 2.25d
+		}
+		{
+			dependencies: ["28430639041CD52A"]
+			id: "5A55401740D7F4EC"
+			rewards: [{ id: "68AAF87C5F366B18", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ dimension: "eternal_starlight:starlight", id: "044371A94F0BACF7", type: "dimension" }]
+			x: 4d
+			y: 2.25d
+		}
+		{
+			dependencies: ["5A55401740D7F4EC"]
+			id: "7D97649E78C93475"
+			rewards: [{ id: "63E737943EC15E2F", type: "xp", xp: 20 }]
+			tasks: [{ id: "6451BF0130F9BCC1", item: { count: 1, id: "eternal_starlight:starlit_diamond" }, type: "item" }]
+			x: 6d
+			y: 0.0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["5A55401740D7F4EC"]
+			id: "2F394DA42C10AA18"
+			rewards: [{ id: "7177FC8310A8B810", type: "xp", xp: 20 }]
+			tasks: [{ id: "7D952FC642B5A47C", item: { count: 1, id: "eternal_starlight:deepsilver_ingot" }, type: "item" }]
+			x: 7.5d
+			y: 0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["5A55401740D7F4EC"]
+			id: "0D8162EF226DA6FF"
+			rewards: [{ id: "571EBA526167465A", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "eternal_starlight:witness_meteor_shower", criterion: "", id: "624724F59A1B0FE4", type: "advancement" }]
+			x: 6d
+			y: 3d
+		}
+		{
+			dependencies: ["0D8162EF226DA6FF"]
+			id: "09D40D4563462D65"
+			rewards: [{ id: "67355A22CDE2CB8D", type: "xp", xp: 20 }]
+			tasks: [{ id: "1E1E72A81FCDC8F3", item: { count: 1, id: "eternal_starlight:aethersent_ingot" }, type: "item" }]
+			x: 8d
+			y: 3d
+		}
+		{
+			dependencies: ["5A55401740D7F4EC"]
+			id: "2043672EFD4804B9"
+			rewards: [{ id: "751590A3375F41C0", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "eternal_starlight:enter_crystallized_desert", criterion: "", id: "74DD84321941E108", type: "advancement" }]
+			x: 9d
+			y: 0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["5A55401740D7F4EC"]
+			id: "1981BA6AD688185E"
+			rewards: [{ id: "3F5E4F03EE5B778F", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "eternal_starlight:enter_abyss", criterion: "", id: "1DFA25DDCF35CCB1", type: "advancement" }]
+			x: 10.5d
+			y: 0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["5A55401740D7F4EC"]
+			id: "50ADED386C9A77F8"
+			rewards: [{ id: "03F4784F6F863DA7", type: "xp", xp: 20 }]
+			tasks: [{ id: "7D7E1D799C4A5E44", item: { count: 1, id: "eternal_starlight:seeking_eye" }, type: "item" }]
+			x: 6d
+			y: 4.5d
+		}
+		{
+			dependencies: ["50ADED386C9A77F8"]
+			id: "03C3D4A7EC2F6CFA"
+			rewards: [{ id: "02F1C083707BBF0E", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "eternal_starlight:enter_golem_forge", criterion: "", id: "1719579F32975F39", type: "advancement" }]
+			x: 8d
+			y: 4.5d
+		}
+		{
+			dependencies: ["03C3D4A7EC2F6CFA"]
+			id: "5B84EACDCAEE20B4"
+			rewards: [{ id: "0CE3BA88C1C2E9EF", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ advancement: "eternal_starlight:kill_golem", criterion: "", id: "492F197AC5EDE83C", type: "advancement" }]
+			x: 10d
+			y: 4.5d
+		}
+		{
+			dependencies: ["5B84EACDCAEE20B4"]
+			id: "56DAA0C0BC553D16"
+			rewards: [{ id: "7BC4C0C2ED87A392", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ advancement: "eternal_starlight:kill_lunar_monstrosity", criterion: "", id: "366E13EDA742E820", type: "advancement" }]
+			x: 12d
+			y: 4.5d
+		}
+		{
+			dependencies: ["56DAA0C0BC553D16"]
+			id: "62097E20923EDF13"
+			rewards: [{ id: "3933ED4FE32C50AF", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "eternal_starlight:full_unrealium_armor", criterion: "", id: "0F5B904B1FCC0590", type: "advancement" }]
+			x: 14d
+			y: 4.5d
+		}
+		{
+			dependencies: ["5A55401740D7F4EC"]
+			id: "42B9E0390937E46C"
+			rewards: [{ id: "62D95A4972F79B57", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "eternal_starlight:all_starlight_biomes", criterion: "", id: "3A713AF66205A152", type: "advancement" }]
+			x: 6d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
+	]
+}

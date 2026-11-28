@@ -149,7 +149,7 @@ while ($cfFila.Count) {
     $cf.dependencies | Where-Object { $_.relationType -eq 3 -and "$($_.modId)" -notin $cfIds } | ForEach-Object { $cfIds += "$($_.modId)"; $cfFila.Enqueue("cf:$($_.modId)") }
     $url = if ($cf.downloadUrl) { $cf.downloadUrl } else { "https://edge.forgecdn.net/files/$([math]::Floor($cf.id / 1000))/$($cf.id % 1000)/$([uri]::EscapeDataString($cf.fileName))" }
     $projs[$chave] = [pscustomobject]@{ p = [pscustomobject]@{ slug = $m.slug; title = $m.name; icon_url = $m.logo.thumbnailUrl; chave = $chave; link = $m.links.websiteUrl; cf = "$cid $($cf.id)" }
-        v = [pscustomobject]@{ version_number = $cf.displayName }; f = [pscustomobject]@{ filename = $cf.fileName; url = $url; hashes = @{ sha1 = ($cf.hashes | Where-Object algo -eq 1).value } }
+        v = [pscustomobject]@{ version_number = $cf.displayName }; f = [pscustomobject]@{ filename = $cf.fileName; url = $url; hashes = @{ sha1 = ($cf.hashes | Where-Object algo -eq 1).value }; size = $cf.fileLength }
         pasta = 'mods'; deps = @(); cliente = $true; servidor = $true }
     Write-Host ('{0,-30} {1} (CurseForge)' -f $m.slug, $cf.displayName)
 }
@@ -172,7 +172,7 @@ foreach ($x in $projs.Values) {
     $info[$(if ($p.chave) { $p.chave } else { $p.slug })] = [pscustomobject]@{ titulo = $p.title; versao = $v.version_number; servidor = $x.servidor; icone = $p.icon_url
         link = $(if ($p.link) { $p.link } else { "https://modrinth.com/mod/$($p.slug)" }) }
     $lado = if (-not $x.servidor) { 'client' } elseif (-not $x.cliente) { 'server' } else { 'both' }
-    $pwMods += [pscustomobject]@{ slug = $p.slug; titulo = $p.title; arquivo = $f.filename; url = $f.url; sha1 = $f.hashes.sha1; lado = $lado; pasta = $x.pasta; cf = $p.cf }
+    $pwMods += [pscustomobject]@{ slug = $p.slug; titulo = $p.title; arquivo = $f.filename; url = $f.url; sha1 = $f.hashes.sha1; tamanho = [long]$f.size; lado = $lado; pasta = $x.pasta; cf = $p.cf }
 }
 
 # NeoForge mais novo que o Prism ja conhece: o meta dele atrasa algumas horas em relacao ao maven,
@@ -217,16 +217,21 @@ foreach ($m in $pwMods) {
 $soltos = Join-Path $root 'modpack/arquivos'
 if (Test-Path $soltos) {
     # Ordem ordinal: no Linux (CI) o Get-ChildItem lista em outra ordem e o hash do index mudaria.
-    $rels = [string[]]@(Get-ChildItem $soltos -Recurse -File | ForEach-Object { $_.FullName.Substring($soltos.Length + 1).Replace('\', '/') })
+    $origem = @{}
+    Get-ChildItem $soltos -Recurse -File | ForEach-Object { $origem[$_.FullName.Substring($soltos.Length + 1).Replace('\', '/')] = $_.FullName }
+    # Livro de missoes tambem no jogo: no mundo sozinho o servidor integrado le config/ftbquests/quests da instancia.
+    $livro = Join-Path $root 'server-config/config/ftbquests/quests'
+    Get-ChildItem $livro -Recurse -File | ForEach-Object { $origem['config/ftbquests/quests/' + $_.FullName.Substring($livro.Length + 1).Replace('\', '/')] = $_.FullName }
+    $rels = [string[]]@($origem.Keys)
     [Array]::Sort($rels, [StringComparer]::Ordinal)
     foreach ($rel in $rels) {
-        $a = Get-Item -LiteralPath (Join-Path $soltos $rel)
+        $a = Get-Item -LiteralPath $origem[$rel]
         $dest = Join-Path $pw $rel
         New-Item -ItemType Directory -Force (Split-Path $dest) | Out-Null
         Copy-Item $a.FullName $dest
         # minezada.ps1/.sh (rodam antes de abrir), o texto do Ultimine (fora de baixo do minimapa), o Crash Assistant (pt-BR, sem dados para terceiros) e os pacotes de
         # recursos proprios (resourcepacks/) sempre atualizam: sem preserve.
-        $pres = if ($rel -like 'minezada.*' -or $rel -eq 'config/ftbultimine-client.snbt' -or $rel -eq 'config/crash_assistant/config.toml' -or $rel -like 'resourcepacks/*' -or $rel -eq 'mundo-id.txt') { '' } else { "preserve = true`n" }
+        $pres = if ($rel -like 'minezada.*' -or $rel -eq 'config/ftbultimine-client.snbt' -or $rel -eq 'config/crash_assistant/config.toml' -or $rel -like 'resourcepacks/*' -or $rel -like 'config/ftbquests/*' -or $rel -eq 'mundo-id.txt') { '' } else { "preserve = true`n" }
         $idx += "`n[[files]]`nfile = $(Toml $rel)`nhash = `"$(Sha256 $dest)`"`n$pres"
     }
 }
@@ -348,6 +353,23 @@ $novo = [regex]::Replace($txt, '(?s)(<!-- mods:inicio -->).*?(<!-- mods:fim -->)
 [IO.File]::WriteAllText($doc, $novo, (New-Object Text.UTF8Encoding $false))
 
 Write-Host "`n$($pwMods.Count) arquivos, NeoForge $neo -> modpack/pack"
+
+# Requisitos no README, entre os marcadores: download de quem joga e de quem hospeda, recalculado a cada versao.
+$cli = ($pwMods | Where-Object lado -ne 'server' | Measure-Object tamanho -Sum).Sum + (Get-ChildItem $pw -Recurse -File -Exclude *.toml | Measure-Object Length -Sum).Sum
+$srv = ($pwMods | Where-Object { $_.lado -ne 'client' -and $_.pasta -eq 'mods' } | Measure-Object tamanho -Sum).Sum
+$req = @(
+    '| | Quanto |', '|---|---|'
+    "| Download dos mods, pacotes de recursos e shaders | $([math]::Round($cli / 1MB)) MB ($(@($pwMods | Where-Object lado -ne 'server').Count) arquivos) |"
+    '| Espaço no disco depois de instalado | cerca de 3 GB (com Minecraft, Java e o Prism; medido em 28/11/2026) |'
+    '| RAM do computador | 8 GB no mínimo, 16 GB recomendado |'
+    '| RAM que o jogo usa | 4 GB (6 GB em computador com 24 GB ou mais) |'
+    "| Download do servidor (para quem hospeda) | $([math]::Round($srv / 1MB)) MB de mods |"
+)
+$doc = Join-Path $root 'README.md'
+$txt = [IO.File]::ReadAllText($doc)
+if ($txt -notmatch '<!-- requisitos:inicio -->') { throw 'README.md sem os marcadores <!-- requisitos:inicio --> / <!-- requisitos:fim -->' }
+$novo = [regex]::Replace($txt, '(?s)(<!-- requisitos:inicio -->).*?(<!-- requisitos:fim -->)', { param($m) "$($m.Groups[1].Value)`n$($req -join "`n")`n$($m.Groups[2].Value)" })
+[IO.File]::WriteAllText($doc, $novo, (New-Object Text.UTF8Encoding $false))
 
 # Confere as dependencias que cada jar declara (META-INF/neoforge.mods.toml, inclusive os jars embutidos em
 # META-INF/jarjar), no jogo e no servidor: o Modrinth nem sempre lista o que o jar exige. Jars em tools/jars.

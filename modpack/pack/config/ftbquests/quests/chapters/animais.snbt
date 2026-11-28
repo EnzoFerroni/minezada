@@ -1,0 +1,209 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "animais"
+	group: "2A64FDD2182C23F1"
+	icon: { id: "alexsmobs:banana" }
+	id: "0681A168F2C7C697"
+	order_index: 13
+	quest_links: [ ]
+	quests: [
+		{
+			id: "709A1A630889A48A"
+			rewards: [{ id: "6FA6D048FEA823AB", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ id: "15C2D2BC9DEB8974", item: { count: 1, id: "alexsmobs:animal_dictionary" }, type: "item" }]
+			x: 0d
+			y: 0d
+		}
+		{
+			dependencies: ["709A1A630889A48A"]
+			id: "4ADAEBCD1EB47A95"
+			rewards: [{ id: "6A8DF806CAEE5CE3", type: "xp", xp: 20 }, { id: "1D67E840CBA48E5A", item: { count: 8, id: "adorablehamsterpets:sliced_cucumber" }, type: "item" }]
+			tasks: [{ advancement: "adorablehamsterpets:husbandry/tame_hamster", criterion: "", id: "189ADEBE60CE4380", type: "advancement" }]
+			x: 2d
+			y: 3d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["4ADAEBCD1EB47A95"]
+			id: "61C61A081520CB2D"
+			rewards: [{ id: "18D9870453F08149", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "adorablehamsterpets:husbandry/shoulder_hamster", criterion: "", id: "3B7C80D4864488C7", type: "advancement" }]
+			x: 4d
+			y: 3d
+		}
+		{
+			dependencies: ["709A1A630889A48A"]
+			id: "06C980678102C2D1"
+			rewards: [{ id: "52B7922C4927A0AA", type: "xp", xp: 20 }]
+			tasks: [{ id: "484863208DB4A241", item: { count: 4, id: "alexsmobs:banana" }, type: "item" }]
+			x: 2d
+			y: 5.75d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["06C980678102C2D1"]
+			id: "3849201631781B1D"
+			rewards: [{ id: "324D3B2CE7574ECC", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "alexsmobs:alexsmobs/tame_capuchin", criterion: "", id: "12B7DC60F4299CBA", type: "advancement" }]
+			x: 4d
+			y: 5d
+		}
+		{
+			dependencies: ["06C980678102C2D1"]
+			id: "49112F4ACB001628"
+			rewards: [{ id: "094CA5EDAD875CFA", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "alexsmobs:alexsmobs/tame_gorilla", criterion: "", id: "13D8C2617E2B739D", type: "advancement" }]
+			x: 4d
+			y: 6.5d
+		}
+		{
+			dependencies: ["709A1A630889A48A"]
+			id: "49AB300C67D3AA1F"
+			rewards: [{ id: "569672297C07142F", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "alexsmobs:alexsmobs/tame_grizzly_bear", criterion: "", id: "3999EEF5F674670E", type: "advancement" }]
+			x: 2d
+			y: 0.0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["709A1A630889A48A"]
+			id: "097CC09B429254A5"
+			rewards: [{ id: "768303D275CEB7D8", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "alexsmobs:alexsmobs/tame_elephant", criterion: "", id: "7CD583BDB92F83D3", type: "advancement" }]
+			x: 3.5d
+			y: 0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["709A1A630889A48A"]
+			id: "6150E244CB3DEF29"
+			rewards: [{ id: "472779BB11FBC78B", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "alexsmobs:alexsmobs/tame_bald_eagle", criterion: "", id: "36D5A71D8D98F041", type: "advancement" }]
+			x: 5d
+			y: 0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["709A1A630889A48A"]
+			id: "0A838F3BD45A0086"
+			rewards: [{ id: "6D363F96114148C4", type: "xp", xp: 20 }]
+			tasks: [{ id: "76C1451F34634EFB", item: { count: 1, id: "naturalist:capture_net" }, type: "item" }]
+			x: 2d
+			y: 9.25d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["0A838F3BD45A0086"]
+			id: "6D1B85B0167C383F"
+			rewards: [{ id: "2D57DD81C14DC8FA", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "naturalist:husbandry/feed_bear_honeycomb", criterion: "", id: "187BECAA7167DA45", type: "advancement" }]
+			x: 4d
+			y: 8.5d
+		}
+		{
+			dependencies: ["0A838F3BD45A0086"]
+			id: "44B56177CD82D0CA"
+			rewards: [{ id: "21481582174E1218", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "naturalist:husbandry/feed_hippo_melon", criterion: "", id: "78CE9DD2335AA11A", type: "advancement" }]
+			x: 4d
+			y: 10d
+		}
+		{
+			dependencies: ["709A1A630889A48A"]
+			id: "1BC70B92D74B0EE0"
+			rewards: [{ id: "13015A2454F1D269", type: "xp", xp: 20 }]
+			tasks: [{ advancement: "friendsandfoes:adventure/summon_copper_golem", criterion: "", id: "17C7D4EF87054972", type: "advancement" }]
+			x: 2d
+			y: 12.75d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["1BC70B92D74B0EE0"]
+			id: "1327834361AA2D2E"
+			rewards: [{ id: "24649CD7030808A1", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "friendsandfoes:husbandry/shear_a_moobloom", criterion: "", id: "009D194391EDD249", type: "advancement" }]
+			x: 4d
+			y: 12d
+		}
+		{
+			dependencies: ["1BC70B92D74B0EE0"]
+			id: "0A85DA39533066FF"
+			rewards: [{ id: "792670EC1A99DD26", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ advancement: "friendsandfoes:husbandry/tame_a_glare", criterion: "", id: "6CBBE13AE21583A3", type: "advancement" }]
+			x: 4d
+			y: 13.5d
+		}
+		{
+			dependencies: ["709A1A630889A48A"]
+			id: "22B41F73D0FF5EEC"
+			rewards: [{ id: "537EA8013675BE4B", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "461A221D90E93094", item: { count: 1, id: "crittersandcompanions:grappling_hook" }, type: "item" }]
+			x: 6.5d
+			y: 0d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["709A1A630889A48A"]
+			id: "7E43CEFFCC4BB081"
+			rewards: [{ id: "625887AACDD664AC", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "397D0CFEF9E4549C", structure: "ribbits:ribbit_village", type: "structure" }]
+			x: 2d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["709A1A630889A48A"]
+			id: "78FAE471475BB2C4"
+			rewards: [{ id: "5F92384B013622CF", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "586CB946C6876E59", item: { count: 1, id: "wildernature:deer_trophy" }, type: "item" }]
+			x: 3.5d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["709A1A630889A48A"]
+			id: "59E080926C5F84D3"
+			rewards: [{ id: "680EF3530675B7EA", type: "xp", xp: 20 }]
+			optional: true
+			tasks: [{ id: "116DCB35DE3CF09E", type: "checkmark" }]
+			x: 5d
+			y: 1.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["709A1A630889A48A"]
+			id: "305C7BD83B1F7E76"
+			rewards: [{ id: "4E23621DA244FEE9", type: "xp", xp: 100 }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ advancement: "dmr:hatch_1_dragon_egg", criterion: "", id: "5951117BBC7ED161", type: "advancement" }]
+			x: 2d
+			y: 15.5d
+			hide_dependency_lines: true
+		}
+		{
+			dependencies: ["305C7BD83B1F7E76"]
+			id: "72ED106D1CF93B4F"
+			rewards: [{ id: "30509A5ACBC70FE7", type: "xp", xp: 100 }, { id: "2C4CFC49B3CFFE1A", item: { count: 1, id: "minecraft:saddle" }, type: "item" }]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{ advancement: "dmr:tame_dragon", criterion: "", id: "1928DA00DFE011CA", type: "advancement" }]
+			x: 4d
+			y: 15.5d
+		}
+	]
+}
